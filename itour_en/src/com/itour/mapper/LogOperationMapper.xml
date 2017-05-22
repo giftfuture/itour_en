@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itour.dao.LogOperationDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.itour.entity.LogOperation" >
+	<result column="oper_code" property="operCode"/>
+	<result column="log_code" property="logCode"/>
+	<result column="operation_type" property="operationType"/>
+	<result column="primary_keyvalue" property="primaryKeyvalue"/>
+	<result column="content" property="content"/>
+	<result column="url" property="url"/>
+	<result column="creater" property="creater"/>
+	<result column="create_time" property="createTime"/>
+	<result column="id" property="id"/>
+</resultMap>
+       
+<!-- log_operation table all fields -->
+<sql id="Base_Column_List" >
+	id,oper_code, log_code, operation_type, primary_keyvalue, content, url, creater, create_time
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="operCode != null and operCode != ''" >
+	    and oper_code =  #{operCode}
+	</if>
+	<if test="logCode != null and logCode != ''" >
+	    and log_code =  #{logCode}
+	</if>
+	<if test="operationType != null and operationType != ''" >
+	    and operation_type =  #{operationType}
+	</if>
+	<if test="primaryKeyvalue != null and primaryKeyvalue != ''" >
+	    and primary_keyvalue =  #{primaryKeyvalue}
+	</if>
+	<if test="content != null and content != ''" >
+	    and content =  #{content}
+	</if>
+	<if test="url != null and url != ''" >
+	    and url =  #{url}
+	</if>
+	<if test="creater != null and creater != ''" >
+	    and creater =  #{creater}
+	</if>
+	<if test="createTime != null and createTime != ''" >
+	    and create_time =  #{createTime}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="com.itour.entity.LogOperation" >
+<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey> -->
+  insert into log_operation(id,oper_code,log_code,operation_type,primary_keyvalue,content,url,creater,create_time)
+ values(#{id},#{operCode},#{logCode},#{operationType},#{primaryKeyvalue},#{content},#{url},#{creater},now())
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="java.util.Map" >
+  update log_operation set log_code=#{logCode},operation_type=#{operationType},primary_keyvalue=#{primaryKeyvalue},content=#{content},url=#{url},creater=#{creater},create_time=now() where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="com.itour.entity.LogOperation" >
+	update log_operation set 
+	<trim  suffixOverrides="," >
+	<if test="logCode != null  ">
+		log_code=#{logCode},
+	</if>
+	<if test="operationType != null  ">
+		operation_type=#{operationType},
+	</if>
+	<if test="primaryKeyvalue != null  ">
+		primary_keyvalue=#{primaryKeyvalue},
+	</if>
+	<if test="content != null  ">
+		content=#{content},
+	</if>
+	<if test="url != null  ">
+		url=#{url},
+	</if>
+	<if test="creater != null and creater !='' ">
+		creater=#{creater},
+	</if>
+	<if test="createTime != null  ">
+		create_time=#{createTime},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="java.util.Map">
+	delete from log_operation where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 操作日志 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	 from log_operation where oper_code = #{operCode}
+</select>
+
+<!-- 操作日志 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="java.util.Map">
+	select count(1) from log_operation 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询操作日志列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="java.util.Map">
+	select 
+	<include refid="Base_Column_List"/>
+	from log_operation 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

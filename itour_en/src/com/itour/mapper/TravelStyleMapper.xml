@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itour.dao.TravelStyleDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.itour.entity.TravelStyle" >
+	<result column="id" property="id"/>
+	<result column="type" property="type"/>
+	<result column="remark" property="remark"/>
+	<result column="alias" property="alias"/>
+	<result column="valid" property="valid"/> 
+	<result column="descrip" property="descrip"/>
+	<result column="cover" property="cover"/>
+	<result column="create_by" property="createBy"/>
+	<result column="update_by" property="updateBy"/> 
+	<result column="create_time" property="createTime"/>
+	<result column="update_time" property="updateTime"/>
+</resultMap>
+       
+<!-- travel_style table all fields -->
+<sql id="Base_Column_List" >
+	 id, type,alias, remark,valid,descrip,cover,create_by,update_by,create_time,update_time
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where valid=1
+<trim  suffixOverrides="," >
+	<if test="type != null and type != ''" >
+	    and type like CONCAT('%', #{type}, '%')
+	</if>
+	<if test="remark != null and remark != ''" >
+	    and remark like CONCAT('%', #{remark}, '%')
+	</if>
+	<if test="alias != null and alias != ''">
+		and alias like CONCAT('%', #{alias}, '%')
+	</if>
+	<if test="descrip != null and descrip != ''">
+		and descrip like CONCAT('%', #{descrip}, '%')
+	</if>
+	<if test="createBy != null and createBy != ''">
+		and create_by = #{createBy},
+	</if>
+	<if test="createTime != null and createTime != ''">
+		 and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	</if>
+	<if test="updateBy != null and updateBy != ''">
+		and update_by = #{updateBy},
+	</if>
+	<if test="updateTime != null and updateTime != ''">
+		and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
+	</if>
+</trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="com.itour.entity.TravelStyle" >
+<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey> -->
+  insert into travel_style(id,type,alias,remark,valid,descrip,create_by,update_by,create_time,update_time)
+ values(#{id},#{type},#{alias},#{remark},1,#{descrip},#{createBy},#{updateBy},now(),now())
+</insert>
+
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="update" parameterType="com.itour.entity.TravelStyle" >
+	update travel_style set  set updateTime=now(),
+	<trim  suffixOverrides="," >
+		<if test="type != null and type != ''">
+			type=#{type},
+		</if>
+		<if test="alias != null and alias != ''">
+		    alias=#{alias},
+		</if>
+		<if test="remark != null and remark != '' ">
+			remark=#{remark},
+		</if>
+		<if test="valid != null and valid!=''">
+			valid=#{valid},
+		</if>
+		<if test="descrip != null and descrip !=''">
+			descrip=#{descrip},
+		</if>
+		<if test="cover != null and cover !=''">
+			cover=#{cover},
+		</if>
+		<if test="updateBy != null and updateBy != ''">
+			update_by = #{updateBy},
+		</if>
+	</trim>
+	 where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="java.lang.String">
+	delete from travel_style where id = #{id}
+</delete>
+<!-- 逻辑删除 -->
+<update id="logicdelete" parameterType="java.lang.String">
+	update travel_style set is_valid=0 where id = #{id}
+</update> 
+<!-- 上传封面 -->
+<update id="updateCover" parameterType="com.itour.entity.TravelStyle">
+	update travel_style set cover=#{cover} where id = #{id}
+</update> 
+<!-- 根据id查询 旅行方式 #{_parameter,jdbcType=VARCHAR}  -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	 from travel_style where valid = 1
+	 <if test="id != null and id != ''">
+		 and id = #{id} 
+	 </if>
+</select>
+<!-- 根据id查询 旅行方式 #{_parameter,jdbcType=VARCHAR}  -->
+<select id="queryByAlias"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	 from travel_style where valid = 1
+	 <if test="alias != null and alias != ''">
+		 and alias = #{alias} 
+	 </if>
+</select>
+<select id="queryValid"  resultMap="BaseResultMap">
+select type,alias from travel_style where valid = 1
+</select>
+<!-- 旅行方式 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
+	select count(1) from travel_style 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询旅行方式列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
+	select 
+	<include refid="Base_Column_List"/>
+	from travel_style
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+<select id="loadStyles" resultType="java.util.HashMap">
+select alias,type from travel_style where valid=1
+</select>  	
+</mapper>   

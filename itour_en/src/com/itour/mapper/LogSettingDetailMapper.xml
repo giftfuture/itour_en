@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itour.dao.LogSettingDetailDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.itour.entity.LogSettingDetail" >
+	<result column="detail_code" property="detailCode"/>
+	<result column="log_code" property="logCode"/>
+	<result column="column_name" property="columnName"/>
+	<result column="column_text" property="columnText"/>
+	<result column="column_datatype" property="columnDatatype"/>
+	<result column="create_time" property="createTime"/>
+	<result column="creater" property="creater"/>
+</resultMap>
+       
+<!-- log_setting_detail table all fields -->
+<sql id="Base_Column_List" >
+	 detail_code, log_code, column_name, column_text, column_datatype, create_time, creater
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="detailCode != null and detailCode != ''" >
+	    and detail_code =  #{detailCode}
+	</if>
+	<if test="logCode != null and logCode != ''" >
+	    and log_code =  #{logCode}
+	</if>
+	<if test="columnName != null and columnName != ''" >
+	    and column_name =  #{columnName}
+	</if>
+	<if test="columnText != null and columnText != ''" >
+	    and column_text =  #{columnText}
+	</if>
+	<if test="columnDatatype != null and columnDatatype != ''" >
+	    and column_datatype =  #{columnDatatype}
+	</if>
+	<if test="createTime != null and createTime != ''" >
+	    and create_time =  #{createTime}
+	</if>
+	<if test="creater != null and creater != ''" >
+	    and creater =  #{creater}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="com.itour.entity.LogSettingDetail" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into log_setting_detail(detail_code,log_code,column_name,column_text,column_datatype,create_time,creater)
+ values(#{detailCode},#{logCode},#{columnName},#{columnText},#{columnDatatype},now(),#{creater})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="java.util.Map" >
+  update log_setting_detail set log_code=#{logCode},column_name=#{columnName},column_text=#{columnText},column_datatype=#{columnDatatype},create_time=now(),creater=#{creater} where detail_code=#{detailCode}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="com.itour.entity.LogSettingDetail" >
+	update log_setting_detail set 
+	<trim  suffixOverrides="," >
+	<if test="logCode != null  ">
+		log_code=#{logCode},
+	</if>
+	<if test="columnName != null  ">
+		column_name=#{columnName},
+	</if>
+	<if test="columnText != null  ">
+		column_text=#{columnText},
+	</if>
+	<if test="columnDatatype != null  ">
+		column_datatype=#{columnDatatype},
+	</if>
+	<if test="createTime != null  ">
+		create_time=#{createTime},
+	</if>
+	<if test="creater!= null and creater != ''  ">
+		creater=#{creater},
+	</if>
+	</trim> where detail_code=#{detailCode}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="java.util.Map">
+	delete 	 from log_setting_detail where detail_code = #{detailCode}
+</delete>
+ 
+<!-- 根据id查询 日志设置详情 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	 from log_setting_detail where detail_code = #{detailCode}
+</select>
+
+<!-- 日志设置详情 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="java.util.Map">
+	select count(1) from log_setting_detail 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询日志设置详情列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="java.util.Map">
+	select 
+	<include refid="Base_Column_List"/>
+	from log_setting_detail 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

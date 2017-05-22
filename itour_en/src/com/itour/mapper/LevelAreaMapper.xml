@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itour.dao.LevelAreaDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.itour.entity.LevelArea" >
+	<result column="id" property="id"/>
+	<result column="level1_area" property="level1Area"/>
+	<result column="level2_area" property="level2Area"/>
+	<result column="travel_item" property="travelItem"/>
+	<result column="remark" property="remark"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_time" property="createTime"/>
+	<result column="update_by" property="updateBy"/>
+	<result column="update_time" property="updateTime"/>
+	<result column="valid" property="valid"/>
+	<result column="alias_code" property="aliasCode"/>
+	<result column="route_template" property="routeTemplate"/>
+</resultMap>
+<resultMap id="BaseResultMapVo" type="com.itour.vo.LevelAreaVo" >
+	<result column="id" property="id"/>
+	<result column="level1_area" property="level1Area"/>
+	<result column="level2_area" property="level2Area"/>
+	<result column="travel_item" property="travelItem"/>
+	<result column="remark" property="remark"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_time" property="createTime"/>
+	<result column="update_by" property="updateBy"/>
+	<result column="update_time" property="updateTime"/>
+	<result column="valid" property="valid"/>
+	<result column="alias_code" property="aliasCode"/>
+	<result column="item" property="item"/>
+	<result column="alias" property="alias"/>
+	<result column="route_template" property="routeTemplate"/>
+</resultMap>       
+<!-- areas table all fields -->
+<sql id="Base_Column_List" >
+	 level_area.id,level_area.level1_area,level_area.level2_area,level_area.travel_item,level_area.remark,level_area.create_time,level_area.create_by,level_area.update_time,level_area.update_by,level_area.valid,level_area.alias_code,level_area.route_template
+</sql>
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where valid=1
+<trim  suffixOverrides="," >
+	<if test="level1Area != null and level1Area != ''" >
+	    and level1_area  = #{level1Area}
+	</if>
+	<if test="level2Area != null and level2Area != ''" >
+	    and level2_area =  #{level2Area}
+	</if>
+	<if test="travelItem != null and travelItem != ''" >
+	     and travel_item=#{travelItem}
+	</if>
+	<if test="createBy != null and createBy != ''" >
+	    and create_by  = #{createBy}
+	</if>
+	<if test="updateBy != null and updateBy != ''" >
+	    and update_by =  #{updateBy}
+	</if>
+	<if test="createTime != null and createTime !=''" >
+	   and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	</if>
+	<if test="updateTime != null and updateTime !=''" >
+	   and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
+	</if>
+	<if test="aliasCode != null and aliasCode != ''" >
+	    and alias_code =  #{aliasCode}
+	</if>
+	<if test="routeTemplate != null and routeTemplate != ''" >
+	    and route_template =  #{routeTemplate}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="com.itour.entity.LevelArea" >
+<!-- <selectKey resultType="java.lang.String" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey> -->
+  insert into level_area(id,level1_area,level2_area,travel_item,remark,create_by,update_by,create_time,update_time,valid,alias_code,route_template)
+ values(#{id},#{level1Area},#{level2Area},#{travelItem},#{remark},#{createBy},#{updateBy},now(),now(),1,#{aliasCode},#{routeTemplate})
+</insert>
+
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="update" parameterType="com.itour.entity.LevelArea" >
+	update level_area set update_time=now(),
+	<trim  suffixOverrides="," >
+		<if test="level1Area != null and level1Area != ''" >
+		    level1_area  = #{level1Area},
+		</if>
+		<if test="level2Area != null and level2Area != ''" >
+		     level2_area =  #{level2Area},
+		</if>
+		<if test="travelItem != null and travelItem != ''" >
+		     travel_item=#{travelItem},
+		</if>
+		<if test="updateBy != null and updateBy != ''" >
+		    update_by =  #{updateBy},
+		</if>
+		<if test="aliasCode != null and aliasCode != ''" >
+		    alias_code =  #{aliasCode},
+		</if>
+		<if test="routeTemplate != null and routeTemplate != ''" >
+	    	route_template =  #{routeTemplate},
+		</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="java.lang.String">
+	delete from level_area where id = #{id}
+</delete>
+ <!-- 逻辑删除 -->
+ <update id="logicdelete" parameterType="java.lang.String">
+	update level_area set valid=0 where id = #{id}
+</update>
+<!-- 根据id查询 地区信息 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> from level_area where id = #{id}
+</select>
+<select id="selectById"  resultMap="BaseResultMapVo" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" />,ts.item,ts.alias,rt.title
+	from level_area left join travel_item ts on level_area.travel_item=ts.id 
+	left join route_template rt on level_area.route_template = rt.id
+	where level_area.id = #{id}
+</select>
+
+<!-- 地区信息 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.vo.LevelAreaVo">
+	select count(1) from level_area 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询地区信息列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.vo.LevelAreaVo">
+	select 
+	<include refid="Base_Column_List"/> 
+	from level_area 
+	<include refid="Example_Where_Clause"/>
+   	<if test="pager.groupCondition != null and pager.groupCondition != ''" >
+      ${pager.groupCondition }
+    </if>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+<!-- 查询地区信息列表 group by level1_area,level2_area -->
+<select id="queryByVoList" resultMap="BaseResultMapVo"  parameterType="com.itour.vo.LevelAreaVo">
+	select <include refid="Base_Column_List"/>,ts.item,ts.alias,rt.title
+	from level_area left join travel_item ts on level_area.travel_item=ts.id
+	left join route_template rt on level_area.route_template = rt.id
+	<include refid="Example_Where_Clause"/>
+   	<if test="pager.groupCondition != null and pager.groupCondition != ''" >
+      ${pager.groupCondition }
+    </if>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+<!-- 查询所有地区 -->
+<select id="queryAll" resultMap="BaseResultMap" >
+	select <include refid="Base_Column_List"/> from level_area group by level1_area,level2_area
+</select>
+<select id="queryLevel1" resultMap="BaseResultMap" >
+	select distinct level1_area ,alias_code from level_area group by level1_area
+</select>
+<select id="queryLevel2ByLevel1" resultMap="BaseResultMap"  parameterType="java.lang.String">
+<!-- 	select distinct level2_area, alias_code from level_area where level1_area =(select distinct level1_area from level_area where alias_code= #{aliasCode} ) group by level2_area -->
+	select distinct level2_area, alias_code from level_area where level1_area = #{level1Area} group by level2_area
+</select>
+</mapper>   

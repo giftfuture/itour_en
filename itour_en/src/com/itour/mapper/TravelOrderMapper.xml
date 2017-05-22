@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itour.dao.TravelOrderDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.itour.entity.TravelOrder" >
+	<result column="id" property="id"/>
+	<result column="create_time" property="createTime"/>
+	<result column="update_time" property="updateTime"/>
+	<result column="order_name" property="orderName"/>
+	<result column="order_no" property="orderNo"/>
+	<result column="order_status" property="orderStatus"/>
+	<result column="receiver" property="receiver"/>
+	<result column="receiver_mobile" property="receiverMobile"/>
+	<result column="remark" property="remark"/>
+	<result column="customer_id" property="customerId"/>
+	<result column="expected_depart" property="expectedDepart"/>
+	<result column="expected_back" property="expectedBack"/>
+	<result column="total_staff" property="totalStaff"/>
+	<result column="is_payed" property="isPayed"/>
+	<result column="pay_type" property="payType"/>
+	<result column="pay_platform" property="payPlatform"/>
+	<result column="bank" property="bank"/>
+	<result column="pay_account" property="payAccount"/>
+	<result column="pay_time" property="payTime"/>
+	<result column="pay_terminal" property="payTerminal"/>
+	<result column="budget" property="budget"/>
+	<result column="is_valid" property="isValid"/>
+	<result column="routename" property="routename"/>
+	<result column="receiveremail" property="receiveremail"/>
+	<result column="gender" property="gender"/>
+	<result column="route_id" property="routeId"/>
+</resultMap>
+       
+<!-- travel_order table all fields -->
+<sql id="Base_Column_List" >
+	 id, create_time, update_time, order_name, order_no, order_status, receiver, receiver_mobile, remark, customer_id, expected_depart, expected_back, total_staff, is_payed, pay_type, pay_platform, bank, pay_account, pay_time, pay_terminal, budget,is_valid,routename,receiveremail,gender,route_id
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where is_valid=1
+<trim  suffixOverrides="," >
+	<if test="routeId != null and routeId != ''" >
+	    and route_id like CONCAT('%', #{routeId}, '%')
+	</if>
+	<if test="createTime != null and createTime !=''" >
+	   and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	</if>
+	<if test="updateTime != null and createTime !=''" >
+	   and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
+	</if>
+	<if test="orderName != null and orderName != ''" >
+	    and order_name like CONCAT('%', #{orderName}, '%')
+	</if>
+	<if test="orderNo != null and orderNo != ''" >
+	    and order_no like CONCAT('%', #{orderNo}, '%')
+	</if>
+	<if test="orderStatus != null and orderStatus != ''" >
+	    and order_status =  #{orderStatus}
+	</if>
+	<if test="receiver != null and receiver != ''" >
+	    and receiver like CONCAT('%', #{receiver}, '%')
+	</if>
+	<if test="routename != null and routename != ''" >
+	    and routename =  #{routename}
+	</if>
+	<if test="gender != null and gender != ''" >
+	    and gender =#{gender}
+	</if>
+	<if test="receiveremail != null and receiveremail != ''" >
+	    and receiveremail like CONCAT('%', #{receiveremail}, '%')
+	</if>
+	<if test="receiverMobile != null and receiverMobile != ''" >
+	    and receiver_mobile =  #{receiverMobile}
+	</if>
+	<if test="remark != null and remark != ''" >
+	    and remark like CONCAT('%', #{remark}, '%')
+	</if>
+	<if test="customerId != null and customerId != ''" >
+	    and customer_id like CONCAT('%', #{customerId}, '%')
+	</if>
+	<if test="expectedDepart != null and expectedDepart != ''" >
+	   and DATE_FORMAT(expected_depart,'%Y-%m-%d') = DATE_FORMAT(#{expectedDepart},'%Y-%m-%d') 
+	</if>
+	<if test="expectedBack != null and expectedBack != ''" >
+	   and DATE_FORMAT(expected_back,'%Y-%m-%d') = DATE_FORMAT(#{expectedBack},'%Y-%m-%d') 
+	</if>
+	<if test="totalStaff != null and totalStaff !=''" >
+	    and total_staff =  #{totalStaff}
+	</if>
+	<if test="isPayed != null and isPayed !=''" >
+	    and is_payed =  #{isPayed}
+	</if>
+	<if test="payType != null and payType != ''" >
+	    and pay_type =  #{payType}
+	</if>
+	<if test="payPlatform != null and payPlatform != ''" >
+	    and pay_platform like CONCAT('%', #{payPlatform}, '%')
+	</if>
+	<if test="bank != null and bank != ''" >
+	    and bank like CONCAT('%', #{bank}, '%')
+	</if>
+	<if test="payAccount != null and payAccount != ''" >
+	    and pay_account like CONCAT('%', #{payAccount}, '%')
+	</if>
+	<if test="payTime != null and payTime != ''" >
+	   and DATE_FORMAT(pay_time,'%Y-%m-%d') = DATE_FORMAT(#{payTime},'%Y-%m-%d') 
+	</if>
+	<if test="payTerminal != null and payTerminal != ''" >
+	    and pay_terminal like CONCAT('%', #{payTerminal}, '%')
+	</if>
+	<if test="budget != null and budget !=''" >
+	    and budget =  #{budget}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="com.itour.entity.TravelOrder" >
+<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey> -->
+  insert into travel_order(id,create_time,update_time,order_name,order_no,order_status,receiver,receiver_mobile,remark,customer_id,expected_depart,expected_back,total_staff,is_payed,pay_type,pay_platform,bank,pay_account,pay_time,pay_terminal,budget,is_valid,routename,receiveremail,gender,route_id)
+ values(#{id},now(),now(),#{orderName},#{orderNo},#{orderStatus},#{receiver},#{receiverMobile},#{remark},#{customerId},#{expectedDepart},#{expectedBack},#{totalStaff},#{isPayed},#{payType},#{payPlatform},#{bank},#{payAccount},#{payTime},#{payTerminal},#{budget},1,#{routename},#{receiveremail},#{gender},#{routeId})
+</insert>
+
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="update" parameterType="com.itour.entity.TravelOrder" >
+	update travel_order set update_time=now(),
+	<trim  suffixOverrides="," >
+		<if test="routeId != null and routeId != ''" >
+		    route_id = #{routeId},
+		</if>
+		<if test="routename != null and routename != ''" >
+	    	 routename =  #{routename},
+		</if>
+		<if test="receiveremail != null and receiveremail != ''" >
+		    receiveremail = #{receiveremail}, 
+		</if>
+		<if test="isValid != null and isValid != ''">
+			is_valid=#{isValid},
+		</if>
+		<if test="orderName != null and orderName !='' ">
+			order_name=#{orderName},
+		</if>
+		<if test="orderNo != null and orderNo !='' ">
+			order_no=#{orderNo},
+		</if>
+		<if test="orderStatus != null and orderStatus != '' ">
+			order_status=#{orderStatus},
+		</if>
+		<if test="receiver != null and receiver !='' ">
+			receiver=#{receiver},
+		</if>
+		<if test="receiverMobile != null and receiverMobile !='' ">
+			receiver_mobile=#{receiverMobile},
+		</if>
+		<if test="remark != null and remark != '' ">
+			remark=#{remark},
+		</if>
+		<if test="customerId != null and customerId !='' ">
+			customer_id=#{customerId},
+		</if>
+		<if test="expectedDepart != null and expectedDepart != '' ">
+			expected_depart=#{expectedDepart},
+		</if>
+		<if test="expectedBack != null and expectedBack !='' ">
+			expected_back=#{expectedBack},
+		</if>
+		<if test="totalStaff != null and totalStaff != '' ">
+			total_staff=#{totalStaff},
+		</if>
+		<if test="isPayed != null and isPayed !='' ">
+			is_payed=#{isPayed},
+		</if>
+		<if test="payType != null and payType != '' ">
+			pay_type=#{payType},
+		</if>
+		<if test="payPlatform != null and payPlatform != '' ">
+			pay_platform=#{payPlatform},
+		</if>
+		<if test="bank != null and bank !='' ">
+			bank=#{bank},
+		</if>
+		<if test="payAccount != null and payAccount !='' ">
+			pay_account=#{payAccount},
+		</if>
+		<if test="payTime != null and payTime != '' ">
+			pay_time=#{payTime},
+		</if>
+		<if test="payTerminal != null and payTerminal != '' ">
+			pay_terminal=#{payTerminal},
+		</if>
+		<if test="budget != null and budget !=''" >
+	     	budget =  #{budget},
+		</if>
+		<if test="gender != null and gender != ''" >
+		     gender =#{gender},
+		</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="java.lang.String">
+	delete from travel_order where id = #{id}
+</delete>
+ <!-- 逻辑删除 -->
+<update id="logicdelete" parameterType="java.lang.String">
+	update travel_order set is_valid=0 where id = #{id}
+</update>
+<!-- 根据id查询 客户订单 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	 from travel_order where id = #{id}
+</select>
+
+<!-- 客户订单 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
+	select count(1) from travel_order 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询客户订单列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
+	select 
+	<include refid="Base_Column_List"/>
+	from travel_order 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

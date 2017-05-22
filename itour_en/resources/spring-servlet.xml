@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
+	 	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.2.xsd "
+		 default-autowire="byName">
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	<!-- Configures the @Controller programming model -->
+	<!-- Enables the Spring MVC @Controller programming model -->
+	
+   <!--   <mvc:view-controller path="/" view-name="index"/>  --> 
+   <mvc:annotation-driven conversion-service="conversionService">
+	   	<mvc:message-converters register-defaults="true"> 
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg value="UTF-8" />
+				<property name="supportedMediaTypes">
+					<list>
+						  <value>text/html; charset=utf-8</value> 
+						  <value>application/json;charset=UTF-8</value>  
+						  <value>text/plain;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+			 <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<!--  <constructor-arg value="UTF-8" index="0"></constructor-arg> -->
+				<property name="objectMapper" ref="myObjectMapper"></property>
+				<!-- <property name="dateFormat"> 
+					<bean class="java.text.SimpleDateFormat"> 
+						<constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"></constructor-arg> 
+					</bean> 
+				</property>  -->
+				<property name="supportedMediaTypes">
+					<list>
+						  <value>text/html; charset=utf-8</value> 
+						  <value>application/json;charset=UTF-8</value>  
+						  <value>text/plain;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+			</mvc:message-converters> 
+   </mvc:annotation-driven> 
+   	<!-- 类型转换 -->
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				<bean class="com.itour.base.convert.DateConverter" />
+				<bean class="com.itour.base.convert.MapxConverter" />
+				<bean class="com.itour.base.convert.BooleanConverter" />
+				<bean class="com.itour.base.convert.CharacterConverter" />
+				<bean class="com.itour.base.convert.ListxConverter" />
+				<bean class="com.itour.base.convert.NumberConverter" />
+				<bean class="com.itour.base.convert.StringConverter" />
+				<bean class="com.itour.base.convert.EnumConverter" />
+			</list>
+		</property>
+	</bean>
+   <mvc:default-servlet-handler /> 
+	<bean id="myObjectMapper" class="com.itour.base.convert.ObjectMapperFactoryBean" />
+   	<!-- Jackson转换器 fastjson转换器 -->
+	<!-- <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" /> -->
+<!-- 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="fastJsonHttpMessageConverter" />  
+			</list>
+		</property> 
+	</bean>
+	<bean id="fastJsonHttpMessageConverter" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter" /> -->
+
+
+	<context:component-scan base-package="com.itour.dao,com.itour.service,com.itour.controller,com.itour.base.dao,com.itour.base.service" />
+		<!-- 扫描classpath的包下的所有类，该包路径下的类可以不需要配置bean了 -->      
+	<context:component-scan base-package="com.itour.base.*" />
+	<!-- <context:component-scan base-package="com.itour.controller.*" /> -->
+	<!-- Configures Handler Interceptors -->	
+ 	<!--  <mvc:interceptors>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+	 	<bean class="com.itour.base.interceptor.AuthInterceptor" >
+		<bean class="com.itour.base.interceptor.ExceptionInterceptor" /> 
+	</mvc:interceptors>  -->
+	
+	<!-- <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator" />   
+	 -->
+	 	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" >
+	<!--   <property name="interceptors" ref="localeChangeInterceptor"/>
+ 	  <property name="useDefaultSuffixPattern" value="false" />  -->
+	</bean>
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">   
+	    <property name="interceptors">  
+	        <list>
+	        	<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+	        	<bean class="com.itour.base.interceptor.AuthInterceptor" />
+				<bean class="com.itour.base.interceptor.ExceptionInterceptor" />
+	        </list>
+    </property>  
+	</bean>  
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>  
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources/ directory -->
+	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+	<mvc:resources location="/css/" mapping="/css/**"></mvc:resources>
+	<mvc:resources location="/images/" mapping="/images/**"></mvc:resources>
+	<mvc:resources location="/js/" mapping="/js/**"></mvc:resources>  
+	<mvc:resources location="/video/" mapping="/video/**"></mvc:resources>  
+	<mvc:resources location="/upload/" mapping="/upload/**"></mvc:resources>  
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="maxUploadSize" value="32505856" /><!-- 上传文件大小限制为31M，31*1024*1024 -->
+		<property name="maxInMemorySize" value="4096" />
+	</bean>
+	<!-- SpringMVC异常处理 -->
+	<bean id="springmvcExceptionResolver" class="com.itour.exception.SpringMvcExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.apache.shiro.authz.UnauthorizedException">common/403</prop>
+				<prop key="org.apache.shiro.authz.AuthorizationException">common/403</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- Saves a locale change using a cookie -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
+	
+   	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<!-- Resolves view names to protected .jsp resources within the /WEB-INF/views directory -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+	    <property name="contentType" value="text/html"/>   
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="0" />
+		 <!--<property name="defaultViews">  
+            <list>  
+                for application/json 
+                <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />  
+                 for application/xml 
+              <bean class="org.springframework.web.servlet.view.xml.MarshallingView" >  
+                    <property name="marshaller">  
+                        <bean class="org.springframework.oxm.xstream.XStreamMarshaller"/>  
+                    </property>  
+                </bean> 
+            </list>  
+        </property>  --> 
+	</bean>
+	<!-- <mvc:view-controller path="/" view-name="redirect:/main/login"/> -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+		<mvc:mapping path="/sysMenu/*"/>
+		<mvc:mapping path="/sysRole/*"/>
+		<mvc:mapping path="/sysUser/*"/>
+		<mvc:mapping path="/sysUserRole/*"/>
+		<mvc:mapping path="/customers/*"/>
+		<mvc:mapping path="/feedback/*"/>
+		<mvc:mapping path="/logOperation/*"/>
+		<mvc:mapping path="/logSetting/*"/>
+		<mvc:mapping path="/logSettingDetail/*"/>
+		<mvc:mapping path="/main/*"/>
+		<mvc:mapping path="/orderDetail/*"/>
+		<mvc:mapping path="/passEmail/*"/>
+		<mvc:mapping path="/quotation/*"/>
+		<mvc:mapping path="/routeTemplate/*"/>
+		<mvc:mapping path="/sysVariables/*"/>
+		<mvc:mapping path="/travelItem/*"/>
+		<mvc:mapping path="/travelOrder/*"/>
+		<mvc:mapping path="/travelStyle/*"/>
+	<!--<mvc:exclude-mapping path="/images/**"/> 
+		<mvc:exclude-mapping path="/login"/>//不想被拦截的路径
+		<mvc:exclude-mapping path="/js/**"/> 
+		<mvc:exclude-mapping path="/css/**"/> 
+		<mvc:exclude-mapping path="/resouces/**"/>  -->
+		<bean class="com.itour.base.interceptor.AuthInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	   <!-- Mapping exception to the handler view -->  
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
+        <property name="exceptionMappings">  
+            <props>  
+            <!-- 遇到MaxUploadSizeExceededException异常时，自动跳转到/WEB-INF/jsp/error_fileupload.jsp页面 -->
+           			<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error_fileupload</prop>
+            </props>  
+        </property>  
+    </bean> 
+    <bean id="filecapturefilter" class="com.itour.base.Filter.FileCaptureFilter"></bean>
+    <!-- 安全控制 -->
+	<import resource="classpath:/springmvc-shiro.xml" />
+	<import resource="classpath:/common-shiro.xml" />
+	<import resource="classpath:/spring-common.xml" />
+</beans>

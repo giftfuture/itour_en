@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itour.dao.CustomersDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.itour.entity.Customers" >
+	<result column="id" property="id"/>
+	<result column="customer_id" property="customerId"/>
+	<result column="create_time" property="createTime"/>
+	<result column="status" property="status"/>
+	<result column="update_time" property="updateTime"/>
+	<result column="address" property="address"/>
+	<result column="email" property="email"/>
+	<result column="scope" property="scope"/>
+	<result column="city" property="city"/>
+	<result column="telephone" property="telephone"/>
+	<result column="mobile" property="mobile"/>
+	<result column="customer_name" property="customerName"/>
+	<result column="nick_name" property="nickName"/>
+	<result column="district" property="district"/>
+	<result column="introduction" property="introduction"/>
+	<result column="birthday" property="birthday"/>
+	<result column="is_valid" property="isValid"/>
+</resultMap>
+  
+  <!-- Result Map VO-->
+<resultMap id="BaseResultMapVo" type="com.itour.vo.CustomerVo" >
+	<result column="id" property="id"/>
+	<result column="customer_id" property="customerId"/>
+	<result column="create_time" property="createTime"/>
+	<result column="status" property="status"/>
+	<result column="update_time" property="updateTime"/>
+	<result column="address" property="address"/>
+	<result column="email" property="email"/>
+	<result column="scope" property="scope"/>
+	<result column="city" property="city"/>
+	<result column="telephone" property="telephone"/>
+	<result column="mobile" property="mobile"/>
+	<result column="customer_name" property="customerName"/>
+	<result column="nick_name" property="nickName"/>
+	<result column="district" property="district"/>
+	<result column="introduction" property="introduction"/>
+	<result column="birthday" property="birthday"/>
+	<result column="is_valid" property="isValid"/>
+	<result column="order_name" property="orderName"/>
+	<result column="order_no" property="orderNo"/>
+	<result column="areaname" property="areaname"/>
+</resultMap>     
+<!-- customers table all fields -->
+<sql id="Base_Column_List" >
+	 id, customer_id, create_time, status, update_time, address, email, scope, city, telephone, mobile, customer_name, nick_name, district, introduction, date_format(birthday,'%Y年%c月%d日') birthday,is_valid
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where is_valid=1
+<trim  suffixOverrides="," >
+	<if test="id != null and id != ''" >
+	    and id  like CONCAT('%', #{id}, '%')
+	</if>
+	<if test="customerId != null and customerId != ''" >
+	    and customer_id  like CONCAT('%', #{customerId}, '%')
+	</if>
+	<if test="createTime != null and createTime != ''" >
+	    and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	</if>
+	<if test="status != null and status != ''" >
+	    and status =  #{status}
+	</if>
+	<if test="updateTime != null and updateTime != ''" >
+	     and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
+	</if>
+	<if test="address != null and address != ''" >
+	    and address like CONCAT('%', #{address}, '%')
+	</if>
+	<if test="email != null and email != ''" >
+	    and email like CONCAT('%', #{email}, '%')
+	</if>
+	<if test="scope != null" >
+	    and scope =  #{scope}
+	</if>
+	<if test="city != null and city != ''" >
+	    and city  like CONCAT('%', #{city}, '%')
+	</if>
+	<if test="telephone != null and telephone != ''" >
+	    and telephone  like CONCAT('%', #{telephone}, '%')
+	</if>
+	<if test="mobile != null and mobile != ''" >
+	    and mobile like CONCAT('%', #{mobile}, '%')
+	</if>
+	<if test="customerName != null and customerName != ''" >
+	    and customer_name like CONCAT('%', #{customerName}, '%')
+	</if>
+	<if test="nickName != null and nickName != ''" >
+	    and nick_name like CONCAT('%', #{nickName}, '%')
+	</if>
+	<if test="district != null and district != ''" >
+	    and district like CONCAT('%', #{district}, '%')
+	</if>
+	<if test="introduction != null and introduction != ''" >
+	    and introduction like CONCAT('%', #{introduction}, '%')
+	</if>
+	<if test="birthday !=null">
+		and birthday like CONCAT('%',#{birthday},'%')
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="com.itour.entity.Customers" >
+<!-- <selectKey resultType="java.lang.String" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey> -->
+  insert into customers(id,customer_id,create_time,status,update_time,address,email,scope,city,telephone,mobile,customer_name,nick_name,district,introduction,birthday,is_valid)
+ values(#{id},#{customerId},now(),#{status},now(),#{address},#{email},#{scope},#{city},#{telephone},#{mobile},#{customerName},#{nickName},#{district},#{introduction},#{birthday},1)
+</insert>
+
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="update" parameterType="com.itour.entity.Customers" >
+	update customers set update_time=now(),
+	<trim  suffixOverrides="," >
+	<if test="isValid !=null">
+		is_valid=#{isValid},
+	</if>
+	<if test="customerId != null and customerId != '' ">
+		customer_id=#{customerId},
+	</if>
+	<if test="status != null">
+		status=#{status},
+	</if>
+	<if test="address != null and address != '' ">
+		address=#{address},
+	</if>
+	<if test="email != null and email != '' ">
+		email=#{email},
+	</if>
+	<if test="scope != null  ">
+		scope=#{scope},
+	</if>
+	<if test="city != null and city != '' ">
+		city=#{city},
+	</if>
+	<if test="telephone != null and telephone != '' ">
+		telephone=#{telephone},
+	</if>
+	<if test="mobile != null and mobile != '' ">
+		mobile=#{mobile},
+	</if>
+	<if test="customerName != null and customerName != '' ">
+		customer_name=#{customerName},
+	</if>
+	<if test="nickName != null and nickName !='' ">
+		nick_name=#{nickName},
+	</if>
+	<if test="district != null and district !='' ">
+		district=#{district},
+	</if>
+	<if test="introduction != null and introduction != '' ">
+		introduction=#{introduction},
+	</if>
+	<if test="birthday != null">
+		birthday=#{birthday},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="java.lang.String">
+	delete  from customers where id = #{id}
+</delete>
+ <!-- 逻辑删除 -->
+ <update id="logicdelete" parameterType="java.lang.String">
+	update customers set is_valid=0 where id = #{id}
+</update>
+<!-- 根据id查询 客户信息 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	 from customers where id = #{id}
+</select>
+<select id="selectById"  resultMap="BaseResultMapVo" parameterType="java.lang.String">
+	select customers.*,areas.areaname from customers left join areas on customers.scope=areas.id
+	 where customers.id = #{id}
+</select>
+<!-- 客户信息 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.vo.CustomerVo">
+	select count(1) from customers 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询客户信息列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.vo.CustomerVo">
+	select 
+	<include refid="Base_Column_List"/>
+	from customers 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+ 
+<select id="queryOrdersByCid" resultMap="BaseResultMapVo" parameterType="java.lang.String">
+select customers.*,areas.areaname,travel_order.order_no ,travel_order.order_name from customers left join travel_order on customers.id=travel_order.customer_id 
+left join areas on customers.scope=areas.id where customers.id=#{id}
+</select> 	
+</mapper>   

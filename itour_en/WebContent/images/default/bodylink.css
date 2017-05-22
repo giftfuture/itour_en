@@ -1,0 +1,221 @@
+body {
+	text-decoration: none;
+	color: #999999;
+	background-image: url();
+	background-color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+.title {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: #990000;
+	text-decoration: none;
+}
+.rightlinks {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 1.5em;
+	font-weight: normal;
+	color: #990000;
+	text-decoration: none;
+}
+.righttxt {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	line-height: 1.5em;
+	font-weight: normal;
+	color: #990000;
+	text-decoration: none;
+}
+.bottomtxt {
+	color: #CCCC99;
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+a:link {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #990000;
+	text-decoration: none;
+}
+a:hover {
+	color: #996600;
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+a:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none;
+	color: #990066;
+}
+a:active {
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+
+
+a:visited {
+	color: #660099;
+	color: #FFFFFF;
+	color: #333333;
+}
+
+
+
+
+.headline {
+	font-family: "Arial", "Helvetica", "sans-serif";
+	font-size: 18px;
+	font-weight: bold;
+	color: #990000;
+}
+.heedline1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #990000;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	line-height: 20px;
+}
+.lefttxt {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #666666;
+	text-decoration: none;
+	font-weight: normal;
+	line-height: 15px;
+}
+
+.headline2 {
+	font-family: "Arial", "Helvetica", "sans-serif";
+	font-size: 13px;
+	color: #CC3333;
+	font-weight: bold;
+
+}
+.TP01 {
+	FONT-SIZE: 16px;
+	COLOR: #990000;
+	FONT-FAMILY: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.TP03 {
+	FONT-SIZE: 14px;
+	COLOR: #999999;
+	LINE-HEIGHT: 28px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.TP04 {
+	FONT-SIZE: 13px;
+	COLOR: #666666;
+	LINE-HEIGHT: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.TP05 {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #cc3300
+}
+.neirong01 {
+	FONT-SIZE: 14px; LINE-HEIGHT: 22px
+}
+.details {
+	font-size: 18px;
+	color: #0000FF;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+
+
+/* ==========»’¿˙=========== */
+#calendar {
+	BORDER-RIGHT: #9db3c5 1px solid; BORDER-TOP: #9db3c5 1px solid; BACKGROUND: url(headbox.gif) #f5fafe repeat-x 0px 0px; MARGIN-BOTTOM: 0.8em; BORDER-LEFT: #9db3c5 1px solid; BORDER-BOTTOM: #9db3c5 1px solid
+}
+#calendar TD {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px; PADDING-TOP: 2px
+}
+#calendar_week TD {
+	LINE-HEIGHT: 2em; BORDER-BOTTOM: #ddd 1px solid; HEIGHT: 2em
+}
+#hourminute TD {
+	PADDING-RIGHT: 2px; BORDER-TOP: #ddd 1px solid; PADDING-LEFT: 2px; PADDING-BOTTOM: 4px; PADDING-TOP: 4px
+}
+.calendar_expire {
+	FONT-WEIGHT: normal; COLOR: #666
+}
+.calendar_expire A:link {
+	FONT-WEIGHT: normal; COLOR: #666
+}
+.calendar_expire A:visited {
+	FONT-WEIGHT: normal; COLOR: #666
+}
+.calendar_expire2 {
+	FONT-WEIGHT: normal; COLOR: #660
+}
+.calendar_expire2 A:link {
+	FONT-WEIGHT: normal; COLOR: #660
+}
+.calendar_expire2 A:visited {
+	FONT-WEIGHT: normal; COLOR: #660
+}
+.calendar_default {
+	COLOR: #069
+}
+.calendar_default A:link {
+	COLOR: #069
+}
+.calendar_default A:visited {
+	COLOR: #069
+}
+.calendar_default2 {
+	COLOR: #060
+}
+.calendar_default2 A:link {
+	COLOR: #060
+}
+.calendar_default2 A:visited {
+	COLOR: #060
+}
+.calendar_checked {
+	FONT-WEIGHT: bold; COLOR: #090
+}
+.calendar_checked A:link {
+	FONT-WEIGHT: bold; COLOR: #090
+}
+.calendar_checked A:visited {
+	FONT-WEIGHT: bold; COLOR: #090
+}
+TD.calendar_checked {
+	BACKGROUND: #ddd
+}
+SPAN.calendar_checked {
+	BACKGROUND: #ddd
+}
+.calendar_today {
+	FONT-WEIGHT: bold; COLOR: #000
+}
+.calendar_today A:link {
+	FONT-WEIGHT: bold; COLOR: #000
+}
+.calendar_today A:visited {
+	FONT-WEIGHT: bold; COLOR: #000
+}
+#calendar_header TD {
+	FONT-WEIGHT: normal; WIDTH: 20px; BORDER-BOTTOM: #ddd 1px solid; HEIGHT: 15px
+}
+#calendar_year {
+	DISPLAY: none; Z-INDEX: 10; BACKGROUND: #f5fafe; LINE-HEIGHT: 130%; POSITION: absolute
+}
+#calendar_year .col {
+	BORDER-RIGHT: #ddd 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: #ddd 1px solid; PADDING-LEFT: 4px; BACKGROUND: #f5fafe; FLOAT: left; PADDING-BOTTOM: 4px; MARGIN-LEFT: 1px; BORDER-LEFT: #ddd 1px solid; PADDING-TOP: 4px; BORDER-BOTTOM: #ddd 1px solid
+}
+#calendar_month {
+	BORDER-RIGHT: #ddd 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: #ddd 1px solid; DISPLAY: none; PADDING-LEFT: 4px; Z-INDEX: 11; BACKGROUND: #f5fafe; PADDING-BOTTOM: 4px; BORDER-LEFT: #ddd 1px solid; LINE-HEIGHT: 130%; PADDING-TOP: 4px; BORDER-BOTTOM: #ddd 1px solid; POSITION: absolute
+}
+

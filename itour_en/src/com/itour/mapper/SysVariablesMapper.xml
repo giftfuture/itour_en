@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itour.dao.SysVariablesDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.itour.entity.SysVariables" >
+	<result column="id" property="id"/>
+	<result column="var_name" property="varName"/>
+	<result column="var_value" property="varValue"/>
+	<result column="var_hostname" property="varHostname"/>
+	<result column="var_hostip" property="varHostip"/>
+	<result column="var_project" property="varProject"/>
+	<result column="remark" property="remark"/>
+	<result column="is_valid" property="isValid"/>
+	<result column="create_by" property="createBy"/>
+	<result column="update_by" property="updateBy"/>
+	<result column="create_time" property="createTime"/>
+	<result column="update_time" property="updateTime"/>
+</resultMap>
+       
+<!-- sys_variables table all fields -->
+<sql id="Base_Column_List" >
+	 id, var_name, var_value, var_hostname, var_hostip, remark, var_project,is_valid,create_by,update_by,create_time,update_time
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where is_valid=1
+<trim  suffixOverrides="," >
+	<if test="varName != null and varName != ''" >
+	    and var_name like CONCAT('%', #{varName}, '%')
+	</if>
+	<if test="varValue != null and varValue != ''" >
+	    and var_value like CONCAT('%', #{varValue}, '%')
+	</if>
+	<if test="varHostname != null and varHostname != ''" >
+	    and var_hostname like CONCAT('%', #{varHostname}, '%')
+	</if>
+	<if test="varHostip != null and varHostip != ''" >
+	    and var_hostip like CONCAT('%', #{varHostip}, '%')
+	</if>
+	<if test="remark != null and remark != ''" >
+	    and remark like CONCAT('%', #{remark}, '%')
+	</if>
+	<if test="varProject != null and varProject != ''" >
+	    and var_project like CONCAT('%', #{var_project}, '%')
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="com.itour.entity.SysVariables" >
+<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey> -->
+  insert into sys_variables(id,var_name,var_value,var_hostname,var_hostip,remark,var_project,is_valid,create_by,update_by,create_time,update_time)
+ values(#{id},#{varName},#{varValue},#{varHostname},#{varHostip},#{remark},#{varProject},1,#{createBy},#{updateBy},now(),now())
+</insert>
+
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="update" parameterType="com.itour.entity.SysVariables" >
+	update sys_variables set  update_time=now(),
+	<trim  suffixOverrides="," >
+		<if test="isValid!=null">
+			is_valid=#{isValid},
+		</if>
+		<if test="varName != null  ">
+			var_name=#{varName},
+		</if>
+		<if test="varValue != null  ">
+			var_value=#{varValue},
+		</if>
+		<if test="varHostname != null  ">
+			var_hostname=#{varHostname},
+		</if>
+		<if test="varHostip != null  ">
+			var_hostip=#{varHostip},
+		</if>
+		<if test="remark != null  ">
+			remark=#{remark},
+		</if>
+		<if test="varProject != null  ">
+			var_project=#{varProject},
+		</if>
+		<if test="updateBy !=null and updateBy !=''">
+			update_by=#{updateBy},
+		</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="java.lang.String">
+	delete from sys_variables where id = #{id}
+</delete>
+ <!-- 逻辑删除 -->
+<update id="logicdelete" parameterType="java.lang.String">
+	update sys_variables set is_valid=0 where id = #{id}
+</update>
+<!-- 根据id查询 系统变量 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	 from sys_variables where id = #{id}
+</select>
+
+<!-- 系统变量 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
+	select count(1) from sys_variables 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询系统变量列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
+	select 
+	<include refid="Base_Column_List"/>
+	from sys_variables 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

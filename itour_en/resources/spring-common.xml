@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"  
+    xmlns:tx="http://www.springframework.org/schema/tx" 
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
+		 http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.2.xsd "
+		 default-autowire="byName">
+<!--     xmlns:oscache="http://www.springmodules.org/schema/oscache"   -->
+		 <!-- http://www.springmodules.org/schema/oscache http://www.springmodules.org/schema/cache/springmodules-oscache.xsd -->
+	<!-- Annotation Config -->	
+	<context:annotation-config/>
+	<!-- <context:property-placeholder location="classpath*:conf.properties" /> -->
+	  <!-- 引入jdbc配置文件 -->  
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+       <property name="ignoreUnresolvablePlaceholders" value="true" />
+        <property name="locations">  
+            <list>  
+                <value>classpath*:conf.properties</value>  
+            </list>  
+        </property>  
+    </bean>  
+	<!-- 扫描Service -->
+	<context:component-scan base-package="com.itour.service" />
+	<context:component-scan base-package="com.itour.service.*" />
+	
+
+	<!-- ***************配置数据源************** -->
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">	
+         <property name="driverClassName"><value>com.mysql.jdbc.Driver</value></property> 
+         <property name="url"><value>jdbc:mysql://127.0.0.1:3306/itour?useUnicode=true&amp;charaterEncoding=utf-8</value></property> 
+         <property name="username"><value>root</value></property> 
+         <property name="password"><value></value></property>
+	</bean> -->
+	
+	<!-- 配置系统的数据源 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+	<!-- 	<property name="driverClassName" value="${driver}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />  -->
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/itour_en?useUnicode=true&amp;characterEncoding=utf8" />
+		<property name="username" value="root" />
+		<property name="password" value="" />  
+		<property name="filters" value="stat" />
+		<property name="maxActive" value="10" />
+		<property name="initialSize" value="1" />
+		<property name="maxWait" value="60000" />
+		<property name="minIdle" value="1" />
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<property name="validationQuery" value="SELECT 1" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="50" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="removeAbandoned" value="true" /> <!-- 打开removeAbandoned功能 -->
+    	<property name="removeAbandonedTimeout" value="1800" /> <!-- 1800秒，也就是30分钟 -->
+    	<property name="logAbandoned" value="true" /> <!-- 关闭abanded连接时输出错误日志 -->
+	</bean>  
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
+        <property name = "dataSource" ref="dataSource"/>
+	</bean>
+	<bean id="jdbcTemplateX" class="com.itour.base.jdbc.JdbcTemplatex">
+	 	<property name = "dataSource" ref="dataSource"/>
+	</bean>
+	<bean  class="com.itour.base.util.SystemVariable">  
+      <!--  <property name="dataSource" ref="dataSource"/>   -->
+       <property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>  
+	<bean  class="com.itour.util.Constants">  
+       <property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean> 
+	<!-- ***************事务配置************** -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<aop:config>  
+        <aop:advisor pointcut="execution(* com.itour.service.*.*(..))"  advice-ref="txAdvice" />  
+        <aop:advisor pointcut="execution(* com.itour.base.service.*.*(..))"  advice-ref="txAdvice" />  
+    </aop:config>    
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">  
+        <tx:attributes>  
+            <tx:method name="get*" read-only="true" />  
+            <tx:method name="query*" read-only="true" />  
+            <tx:method name="find*" read-only="true" />  
+            <tx:method name="load*" read-only="true" />
+            <tx:method name="select*" read-only="true" />  
+            <tx:method name="*" propagation="REQUIRED" rollback-for="Exception" />  
+        </tx:attributes>  
+    </tx:advice>  
+	
+	
+	<!-- 扫描 MyBatis Sql -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="mapperLocations">
+			 <list>
+			  	 <value>classpath:com/itour/mapper/*Mapper.xml</value> 
+			 </list>
+		</property>
+		<property name="plugins">  
+	       <array>  
+	          <bean class="com.itour.base.interceptor.MapInterceptor"/>  
+	       </array>  
+   		</property>
+	</bean>
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>    
+    
+	<!-- 扫描mapper.java  -->
+	  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" autowire="byName">    
+	    <property name="basePackage" value="com.itour.dao,com.itour.base.dao" />
+	    <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>   
+	<!-- 设置freeMarker的配置文件路径 -->
+    <bean id="freemarkerConfiguration"
+        class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="classpath:freemarker.properties" />
+    </bean>
+
+      <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="freemarkerSettings" ref="freemarkerConfiguration" /> 
+        <property name="templateLoaderPath">
+            <value>/WEB-INF/templates/</value>
+        </property>
+        <property name="freemarkerVariables"><!--设置一些常用的全局变量-->
+            <map>
+            <!-- <entry key="beriefTrip" value-ref="beriefTrip" /> -->
+           <!--  <entry key="webRoot" value="/shop"></entry>  
+            <entry key="jsRoot" value="/shop/js"></entry>    -->
+            </map>
+        </property>
+      <!--   <property name="freemarkerSettings">  
+            <props>  
+                <prop key="template_update_delay">0</prop>  
+                <prop key="default_encoding">UTF-8</prop>  
+                <prop key="number_format">0.##########</prop>  
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>  
+                <prop key="classic_compatible">true</prop>  
+                <prop key="template_exception_handler">ignore</prop>  
+            </props>  
+        </property>  -->
+    </bean>
+    <!-- 配置freeMarker视图解析器 -->
+    <bean id="freemarkerViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+        <property name="viewNames" value="*.ftl" />
+        <property name="contentType" value="text/html; charset=utf-8" />
+        <property name="cache" value="false" />
+        <property name="suffix" value="" />
+  <!-- <property name="exposeRequestAttributes" value="true" />
+        <property name="exposeSessionAttributes" value="true" />
+        <property name="exposeSpringMacroHelpers" value="true" /> -->
+        <property name="order" value="1" />
+    </bean>
+	<!-- Spring 工具类 -->
+	<bean id="springContextUtil" class="com.itour.base.util.SpringContextUtil" />
+<!-- 	<oscache:config configLocation="classpath:oscache.properties" id="cacheProvider"/>  
+      
+    <oscache:annotations providerId="cacheProvider">  
+        <oscache:caching id="testCaching" groups="pb_test" cronExpression="0 1 * * *" refreshPeriod="86400"/>  
+        <oscache:flushing id="testFlushing" groups="pb_test"/>  
+    </oscache:annotations>  
+      
+    <bean id="testCache" class="com.TestCache"/>   -->
+<!-- 	<bean id="cacheManager" class="org.springmodules.cache.provider.oscache.OsCacheManagerFactoryBean">
+		Optional properties
+		<property name="configLocation" value="classpath:oscache.properties"/>
+	</bean>
+
+	<bean id="cacheProviderFacade" class="org.springmodules.cache.provider.oscache.OsCacheFacade">
+	<property name="cacheManager" ref="cacheManager"/>
+	</bean>
+	<bean id="cacheKeyGenerator" class="org.springmodules.cache.key.HashCodeCacheKeyGenerator"/>
+	<bean id="userDaoProxy" class="org.springmodules.cache.interceptor.proxy.CacheProxyFactoryBean">
+	<property name="cacheProviderFacade" ref="cacheProviderFacade"/>
+	<property name="cacheKeyGenerator" ref="cacheKeyGenerator"/>
+	<property name="cachingModels">
+	<props>
+	<prop key="get*">refreshPeriod=12;groups=user</prop>
+	</props>
+	</property>
+	<property name="flushingModels">
+	<props>
+	<prop key="update*">groups=user</prop>
+	<prop key="delete*">groups=user</prop>
+	<prop key="add*">groups=user</prop>
+	</props>
+	</property>
+	<property name="cachingListeners">
+	<list>
+	</list>
+	</property>
+	<property name="target" ref="userDaoTarget"/>
+	</bean>
+	<bean id="userDaoTarget" class="com.logictown.BHT.dao.springJdbc.UserDaoImpl">
+	<property name="dataSource" ref="dataSource"/>
+	</bean> -->
+</beans>
+

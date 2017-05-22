@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itour.dao.SysMenuDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.itour.entity.SysMenu" >
+	<result column="id" property="id"/>
+	<result column="name" property="name"/>
+	<result column="url" property="url"/>
+	<result column="parentId" property="parentId"/>
+	<result column="deleted" property="deleted"/>
+	<result column="createTime" property="createTime"/>
+	<result column="updateTime" property="updateTime"/>
+	<result column="rank" property="rank"/>
+	<result column="actions" property="actions"/>
+	<result column="create_by" property="createBy"/>
+	<result column="update_by" property="updateBy"/>
+</resultMap>
+
+<!-- 扩展字段 -->
+<resultMap id="ExtResultMap" extends="BaseResultMap" type="com.itour.entity.SysMenu" >
+	<result column="subCount" property="subCount"/>
+</resultMap>
+
+<!-- sys_menu table all fields -->
+<sql id="Base_Column_List" >
+	 id,name,url,parentId,deleted,createTime,updateTime,rank,actions,create_by,update_by
+</sql>
+   
+   <!-- sys_menu table  -->
+<sql id="Column_List" >
+	 id,name,url,parentId,deleted,createTime,updateTime,rank,actions
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where deleted =  0
+<trim  suffixOverrides="," >
+	<!-- <if test="id != null and id !=''" >
+	    and id like CONCAT('%', #{id}, '%')
+	</if> -->
+	 <if test="name != null and name != ''" >
+	 	and name like CONCAT('%', #{name}, '%')
+	</if>
+	<if test="url != null and url != ''" >
+	    and url like CONCAT('%', #{url}, '%')
+	</if>
+	<if test="parentId != null and parentId != ''" >
+	    and parentId = #{parentId}
+	</if>
+	<!-- 如果parentId为空,这查询顶级菜单 -->
+	<if test="parentId == null or parentId ==''" >
+	    and parentId is null or parentId = '' 
+	</if>
+	
+	<if test="createTime != null and createTime !=''" >
+	     and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	</if>
+	<if test="rank != null" >
+	    and rank =  #{rank}
+	</if>
+	<if test="actions != null and actions != ''" >
+	    and actions  like CONCAT('%', #{actions}, '%')
+	</if>
+</trim>
+</sql>
+   
+
+<select id="maxRank" resultType="java.lang.Integer">
+select max(rank+1) as rank from sys_menu 
+</select>
+<!-- 插入记录 -->
+<insert id="add" parameterType="com.itour.entity.SysMenu" >
+ <!--  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey> -->
+  insert into sys_menu(id,name,url,parentId,deleted,createTime,updateTime,rank,actions,create_by,update_by)
+  values(#{id},#{name},#{url},#{parentId},0,now(),now(),#{rank},#{actions},#{createBy},#{updateBy})
+</insert>
+ 
+ <!-- 修改记录，只修改值不为空的字段 -->
+<update id="update" parameterType="com.itour.entity.SysMenu" >
+	update sys_menu set updateTime=now(),
+	<trim  suffixOverrides="," >
+	<if test="name != null  and name != '' ">
+		name=#{name},
+	</if>
+	<if test="url != null  and url != '' ">
+		url=#{url},
+	</if>
+	<if test="parentId != null and parentId != ''  ">
+		parentId=#{parentId},
+	</if>
+	<if test="deleted != null  ">
+		deleted=#{deleted},
+	</if>
+	<if test="rank != null  ">
+		rank=#{rank},
+	</if>
+	<if test="actions != null  and actions != '' ">
+		actions=#{actions},
+	</if>
+	<if test="updateBy != null and updateBy !=''">
+	update_by=#{updateBy},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="java.lang.String">
+	delete from sys_menu where id = #{id}
+</delete>
+ <!-- 逻辑删除 -->
+ <update id="logicdelete" parameterType="java.lang.String">
+	update sys_menu set deleted=1 where id = #{id}
+</update>
+<!-- 根据id查询 系统菜单 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> from sys_menu where id = #{id}
+</select>
+
+<!-- 系统菜单 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="java.lang.String">
+	select count(1) from sys_menu 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询系统菜单列表 -->
+<select id="queryByList" resultMap="ExtResultMap"  parameterType="java.util.Map">
+	select 
+	<include refid="Column_List"/>
+	,(SELECT COUNT(1) FROM sys_menu c  WHERE c.parentId = m.id and deleted = 0) AS subCount,
+	(select concat(u.nickname,'(',u.email,')') from sys_user u left join sys_menu menu on u.id=menu.create_by where menu.deleted = 0 and menu.id=m.id)as create_by,
+	(select concat(u.nickname,'(',u.email,')') from sys_user u left join sys_menu menu on u.id=menu.update_by where menu.deleted = 0 and menu.id=m.id)as update_by
+	from sys_menu m
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+<!-- 查询所有有效系统菜单列表 -->
+<select id="queryByAll" resultMap="BaseResultMap">
+select<include refid="Base_Column_List" />  from sys_menu where deleted= 0 order by rank desc
+</select>
+
+<!-- 获取顶级菜单 -->
+<select id="getRootMenu" parameterType="java.lang.String" resultMap="BaseResultMap">
+	select  <include refid="Base_Column_List" />  from sys_menu where deleted= 0 and parentId is null or parentId = ''
+	 <if test="menuId != null and menuId != ''" >
+     and  id != #{menuId}
+    </if> 
+    order by rank asc
+</select>
+
+
+<!-- 获取子菜单-->
+<select id="getChildMenu"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select  <include refid="Base_Column_List" /> 
+	 from sys_menu where deleted= 0 and parentId is not null and parentId != ''
+	 <if test="parentId != null and parentId != ''" >
+      and  parentId = #{parentId}
+    </if>   
+    order by rank asc
+</select>
+
+<!-- 根据角色Id获取菜单（不需要父菜单） -->
+<select id="getMenuByRoleId"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	SELECT <include refid="Base_Column_List" /> FROM sys_menu m WHERE deleted= 0 AND parentId IS NOT NULL and parentId != ''
+	AND EXISTS (
+		 SELECT * FROM sys_role_rel r WHERE r.objId = m.id AND relType = 0
+		 <if test="roleId != null and roleId != ''">
+			 AND r.roleId = #{roleId}
+		 </if>
+	)
+	order by rank asc
+</select>
+
+<!-- 根据用户id查询父菜单菜单 -->
+<select id="getRootMenuByUser"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	SELECT DISTINCT id,NAME,url,parentId,actions FROM sys_menu m 
+	WHERE deleted= 0 AND (parentId IS NULL or parentId ='') 
+	AND EXISTS (
+		 SELECT * FROM sys_role_rel r 
+		 WHERE r.objId = m.id AND r.relType = 0
+		 AND EXISTS ( 
+			SELECT 1 FROM sys_role_rel u WHERE u.roleId = r.roleId  AND u.relType = 1
+			<if test="userId != null and userId !=''">
+				 AND u.objId = #{userId}
+			</if>
+		 )
+	)
+	order by rank asc
+</select>
+
+
+<!-- 根据用户id查询子菜单菜单 -->
+<select id="getChildMenuByUser"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	SELECT DISTINCT id,NAME,url,parentId,actions FROM sys_menu m 
+	WHERE deleted= 0 AND parentId IS NOT NULL and parentId !=''
+	AND EXISTS (
+		 SELECT * FROM sys_role_rel r 
+		 WHERE r.objId = m.id AND r.relType = 0
+		 AND EXISTS ( 
+			SELECT 1 FROM sys_role_rel u WHERE u.roleId = r.roleId  AND u.relType = 1 
+			<if test="userId != null and userId !=''">
+				 AND u.objId = #{userId}
+			</if>
+		 )
+	)
+	order by rank asc
+</select>
+
+</mapper>   

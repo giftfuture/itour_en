@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+	<description>SHIRO安全配置(http://shiro.apache.org/spring.html)</description>
+
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<!-- <property name="realm" ref="shiroDbRealm" /> -->
+	</bean>
+
+	<!-- Define the realm you want to use to connect to your back-end security datasource: -->
+	<!-- <bean id="shiroDbRealm" class="com.bisoft.dp.security.ShiroDbRealm"/> -->
+
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+	<!-- 	<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/content/login/login.html" /> 没有权限或者失败后跳转的页面
+		<property name="successUrl" value="/content/home/index.html" />
+		<property name="unauthorizedUrl" value="/WEB-INF/jsp/common/403.jsp" />
+		<property name="filters">
+			<map>
+				<entry key="permPathAuth" value-ref="permissionPathAuthorizationFilter" />
+			</map>
+		</property>
+		<property name="filterChainDefinitions">
+			, roles[admin], perms[document:read]
+			<value>
+				/assets/** = anon
+				/login = anon
+				/logout = anon
+				/content/login/** = anon
+				/content/** = authc,permPathAuth
+				/** = authc
+			</value>
+		</property> -->
+	</bean>
+
+	<!-- <bean name="permissionPathAuthorizationFilter" class="com.bisoft.dp.security.PermissionPathAuthorizationFilter" /> -->
+ 
+	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
+
+	<!-- AOP式方法级权限检查 -->
+	<!-- Enable Shiro Annotations for Spring-configured beans. Only run after -->
+	<!-- the lifecycleBeanProcessor has run: -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+
+</beans>

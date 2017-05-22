@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itour.dao.QuotationDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.itour.entity.Quotation" >
+	<result column="id" property="id"/>
+	<result column="name" property="name"/>
+	<result column="order_id" property="orderId"/>
+	<result column="quotation" property="quotation"/>
+	<result column="create_time" property="createTime"/>
+	<result column="update_time" property="updateTime"/>
+	<result column="remark" property="remark"/>
+	<result column="type" property="type"/>
+	<result column="total_price" property="totalPrice"/>
+	<result column="formula" property="formula"/>
+	<result column="is_valid" property="isValid"/>
+</resultMap>
+       
+<!-- quotation table all fields -->
+<sql id="Base_Column_List" >
+	 id, name, order_id, quotation, create_time, update_time, remark, type, total_price, formula,is_valid
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where is_valid=1
+<trim  suffixOverrides="," >
+	<if test="id != null and id != ''" >
+	    and id like CONCAT('%', #{id}, '%')
+	</if>
+	<if test="name != null and name != ''" >
+	    and name like CONCAT('%', #{name}, '%')
+	</if>
+	<if test="orderId != null and orderId != ''" >
+	    and order_id like CONCAT('%', #{orderId}, '%')
+	</if>
+	<if test="quotation != null and quotation != ''" >
+	    and quotation like CONCAT('%', #{quotation}, '%')
+	</if>
+	<if test="createTime != null and createTime !=''" >
+	   and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	</if>
+	<if test="updateTime != null and updateTime !=''" >
+	   and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
+	</if>
+	<if test="remark != null and remark != ''" >
+	    and remark like CONCAT('%', #{remark}, '%')
+	</if>
+	<if test="type != null and type != ''" >
+	    and type like CONCAT('%', #{type}, '%')
+	</if>
+	<if test="totalPrice != null" >
+	    and total_price =  #{totalPrice}
+	</if>
+	<if test="formula != null and formula != ''" >
+	    and formula like CONCAT('%', #{formula}, '%')
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="com.itour.entity.Quotation" >
+<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey> -->
+  insert into quotation(id,name,order_id,quotation,create_time,update_time,remark,type,total_price,formula,is_valid)
+ values(#{id},#{name},#{orderId},#{quotation},now(),now(),#{remark},#{type},#{totalPrice},#{formula},1)
+</insert>
+
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="update" parameterType="com.itour.entity.Quotation" >
+	update quotation set update_time=now(),
+	<trim  suffixOverrides="," >
+		<if test="isValid != null">
+			is_valid=#{isValid},
+		</if>
+		<if test="name != null and name != '' ">
+			name=#{name},
+		</if>
+		<if test="orderId != null and orderId != '' ">
+			order_id=#{orderId},
+		</if>
+		<if test="quotation != null and quotation != '' ">
+			quotation=#{quotation},
+		</if>
+		<if test="remark != null and remark != '' ">
+			remark=#{remark},
+		</if>
+		<if test="type != null and type != '' ">
+			type=#{type},
+		</if>
+		<if test="totalPrice != null  ">
+			total_price=#{totalPrice},
+		</if>
+		<if test="formula != null and formula != '' ">
+			formula=#{formula},
+		</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="java.lang.String">
+	delete from quotation where id = #{id}
+</delete>
+ <!-- 逻辑删除 -->
+<update id="logicdelete" parameterType="java.lang.String">
+	update quotation set is_valid=0 where id = #{id}
+</update>
+<!-- 根据id查询 报价单 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	 from quotation where id = #{id}
+</select>
+
+<!-- 报价单 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
+	select count(1) from quotation 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询报价单列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
+	select 
+	<include refid="Base_Column_List"/>
+	from quotation 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

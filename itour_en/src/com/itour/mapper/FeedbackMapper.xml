@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itour.dao.FeedbackDao">
+	<!-- Result Map -->
+	<resultMap id="BaseResultMap" type="com.itour.entity.Feedback">
+		<result column="id" property="id" />
+		<result column="create_time" property="createTime" />
+		<result column="status" property="status" />
+		<result column="update_time" property="updateTime" />
+		<result column="title" property="title" />
+		<result column="content" property="content" />
+		<result column="customer_id" property="customerId" />
+		<result column="result" property="result" />
+		<result column="customerName" property="customerName"/>
+		<result column="email" property="email"/>
+		<result column="mobile" property="mobile"/>
+		<result column="name" property="name" />
+		<result column="team_persons" property="teamPersons"/>
+		<result column="prefered_date" property="preferedDate"/>
+		<result column="is_valid" property="isValid"/>
+		<result column="route" property="route"/>
+		<result column="sex" property="sex" />
+		<result column="public_show" property="publicShow"/>
+	</resultMap> 
+
+	<!-- feedback table all fields -->
+	<sql id="Base_Column_List">
+		id, create_time, status, update_time, title, content, customer_id, result,email,mobile,name,team_persons,prefered_date,is_valid,route,sex,public_show
+	</sql>
+	<sql id="Extend_Column_List">
+		id, create_time, status, update_time, title, content, customer_id, result,customerName,email,mobile,is_valid,route,sex,public_show
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		where feed_back.is_valid=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id != ''">
+				and id like CONCAT('%', #{id}, '%')
+			</if>
+			<if test="createTime != null and createTime != ''">
+	  <![CDATA[  and  DATE_FORMAT(feed_back.create_time,'%Y-%m-%d')  = DATE_FORMAT( #{createTime},'%Y-%m-%d') ]]>
+			</if>
+			<if test="status != null ">
+				and status = #{status}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+	 <![CDATA[  and  DATE_FORMAT(feed_back.update_time,'%Y-%m-%d')  = DATE_FORMAT( #{updateTime},'%Y-%m-%d') ]]>
+			</if>
+			<if test="title != null and title != ''">
+				and title like CONCAT('%', #{title}, '%')
+			</if>
+			<if test="content != null and content != ''">
+				and content like CONCAT('%', #{content}, '%')
+			</if>
+			<if test="customerId != null and customerId != ''">
+				and customer_id like CONCAT('%', #{customerId}, '%')
+			</if>
+			<if test="result != null and result != ''">
+				and result  like CONCAT('%', #{result}, '%')
+			</if>
+			<if test="email != null and email != ''">
+				and email like CONCAT('%', #{email}, '%')
+			</if>
+			<if test="name != null and name != ''">
+				and name like CONCAT('%', #{name}, '%')
+			</if>
+			<if test="mobile != null">
+				and mobile= #{mobile}
+			</if>
+			<if test="preferedDate != null and preferedDate !=''">
+				and prefered_date = #{preferedDate}
+			</if>
+			<if test="teamPersons != null and teamPersons !=0">
+				and team_persons = #{teamPersons}
+			</if>
+			<if test="route != null and route !=''">
+				and route = #{route}
+			</if>
+			<if test="sex != null and sex !=''">
+				and sex = #{sex}
+			</if>
+			<if test="publicShow != null and publicShow != ''">
+			    and public_show=#{publicShow}
+			</if>
+		</trim>
+	</sql>
+
+
+	<!-- 插入记录 -->
+	<insert id="add" parameterType="com.itour.entity.Feedback">
+		<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id"> 
+			SELECT LAST_INSERT_ID() </selectKey> -->
+		insert into
+		feed_back(id,create_time,status,update_time,title,content,customer_id,result,mobile,name,email,team_persons,prefered_date,is_valid,route,sex,public_show)
+		values(#{id},now(),#{status},now(),#{title},#{content},#{customerId},#{result},#{mobile},#{name},#{email},#{teamPersons},#{preferedDate},1,#{route},#{sex},#{publicShow})
+	</insert>
+
+	<!-- 修改记录，只修改只不为空的字段 -->
+	<update id="update" parameterType="com.itour.entity.Feedback">
+		update feed_back set update_time=now(),
+		<trim suffixOverrides=",">
+			<if test="status != null  ">
+				status=#{status},
+			</if>
+			<if test="isValid != null">
+				is_valid=#{isValid},
+			</if>
+			<if test="title != null and title != '' ">
+				title=#{title},
+			</if>
+			<if test="content != null and content != '' ">
+				content=#{content},
+			</if>
+			<if test="customerId != null and customerId != '' ">
+				customer_id=#{customerId},
+			</if>
+			<if test="result != null and result != '' ">
+				result=#{result},
+			</if>
+			<if test="email != null and email != '' ">
+				email=#{email},
+			</if>
+			<if test="name != null and name != '' ">
+				name=#{name},
+			</if>
+			<if test="mobile != null">
+				result=#{mobile},
+			</if>
+			<if test="teamPersons != null">
+				team_persons=#{teamPersons},
+			</if>
+			<if test="preferedDate != null ">
+				prefered_date=#{preferedDate},
+			</if>
+			<if test="route != null and route !=''">
+				route=#{route},
+			</if>
+			<if test="sex != null and sex != ''">
+			   sex = #{sex},
+			</if>
+			<if test="publicShow != null and publicShow != ''">
+		       public_show=#{publicShow},
+			</if>
+		</trim>
+		where id=#{id}
+	</update>
+
+	<!-- 删除记录 -->
+<delete id="delete" parameterType="java.lang.String">
+	delete from feed_back where id = #{id}
+</delete>
+<!-- 逻辑删除 -->
+ <update id="logicdelete" parameterType="java.lang.String">
+	update feed_back set is_valid=0 where id = #{id}
+</update>
+	<!-- 根据id查询 客户反馈 -->
+	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		feed_back.is_valid,feed_back.id, feed_back.create_time, feed_back.status, feed_back.update_time, feed_back.title, feed_back.sex,
+		feed_back.content, feed_back.customer_id, feed_back.result,customers.email email,customers.mobile mobile,feed_back.route,public_show,
+		customers.customer_name customerName ,rt.title route
+		from feed_back left join customers on feed_back.customer_id = customers.id 
+		left join route_template rt on rt.route_code=feed_back.route
+		where feed_back.id = #{id}  
+	</select>
+
+	<!-- 客户反馈 列表总数 -->
+	<select id="queryByCount" resultType="java.lang.Integer"
+		parameterType="com.itour.base.page.BasePage">
+		select count(1) from feed_back
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<!-- 查询客户反馈列表 -->
+	<select id="queryByList" resultMap="BaseResultMap" parameterType="com.itour.base.page.BasePage">
+		select feed_back.is_valid,feed_back.id, feed_back.create_time, feed_back.status, feed_back.update_time, feed_back.title, feed_back.sex,
+		rt.title route,feed_back.content, feed_back.customer_id, feed_back.result,customers.email email,customers.mobile mobile,public_show,
+		customers.customer_name customerName 
+		from feed_back left join customers on feed_back.customer_id = customers.id 
+		left join route_template rt on rt.route_code=feed_back.route
+		<include refid="Example_Where_Clause" />
+		<if test="pager.orderCondition != null and pager.orderCondition != ''">
+			${pager.orderCondition}
+		</if>
+		<if
+			test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''">
+			${pager.mysqlQueryCondition}
+		</if>
+	</select>
+</mapper>   

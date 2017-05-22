@@ -1,0 +1,107 @@
+@CHARSET "UTF-8";
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.h1-black {
+	font-family: "微软雅黑";
+	font-size: 36px;
+	font-weight: bold;
+	color: #333333;
+}
+.h1-2 {
+	font-family: "微软雅黑";
+	font-size: 30px;
+	color: #666666;
+}
+.h2-24 {
+	font-family: "微软雅黑";
+	font-size: 24px;
+}
+.h2-24red {
+	font-family: "微软雅黑";
+	font-size: 24px;
+	font-color: #990000;
+}
+.f12-gao1 {
+	font-size: 12px;
+	line-height: 20px;
+	color: #333333;
+}
+.f14-gao1 {
+	font-size: 14px;
+	line-height: 30px;
+	color: #333333;
+}
+.STYLE2 {font-family: "微软雅黑"; font-size: 24px; color: #990000; }
+.STYLE3 {
+	color: #990000;font-family: "微软雅黑";
+}
+.STYLE5 {font-family: "黑体";
+font-size: 36px;
+font-weight: bold;
+color: #990000;}
+.STYLE6 {font-family: "微软雅黑"}
+.STYLE7 {color: #666666; font-family: "微软雅黑"; }
+.STYLE8 {font-size: 14px; line-height: 30px; color: #333333; font-family: "微软雅黑"; }
+.STYLE9 {font-family: "微软雅黑"; font-size: 36px; font-weight: bold; color: #333333; }
+.STYLE10 {font-family: "微软雅黑"; font-size: 30px; color: #666666; }
+.trbanner{font-family: "微软雅黑"; font-size: 30px; background-color: #FF0000;}
+.btn-item {
+  background: grey;  /* transparent */
+  width:12px;
+  height:12px;
+   float:middle; 
+}
+.btn-item__cur {
+  background: #8B0000;
+  border-color: #fff;
+  width:14px;
+  float:middle; 
+  height:14px;
+}
+tr td ol{position:relative;width: 80px;height: 20px;top:-30px;left:60px;}
+tr td ol li{float:left;width: 10px;height: 10px;margin: 5px;background: #fff;}
+tr td ol li.seleted{background: #1AA4CA;}
+/*  a:link {
+	font-family: "微软雅黑";
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a:hover {
+	color: #cccc99;
+	font-family: "微软雅黑";
+	text-decoration: none;
+}
+a:active {
+	font-family: "微软雅黑";
+	text-decoration: none;
+}
+a:visited {
+	color: #FFFFFF;
+}  */
+#banner-index{
+  width:1350px;
+  height:598px;
+}
+#top-menu{
+  width:1350px;
+  height:153px;
+  text-align:center;
+  align:center;
+  font-family: "微软雅黑";
+  font-size: 36px;
+  font-weight: bold;
+}
+#top-menu tr.trbanner{
+	color:#FFFFFF;
+	background-color:#8B0000;
+	text-decoration:none;
+}
+#top-menu td{
+  font-family: "微软雅黑";
+  font-size: 30px;
+ 
+}

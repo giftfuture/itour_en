@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itour.dao.SysMenuBtnDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.itour.entity.SysMenuBtn" >
+	<result column="id" property="id"/>
+	<result column="menuid" property="menuid"/>
+	<result column="btnName" property="btnName"/>
+	<result column="btnType" property="btnType"/>
+	<result column="actionUrls" property="actionUrls"/>
+	<result column="deleted" property="deleted"/>
+	<result column="create_time" property="createTime"/>
+	<result column="update_time" property="updateTime"/>
+	<result column="actions" property="actions"/>
+	<result column="create_by" property="createBy"/>
+	<result column="update_by" property="updateBy"/>
+</resultMap>
+       
+<!-- sys_menu_btn table all fields -->
+<sql id="Base_Column_List" >
+	 id,menuid,btnName,btnType,actionUrls, deleted, create_time, update_time, actions, create_by, update_by
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where deleted=0
+<trim  suffixOverrides="," >
+	<if test="menuid != null and menuid !=''" >
+	    and menuid like CONCAT('%', #{menuid}, '%')
+	</if>
+	 	<if test="btnName != null and btnName != ''" >
+	    and btnName like CONCAT('%', #{btnName}, '%')
+	</if>
+	 	<if test="btnType != null and btnType != ''" >
+	    and btnType like CONCAT('%', #{btnType}, '%')
+	</if>
+	 <if test="actionUrls != null and actionUrls != ''" >
+	    and actionUrls like CONCAT('%', #{actionUrls}, '%')
+	</if>
+	<!-- <if test="deleted != null and deleted != ''" >
+	    and deleted =  #{deleted}
+	</if> -->
+	<if test="createTime != null and createTime != ''" >
+	    and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	</if>
+	<if test="updateTime != null and updateTime != ''" >
+	     and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
+	</if>
+	<if test="actions != null and actions != ''" >
+	    and actions like CONCAT('%', #{actions}, '%')
+	</if>
+	<if test="createBy != null and createBy != ''" >
+	    and create_by like CONCAT('%', #{createBy}, '%')
+	</if>
+	<if test="updateBy != null and updateBy != ''" >
+	    and update_by like CONCAT('%', #{updateBy}, '%')
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="com.itour.entity.SysMenuBtn" >
+  <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey> -->
+ <!-- insert into sys_menu_btn(id,menuid,btnName,btnType,actionUrls)-->
+ insert into sys_menu_btn(<include refid="Base_Column_List"/>)
+ values(#{id},#{menuid},#{btnName},#{btnType},#{actionUrls},#{deleted},now(),now(),#{actions},#{createBy},#{updateBy})
+</insert>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="update" parameterType="com.itour.entity.SysMenuBtn" >
+	update sys_menu_btn set update_time=now(),
+	<trim  suffixOverrides="," >
+	<if test="menuid != null  ">
+		menuid=#{menuid},
+	</if>
+	<if test="btnName != null  and btnName != '' ">
+		btnName=#{btnName},
+	</if>
+	<if test="btnType != null  and btnType != '' ">
+		btnType=#{btnType},
+	</if>
+	<if test="actionUrls != null  and actionUrls != '' ">
+		actionUrls=#{actionUrls},
+	</if>
+	<if test="deleted != null  ">
+		deleted=#{deleted},
+	</if>
+	<if test="actions != null  ">
+		actions=#{actions},
+	</if>
+	<if test="updateBy != null and updateBy != ''">
+		update_by=#{updateBy},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="java.lang.String">
+	delete from sys_menu_btn where id = #{id}
+</delete>
+<!-- 逻辑删除 -->
+ <update id="logicdelete" parameterType="java.lang.String">
+	update sys_menu_btn set deleted=1 where id = #{id}
+</update>
+<!-- 删除记录 -->
+<delete id="deleteByMenuid" parameterType="java.lang.String">
+	delete from sys_menu_btn where menuid = #{menuid}
+</delete>
+ <!-- 逻辑删除 -->
+<update id="logicdeleteByMenuid" parameterType="java.lang.String">
+	update sys_menu set deleted=1 where menuid = #{menuid}
+</update>
+<!-- 根据id查询 菜单按钮 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	 from sys_menu_btn where id = #{id}
+</select>
+
+
+<!-- 查询所有菜单按钮 -->
+<select id="queryByAll"  resultMap="BaseResultMap" >
+	select <include refid="Base_Column_List" />  from sys_menu_btn  where deleted= 0 
+</select>
+
+
+<!-- 根据menuid查询 菜单按钮 -->
+<select id="queryByMenuid"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	 from sys_menu_btn where menuid = #{menuid}
+</select>
+
+<!-- 根据menuUrl查询 菜单按钮 -->
+<select id="queryByMenuUrl"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	from sys_menu_btn b WHERE EXISTS (
+		SELECT 1 FROM sys_menu m WHERE  m.id = b.menuid AND IFNULL(m.deleted,0) = 0 
+		<if test="url != null and url !=''">
+			AND m.url = #{url}
+		</if>
+	)
+</select>
+
+
+<!-- 菜单按钮 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
+	select count(1) from sys_menu_btn 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询菜单按钮列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
+	select 
+	<include refid="Base_Column_List"/>
+	from sys_menu_btn 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+
+
+<!-- 根据用户id查询按钮 -->
+<select id="getMenuBtnByUser"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	SELECT DISTINCT * FROM sys_menu_btn b
+	WHERE EXISTS (
+		 SELECT * FROM sys_role_rel r 
+		 WHERE r.objId = b.id AND r.relType = 2
+		 AND EXISTS ( 
+			SELECT 1 FROM sys_role_rel u WHERE u.roleId = r.roleId  AND u.relType = 1 
+			<if test="userId != null and userId !=''">
+				AND u.objId =#{userId}
+			</if>
+		 )
+	)
+</select>
+  	
+</mapper>   

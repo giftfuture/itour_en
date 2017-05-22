@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itour.dao.SysRoleRelDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.itour.entity.SysRoleRel" >
+	<result column="id" property="id"/>
+	<result column="roleId" property="roleId"/>
+	<result column="objId" property="objId"/>
+	<result column="relType" property="relType"/>
+	<result column="is_valid" property="isValid"/>
+	<result column="create_by" property="createBy"/>
+	<result column="update_by" property="updateBy"/>
+	<result column="create_time" property="createTime"/>
+	<result column="update_time" property="updateTime"/>
+</resultMap>
+       
+<!-- sys_role_rel table all fields -->
+<sql id="Base_Column_List" >
+	id, roleId,objId,relType,is_valid,create_by,update_by,create_time,update_time
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where is_valid=1
+<trim  suffixOverrides="," >
+	<if test="id != null and id != ''">
+		and id like CONCAT('%', #{id}, '%')
+	</if>
+	<if test="roleId != null and roleId != ''" >
+	    and roleId like CONCAT('%', #{roleId}, '%')
+	</if>
+	<if test="objId != null and objId != ''" >
+	    and objId like CONCAT('%', #{objId}, '%')
+	</if>
+	<if test="relType != null" >
+	    and relType =  #{relType}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey> -->
+  insert into sys_role_rel(id,roleId,objId,relType,is_valid,create_by,update_by,create_time,update_time)
+ values(#{id},#{roleId},#{objId},#{relType},1,#{createBy},#{updateBy},now(),now())
+</insert>
+
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="update" parameterType="Object" >
+	update sys_role_rel set update_time=now(),
+	<trim  suffixOverrides="," >
+		<if test="isValid != null">
+			is_valid=#{isValid},
+		</if>
+		<if test="objId != null and objId != '' ">
+			objId=#{objId},
+		</if>
+		<if test="relType != null  ">
+			relType=#{relType},
+		</if>
+		<if test="updateBy !=null and updateBy !=''">
+			update_by=#{updateBy},
+		</if>
+	</trim> where roleId=#{roleId}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="java.lang.String">
+	delete from sys_role_rel where roleId = #{roleId}
+</delete>
+ <!-- 逻辑删除 -->
+ <update id="logicdelete" parameterType="java.lang.String">
+	update sys_role_rel set is_valid=0 where id = #{id}
+</update>
+ 			
+<!-- 删除记录 -->
+<delete id="deleteByRoleId" parameterType="java.lang.String">
+	delete from sys_role_rel where roleId = #{roleId}
+	<if test="relType != null" >
+		and relType =  #{relType}
+	</if>
+</delete>
+ <!-- 通过角色ID逻辑删除记录 -->
+<update id="logicdeleteByRoleId" parameterType="java.lang.String">
+	update sys_role_rel set is_valid=0 where roleId = #{roleId}
+	<if test="relType != null" >
+		and relType =  #{relType}
+	</if>
+</update>
+ 
+<!-- 通过objId删除记录 -->
+<delete id="deleteByObjId" parameterType="java.lang.String">
+	delete	from sys_role_rel where objId = #{objId}
+	<if test="relType != null" >
+		and relType =  #{relType}
+	</if>
+</delete>
+<!-- 通过objId逻辑删除记录 -->
+<update id="logicdeleteByObjId" parameterType="java.lang.String">
+	update sys_role_rel set is_valid=0 where objId = #{objId}
+	<if test="relType != null" >
+		and relType =  #{relType}
+	</if>
+</update>
+<!-- 通过角色ID查询记录 -->
+<select id="queryByRoleId" resultMap="BaseResultMap"  parameterType="java.lang.String">
+	select
+	<include refid="Base_Column_List"/>
+	from sys_role_rel where roleId = #{roleId}
+	<if test="relType != null" >
+		and relType =  #{relType}
+	</if>
+</select>
+ 
+ 
+<!-- 通过objId查询记录 -->
+<select id="queryByObjId" resultMap="BaseResultMap" parameterType="java.lang.String">
+	select 
+	<include refid="Base_Column_List"/>
+	from sys_role_rel where objId = #{objId}
+	<if test="relType != null" >
+		and relType =  #{relType}
+	</if>
+</select>
+ 
+<!-- 根据id查询 角色关联 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	 from sys_role_rel where roleId = #{roleId}
+</select>
+
+<!-- 角色关联 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
+	select count(1) from sys_role_rel 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询角色关联列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
+	select 
+	<include refid="Base_Column_List"/>
+	from sys_role_rel 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+  	
+</mapper>   

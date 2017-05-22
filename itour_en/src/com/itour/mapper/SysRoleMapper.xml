@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itour.dao.SysRoleDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.itour.entity.SysRole" >
+	<result column="id" property="id"/>
+	<result column="roleName" property="roleName"/>
+	<result column="createTime" property="createTime"/>
+	<result column="createBy" property="createBy"/>
+	<result column="updateTime" property="updateTime"/>
+	<result column="updateBy" property="updateBy"/>
+	<result column="state" property="state"/>
+	<result column="descr" property="descr"/>
+	<result column="role_level" property="level"/>
+	<result column="number" property="number"/>
+	<result column="deleted" property="deleted"/>
+</resultMap>
+<!-- sys_role table all fields -->
+<sql id="Base_Column_List" >
+	 id,roleName,createTime,createBy,updateTime,updateBy,state,descr,role_level,number,deleted
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where deleted=0
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id like CONCAT('%', #{id}, '%')
+	</if>
+	 <if test="roleName != null and roleName != ''" >
+	    and roleName like CONCAT('%', #{roleName}, '%')
+	</if>
+	<if test="createTime != null and createTime != ''" >
+	     and DATE_FORMAT(createTime,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	</if>
+	<if test="createBy != null and createBy != ''" >
+	    and createBy like CONCAT('%', #{createBy}, '%')
+	</if>
+	<if test="updateTime != null and updateTime != ''" >
+	     and DATE_FORMAT(updateTime,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
+	</if>
+	<if test="updateBy != null and updateBy != ''" >
+	    and updateBy like CONCAT('%', #{updateBy}, '%')
+	</if>
+ 	<if test="descr != null and descr != ''" >
+	    and descr like CONCAT('%', #{descr}, '%')
+	</if>
+	<if test="level != null and level != 0">
+		and role_level = #{level}	
+	</if>
+	<if test="state !=null">
+		and state=#{state}
+	</if>
+	<if test="number != null and number != 0">
+		and number = #{number}	
+	</if>
+</trim>
+</sql>
+   
+<select id="maxNumber" resultType="java.lang.Integer">
+select max(number) as number from sys_role 
+</select>
+<!-- 插入记录 -->
+<insert id="add" parameterType="com.itour.entity.SysRole" >
+<!--   <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey> -->
+  <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="number">
+	select max(number)+1 as number from sys_role 
+  </selectKey>
+  insert into sys_role(id,roleName,createTime,createBy,updateTime,updateBy,state,descr,role_level,number,deleted)
+ values(#{id},#{roleName},now(),#{createBy},now(),#{updateBy},0,#{descr},#{level},#{number},0)
+</insert>
+
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="update" parameterType="com.itour.entity.SysRole" >
+	update sys_role set updateTime=now(),
+	<trim  suffixOverrides="," >
+	<if test="roleName != null and roleName != '' ">
+		roleName=#{roleName},
+	</if>
+	<if test="createBy != null  ">
+		createBy=#{createBy},
+	</if>
+	<if test="updateBy != null  ">
+		updateBy=#{updateBy},
+	</if>
+	<if test="state != null  ">
+		state=#{state},
+	</if>
+	<if test="descr != null  and descr != '' ">
+		descr=#{descr},
+	</if>
+	<if test="level != null and level != 0">
+		role_level = #{level},	
+	</if>
+	<!-- <if test="deleted!=null">
+		deleted=#{deleted},
+	</if> -->
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="java.lang.String">
+	delete from sys_role where id = #{id}
+</delete>
+ <!-- 逻辑删除 禁用-->
+ <update id="logicdelete" parameterType="java.lang.String">
+	update sys_role set deleted=1 where id = #{id}
+</update>
+<!-- 根据id查询 系统角色 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	 from sys_role where id = #{id}
+</select>
+
+<!-- 系统角色 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
+	select count(1) from sys_role 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询系统角色列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
+	select 
+	<include refid="Base_Column_List"/>
+	from sys_role 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+
+	
+<!-- 查询所有角色列表 -->
+<select id="queryAllList" resultMap="BaseResultMap" >
+	select  <include refid="Base_Column_List"/>
+	from sys_role where deleted = 0 
+</select>
+
+<!-- 查询所有角色列表 -->
+<select id="queryByUserid" resultMap="BaseResultMap"  parameterType="java.lang.String">
+	select  <include refid="Base_Column_List"/>
+	from sys_role r where deleted = 0 
+	AND EXISTS (
+		SELECT 1 FROM  sys_role_rel rel WHERE rel.roleId = r.id  AND rel.relType = 1 AND rel.objId = #{userid}
+	)
+</select>
+
+
+</mapper>   

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itour.dao.AreasDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.itour.entity.Areas" >
+	<result column="id" property="id"/>
+	<result column="areaname" property="areaname"/>
+	<result column="parentid" property="parentid"/>
+	<result column="shortname" property="shortname"/>
+	<result column="areacode" property="areacode"/>
+	<result column="zipcode" property="zipcode"/>
+	<result column="pinyin" property="pinyin"/>
+	<result column="lng" property="lng"/>
+	<result column="lat" property="lat"/>
+	<result column="level" property="level"/>
+	<result column="position" property="position"/>
+	<result column="sortnum" property="sortnum"/>
+	<result column="brief" property="brief"/>
+</resultMap>
+       
+<!-- areas table all fields -->
+<sql id="Base_Column_List" >
+	 id, areaname, parentid, shortname, areacode, zipcode, pinyin, lng, lat, level, position, sortnum, brief
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="areaname != null and areaname != ''" >
+	    and areaname  = #{customerId}
+	</if>
+	<!-- <if test="parentid != null and createTime != ''" >
+	    and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	</if> -->
+	<if test="shortname != null and shortname != ''" >
+	    and shortname =  #{shortname}
+	</if>
+	<if test="areacode != null and areacode != ''" >
+	     and areacode=#{areacode}
+	</if>
+	<if test="zipcode != null and zipcode != ''" >
+	    and zipcode = #{zipcode}
+	</if>
+	<if test="pinyin != null and pinyin != ''" >
+	    and pinyin = #{pinyin}
+	</if>
+	<if test="lng != null and lng !=''" >
+	    and lng =  #{lng}
+	</if>
+	<if test="lat != null and lat != ''" >
+	    and lat  = #{lat}
+	</if>
+	<if test="level != null and level != ''" >
+	    and level  = #{level}
+	</if>
+	<if test="position != null and position  != ''" >
+	    and position = #{position}
+	</if>
+	<if test="sortnum != null and sortnum != ''" >
+	    and sortnum= #{sortnum}
+	</if>
+	<if test="brief != null and brief != ''" >
+	    and brief = #{brief}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="com.itour.entity.Areas" >
+<!-- <selectKey resultType="java.lang.String" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey> -->
+  insert into areas(id,areaname,parentid,areacode,zipcode,pinyin,lng,lat,level,position,sortnum,brief)
+ values(#{id},#{areaname},#{parentid},#{areacode},#{zipcode},#{pinyin},#{lng},#{lat},#{level},#{position},#{sortnum},#{brief})
+</insert>
+
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="update" parameterType="com.itour.entity.Areas" >
+	update areas set id=#{id},
+	<trim  suffixOverrides="," >
+	<if test="areaname != null and areaname != ''" >
+	    areaname  = #{customerId},
+	</if>
+	<!-- <if test="parentid != null and createTime != ''" >
+	    and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	</if> -->
+	<if test="shortname != null and shortname != ''" >
+	     shortname =  #{shortname},
+	</if>
+	<if test="areacode != null and areacode != ''" >
+        areacode=#{areacode},
+	</if>
+	<if test="zipcode != null and zipcode != ''" >
+	     zipcode = #{zipcode},
+	</if>
+	<if test="pinyin != null and pinyin != ''" >
+	     pinyin = #{pinyin},
+	</if>
+	<if test="lng != null and lng !=''" >
+	     lng =  #{lng},
+	</if>
+	<if test="lat != null and lat != ''" >
+	     lat  = #{lat},
+	</if>
+	<if test="level != null and level != ''" >
+	     level  = #{level},
+	</if>
+	<if test="position != null and position  != ''" >
+	     position = #{position},
+	</if>
+	<if test="sortnum != null and sortnum != ''" >
+	     sortnum= #{sortnum},
+	</if>
+	<if test="brief != null and brief != ''" >
+	     brief = #{brief},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="java.lang.String">
+	delete from areas where id = #{id}
+</delete>
+ <!-- 逻辑删除 -->
+ <update id="logicdelete" parameterType="java.lang.String">
+	update areas set is_valid=0 where id = #{id}
+</update>
+<!-- 根据id查询 地区信息 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> 
+	 from areas where id = #{id}
+</select>
+<select id="queryByPinyin"  resultMap="BaseResultMap" parameterType="java.lang.String">
+	select <include refid="Base_Column_List" /> from areas where pinyin = #{pinyin}
+</select>
+
+<!-- 地区信息 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.vo.AreasVo">
+	select count(1) from areas 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询地区信息列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.vo.AreasVo">
+	select 
+	<include refid="Base_Column_List"/>
+	from areas 
+	<include refid="Example_Where_Clause"/>
+	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+<!-- 查询所有地区 -->
+<select id="queryAll" resultMap="BaseResultMap" >
+	select <include refid="Base_Column_List"/> from areas 
+</select>
+</mapper>   
