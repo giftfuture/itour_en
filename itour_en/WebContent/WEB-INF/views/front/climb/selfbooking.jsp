@@ -59,7 +59,7 @@
 		  </select>&nbsp;&nbsp;&nbsp;&nbsp;
 		  <span id="groupdiv" style="display:none">
 		  Group number:<input id="groupCode" type="text" class="easyui-textbox" size="80" />
-		  The date of the group：<input id="groupDate" name="groupDate" type="text" class='easyui-datebox' data-options="validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.climbselfbooking.onChangeDate(this)" style="width:100px;" />
+		  The date of the group：<input id="groupDate" name="groupDate" type="text" class='easyui-datebox' data-options="width:100,validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.climbselfbooking.onChangeDate(this)" />
 		  </span> </td>
         </tr>
         <tr> 

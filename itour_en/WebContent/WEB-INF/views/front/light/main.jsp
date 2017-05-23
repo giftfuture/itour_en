@@ -10,9 +10,7 @@
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content=""> 
-<title>轻旅行</title>
-<%-- <script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="${basePath}js/commons/package.js"></script> --%>
+<title>Light Travel</title>
 </head>
 <body>
 <table class="commontb" align="center">
@@ -29,14 +27,14 @@
     
     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
-        <td class="h1-black" style="text-align:left">轻旅行</td>
+        <td class="h1-black" style="text-align:left">Light Travel</td>
       </tr>
       <tr>
-        <td class="h1-2" style="text-align:left">專業團隊為您提供後勤保障</td>
+        <td class="h1-2" style="text-align:left">The professional team provides you with logistical support</td>
       </tr>
       <tr>
-        <td style="text-align:left"><p>帶上家人，約上朋友 </p>
-          <p>登山頂峰<br />  
+        <td style="text-align:left"><p>Bring the family, about friends </p>
+          <p>Climbed the summit<br />  
               <br />
          <%--    》》<a href="${basePath }light/main">了解更多</a> --%></p>
           <p></p></td>

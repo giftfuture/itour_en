@@ -6,7 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
 <%
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath()+"/";  
-    application.setAttribute("basePath", basePath);
+	application.setAttribute("basePath", basePath);
     pageContext.setAttribute("basePath", basePath);
     long getTimestamp=new Date().getTime();
     /* Counter counthandler=new Counter();//创建对象  

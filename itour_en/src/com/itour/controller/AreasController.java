@@ -40,7 +40,7 @@ public class AreasController extends BaseController {
 	public List<Areas> allAreas(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object> root = getRootMap();
 		List<Areas> allAreas = Lists.newArrayList();
-		allAreas.add(new Areas("","--请选择--"));
+		allAreas.add(new Areas("","--Please Choose--"));
 		allAreas.addAll(Constants.allAreas);
 		if(allAreas.size() <=1){
 			Constants.allAreas.addAll(areasService.allAreas());

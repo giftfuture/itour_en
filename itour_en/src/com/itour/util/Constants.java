@@ -110,7 +110,7 @@ public class Constants {
 			   }
 		   }
 		   String lv1asql = "select distinct level1_area ,alias_code from level_area group by level1_area";
-		   List<LevelArea> areas1 = new ArrayList<LevelArea>(){{add(new LevelArea("","请选择"));}};
+		   List<LevelArea> areas1 = new ArrayList<LevelArea>(){{add(new LevelArea("","-Please Choose-"));}};
 		   areas1.addAll(jdbcTemplate.query(lv1asql,  new RowMapper<LevelArea>(){
 		        @Override  
 		        public LevelArea mapRow(ResultSet rs, int rowNum) throws SQLException {  
@@ -124,7 +124,7 @@ public class Constants {
 		   level1Areas.addAll(areas1);
 		   String tssql="select alias,type from travel_style where valid=1";
 		   List<Map<String,Object>> newlist = Lists.newArrayList();
-		   newlist.add(new HashMap(){{put("alias","");put("type","-所有-");}});
+		   newlist.add(new HashMap(){{put("alias","");put("type","--All--");}});
 		   List<Map<String,Object>> tsmap = jdbcTemplate.queryForList(tssql);
 		   newlist.addAll(tsmap);
 		   allStyles.clear();

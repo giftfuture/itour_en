@@ -36,15 +36,15 @@ function ww4(date){
 	            	cover image：<input type="file" name="surface" id="surface" value="" onchange="change('cover','surface')"  accept="image/jpg,image/jpeg,image/gif,image/png" />
 	            	<img id="cover" style="border:none;" border="0px" height="200" width="200" /></td></tr><!-- opacity:0 -->
 	         <tr>
-	            <td style="text-align:left"><span class="STYLE23">Travel routes：</span>
+	            <td style="text-align:left"><span class="STYLE23">Travel routes:</span>
 	            	<input id="route" name="route" class="easyui-combobox"  data-options="width:171,valueField:'routeCode',textField:'title',mode:'remote',panelHeight:'auto',editable:false,method:'POST',url:'${basePath}routeTemplate/loadRoutes'">
 	            </td>
 	            <td></td>
 	       </tr>
-	       <tr><td style="text-align:left"><span class="STYLE23">Travel date：</span><span class="STYLE22"><span class="STYLE148">
+	       <tr><td style="text-align:left"><span class="STYLE23">Travel date:</span><span class="STYLE22"><span class="STYLE148">
 	             <input id="tourTime" name="tourTime" class="easyui-datebox" data-options="width:171,editable:false,region:'north',split:true,border:false,required:true,validType:'checkDated'"/></span> 
 	           </span></td><td></td></tr>
-	        <tr> <td style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;Memories：
+	        <tr> <td style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;Memories:
             	<span class="STYLE20"><input type="text" class="easyui-textbox" id="signature" name="signature"/>Come From
             	<input name="area" id="area" class="easyui-combobox"  data-options="width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">
             	</span></td><td></td></tr>

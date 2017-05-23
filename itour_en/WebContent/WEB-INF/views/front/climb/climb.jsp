@@ -68,7 +68,7 @@ Seasons：</span>${item.season}<br />
           <td width="620" valign="top"><p><br />
            ${item.item}</p>
             <p>${item.content } </p>
-            <p><span class="right">stroke ：</span><br />
+            <p><span class="right">Route ：</span><br />
             ${item.itinerary }</p>
             <p><br /><img src="${basePath}images/img/yading-05.jpg" width="600" height="338" /></p>
             <p><img src="${basePath}images/img/yading-02.jpg" width="600" height="338" /></p>
@@ -97,7 +97,6 @@ Seasons：</span>${item.season}<br />
              </table>
              </c:forEach>
             -------------------------------------------------------------------------------<br />
-            <br />
             <div>
             <form>
             <table>

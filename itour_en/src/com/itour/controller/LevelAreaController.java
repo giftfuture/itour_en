@@ -1,6 +1,7 @@
 package com.itour.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -73,7 +74,7 @@ public class LevelAreaController extends BaseController {
 	public List<LevelArea> allAreas(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object> root = getRootMap();allLevelAreas
 		List<LevelArea> allAreas = Lists.newArrayList();
-		allAreas.add(new LevelArea("","--请选择--"));
+		allAreas.add(new LevelArea("","--Please Choose--"));
 		List<LevelArea> areas = Constants.allLevelAreas;
 		if(areas.size() ==0){
 			Constants.allLevelAreas.addAll(levelAreaService.allAreas());
@@ -249,7 +250,7 @@ public class LevelAreaController extends BaseController {
 		List<LevelArea> allAreas = Constants.level1Areas;
 		if(allAreas.size()<=1){
 			List<LevelArea> areas = Lists.newArrayList();
-			areas.add(new LevelArea("","请选择"));
+			areas.add(new LevelArea("","--Please Choose--"));
 			areas.addAll(levelAreaService.queryLevel1());
 			Constants.level1Areas.clear();
 			Constants.level1Areas.addAll(areas);
@@ -271,16 +272,17 @@ public class LevelAreaController extends BaseController {
 	@RequestMapping(value="/queryLevel2ByLevel1", method = RequestMethod.GET)
 	public String queryLevel2ByLevel1(String level1Area,HttpServletRequest request,HttpServletResponse response){
 		List<LevelArea> allAreas = Lists.newArrayList();
-		try {
+		//try {
+		//Collections.nCopies(n, o)
 				if(StringUtils.isNotEmpty(level1Area)){
-					level1Area = new String(level1Area.getBytes("ISO8859-1"), "UTF-8");
+					//level1Area = new String(level1Area.getBytes("ISO8859-1"), "UTF-8");
 					allAreas.addAll(levelAreaService.queryLevel2ByLevel1(level1Area));
 					SysUser user = SessionUtils.getUser(request);
 					logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行LevelAreaController的queryLevel2ByLevel1方法");
 				}
-			} catch (UnsupportedEncodingException e) {
+		/*	} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
-		}
+		}*/
 		return JsonUtils.encode(allAreas);
 	};
 }

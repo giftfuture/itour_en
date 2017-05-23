@@ -26,20 +26,20 @@
       <tr>
         <td valign="top"><table width="1100" border="0" align="center" cellpadding="0" cellspacing="0">
           <tr style="padding-top:10px;padding-bottom:10px">
-            <td style="text-align:left"><span class="STYLE23">旅行時間： </span><span class="STYLE22"><span class="STYLE148">${sh.tourTime }</span> <span class="STYLE148">　
-            <span class="STYLE23">旅行線路：</span>${sh.routeTitle }　
-            　<span class="STYLE23">回憶人：</span><span class="STYLE20">${sh.signature } From${sh.areaname }</span></span></span></td>
+            <td style="text-align:left"><span class="STYLE23">Travel Time: </span><span class="STYLE22"><span class="STYLE148">${sh.tourTime }</span> <span class="STYLE148">　
+            <span class="STYLE23">Travel Route：</span>${sh.routeTitle }　
+            　<span class="STYLE23">Memories:</span><span class="STYLE20">${sh.signature } From${sh.areaname }</span></span></span></td>
             </tr>
              
           <tr style="padding-top:10px;padding-bottom:10px">
                <td style="text-align:left"><span class="STYLE23"><img src="${basePath}images/facebook.png" width="24" height="24" />
-		        <a target="_blank" href="https://www.facebook.com/dialog/feed">分享至FB</a></span> 
+		        <a target="_blank" href="https://www.facebook.com/dialog/feed">share to FB</a></span> 
 		        <span class="STYLE23"><img src="${basePath}images/share.png" width="24" height="24" />
-		        <a target="_blank" id="copyurl" href="javascript:itour.happydetail.copyUrl()" data-clipboard-target="flashcopier">复制链接</a><div style="display:none" id="flashcopier"></div></span>
+		        <a target="_blank" id="copyurl" href="javascript:itour.happydetail.copyUrl()" data-clipboard-target="flashcopier">Copy Url</a><div style="display:none" id="flashcopier"></div></span>
 		        <span class="STYLE23"><img src="${basePath}images/favorite01.png" width="24" height="24" />
-		        <a target="_blank"  href="javascript:itour.happydetail.addFavorite()" rel="sidebar">收藏本页</a></span>
+		        <a target="_blank"  href="javascript:itour.happydetail.addFavorite()" rel="sidebar">add to Favourite</a></span>
 		        <span class="STYLE23"><img src="${basePath}images/print.png" width="24" height="24" />
-		        <a target="_blank"  href="javascript:itour.happydetail.printff()">打印页面</a></span></td>
+		        <a target="_blank"  href="javascript:itour.happydetail.printff()">Print Page</a></span></td>
           </tr>
           <tr>
             <td>${sh.content }</td>
