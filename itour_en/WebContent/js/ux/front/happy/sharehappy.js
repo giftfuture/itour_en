@@ -5,7 +5,7 @@ $(document).ready(function() {
         minHeight: 300,             
         maxHeight: 500,        
         focus: true,   
-        lang:'zh-CN',   
+        lang:'en-US',   
       /*  callbacks: { 
 	        onImageUpload: function(files, editor, $editable) {  
 	        	sendFile(files[0],editor,$editable);  //// 重写图片上传  
@@ -39,7 +39,7 @@ $(document).ready(function() {
     			var result =  now>=new Date(value);
     			return result;  
     		},  
-    		message:"晒旅行幸福的日期应在当前日期之前"  
+    		message:"Show travel happy date should be before the current date"  
     	}     
     }); 
     //$('#tourTime').datebox('setValue', getCurentDateStr());  
@@ -157,17 +157,17 @@ function sharehappy() {
 	//console.log(formData.cover.length);  
 	//console.log(formData.tourTime+"   "+new Date());
 	if(!formData.tourTime||new Date(formData.tourTime)>new Date()){
-		itour.alert("提示","晒旅行幸福的日期应在当前日期之前",'info');
+		itour.alert("alert","Show travel happy date should be before the current date",'info');
 		return;
 	}else{
 		__.post(actionurl, formData, function(result) {
 			//console.log("data.success="+data.success);
 			if (result.success) {
-				itour.alert("提示",result.msg||"晒出成功！",'info');
+				itour.alert("alert",result.msg||"Show Successfully!",'info');
 				setTimeout(function(){window.location.href=basePath+"showhappy/main";}, 3000);
 				//_this.showSuccess(result.msg);
 			} else {
-				itour.alert("提示",result.msg||"晒出出错！",'info');
+				itour.alert("alert",result.msg||"Mistaking Show !",'info');
 				return;
 				//_this.showError(result.msg);
 			}
@@ -222,7 +222,7 @@ function showError(str) {
 }
 //图片上传  
 function sendFile(file, editor, $editable){ 
-	$(".note-toolbar.btn-toolbar").append('正在上传图片');  
+	$(".note-toolbar.btn-toolbar").append('Uploading image');  
 	 console.log("file="+file);  
 	 console.log("editor="+editor);  
 	 console.log("welEditable="+$editable);  
@@ -254,10 +254,10 @@ function sendFile(file, editor, $editable){
 	    processData: false,  
 	    success: function(url) {  
 	        if(url=='200'){  
-	            alert("上传失败！");  
+	            itour.alert('alert',"Upload failed!",'info');  
 	            return;  
 	        }else{  
-	            alert("上传成功！");   
+	            itour.alert('alert',"Upload Successfully",'info');  
 	        }  
 	        //alert(url);  
 	    editor.insertImage($editable, url);  
@@ -265,7 +265,7 @@ function sendFile(file, editor, $editable){
 	    //setTimeout(function(){$(".note-alarm").remove();},3000);  
 	    },  
 	    error:function(){  
-	        alert("上传失败！");  
+	    	itour.alert('alert',"Upload failed!",'info');  
 	        return;  
         //setTimeout(function(){$(".note-alarm").remove();},3000);  
         }  

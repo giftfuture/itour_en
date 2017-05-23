@@ -14,13 +14,13 @@ var uploadPhotos = {
 				//console.log("eeeed"+file.name);
 				if (file.type.indexOf("image") == 0) {
 					if (file.size >= 5120000) {
-						alert('您这张"'+ file.name +'"图片大小过大，应小于5M');	
+						alert('Your"'+ file.name +'picture size is too large, should be less than 5M');	
 					} else {
 						//console.log(file.name);
 						arrFiles.push(file);	
 					}			
 				} else {
-					alert('文件"' + file.name + '"不是图片。');	
+					alert('This file"' + file.name + '"is not a picture.');	
 				}
 			}
 			return arrFiles;

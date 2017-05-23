@@ -45,13 +45,13 @@ itour.hotsightdetail = function(){
 											   itemTexts: function (type, page, current) {
 												   switch (type) {
 													   case "first":
-													   return "首页";
+													   return "Home";
 													   case "prev":
-													   return "<i class='fa fa-caret-left'></i> 上一页";
+													   return "<i class='fa fa-caret-left'></i>Prev";
 													   case "next":
-													   return "下一页 <i class='fa fa-caret-right'></i>";
+													   return "Next <i class='fa fa-caret-right'></i>";
 													   case "last":
-													   return "末页";
+													   return "Last";
 													   case "page":
 													   return page;
 												   }
@@ -130,7 +130,7 @@ itour.hotsightdetail = function(){
 				// 当触发copy事件时，设置用于复制的文本数据
 				//复制成功： 
 				client.on( "aftercopy", function(){
-				    itour.alert('提示', "复制成功！",'info');
+				    itour.alert('alert', "Copy Successfully!",'info');
 				});
 			},
 			addFavorite:function () {
@@ -147,7 +147,7 @@ itour.hotsightdetail = function(){
 						catch (e){
 							try{
 								window.external.toString(); //360浏览器不支持window.external，无法收藏
-								window.alert("国内开发的360浏览器等不支持主动加入收藏。\n您可以尝试通过浏览器菜单栏 或快捷键 ctrl+D 试试。");
+								itour.alert('alert',"Domestic development of the 360 browser does not support the initiative to join the collection. \ NYou can try using the browser menu bar or the shortcut ctrl + D.",'info');
 							}
 							catch (e){
 								window.external.addToFavoritesBar(url,title);  //IE8
@@ -156,13 +156,13 @@ itour.hotsightdetail = function(){
 					}else if (window.sidebar) { //firfox等浏览器
 						window.sidebar.addPanel(url	,title, "");
 					}else if(window.opera){
-						alert('opera您可以尝试通过快捷键' + ctrl + ' + D 加入到收藏夹~');
+						itour.alert('alert','opera You can try via shortcuts' + ctrl + ' + D Add to Favorites ~','info');
 					}else{
-						alert('您可以尝试通过快捷键' + ctrl + ' + D 加入到收藏夹~');
+						itour.alert('alert',' You can try via shortcuts' + ctrl + ' + D Add to Favorites ~','info');
 					}
 				}
 				catch (e){
-					window.alert("因为IE浏览器存在bug，添加收藏失败！\n解决办法：在注册表中查找\n HKEY_CLASSES_ROOT\\TypeLib\\{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}\\1.1\\0\\win32 \n将 C:\\WINDOWS\\system32\\shdocvw.dll 改为 C:\\WINDOWS\\system32\\ieframe.dll ");
+					itour.alert('alert',"Because IE browser bug, add the collection failed! \ N Workaround: Find in the registry\n HKEY_CLASSES_ROOT\\TypeLib\\{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}\\1.1\\0\\win32 \n C:\\WINDOWS\\system32\\shdocvw.dll changed to C:\\WINDOWS\\system32\\ieframe.dll ",'info');
 				}
 			},ajaxSubmit:function (form,option){
 				form.ajaxSubmit(option);
@@ -183,14 +183,14 @@ itour.hotsightdetail = function(){
 				 			//console.log(data);
 							itour.closeProgress();
 						 	if(jsondata.success||jsondata.success=="true"){
-					       		 itour.alert('提示','保存成功.','info');
+					       		 itour.alert('alert','Saved Successfully.','info');
 						       	 document.forms["fastask"].reset();
 					        }else{
-					        	itour.alert('提示', jsondata.msg || "请求出现异常,请联系管理员",'error'); 
+					        	itour.alert('alert', jsondata.msg || "Request an exception, please contact the administrator.",'error'); 
 					        }
 					 	},
 					 	error:function(response, textStatus, errorThrown){
-				 			itour.alert('提示',"请求出现异常,请联系管理员.",'error');
+				 			itour.alert('alert',"Request an exception, please contact the administrator.",'error');
 					 	}
 					 }
 			   		 itour.progress('Please waiting','Saving...');
@@ -250,7 +250,7 @@ itour.hotsightdetail = function(){
 			        validator: function(value, param){ 
 			         return /^1[3-8]+\d{9}$/.test(value);
 			        },    
-			        message: '请输入正确的手机号码。'   
+			        message: 'Please enter the correct phone number.'   
 			    }
 			})
 /*	   $('#tab-container').easytabs({ 

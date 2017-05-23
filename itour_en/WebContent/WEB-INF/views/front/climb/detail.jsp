@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>爬山旅行详细</title>
+<title>Mountain trip in detail</title>
 <%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
 <link rel="stylesheet" href="${basePath}css/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}css/easyzoom/easyzoom.css" />  
@@ -73,43 +73,43 @@
 </div>
       </tr></table></td>
       </tr></table></td>
-    <td width="476" valign="top"><div align="center"><span class="STYLE2">这条线路适合我吗？</span>
+    <td width="476" valign="top"><div align="center"><span class="STYLE2">Is this line for me?</span>
     </div>
       <table width="442" border="0" cellpadding="4" cellspacing="2" class="STYLE126">
         <tr>
-          <td class="STYLE126"><div align="right"><strong>类型</strong></div></td>
+          <td class="STYLE126"><div align="right"><strong>Type</strong></div></td>
           <td class="STYLE126" style="text-align:left"><strong>${rt.travelStyle} </strong><a href="javascript:void(0)" title="${rt.travelStyle}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
-          <td width="70" class="STYLE126"><div align="right"><strong>线路编号</strong></div></td>
+          <td width="70" class="STYLE126"><div align="right"><strong>Line number</strong></div></td>
           <td width="350" class="STYLE126" style="text-align:left">${rt.routeCode}</td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>旅行天数</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.rcdDays}天<strong> </strong><a href="javascript:void(0)" title="${rt.rcdDays}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126"><div align="right"><strong>Travel days</strong></div></td>
+          <td class="STYLE126" style="text-align:left">${rt.rcdDays}days<strong> </strong><a href="javascript:void(0)" title="${rt.rcdDays}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>最高海拔</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.mileage}米</td>
+          <td class="STYLE126"><div align="right"><strong>Highest elevation</strong></div></td>
+          <td class="STYLE126" style="text-align:left">${rt.mileage}meter</td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>起始地</strong></div></td>
+          <td class="STYLE126"><div align="right"><strong>Departure</strong></div></td>
           <td class="STYLE126" style="text-align:left">${rt.departure }<a href="javascript:void(0)" title="${rt.departure}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>完成地</strong></div></td>
+          <td class="STYLE126"><div align="right"><strong>Arrive</strong></div></td>
           <td class="STYLE126" style="text-align:left">${rt.arrive }</td>
         </tr>
          <tr>
-          <td class="STYLE126"><div align="right"><strong>路线</strong></div></td>
+          <td class="STYLE126"><div align="right"><strong>Route</strong></div></td>
           <td class="STYLE126" style="text-align:left">${rt.routeLine }</td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>交通方式</strong></div></td>
+          <td class="STYLE126"><div align="right"><strong>Transportation Style</strong></div></td>
           <td class="STYLE126" style="text-align:left">${rt.transportation }</td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>徒步难度</strong></div></td>
+          <td class="STYLE126"><div align="right"><strong>Walking difficulty</strong></div></td>
           <td class="STYLE126" style="text-align:left">
           <c:forEach items="${rt.diffRate}" var="dr">
           	 <img src="${basePath}images/shoe-1.gif" width="16" height="16" />
@@ -117,31 +117,31 @@
           <c:forEach items="${rt.undiffRate}" var="rd">
          	 <img src="${basePath}images/shoe-2.gif" width="16" height="16" />
           </c:forEach>
-           <a href="javascript:void(0)" title="深色鞋子标识徒步难度等级">Explain&gt;&gt;</a></td>
+           <a href="javascript:void(0)" title="Dark shoes logo on the difficulty level">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>徒步距离 </strong></div></td>
+          <td class="STYLE126"><div align="right"><strong>Walking distance </strong></div></td>
           <td class="STYLE126" style="text-align:left">${rt.trekDistance }km</td>
         </tr>
         <tr>
-          <td class="STYLE126"><div align="right"><strong>山峰类型</strong></div></td>
+          <td class="STYLE126"><div align="right"><strong>Mountain Style</strong></div></td>
           <td class="STYLE126" style="text-align:left">${rt.mountStyle } <a href="javascript:void(0)" title="${rt.mountStyle}">Explain&gt;&gt; </a></td>
         </tr>
       </table>
       <span class="STYLE148"><br />
-    注：每个团的需求都不同，可根据您的假期重新调整设计行程。</span><br />
+    Note: The needs of each group are different, according to your holiday to re-adjust the design process.</span><br />
     <br />
     <table class="f12-gao1">
       <tr>
         <td><img src="${basePath}images/facebook.png" width="24" height="24" />
-        <a target="_blank" href="https://www.facebook.com/dialog/feed">分享至FB</a></td>
+        <a target="_blank" href="https://www.facebook.com/dialog/feed">share to FB</a></td>
         <td><img src="${basePath}images/share.png" width="24" height="24" />
-        <a target="_blank" id="copyurl" href="javascript:void(0)" data-clipboard-target="flashcopier">复制链接</a><div style="display:none" id="flashcopier"></div></td>
+        <a target="_blank" id="copyurl" href="javascript:void(0)" data-clipboard-target="flashcopier">Copy Url</a><div style="display:none" id="flashcopier"></div></td>
         <td><img src="${basePath}images/favorite01.png" width="24" height="24" />
-        <a target="_blank"  href="javascript:itour.hiking.addFavorite()" rel="sidebar">收藏本页</a></td>
+        <a target="_blank"  href="javascript:itour.hiking.addFavorite()" rel="sidebar">Bookmark this page</a></td>
         <td><img src="${basePath}images/print.png" width="24" height="24" />
-        <a target="_blank"  href="javascript:itour.hiking.printff()">打印页面</a></td></tr>
-         <tr><td>相关路线：
+        <a target="_blank"  href="javascript:itour.hiking.printff()">Print the page</a></td></tr>
+         <tr><td>Related routes：
               <c:forEach items="${rt.relates}" var="relat"><br>
               <a href="${basePath}climb/climb/${relat.alias}" >${relat.title }</a>
               	<%-- <a href="${basePath}climb/toQuote2/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a> --%>

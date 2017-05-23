@@ -40,13 +40,13 @@ itour.climbmain = function(){
 										   itemTexts: function (type, page, current) {
 											   switch (type) {
 												   case "first":
-												   return "首页";
+												   return "Home";
 												   case "prev":
-												   return "<i class='fa fa-caret-left'></i> 上一页";
+												   return "<i class='fa fa-caret-left'></i> Prev";
 												   case "next":
-												   return "下一页 <i class='fa fa-caret-right'></i>";
+												   return "Next<i class='fa fa-caret-right'></i>";
 												   case "last":
-												   return "末页";
+												   return "Last";
 												   case "page":
 												   return page;
 											   }

@@ -4,8 +4,8 @@
 <html>
 <head>
 <title></title>
-<meta name="description" content="四姑娘山海子沟徒步、长坪沟穿越毕棚沟">
-<meta name="keywords" content="四姑娘山登山，四姑娘山露營，四姑娘山穿越，四姑娘山徒步">
+<meta name="description" content="Siguniang Shan Haizi ditch on foot, Changping ditch through Bi shed ditch">
+<meta name="keywords" content="Siguniang Mountain climbing, Siguniang Mountain camping, Siguniang Mountain crossing, Siguniang Mountain on foot">
 <script type="text/javascript">
 function ww4(date){
 	var y = date.getFullYear();
@@ -31,32 +31,32 @@ function ww4(date){
         <td valign="top">		
         <form:form name="sharehappy" method="post" enctype="multipart/form-data" autocomplete="off">
 	        <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
-	         <tr><td  style="text-align:left">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：<input type="text" class="easyui-textbox" data-options="" name="title" id="title"/></td>
+	         <tr><td  style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title：<input type="text" class="easyui-textbox" data-options="" name="title" id="title"/></td>
 	         <td rowspan=4 style="vertical-align:top; padding-top:10px;">
-	            	封面图片：<input type="file" name="surface" id="surface" value="" onchange="change('cover','surface')"  accept="image/jpg,image/jpeg,image/gif,image/png" />
+	            	cover image：<input type="file" name="surface" id="surface" value="" onchange="change('cover','surface')"  accept="image/jpg,image/jpeg,image/gif,image/png" />
 	            	<img id="cover" style="border:none;" border="0px" height="200" width="200" /></td></tr><!-- opacity:0 -->
 	         <tr>
-	            <td style="text-align:left"><span class="STYLE23">旅行線路：</span>
+	            <td style="text-align:left"><span class="STYLE23">Travel routes：</span>
 	            	<input id="route" name="route" class="easyui-combobox"  data-options="width:171,valueField:'routeCode',textField:'title',mode:'remote',panelHeight:'auto',editable:false,method:'POST',url:'${basePath}routeTemplate/loadRoutes'">
 	            </td>
 	            <td></td>
 	       </tr>
-	       <tr><td style="text-align:left"><span class="STYLE23">旅行日期：</span><span class="STYLE22"><span class="STYLE148">
+	       <tr><td style="text-align:left"><span class="STYLE23">Travel date：</span><span class="STYLE22"><span class="STYLE148">
 	             <input id="tourTime" name="tourTime" class="easyui-datebox" data-options="width:171,editable:false,region:'north',split:true,border:false,required:true,validType:'checkDated'"/></span> 
 	           </span></td><td></td></tr>
-	        <tr> <td style="text-align:left">&nbsp;&nbsp;回&nbsp;憶&nbsp;人：
-            	<span class="STYLE20"><input type="text" class="easyui-textbox" id="signature" name="signature"/>来自
+	        <tr> <td style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;Memories：
+            	<span class="STYLE20"><input type="text" class="easyui-textbox" id="signature" name="signature"/>Come From
             	<input name="area" id="area" class="easyui-combobox"  data-options="width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">
             	</span></td><td></td></tr>
 	        <tr>
 	            <td colspan=2><div id="content"></div></td>
 	       </tr>
 	       <tr>
-	       <td colspan=2 style="text-align:left">验证码： <input type="text" id="verifyCode" name="verifyCode" class=" easyui-textbox" title="验证码" data-options="required:true,nullmsg:'请输入验证码!'"/> 
-	           <img alt="点击更换" src="${basePath}RandomCodeServlet" id="validateCode" onclick="changeValidateCode()">
-	           &nbsp;&nbsp;<a href="javascript:void(0)" onclick="changeValidateCode()">看不清，换一张</a></td></tr>
-	      <tr><td style="text-align:left"><a href="javascript:sharehappy()" class="easyui-linkbutton" name="savehappy" iconcls="icon-save">保存</a></td>
-	      <td style="text-align:left"><a href="javascript:void(0);" class="easyui-linkbutton" onclick="${basePath}showhappy/sharehappy" iconcls="icon-cancel">取消</a></td></tr>
+	       <td colspan=2 style="text-align:left">verify Code： <input type="text" id="verifyCode" name="verifyCode" class=" easyui-textbox" title="verify Code" data-options="required:true,prompt:'please enter verification code!'"/> 
+	           <img alt="Click to replace" src="${basePath}RandomCodeServlet" id="validateCode" onclick="changeValidateCode()">
+	           &nbsp;&nbsp;<a href="javascript:void(0)" onclick="changeValidateCode()">Can not see, change one</a></td></tr>
+	      <tr><td style="text-align:left"><a href="javascript:sharehappy()" class="easyui-linkbutton" name="savehappy" iconcls="icon-save">Save</a></td>
+	      <td style="text-align:left"><a href="javascript:void(0);" class="easyui-linkbutton" onclick="${basePath}showhappy/sharehappy" iconcls="icon-cancel">Cancel</a></td></tr>
 	    </table><div id="alertMessage"></div>
     </form:form> 
     </td>

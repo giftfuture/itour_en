@@ -1,14 +1,14 @@
 <%@ page language="java" import="java.lang.*,java.util.Date" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@include file="/WEB-INF/views/server/resource.jsp"  %> 
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en-US">
 <head>
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
 <link rel="stylesheet" type="text/css" href="${basePath}css/easing.css">
 <script type="text/javascript" src="${basePath}js/plug-in/easing.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/jquery.easing.compatibility.js"></script> 
-<title>目的地</title>
+<title>Destination</title>
 </head>
 <body>
 <table class="commontb" align="center">
@@ -18,18 +18,13 @@
     </td>
   </tr>
 </table>
-<!-- <table width="100%"  border="0" align="center" cellpadding="15" cellspacing="0">
-  <tr>
-    <td>目的地》四川》四姑娘山》四姑娘山长坪沟</td>
-  </tr>
-</table> -->
 <br />
 <table class="commontb" align="center">
   <tr>
     <td width="197" valign="top">
       <table width="197" border="0" cellspacing="0" cellpadding="5">
           <tr>
-            <td height="30" bgcolor="#990000"><div style="align:center;font-size:18px;background-color:#8B0000;text-decoration:none;color:white" width="197px" >旅遊目的地</div></td>
+            <td height="30" bgcolor="#990000"><div style="align:center;font-size:18px;background-color:#8B0000;text-decoration:none;color:white" width="197px" >Travel Destination</div></td>
           </tr>
           <tr>
   			<td><div class="treebox">
@@ -59,9 +54,9 @@
 	        <table border="0" align="center" cellpadding="10" cellspacing="0" style="width:1140px" width="1140px">
 		      <tbody><tr bgcolor="#f0f0f0" style="width:1140px" width="1140px">
 		        <td colspan=2 width="60%" style="text-align:left;float:left;width:648;"><span class="STYLE5"><c:out value="${fn:split(sortitem.key, '_')[1]}"></c:out></span></td>
-		        <td width="40%" style="text-align:right;float:right;width:432;"><div align="right"><c:out value="${tiSizes[sortitem.key]}"></c:out>个目的地
+		        <td width="40%" style="text-align:right;float:right;width:432;"><div align="right"><c:out value="${tiSizes[sortitem.key]}"></c:out>destinations
 		        <c:if test="${fn:length(sortitem.value)>= maxd}">
-		         | <a href="${basePath}destination/moredests/${fn:split(sortitem.key, '_')[0]}">显示更多</a>
+		         | <a href="${basePath}destination/moredests/${fn:split(sortitem.key, '_')[0]}">Show more</a>
 		         </c:if>
 		        </div></td>
 		      </tr>

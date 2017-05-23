@@ -55,7 +55,7 @@ var basePath = '${basePath}';
 <link rel="SHORTCUT ICON" href="<%=basePath%>images/head2016.gif"> 
 <link rel="stylesheet" href="${basePath}css/index.css" />  
  <!-- <meta http-equiv="Refresh" content="0; URL=/"> -->
-<title>欢迎访问主角旅行</title>
+<title>Welcome to iTour Travel</title>
  <link href="css/index.css" rel="stylesheet" type="text/css" />
  <script type="text/javascript">
  jQuery.browser={};

@@ -10,7 +10,7 @@
 <script type="text/javascript"src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
 <script type="text/javascript"src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
 <!-- <meta http-equiv="Refresh" content="0; URL=/"> -->
-<title>欢迎访问主角旅行</title>
+<title>Welcome to iTour Travel</title>
 <link href="css/index.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 	jQuery.browser = {};
@@ -40,21 +40,21 @@
 				<table width="100%" border="0" align="left" cellpadding="0"
 					cellspacing="0">
 					<tr>
-						<td class="STYLE9" style="text-align: left">主角旅行——定製旅行服務商</td>
+						<td class="STYLE9" style="text-align: left">iTour travel - custom travel service providers</td>
 					</tr>
 					<tr>
-						<td class="STYLE10" style="text-align: left">您才是旅行的主角</td>
+						<td class="STYLE10" style="text-align: left">You are the protagonist of the trip</td>
 					</tr>
 					<tr>
-						<td style="text-align: left"><p>人生是由大大小小不同的旅程串連而成的，
-								我們覺得每次的旅程，旅人的角色都應該凌駕於所有之上，每次的旅程都應該獨特而美好，沒有勉強，沒有委曲求全 ...
-								您，是主人，一切以您的想法及需求為依歸。</p>
+						<td style="text-align: left"><p>Life is made up of trips of different sizes,
+We feel that every trip, the role of travelers should be above all, each trip should be unique and beautiful, no reluctance, no compromise ...
+You are the owner, everything is based on your thoughts and needs。</p>
 							<p>
-								我們衷心希望，每一個旅途都能為您創造幸福而美好的回憶 。將來，不管您憶起哪一個片段，都能打從心底泛起笑顏。<br /> <br />
-								主角旅行是隶属于中旅旗下的专业定制旅行服务团队。 我們有強大的信心來履行對您的承諾，因為我們
+								We sincerely hope that every trip can create a happy and beautiful memories for you. In the future, no matter which one you recall, you can play from the bottom of my heart smile. <br /> <br />
+The protagonist travel belongs to the professional travel service team affiliated to China Travel Service. We have a strong faith in fulfilling your promise as we are
 							</p>
 							<p>
-								》》<a href="${basePath }whyus/aboutus">了解更多</a>
+								》》<a href="${basePath }whyus/aboutus">understand more</a>
 							</p>
 							<p></p></td>
 					</tr>
@@ -76,11 +76,11 @@
 					name="searchRtstb">
 					<tbody id="fbcontent">
 						<tr>
-							<c:if test="${not empty mapvo }">
-								<c:forEach items="${mapvo}" var="entry" varStatus="status">
-									<c:if test="${status.index != 0 && status.index%2==0 }">
-						</tr>
-						<tr>
+						<c:if test="${not empty mapvo }">
+							<c:forEach items="${mapvo}" var="entry" varStatus="status">
+								<c:if test="${status.index != 0 && status.index%2==0 }">
+							</tr>
+							<tr>
 							</c:if>
 							<td valign="top"><table width="253" border="0"
 									align="left" cellpadding="0" cellspacing="0">
@@ -130,7 +130,7 @@
 									<tr>
 										<td width="32" style="text-align: right"><img
 											src="images/heart02.png" width="32" height="32" /></td>
-										<td width="268" class="h2-24" style="text-align: left">回憶幸福</td>
+										<td width="268" class="h2-24" style="text-align: left">Memories of happiness</td>
 									</tr>
 								</thead>
 								<tbody>
@@ -158,7 +158,7 @@
 					<thead>
 						<tr>
 							<td width="32"><img src="images/earth.png" width="32"
-								height="32" /> 热门景点</td>
+								height="32" />Hot spots</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -182,11 +182,7 @@
 								</p></td>
 						</tr>
 					</tbody>
-				</table> <!--   <table width="353" border="0" align="center" cellpadding="0" cellspacing="0">
-        <tr>
-          <td>九寨沟 四姑娘山 海螺沟。。。。 </td>
-        </tr>
-      </table></td> -->
+				</table>  
 		</tr>
 	</table>
 	<center>

@@ -4,7 +4,7 @@
 <html>
 <head>
  <!-- <meta http-equiv="Refresh" content="0; URL=/"> -->
-<title>欢迎访问主角旅行</title>
+<title>Welcome to iTour travel</title>
 <link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
 <link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />  
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>

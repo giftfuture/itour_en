@@ -10,7 +10,7 @@
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
-<title>更多目的地</title>
+<title>More Destinations</title>
 </head>
 <body>
 <table  class="commontb" align="center">
@@ -28,18 +28,18 @@
 <table  class="commontb" align="center">
   <tr> 
     <td style="text-align:center;float:middle" valign="top" colspan=3>
-      四川，简称“川”或“蜀”，省会成都，位于中国大陆西南腹地，东部为川东平行岭谷和川中丘陵，中部为四川盆地和成都平原，西部为川西高原，与陕西、贵州、云南、西藏、青海、甘肃、重庆诸省市交界，是国宝大熊猫的故乡。
-      四川是“中国西部综合交通枢纽”、“中国西部经济发展高地”，经济总量连续多年位居西部第一[1]  。 
-      四川是中国重要的经济、工业、农业、军事、旅游、文化大省。省会成都在1993年被国务院确定为中国西南地区的科技、商贸、金融中心和交通、通信枢纽[2]  。成都双流国际机场是中国第四大航空港[3]  。 
-      中国人民解放军五大战区之一的西部战区机关驻四川省成都市[4]  。
-      四川全省共辖1个副省级市、17个地级市、3个自治州，其中包括51个市辖区、16个县级市、112个县、4个自治县。截至2015年底，四川省户籍人口9132.6万人，常住人口8204万人[5]  。 
-      四川现拥有已探明储量的矿产资源132种，占全国资源种数的70%，为全国的资源、能源大省。四川油气田已探明天然气储量超过3.8万亿立方米，位居全国第一，是川气东送的起点[6]  。因物产丰富，资源富集而被誉为“天府之国”。 
-      四川是世界自然与文化遗产最多的省份，现有世界自然与文化遗产5处，列入联合国《人与生物圈计划》的自然保护区4处，世界地质公园2处。以及国家5A级景区10处，国家4A级景区130处。中国优秀旅游城市21座，中国历史文化名城8座，全国重点文物保护单位230处，中国最佳旅游城市一座。</td>
+	  Sichuan, referred to as "Sichuan" or "Shu", the capital of Chengdu, located in the hinterland of the southwest of mainland China, the eastern part of the eastern Sichuan Ling and Chuanzhong hills, the central Sichuan Basin and the Chengdu Plain, western Sichuan Plateau, and Shaanxi, Guizhou, Yunnan , Tibet, Qinghai, Gansu, Chongqing provinces and cities at the junction, is the hometown of National Treasure giant panda.
+      Sichuan is "China's western integrated transport hub", "China's western economic development heights", the total economy for many years ranked first in the west [1].
+      Sichuan is an important economic, industrial, agricultural, military, tourism and cultural province of China. Provincial capital in 1993 by the State Council identified as China's southwestern region of science and technology, commerce, financial center and transportation, communications hub [2]. Chengdu Shuangliu International Airport is China's fourth largest airport [3].
+      The People's Liberation Army one of the five major theater of the western theater in Chengdu, Sichuan Province [4].
+      Sichuan province has jurisdiction over a sub-provincial city, 17 prefecture-level cities, three autonomous prefectures, including 51 municipal districts, 16 county-level cities, 112 counties, 4 autonomous counties. As of the end of 2015, Sichuan Province, population of 91.326 million people, the resident population of 82.44 million people [5].
+      Sichuan now has proven reserves of 132 kinds of mineral resources, accounting for 70% of the national resources, for the country's resources, energy province. Sichuan oil and gas fields have proven natural gas reserves of more than 3.8 trillion cubic meters, ranking first in the country, is the starting point of Sichuan-East gas transmission [6]. Due to rich products, rich resources and known as the "land of abundance."
+      Sichuan is the largest natural and cultural heritage of the province, the existing natural and cultural heritage of the world 5, included in the United Nations "Man and the Biosphere Plan" of the nature reserve 4, the World Geopark 2. As well as the national 5A level scenic spots 10, the national 4A level scenic area 130. China's outstanding tourist city 21, China's historical and cultural city 8, the national key cultural relics protection units 230, China's best tourist city.</td>
   </tr>
   <tr><td><input type="hidden" name="scope" value="${scope }"/></td></tr>
     <tr>
    <%--  <td><span class="STYLE5">${dests}</span></td> --%>
-    <td colspan=3 style="text-align:left" name="dests">个目的地 </td>
+    <td colspan=3 style="text-align:left" name="dests">destinations </td>
   </tr>
   <tbody id="fbcontent">
  <%--   <tr>

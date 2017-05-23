@@ -18,7 +18,7 @@ itour.hotsightselfbooking = function(){
         	formData.routename=$("input[name='routename'").val();
     		formData.expectedDepart = $("#expectedDepart").datebox('getValue');
         	formData.expectedBack = $("#expectedBack").datebox('getValue');
-        	formData.travelfashion = $("#travelfashion").combobox('getValue')=="请选择"?"": $("#travelfashion").combobox('getValue');
+        	formData.travelfashion = $("#travelfashion").combobox('getValue')=="Please Choose"?"": $("#travelfashion").combobox('getValue');
         	formData.budget = $("input[name='budget']").val();
         	formData.singleorcluster = $("#singleorcluster").combobox('getValue');
         	formData.groupCode =$("#groupCode").textbox('getValue');
@@ -30,14 +30,14 @@ itour.hotsightselfbooking = function(){
         		 })
         	 }
     	//	formData.travelrequest = $("input:checked[name='travelrequest[]']").val()? $("input:checked[name='travelrequest[]']").val().join(','):"";
-        	formData.hotel = $("#hotel").combobox('getValue')=="请选择"?"":$("#hotel").combobox('getValue');
-        	formData.guide = $("input:checked[name='guide'][type='radio']").val()=="其他语种"?$("input[name='guide_other']").val():$("input:checked[name='guide'][type='radio']").val();
+        	formData.hotel = $("#hotel").combobox('getValue')=="Please Choose"?"":$("#hotel").combobox('getValue');
+        	formData.guide = $("input:checked[name='guide'][type='radio']").val()=="Other languages"?$("input[name='guide_other']").val():$("input:checked[name='guide'][type='radio']").val();
         	formData.foodArrange = $("input:checked[name='foodArrange']").val();
         	formData.receiver = $("input[name='receiver']").val();
-        	formData.gender = $("#gender").combobox('getValue')=="性别"?"":parseInt($("#gender").combobox('getValue'));
+        	formData.gender = $("#gender").combobox('getValue')=="Gender"?"":parseInt($("#gender").combobox('getValue'));
         	formData.adults = $("input[name='adults']").val();
         	formData.children = $("input[name='children']").val();
-        	formData.comefrom = $("#comefrom").combobox('getValue')=="请选择"?"":$("#comefrom").combobox('getValue');
+        	formData.comefrom = $("#comefrom").combobox('getValue')=="Please Choose"?"":$("#comefrom").combobox('getValue');
         	formData.receiveremail = $("input[name='receiveremail'").val();
         	formData.receiverMobile = $("input[name='receiverMobile']").val();
         	formData.stayrequest="";
@@ -105,7 +105,7 @@ itour.hotsightselfbooking = function(){
         	__.post(basePath+"travelOrder/booking",formData,function(data){
 				itour.closeProgress();
 				//console.log(data);
-				itour.alert('提示',data.msg||'预定成功，请稍后查看邮箱预定成功信息！','info');
+				itour.alert('alert',data.msg||'Scheduled success, please check the mailbox reservation success later!','info');
 			});
         },
 		init:function(){
@@ -128,7 +128,7 @@ itour.hotsightselfbooking = function(){
 			        	   return value > d;  
 			           }
 			        },  
-			        message : '选择行程安排日期应在当前日期之后'  //
+			        message : 'The routing date should be selected after the current date.'  //
 			    
 				},
 			    md : {  
@@ -136,7 +136,7 @@ itour.hotsightselfbooking = function(){
 			        	var startTime = $(param[0]).datebox('getValue'); 
 			        	return value>startTime;  
 			        },  
-			        message : '选择行程安排返程日应在出发日期之后'  //
+			        message : 'The choice of itinerary should be after the departure date.'  //
 			    }  
 			}); 
 		}

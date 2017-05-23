@@ -22,7 +22,7 @@
 <table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <tr> 
     <td width="10" background="images/default/shadowleft.gif"><img src="images/default/shadowleft.gif" width="10" height="8" /></td>
-    <td><div align="center"><span class="headline"> 主角旅行个性定制服务</span></div></td>
+    <td> </div> <div align="center"><span class="headline"> itour Travel personality customization service</span></div></td>
     <td width="10" background="images/default/shadowright.gif"><img src="images/default/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
@@ -33,90 +33,91 @@
     <td><input type="hidden" id="line_url" name="line_url" value="http://www.travel-sichuan.com/sichuan/daocheng/t-dc-01.htm" /></td></tr> -->
   <tr>
     <td width="10" background="images/default/shadowleft.gif"><img src="images/default/shadowleft.gif" width="10" height="8" /></td>
-    <td>  
+    <td> <div align="center"> </div>
+      <br />
       <table width="100%" border="0" align="center" cellpadding="2" cellspacing="0" class="heedline1">
         <tr> 
-          <td width="20%"> <p align="right"><strong>旅行线路：<br />
+          <td width="19%"> <p align="right"><strong>Travel routes：<br />
               </strong></p></td>
-          <td width="81%" style="text-align:left"><input type="hidden" name="routeId" value="${rt.id }"/><input name="routename" type="text" data-options="editable:false" class="easyui-textbox" size="80" value="${rt.title } " /></td>
+          <td width="81%" style="text-align:left"><input type="hidden" name="routeId" value="${rt.id }"/><input name="routename" type="text" class="easyui-textbox" data-options="editable:false" size="80" value="${rt.title } " /></td>
         </tr>
         <tr> 
-          <td width="20%"><div align="right"><strong>预计出行日期：</strong></div></td>
-          <td style="text-align:left"><input name="expectedDepart" id="expectedDepart" type="text" class='easyui-datetimebox' data-options="showSeconds:false, validType:'dateValided',editable:false,split:true,border:false,region:'north',onSelect:itour.trekselfbooking.onChangeDate(this)" style="width:150px;" /></td>
+          <td><div align="right"><strong>Expected travel date：</strong></div></td>
+          <td style="text-align:left"><input name="expectedDepart" id="expectedDepart" type="text" class='easyui-datetimebox' data-options="showSeconds:false, width:150,validType:'dateValided',editable:false,split:true,border:false,region:'north',onSelect:itour.climbselfbooking.onChangeDate(this)" /></td>
         </tr>
         <tr> 
-          <td style="width:150px" width="150"><div align="right"><strong>预计返程日期：</strong></div></td>
-          <td style="text-align:left"><input id="expectedBack" name="expectedBack" type="text" class='easyui-datetimebox' data-options="showSeconds:false, validType:'md[\'#expectedDepart\']',editable:false,split:true,border:false,region:'north',onSelect:itour.trekselfbooking.onChangeDate(this)" style="width:150px;" />
+          <td><div align="right"><strong>Expected return date：</strong></div></td>
+          <td style="text-align:left"><input id="expectedBack" name="expectedBack" type="text" class='easyui-datetimebox' data-options="showSeconds:false,width:150,validType:'md[\'#expectedDepart\']',editable:false,split:true,border:false,region:'north',onSelect:itour.climbselfbooking.onChangeDate(this)" />
             </td>
         </tr>
 		<tr> 
-          <td><div align="right"><strong>旅行方式：</strong></div></td>
+          <td><div align="right"><strong>Travel Mode：</strong></div></td>
           <td style="text-align:left"><select id="travelfashion" name="travelfashion" class="easyui-combobox" data-options="editable:false,panelHeight:100">
-		  	<option value="">请选择</option>
-		  	<option value="单独安排">单独安排</option>
-			<option value="加入散客团">加入散客团</option>
+		  	<option value="">Please choose</option>
+		  	<option value="Separate arrangements">Separate arrangements</option>
+			<option value="Join FIT">Join FIT</option>
 		  </select>&nbsp;&nbsp;&nbsp;&nbsp;
 		  <span id="groupdiv" style="display:none">
-		  团号:<input id="groupCode" type="text" class="easyui-textbox" size="80" />
-		  出团日期：<input id="groupDate" name="groupDate" type="text" class='easyui-datebox' data-options="validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.trekselfbooking.onChangeDate(this)" style="width:100px;" />
+		  Group number:<input id="groupCode" type="text" class="easyui-textbox" size="80" />
+		  The date of the group：<input id="groupDate" name="groupDate" type="text" class='easyui-datebox' data-options="validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.climbselfbooking.onChangeDate(this)" style="width:100px;" />
 		  </span> </td>
         </tr>
         <tr> 
-          <td><div align="right"><strong>旅游预算：</strong></div></td>
-          <td style="text-align:left"><input name="budget" type="text" min=0 class="easyui-numberbox" data-options="precision:2,groupSeparator:',',width:151,height:22" />&nbsp;元 /
+          <td><div align="right"><strong>Travel budget：</strong></div></td>
+          <td style="text-align:left"><input name="budget" type="text" min=0 class="easyui-numberbox" data-options="precision:2,groupSeparator:',',width:151,height:22" />&nbsp;￥/
           &nbsp;<select id="singleorcluster" name="singleorcluster" class="easyui-combobox" data-options="editable:false,panelHeight:100">
-		  	<option value="人">人</option>
-			<option value="团">团</option>
+		  	<option value="Per person">Per person</option>
+			<option value="Per group">Per group</option>
 		  </select>
-            （请注明是每人的预算还是整团的总预算）</td>
+           (Please specify the budget for each person or the total budget for the whole group)</td>
         </tr>
         <tr> 
-          <td valign="top"> <div align="right"><strong>行程要求：<br />
-              （复选） </strong></div></td>
+          <td valign="top"> <div align="right"><strong>Travel requirements：<br />
+             (Check) </strong></div></td>
           <td style="text-align:left"><span class="radioSpan">
-          <input name="travelrequest[]" type="checkbox" value="摄影为主" />
-            摄影为主 
-            <input name="travelrequest[]" type="checkbox" value="体验民俗文化" />
-            体验民俗文化 
-            <input name="travelrequest[]" type="checkbox" value="美丽自然风光" />
-            美丽自然风光 
-            <input name="travelrequest[]" type="checkbox" value="探险挑战" />
-            探险挑战 <br /> <input name="travelrequest[]" type="checkbox" value="家庭出游" />
-            家庭出游 
-            <input name="travelrequest[]" type="checkbox" value="蜜月旅行" />
-            蜜月旅行 
-            <input name="travelrequest[]" type="checkbox" value="会议奖励" />
-            会议奖励<br /> <input name="travelrequest[]" type="checkbox" value="紧凑" />紧凑 
-            <input name="travelrequest[]" type="checkbox" value="舒适轻松" />
-            舒适轻松 <br /> <input name="travelrequest[]" type="checkbox" value="自驾" />自驾 
-            <input name="travelrequest[]" type="checkbox" value="摩托" /> 摩托 
-            <input name="travelrequest[]" type="checkbox" value="徒步" /> 徒步<br /> 
-            <input name="travelrequest[]" type="checkbox" value="不购物" />不购物</span> </td>
+          <input name="travelrequest[]" type="checkbox" value="Photography mainly" />
+            Photography mainly
+            <input name="travelrequest[]" type="checkbox" value="Experience folk culture" />
+            Experience folk culture
+            <input name="travelrequest[]" type="checkbox" value="Beautiful natural scenery" />
+            Beautiful natural scenery
+            <input name="travelrequest[]" type="checkbox" value="Adventure challenge" />
+            Adventure challenge <br /> <input name="travelrequest[]" type="checkbox" value="Family travel" />
+            Family travel
+            <input name="travelrequest[]" type="checkbox" value="Honeymoon travel" />
+            Honeymoon travel 
+            <input name="travelrequest[]" type="checkbox" value="Meeting rewards" />
+            Meeting rewards<br /> <input name="travelrequest[]" type="checkbox" value="compact" /> compact
+            <input name="travelrequest[]" type="checkbox" value="Comfortable and relaxed" />
+            Comfortable and relaxed<br /> <input name="travelrequest[]" type="checkbox" value="By car" />By car 
+            <input name="travelrequest[]" type="checkbox" value="Motorcycle" /> Motorcycle 
+            <input name="travelrequest[]" type="checkbox" value="on foot" />on foot<br /> 
+            <input name="travelrequest[]" type="checkbox" value="No shopping" />No shopping</span> </td>
         </tr>
         <tr>
-          <td><div align="right"><strong>酒 店：</strong></div></td>
+          <td><div align="right"><strong>Hotel：</strong></div></td>
           <td style="text-align:left"><select id="hotel" name="hotel" class="easyui-combobox" data-options="editable:false,panelHeight:200">
-		  	<option value="">请选择</option>
-            <option value="奢华型（最好的酒店）">奢华型（最好的酒店）</option>
-            <option value="尊贵型（五星级）">尊贵型（五星级）</option>
-            <option value="舒适型（四星级）">舒适型（四星级）</option>
-            <option value="经济型（三星级）">经济型（三星级）</option>
+		  	<option value="">Please Choose</option>
+            <option value="Luxury (best hotel)">Luxury (best hotel)</option>
+            <option value="Distinguished (five-star)">Distinguished (five-star)</option>
+            <option value="Comfortable (four star)">Comfortable (four star)</option>
+            <option value="Economy (three stars)">Economy (three stars)</option>
             </select></td>
         </tr>
         <tr> 
-          <td><div align="right"><strong>导 游：</strong></div></td>
+          <td><div align="right"><strong>Tourist guide：</strong></div></td>
           <td style="text-align:left"><span class="radioSpan">
-          <input type="radio" name="guide" value="中文" />中文 
-            <input type="radio" name="guide" value="英文" />英文 
-            <input type="radio" name="guide" value="广东话" />广东话 
-            <input type="radio" name="guide" value="其他语种" />其它语种
+          <input type="radio" name="guide" value="Chinese" />Chinese
+            <input type="radio" name="guide" value="English" />English 
+            <input type="radio" name="guide" value="Cantonese" />Cantonese 
+            <input type="radio" name="guide" value="Other languages" />Other languages
             <span id="elseguide" style="display:none" >
             <input type="text" class="easyui-textbox"name="guide_other" id="guide_other" value=""> </span>
-            <input type="radio" name="guide" value="无需导游" />无需导游</span> </td>
+            <input type="radio" name="guide" value="No tour guide" />No tour guide</span> </td>
         </tr>
         <tr> 
-          <td><div align="right"><strong>是否安排饮食 ：</strong></div></td>
-          <td style="text-align:left"><input type="checkbox" name="foodArrange" value="请安排" />
+          <td><div align="right"><strong>Whether to arrange a diet ：</strong></div></td>
+          <td style="text-align:left"><input type="checkbox" name="foodArrange" value="Please arrange" />
           <!--   <input type="radio" name="foodrequest" value="自行安排"  />  请安排  自行安排 -->
            </td>
         </tr>
@@ -125,32 +126,32 @@
           <td>&nbsp;</td>
         </tr> -->
         <tr> 
-          <td ><div align="right"><strong>联系人姓名：</strong></div></td>
+          <td><div align="right"><strong>Contact name：</strong></div></td>
           <td style="text-align:left"><input name="receiver" type="text" class="easyui-textbox"/> 
           <select id="gender" name="gender" class="easyui-combobox" data-options="editable:false,panelHeight:100">
-              <option>性别</option>
-              <option value="1">男</option>
-              <option value="0">女</option>
+              <option>Gender</option>
+              <option value="1">Male</option>
+              <option value="0">Female</option>
             </select> </td>
         </tr>
         <tr> 
-          <td><div align="right"><strong>人数：</strong></div></td>
+          <td><div align="right"><strong>The number of people：</strong></div></td>
           <td style="text-align:left"><input name="adults" size="6" min=0 class="easyui-numberbox" data-options="groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/>
-            大人 
+            Adult
             <input name="children" size="6" min=0 class="easyui-numberbox" data-options="precision:0,groupSeparator:',',width:151,height:22 " onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" />
-            小孩（12岁以下） </td>
+          Child (under 12 years old) </td>
         </tr>
         <tr> 
-          <td><div align="right"><strong>国家及地区：</strong></div></td>
+          <td><div align="right"><strong>Countries and regions：</strong></div></td>
           <td style="text-align:left"><input id="comefrom" name="comefrom" class="easyui-combobox"  data-options="width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">
-            （如：中国香港）</td>
+            (Eg, Hong Kong, China)</td>
         </tr>
         <tr> 
           <td><div align="right"><strong>E-mail：</strong></div></td>
           <td style="text-align:left"><input name="receiveremail" type='text' class="easyui-textbox" data-options="validType:'email',groupSeparator:',',width:151,height:22" /> </td>
         </tr>
         <tr> 
-          <td><div align="right"><strong>联系电话：</strong></div></td>
+          <td><div align="right"><strong>Contact number：</strong></div></td>
           <td style="text-align:left"><input name="receiverMobile" class="easyui-textbox" type="text" data-options="validType:'mobileTelephone',groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
         </tr>
    <!--      <tr> 
@@ -159,132 +160,131 @@
           </td>
         </tr> -->
         <tr> 
-          <td colspan=2>为能了解您的个性需求，请填写下面表格，以获得更细致的个性服务。（只需在您关注的问题中打勾或填写即可） </td>
+          <td colspan=2>To understand your individual needs, please fill out the form below to get a more detailed personalized service. (Just tick your question or fill it out) </td>
         </tr>
         <tr> 
-          <td width="19%" valign="top"><div align="right"><strong>住宿要求：</strong></div></td>
-          <td width="81%" valign="top" style="text-align:left"><label>特色酒店： 
+          <td width="19%" valign="top"><div align="right"><strong>Accommodation requirements：</strong></div></td>
+          <td width="81%" valign="top" style="text-align:left"><label>Featured Hotels： 
           <span class="radioSpan">
-            <input name="stayrequest[]" type="checkbox"  value="文化主题酒店" />
-            文化主题酒店 
-            <input name="stayrequest[]" type="checkbox"  value="民族特色酒店" />
-            民族特色酒店 
-            <input name="stayrequest[]" type="checkbox"   value="民居体验" />
-            民居体验<br />
-            地理位置： 
-            <input name="position[]" type="checkbox"  value="市中心" />
-            市中心 
-            <input name="position[]" type="checkbox" value="环境好" />
-            环境好 
-            <input name="position[]" type="checkbox" value="安静" />
-            安静 
-            <input name="position[]" type="checkbox" value="交通方便" />
-            交通方便 <br />
-            房型要求：双床房 
+            <input name="stayrequest[]" type="checkbox"  value="Cultural theme hotel" />
+            Cultural theme hotel
+            <input name="stayrequest[]" type="checkbox"  value="National characteristics hotel" />
+            National characteristics hotel 
+            <input name="stayrequest[]" type="checkbox"   value="Residential experience" />
+           Residential experience<br />
+            Location： 
+            <input name="position[]" type="checkbox"  value="City center" />
+            City center
+            <input name="position[]" type="checkbox" value="Good environment" />
+          Good environment
+            <input name="position[]" type="checkbox" value="Be Quiet" />
+           Be Quiet
+            <input name="position[]" type="checkbox" value="Easy traffic" />
+            Easy traffic <br />
+            Room requirements: Twin room
             <input name="db_room"  size="6" type="number" min=0 class="easyui-numberbox" data-options="groupSeparator:',',width:51,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/>
-            间 大床房 
+            King bed room 
             <input name="bb_room"  size="6" type="number" min=0 class="easyui-numberbox" data-options="groupSeparator:',',width:51,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" />
-            间 套房<input name="suite"  size="6" type="number" min=0 class="easyui-numberbox" data-options="groupSeparator:',',width:51,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/>
-            间 <br />备注：
-            <input name="hotel_no_smoking" type="checkbox" value="无烟" />
-            无烟 
-            <input name="hotel_quiet" type="checkbox" value="安静" />
-            安静 
-            <input name="hotel_info" type="checkbox"  value="希望能得到确定后酒店的资料" /> 
-             希望能得到确定后酒店的资料,若有您喜欢的酒店可在个性需求里面填写</span>
+             suite <input name="suite"  size="6" type="number" min=0 class="easyui-numberbox" data-options="groupSeparator:',',width:51,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/>
+             <br />Remark：
+            <input name="hotel_no_smoking" type="checkbox" value="Smoke free" />
+            Smoke free
+            <input name="hotel_quiet" type="checkbox" value="Be Quiet" />
+           Be Quiet
+            <input name="hotel_info" type="checkbox"  value="We hope that we can get hotel information" /> 
+             Hope to get the information after the hotel, if you like the hotel can be filled in the individual needs</span>
            </label></td>
         </tr>
         <tr><td></td><td></td></tr>
         <tr> 
-          <td valign="top"><div align="right"><strong>交通：<br />
+          <td valign="top"><div align="right"><strong>Traffic：<br />
               </strong></div></td>
-          <td valign="top" style="text-align:left"><span class="radioSpan">飞机： 
-            <input name="plane[]" type="radio" value="中国国内" />
-            中国国内 
-            <input name="plane[]" type="radio" value="国际" />
-            国际<br />
-            舱位： 
-            <input type="radio" name="shipping_space" value="头等舱" />
-            头等舱 
-            <input type="radio" name="shipping_space" value="商务舱" />
-            商务舱 
-            <input type="radio" name="shipping_space" value="经济舱" />
-            经济舱<br />
-            汽车： 
-            <input type="radio" name="car" value="越野车" />
-            越野车 
-            <input type="radio" name="car" value="轿车" />
-            轿车 
-            <input type="radio" name="car" value="商务车" />
-            商务车 
-            <input type="radio" name="car" value="旅游巴士" />
-            旅游巴士 
-            <input name="car_no_smoking" type="checkbox" value="无烟" />
-            无烟 
-            <input name="car_new" type="checkbox" value="新车" />
-            新车<br />
-            火车： 
-            <input type="radio" name="train" value="硬卧" />
-            硬卧 
-            <input type="radio" name="train" value="软卧" />
-            软卧<br />
-            游轮： 
-            <input type="radio" name="cruise" value="五星" />
-            五星 
-            <input type="radio" name="cruise" value="四星" />
-            四星 
-            <input type="radio" name="cruise" value="经济型" />
-            经济型</span></td>
+          <td valign="top" style="text-align:left"><span class="radioSpan">Airplanes： 
+            <input name="plane[]" type="radio" value="China domestic" />
+            China domestic
+            <input name="plane[]" type="radio" value="International" />
+            International<br />
+		Accommodation： 
+            <input type="radio" name="shipping_space" value="First class" />
+          First class
+            <input type="radio" name="shipping_space" value="Business class" />
+            Business class 
+            <input type="radio" name="shipping_space" value="Economy class" />
+            Economy class<br />
+          Car： 
+            <input type="radio" name="car" value="SUV" />
+            SUV
+            <input type="radio" name="car" value="Car" />
+            Car
+            <input type="radio" name="car" value="Business Car" />
+            Business Car
+            <input type="radio" name="car" value="Tour Bus" />
+            Tour Bus
+            <input name="car_no_smoking" type="checkbox" value="Smoke Free" />
+            Smoke Free
+            <input name="car_new" type="checkbox" value="New Car" />
+            New Car<br />
+            Train： 
+            <input type="radio" name="train" value="Hard sleeper" />
+            Hard sleeper
+            <input type="radio" name="train" value="Soft sleeper" />
+            Soft sleeper<br />
+            Cruise ship： 
+            <input type="radio" name="cruise" value="Five Stars" />
+            Five Stars
+            <input type="radio" name="cruise" value="Four Stars" />
+            Four Stars
+            <input type="radio" name="cruise" value="Economy" />
+            Economy</span></td>
         </tr>
         <tr><td></td><td></td></tr>
         <tr> 
-          <td valign="top"><div align="right"><strong>门票： </strong></div></td>
+          <td valign="top"><div align="right"><strong>Ticket： </strong></div></td>
           <td valign="top" style="text-align:left"><span class="radioSpan">
-          <input type="radio" name="tickets" value="仅大门票" />
-            仅大门票 
-            <input type="radio" name="tickets" value="所有门票及索道等" />
-            所有门票及索道等 
-            <input type="radio" name="tickets" value="自己搞定" />
-            自己搞定</span></td>
+          <input type="radio" name="tickets" value="Only big ticket" />
+            Only big ticket
+            <input type="radio" name="tickets" value="All tickets and ropeway" />
+            All tickets and ropeway 
+            <input type="radio" name="tickets" value="Get your own" />
+          Get your own</span></td>
         </tr>
         <tr><td></td><td></td></tr>
         <tr> 
-          <td valign="top"><p align="right"><strong>用餐要求：<br />
-              </strong></p></td>
-          <td valign="top" style="text-align:left">特色： <span class="radioSpan">
-            <input name="foodrequest[]" type="checkbox" value="风味餐" />
-            风味餐 
-            <input name="foodrequest[]" type="checkbox" value="小吃" />
-            小吃 
-            <input name="foodrequest[]" type="checkbox" value="火锅" />
-            火锅 其它： 
+          <td valign="top"><p align="right"><strong>Meal requirements： </strong></p></td>
+          <td valign="top" style="text-align:left">Features： <span class="radioSpan">
+            <input name="foodrequest[]" type="checkbox" value="Flavor meal" />
+            Flavor meal
+            <input name="foodrequest[]" type="checkbox" value="snack" />
+            snack
+            <input name="foodrequest[]" type="checkbox" value="Hot pot" />
+            Hot pot other： 
             <input name="foodrequest[]" type="text"  class="easyui-textbox" /> 
             <br />
-            口味： 
-            <input name="taste[]" type="checkbox" value="清淡" />
-            清淡 
-            <input name="taste[]" type="checkbox" value="麻辣" />
-            麻辣 
-            <input name="taste[]" type="checkbox" value="多蔬菜" />
-            多蔬菜 
-            <input name="taste[]" type="checkbox" value="多肉" />
-            多肉 
-            <input name="taste[]" type="checkbox" value="素食" />
-            素食<br />
-            忌口： 
-            <input name="hatefood" type="text" class="easyui-textbox"/>  有其它要求或您喜欢的餐厅可填写在个性需求里填写
+            Taste： 
+            <input name="taste[]" type="checkbox" value="Light" />
+            Light 
+            <input name="taste[]" type="checkbox" value="Spicy" />
+            Spicy 
+            <input name="taste[]" type="checkbox" value="More vegetables" />
+            More vegetables 
+            <input name="taste[]" type="checkbox" value="Succulents" />
+            Succulents 
+            <input name="taste[]" type="checkbox" value="Vegetarian" />
+            Vegetarian<br />
+            diet： 
+            <input name="hatefood" type="text" class="easyui-textbox"/>  There are other requirements or you like the restaurant can fill in the individual needs to fill in
             </span>
            </td>
         </tr>
         <tr><td></td><td></td></tr>
         <tr> 
-          <td valign="top"><div align="right"><strong>娱乐：</strong></div></td>
-          <td valign="top" style="text-align:left"><span class="radioSpan"><input type="checkbox" name="recreation" value="期望体验当地民族风情表演" /></span>
-                   期望体验当地民族风情表演</td>
+          <td valign="top"><div align="right"><strong>Entertainment：</strong></div></td>
+          <td valign="top" style="text-align:left"><span class="radioSpan"><input type="checkbox" name="recreation" value="Expect experience of local ethnic customs" /></span>
+             Expect experience of local ethnic customs</td>
         </tr>
         <tr> 
-          <td valign="top"><div align="right"><strong>更多个性需求：</strong></div></td>
-          <td valign="top" style="text-align:left">希望能知道您对这次旅游的想法和期望，这样我们更更好的为您设计：
+          <td valign="top"><div align="right"><strong>More personality needs：</strong></div></td>
+          <td valign="top" style="text-align:left">Hope to know your thoughts and expectations of this tour, so that we are better for you：
           <textarea name="specialrequest" cols="70" rows="8" class="easyui-textbox" data-options="multiline:true" style="height:100px"></textarea></td>
         </tr>
   <!--  <tr> 
@@ -292,14 +292,14 @@
           <td valign="top" style="text-align:left"><input type="submit" name="Submit2" value="预定" /></td>
         </tr> -->
     <tr> 
-        <td> <div align="right"><strong>验证码：</strong></div></td>
-        <td  style="text-align:left"> <input type="text" id="verifyCode" name="verifyCode"  class="easyui-textbox" title="验证码" data-options="required:true" nullmsg="请输入验证码!"/>
-          <img alt="点击更换" src="${basePath}RandomCodeServlet" id="validateCode" onclick="itour.trekselfbooking.changeValidateCode()">
-          &nbsp;&nbsp;<a href="javascript:void(0)" onclick="itour.trekselfbooking.changeValidateCode()">看不清，换一张</a></td>
+        <td> <div align="right"><strong>Verify Code：</strong></div></td>
+        <td  style="text-align:left"> <input type="text" id="verifyCode" name="verifyCode"  class="easyui-textbox" title="verify Code" data-options="required:true,prompt:'please enter verification code!'" />
+          <img alt="Click to replace" src="${basePath}RandomCodeServlet" id="validateCode" onclick="itour.trekselfbooking.changeValidateCode()">
+          &nbsp;&nbsp;<a href="javascript:void(0)" onclick="itour.trekselfbooking.changeValidateCode()">Can not see, change one</a></td>
        <!--  <td><input name="code" id="code" type="text" size="8" />&nbsp;<img src='index.php?action=authcode&",Math.random(),"' alt="CAPTCHA" name="vcode" width="130" height="25" border="1" align="absmiddle" id='vcode' style="cursor: pointer;" title="看不清？点击更换另一个验证码。" onclick= this.src="index.php?action=authcode&"+Math.random() />&nbsp;看不清，请点击图片更换验证码。</td> -->
       </tr>
       <tr> <td></td>
-          <td style="text-align:left"><a class="easyui-linkbutton" iconcls="icon-ok" name="check_formbtn">快速预定</a></td>
+        <td style="text-align:left"><a class="easyui-linkbutton" iconcls="icon-ok"  name="check_formbtn">Quickly book</a></td>
       </tr>
       </table></td>
     <td width="10" background="images/default/shadowright.gif">

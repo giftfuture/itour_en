@@ -3,14 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<base href=" <%=basePath%>">
- <meta http-equiv="pragma" content="no-cache">  
- <meta http-equiv="cache-control" content="no-cache">  
- <meta http-equiv="expires" content="0">      
- <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content="This is my page"> 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Southwest-China-Adventures.com</title>
+<title>aboutus</title>
 <meta name="keywords" content="Southwest China Adventures:Trekking & Hiking , Peak Climbing , Off raod¡¡overland, Motercycle tours ">
 <meta name="description" content="Southwest China Adventures Trekking,Southwest China Peak Climbing,Southwest China Off raod,Southwest China Motercycle tours">
 <script type="text/javascript" src="Scripts/flashobject.js"></script>
@@ -66,7 +59,7 @@
           <td width="815" height="56" colspan="2"> <h1 align="center">Why Us ? </h1></td>
         </tr>
         <tr>
-          <td colspan="2"><p>            Specialists of South-West China, ¡°China Adventures¡± organizes a wide diversity of ¡°off-the-beaten track¡± trips in the 3 provinces of Sichuan, Yunnan and Tibet. These areas offer undoubtedly the most impressive diversity of landscapes and ethnic minorities in all of China, even though they are still not so well-known worldwide. </p>
+          <td colspan="2"><p> Specialists of South-West China, ¡°China Adventures¡± organizes a wide diversity of ¡°off-the-beaten track¡± trips in the 3 provinces of Sichuan, Yunnan and Tibet. These areas offer undoubtedly the most impressive diversity of landscapes and ethnic minorities in all of China, even though they are still not so well-known worldwide. </p>
             <p>The trekkings, four-wheels drive circuits or tailor-made programs that we propose have each been designed to offer you a unique experience, while at the same time providing a professional organisation by a Chino-Belgian team that well understands the desires and expectations of Western travellers. </p>
             <p>We take a special pride in positioning ourselves in the upper-market of the tourism industry, as we are convinced that comfort only adds to the pleasures of any trip, especially in these underdeveloped far-flung regions where traveling naturally brings its own hardships. </p>
             <p>¡°China Adventures¡± hopes to help you discover these amazing regions as well as make you enjoy the unforgettable experiences that reward any daring traveller. </p>

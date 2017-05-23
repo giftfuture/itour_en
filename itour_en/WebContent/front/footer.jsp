@@ -69,11 +69,11 @@ function loadlevel2Area(level1Area){
 <form name="searchForm" method="post">
 <table class="commontb" align="center" >
   <tr>
-    <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2">快速搜索</div></td>
+    <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2">fast Search</div></td>
     <td width="60%" bgcolor="#CCCCCC" class="f14-gao1" >  
-       旅行方式：<input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:130,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
+       Travel mode：<input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:130,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
       <label>
-       旅游区域：<!--onBeforeLoad
+      Tourist area：<!--onBeforeLoad
      	   -->
         	<!-- width:130,height:20,valueField:'level1Area',textField:'level1Area',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}levelarea/queryLevel1' -->
          <input class="easyui-combobox" id="level1Area" name="level1Area" value="${level1Area}" data-options="width:130,height:20,panelHeight:'auto',editable:false"
@@ -98,13 +98,13 @@ function loadlevel2Area(level1Area){
 	     	  } 
 	     	  
      	  }--%>
-        假期天数：<a href="javascript:void(0)">
+        Holiday days：<a href="javascript:void(0)">
 	<select class="easyui-combobox" data-options="width:130,height:20,editable:false" name="vacation" id="vacation">
-	  <option value="">-所有-</option>
-	  <option value="1_5">1-5天</option>
-	  <option value="6_9">6-9天</option>
-	  <option value="10_15">10-15天</option>
-	  <option value="16">16天+</option>
+	  <option value="">-All-</option>
+	  <option value="1_5">1-5days</option>
+	  <option value="6_9">6-9days</option>
+	  <option value="10_15">10-15days</option>
+	  <option value="16">16days+</option>
 	</select>
       </a></label></td>
       <td width="10%" bgcolor="#CCCCCC"><a name="search" href="javascript:itour.footer.searchRtResult()"><img name="search" src="${basePath}images/search.png" width="48" height="48" /></a> </td>
@@ -179,10 +179,10 @@ function loadlevel2Area(level1Area){
     <table width="1350" height="60" border="0" align="center" cellpadding="0" cellspacing="0">
       <tbody>
         <tr>
-          <td width="1350" height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE6">主角旅行 www.iTours.com.cn</div></td>
+          <td width="1350" height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE6">iTour Travel: www.iTours.com.cn</div></td>
         </tr>
         <tr>
-          <td height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE6">Add: 成都一環路南三段15號華僑大廈9層<br />
+          <td height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE6">Add: Chengdu City, a ring road on the 15th Overseas Chinese Building on the 9th floor<br />
             Tel: +86-28-85580038 / 85562905<br />
             E-mail: info@itours.com.cn </div></td>
         </tr>
@@ -194,7 +194,7 @@ function loadlevel2Area(level1Area){
     <td><div align="center">
 <!-- <script src="https://s11.cnzz.com/z_stat.php?id=1261858669&amp;web_id=1261858669" language="JavaScript"></script>
 <script src="https://c.cnzz.com/core.php?web_id=1261858669&amp;t=z" charset="utf-8" type="text/javascript"></script> -->
-<a href="http://www.cnzz.com/stat/website.php?web_id=1261858669" target="_blank" title="站长统计">站长统计</a>	
+<a href="http://www.cnzz.com/stat/website.php?web_id=1261858669" target="_blank" title="Webmaster Statistics">Webmaster Statistics</a>	
 	</div></td>
   </tr>
 </table>

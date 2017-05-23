@@ -8,9 +8,9 @@
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
- <meta http-equiv="keywords" content="回忆幸福，晒幸福">  
- <meta http-equiv="description" content="回忆幸福，晒幸福"> 
-<title></title>
+ <meta http-equiv="keywords" content="show happyiness ,memories of happyiness">  
+ <meta http-equiv="description" content="show happyiness ,memories of happyiness"> 
+<title>Memories of Happiness</title>
 </head>
 <body>
 <table class="commontb" border="0" align="center" cellpadding="10" cellspacing="0">
@@ -18,17 +18,17 @@
     <td> <%@include file="/front/header.jsp"  %></td>
   </tr>
   <tr>
-    <td class="STYLE17"><div align="center">回憶幸福~將幸福定格</div></td>
+    <td class="STYLE17"><div align="center">Memories of happiness will be happy freeze</div></td>
   </tr>
   <tr>
     <td><img src="images/frame1-1.gif" width="1140"/></td>
   </tr>
   <tr>
     <td style="text-align:left;padding-left:170px;margin-left:170px;background-image:url('images/frame1-2.gif');background-position:115px 0px;">
-              ※  旅行  是流動的歷程<br />
-              ※  感動  是霎那的永恆 <br />
-              ※  回憶  是一輩子的幸福風景 
-      <span style="float:right;padding-right:120px"><a href="${basePath}showhappy/sharehappy">《<strong>分享回憶</strong>》</a></span></td>
+          ※ travel is the course of the flow <br />
+    ※ touched the eternity of the moment<br/>
+    ※ memories of life is a happy landscape
+      <span style="float:right;padding-right:120px"><a href="${basePath}showhappy/sharehappy">《<strong>Share memories</strong>》</a></span></td>
   </tr>
   <tr><!--  style="vertical-align:top;valign:top;height:7px;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;"  -->
     <td><img src="${basePath }images/frame1-3.gif" width="1140" /></td>

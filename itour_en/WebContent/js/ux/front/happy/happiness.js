@@ -40,7 +40,7 @@ itour.happiness = function(){
 					                  "</tr>"+
 					                  "<tr>"+
 					                   // "<td width='20' valign='top'><div align='center'><img src='"+basePath+"images/quote-1.gif' /></div></td>"+
-					                    "<td width='576' style='text-align:left'><span class='STYLE18'>"+(e.shortContent?e.shortContent:"")+"<a href='"+basePath+"showhappy/detail/"+(e.shCode?e.shCode:"")+"'>走进她的回憶</a>》》<img src='images/quote-2.gif' width='18' height='14' /></span></td>"+
+					                    "<td width='576' style='text-align:left'><span class='STYLE18'>"+(e.shortContent?e.shortContent:"")+"<a href='"+basePath+"showhappy/detail/"+(e.shCode?e.shCode:"")+"'>Into her memories</a>》》<img src='images/quote-2.gif' width='18' height='14' /></span></td>"+
 					                  "</tr>"+
 					                  "<tr>"+
 					                   // "<td valign='top'>&nbsp;</td>"+
@@ -62,13 +62,13 @@ itour.happiness = function(){
 								   itemTexts: function (type, page, current) {
 									   switch (type) {
 										   case "first":
-										   return "首页";
+										   return "Home";
 										   case "prev":
-										   return "<i class='fa fa-caret-left'></i> 上一页";
+										   return "<i class='fa fa-caret-left'></i> Prev";
 										   case "next":
-										   return "下一页 <i class='fa fa-caret-right'></i>";
+										   return "Next <i class='fa fa-caret-right'></i>";
 										   case "last":
-										   return "末页";
+										   return "Last";
 										   case "page":
 										   return page;
 									   }

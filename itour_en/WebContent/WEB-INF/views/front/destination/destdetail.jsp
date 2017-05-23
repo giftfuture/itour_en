@@ -5,7 +5,7 @@
 <head>
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
-<title>目的地详情</title>
+<title>Destination details</title>
 <link rel="stylesheet" type="text/css" href="${basePath}css/easing.css">
 <script type="text/javascript" src="${basePath}js/plug-in/easing.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/jquery.easing.compatibility.js"></script> 
@@ -18,7 +18,7 @@
 <table class="commontb" valign="middle" style="height:100%">
   <tr style="align:center">
     <td style='weight:100%;height:100%;' valign="top" rowspan=2>
-            <div style="align:center;font-size:18px;background-color:#8B0000;text-decoration:none;color:white" >旅遊目的地</div>
+            <div style="align:center;font-size:18px;background-color:#8B0000;text-decoration:none;color:white" >Vacation destination</div>
             <div class="treebox">
 				<ul class="menu">
 				<c:forEach items="${scopes}" var="scope" varStatus="status">
@@ -67,9 +67,9 @@
 			</DIV>
 <!--滚动图片 end--></td>
             <td style="valign:top;vertical-align:top;"><img src="images/ticket.png" width="30" height="30">
-            <span class="STYLE3">${itemvo.item}门票信息（CNY）：</span><br/>
+            <span class="STYLE3">${itemvo.item}Ticket information(CNY)：</span><br/>
             ${itemvo.ticketsBlock}<br/><span class="h2-24"><img src="images/route2.png" width="48" height="48"></span>
-		<span class="STYLE3">相关旅游线路</span>
+		<span class="STYLE3">Related tourist routes</span>
 		<table width="280" border="0" cellpadding="5" cellspacing="0" class="f14-gao1">
               <tbody>
               <c:forEach items="${rts}" var="item">

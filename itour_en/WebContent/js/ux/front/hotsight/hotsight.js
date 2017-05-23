@@ -13,16 +13,16 @@ itour.hotsight = function(){
 				 	success:function(data){
 				 		var result= $.parseJSON(data);
 				 		//$.messager.alert('提示',result.msg,'info');
-				 		itour.alert('提示', result.msg ,'info');
+				 		itour.alert('alert', result.msg ,'info');
 				 	},
 				 	error:function(response, textStatus, errorThrown){
 				 		try{
 				 			itour.closeProgress();
 				 			var data = $.parseJSON(response.responseText);
 				 			//console.log(data);
-				 			itour.alert('提示', data.msg ,'error');
+				 			itour.alert('alert', data.msg ,'error');
 				 		}catch(e){
-				 			itour.alert('提示',"请求出现异常,请联系管理员.",'error');
+				 			itour.alert('alert',"Request an exception, please contact the administrator.",'error');
 				 		}
 				 	}
 				 })

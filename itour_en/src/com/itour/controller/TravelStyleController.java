@@ -224,7 +224,7 @@ public class TravelStyleController extends BaseController{
 	public List<Map<String,Object>> loadStyles(HttpServletRequest request,HttpServletResponse response)throws Exception{
 		List<Map<String,Object>> list = Constants.allStyles;
 		if(list.size()==0){
-			List<Map<String,Object>> newlist = new ArrayList(){{add(new HashMap(){{put("alias","");put("type","-所有-");}});}};
+			List<Map<String,Object>> newlist = new ArrayList(){{add(new HashMap(){{put("alias","");put("type","-All-");}});}};
 			newlist.addAll(travelStyleService.loadStyles());
 			Constants.allStyles.clear();
 			Constants.allStyles.addAll(newlist);
