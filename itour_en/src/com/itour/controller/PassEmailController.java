@@ -23,7 +23,7 @@ import com.itour.base.util.email.EmailService;
 import com.itour.base.web.BaseController;
 import com.itour.entity.SysUser;
 import com.itour.service.SysUserService;
-import com.itour.vo.SysUserVo;
+import com.itour.vo.SysUserVO;
 
 @Controller
 @RequestMapping("/passEmail")
@@ -41,7 +41,7 @@ public class PassEmailController extends BaseController {
     @SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/sendmail", method = RequestMethod.POST)
-    public String sendmail(SysUserVo user, HttpServletRequest req,HttpServletResponse response) throws Exception{
+    public String sendmail(SysUserVO user, HttpServletRequest req,HttpServletResponse response) throws Exception{
         try {
         	int count = userService.getUserCountByEmail(user.getEmail());
         	if (count >= 1) {

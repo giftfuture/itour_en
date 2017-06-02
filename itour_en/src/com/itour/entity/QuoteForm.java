@@ -20,43 +20,43 @@ public class QuoteForm extends BaseEntity implements Serializable {
 	private String travelItems;//旅行景点
 	private int adults;
 	private int children;
-	private boolean isAsAdult;
+	private int asAdult;
 	private String ticketBlock;//门票明细
-	private boolean ticketAsadult;//小孩门票是否按孩子核算
+	private int ticketAsadult;//小孩门票是否按孩子核算
 	private String travelDocs;//旅行证件
-	private boolean traveldocAsadult;//小孩旅行证件是否按孩子核算
+	private int traveldocAsadult;//小孩旅行证件是否按孩子核算
 	private String tourGuide;//导游
-	private boolean tourguideAsadult;//小孩导游是否按孩子核算
+	private int tourguideAsadult;//小孩导游是否按孩子核算
 	private String hotel;//酒店
-	private boolean hotelAsadult;//小孩住酒店是否按孩子核算
+	private int hotelAsadult;//小孩住酒店是否按孩子核算
 	private String rentCar;//用车情况
-	private boolean rentcarAsadult;//小孩用车是否按孩子核算
-	private boolean bigTrafficSum;//true=计入总价，false=另外核算
+	private int rentcarAsadult;//小孩用车是否按孩子核算
+	private int bigTrafficSum;//true=计入总价，false=另外核算
 	private String bigTraffic;//大交通
-	private boolean bigtrafficeAsadult;//小孩大交通是否按孩子核算
+	private int bigtrafficeAsadult;//小孩大交通是否按孩子核算
 	private String dinner;//用餐
-	private boolean dinnerAsadult;//小孩用餐是否按孩子核算
+	private int dinnerAsadult;//小孩用餐是否按孩子核算
 	private String insurance;//保险
-	private boolean insuranceAsadult;//小孩保险是否按孩子核算
+	private int insuranceAsadult;//小孩保险是否按孩子核算
 	private String comprehensiveCosts;//综合费用 
-	private boolean comphcostAsadult;//小孩子综合费用是否按孩子核算
+	private int comphcostAsadult;//小孩子综合费用是否按孩子核算
 	private String recreation;//娱乐费用
-	private boolean recreationAsadult;//小孩娱乐费用是否按孩子核算
+	private int recreationAsadult;//小孩娱乐费用是否按孩子核算
 	private String itemGuide;//单项向导
-	private boolean itemguideAsadult;//小孩向导费用是否按孩子核算
+	private int itemguideAsadult;//小孩向导费用是否按孩子核算
 	private String bathorseCost;//驮马费
-	private boolean bathcostAsadult;//小孩驮马费是否按孩子核算
+	private int bathcostAsadult;//小孩驮马费是否按孩子核算
 	private String ridehorseCost;//骑马费
-	private boolean ridecostAsadult;//小孩骑马费是否按孩子核算
+	private int ridecostAsadult;//小孩骑马费是否按孩子核算
 	private String climbRegisterCost;//登山注册费
-	private boolean climbrcostAsadult;//小孩登山注册费是否按孩子核算
+	private int climbrcostAsadult;//小孩登山注册费是否按孩子核算
 	private String climbNexusCost;//登协联络官
-	private boolean climbncostAsadult;//小孩登协联络官是否按孩子核算
+	private int climbncostAsadult;//小孩登协联络官是否按孩子核算
 	private String elseCost;//其他费用
-	private boolean elsecostAsadult;//小孩其他费用是否按孩子核算
+	private int elsecostAsadult;//小孩其他费用是否按孩子核算
 	private String presented;//赠送
 	private String remark;
-	private boolean valid;
+	private int valid;
 	private String createBy;
 	private Date createTime;
 	private Date updateTime;
@@ -245,12 +245,6 @@ public class QuoteForm extends BaseEntity implements Serializable {
 	public void setChildren(int children) {
 		this.children = children;
 	}
-	public boolean isAsAdult() {
-		return isAsAdult;
-	}
-	public void setAsAdult(boolean isAsAdult) {
-		this.isAsAdult = isAsAdult;
-	}
 	public String getTicketBlock() {
 		return ticketBlock;
 	}
@@ -274,12 +268,6 @@ public class QuoteForm extends BaseEntity implements Serializable {
 	}
 	public void setRentCar(String rentCar) {
 		this.rentCar = rentCar;
-	}
-	public boolean isBigTrafficSum() {
-		return bigTrafficSum;
-	}
-	public void setBigTrafficSum(boolean bigTrafficSum) {
-		this.bigTrafficSum = bigTrafficSum;
 	}
 	public String getBigTraffic() {
 		return bigTraffic;
@@ -359,12 +347,6 @@ public class QuoteForm extends BaseEntity implements Serializable {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	public boolean isValid() {
-		return valid;
-	}
-	public void setValid(boolean valid) {
-		this.valid = valid;
-	}
 	public String getCreateBy() {
 		return createBy;
 	}
@@ -389,109 +371,127 @@ public class QuoteForm extends BaseEntity implements Serializable {
 	public void setUpdateBy(String updateBy) {
 		this.updateBy = updateBy;
 	}
-	public boolean isTicketAsadult() {
-		return ticketAsadult;
-	}
-	public void setTicketAsadult(boolean ticketAsadult) {
-		this.ticketAsadult = ticketAsadult;
-	}
 	public String getTravelDocs() {
 		return travelDocs;
 	}
 	public void setTravelDocs(String travelDocs) {
 		this.travelDocs = travelDocs;
 	}
-	public boolean isTraveldocAsadult() {
+	public int getAsAdult() {
+		return asAdult;
+	}
+	public void setAsAdult(int asAdult) {
+		this.asAdult = asAdult;
+	}
+	public int getTicketAsadult() {
+		return ticketAsadult;
+	}
+	public void setTicketAsadult(int ticketAsadult) {
+		this.ticketAsadult = ticketAsadult;
+	}
+	public int getTraveldocAsadult() {
 		return traveldocAsadult;
 	}
-	public void setTraveldocAsadult(boolean traveldocAsadult) {
+	public void setTraveldocAsadult(int traveldocAsadult) {
 		this.traveldocAsadult = traveldocAsadult;
 	}
-	public boolean isTourguideAsadult() {
+	public int getTourguideAsadult() {
 		return tourguideAsadult;
 	}
-	public void setTourguideAsadult(boolean tourguideAsadult) {
+	public void setTourguideAsadult(int tourguideAsadult) {
 		this.tourguideAsadult = tourguideAsadult;
 	}
-	public boolean isHotelAsadult() {
+	public int getHotelAsadult() {
 		return hotelAsadult;
 	}
-	public void setHotelAsadult(boolean hotelAsadult) {
+	public void setHotelAsadult(int hotelAsadult) {
 		this.hotelAsadult = hotelAsadult;
 	}
-	public boolean isRentcarAsadult() {
+	public int getRentcarAsadult() {
 		return rentcarAsadult;
 	}
-	public void setRentcarAsadult(boolean rentcarAsadult) {
+	public void setRentcarAsadult(int rentcarAsadult) {
 		this.rentcarAsadult = rentcarAsadult;
 	}
-	public boolean isBigtrafficeAsadult() {
+	public int getBigTrafficSum() {
+		return bigTrafficSum;
+	}
+	public void setBigTrafficSum(int bigTrafficSum) {
+		this.bigTrafficSum = bigTrafficSum;
+	}
+	public int getBigtrafficeAsadult() {
 		return bigtrafficeAsadult;
 	}
-	public void setBigtrafficeAsadult(boolean bigtrafficeAsadult) {
+	public void setBigtrafficeAsadult(int bigtrafficeAsadult) {
 		this.bigtrafficeAsadult = bigtrafficeAsadult;
 	}
-	public boolean isDinnerAsadult() {
+	public int getDinnerAsadult() {
 		return dinnerAsadult;
 	}
-	public void setDinnerAsadult(boolean dinnerAsadult) {
+	public void setDinnerAsadult(int dinnerAsadult) {
 		this.dinnerAsadult = dinnerAsadult;
 	}
-	public boolean isInsuranceAsadult() {
+	public int getInsuranceAsadult() {
 		return insuranceAsadult;
 	}
-	public void setInsuranceAsadult(boolean insuranceAsadult) {
+	public void setInsuranceAsadult(int insuranceAsadult) {
 		this.insuranceAsadult = insuranceAsadult;
 	}
-	public boolean isComphcostAsadult() {
+	public int getComphcostAsadult() {
 		return comphcostAsadult;
 	}
-	public void setComphcostAsadult(boolean comphcostAsadult) {
+	public void setComphcostAsadult(int comphcostAsadult) {
 		this.comphcostAsadult = comphcostAsadult;
 	}
-	public boolean isRecreationAsadult() {
+	public int getRecreationAsadult() {
 		return recreationAsadult;
 	}
-	public void setRecreationAsadult(boolean recreationAsadult) {
+	public void setRecreationAsadult(int recreationAsadult) {
 		this.recreationAsadult = recreationAsadult;
 	}
-	public boolean isItemguideAsadult() {
+	public int getItemguideAsadult() {
 		return itemguideAsadult;
 	}
-	public void setItemguideAsadult(boolean itemguideAsadult) {
+	public void setItemguideAsadult(int itemguideAsadult) {
 		this.itemguideAsadult = itemguideAsadult;
 	}
-	public boolean isBathcostAsadult() {
+	public int getBathcostAsadult() {
 		return bathcostAsadult;
 	}
-	public void setBathcostAsadult(boolean bathcostAsadult) {
+	public void setBathcostAsadult(int bathcostAsadult) {
 		this.bathcostAsadult = bathcostAsadult;
 	}
-	public boolean isRidecostAsadult() {
+	public int getRidecostAsadult() {
 		return ridecostAsadult;
 	}
-	public void setRidecostAsadult(boolean ridecostAsadult) {
+	public void setRidecostAsadult(int ridecostAsadult) {
 		this.ridecostAsadult = ridecostAsadult;
 	}
-	public boolean isClimbrcostAsadult() {
+	public int getClimbrcostAsadult() {
 		return climbrcostAsadult;
 	}
-	public void setClimbrcostAsadult(boolean climbrcostAsadult) {
+	public void setClimbrcostAsadult(int climbrcostAsadult) {
 		this.climbrcostAsadult = climbrcostAsadult;
 	}
-	public boolean isClimbncostAsadult() {
+	public int getClimbncostAsadult() {
 		return climbncostAsadult;
 	}
-	public void setClimbncostAsadult(boolean climbncostAsadult) {
+	public void setClimbncostAsadult(int climbncostAsadult) {
 		this.climbncostAsadult = climbncostAsadult;
 	}
-	public boolean isElsecostAsadult() {
+	public int getElsecostAsadult() {
 		return elsecostAsadult;
 	}
-	public void setElsecostAsadult(boolean elsecostAsadult) {
+	public void setElsecostAsadult(int elsecostAsadult) {
 		this.elsecostAsadult = elsecostAsadult;
 	}
-	
+	public int getValid() {
+		return valid;
+	}
+	public void setValid(int valid) {
+		this.valid = valid;
+	}
+	 
 	
 	
 	

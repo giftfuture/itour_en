@@ -99,4 +99,6 @@ $(function(){
 	   itour.serverquotestep4.init();
 	   itour.serverquotestep4.copyUrl();
 	   var homeurl = window.location.href;
+	   if (window != top)
+           top.location.href = location.href;
 });

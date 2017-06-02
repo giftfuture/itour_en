@@ -23,7 +23,7 @@ import com.itour.base.page.BasePage;
 import com.itour.base.web.BaseController;
 import com.itour.entity.LogOperation;
 import com.itour.service.LogOperationService;
-import com.itour.vo.LogOperationVo;
+import com.itour.vo.LogOperationVO;
  
 /**
  * 
@@ -54,7 +54,7 @@ public class LogOperationController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
-	public ModelAndView list(LogOperationVo page,HttpServletRequest request) throws Exception{
+	public ModelAndView list(LogOperationVO page,HttpServletRequest request) throws Exception{
 		return forward("server/sys/logOperation"); 
 	}
 	
@@ -68,7 +68,7 @@ public class LogOperationController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid  datalist(LogOperationVo vo,HttpServletResponse response) throws Exception{
+	public EasyUIGrid  datalist(LogOperationVO vo,HttpServletResponse response) throws Exception{
 		BasePage<Map<String, Object>> pagination = logOperationService.pagedQuery(vo);
 		return dataGridAdapter.wrap(pagination);
 	}

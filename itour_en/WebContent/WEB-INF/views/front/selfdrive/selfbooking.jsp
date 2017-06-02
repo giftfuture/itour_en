@@ -37,9 +37,10 @@
       <br />
       <table width="100%" border="0" align="center" cellpadding="2" cellspacing="0" class="heedline1">
         <tr> 
-          <td width="19%"> <p align="right"><strong>Travel routes：<br />
-              </strong></p></td>
-          <td width="81%" style="text-align:left"><input type="hidden" name="routeId" value="${rt.id }"/><input name="routename" type="text" class="easyui-textbox" data-options="editable:false" size="80" value="${rt.title } " /></td>
+         <td width="20%" align="right" style="text-align:right"><strong>Travel routes: </strong></td>
+          <td width="81%" style="text-align:left"><input type="hidden" name="routeId" value="${rt.id }"/><span style="valign:top"><strong>${rt.title }</strong></span>
+          <%-- <input name="routename" type="text" data-options="editable:false" class="easyui-textbox" size="80" value="${rt.title } " /> --%>
+          </td>
         </tr>
         <tr> 
           <td><div align="right"><strong>Expected travel date：</strong></div></td>
@@ -293,7 +294,7 @@
         </tr> -->
     <tr> 
         <td> <div align="right"><strong>Verify Code：</strong></div></td>
-        <td  style="text-align:left"> <input type="text" id="verifyCode" name="verifyCode"  class="easyui-textbox" title="verify Code" data-options="required:true,prompt:'please enter verification code!'" />
+        <td  style="text-align:left"> <input type="text" id="verifyCode" name="verifyCode"  class="easyui-textbox" title="verify Code" data-options="prompt:'please enter verification code!'" />
           <img alt="Click to replace" src="${basePath}RandomCodeServlet" id="validateCode" onclick="itour.selfdriveselfbooking.changeValidateCode()">
           &nbsp;&nbsp;<a href="javascript:void(0)" onclick="itour.selfdriveselfbooking.changeValidateCode()">Can not see, change one</a></td>
        <!--  <td><input name="code" id="code" type="text" size="8" />&nbsp;<img src='index.php?action=authcode&",Math.random(),"' alt="CAPTCHA" name="vcode" width="130" height="25" border="1" align="absmiddle" id='vcode' style="cursor: pointer;" title="看不清？点击更换另一个验证码。" onclick= this.src="index.php?action=authcode&"+Math.random() />&nbsp;看不清，请点击图片更换验证码。</td> -->

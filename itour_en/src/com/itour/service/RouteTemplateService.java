@@ -20,8 +20,8 @@ import com.itour.dao.TravelItemDao;
 import com.itour.dao.TravelStyleDao;
 import com.itour.entity.RouteTemplate;
 import com.itour.entity.TravelStyle;
-import com.itour.vo.RouteTemplateVo;
-import com.itour.vo.TravelItemVo;
+import com.itour.vo.RouteTemplateVO;
+import com.itour.vo.TravelItemVO;
 
 /**
  * 
@@ -41,15 +41,15 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @return 查询结果
 	 */
 	@SuppressWarnings("unchecked")
-	public BasePage<RouteTemplateVo> pagedQuery(RouteTemplateVo vo) {
+	public BasePage<RouteTemplateVO> pagedQuery(RouteTemplateVO vo) {
 		//vo.setOrder("star_level");
 		vo.setSort("star_level");
 		vo.setOrderDirection(false);
-		List<RouteTemplateVo> list = (List<RouteTemplateVo>) mapper.queryByList(vo);
+		List<RouteTemplateVO> list = (List<RouteTemplateVO>) mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
-		List<RouteTemplateVo> records = Lists.newArrayList();
+		List<RouteTemplateVO> records = Lists.newArrayList();
 		//tring rtCoverPath = FilePros.httpRouteCoverpath();
-		for(RouteTemplateVo fb:list) {
+		for(RouteTemplateVO fb:list) {
 			if(StringUtils.isNotEmpty(fb.getTravelItems())){
 				 String[] params = fb.getTravelItems().split(",");
 				String travelItems = tiDao.travelItems(Arrays.asList(params));
@@ -68,7 +68,7 @@ public class RouteTemplateService<T> extends BaseService<T> {
 			//fb.setCover(coverpath);
 			records.add(fb);
 		}
-		return new BasePage<RouteTemplateVo>(vo.getStart(), vo.getLimit(), records,count);
+		return new BasePage<RouteTemplateVO>(vo.getStart(), vo.getLimit(), records,count);
 	}
 	
 	/**
@@ -76,15 +76,15 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @param vo
 	 * @return
 	 */
-	public BasePage<RouteTemplateVo> searchpagedQuery(RouteTemplateVo vo) {
+	public BasePage<RouteTemplateVO> searchpagedQuery(RouteTemplateVO vo) {
 		//vo.setOrder("starLevel");
 		vo.setSort("star_level");
 		vo.setOrderDirection(false);
-		List<RouteTemplateVo> list = (List<RouteTemplateVo>) mapper.searchRts(vo);
+		List<RouteTemplateVO> list = (List<RouteTemplateVO>) mapper.searchRts(vo);
 		int count = mapper.searchRtsByCount(vo);
-		List<RouteTemplateVo> records = Lists.newArrayList();
+		List<RouteTemplateVO> records = Lists.newArrayList();
 		String rtCoverPath = FilePros.httpRouteCoverpath();
-		for(RouteTemplateVo fb:list){
+		for(RouteTemplateVO fb:list){
 		/*	if(StringUtils.isNotEmpty(fb.getTravelItems())){
 				String[] params = fb.getTravelItems().split(",");
 				String travelItems = tiDao.travelItems(Arrays.asList(params));
@@ -104,7 +104,7 @@ public class RouteTemplateService<T> extends BaseService<T> {
 			fb.setCover(coverpath);
 			records.add(fb);
 		}
-		return new BasePage<RouteTemplateVo>(vo.getStart(), vo.getLimit(), list,count);
+		return new BasePage<RouteTemplateVO>(vo.getStart(), vo.getLimit(), list,count);
 	}
 	/**
 	 * 
@@ -112,9 +112,9 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<RouteTemplateVo> queryByStyle(String style)throws Exception{
+	public List<RouteTemplateVO> queryByStyle(String style)throws Exception{
 		List<RouteTemplate> list = mapper.queryByStyle(style);
-		List<RouteTemplateVo> vos = Lists.newArrayList();
+		List<RouteTemplateVO> vos = Lists.newArrayList();
 		String rtCoverPath = FilePros.httpRouteCoverpath();
 		for(RouteTemplate rt :list){
 			String coverpath = rtCoverPath+"/"+StringUtils.trim(rt.getRouteCode())+"_"+StringUtils.trim(rt.getAlias())+"/"+rt.getCover();
@@ -130,17 +130,17 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @return
 	 * @throws Exception
 	 */
-	public BasePage<RouteTemplateVo> pageQueryByStyle(RouteTemplateVo vo)throws Exception{
-		List<RouteTemplateVo> list = mapper.pageQueryByStyle(vo);
+	public BasePage<RouteTemplateVO> pageQueryByStyle(RouteTemplateVO vo)throws Exception{
+		List<RouteTemplateVO> list = mapper.pageQueryByStyle(vo);
 		int count = mapper.countQueryByStyle(vo);
-		//List<RouteTemplateVo> vos = Lists.newArrayList();
+		//List<RouteTemplateVO> vos = Lists.newArrayList();
 		String rtCoverPath = FilePros.httpRouteCoverpath();
-		for(RouteTemplateVo rt :list){
+		for(RouteTemplateVO rt :list){
 			String coverpath = rtCoverPath+"/"+StringUtils.trim(rt.getRouteCode())+"_"+StringUtils.trim(rt.getAlias())+"/"+rt.getCover();
 			rt.setCover(coverpath);
 			//vos.add(RouteTemplateKit.toRecord(rt));
 		}
-		return new BasePage<RouteTemplateVo>(vo.getStart(), vo.getLimit(), list,count);
+		return new BasePage<RouteTemplateVO>(vo.getStart(), vo.getLimit(), list,count);
 	}
 	/**
 	 * 
@@ -148,9 +148,9 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<RouteTemplateVo> queryByRelated(List<String> related)throws Exception{
+	public List<RouteTemplateVO> queryByRelated(List<String> related)throws Exception{
 		List<RouteTemplate> list = mapper.queryByRelated(related);
-		List<RouteTemplateVo> vos = Lists.newArrayList();
+		List<RouteTemplateVO> vos = Lists.newArrayList();
 		for(RouteTemplate rt:list){
 			vos.add(RouteTemplateKit.toRecord(rt));
 		}
@@ -163,11 +163,11 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<RouteTemplateVo> queryByItems(String travelItems)throws Exception{
-		List<RouteTemplateVo> list = mapper.queryByItems(travelItems);
-		List<RouteTemplateVo> vos = Lists.newArrayList();
+	public List<RouteTemplateVO> queryByItems(String travelItems)throws Exception{
+		List<RouteTemplateVO> list = mapper.queryByItems(travelItems);
+		List<RouteTemplateVO> vos = Lists.newArrayList();
 		String rtCoverPath = FilePros.httpRouteCoverpath();
-		for(RouteTemplateVo rt:list){
+		for(RouteTemplateVO rt:list){
 			String coverpath = rtCoverPath+"/"+StringUtils.trim(rt.getRouteCode())+"_"+StringUtils.trim(rt.getAlias())+"/"+rt.getCover();
 			rt.setCover(coverpath);
 			vos.add(rt);
@@ -180,17 +180,17 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @return
 	 * @throws Exception
 	 */
-	public BasePage<RouteTemplateVo> pageQueryByItems(RouteTemplateVo vo)throws Exception{
-		List<RouteTemplateVo> list = mapper.pageQueryByItems(vo);
-		List<RouteTemplateVo> vos = Lists.newArrayList();
+	public BasePage<RouteTemplateVO> pageQueryByItems(RouteTemplateVO vo)throws Exception{
+		List<RouteTemplateVO> list = mapper.pageQueryByItems(vo);
+		List<RouteTemplateVO> vos = Lists.newArrayList();
 		String rtCoverPath = FilePros.httpRouteCoverpath();
-		for(RouteTemplateVo rt:list){
+		for(RouteTemplateVO rt:list){
 			String coverpath = rtCoverPath+"/"+StringUtils.trim(rt.getRouteCode())+"_"+StringUtils.trim(rt.getAlias())+"/"+rt.getCover();
 			rt.setCover(coverpath);
 			vos.add(rt);
 		}
 		int count = mapper.countQueryByItems(vo);
-		return new BasePage<RouteTemplateVo>(vo.getStart(), vo.getLimit(), vos,count);
+		return new BasePage<RouteTemplateVO>(vo.getStart(), vo.getLimit(), vos,count);
 	}
 	/**
 	 * 
@@ -198,7 +198,7 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @return
 	 * @throws Exception
 	 */
-	public RouteTemplateVo queryByAlias(String alias)throws Exception{
+	public RouteTemplateVO queryByAlias(String alias)throws Exception{
 		RouteTemplate rt = mapper.queryByAlias(alias);
 		return RouteTemplateKit.toRecord(rt);
 	}
@@ -237,12 +237,12 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @param id
 	 * @return
 	 */
-	public RouteTemplateVo selectById(String id){
-		RouteTemplateVo vo =  mapper.selectById(id);
+	public RouteTemplateVO selectById(String id){
+		RouteTemplateVO vo =  mapper.selectById(id);
 		String ts = vo.getTravelItems();
-		List<TravelItemVo> list = tiDao.queryByIds(Arrays.asList(ts.split(",")));
+		List<TravelItemVO> list = tiDao.queryByIds(Arrays.asList(ts.split(",")));
 		List<String> alias = Lists.newArrayList();
-		for(TravelItemVo ti:list){
+		for(TravelItemVO ti:list){
 			alias.add(ti.getAlias());
 		}
 		//StringUtils.collectionToDelimitedString(list, ",");  
@@ -274,10 +274,10 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @param map
 	 * @return
 	 */
-/*	public List<RouteTemplateVo> searchRts(Map map)throws Exception{
+/*	public List<RouteTemplateVO> searchRts(Map map)throws Exception{
 		return mapper.searchRts(map);
 	};*/
-	public 	List<RouteTemplateVo> queryAll()throws Exception{
+	public 	List<RouteTemplateVO> queryAll()throws Exception{
 		return mapper.queryAll();
 	};
 	@Autowired

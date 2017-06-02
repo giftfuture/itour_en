@@ -15,7 +15,7 @@ itour.destinationssc = function(){
 						$(searchRts).each(function(i,e){
 							html+='<td align="center">'+
 								   	'<p><a href="'+basePath+'destination/detail/'+e.alias+'">'+e.item+'</a></p>'+
-								   	'<p><a href="'+basePath+'destination/detail/'+e.alias+'"><img src="'+basePath+e.cover+'" width="450" height="309" /></a></p>'+
+								   	'<p><a href="'+basePath+'destination/detail/'+e.alias+'"><img src="'+basePath+e.cover+'" width="420" height="233" /></a></p>'+
 								   	'<p style="text-align:left">'+e.shortContent+'</p>'+
 							    '</td>'+(i !=0 &&i%2==0?"</tr><tr>":"");
 						});

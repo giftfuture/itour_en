@@ -15,8 +15,8 @@ import com.itour.convert.SysMenuKit;
 import com.itour.dao.SysVariablesDao;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysVariables;
-import com.itour.vo.SysMenuVo;
-import com.itour.vo.SysVariablesVo;
+import com.itour.vo.SysMenuVO;
+import com.itour.vo.SysVariablesVO;
 
 /**
  * 
@@ -35,7 +35,7 @@ public class SysVariablesService<T> extends BaseService<T> {
 	 * @return 查询结果
 	 */
 	@SuppressWarnings("unchecked")
-	public BasePage<SysVariables> pagedQuery(SysVariablesVo vo) {
+	public BasePage<SysVariables> pagedQuery(SysVariablesVO vo) {
 		List<SysVariables> list = (List<SysVariables>) mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
 		return new BasePage<SysVariables>(vo.getStart(), vo.getLimit(), list, count);

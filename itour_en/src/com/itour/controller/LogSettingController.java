@@ -23,7 +23,7 @@ import com.itour.base.page.BasePage;
 import com.itour.base.web.BaseController;
 import com.itour.entity.LogSetting;
 import com.itour.service.LogSettingService;
-import com.itour.vo.LogSettingVo;
+import com.itour.vo.LogSettingVO;
  
 /**
  * 
@@ -56,7 +56,7 @@ public class LogSettingController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
-	public ModelAndView  list(LogSettingVo page,HttpServletRequest request) throws Exception{
+	public ModelAndView  list(LogSettingVO page,HttpServletRequest request) throws Exception{
 		return forward("server/sys/logSetting"); 
 	}
 	
@@ -70,7 +70,7 @@ public class LogSettingController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid  datalist(LogSettingVo vo,HttpServletResponse response) throws Exception{
+	public EasyUIGrid  datalist(LogSettingVO vo,HttpServletResponse response) throws Exception{
 		/*List<LogSetting> dataList = logSettingService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = getRootMap();

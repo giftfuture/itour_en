@@ -37,7 +37,15 @@ public class FilePros   {
             System.exit(-1);
         }
     }*/
-    
+    /**
+     * 水印图片
+     * @return
+     * @throws Exception
+     */
+    public static File watermark()throws Exception{
+    	String watermark =  rb.getString("watermark");
+    	return new File(watermark);
+    }
     /**
      * 订单正式报价单所在文件夹
      * @param key

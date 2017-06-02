@@ -41,7 +41,7 @@ import com.itour.service.LogSettingService;
 import com.itour.service.SysMenuService;
 import com.itour.service.SysRoleRelService;
 import com.itour.service.SysRoleService;
-import com.itour.vo.SysRoleVo;
+import com.itour.vo.SysRoleVO;
  
 @Controller
 @RequestMapping("/sysRole") 
@@ -74,7 +74,7 @@ public class SysRoleController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/role")
-	public ModelAndView role(SysRoleVo model,HttpServletRequest request) throws Exception{
+	public ModelAndView role(SysRoleVO model,HttpServletRequest request) throws Exception{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysRoleController的role方法");
 		return forward("server/sys/sysRole"); 
@@ -91,9 +91,9 @@ public class SysRoleController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid datalist(SysRoleVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public EasyUIGrid datalist(SysRoleVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//response.setContentType("application/json; charset=UTF-8");
-		BasePage<SysRoleVo> pagination = sysRoleService.pagedQuery(vo);
+		BasePage<SysRoleVO> pagination = sysRoleService.pagedQuery(vo);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysRoleController的dataList方法");
 		return dataGridAdapter.wrap(pagination); 

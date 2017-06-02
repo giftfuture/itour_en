@@ -9,7 +9,7 @@ import java.text.ParseException;
 
 import com.itour.base.util.DateUtil;
 import com.itour.entity.Feedback;
-import com.itour.vo.FeedbackVo;
+import com.itour.vo.FeedbackVO;
 /**
  * 
  * <br>
@@ -18,8 +18,8 @@ import com.itour.vo.FeedbackVo;
  */
 public class FeedbackKit{
 	
-	public static FeedbackVo toRecord(Feedback fb){
-		FeedbackVo vo = new FeedbackVo();
+	public static FeedbackVO toRecord(Feedback fb){
+		FeedbackVO vo = new FeedbackVO();
 		vo.setContent(fb.getContent());
 		if(fb.getCreateTime() !=null){	
 			vo.setCreateTime(DateUtil.getDateYmdHs(fb.getCreateTime()));
@@ -40,14 +40,14 @@ public class FeedbackKit{
 		if(fb.getUpdateTime() !=null){
 			vo.setUpdateTime(DateUtil.getDateYmdHs(fb.getUpdateTime()));
 		}
-		vo.setValid(fb.isValid());
+		vo.setValid(fb.getValid());
 		vo.setRoute(fb.getRoute());
-		vo.setSex(fb.isSex());
-		vo.setPublicShow(fb.isPublicShow());
+		vo.setSex(fb.getSex());
+		vo.setPublicShow(fb.getPublicShow());
 		return vo;
 	}
 	
-	public static Feedback toEntity(FeedbackVo fb){
+	public static Feedback toEntity(FeedbackVO fb){
 		Feedback bean = new Feedback();
 		try {
 			bean.setContent(fb.getContent());
@@ -70,10 +70,10 @@ public class FeedbackKit{
 			if(StringUtils.isNotEmpty(fb.getUpdateTime())){
 				bean.setUpdateTime(DateUtil.fromStringToDate(DateUtil.ymdhm, fb.getUpdateTime()));
 			}
-			bean.setValid(fb.isValid());
+			bean.setValid(fb.getValid());
 			bean.setRoute(fb.getRoute());
-			bean.setSex(fb.isSex());
-			bean.setPublicShow(fb.isPublicShow());
+			bean.setSex(fb.getSex());
+			bean.setPublicShow(fb.getPublicShow());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

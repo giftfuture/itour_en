@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.itour.base.util.DateUtil;
 import com.itour.entity.LogSetting;
-import com.itour.vo.LogSettingVo;
+import com.itour.vo.LogSettingVO;
 /**
  * 
  * <br>
@@ -14,8 +14,8 @@ import com.itour.vo.LogSettingVo;
  */
 public class LogSettingKit{
 	
-    public static LogSettingVo toVo(LogSetting ls)throws Exception{
-    	LogSettingVo vo = new LogSettingVo();
+    public static LogSettingVO toVo(LogSetting ls)throws Exception{
+    	LogSettingVO vo = new LogSettingVO();
     	vo.setCreater(ls.getCreater());
     	vo.setCreateTime(DateUtil.formatDate(ls.getCreateTime(), DateUtil.y_m_dhms));
     	vo.setDeletescriptTemplate(ls.getDeletescriptTemplate());
@@ -28,7 +28,7 @@ public class LogSettingKit{
     	return vo;
     }
     
-    public static LogSetting toEntity(LogSettingVo ls)throws Exception{
+    public static LogSetting toEntity(LogSettingVO ls)throws Exception{
     	LogSetting vo = new LogSetting();
     	vo.setCreater(ls.getCreater());
     	vo.setCreateTime(DateUtil.fromStringToDate(DateUtil.y_m_dhms, ls.getCreateTime()));

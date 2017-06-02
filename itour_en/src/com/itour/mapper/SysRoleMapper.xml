@@ -23,37 +23,37 @@
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where deleted=0
+where sys_role.deleted=0
 <trim  suffixOverrides="," >
 	<if test="id != null" >
-	    and id like CONCAT('%', #{id}, '%')
+	    and sys_role.id like CONCAT('%', #{id}, '%')
 	</if>
 	 <if test="roleName != null and roleName != ''" >
-	    and roleName like CONCAT('%', #{roleName}, '%')
+	    and sys_role.roleName like CONCAT('%', #{roleName}, '%')
 	</if>
 	<if test="createTime != null and createTime != ''" >
-	     and DATE_FORMAT(createTime,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	     and DATE_FORMAT(sys_role.createTime,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
 	<if test="createBy != null and createBy != ''" >
-	    and createBy like CONCAT('%', #{createBy}, '%')
+	    and sys_role.createBy like CONCAT('%', #{createBy}, '%')
 	</if>
 	<if test="updateTime != null and updateTime != ''" >
-	     and DATE_FORMAT(updateTime,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
+	     and DATE_FORMAT(sys_role.updateTime,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 	</if>
 	<if test="updateBy != null and updateBy != ''" >
-	    and updateBy like CONCAT('%', #{updateBy}, '%')
+	    and sys_role.updateBy like CONCAT('%', #{updateBy}, '%')
 	</if>
  	<if test="descr != null and descr != ''" >
-	    and descr like CONCAT('%', #{descr}, '%')
+	    and sys_role.descr like CONCAT('%', #{descr}, '%')
 	</if>
 	<if test="level != null and level != 0">
-		and role_level = #{level}	
+		and sys_role.role_level = #{level}	
 	</if>
 	<if test="state !=null">
-		and state=#{state}
+		and sys_role.state=#{state}
 	</if>
 	<if test="number != null and number != 0">
-		and number = #{number}	
+		and sys_role.number = #{number}	
 	</if>
 </trim>
 </sql>
@@ -80,13 +80,13 @@ select max(number) as number from sys_role
 	<if test="roleName != null and roleName != '' ">
 		roleName=#{roleName},
 	</if>
-	<if test="createBy != null  ">
+	<if test="createBy != null and createBy != '' ">
 		createBy=#{createBy},
 	</if>
-	<if test="updateBy != null  ">
+	<if test="updateBy != null and updateBy != '' ">
 		updateBy=#{updateBy},
 	</if>
-	<if test="state != null  ">
+	<if test="state != null and state != '' ">
 		state=#{state},
 	</if>
 	<if test="descr != null  and descr != '' ">

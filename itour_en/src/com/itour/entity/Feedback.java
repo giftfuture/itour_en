@@ -23,33 +23,35 @@ public class Feedback extends BaseEntity {
 	private String name;
 	private short teamPersons;
 	private Timestamp preferedDate;
-	private boolean isValid;
+	private int valid;
 	private String route;//路线
-	private boolean sex;//true=male,false=female
-	private boolean publicShow;//公开展示
+	private int sex;//true=male,false=female
+	private int publicShow;//公开展示
 	
-	public boolean isPublicShow() {
-		return publicShow;
-	}
-	public void setPublicShow(boolean publicShow) {
-		this.publicShow = publicShow;
-	}
-	public boolean isSex() {
+	
+ 
+	public int getSex() {
 		return sex;
 	}
-	public void setSex(boolean sex) {
+	public void setSex(int sex) {
 		this.sex = sex;
+	}
+	public int getPublicShow() {
+		return publicShow;
+	}
+	public void setPublicShow(int publicShow) {
+		this.publicShow = publicShow;
 	}
 	public String getRoute() {
 		return route;
 	}
 	public void setRoute(String route) {
 		this.route = route;
-	}	public boolean isValid() {
-		return isValid;
+	}	public int getValid() {
+		return valid;
 	}
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
+	public void setValid(int valid) {
+		this.valid = valid;
 	}
 	public String getName() {
 		return name;

@@ -33,7 +33,7 @@
 	<result column="season" property="season"/>
 	<result column="recommand_equip" property="recommandEquip"/>
 	<result column="scope_alias" property="scopeAlias"/>
-	<result column="is_valid" property="isValid"/>
+	<result column="valid" property="valid"/>
 	<result column="hot" property="hot"/>
 	<result column="create_by" property="createBy"/>
 	<result column="update_by" property="updateBy"/>
@@ -45,7 +45,7 @@
 	<result column="freeseason" property="freeseason"/>
 	<result column="busyseason" property="busyseason"/>
 </resultMap>
-<resultMap id="BaseResultMapVo" type="com.itour.vo.TravelItemVo" >
+<resultMap id="BaseResultMapVo" type="com.itour.vo.TravelItemVO" >
 	<result column="id" property="id"/>
 	<result column="item" property="item"/>
 	<result column="alias" property="alias"/>
@@ -74,7 +74,7 @@
 	<result column="season" property="season"/>
 	<result column="recommand_equip" property="recommandEquip"/>
 	<result column="scope_alias" property="scopeAlias"/>
-	<result column="is_valid" property="isValid"/>
+	<result column="valid" property="valid"/>
 	<result column="hot" property="hot"/>
 	<result column="create_by" property="createBy"/>
 	<result column="update_by" property="updateBy"/>
@@ -95,12 +95,12 @@
 <sql id="Base_Column_List" >
 	 id, item,alias, item_code, elevation, content, photos, remark, mileage, scope,scope_alias, short_content, rank, recommand_reason,
 	  discount, rcd_days, difficulty_rate, happy_value, recommand_crowd,travel_style,cover,feature,equip,exclude,itinerary,map,season,
-	  recommand_equip,is_valid,hot,create_by,update_by,create_time,update_time,star_level,tickets_block,fullyear_ticket,freeseason,busyseason
+	  recommand_equip,valid,hot,create_by,update_by,create_time,update_time,star_level,tickets_block,fullyear_ticket,freeseason,busyseason
 </sql>
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where travel_item.is_valid=1
+where travel_item.valid=1
 <trim  suffixOverrides="," >
 	<if test="starLevel != null and starLevel != ''" >
 	    and travel_item.star_level =#{starLevel}
@@ -169,7 +169,7 @@ where travel_item.is_valid=1
 	    and travel_item.tickets_block =#{ticketsBlock}
 	</if>
 	<if test="fullyearTicket != null and fullyearTicket !=''">
-		and fullyear_ticket=#{fullyearTicket}
+		and travel_item.fullyear_ticket=#{fullyearTicket}
 	</if>
 </trim>
 </sql>
@@ -182,7 +182,7 @@ where travel_item.is_valid=1
   </selectKey> -->
   insert into travel_item(id,item,alias,item_code,elevation,content,photos,remark,mileage,scope,scope_alias,short_content,
   rank,recommand_reason,discount,rcd_days,difficulty_rate,happy_value,recommand_crowd,travel_style,cover,feature,equip,exclude,
-  itinerary,map,season,recommand_equip,is_valid,hot,create_by,update_by,create_time,update_time,star_level,tickets_block,fullyear_ticket,freeseason,busyseason)
+  itinerary,map,season,recommand_equip,valid,hot,create_by,update_by,create_time,update_time,star_level,tickets_block,fullyear_ticket,freeseason,busyseason)
  values(#{id},#{item},#{alias},#{itemCode},#{elevation},#{content},#{photos},#{remark},#{mileage},#{scope},#{scopeAlias},#{shortContent},
  #{rank},#{recommandReason},#{discount},#{rcdDays},#{difficultyRate},#{happyValue},#{recommandCrowd},#{travelStyle},#{cover},#{feature},
  #{equip},#{exclude},#{itinerary},#{map},#{season},#{recommand_equip},1,#{hot},#{createBy},#{updateBy},now(),now(),#{starLevel},#{ticketsBlock},#{fullyearTicket},#{freeseason},#{busyseason})
@@ -207,9 +207,9 @@ where travel_item.is_valid=1
 		<if test="starLevel != null and starLevel != ''" >
 		    travel_item.star_level =#{starLevel},
 		</if>
-		<if test="isValid != null and isValid !=''">
-			is_valid=#{isValid},
-		</if>
+		<!-- <if test="valid != null and valid !=''">
+			valid=#{valid},
+		</if> -->
 		<if test="item != null and item != '' ">
 			item=#{item},
 		</if>
@@ -303,7 +303,7 @@ where travel_item.is_valid=1
 </delete>
  <!-- 逻辑删除 -->
 <update id="logicdelete" parameterType="java.lang.String">
-	update travel_item set is_valid=0 where id = #{id}
+	update travel_item set valid=0 where id = #{id}
 </update>
 <!-- 上传封面 -->
 <update id="uploadCover" parameterType="com.itour.entity.TravelItem">
@@ -327,7 +327,7 @@ select travel_item.<include refid="Base_Column_List" />,areas.areaname
 </select>	
  -->
 <select id="allItems"  resultType="hashmap">
- select alias ,item from travel_item where is_valid=1
+ select alias ,item from travel_item where valid=1
 </select>	
 	
 <select id="searchTravelItem" resultMap="BaseResultMapVo" parameterType="java.util.Map">
@@ -364,7 +364,7 @@ select travel_item.<include refid="Base_Column_List" />,areas.areaname
 <select id="queryMapByScope" resultMap="BaseResultMapVo" parameterType="java.lang.String">
  	select travel_item.alias,travel_item.item from travel_item where travel_item.scope=#{scope}
 </select>
-<select id="pageQueryByScope" resultMap="BaseResultMapVo" parameterType="com.itour.vo.TravelItemVo">
+<select id="pageQueryByScope" resultMap="BaseResultMapVo" parameterType="com.itour.vo.TravelItemVO">
  	select travel_item.<include refid="Base_Column_List"/>,areas.areaname from travel_item
  	left join areas on travel_item.scope=areas.id  where travel_item.scope=#{scope}
 	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
@@ -375,7 +375,7 @@ select travel_item.<include refid="Base_Column_List" />,areas.areaname
     </if>
 </select>
 
-<select id="countByScope"  resultType="java.lang.Integer" parameterType="com.itour.vo.TravelItemVo">
+<select id="countByScope"  resultType="java.lang.Integer" parameterType="com.itour.vo.TravelItemVO">
  	select count(1) from travel_item where travel_item.scope=#{scope}
 </select>
 <!-- <select id="queryByScopeAlias" resultMap="BaseResultMap" parameterType="java.lang.String">

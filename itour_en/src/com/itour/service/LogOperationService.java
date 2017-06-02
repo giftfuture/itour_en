@@ -16,8 +16,8 @@ import com.itour.convert.LogOperationKit;
 import com.itour.dao.LogOperationDao;
 import com.itour.entity.Customers;
 import com.itour.entity.LogOperation;
-import com.itour.vo.CustomerVo;
-import com.itour.vo.LogOperationVo;
+import com.itour.vo.CustomerVO;
+import com.itour.vo.LogOperationVO;
 
 /**
  * 
@@ -38,9 +38,9 @@ public class LogOperationService<T> extends BaseService<T> {
 	 */
 
 	@SuppressWarnings("unchecked")
-	public BasePage<Map<String, Object>> pagedQuery(LogOperationVo vo) {
+	public BasePage<Map<String, Object>> pagedQuery(LogOperationVO vo) {
 		int count = 0;
-		//BasePage<CustomerVo> basepage = (BasePage<CustomerVo>)mapper.pagedQuery(page);
+		//BasePage<CustomerVO> basepage = (BasePage<CustomerVO>)mapper.pagedQuery(page);
 				//Map<String, String> map = Maps.newHashMap();
 		List<Map<String, Object>> records = Lists.newArrayList();
 		try {

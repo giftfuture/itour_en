@@ -16,7 +16,7 @@ import com.itour.base.service.BaseService;
 import com.itour.convert.CustomerKit;
 import com.itour.dao.CustomersDao;
 import com.itour.entity.Customers;
-import com.itour.vo.CustomerVo;
+import com.itour.vo.CustomerVO;
 
 /**
  * 
@@ -43,10 +43,10 @@ public class CustomersService extends BaseService<Customers> {
 	 * @return 查询结果
 	 */
 
-	public BasePage<Map<String, Object>> pagedQuery(CustomerVo vo) {
+	public BasePage<Map<String, Object>> pagedQuery(CustomerVO vo) {
 		List<Customers> list = mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
-		//BasePage<CustomerVo> basepage = (BasePage<CustomerVo>)mapper.pagedQuery(page);
+		//BasePage<CustomerVO> basepage = (BasePage<CustomerVO>)mapper.pagedQuery(page);
 		//Map<String, String> map = Maps.newHashMap();
 		List<Map<String, Object>> records = Lists.newArrayList();
 		for(int i = 0; i < list.size(); i++) {
@@ -60,10 +60,10 @@ public class CustomersService extends BaseService<Customers> {
 	 * @param id
 	 * @return
 	 */
-	public List<CustomerVo> queryOrdersByCid(String id){
+	public List<CustomerVO> queryOrdersByCid(String id){
 		return mapper.queryOrdersByCid(id);
 	};
-	public CustomerVo selectById(String id){
+	public CustomerVO selectById(String id){
 		return mapper.selectById(id);
 	};
 }

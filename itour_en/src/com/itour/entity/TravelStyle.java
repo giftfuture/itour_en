@@ -18,7 +18,7 @@ public class TravelStyle extends BaseEntity {
 	private static final long serialVersionUID = 857054434524741892L;
 	private java.lang.String id;//   	private java.lang.String type;//   
 	private java.lang.String remark;//  	private String alias;
-	private boolean valid;
+	private int valid;
 	private String descrip;
 	private String cover;
 	private String createBy;
@@ -80,11 +80,12 @@ public class TravelStyle extends BaseEntity {
 	public void setAlias(String alias) {
 		this.alias = alias;
 	}
-	public boolean isValid() {
+	public int getValid() {
 		return valid;
 	}
-	public void setValid(boolean valid) {
+	public void setValid(int valid) {
 		this.valid = valid;
-	}	
+	}
+	 	
 }
 

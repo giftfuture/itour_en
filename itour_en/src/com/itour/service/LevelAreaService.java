@@ -15,7 +15,7 @@ import com.itour.base.service.BaseService;
 import com.itour.convert.LevelAreaKit;
 import com.itour.dao.LevelAreaDao;
 import com.itour.entity.LevelArea;
-import com.itour.vo.LevelAreaVo;
+import com.itour.vo.LevelAreaVO;
 @Service("levelAreaService")
 public class LevelAreaService extends BaseService<LevelArea>{
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
@@ -34,15 +34,15 @@ public class LevelAreaService extends BaseService<LevelArea>{
 	 * @return 查询结果
 	 */
 
-	public BasePage<Map<String, String>> pagedQuery(LevelAreaVo vo) {
+	public BasePage<Map<String, String>> pagedQuery(LevelAreaVO vo) {
 			//vo.setGroupField("level1_area,level2_area");
 			vo.setSort("level_area.level1_area desc,level_area.level2_area desc");
 			vo.setOrderDirection(true);
-			List<LevelAreaVo> list = mapper.queryByVoList(vo);
+			List<LevelAreaVO> list = mapper.queryByVoList(vo);
 			int count = mapper.queryByCount(vo);
 			List<Map<String, String>> records = Lists.newArrayList();
 			for(int i = 0; i < list.size(); i++) {
-				LevelAreaVo areas = list.get(i);
+				LevelAreaVO areas = list.get(i);
 				records.add(LevelAreaKit.votoRecord(areas));
 			}
 			return new BasePage<Map<String, String>>(vo.getStart(), vo.getLimit(), records, count);
@@ -56,7 +56,7 @@ public class LevelAreaService extends BaseService<LevelArea>{
 	public List<LevelArea> allAreas(){
 		return mapper.queryAll();
 	}
-	public LevelAreaVo selectById(@Param("id")String id){
+	public LevelAreaVO selectById(@Param("id")String id){
 		return mapper.selectById(id);
 	};
 }

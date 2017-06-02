@@ -13,7 +13,7 @@
 	<result column="children" property="children"/>
 	<result column="update_time" property="updateTime"/>
 	<result column="remark" property="remark"/>
-	<result column="is_as_adult" property="isAsAdult"/>
+	<result column="as_adult" property="asAdult"/>
 	<result column="ticket_block" property="ticketBlock"/>
 	<result column="ticket_asadult" property="ticketAsadult"/>
 	<result column="travel_docs" property="travelDocs"/>
@@ -73,7 +73,7 @@
 	<result column="show_presented" property="showPresented"/>
 	<result column="agoda_detail" property="agodaDetail"/>
 </resultMap>
- <resultMap id="BaseResultMapVo" type="com.itour.vo.QuoteFormVo" >
+ <resultMap id="BaseResultMapVo" type="com.itour.vo.QuoteFormVO" >
 	<result column="id" property="id"/>
 	<result column="route_template" property="routeTemplate"/>
 	<result column="berief_trip" property="beriefTrip"/>
@@ -82,7 +82,7 @@
 	<result column="children" property="children"/>
 	<result column="update_time" property="updateTime"/>
 	<result column="remark" property="remark"/>
-	<result column="is_as_adult" property="isAsAdult"/>
+	<result column="as_adult" property="asAdult"/>
 	<result column="ticket_block" property="ticketBlock"/>
 	<result column="ticket_asadult" property="ticketAsadult"/>
 	<result column="travel_docs" property="travelDocs"/>
@@ -144,7 +144,7 @@
 </resultMap>      
 <!-- quotation table all fields -->
 <sql id="Base_Column_List" >
-	  id, route_template, berief_trip,show_trip, adults,children, create_time, update_time, remark, create_by, update_by, is_as_adult,ticket_block,travel_docs,
+	  id, route_template, berief_trip,show_trip, adults,children, create_time, update_time, remark, create_by, update_by, as_adult,ticket_block,travel_docs,
 	  traveldoc_asadult,tour_guide,tourguide_asadult,hotel,hotel_asadult,rent_car,rentcar_asadult,big_traffic,big_traffic_sum,bigtraffice_asadult,dinner,
 	  dinner_asadult,insurance,insurance_asadult,comprehensive_costs,comphcost_asadult,recreation,recreation_asadult,item_guide,itemguide_asadult,bathorse_cost,
 	  bathcost_asadult,ridehorse_cost,ridecost_asadult,climb_register_cost,climbrcost_asadult,climb_nexus_cost,climbncost_asadult,else_cost,elsecost_asadult,
@@ -155,63 +155,63 @@
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where valid=1
+where quote_form.valid=1
 <trim  suffixOverrides="," >
-		<if test="routeTemplate != null and routeTemplate != ''">and route_template like CONCAT('%', #{routeTemplate}, '%')</if>
-		<if test="beriefTrip != null and beriefTrip != ''">and berief_trip like CONCAT('%', #{beriefTrip}, '%')</if>
-		<if test="showTrip != null and showTrip  != ''">and show_trip like CONCAT('%', #{showTrip}, '%')</if>
-		<if test="adults != null">and adults=#{adults}</if>
-		<if test="children != null">and children=#{children}</if>
+		<if test="routeTemplate != null and routeTemplate != ''">and quote_form.route_template like CONCAT('%', #{routeTemplate}, '%')</if>
+		<if test="beriefTrip != null and beriefTrip != ''">and quote_form.berief_trip like CONCAT('%', #{beriefTrip}, '%')</if>
+		<if test="showTrip != null and showTrip  != ''">and quote_form.show_trip like CONCAT('%', #{showTrip}, '%')</if>
+		<if test="adults != null">and quote_form.adults=#{adults}</if>
+		<if test="children != null">and quote_form.children=#{children}</if>
 		<if test="remark != null and remark != ''" >
-		    and remark like CONCAT('%', #{remark}, '%')
+		    and quote_form.remark like CONCAT('%', #{remark}, '%')
 		</if>
-		<if test="createBy != null and createBy !=''">and create_by=#{createBy}</if>
-		<if test="updateBy != null and updateBy !=''">and update_by=#{updateBy}</if>
-		<if test="isAsAdult!=null">and is_as_adult=#{isAsAdult}</if>
-		<if test="ticketBlock!=null and ticketBlock !=''">and ticket_block like CONCAT('%', #{ticketBlock}, '%')</if>
-		<if test="travelDocs!=null and travelDocs !=''">and travel_docs like CONCAT('%', #{travelDocs}, '%')</if>
-		<if test="traveldocAsadult !=null">and traveldoc_asadult=#{traveldocAsadult}</if>
-		<if test="tourGuide!=null and tourGuide !=''">and tour_guide like CONCAT('%', #{tourGuide}, '%')</if>
-		<if test="tourguideAsadult!=null">and tourguide_asadult=#{tourguideAsadult}</if>
-		<if test="hotel!=null and hotel!=''">and hotel like CONCAT('%', #{hotel}, '%')</if>
-		<if test="hotelAsadult!=null">and hotel_asadult=#{hotelAsadult}</if>
-		<if test="rentCar!=null and rentCar !=''">and rent_car like CONCAT('%', #{rentCar}, '%')</if>
-		<if test="rentcarAsadult!=null">and rentcar_asadult=#{rentcarAsadult}</if>
-		<if test="bigTraffic!=null and bigTraffic !=''">and big_traffic like CONCAT('%', #{bigTraffic}, '%')</if>
-		<if test="bigTrafficSum!=null">and big_traffic_sum=#{bigTrafficSum}</if>
-		<if test="bigtrafficeAsadult!=null">and bigtraffice_asadult=#{bigtrafficeAsadult}</if>
-		<if test="dinner!=null and dinner !=''">and dinner like CONCAT('%', #{dinner}, '%')</if>
-		<if test="dinnerAsadult!=null">and dinner_asadult=#{dinnerAsadult}</if>
-		<if test="insurance!=null and insurance!=''">and insurance like CONCAT('%', #{insurance}, '%')</if>
-		<if test="insuranceAsadult!=null">and insurance_asadult=#{insuranceAsadult}</if>
-		<if test="comprehensiveCosts!=null and comprehensiveCosts !=''">and comprehensive_costs like CONCAT('%', #{comprehensiveCosts}, '%')</if>
-		<if test="comphcostAsadult!=null">and comphcost_asadult=#{comphcostAsadult}</if>
-		<if test="recreation!=null and recreation!=''">and recreation like CONCAT('%', #{recreation}, '%')</if>
-		<if test="recreationAsadult!=null">and recreation_asadult=#{recreationAsadult}</if>
-		<if test="itemGuide!=null and itemGuide !=''">and item_guide like CONCAT('%', #{itemGuide}, '%')</if>
-		<if test="itemguideAsadult!=null">and itemguide_asadult=#{itemguideAsadult}</if>
-		<if test="bathorseCost!=null and bathorseCost !=''">and bathorse_cost like CONCAT('%', #{bathorseCost}, '%')</if>
-		<if test="bathcostAsadult!=null">and bathcost_asadult=#{bathcostAsadult}</if>
-		<if test="ridehorseCost!=null and ridehorseCost !=''">and ridehorse_cost like CONCAT('%', #{ridehorseCost}, '%')</if>
-		<if test="ridecostAsadult!=null">and ridecost_asadult=#{ridecostAsadult}</if>
-		<if test="climbRegisterCost!=null and climbRegisterCost !=''">and climb_register_cost like CONCAT('%', #{climbRegisterCost}, '%')</if>
-		<if test="climbrcostAsadult!=null">and climbrcost_asadult=#{climbrcostAsadult}</if>
-		<if test="climbNexusCost!=null and climbNexusCost !=''">and climb_nexus_cost like CONCAT('%', #{climbNexusCost}, '%')</if>
-		<if test="climbncostAsadult!=null">and climbncost_asadult=#{climbncostAsadult}</if>
-		<if test="elseCost!=null and elseCost!=''">and else_cost like CONCAT('%', #{remark}, '%')</if>
-		<if test="elsecostAsadult!=null and elsecostAsadult!=''">and elsecost_asadult=#{elsecostAsadult}</if>
-		<if test="presented!=null and presented!=''">and presented like CONCAT('%', #{presented}, '%')</if>
+		<if test="createBy != null and createBy !=''">and quote_form.create_by=#{createBy}</if>
+		<if test="updateBy != null and updateBy !=''">and quote_form.update_by=#{updateBy}</if>
+		<if test="asAdult!=null">and quote_form.as_adult=#{asAdult}</if>
+		<if test="ticketBlock!=null and ticketBlock !=''">and quote_form.ticket_block like CONCAT('%', #{ticketBlock}, '%')</if>
+		<if test="travelDocs!=null and travelDocs !=''">and quote_form.travel_docs like CONCAT('%', #{travelDocs}, '%')</if>
+		<if test="traveldocAsadult !=null">and quote_form.traveldoc_asadult=#{traveldocAsadult}</if>
+		<if test="tourGuide!=null and tourGuide !=''">and quote_form.tour_guide like CONCAT('%', #{tourGuide}, '%')</if>
+		<if test="tourguideAsadult!=null">and quote_form.tourguide_asadult=#{tourguideAsadult}</if>
+		<if test="hotel!=null and hotel!=''">and quote_form.hotel like CONCAT('%', #{hotel}, '%')</if>
+		<if test="hotelAsadult!=null">and quote_form.hotel_asadult=#{hotelAsadult}</if>
+		<if test="rentCar!=null and rentCar !=''">and quote_form.rent_car like CONCAT('%', #{rentCar}, '%')</if>
+		<if test="rentcarAsadult!=null">and quote_form.rentcar_asadult=#{rentcarAsadult}</if>
+		<if test="bigTraffic!=null and bigTraffic !=''">and quote_form.big_traffic like CONCAT('%', #{bigTraffic}, '%')</if>
+		<if test="bigTrafficSum!=null">and quote_form.big_traffic_sum=#{bigTrafficSum}</if>
+		<if test="bigtrafficeAsadult!=null">and quote_form.bigtraffice_asadult=#{bigtrafficeAsadult}</if>
+		<if test="dinner!=null and dinner !=''">and quote_form.dinner like CONCAT('%', #{dinner}, '%')</if>
+		<if test="dinnerAsadult!=null">and quote_form.dinner_asadult=#{dinnerAsadult}</if>
+		<if test="insurance!=null and insurance!=''">and quote_form.insurance like CONCAT('%', #{insurance}, '%')</if>
+		<if test="insuranceAsadult!=null">and quote_form.insurance_asadult=#{insuranceAsadult}</if>
+		<if test="comprehensiveCosts!=null and comprehensiveCosts !=''">and quote_form.comprehensive_costs like CONCAT('%', #{comprehensiveCosts}, '%')</if>
+		<if test="comphcostAsadult!=null">and quote_form.comphcost_asadult=#{comphcostAsadult}</if>
+		<if test="recreation!=null and recreation!=''">and quote_form.recreation like CONCAT('%', #{recreation}, '%')</if>
+		<if test="recreationAsadult!=null">and quote_form.recreation_asadult=#{recreationAsadult}</if>
+		<if test="itemGuide!=null and itemGuide !=''">and quote_form.item_guide like CONCAT('%', #{itemGuide}, '%')</if>
+		<if test="itemguideAsadult!=null">and quote_form.itemguide_asadult=#{itemguideAsadult}</if>
+		<if test="bathorseCost!=null and bathorseCost !=''">and quote_form.bathorse_cost like CONCAT('%', #{bathorseCost}, '%')</if>
+		<if test="bathcostAsadult!=null">and quote_form.bathcost_asadult=#{bathcostAsadult}</if>
+		<if test="ridehorseCost!=null and ridehorseCost !=''">and quote_form.ridehorse_cost like CONCAT('%', #{ridehorseCost}, '%')</if>
+		<if test="ridecostAsadult!=null">and quote_form.ridecost_asadult=#{ridecostAsadult}</if>
+		<if test="climbRegisterCost!=null and climbRegisterCost !=''">and quote_form.climb_register_cost like CONCAT('%', #{climbRegisterCost}, '%')</if>
+		<if test="climbrcostAsadult!=null">and quote_form.climbrcost_asadult=#{climbrcostAsadult}</if>
+		<if test="climbNexusCost!=null and climbNexusCost !=''">and quote_form.climb_nexus_cost like CONCAT('%', #{climbNexusCost}, '%')</if>
+		<if test="climbncostAsadult!=null">and quote_form.climbncost_asadult=#{climbncostAsadult}</if>
+		<if test="elseCost!=null and elseCost!=''">and quote_form.else_cost like CONCAT('%', #{remark}, '%')</if>
+		<if test="elsecostAsadult!=null and elsecostAsadult!=''">and quote_form.elsecost_asadult=#{elsecostAsadult}</if>
+		<if test="presented!=null and presented!=''">and quote_form.presented like CONCAT('%', #{presented}, '%')</if>
 		<if test="createTime != null and createTime !=''" >
-		   and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+		   and DATE_FORMAT(quote_form.create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 		</if>
 		<if test="updateTime != null and updateTime !=''" >
-		   and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
+		   and DATE_FORMAT(quote_form.update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 		</if>
-		<if test="groupCode !=null and groupCode!=''">and group_code =#{groupCode}</if>
+		<if test="groupCode !=null and groupCode!=''">and quote_form.group_code =#{groupCode}</if>
 		<if test="groupDate != null and groupDate !=''" >
-		   and DATE_FORMAT(group_date,'%Y-%m-%d') = DATE_FORMAT(#{groupDate},'%Y-%m-%d') 
+		   and DATE_FORMAT(quote_form.group_date,'%Y-%m-%d') = DATE_FORMAT(#{groupDate},'%Y-%m-%d') 
 		</if>
-		<if test="agodaDetail !=null and agodaDetail !=''">and  agoda_detail like CONCAT('%', #{agodaDetail}, '%')</if>
+		<if test="agodaDetail !=null and agodaDetail !=''">and  quote_form.agoda_detail like CONCAT('%', #{agodaDetail}, '%')</if>
 </trim>
 </sql>
    
@@ -221,13 +221,13 @@ where valid=1
 <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into quote_form(id,route_template, berief_trip,show_trip, adults,children, create_time, update_time, remark, create_by, update_by, is_as_adult,ticket_block,travel_docs,
+  insert into quote_form(id,route_template, berief_trip,show_trip, adults,children, create_time, update_time, remark, create_by, update_by, as_adult,ticket_block,travel_docs,
 	  traveldoc_asadult,tour_guide,tourguide_asadult,hotel,hotel_asadult,rent_car,rentcar_asadult,big_traffic,big_traffic_sum,bigtraffice_asadult,dinner,
 	  dinner_asadult,insurance,insurance_asadult,comprehensive_costs,comphcost_asadult,recreation,recreation_asadult,item_guide,itemguide_asadult,bathorse_cost,
 	  bathcost_asadult,ridehorse_cost,ridecost_asadult,climb_register_cost,climbrcost_asadult,climb_nexus_cost,climbncost_asadult,else_cost,elsecost_asadult,
 	  presented,valid,group_code,group_date,show_ticket,show_traveldoc,show_tourguide,show_hotel,show_rentcar,show_bigtraffic,show_dinner,show_insurance,show_comphcost,
 	  show_recreation,show_itemguide,show_bathorse,show_ridehorse,show_climbregister,show_climbnexus,show_elsecost,show_presented,agoda_detail)
-      values(#{id},#{routeTemplate}, #{beriefTrip},#{showTrip}, #{adults},#{children}, now(), now(), #{remark}, #{createBy}, #{updateBy}, #{isAsAdult},#{ticketBlock},#{travelDocs},
+      values(#{id},#{routeTemplate}, #{beriefTrip},#{showTrip}, #{adults},#{children}, now(), now(), #{remark}, #{createBy}, #{updateBy}, #{asAdult},#{ticketBlock},#{travelDocs},
 	  #{traveldocAsadult},#{tourGuide},#{tourguideAsadult},#{hotel},#{hotelAsadult},#{rentCar},#{rentcarAsadult},#{bigTraffic},#{bigTrafficSum},#{bigtrafficeAsadult},#{dinner},
 	  #{dinnerAsadult},#{insurance},#{insuranceAsadult},#{comprehensiveCosts},#{comphcostAsadult},#{recreation},#{recreationAsadult},#{itemGuide},#{itemguideAsadult},#{bathorseCost},
 	  #{bathcostAsadult},#{ridehorseCost},#{ridecostAsadult},#{climbRegisterCost},#{climbrcostAsadult},#{climbNexusCost},#{climbncostAsadult},#{elseCost},#{elsecostAsadult},
@@ -259,51 +259,50 @@ where valid=1
 		<if test="routeTemplate != null and routeTemplate != ''">route_template=#{routeTemplate},</if>
 		<if test="beriefTrip != null and beriefTrip != ''">berief_trip=#{beriefTrip},</if>
 		<if test="showTrip != null and showTrip  != ''">show_trip =#{showTrip},</if>
-		<if test="adults != null">adults=#{adults},</if>
-		<if test="children != null">children=#{children},</if>
+		<if test="adults != null and adults != ''">adults=#{adults},</if>
+		<if test="children != null and children != ''">children=#{children},</if>
 		<if test="remark != null and remark != ''">remark=#{remark},</if>
 		<if test="createBy != null and createBy !=''">create_by=#{createBy},</if>
 		<if test="updateBy != null and updateBy !=''">update_by=#{updateBy},</if>
-		<if test="isAsAdult!=null">is_as_adult=#{isAsAdult},</if>
+		<if test="asAdult != null and asAdult !=''">as_adult=#{asAdult},</if>
 		<if test="ticketBlock!=null and ticketBlock!=''">ticket_block=#{ticketBlock},</if>
-		<if test="ticketAsadult !=null">ticket_asadult=#{ticketAsadult},</if>
+		<if test="ticketAsadult != null and ticketAsadult != ''">ticket_asadult=#{ticketAsadult},</if>
 		<if test="travelDocs!=null and travelDocs!=''">travel_docs=#{travelDocs},</if>
-		<if test="traveldocAsadult !=null">traveldoc_asadult=#{traveldocAsadult},</if>
+		<if test="traveldocAsadult != null and traveldocAsadult != ''">traveldoc_asadult=#{traveldocAsadult},</if>
 		<if test="tourGuide!=null and tourGuide!=''">tour_guide=#{tourGuide},</if>
-		<if test="tourguideAsadult!=null">tourguide_asadult=#{tourguideAsadult},</if>
+		<if test="tourguideAsadult != null and tourguideAsadult != ''">tourguide_asadult=#{tourguideAsadult},</if>
 		<if test="hotel!=null and hotel!=''">hotel=#{hotel},</if>
-		<if test="hotelAsadult!=null">hotel_asadult=#{hotelAsadult},</if>
+		<if test="hotelAsadult != null and hotelAsadult != ''">hotel_asadult=#{hotelAsadult},</if>
 		<if test="rentCar!=null and rentCar !=''">rent_car=#{rentCar},</if>
-		<if test="rentcarAsadult!=null">rentcar_asadult=#{rentcarAsadult},</if>
+		<if test="rentcarAsadult != null and rentcarAsadult !=''">rentcar_asadult=#{rentcarAsadult},</if>
 		<if test="bigTraffic !=null and bigTraffic !=''">big_traffic=#{bigTraffic},</if>
-		<if test="bigTrafficSum!=null">big_traffic_sum=#{bigTrafficSum},</if>
-		<if test="bigtrafficeAsadult!=null">bigtraffice_asadult=#{bigtrafficeAsadult},</if>
-		<if test="dinner!=null and dinner !=''">dinner=#{dinner},</if>
-		<if test="dinnerAsadult!=null">dinner_asadult=#{dinnerAsadult},</if>
+		<if test="bigTrafficSum != null and bigTrafficSum !=''">big_traffic_sum=#{bigTrafficSum},</if>
+		<if test="bigtrafficeAsadult != null and bigtrafficeAsadult !=''">bigtraffice_asadult=#{bigtrafficeAsadult},</if>
+		<if test="dinner != null and dinner !=''">dinner=#{dinner},</if>
+		<if test="dinnerAsadult != null and dinnerAsadult != ''">dinner_asadult=#{dinnerAsadult},</if>
 		<if test="insurance!=null and insurance!=''">insurance=#{insurance},</if>
-		<if test="insuranceAsadult!=null">insurance_asadult=#{insuranceAsadult},</if>
+		<if test="insuranceAsadult != null and insuranceAsadult != ''">insurance_asadult=#{insuranceAsadult},</if>
 		<if test="comprehensiveCosts!=null and comprehensiveCosts !=''">comprehensive_costs=#{comprehensiveCosts},</if>
-		<if test="comphcostAsadult!=null">comphcost_asadult=#{comphcostAsadult},</if>
+		<if test="comphcostAsadult != null and comphcostAsadult != ''">comphcost_asadult=#{comphcostAsadult},</if>
 		<if test="recreation!=null and recreation!=''">recreation=#{recreation},</if>
-		<if test="recreationAsadult!=null">recreation_asadult=#{recreationAsadult},</if>
+		<if test="recreationAsadult != null and recreationAsadult != ''">recreation_asadult=#{recreationAsadult},</if>
 		<if test="itemGuide!=null and itemGuide!=''">item_guide=#{itemGuide},</if>
-		<if test="itemguideAsadult!=null">itemguide_asadult=#{itemguideAsadult},</if>
+		<if test="itemguideAsadult != null and itemguideAsadult != ''">itemguide_asadult=#{itemguideAsadult},</if>
 		<if test="bathorseCost!=null and bathorseCost!=''">bathorse_cost=#{bathorseCost},</if>
-		<if test="bathcostAsadult!=null">bathcost_asadult=#{bathcostAsadult},</if>
+		<if test="bathcostAsadult != null and bathcostAsadult != ''">bathcost_asadult=#{bathcostAsadult},</if>
 		<if test="ridehorseCost!=null and ridehorseCost !=''">ridehorse_cost=#{ridehorseCost},</if>
 		<if test="ridecostAsadult!=null">ridecost_asadult=#{ridecostAsadult},</if>
 		<if test="climbRegisterCost!=null and climbRegisterCost!=''">climb_register_cost=#{climbRegisterCost},</if>
-		<if test="climbrcostAsadult!=null">climbrcost_asadult=#{climbrcostAsadult},</if>
+		<if test="climbrcostAsadult != null and climbrcostAsadult != ''">climbrcost_asadult=#{climbrcostAsadult},</if>
 		<if test="climbNexusCost!=null and climbNexusCost!=''">climb_nexus_cost=#{climbNexusCost},</if>
-		<if test="climbncostAsadult!=null">climbncost_asadult=#{climbncostAsadult},</if>
+		<if test="climbncostAsadult != null and climbncostAsadult != ''">climbncost_asadult=#{climbncostAsadult},</if>
 		<if test="elseCost!=null and elseCost!=''">else_cost=#{elseCost},</if>
 		<if test="elsecostAsadult!=null and elsecostAsadult!=''">elsecost_asadult=#{elsecostAsadult},</if>
 		<if test="presented!=null and presented!=''">presented=#{presented},</if>
 		<if test="groupCode!=null and groupCode!=''">group_code =#{groupCode},</if>
 		<if test="groupDate != null and groupDate !=''" >group_date= #{groupDate},</if>
-		<if test="valid!=null and valid !=''">valid=#{valid},</if>		
+		<!-- <if test="valid!=null and valid !=''">valid=#{valid},</if>	 -->	
 		<if test="agodaDetail !=null and agodaDetail !=''">agoda_detail=#{agodaDetail},</if>		
-								
 	</trim> where id=#{id}
 </update>
 
@@ -326,7 +325,7 @@ where valid=1
 	 from quote_form where route_template = #{routeTemplate}
 </select>
 <select id="selectById"  resultMap="BaseResultMapVo" parameterType="java.lang.String">
-	select id, route_template, berief_trip,show_trip, adults,children, create_time, update_time, remark, create_by, update_by, is_as_adult,ticket_block,travel_docs,
+	select id, route_template, berief_trip,show_trip, adults,children, create_time, update_time, remark, create_by, update_by, as_adult,ticket_block,travel_docs,
 	  traveldoc_asadult,tour_guide,tourguide_asadult,hotel,hotel_asadult,rent_car,rentcar_asadult,big_traffic,big_traffic_sum,bigtraffice_asadult,dinner,
 	  dinner_asadult,insurance,insurance_asadult,comprehensive_costs,comphcost_asadult,recreation,recreation_asadult,item_guide,itemguide_asadult,bathorse_cost,
 	  bathcost_asadult,ridehorse_cost,ridecost_asadult,climb_register_cost,climbrcost_asadult,climb_nexus_cost,climbncost_asadult,else_cost,elsecost_asadult,

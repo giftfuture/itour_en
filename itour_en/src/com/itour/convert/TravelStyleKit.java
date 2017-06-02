@@ -1,7 +1,7 @@
 package com.itour.convert;
 
 import com.itour.entity.TravelStyle;
-import com.itour.vo.TravelStyleVo;
+import com.itour.vo.TravelStyleVO;
 /**
  * 
  * <br>
@@ -10,13 +10,13 @@ import com.itour.vo.TravelStyleVo;
  * <b>日期：</b> Feb 2, 2016 <br>
  */
 public class TravelStyleKit{
-	  public static TravelStyleVo toRecord(TravelStyle ts){
-		  TravelStyleVo tv = new TravelStyleVo();
+	  public static TravelStyleVO toRecord(TravelStyle ts){
+		  TravelStyleVO tv = new TravelStyleVO();
 		  tv.setAlias(ts.getAlias());
 		  tv.setId(ts.getId());
 		  tv.setRemark(ts.getRemark());
 		  tv.setType(ts.getType());
-		  tv.setValid(ts.isValid());
+		  tv.setValid(ts.getValid());
 		  tv.setDescrip(ts.getDescrip());
 		  tv.setCover(ts.getCover());
 		  tv.setCreateBy(ts.getCreateBy());

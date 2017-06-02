@@ -56,7 +56,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.6.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-log4j12-1.6.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/standard.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/thumbnailator-0.4.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/urlrewrite-3.2.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/velocity-1.7.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/velocity-tools-2.0.jar"/>
@@ -123,5 +122,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jtidy-r8-20060801.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xmlworker-5.5.9.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mail-1.5.0-b01.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/thumbnailator-0.4.8.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

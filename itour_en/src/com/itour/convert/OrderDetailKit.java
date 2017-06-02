@@ -8,7 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.google.common.collect.Maps;
 import com.itour.base.util.DateUtil;
 import com.itour.entity.OrderDetail;
-import com.itour.vo.OrderDetailVo;
+import com.itour.vo.OrderDetailVO;
 /**
  * 
  * <br>
@@ -16,8 +16,8 @@ import com.itour.vo.OrderDetailVo;
  * <b>日期：</b> Feb 2, 2016 <br>
  */
 public class OrderDetailKit{
-	public static OrderDetailVo toRecord(OrderDetail od){
-		OrderDetailVo vo  = new OrderDetailVo();
+	public static OrderDetailVO toRecord(OrderDetail od){
+		OrderDetailVO vo  = new OrderDetailVO();
 		vo.setContent(od.getContent());
 		vo.setCount(od.getCount());
 		vo.setCreateTime(DateUtil.getDateYmdHs(od.getCreateTime()));
@@ -27,7 +27,7 @@ public class OrderDetailKit{
 		vo.setRemark(od.getRemark());
 		vo.setStatus(od.getStatus());
 		vo.setUpdateTime(DateUtil.getDateYmdHs(od.getUpdateTime()));
-		vo.setValid(od.isValid());
+		vo.setValid(od.getValid());
 		vo.setGroupCode(od.getGroupCode());
 		vo.setAdults(od.getAdults());
 		vo.setChildren(od.getChildren());
@@ -67,7 +67,7 @@ public class OrderDetailKit{
 		vo.setFoodArrange(od.getFoodArrange());
 		return vo;
 	}
-	public static OrderDetail toEntity(OrderDetailVo od){
+	public static OrderDetail toEntity(OrderDetailVO od){
 		OrderDetail vo  = new OrderDetail();
 		vo.setContent(od.getContent());
 		vo.setCount(od.getCount());
@@ -76,7 +76,7 @@ public class OrderDetailKit{
 		vo.setPerPrice(od.getPerPrice());
 		vo.setRemark(od.getRemark());
 		vo.setStatus(od.getStatus());
-		vo.setValid(od.isValid());
+		vo.setValid(od.getValid());
 		vo.setAdults(od.getAdults());
 		vo.setChildren(od.getChildren());
 		vo.setTravelfashion(od.getTravelfashion());
@@ -147,7 +147,7 @@ public class OrderDetailKit{
 		map.put("remark", od.getRemark());
 		map.put("status", od.getStatus()+"");
 		map.put("updateTime",DateUtil.getDateYmdHs(od.getUpdateTime()));
-		map.put("isValid", od.isValid()+"");
+		map.put("valid", od.getValid()+"");
 		map.put("groupCode", od.getGroupCode());
 		map.put("adults", od.getAdults()+"");
 		map.put("children", od.getChildren()+"");

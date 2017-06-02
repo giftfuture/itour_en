@@ -40,7 +40,7 @@
 			<div title="Welcome" style="padding:20px;overflow:hidden;"> 
 				<div style="margin-top:20px;">
 				</div>
-				<pre>欢迎进入网站后台管理界面</pre>
+				<pre>欢迎进入主角旅行英文版网站后台管理界面</pre>
 				<div style="margin-top:20px;">
 				</div>
 			</div>

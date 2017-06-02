@@ -12,7 +12,7 @@ public class SysRoleRel extends BaseEntity {
 	 */
 	private static final long serialVersionUID = 6080631663815131651L;
 	private String id;	private String roleId;//   角色主键 sys_role.id	private String objId;//   关联主键 relType=0管理sys_menu.id, relType=1关联sys_user.id,relType=2,sys_menu_btn.id	private Integer relType;//   关联类型 0=菜单,1=用户,2=按钮
-	private boolean isValid;//是否有效
+	private int valid;//是否有效
 	private String createBy;
 	private String updateBy;
 	private Date createTime;
@@ -66,11 +66,13 @@ public class SysRoleRel extends BaseEntity {
 		}
 	}
 	
-		public boolean isValid() {
-		return isValid;
+	 	
+	 
+	public int getValid() {
+		return valid;
 	}
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
+	public void setValid(int valid) {
+		this.valid = valid;
 	}
 	public String getId() {
 		return id;

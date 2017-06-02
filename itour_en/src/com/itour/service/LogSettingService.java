@@ -14,7 +14,7 @@ import com.itour.base.service.BaseService;
 import com.itour.convert.LogSettingKit;
 import com.itour.dao.LogSettingDao;
 import com.itour.entity.LogSetting;
-import com.itour.vo.LogSettingVo;
+import com.itour.vo.LogSettingVO;
 
 /**
  * 
@@ -41,9 +41,9 @@ public class LogSettingService<T> extends BaseService<T> {
 	 */
 
 	@SuppressWarnings("unchecked")
-	public BasePage<Map<String, Object>> pagedQuery(LogSettingVo vo) {
+	public BasePage<Map<String, Object>> pagedQuery(LogSettingVO vo) {
 		int count = 0;
-		//BasePage<CustomerVo> basepage = (BasePage<CustomerVo>)mapper.pagedQuery(page);
+		//BasePage<CustomerVO> basepage = (BasePage<CustomerVO>)mapper.pagedQuery(page);
 				//Map<String, String> map = Maps.newHashMap();
 		List<Map<String, Object>> records = Lists.newArrayList();
 		try {

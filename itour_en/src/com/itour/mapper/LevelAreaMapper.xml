@@ -18,7 +18,7 @@
 	<result column="alias_code" property="aliasCode"/>
 	<result column="route_template" property="routeTemplate"/>
 </resultMap>
-<resultMap id="BaseResultMapVo" type="com.itour.vo.LevelAreaVo" >
+<resultMap id="BaseResultMapVo" type="com.itour.vo.LevelAreaVO" >
 	<result column="id" property="id"/>
 	<result column="level1_area" property="level1Area"/>
 	<result column="level2_area" property="level2Area"/>
@@ -40,34 +40,34 @@
 </sql>
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where valid=1
+where level_area.valid=1
 <trim  suffixOverrides="," >
 	<if test="level1Area != null and level1Area != ''" >
-	    and level1_area  = #{level1Area}
+	    and level_area.level1_area  = #{level1Area}
 	</if>
 	<if test="level2Area != null and level2Area != ''" >
-	    and level2_area =  #{level2Area}
+	    and level_area.level2_area =  #{level2Area}
 	</if>
 	<if test="travelItem != null and travelItem != ''" >
-	     and travel_item=#{travelItem}
+	     and level_area.travel_item=#{travelItem}
 	</if>
 	<if test="createBy != null and createBy != ''" >
-	    and create_by  = #{createBy}
+	    and level_area.create_by  = #{createBy}
 	</if>
 	<if test="updateBy != null and updateBy != ''" >
-	    and update_by =  #{updateBy}
+	    and level_area.update_by =  #{updateBy}
 	</if>
 	<if test="createTime != null and createTime !=''" >
-	   and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	   and DATE_FORMAT(level_area.create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
 	<if test="updateTime != null and updateTime !=''" >
-	   and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
+	   and DATE_FORMAT(level_area.update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 	</if>
 	<if test="aliasCode != null and aliasCode != ''" >
-	    and alias_code =  #{aliasCode}
+	    and level_area.alias_code =  #{aliasCode}
 	</if>
 	<if test="routeTemplate != null and routeTemplate != ''" >
-	    and route_template =  #{routeTemplate}
+	    and level_area.route_template =  #{routeTemplate}
 	</if>
 </trim>
 </sql>
@@ -127,13 +127,13 @@ where valid=1
 </select>
 
 <!-- 地区信息 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.vo.LevelAreaVo">
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.vo.LevelAreaVO">
 	select count(1) from level_area 
 	<include refid="Example_Where_Clause"/>
 </select>
   	
 <!-- 查询地区信息列表 -->
-<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.vo.LevelAreaVo">
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.vo.LevelAreaVO">
 	select 
 	<include refid="Base_Column_List"/> 
 	from level_area 
@@ -149,7 +149,7 @@ where valid=1
     </if>
 </select>
 <!-- 查询地区信息列表 group by level1_area,level2_area -->
-<select id="queryByVoList" resultMap="BaseResultMapVo"  parameterType="com.itour.vo.LevelAreaVo">
+<select id="queryByVoList" resultMap="BaseResultMapVo"  parameterType="com.itour.vo.LevelAreaVO">
 	select <include refid="Base_Column_List"/>,ts.item,ts.alias,rt.title
 	from level_area left join travel_item ts on level_area.travel_item=ts.id
 	left join route_template rt on level_area.route_template = rt.id

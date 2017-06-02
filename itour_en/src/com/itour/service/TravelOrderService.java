@@ -15,8 +15,8 @@ import com.itour.convert.TravelStyleKit;
 import com.itour.dao.TravelOrderDao;
 import com.itour.entity.TravelOrder;
 import com.itour.entity.TravelStyle;
-import com.itour.vo.TravelOrderVo;
-import com.itour.vo.TravelStyleVo;
+import com.itour.vo.TravelOrderVO;
+import com.itour.vo.TravelStyleVO;
 
 /**
  * 
@@ -35,10 +35,10 @@ public class TravelOrderService<T> extends BaseService<T> {
 	 * @return 查询结果
 	 */
 	@SuppressWarnings("unchecked")
-	public BasePage<TravelOrderVo> pagedQuery(TravelOrderVo vo) {
+	public BasePage<TravelOrderVO> pagedQuery(TravelOrderVO vo) {
 		List<TravelOrder> list = (List<TravelOrder>) mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
-		List<TravelOrderVo> records = Lists.newArrayList();
+		List<TravelOrderVO> records = Lists.newArrayList();
 		try {
 			for (TravelOrder to : list) {
 				records.add(TravelOrderKit.toVo(to));
@@ -46,7 +46,7 @@ public class TravelOrderService<T> extends BaseService<T> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new BasePage<TravelOrderVo>(vo.getStart(), vo.getLimit(), records,count);
+		return new BasePage<TravelOrderVO>(vo.getStart(), vo.getLimit(), records,count);
 	}
 	@Autowired
     private TravelOrderDao<T> mapper;

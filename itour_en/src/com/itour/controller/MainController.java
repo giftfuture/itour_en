@@ -42,7 +42,7 @@ import com.itour.entity.LogSetting;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysMenuBtn;
 import com.itour.entity.SysUser;
-import com.itour.vo.SysUserVo;
+import com.itour.vo.SysUserVO;
 import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
@@ -97,7 +97,7 @@ public class MainController extends BaseController {
 	@ResponseBody
 	@Auth(verifyLogin=false,verifyURL=false)
 	@RequestMapping(value="/checkuser", method = RequestMethod.POST)
-	public void checkuser(SysUserVo user, HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public void checkuser(SysUserVO user, HttpServletRequest request,HttpServletResponse response) throws Exception {
 		int count = sysUserService.getUserCountByEmail(user.getEmail());
 		if (count >= 1) {
 				//设置User到Session

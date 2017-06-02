@@ -146,4 +146,6 @@ itour.serverquotestep2 = function(){
 
 $(function(){
 	itour.serverquotestep2.init();
+	  if (window != top)
+          top.location.href = location.href;
 });

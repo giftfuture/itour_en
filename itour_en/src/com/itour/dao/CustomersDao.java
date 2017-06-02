@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.itour.base.dao.BaseDao;
 import com.itour.entity.Customers;
-import com.itour.vo.CustomerVo;
+import com.itour.vo.CustomerVO;
 /**
  * 
  * <br>
@@ -17,6 +17,6 @@ import com.itour.vo.CustomerVo;
  */
 public interface CustomersDao extends BaseDao<Customers> {
 	
-	List<CustomerVo> queryOrdersByCid(@Param(value="id")String id);
-	CustomerVo selectById(@Param(value="id")String id);
+	List<CustomerVO> queryOrdersByCid(@Param(value="id")String id);
+	CustomerVO selectById(@Param(value="id")String id);
 }

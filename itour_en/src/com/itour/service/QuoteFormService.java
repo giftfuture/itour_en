@@ -14,7 +14,7 @@ import com.itour.base.service.BaseService;
 import com.itour.convert.QuoteFormKit;
 import com.itour.dao.QuoteFormDao;
 import com.itour.entity.QuoteForm;
-import com.itour.vo.QuoteFormVo;
+import com.itour.vo.QuoteFormVO;
 @Service("quoteFormService")
 public class QuoteFormService extends BaseService<QuoteForm> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
@@ -24,19 +24,19 @@ public class QuoteFormService extends BaseService<QuoteForm> {
 	 * @param pageQuery 查询条件
 	 * @return 查询结果
 	 */
-	public BasePage<QuoteFormVo> pagedQuery(QuoteFormVo vo) {
+	public BasePage<QuoteFormVO> pagedQuery(QuoteFormVO vo) {
 		List<QuoteForm> list = (List<QuoteForm>) mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
-		List<QuoteFormVo> records = Lists.newArrayList();
+		List<QuoteFormVO> records = Lists.newArrayList();
 		for(QuoteForm fb:list) {
 			records.add(QuoteFormKit.toVo(fb));
 		}
-		return new BasePage<QuoteFormVo>(vo.getStart(), vo.getLimit(), records, count);
+		return new BasePage<QuoteFormVO>(vo.getStart(), vo.getLimit(), records, count);
 	}
-	public QuoteFormVo selectById(String id){
+	public QuoteFormVO selectById(String id){
 		return mapper.selectById(id);
 	}
-	public QuoteFormVo queryByRtId(String routeTemplate){
+	public QuoteFormVO queryByRtId(String routeTemplate){
 		QuoteForm qf = mapper.queryByRtId(routeTemplate);
 		return QuoteFormKit.toVo(qf);
 	}

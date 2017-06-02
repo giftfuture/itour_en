@@ -26,11 +26,11 @@ import com.itour.entity.AdLink;
 import com.itour.entity.Areas;
 import com.itour.entity.LevelArea;
 import com.itour.service.ShowHappyService;
-import com.itour.vo.AdLinkVo;
-import com.itour.vo.FeedbackVo;
-import com.itour.vo.RouteTemplateVo;
-import com.itour.vo.ShowHappyVo;
-import com.itour.vo.TravelItemVo;
+import com.itour.vo.AdLinkVO;
+import com.itour.vo.FeedbackVO;
+import com.itour.vo.RouteTemplateVO;
+import com.itour.vo.ShowHappyVO;
+import com.itour.vo.TravelItemVO;
 
 public class Constants {
 	//ResourceBundle.getBundle("conf");
@@ -64,6 +64,12 @@ public class Constants {
 	public static final String DESTINATION = "destination";
 	public static final String HIKING = "hiking";
 	public static final String ALARM_FILE_PATH = "";
+	public static final int compressWidth = 600;
+	public static final int compressHeight=338;
+	public static final int compressHomeWidth = 1350;
+	public static final int compressHomeHeight=598;
+	public static final int compressMapWidth = 577;
+	public static final int compressMapHeight = 284;
 	private static final ResourceBundle bundle = ResourceBundle.getBundle(BUNDLE_NAME);
 	//
 	public static final Set<String> TSTYLES = new HashSet<String>(){{
@@ -84,10 +90,10 @@ public class Constants {
 	}};
 	public static final LinkedHashMap<String,String> HOTTYLES = new LinkedHashMap<String,String>();
 	static{
-		HOTTYLES.put(HIKING,"徒步");
-		HOTTYLES.put(CLIMB,"登山");
-		HOTTYLES.put(SELFDRIVE,"自驾");
-		HOTTYLES.put(LIGHT,"轻旅行");
+		HOTTYLES.put(HIKING,HIKING);
+		HOTTYLES.put(CLIMB,CLIMB);
+		HOTTYLES.put(SELFDRIVE,SELFDRIVE);
+		HOTTYLES.put(LIGHT,LIGHT);
 	}
 	
 	/*public static final TreeMap<String,String> HOTTYLES = new TreeMap<String,String>(){{
@@ -136,7 +142,7 @@ public class Constants {
 		        public AdLink mapRow(ResultSet rs, int rowNum) throws SQLException {  
 		        	AdLink sh = new AdLink();  
                    sh.setAdvertise(adlinpath+"/"+rs.getString("advertise"));
-                   sh.setVideo(rs.getBoolean("is_video"));
+                   sh.setVideo(rs.getInt("video"));
                    sh.setTitle(rs.getString("title"));
                    sh.setAdlink(rs.getString("adlink"));
                    return sh;   
@@ -145,12 +151,12 @@ public class Constants {
 		  alladLinks.clear();
 		  alladLinks.addAll(adlist);
 		   String shareHappyCoverPath = FilePros.httpshCoverPath();
-		   String shsql = "select show_happy.sh_code,show_happy.cover,show_happy.title,show_happy.route,show_happy.tour_time,show_happy.short_content,show_happy.signature,areas.areaname from show_happy left join areas on show_happy.area=areas.id where is_valid=1";
-		  // List<ShowHappyVo> shs =jdbcTemplate.query(shsql,new ColumnMapRowMapper());
-		   List<ShowHappyVo> shs = jdbcTemplate.query(shsql, new RowMapper<ShowHappyVo>(){
+		   String shsql = "select show_happy.sh_code,show_happy.cover,show_happy.title,show_happy.route,DATE_FORMAT(show_happy.tour_time,'%Y-%m-%d') tour_time,show_happy.short_content,show_happy.signature,areas.areaname from show_happy left join areas on show_happy.area=areas.id where valid=1";
+		  // List<ShowHappyVO> shs =jdbcTemplate.query(shsql,new ColumnMapRowMapper());
+		   List<ShowHappyVO> shs = jdbcTemplate.query(shsql, new RowMapper<ShowHappyVO>(){
 		        @Override  
-		        public ShowHappyVo mapRow(ResultSet rs, int rowNum) throws SQLException {  
-	        	   ShowHappyVo sh = new ShowHappyVo();  
+		        public ShowHappyVO mapRow(ResultSet rs, int rowNum) throws SQLException {  
+	        	   ShowHappyVO sh = new ShowHappyVO();  
                    sh.setShCode(rs.getString("sh_code"));
                    sh.setCover(shareHappyCoverPath+"/"+rs.getString("sh_code")+"_"+rs.getString("route")+"/"+rs.getString("cover"));
                    sh.setTitle(rs.getString("title"));
@@ -179,11 +185,11 @@ public class Constants {
 			e.printStackTrace();
 		}
 	}
-	  public class SHRowMapper implements RowMapper<ShowHappyVo> {  
+	  public class SHRowMapper implements RowMapper<ShowHappyVO> {  
 		  String shareHappyCoverPath = FilePros.httpshCoverPath();
 	        @Override  
-	        public ShowHappyVo  mapRow(ResultSet rs, int rowNum) throws SQLException {  
-	        	   ShowHappyVo sh = new ShowHappyVo();  
+	        public ShowHappyVO  mapRow(ResultSet rs, int rowNum) throws SQLException {  
+	        	   ShowHappyVO sh = new ShowHappyVO();  
                    sh.setShCode(rs.getString("sh_code"));
                    sh.setCover(shareHappyCoverPath+"/"+rs.getString("sh_code")+"_"+rs.getString("route")+"/"+rs.getString("cover"));
                    sh.setTitle(rs.getString("title"));
@@ -203,15 +209,15 @@ public class Constants {
 	public static final List<AdLink> alladLinks = Lists.newArrayList();//所有首页链接
 	public static final List<Areas> allAreas = Lists.newArrayList();//所在地区
 	public static final List<LevelArea> allLevelAreas = Lists.newArrayList();//所有一级，二级区域
-	public static final List<TravelItemVo> homehotSights = Lists.newArrayList();//首页展示的热门景点
-	public static final Map<String,BasePage<ShowHappyVo>> homeshpage = Maps.newHashMap();//首页的回忆幸福
-	public static final LinkedHashMap<String,List<RouteTemplateVo>>  homertmapvo = Maps.newLinkedHashMap();//首页
-	public static final List<ShowHappyVo>  showhappypage = Lists.newArrayList();//回忆幸福
-	//public static final List<FeedbackVo> hikingfbpage = Lists.newArrayList();//徒步旅行反馈列表
-	//public static final List<FeedbackVo> climbfbpage = Lists.newArrayList();//登山反馈列表
-	//public static final List<FeedbackVo> selfdrivefbpage = Lists.newArrayList();//自驾反馈列表
-	//public static final List<FeedbackVo> lightfbpage = Lists.newArrayList();//轻旅行反馈列表
-	//public static final List<FeedbackVo> feedbackpage = Lists.newArrayList();//轻旅行反馈列表
+	public static final List<TravelItemVO> homehotSights = Lists.newArrayList();//首页展示的热门景点
+	public static final Map<String,BasePage<ShowHappyVO>> homeshpage = Maps.newHashMap();//首页的回忆幸福
+	public static final LinkedHashMap<String,List<RouteTemplateVO>>  homertmapvo = Maps.newLinkedHashMap();//首页
+	public static final List<ShowHappyVO>  showhappypage = Lists.newArrayList();//回忆幸福
+	//public static final List<FeedbackVO> hikingfbpage = Lists.newArrayList();//徒步旅行反馈列表
+	//public static final List<FeedbackVO> climbfbpage = Lists.newArrayList();//登山反馈列表
+	//public static final List<FeedbackVO> selfdrivefbpage = Lists.newArrayList();//自驾反馈列表
+	//public static final List<FeedbackVO> lightfbpage = Lists.newArrayList();//轻旅行反馈列表
+	//public static final List<FeedbackVO> feedbackpage = Lists.newArrayList();//轻旅行反馈列表
 	
 	
 }

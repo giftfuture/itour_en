@@ -15,8 +15,8 @@ import com.itour.convert.QuotationKit;
 import com.itour.dao.QuotationDao;
 import com.itour.entity.Feedback;
 import com.itour.entity.Quotation;
-import com.itour.vo.FeedbackVo;
-import com.itour.vo.QuotationVo;
+import com.itour.vo.FeedbackVO;
+import com.itour.vo.QuotationVO;
 
 /**
  * 
@@ -35,14 +35,14 @@ public class QuotationService<T> extends BaseService<T> {
 	 * @return 查询结果
 	 */
 	@SuppressWarnings("unchecked")
-	public BasePage<QuotationVo> pagedQuery(QuotationVo vo) {
+	public BasePage<QuotationVO> pagedQuery(QuotationVO vo) {
 		List<Quotation> list = (List<Quotation>) mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
-		List<QuotationVo> records = Lists.newArrayList();
+		List<QuotationVO> records = Lists.newArrayList();
 		for(Quotation fb:list) {
 			records.add(QuotationKit.toRecord(fb));
 		}
-		return new BasePage<QuotationVo>(vo.getStart(), vo.getLimit(), records, count);
+		return new BasePage<QuotationVO>(vo.getStart(), vo.getLimit(), records, count);
 	}
 	
 	@Autowired

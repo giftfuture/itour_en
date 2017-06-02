@@ -17,7 +17,7 @@ import com.itour.convert.SysMenuKit;
 import com.itour.convert.TravelStyleKit;
 import com.itour.dao.TravelStyleDao;
 import com.itour.entity.TravelStyle;
-import com.itour.vo.TravelStyleVo;
+import com.itour.vo.TravelStyleVO;
 
 /**
  * 
@@ -36,14 +36,14 @@ public class TravelStyleService<T> extends BaseService<T> {
 	 * @return 查询结果
 	 */
 	@SuppressWarnings("unchecked")
-	public BasePage<TravelStyleVo> pagedQuery(TravelStyleVo vo) {
+	public BasePage<TravelStyleVO> pagedQuery(TravelStyleVO vo) {
 		List<TravelStyle> list = (List<TravelStyle>) mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
-		List<TravelStyleVo> records = Lists.newArrayList();
+		List<TravelStyleVO> records = Lists.newArrayList();
 		for(TravelStyle ts:list) {
 			records.add(TravelStyleKit.toRecord(ts));
 		}
-		return new BasePage<TravelStyleVo>(vo.getStart(), vo.getLimit(), records, count);
+		return new BasePage<TravelStyleVO>(vo.getStart(), vo.getLimit(), records, count);
 	}
 	/**
 	 * 

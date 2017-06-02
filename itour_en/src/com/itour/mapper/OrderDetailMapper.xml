@@ -14,7 +14,7 @@
 	<result column="per_price" property="perPrice"/>
 	<result column="count" property="count"/>
 	<result column="order_id" property="orderId"/>
-	<result column="is_valid" property="isValid"/>
+	<result column="valid" property="valid"/>
 	<result column="adults" property="adults"/>
 	<result column="children" property="children"/>
 	<result column="group_code" property="groupCode"/>
@@ -50,10 +50,56 @@
 	<result column="bb_room" property="bb_room"/>
 	<result column="position" property="position"/>
 </resultMap>
-       
+<resultMap id="BaseResultMapVo" type="com.itour.vo.OrderDetailVO" >
+    <result column="id" property="id"/>
+    <result column="status" property="status"/>
+    <result column="create_time" property="createTime"/>
+    <result column="update_time" property="updateTime"/>
+    <result column="content" property="content"/>
+    <result column="remark" property="remark"/>
+    <result column="per_price" property="perPrice"/>
+    <result column="count" property="count"/>
+    <result column="order_id" property="orderId"/>
+    <result column="valid" property="valid"/>
+    <result column="adults" property="adults"/>
+    <result column="children" property="children"/>
+    <result column="group_code" property="groupCode"/>
+    <result column="group_date" property="groupDate"/>
+    <result column="travelfashion" property="travelfashion"/>
+    <result column="singleorcluster" property="singleorcluster"/>
+    <result column="travelrequest" property="travelrequest"/>
+    <result column="hotel" property="hotel"/>
+    <result column="travel_order" property="travelOrder"/>
+    <result column="stayrequest" property="stayrequest"/>
+    <result column="traffic" property="traffic"/>
+    <result column="tickets" property="tickets"/>
+    <result column="foodrequest" property="foodrequest"/>
+    <result column="recreation" property="recreation"/>
+    <result column="specialrequest" property="specialrequest"/>
+    <result column="guide" property="guide"/>
+    <result column="comefrom" property="comefrom"/>
+    <result column="food_arrange" property="foodArrange"/>
+    <result column="taste" property="taste"/>
+    <result column="hatefood" property="hatefood"/>
+    <result column="train" property="train"/>
+    <result column="cruise" property="cruise"/>
+    <result column="car_new" property="car_new"/>
+    <result column="car_no_smoking" property="car_no_smoking"/>
+    <result column="car" property="car"/>
+    <result column="shipping_space" property="shipping_space"/>
+    <result column="plane" property="plane"/>
+    <result column="hotel_info" property="hotel_info"/>
+    <result column="hotel_quiet" property="hotel_quiet"/>
+    <result column="hotel_no_smoking" property="hotel_no_smoking"/>
+    <result column="suite" property="suite"/>
+    <result column="db_room" property="db_room"/>
+    <result column="bb_room" property="bb_room"/>
+    <result column="position" property="position"/>
+    <result column="areaname" property="areaname"/>
+</resultMap>         
 <!-- order_detail table all fields -->
 <sql id="Base_Column_List" >
-	 id, status, create_time, update_time, content, remark, per_price, count, order_id,is_valid,adults,children,group_code,group_date,
+	 id, status, create_time, update_time, content, remark, per_price, count, order_id,valid,adults,children,group_code,group_date,
 	 travelfashion,singleorcluster,travelrequest,hotel,travel_order,stayrequest,traffic,tickets,foodrequest,recreation,specialrequest,guide,comefrom,
 	 food_arrange,taste,hatefood,train,cruise,car_new,car_no_smoking,car,shipping_space,plane,hotel_info,hotel_quiet,hotel_no_smoking,suite,db_room,bb_room,position
 </sql>
@@ -61,138 +107,138 @@
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where is_valid=1
+where order_detail.valid=1
 <trim  suffixOverrides="," >
-	<if test="id != null and id != ''" >
-	    and id like CONCAT('%', #{id}, '%')
-	</if>
-	<if test="status != null and status !=''" >
-	    and status =  #{status}
-	</if>
-	<if test="createTime != null and createTime !=''" >
-	    and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
-	    <!-- unix_timestamp(create_time)  -->
-	</if>
-	<if test="updateTime != null and updateTime !=''" >
-	   and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
-	</if>
-	<if test="content != null and content != ''" >
-	    and content like CONCAT('%', #{content}, '%')
-	</if>
-	<if test="remark != null and remark != ''" >
-	    and remark like CONCAT('%', #{remark}, '%')
-	</if>
-	<if test="perPrice != null and perPrice !=''" >
-	    and per_price =  #{perPrice}
-	</if>
-	<if test="count != null and count !=''" >
-	    and count =  #{count}
-	</if>
-	<if test="orderId != null and orderId != ''" >
-	    and order_id = #{orderId}
-	</if>
-	<if test="adults != null and adults != ''" >
-	    and adults = #{adults}
-	</if>
-	<if test="children != null and children != ''" >
-	    and children = #{children}
-	</if>
-	<if test="groupCode != null and groupCode != ''" >
-	    and group_code = #{groupCode}
-	</if>
-	<if test="groupDate != null and groupDate != ''" >
-	    and DATE_FORMAT(group_date,'%Y-%m-%d') = DATE_FORMAT(#{groupDate},'%Y-%m-%d') 
-	</if>
-	<if test="travelfashion != null and travelfashion != ''" >
-	    and travelfashion like CONCAT('%', #{travelfashion}, '%')
-	</if>
-	<if test="singleorcluster != null and singleorcluster != ''" >
-	    and singleorcluster like CONCAT('%', #{singleorcluster}, '%')
-	</if>
-	<if test="travelrequest != null and travelrequest !=''" >
-	    and travelrequest =  #{travelrequest}
-	</if>
-	<if test="hotel != null and hotel !=''" >
-	    and hotel =  #{hotel}
-	</if>
-	<if test="travelOrder != null and travelOrder != ''" >
-	    and travel_order = #{travelOrder}
-	</if>
-	<if test="stayrequest != null and stayrequest != ''" >
-	    and stayrequest = #{stayrequest}
-	</if>
-	<if test="traffic != null and traffic != ''" >
-	    and traffic = #{traffic}
-	</if>
-	<if test="tickets != null and tickets != ''" >
-	    and tickets = #{tickets}
-	</if>
-	<if test="foodrequest != null and foodrequest != ''" >
-	    and foodrequest =  #{foodrequest}
-	</if>
-	<if test="recreation != null and recreation != ''" >
-	    and recreation = #{recreation}
-	</if>
-	<if test="specialrequest != null and specialrequest != ''" >
-	    and specialrequest =  #{specialrequest}
-	</if>
-	<if test="guide != null and guide != ''" >
-	    and guide = #{guide}
-	</if>
-	<if test="comefrom != null and comefrom != ''" >
-	    and comefrom =  #{comefrom}
-	</if>
-	<if test="foodArrange != null and foodArrange !=''" >
-	    and food_arrange =  #{foodArrange}
-	</if>
-	<if test="taste != null and taste !=''" >
-	    and taste =  #{taste}
-	</if>
-	<if test="hatefood != null and hatefood != ''" >
-	    and hatefood = #{hatefood}
-	</if>
-	<if test="train != null and train != ''" >
-	    and train = #{train}
-	</if>
-	<if test="cruise != null and cruise != ''" >
-	    and cruise = #{cruise}
-	</if>
-	<if test="car_new != null and car_new != ''" >
-	    and car_new = #{car_new}
-	</if>
-	<if test="car_no_smoking != null and car_no_smoking != ''" >
-	    and car_no_smoking =  #{car_no_smoking}
-	</if>
-	<if test="car != null and car != ''" >
-	    and car = #{car}
-	</if>
-	<if test="shipping_space != null and shipping_space != ''" >
-	    and shipping_space =  #{shipping_space}
-	</if>
-	<if test="plane != null and plane != ''" >
-	    and plane = #{plane}
-	</if>
-	<if test="hotel_info != null and hotel_info != ''" >
-	    and hotel_info =  #{hotel_info}
-	</if>
-	<if test="hotel_quiet != null and hotel_quiet != ''" >
-	    and hotel_quiet = #{hotel_quiet}
-	</if>
-	<if test="hotel_no_smoking != null and hotel_no_smoking != ''" >
-	    and hotel_no_smoking =  #{hotel_no_smoking}
-	</if>
-	<if test="suite != null and suite != ''" >
-	    and suite = #{suite}
-	</if>
-	<if test="db_room != null and db_room != ''" >
-	    and db_room =  #{db_room}
-	</if>
-	<if test="bb_room != null and bb_room != ''" >
-	    and bb_room = #{bb_room}
-	</if>
-	<if test="position != null and position != ''" >
-	    and position =  #{position}
-	</if>
+    <if test="id != null and id != ''" >
+        and order_detail.id like CONCAT('%', #{id}, '%')
+    </if>
+    <if test="status != null and status !=''" >
+        and order_detail.status =  #{status}
+    </if>
+    <if test="createTime != null and createTime !=''" >
+        and DATE_FORMAT(order_detail.create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+        <!-- unix_timestamp(create_time)  -->
+    </if>
+    <if test="updateTime != null and updateTime !=''" >
+       and DATE_FORMAT(order_detail.update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
+    </if>
+    <if test="content != null and content != ''" >
+        and order_detail.content like CONCAT('%', #{content}, '%')
+    </if>
+    <if test="remark != null and remark != ''" >
+        and order_detail.remark like CONCAT('%', #{remark}, '%')
+    </if>
+    <if test="perPrice != null and perPrice !=''" >
+        and order_detail.per_price =  #{perPrice}
+    </if>
+    <if test="count != null and count !=''" >
+        and order_detail.count =  #{count}
+    </if>
+    <if test="orderId != null and orderId != ''" >
+        and order_detail.order_id = #{orderId}
+    </if>
+    <if test="adults != null and adults != ''" >
+        and order_detail.adults = #{adults}
+    </if>
+    <if test="children != null and children != ''" >
+        and order_detail.children = #{children}
+    </if>
+    <if test="groupCode != null and groupCode != ''" >
+        and order_detail.group_code = #{groupCode}
+    </if>
+    <if test="groupDate != null and groupDate != ''" >
+        and DATE_FORMAT(order_detail.group_date,'%Y-%m-%d') = DATE_FORMAT(#{groupDate},'%Y-%m-%d') 
+    </if>
+    <if test="travelfashion != null and travelfashion != ''" >
+        and order_detail.travelfashion like CONCAT('%', #{travelfashion}, '%')
+    </if>
+    <if test="singleorcluster != null and singleorcluster != ''" >
+        and order_detail.singleorcluster like CONCAT('%', #{singleorcluster}, '%')
+    </if>
+    <if test="travelrequest != null and travelrequest !=''" >
+        and order_detail.travelrequest =  #{travelrequest}
+    </if>
+    <if test="hotel != null and hotel !=''" >
+        and order_detail.hotel =  #{hotel}
+    </if>
+    <if test="travelOrder != null and travelOrder != ''" >
+        and order_detail.travel_order = #{travelOrder}
+    </if>
+    <if test="stayrequest != null and stayrequest != ''" >
+        and order_detail.stayrequest = #{stayrequest}
+    </if>
+    <if test="traffic != null and traffic != ''" >
+        and order_detail.traffic = #{traffic}
+    </if>
+    <if test="tickets != null and tickets != ''" >
+        and order_detail.tickets = #{tickets}
+    </if>
+    <if test="foodrequest != null and foodrequest != ''" >
+        and order_detail.foodrequest =  #{foodrequest}
+    </if>
+    <if test="recreation != null and recreation != ''" >
+        and order_detail.recreation = #{recreation}
+    </if>
+    <if test="specialrequest != null and specialrequest != ''" >
+        and order_detail.specialrequest =  #{specialrequest}
+    </if>
+    <if test="guide != null and guide != ''" >
+        and order_detail.guide = #{guide}
+    </if>
+    <if test="comefrom != null and comefrom != ''" >
+        and order_detail.comefrom =  #{comefrom}
+    </if>
+    <if test="foodArrange != null and foodArrange !=''" >
+        and order_detail.food_arrange =  #{foodArrange}
+    </if>
+    <if test="taste != null and taste !=''" >
+        and order_detail.taste =  #{taste}
+    </if>
+    <if test="hatefood != null and hatefood != ''" >
+        and order_detail.hatefood = #{hatefood}
+    </if>
+    <if test="train != null and train != ''" >
+        and order_detail.train = #{train}
+    </if>
+    <if test="cruise != null and cruise != ''" >
+        and order_detail.cruise = #{cruise}
+    </if>
+    <if test="car_new != null and car_new != ''" >
+        and order_detail.car_new = #{car_new}
+    </if>
+    <if test="car_no_smoking != null and car_no_smoking != ''" >
+        and order_detail.car_no_smoking =  #{car_no_smoking}
+    </if>
+    <if test="car != null and car != ''" >
+        and order_detail.car = #{car}
+    </if>
+    <if test="shipping_space != null and shipping_space != ''" >
+        and order_detail.shipping_space =  #{shipping_space}
+    </if>
+    <if test="plane != null and plane != ''" >
+        and order_detail.plane = #{plane}
+    </if>
+    <if test="hotel_info != null and hotel_info != ''" >
+        and order_detail.hotel_info =  #{hotel_info}
+    </if>
+    <if test="hotel_quiet != null and hotel_quiet != ''" >
+        and order_detail.hotel_quiet = #{hotel_quiet}
+    </if>
+    <if test="hotel_no_smoking != null and hotel_no_smoking != ''" >
+        and order_detail.hotel_no_smoking =  #{hotel_no_smoking}
+    </if>
+    <if test="suite != null and suite != ''" >
+        and order_detail.suite = #{suite}
+    </if>
+    <if test="db_room != null and db_room != ''" >
+        and order_detail.db_room =  #{db_room}
+    </if>
+    <if test="bb_room != null and bb_room != ''" >
+        and order_detail.bb_room = #{bb_room}
+    </if>
+    <if test="position != null and position != ''" >
+        and order_detail.position =  #{position}
+    </if>
 </trim>
 </sql>
    
@@ -202,7 +248,7 @@ where is_valid=1
 <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into order_detail(id,status,create_time,update_time,content,remark,per_price,count,order_id,is_valid,adults,children,group_code,group_date,travelfashion,singleorcluster,travelrequest,hotel,travel_order,stayrequest,traffic,tickets,foodrequest,recreation,specialrequest,guide,comefrom,food_arrange,taste,hatefood,train,cruise,car_new,car_no_smoking,car,shipping_space,plane,hotel_info,hotel_quiet,hotel_no_smoking,suite,db_room,bb_room,position)
+  insert into order_detail(id,status,create_time,update_time,content,remark,per_price,count,order_id,valid,adults,children,group_code,group_date,travelfashion,singleorcluster,travelrequest,hotel,travel_order,stayrequest,traffic,tickets,foodrequest,recreation,specialrequest,guide,comefrom,food_arrange,taste,hatefood,train,cruise,car_new,car_no_smoking,car,shipping_space,plane,hotel_info,hotel_quiet,hotel_no_smoking,suite,db_room,bb_room,position)
  values(#{id},#{status},now(),now(),#{content},#{remark},#{perPrice},#{count},#{orderId},1,#{adults},#{children},#{groupCode},#{groupDate}, #{travelfashion},#{singleorcluster},#{travelrequest},#{hotel},#{travelOrder},#{stayrequest},#{traffic},#{tickets},#{foodrequest},#{recreation},#{specialrequest},#{guide},#{comefrom},#{foodArrange},#{taste},#{hatefood},#{train},#{cruise},#{car_new},#{car_no_smoking},#{car},#{shipping_space},#{plane},#{hotel_info},#{hotel_quiet},#{hotel_no_smoking},#{suite},#{db_room},#{bb_room},#{position})
 </insert>
 
@@ -211,9 +257,9 @@ where is_valid=1
 <update id="update" parameterType="com.itour.entity.OrderDetail" >
 	update order_detail set update_time=now(),
 	<trim  suffixOverrides="," >
-		<if test="isValid != null and isValid !=''">
-			is_valid = #{isValid},
-		</if>
+	<!-- 	<if test="valid != null and valid !=''">
+			valid = #{valid},
+		</if> -->
 		<if test="status != null  and status !=''">
 			status=#{status},
 		</if>
@@ -343,16 +389,16 @@ where is_valid=1
 </delete>
  <!-- 逻辑删除 -->
  <update id="logicdelete" parameterType="java.lang.String">
-	update order_detail set is_valid=0 where id = #{id}
+	update order_detail set valid=0 where id = #{id}
 </update>
 <!-- 根据id查询 订单详情 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
 	select <include refid="Base_Column_List" /> 
 	 from order_detail where id = #{id}
 </select>
-<select id="queryByOrderId"  resultMap="BaseResultMap" parameterType="java.lang.String">
-	select <include refid="Base_Column_List" /> 
-	 from order_detail where travel_order = #{orderId}
+<select id="queryByOrderId"  resultMap="BaseResultMapVo" parameterType="java.lang.String">
+    select order_detail.*,areas.areaname
+     from order_detail left join areas on order_detail.comefrom = areas.id where travel_order = #{orderId}
 </select>
 <!-- 订单详情 列表总数-->
 <select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
@@ -373,5 +419,18 @@ where is_valid=1
        ${pager.mysqlQueryCondition}
     </if>
 </select>
-  	
+<select id="queryByListVo" resultMap="BaseResultMapVo"  parameterType="com.itour.base.page.BasePage">
+    select order_detail.*,areas.areaname
+    from order_detail left join areas on order_detail.comefrom = areas.id
+    <include refid="Example_Where_Clause"/>
+    <if test="pager.orderCondition != null and pager.orderCondition != ''" >
+      ${pager.orderCondition}
+    </if>
+    <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
+       ${pager.mysqlQueryCondition}
+    </if>
+</select>
+<select id="queryGroupCode" resultType="String" parameterType="String">
+select substring(group_code,15) groupCode from order_detail where group_code like CONCAT('', #{groupCode}, '%')
+</select>   	
 </mapper>   

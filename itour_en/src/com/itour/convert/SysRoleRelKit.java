@@ -7,17 +7,17 @@ import org.apache.commons.lang3.StringUtils;
 import com.google.common.collect.Maps;
 import com.itour.base.util.DateUtil;
 import com.itour.entity.SysRoleRel;
-import com.itour.vo.SysRoleRelVo;
+import com.itour.vo.SysRoleRelVO;
 
 
 public class SysRoleRelKit{
-	public static SysRoleRel toEntity(SysRoleRelVo vo)throws Exception{
+	public static SysRoleRel toEntity(SysRoleRelVO vo)throws Exception{
 		SysRoleRel sysrolerel = new SysRoleRel();
 		sysrolerel.setId(vo.getId());
 		sysrolerel.setRoleId(vo.getRoleId());
 		sysrolerel.setObjId(vo.getObjId());
 		sysrolerel.setRelType(vo.getRelType());
-		sysrolerel.setValid(vo.isValid());
+		sysrolerel.setValid(vo.getValid());
 		sysrolerel.setCreateBy(vo.getCreateBy());
 		sysrolerel.setUpdateBy(vo.getUpdateBy());
 		if(StringUtils.isNotEmpty(vo.getCreateTime())){
@@ -28,13 +28,13 @@ public class SysRoleRelKit{
 		}
 		return sysrolerel;
 	}
-	public static SysRoleRelVo toVo(SysRoleRel vo)throws Exception{
-		SysRoleRelVo sysrolerel = new SysRoleRelVo();
+	public static SysRoleRelVO toVo(SysRoleRel vo)throws Exception{
+		SysRoleRelVO sysrolerel = new SysRoleRelVO();
 		sysrolerel.setId(vo.getId());
 		sysrolerel.setRoleId(vo.getRoleId());
 		sysrolerel.setObjId(vo.getObjId());
 		sysrolerel.setRelType(vo.getRelType());
-		sysrolerel.setValid(vo.isValid());
+		sysrolerel.setValid(vo.getValid());
 		sysrolerel.setCreateBy(vo.getCreateBy());
 		sysrolerel.setUpdateBy(vo.getUpdateBy());
 		sysrolerel.setCreateTime(DateUtil.getDateYmdHs(vo.getCreateTime()));
@@ -46,7 +46,7 @@ public class SysRoleRelKit{
 		map.put("id", vo.getId());
 		map.put("roleId",vo.getRoleId());
 		map.put("objId", vo.getObjId());
-		map.put("isValid", vo.isValid()?"是":"否");
+		map.put("valid", vo.getValid()==1?"是":"否");
 		map.put("relType", vo.getRelType()+"");
 		map.put("createBy", vo.getCreateBy());
 		map.put("updateBy", vo.getUpdateBy());

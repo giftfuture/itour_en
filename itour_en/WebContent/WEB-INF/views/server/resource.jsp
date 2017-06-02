@@ -50,8 +50,8 @@
 <script type="text/javascript" src="${basePath}js/commons/YDataGrid.js?v=<%=getTimestamp%>"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-wysiwyg.js"></script>
-<script type="text/javascript" src="${basePath}js/plug-in/AngularJS/angular.min.js"></script>
-<script type="text/javascript" src="${basePath}js/plug-in/ckeditor/ckeditor.js"></script>
+<%-- <script type="text/javascript" src="${basePath}js/plug-in/AngularJS/angular.min.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/ckeditor/ckeditor.js"></script> --%>
 <script type="text/javascript" src="${basePath}js/plug-in/summernote/summernote.min.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/summernote/summernote-zh-CN.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/summernote/summernote-zh-TW.js"></script>

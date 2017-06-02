@@ -36,10 +36,10 @@ import com.itour.service.TravelItemService;
 import com.itour.service.TravelStyleService;
 import com.itour.servlet.FreeMarkerUtil;
 import com.itour.util.Constants;
-import com.itour.vo.CustomerVo;
-import com.itour.vo.QuoteFormVo;
-import com.itour.vo.RouteTemplateVo;
-import com.itour.vo.TravelItemVo;
+import com.itour.vo.CustomerVO;
+import com.itour.vo.QuoteFormVO;
+import com.itour.vo.RouteTemplateVO;
+import com.itour.vo.TravelItemVO;
 
 @Controller
 @RequestMapping("/customized") 
@@ -69,15 +69,15 @@ public class CustomizedController  extends BaseController{
 	private CustomersService customersService; 
 	
 	@RequestMapping("/main") 
-	public ModelAndView main(CustomerVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public ModelAndView main(CustomerVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  map = getRootMap();
 		//map.put("alias", Constants.HIKING);
-		List<RouteTemplateVo> rtvos = routeTemplateService.queryByStyle(Constants.CLIMB);
+		List<RouteTemplateVO> rtvos = routeTemplateService.queryByStyle(Constants.CLIMB);
 		String uploadPtopath = FilePros.itemCoverpath();
-		for(RouteTemplateVo rt:rtvos){
+		for(RouteTemplateVO rt:rtvos){
 			String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 			List<String> itids = Arrays.asList(itemIds.split(","));
-			List<TravelItemVo> items = travelItemService.queryByIds(itids);
+			List<TravelItemVO> items = travelItemService.queryByIds(itids);
 			rt.setCover(uploadPtopath+(StringUtils.isNotEmpty(rt.getCover())?rt.getCover():""));
 		}
 		int rows = rtvos.size()%Constants.perRow > 0 ? rtvos.size()/Constants.perRow+1:rtvos.size()/Constants.perRow;
@@ -85,7 +85,7 @@ public class CustomizedController  extends BaseController{
 		map.put("count", rtvos.size());
 		map.put("perRow", Constants.perRow);
 		map.put("rows", rows);
-		Map<Integer,List<RouteTemplateVo>> rts = new HashMap<Integer,List<RouteTemplateVo>>();
+		Map<Integer,List<RouteTemplateVO>> rts = new HashMap<Integer,List<RouteTemplateVO>>();
 		for(int i=0;i<rows;i++){
 			int end = Constants.perRow*(i+1)>rtvos.size() ? rtvos.size() : Constants.perRow*(i+1);
 			rts.put(i,rtvos.subList(Constants.perRow*i, end));
@@ -105,7 +105,7 @@ public class CustomizedController  extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/climb/{alias}", method = RequestMethod.GET) 
 	public ModelAndView hiking(@PathVariable("alias")String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		RouteTemplateVo rt = routeTemplateService.queryByAlias(alias);
+		RouteTemplateVO rt = routeTemplateService.queryByAlias(alias);
 		TravelStyle style = (TravelStyle)travelStyleService.queryById(rt.getTravelStyle());
 		rt.setTravelStyle(style.getType());
 		String mappath = FilePros.httprouteMapPath();
@@ -118,8 +118,8 @@ public class CustomizedController  extends BaseController{
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
 			String [] ids =  rt.getRelated().split(",");
-			List<RouteTemplateVo> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
-			for(RouteTemplateVo rtp:relates){
+			List<RouteTemplateVO> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
+			for(RouteTemplateVO rtp:relates){
 				TravelStyle ts = (TravelStyle)travelStyleService.queryById(rtp.getTravelStyle());
 				if(ts != null){
 					rtp.setTravelStyleAlias(ts.getAlias());
@@ -127,7 +127,7 @@ public class CustomizedController  extends BaseController{
 			}
 			 rt.setRelates(relates);
 		}
-		QuoteFormVo qf = quoteFormService.queryByRtId(rt.getId());
+		QuoteFormVO qf = quoteFormService.queryByRtId(rt.getId());
 		String beriefTrip = qf.getBeriefTrip().replaceAll("\"", "'");//ExecuteScript.exeScript("beriefTrip",qf.getBeriefTrip().replaceAll("\"", "'"),request);
 		rt.setBeriefTrip(beriefTrip);
 		String ftlName = "";
@@ -140,10 +140,10 @@ public class CustomizedController  extends BaseController{
         }
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
-		List<TravelItemVo> items = travelItemService.queryByIds(itids);
+		List<TravelItemVO> items = travelItemService.queryByIds(itids);
 		String ptopath = FilePros.itemCoverpath();
 		List<String> photoList = Lists.newArrayList();
-		for(TravelItemVo ti:items){
+		for(TravelItemVO ti:items){
 			String cover = ti.getCover();
 			if(StringUtils.isNotEmpty(cover)){
 				String realCover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
@@ -176,7 +176,7 @@ public class CustomizedController  extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/detail/{alias}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		RouteTemplateVo rt = routeTemplateService.queryByAlias(alias);
+		RouteTemplateVO rt = routeTemplateService.queryByAlias(alias);
 		String mappath = FilePros.httprouteMapPath();
 		String coverpath = FilePros.httpRouteCoverpath();
 		if(rt != null && StringUtils.isNotEmpty(rt.getRouteMap())){
@@ -187,8 +187,8 @@ public class CustomizedController  extends BaseController{
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
 			String [] ids =  rt.getRelated().split(",");
-			List<RouteTemplateVo> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
-			for(RouteTemplateVo rtp:relates){
+			List<RouteTemplateVO> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
+			for(RouteTemplateVO rtp:relates){
 				TravelStyle ts = (TravelStyle)travelStyleService.queryById(rtp.getTravelStyle());
 				if(ts != null){
 					rtp.setTravelStyleAlias(ts.getAlias());
@@ -198,9 +198,9 @@ public class CustomizedController  extends BaseController{
 		}
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
-		List<TravelItemVo> items = travelItemService.queryByIds(itids);
+		List<TravelItemVO> items = travelItemService.queryByIds(itids);
 		String ptopath = FilePros.itemCoverpath();
-		for(TravelItemVo ti:items){
+		for(TravelItemVO ti:items){
 			String photo = ti.getCover();
 			if(StringUtils.isNotEmpty(photo)){
 				String cover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
@@ -239,7 +239,7 @@ public class CustomizedController  extends BaseController{
 	@ResponseBody
 	public ModelAndView toQuote2(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		RouteTemplateVo rt = routeTemplateService.queryByAlias(alias);
+		RouteTemplateVO rt = routeTemplateService.queryByAlias(alias);
 		//context.put("items", items);
 		context.put("rt", rt);
 		return forward("front/quote/quote_step2",context); 

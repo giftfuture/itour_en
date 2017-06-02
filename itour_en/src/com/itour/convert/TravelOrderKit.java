@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.itour.base.util.DateUtil;
 import com.itour.entity.TravelOrder;
-import com.itour.vo.TravelOrderVo;
+import com.itour.vo.TravelOrderVO;
 /**
  * 
  * <br>
@@ -15,8 +15,8 @@ import com.itour.vo.TravelOrderVo;
  */
 public class TravelOrderKit{
 	
-	public static TravelOrderVo toVo(TravelOrder to)throws Exception{
-		TravelOrderVo tv = new TravelOrderVo();
+	public static TravelOrderVO toVo(TravelOrder to)throws Exception{
+		TravelOrderVO tv = new TravelOrderVO();
 		tv.setBank(to.getBank());
 		tv.setBudget(to.getBudget());
 		tv.setCreateTime(DateUtil.getDateYmdHs(to.getCreateTime()));
@@ -24,7 +24,7 @@ public class TravelOrderKit{
 		tv.setExpectedBack(DateUtil.getDateYmdCn(to.getExpectedBack()));
 		tv.setExpectedDepart(DateUtil.getDateYmdCn(to.getExpectedDepart()));
 		tv.setId(to.getId());
-		tv.setIsPayed(to.getIsPayed());
+		tv.setPayed(to.getPayed());
 		tv.setOrderItems(to.getOrderItems());
 		tv.setOrderName(to.getOrderName());
 		tv.setOrderNo(to.getOrderNo());
@@ -39,15 +39,15 @@ public class TravelOrderKit{
 		tv.setRemark(to.getRemark());
 		tv.setTotalStaff(to.getTotalStaff());
 		tv.setUpdateTime(DateUtil.getDateYmdHs(to.getUpdateTime()));
-		tv.setValid(to.isValid());
+		tv.setValid(to.getValid());
 		tv.setRoutename(to.getRoutename());
 		tv.setReceiveremail(to.getReceiveremail());
-		tv.setGender(to.isGender());
+		tv.setGender(to.getGender());
 		tv.setRouteId(to.getRouteId());
 		return tv;
 	}
-	public static TravelOrderVo toEditVo(TravelOrder to)throws Exception{
-		TravelOrderVo tv = new TravelOrderVo();
+	public static TravelOrderVO toEditVo(TravelOrder to)throws Exception{
+		TravelOrderVO tv = new TravelOrderVO();
 		tv.setBank(to.getBank());
 		tv.setBudget(to.getBudget());
 		tv.setCreateTime(DateUtil.getDateYmdHs(to.getCreateTime()));
@@ -55,7 +55,7 @@ public class TravelOrderKit{
 		tv.setExpectedBack(DateUtil.getFormattedDateUtil(to.getExpectedBack(),DateUtil.y_m_d));
 		tv.setExpectedDepart(DateUtil.getFormattedDateUtil(to.getExpectedDepart(),DateUtil.y_m_d));
 		tv.setId(to.getId());
-		tv.setIsPayed(to.getIsPayed());
+		tv.setPayed(to.getPayed());
 		tv.setOrderItems(to.getOrderItems());
 		tv.setOrderName(to.getOrderName());
 		tv.setOrderNo(to.getOrderNo());
@@ -70,20 +70,20 @@ public class TravelOrderKit{
 		tv.setRemark(to.getRemark());
 		tv.setTotalStaff(to.getTotalStaff());
 		tv.setUpdateTime(DateUtil.getDateYmdHs(to.getUpdateTime()));
-		tv.setValid(to.isValid());
+		tv.setValid(to.getValid());
 		tv.setRoutename(to.getRoutename());
 		tv.setReceiveremail(to.getReceiveremail());
-		tv.setGender(to.isGender());
+		tv.setGender(to.getGender());
 		tv.setRouteId(to.getRouteId());
 		return tv;
 	}
-	public static TravelOrder toRecord(TravelOrderVo to)throws Exception{
+	public static TravelOrder toRecord(TravelOrderVO to)throws Exception{
 		TravelOrder tv = new TravelOrder();
 		tv.setBank(to.getBank());
 		tv.setBudget(to.getBudget());
 		tv.setCustomerId(to.getCustomerId());
 		tv.setId(to.getId());
-		tv.setIsPayed(to.getIsPayed());
+		tv.setPayed(to.getPayed());
 		tv.setOrderItems(to.getOrderItems());
 		tv.setOrderName(to.getOrderName());
 		tv.setOrderNo(to.getOrderNo());
@@ -96,10 +96,10 @@ public class TravelOrderKit{
 		tv.setReceiverMobile(to.getReceiverMobile());
 		tv.setRemark(to.getRemark());
 		tv.setTotalStaff(to.getTotalStaff());
-		tv.setValid(to.isValid());
+		tv.setValid(to.getValid());
 		tv.setRoutename(to.getRoutename());
 		tv.setReceiveremail(to.getReceiveremail());
-		tv.setGender(to.isGender());
+		tv.setGender(to.getGender());
 		tv.setRouteId(to.getRouteId());
 		try {
 			if(StringUtils.isNotEmpty(to.getCreateTime())){			

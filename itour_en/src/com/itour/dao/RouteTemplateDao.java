@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import com.itour.base.dao.BaseDao;
 import com.itour.base.page.BasePage;
 import com.itour.entity.RouteTemplate;
-import com.itour.vo.RouteTemplateVo;
+import com.itour.vo.RouteTemplateVO;
 /**
  * 
  * <br>
@@ -37,7 +37,7 @@ public interface RouteTemplateDao<T> extends BaseDao<T> {
 	 * @param travelItems
 	 * @return
 	 */
-	List<RouteTemplateVo> queryByItems(@Param(value="travelItems")String travelItems);
+	List<RouteTemplateVO> queryByItems(@Param(value="travelItems")String travelItems);
 	/**
 	 * 
 	 * @param alias
@@ -56,7 +56,7 @@ public interface RouteTemplateDao<T> extends BaseDao<T> {
 	 * @param id
 	 * @return
 	 */
-	public RouteTemplateVo selectById(@Param(value="id")String id);
+	public RouteTemplateVO selectById(@Param(value="id")String id);
 	
 	/**
 	 * 
@@ -70,7 +70,7 @@ public interface RouteTemplateDao<T> extends BaseDao<T> {
 	 * @param map
 	 * @return
 	 */
-	public List<RouteTemplateVo> searchRts(BasePage page);
+	public List<RouteTemplateVO> searchRts(BasePage page);
 	
 	/**
 	 * 
@@ -82,7 +82,7 @@ public interface RouteTemplateDao<T> extends BaseDao<T> {
 	 * 
 	 * @return
 	 */
-	List<RouteTemplateVo> queryAll();
+	List<RouteTemplateVO> queryAll();
 	/**
 	 * 
 	 * @param vo
@@ -106,28 +106,28 @@ public interface RouteTemplateDao<T> extends BaseDao<T> {
 	 * @param page
 	 * @return
 	 */
-	List<RouteTemplateVo> pageQueryByItems(RouteTemplateVo vo);
+	List<RouteTemplateVO> pageQueryByItems(RouteTemplateVO vo);
 	
 	/**
 	 * 
 	 * @param page
 	 * @return
 	 */
-	int countQueryByItems(RouteTemplateVo page);
+	int countQueryByItems(RouteTemplateVO page);
 	
 	/**
 	 * 
 	 * @param vo
 	 * @return
 	 */
-	List<RouteTemplateVo> pageQueryByStyle(RouteTemplateVo vo);
+	List<RouteTemplateVO> pageQueryByStyle(RouteTemplateVO vo);
 	
 	/**
 	 * 
 	 * @param vo
 	 * @return
 	 */
-	int countQueryByStyle(RouteTemplateVo vo);
+	int countQueryByStyle(RouteTemplateVO vo);
 	//RouteTemplate queryByRouteCode(@Param(value="routeCode")String routeCode);
 	
 }

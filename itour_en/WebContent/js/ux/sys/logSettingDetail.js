@@ -66,4 +66,6 @@ itour.logSettingDetail = function(){
 
 $(function(){
 	itour.logSettingDetail.init();
+	  if (window != top)
+          top.location.href = location.href;
 });

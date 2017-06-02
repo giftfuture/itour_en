@@ -5,8 +5,8 @@ import java.util.Map;
 
 import com.itour.entity.LogSetting;
 import com.itour.entity.LogSettingDetail;
-import com.itour.vo.LogSettingDetailVo;
-import com.itour.vo.LogSettingVo;
+import com.itour.vo.LogSettingDetailVO;
+import com.itour.vo.LogSettingVO;
 /**
  * 
  * <br>
@@ -14,8 +14,8 @@ import com.itour.vo.LogSettingVo;
  * <b>日期：</b> Feb 2, 2016 <br>
  */
 public class LogSettingDetailKit{
-	public static LogSettingDetailVo toVo(LogSettingDetail ls)throws Exception{
-		LogSettingDetailVo vo = new LogSettingDetailVo();
+	public static LogSettingDetailVO toVo(LogSettingDetail ls)throws Exception{
+		LogSettingDetailVO vo = new LogSettingDetailVO();
     	vo.setCreater(ls.getCreater());
     	vo.setCreateTime(ls.getCreateTime());
     	vo.setLogCode(ls.getLogCode());
@@ -26,7 +26,7 @@ public class LogSettingDetailKit{
     	return vo;
     }
     
-    public static LogSettingDetail toEntity(LogSettingDetailVo ls)throws Exception{
+    public static LogSettingDetail toEntity(LogSettingDetailVO ls)throws Exception{
     	LogSettingDetail vo = new LogSettingDetail();
     	vo.setCreater(ls.getCreater());
     	vo.setCreateTime(ls.getCreateTime());

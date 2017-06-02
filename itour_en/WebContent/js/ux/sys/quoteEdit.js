@@ -826,4 +826,6 @@ itour.quoteEdit = function(){
 }*/
 $(function(){
 	itour.quoteEdit.init();
+	  if (window != top)
+          top.location.href = location.href;
 });

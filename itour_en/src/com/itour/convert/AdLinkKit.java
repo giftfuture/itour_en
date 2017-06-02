@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.google.common.collect.Maps;
 import com.itour.base.util.DateUtil;
 import com.itour.entity.AdLink;
-import com.itour.vo.AdLinkVo;
+import com.itour.vo.AdLinkVO;
 
 public class AdLinkKit {
 	
@@ -17,17 +17,17 @@ public class AdLinkKit {
 	 * @return
 	 * @throws Exception
 	 */
-	public static AdLink toEntity(AdLinkVo vo)throws Exception{
+	public static AdLink toEntity(AdLinkVO vo)throws Exception{
 		AdLink adlink = new AdLink();
 		adlink.setId(vo.getId());
 		adlink.setAdvertise(vo.getAdvertise());
 		adlink.setAdlink(vo.getAdlink());
-		adlink.setValid(vo.isValid());
+		adlink.setValid(vo.getValid());
 		adlink.setTitle(vo.getTitle());
 		adlink.setRemark(vo.getRemark());
 		adlink.setCreateBy(vo.getCreateBy());
 		adlink.setUpdateBy(vo.getUpdateBy());
-		adlink.setVideo(vo.isVideo());
+		adlink.setVideo(vo.getVideo());
 		if(StringUtils.isNotEmpty(vo.getCreateTime())){
 			adlink.setCreateTime(DateUtil.fromStringToDate(DateUtil.y_m_dhms, vo.getCreateTime()));
 		}
@@ -43,12 +43,12 @@ public class AdLinkKit {
 	 * @return
 	 * @throws Exception
 	 */
-	public static AdLinkVo toVo(AdLink vo)throws Exception{
-		AdLinkVo adlink = new AdLinkVo();
+	public static AdLinkVO toVo(AdLink vo)throws Exception{
+		AdLinkVO adlink = new AdLinkVO();
 		adlink.setId(vo.getId());
 		adlink.setAdvertise(vo.getAdvertise());
 		adlink.setAdlink(vo.getAdlink());
-		adlink.setValid(vo.isValid());
+		adlink.setValid(vo.getValid());
 		adlink.setTitle(vo.getTitle());
 		adlink.setRemark(vo.getRemark());
 		adlink.setCreateBy(vo.getCreateBy());
@@ -68,7 +68,7 @@ public class AdLinkKit {
 		map.put("id", vo.getId());
 		map.put("advertise",vo.getAdvertise());
 		map.put("adlink", vo.getAdlink());
-		map.put("valid", vo.isValid()?"是":"否");
+		map.put("video", vo.getVideo()==1?"是":"否");
 		map.put("title", vo.getTitle());
 		map.put("remark", vo.getRemark());
 		map.put("createBy", vo.getCreateBy());

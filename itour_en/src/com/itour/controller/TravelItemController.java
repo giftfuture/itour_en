@@ -16,6 +16,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -61,10 +62,13 @@ import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
 import com.itour.service.TravelItemService;
 import com.itour.util.Constants;
-import com.itour.vo.OrderDetailVo;
-import com.itour.vo.RouteTemplateVo;
+import com.itour.vo.OrderDetailVO;
+import com.itour.vo.RouteTemplateVO;
 //import com.alibaba.fastjson.JSONObject;
-import com.itour.vo.TravelItemVo;
+import com.itour.vo.TravelItemVO;
+
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.geometry.Positions;
  
 /**
  * 
@@ -101,7 +105,7 @@ public class TravelItemController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
-	public ModelAndView list(TravelItemVo page,HttpServletRequest request) throws Exception{
+	public ModelAndView list(TravelItemVO page,HttpServletRequest request) throws Exception{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的list方法");
 		return forward("server/sys/travelItem"); 
@@ -134,7 +138,7 @@ public class TravelItemController extends BaseController{
 		try {
 			SysUser sessionuser = SessionUtils.getUser(request);
 			TravelItem ti =travelItemService.queryById(id);
-			TravelItemVo vo = TravelItemKit.toRecord(ti);
+			TravelItemVO vo = TravelItemKit.toRecord(ti);
 			if(vo !=null){
 				//String fileName = vo.getCoverImg() != null ? vo.getCoverImg().getName():"";
 				//vo.setCover(fileName);
@@ -142,7 +146,7 @@ public class TravelItemController extends BaseController{
 				//ImageFilter.writeBase64Image(vo.getCoverImg(),path);
 				if(request instanceof MultipartHttpServletRequest){
 						MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
-						OutputStream out = null;
+						//OutputStream out = null;
 						List<MultipartFile> multifiles = multipartRequest.getFiles("fileselect");
 						 String picName = "";
 						// String newpicName = "";
@@ -156,11 +160,12 @@ public class TravelItemController extends BaseController{
 				            	directory.mkdirs();
 				            }
 				            //newpicName = Calendar.getInstance(Locale.CHINA).getTimeInMillis()+picName.substring(picName.indexOf("."));
-				            uploadpic = new File(path+"\\"+picName );
+				           // uploadpic = new File(path+"\\"+picName );
+				            Thumbnails.of(f.getInputStream()).size(Constants.compressWidth,Constants.compressHeight).watermark(Positions.BOTTOM_RIGHT,ImageIO.read(FilePros.watermark()),0.5f).outputQuality(0.8f).keepAspectRatio(false).toFile(path+"\\"+picName );
 				            System.out.println("景点ID="+id+"上传封面图片是" + picName);  
-				            out = new FileOutputStream(uploadpic);  
-				            out.write(f.getBytes());  
-				            out.close();  
+				           // out = new FileOutputStream(uploadpic);  
+				           // out.write(f.getBytes());  
+				           // out.close();  
 				        }  
 						ti.setCover(picName);
 						picName = null;
@@ -168,13 +173,13 @@ public class TravelItemController extends BaseController{
 						uploadpic = null;
 						ti.setUpdateBy(sessionuser.getId());;
 						travelItemService.uploadCover(ti);
-						if(out != null){
+					/*	if(out != null){
 							try {
 								out.close();
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
-						}
+						}*/
 						context.put(SUCCESS, true);
 						context.put("msg", "景点封面图片上传成功！");
 				}else{
@@ -214,9 +219,9 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid datalist(TravelItemVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public EasyUIGrid datalist(TravelItemVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//List<TravelItem> dataList = travelItemService.queryByList(page);
-		BasePage<TravelItemVo> page = travelItemService.pagedQuery(vo);
+		BasePage<TravelItemVO> page = travelItemService.pagedQuery(vo);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的dataList方法");
 		return dataGridAdapter.wrap(page);
@@ -233,7 +238,7 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public String save(TravelItemVo entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String save(TravelItemVO entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String id = "";
 		TravelItem ti = null;
 		SysUser sessionuser = SessionUtils.getUser(request);
@@ -300,12 +305,12 @@ public class TravelItemController extends BaseController{
 				photos.append(t.getPhotos() == null ? "":t.getPhotos());
 			}
 			// MultipartFile imgFile = null;
-			 OutputStream out = null;
+			// OutputStream out = null;
 			// Iterator<String> it = multipartRequest.getFileNames();
 			List<MultipartFile> multifiles = multipartRequest.getFiles("fileselect");
 			 String picName = "";
 			 File directory = null;
-			 File uploadpic = null;
+			// File uploadpic = null;
 			 String parpath = "";
 			for(MultipartFile f:multifiles){
 		    	picName = StringUtils.isNotEmpty(f.getOriginalFilename())?f.getOriginalFilename() : Calendar.getInstance(Locale.CHINA).getTimeInMillis()+".jpg";   
@@ -314,27 +319,28 @@ public class TravelItemController extends BaseController{
 	            if(!directory.exists()||!directory.isDirectory()){
 	            	directory.mkdirs();
 	            }
-	            uploadpic = new File(parpath+"\\"+picName );
+	           // uploadpic = new File(parpath+"\\"+picName );
+	            Thumbnails.of(f.getInputStream()).size(Constants.compressWidth,Constants.compressHeight).watermark(Positions.BOTTOM_RIGHT,ImageIO.read(FilePros.watermark()),0.5f).outputQuality(0.8f).keepAspectRatio(false).toFile(parpath+"\\"+picName );
 	            photos.append(StringUtils.isNotEmpty(photos.toString())?"|"+picName :picName );
 	            System.out.println("景点ID="+(t!= null?t.getId():"")+"上传图片文件名是：" + picName);  
-	            out = new FileOutputStream(uploadpic);  
-	            out.write(f.getBytes());  
-	            out.close();  
+	           // out = new FileOutputStream(uploadpic);  
+	          //  out.write(f.getBytes());  
+	          //  out.close();  
 			}
 			picName = null;
 			directory = null;
-			uploadpic = null;
+			//uploadpic = null;
 			parpath = null;
 			ti.setId(id);
 			ti.setPhotos(photos.toString());
 			travelItemService.update(ti);
-			if(out != null){
+			/*if(out != null){
 				try {
 					out.close();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+			}*/
 			context.put(SUCCESS, true);
 			context.put("msg", "景点图片上传成功！");
 			}else{
@@ -489,7 +495,7 @@ public class TravelItemController extends BaseController{
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public String getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		TravelItemVo entity  = travelItemService.selectById(id);
+		TravelItemVO entity  = travelItemService.selectById(id);
 		if(entity  == null){
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
@@ -568,8 +574,8 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/queryByStyle", method = RequestMethod.GET)
-	public List<TravelItemVo> queryByStyle(@RequestParam(value="travelStyle")String travelStyle,HttpServletRequest request,HttpServletResponse response)throws Exception{
-		List<TravelItemVo> travelItems = travelItemService.queryByStyle(travelStyle);
+	public List<TravelItemVO> queryByStyle(@RequestParam(value="travelStyle")String travelStyle,HttpServletRequest request,HttpServletResponse response)throws Exception{
+		List<TravelItemVO> travelItems = travelItemService.queryByStyle(travelStyle);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的queryByStyle方法");
 		return travelItems ;
@@ -587,11 +593,11 @@ public class TravelItemController extends BaseController{
 	public String queryByAlias(@RequestParam(value="alias")String alias,HttpServletRequest request,HttpServletResponse response){
 		if(StringUtils.isNotEmpty(alias)){
 			String[] aliass = alias.split(",");
-			List<TravelItemVo> travelItems = travelItemService.queryByAlias(Arrays.asList(aliass));
+			List<TravelItemVO> travelItems = travelItemService.queryByAlias(Arrays.asList(aliass));
 			String travelitemPhotoPath = FilePros.httptravelitemPhotoPath();//
 			String parpath = "";
 		//	Map<String,String> maps = Maps.newHashMap();
-			for(TravelItemVo vo:travelItems){
+			for(TravelItemVO vo:travelItems){
 				 if(StringUtils.isNotEmpty(vo.getPhotos())){
 					 List<Integer> tempAr = new ArrayList<Integer>();
 					 StringBuffer ptos = new StringBuffer();
@@ -647,7 +653,7 @@ public class TravelItemController extends BaseController{
 		travelItemService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的logicdelete方法");
-		String logId = logSettingService.add(new LogSetting("travel_item","景点管理","travelItem/logicdelete",sessionuser.getId(),"update travel_item set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		String logId = logSettingService.add(new LogSetting("travel_item","景点管理","travelItem/logicdelete",sessionuser.getId(),"update travel_item set valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"travelItem/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return removeSuccessMessage(response);
 	}
@@ -679,8 +685,8 @@ public class TravelItemController extends BaseController{
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/queryByScope", method = RequestMethod.GET)
-	public List<TravelItemVo> queryByScope(String scope,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		List<TravelItemVo> vos = travelItemService.queryMapByScope(scope);
+	public List<TravelItemVO> queryByScope(String scope,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		List<TravelItemVO> vos = travelItemService.queryMapByScope(scope);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的allScopes方法");
 		return vos;

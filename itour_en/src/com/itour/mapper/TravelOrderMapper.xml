@@ -18,7 +18,7 @@
 	<result column="expected_depart" property="expectedDepart"/>
 	<result column="expected_back" property="expectedBack"/>
 	<result column="total_staff" property="totalStaff"/>
-	<result column="is_payed" property="isPayed"/>
+	<result column="payed" property="payed"/>
 	<result column="pay_type" property="payType"/>
 	<result column="pay_platform" property="payPlatform"/>
 	<result column="bank" property="bank"/>
@@ -26,7 +26,7 @@
 	<result column="pay_time" property="payTime"/>
 	<result column="pay_terminal" property="payTerminal"/>
 	<result column="budget" property="budget"/>
-	<result column="is_valid" property="isValid"/>
+	<result column="valid" property="valid"/>
 	<result column="routename" property="routename"/>
 	<result column="receiveremail" property="receiveremail"/>
 	<result column="gender" property="gender"/>
@@ -35,85 +35,85 @@
        
 <!-- travel_order table all fields -->
 <sql id="Base_Column_List" >
-	 id, create_time, update_time, order_name, order_no, order_status, receiver, receiver_mobile, remark, customer_id, expected_depart, expected_back, total_staff, is_payed, pay_type, pay_platform, bank, pay_account, pay_time, pay_terminal, budget,is_valid,routename,receiveremail,gender,route_id
+	 id, create_time, update_time, order_name, order_no, order_status, receiver, receiver_mobile, remark, customer_id, expected_depart, expected_back, total_staff, payed, pay_type, pay_platform, bank, pay_account, pay_time, pay_terminal, budget,valid,routename,receiveremail,gender,route_id
 </sql>
    
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where is_valid=1
+where valid=1
 <trim  suffixOverrides="," >
 	<if test="routeId != null and routeId != ''" >
-	    and route_id like CONCAT('%', #{routeId}, '%')
+	    and travel_order.route_id like CONCAT('%', #{routeId}, '%')
 	</if>
 	<if test="createTime != null and createTime !=''" >
-	   and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	   and DATE_FORMAT(travel_order.create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
 	<if test="updateTime != null and createTime !=''" >
-	   and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
+	   and DATE_FORMAT(travel_order.update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 	</if>
 	<if test="orderName != null and orderName != ''" >
-	    and order_name like CONCAT('%', #{orderName}, '%')
+	    and travel_order.order_name like CONCAT('%', #{orderName}, '%')
 	</if>
 	<if test="orderNo != null and orderNo != ''" >
-	    and order_no like CONCAT('%', #{orderNo}, '%')
+	    and travel_order.order_no like CONCAT('%', #{orderNo}, '%')
 	</if>
 	<if test="orderStatus != null and orderStatus != ''" >
-	    and order_status =  #{orderStatus}
+	    and travel_order.order_status =  #{orderStatus}
 	</if>
 	<if test="receiver != null and receiver != ''" >
-	    and receiver like CONCAT('%', #{receiver}, '%')
+	    and travel_order.receiver like CONCAT('%', #{receiver}, '%')
 	</if>
 	<if test="routename != null and routename != ''" >
-	    and routename =  #{routename}
+	    and travel_order.routename =  #{routename}
 	</if>
 	<if test="gender != null and gender != ''" >
-	    and gender =#{gender}
+	    and travel_order.gender =#{gender}
 	</if>
 	<if test="receiveremail != null and receiveremail != ''" >
-	    and receiveremail like CONCAT('%', #{receiveremail}, '%')
+	    and travel_order.receiveremail like CONCAT('%', #{receiveremail}, '%')
 	</if>
 	<if test="receiverMobile != null and receiverMobile != ''" >
-	    and receiver_mobile =  #{receiverMobile}
+	    and travel_order.receiver_mobile =  #{receiverMobile}
 	</if>
 	<if test="remark != null and remark != ''" >
-	    and remark like CONCAT('%', #{remark}, '%')
+	    and travel_order.remark like CONCAT('%', #{remark}, '%')
 	</if>
 	<if test="customerId != null and customerId != ''" >
-	    and customer_id like CONCAT('%', #{customerId}, '%')
+	    and travel_order.customer_id like CONCAT('%', #{customerId}, '%')
 	</if>
 	<if test="expectedDepart != null and expectedDepart != ''" >
-	   and DATE_FORMAT(expected_depart,'%Y-%m-%d') = DATE_FORMAT(#{expectedDepart},'%Y-%m-%d') 
+	   and DATE_FORMAT(travel_order.expected_depart,'%Y-%m-%d') = DATE_FORMAT(#{expectedDepart},'%Y-%m-%d') 
 	</if>
 	<if test="expectedBack != null and expectedBack != ''" >
-	   and DATE_FORMAT(expected_back,'%Y-%m-%d') = DATE_FORMAT(#{expectedBack},'%Y-%m-%d') 
+	   and DATE_FORMAT(travel_order.expected_back,'%Y-%m-%d') = DATE_FORMAT(#{expectedBack},'%Y-%m-%d') 
 	</if>
 	<if test="totalStaff != null and totalStaff !=''" >
-	    and total_staff =  #{totalStaff}
+	    and travel_order.total_staff =  #{totalStaff}
 	</if>
-	<if test="isPayed != null and isPayed !=''" >
-	    and is_payed =  #{isPayed}
+	<if test="payed != null and payed !=''" >
+	    and travel_order.payed =  #{payed}
 	</if>
 	<if test="payType != null and payType != ''" >
-	    and pay_type =  #{payType}
+	    and travel_order.pay_type =  #{payType}
 	</if>
 	<if test="payPlatform != null and payPlatform != ''" >
-	    and pay_platform like CONCAT('%', #{payPlatform}, '%')
+	    and travel_order.pay_platform like CONCAT('%', #{payPlatform}, '%')
 	</if>
 	<if test="bank != null and bank != ''" >
-	    and bank like CONCAT('%', #{bank}, '%')
+	    and travel_order.bank like CONCAT('%', #{bank}, '%')
 	</if>
 	<if test="payAccount != null and payAccount != ''" >
-	    and pay_account like CONCAT('%', #{payAccount}, '%')
+	    and travel_order.pay_account like CONCAT('%', #{payAccount}, '%')
 	</if>
 	<if test="payTime != null and payTime != ''" >
-	   and DATE_FORMAT(pay_time,'%Y-%m-%d') = DATE_FORMAT(#{payTime},'%Y-%m-%d') 
+	   and DATE_FORMAT(travel_order.pay_time,'%Y-%m-%d') = DATE_FORMAT(#{payTime},'%Y-%m-%d') 
 	</if>
 	<if test="payTerminal != null and payTerminal != ''" >
-	    and pay_terminal like CONCAT('%', #{payTerminal}, '%')
+	    and travel_order.pay_terminal like CONCAT('%', #{payTerminal}, '%')
 	</if>
 	<if test="budget != null and budget !=''" >
-	    and budget =  #{budget}
+	    and travel_order.budget =  #{budget}
 	</if>
 </trim>
 </sql>
@@ -124,8 +124,8 @@ where is_valid=1
 <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into travel_order(id,create_time,update_time,order_name,order_no,order_status,receiver,receiver_mobile,remark,customer_id,expected_depart,expected_back,total_staff,is_payed,pay_type,pay_platform,bank,pay_account,pay_time,pay_terminal,budget,is_valid,routename,receiveremail,gender,route_id)
- values(#{id},now(),now(),#{orderName},#{orderNo},#{orderStatus},#{receiver},#{receiverMobile},#{remark},#{customerId},#{expectedDepart},#{expectedBack},#{totalStaff},#{isPayed},#{payType},#{payPlatform},#{bank},#{payAccount},#{payTime},#{payTerminal},#{budget},1,#{routename},#{receiveremail},#{gender},#{routeId})
+  insert into travel_order(id,create_time,update_time,order_name,order_no,order_status,receiver,receiver_mobile,remark,customer_id,expected_depart,expected_back,total_staff,payed,pay_type,pay_platform,bank,pay_account,pay_time,pay_terminal,budget,valid,routename,receiveremail,gender,route_id)
+ values(#{id},now(),now(),#{orderName},#{orderNo},#{orderStatus},#{receiver},#{receiverMobile},#{remark},#{customerId},#{expectedDepart},#{expectedBack},#{totalStaff},#{payed},#{payType},#{payPlatform},#{bank},#{payAccount},#{payTime},#{payTerminal},#{budget},1,#{routename},#{receiveremail},#{gender},#{routeId})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -141,9 +141,9 @@ where is_valid=1
 		<if test="receiveremail != null and receiveremail != ''" >
 		    receiveremail = #{receiveremail}, 
 		</if>
-		<if test="isValid != null and isValid != ''">
-			is_valid=#{isValid},
-		</if>
+		<!-- <if test="valid != null and valid != ''">
+			valid=#{valid},
+		</if> -->
 		<if test="orderName != null and orderName !='' ">
 			order_name=#{orderName},
 		</if>
@@ -174,8 +174,8 @@ where is_valid=1
 		<if test="totalStaff != null and totalStaff != '' ">
 			total_staff=#{totalStaff},
 		</if>
-		<if test="isPayed != null and isPayed !='' ">
-			is_payed=#{isPayed},
+		<if test="payed != null and payed !='' ">
+			payed=#{payed},
 		</if>
 		<if test="payType != null and payType != '' ">
 			pay_type=#{payType},
@@ -210,7 +210,7 @@ where is_valid=1
 </delete>
  <!-- 逻辑删除 -->
 <update id="logicdelete" parameterType="java.lang.String">
-	update travel_order set is_valid=0 where id = #{id}
+	update travel_order set valid=0 where id = #{id}
 </update>
 <!-- 根据id查询 客户订单 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">

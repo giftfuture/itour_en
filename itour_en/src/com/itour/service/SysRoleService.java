@@ -21,8 +21,8 @@ import com.itour.entity.SysRole;
 import com.itour.entity.SysRoleRel;
 import com.itour.entity.SysUser;
 import com.itour.entity.SysRoleRel.RelType;
-import com.itour.vo.SysMenuVo;
-import com.itour.vo.SysRoleVo;
+import com.itour.vo.SysMenuVO;
+import com.itour.vo.SysRoleVO;
 
 /**
  * 
@@ -44,14 +44,14 @@ public class SysRoleService<T> extends BaseService<T> {
 	 * @return 查询结果
 	 */
 	@SuppressWarnings("unchecked")
-	public BasePage<SysRoleVo> pagedQuery(SysRoleVo vo) {
+	public BasePage<SysRoleVO> pagedQuery(SysRoleVO vo) {
 		List<SysRole> list = (List<SysRole>) mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
-		List<SysRoleVo>	vos = Lists.newArrayList();
+		List<SysRoleVO>	vos = Lists.newArrayList();
 		for(SysRole sv:list){
 			vos.add(SysRoleKit.toRecord(sv));
 		}
-		return new BasePage<SysRoleVo>(vo.getStart(), vo.getLimit(), vos, count);
+		return new BasePage<SysRoleVO>(vo.getStart(), vo.getLimit(), vos, count);
 	}
 	/**
 	 * 添加角色&菜单关系

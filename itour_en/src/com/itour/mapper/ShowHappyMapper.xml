@@ -18,11 +18,11 @@
 		<result column="route" property="route"/>
 		<result column="tour_time" property="tourTime"/>
 		<result column="cover" property="cover"/>
-		<result column="is_valid" property="isValid"/>
+		<result column="valid" property="valid"/>
 		<result column="short_content" property="shortContent"/>
 		<result column="sh_code" property="shCode"/>
 	</resultMap>
-	<resultMap id="BaseResultMapVo" type="com.itour.vo.ShowHappyVo">
+	<resultMap id="BaseResultMapVo" type="com.itour.vo.ShowHappyVO">
 		<result column="id" property="id" />
 		<result column="create_time" property="createTime" />
 		<result column="status" property="status" />
@@ -36,71 +36,72 @@
 		<result column="route" property="route"/>
 		<result column="tour_time" property="tourTime"/>
 		<result column="cover" property="cover"/>
-		<result column="is_valid" property="isValid"/>
+		<result column="valid" property="valid"/>
 		<result column="short_content" property="shortContent"/>
 		<result column="sh_code" property="shCode"/>
 		<result column="areaname" property="areaname"/>
+		<result column="customer_name" property="customerName"/>
 	</resultMap>
 	<!-- feedback table all fields -->
 	<sql id="Base_Column_List">
-		id,customer,create_time, status, update_time, title, content, result, signature,area,route,tour_time,cover,is_valid,short_content,sh_code
+		id,customer,create_time, status, update_time, title, content, result, signature,area,route,tour_time,cover,valid,short_content,sh_code
 	</sql>
 	<sql id="Column_List">
-		id,customer,create_time, status, update_time, title, result, signature,area,route,tour_time,cover,is_valid,short_content,sh_code
+		id,customer,create_time, status, update_time, title, result, signature,area,route,tour_time,cover,valid,short_content,sh_code
 	</sql>
 	<!-- 查询条件 -->
 	<sql id="Example_Where_Clause">
-		where show_happy.is_valid=1
+		where show_happy.valid=1
 		<trim suffixOverrides=",">
 			<if test="shortContent != null and shortContent != ''">
 				and show_happy.short_content=like CONCAT('%', #{shortContent}, '%')
 			</if>
 			<if test="shCode != null and shCode !=''">
-				and sh_code=#{shCode}
+				and show_happy.sh_code=#{shCode}
 			</if>
 			<if test="createTime != null and createTime !=''">
 	  <![CDATA[  and  DATE_FORMAT(show_happy.create_time,'%Y-%m-%d')  = DATE_FORMAT( #{createTime},'%Y-%m-%d') ]]>
 			</if>
 			<if test="status != null and status != 0">
-				and status = #{status}
+				and show_happy.status = #{status}
 			</if>
 			<if test="updateTime != null and updateTime !=''">
 	 		<![CDATA[  and  DATE_FORMAT(show_happy.update_time,'%Y-%m-%d')  = DATE_FORMAT( #{updateTime},'%Y-%m-%d') ]]>
 			</if>
 				<if test="tourTime != null and tourTime !=''">
-	 		<![CDATA[  and  DATE_FORMAT(tour_time,'%Y-%m-%d')  = DATE_FORMAT( #{tourTime},'%Y-%m-%d') ]]>
+	 		<![CDATA[  and  DATE_FORMAT(show_happy.tour_time,'%Y-%m-%d')  = DATE_FORMAT( #{tourTime},'%Y-%m-%d') ]]>
 			</if>
 			<if test="title != null and title != ''">
-				and title like CONCAT('%', #{title}, '%')
+				and show_happy.title like CONCAT('%', #{title}, '%')
 			</if>
 			<if test="content != null and content != ''">
-				and content like CONCAT('%', #{content}, '%')
+				and show_happy.content like CONCAT('%', #{content}, '%')
 			</if>
 			<if test="customer != null and customer != ''">
-				and customer like CONCAT('%', #{customer}, '%')
+				and show_happy.customer like CONCAT('%', #{customer}, '%')
 			</if>
 			<if test="result != null and result != ''">
-				and result  like CONCAT('%', #{result}, '%')
+				and show_happy.result  like CONCAT('%', #{result}, '%')
 			</if>
 			<if test="area != null and area != ''">
-				and area like CONCAT('%', #{area}, '%')
+				and show_happy.area like CONCAT('%', #{area}, '%')
 			</if>
 			<if test="route != null and route != ''">
-				and route like CONCAT('%', #{route}, '%')
+				and show_happy.route like CONCAT('%', #{route}, '%')
 			</if>
 			<if test="signature != null and signature != ''">
-				and signature like CONCAT('%', #{signature}, '%')
+				and show_happy.signature like CONCAT('%', #{signature}, '%')
 			</if>
 		</trim>
 	</sql>
 	<!-- 修改记录，只修改只不为空的字段 -->
 	<update id="update" parameterType="com.itour.entity.ShowHappy">
-		update show_happy set update_time=now(),is_valid=1,
+		update show_happy set update_time=now(),
 		<trim suffixOverrides=",">
-		<!-- 	<if test="isValid != null">
-				is_valid=#{isValid},
+		<!-- 	<if test="valid != null">
+				valid=#{valid},
 			</if> -->
-			<if test="status != null and status != 0 ">
+			<if test="status != null and status != '' ">
 				status=#{status},
 			</if>
 			<if test="title != null and title != '' ">
@@ -127,7 +128,7 @@
 			<if test="route != null and route !='' ">
 				route=#{route},
 			</if>
-			<if test="tourTime != null ">
+			<if test="tourTime != null and tourTime != ''">
 				tour_time=#{tourTime},
 			</if>
 			<if test="cover != null and cover != ''">
@@ -142,7 +143,7 @@
 		<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id"> 
 			SELECT LAST_INSERT_ID() </selectKey> -->
 		insert into
-		show_happy(id,customer,create_time,update_time,status,content,title,result,signature,area,route,tour_time,cover,is_valid,short_content,sh_code)
+		show_happy(id,customer,create_time,update_time,status,content,title,result,signature,area,route,tour_time,cover,valid,short_content,sh_code)
 		values(#{id},#{customer},now(),now(),#{status},#{content},#{title},#{result},#{signature},#{area},#{route},#{tourTime},#{cover},1,#{shortContent},#{shCode})
 	</insert>
 
@@ -153,23 +154,23 @@
 	</delete>
 <!-- 逻辑删除 -->
  <update id="logicdelete" parameterType="java.lang.String">
-	update show_happy set is_valid=0 where id = #{id}
+	update show_happy set valid=0 where id = #{id}
 </update>
 	<!-- 根据id查询 幸福分享 -->
 	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.String">
-		select show_happy.is_valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,show_happy.cover,
+		select show_happy.valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,show_happy.cover,
 		 show_happy.sh_code,show_happy.short_content,content,result,signature,area,tour_time,show_happy.route
 		from show_happy where show_happy.id = #{id}  
 	</select>
 	<select id="selectById" resultMap="BaseResultMapVo" parameterType="java.lang.String">
-		select show_happy.is_valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,show_happy.cover,
+		select show_happy.valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,show_happy.cover,
 		 show_happy.sh_code,show_happy.short_content,content,result,signature,area,tour_time,show_happy.route,areas.areaname,route_template.title routeTitle 
 		from show_happy left join route_template on show_happy.route = route_template.route_code 
 		left join areas on show_happy.area=areas.id where show_happy.id = #{id}  
 	</select>
 	<!-- 根据shCode查询 幸福分享 -->
 	<select id="queryByCode" resultMap="BaseResultMapVo" parameterType="java.lang.String">
-		select show_happy.is_valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,show_happy.cover,
+		select show_happy.valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,show_happy.cover,
 		show_happy.sh_code,show_happy.short_content,content,result,signature,area,DATE_FORMAT(show_happy.tour_time,'%Y-%m-%d') tour_time,show_happy.route,areas.areaname ,route_template.title routeTitle  
 		from show_happy left join route_template on show_happy.route = route_template.route_code 
 		left join areas on show_happy.area=areas.id where show_happy.sh_code = #{shCode}  
@@ -181,14 +182,14 @@
 		<include refid="Example_Where_Clause" />
 	</select>
 	<select id="queryAll" resultMap="BaseResultMapVo">
-		select * from show_happy where is_valid=1
+		select * from show_happy where valid=1
 	</select>
 	 <select id="countAll" resultType="java.lang.Integer">
-		select count(1) from show_happy where is_valid=1
+		select count(1) from show_happy where valid=1
 	</select>
 	<!-- 查询幸福分享列表 -->
-	<select id="queryByList" resultMap="BaseResultMap" parameterType="com.itour.vo.ShowHappyVo">
-		select show_happy.is_valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,
+	<select id="queryByList" resultMap="BaseResultMap" parameterType="com.itour.vo.ShowHappyVO">
+		select show_happy.valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,
 		 show_happy.sh_code,show_happy.short_content,show_happy.cover,result,signature,area,tour_time,show_happy.route 
 		from show_happy
 		<include refid="Example_Where_Clause" />
@@ -200,10 +201,11 @@
 			${pager.mysqlQueryCondition}
 		</if>
 	</select>
-	<select id="queryByListVo" resultMap="BaseResultMapVo" parameterType="com.itour.vo.ShowHappyVo">
-		select show_happy.is_valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,
+	<select id="queryByListVo" resultMap="BaseResultMapVo" parameterType="com.itour.vo.ShowHappyVO">
+		select show_happy.valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,customers.customer_name ,
 		show_happy.sh_code,show_happy.short_content,show_happy.cover,result,signature,area,DATE_FORMAT(show_happy.tour_time,'%Y-%m-%d') tour_time,show_happy.route ,areas.areaname,route_template.title routeTitle   
 		from show_happy left join route_template on show_happy.route = route_template.id 
+		left join customers on show_happy.customer=customers.id
 		left join areas on show_happy.area=areas.id 
 		<include refid="Example_Where_Clause" />
 		<if test="pager.orderCondition != null and pager.orderCondition != ''">

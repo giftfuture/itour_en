@@ -26,37 +26,37 @@
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where deleted=0
+where sys_menu_btn.deleted=0
 <trim  suffixOverrides="," >
 	<if test="menuid != null and menuid !=''" >
-	    and menuid like CONCAT('%', #{menuid}, '%')
+	    and sys_menu_btn.menuid like CONCAT('%', #{menuid}, '%')
 	</if>
 	 	<if test="btnName != null and btnName != ''" >
-	    and btnName like CONCAT('%', #{btnName}, '%')
+	    and sys_menu_btn.btnName like CONCAT('%', #{btnName}, '%')
 	</if>
 	 	<if test="btnType != null and btnType != ''" >
-	    and btnType like CONCAT('%', #{btnType}, '%')
+	    and sys_menu_btn.btnType like CONCAT('%', #{btnType}, '%')
 	</if>
 	 <if test="actionUrls != null and actionUrls != ''" >
-	    and actionUrls like CONCAT('%', #{actionUrls}, '%')
+	    and sys_menu_btn.actionUrls like CONCAT('%', #{actionUrls}, '%')
 	</if>
 	<!-- <if test="deleted != null and deleted != ''" >
 	    and deleted =  #{deleted}
 	</if> -->
 	<if test="createTime != null and createTime != ''" >
-	    and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	    and DATE_FORMAT(sys_menu_btn.create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
 	<if test="updateTime != null and updateTime != ''" >
-	     and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
+	     and DATE_FORMAT(sys_menu_btn.update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 	</if>
 	<if test="actions != null and actions != ''" >
-	    and actions like CONCAT('%', #{actions}, '%')
+	    and sys_menu_btn.actions like CONCAT('%', #{actions}, '%')
 	</if>
 	<if test="createBy != null and createBy != ''" >
-	    and create_by like CONCAT('%', #{createBy}, '%')
+	    and sys_menu_btn.create_by like CONCAT('%', #{createBy}, '%')
 	</if>
 	<if test="updateBy != null and updateBy != ''" >
-	    and update_by like CONCAT('%', #{updateBy}, '%')
+	    and sys_menu_btn.update_by like CONCAT('%', #{updateBy}, '%')
 	</if>
 </trim>
 </sql>
@@ -76,7 +76,7 @@ where deleted=0
 <update id="update" parameterType="com.itour.entity.SysMenuBtn" >
 	update sys_menu_btn set update_time=now(),
 	<trim  suffixOverrides="," >
-	<if test="menuid != null  ">
+	<if test="menuid != null and menuid != '' ">
 		menuid=#{menuid},
 	</if>
 	<if test="btnName != null  and btnName != '' ">
@@ -88,10 +88,10 @@ where deleted=0
 	<if test="actionUrls != null  and actionUrls != '' ">
 		actionUrls=#{actionUrls},
 	</if>
-	<if test="deleted != null  ">
+	<!-- <if test="deleted != null and deleted != '' ">
 		deleted=#{deleted},
-	</if>
-	<if test="actions != null  ">
+	</if> -->
+	<if test="actions != null and actions != '' ">
 		actions=#{actions},
 	</if>
 	<if test="updateBy != null and updateBy != ''">

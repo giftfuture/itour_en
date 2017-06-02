@@ -37,8 +37,8 @@ import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
 import com.itour.util.Constants;
-import com.itour.vo.CustomerVo;
-import com.itour.vo.FeedbackVo;
+import com.itour.vo.CustomerVO;
+import com.itour.vo.FeedbackVO;
 
 /**
  * 
@@ -77,7 +77,7 @@ public class FeedbackController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
-	public ModelAndView  list(CustomerVo vo,HttpServletRequest request) throws Exception{
+	public ModelAndView  list(CustomerVO vo,HttpServletRequest request) throws Exception{
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的list方法");
 		return forward("server/sys/feedback"); 
@@ -93,9 +93,9 @@ public class FeedbackController extends BaseController{
 	@RequestMapping(value="/pagination", method = RequestMethod.POST) 
 	public 	String pagination(@RequestParam(value="pageNo",defaultValue="1")int pageNo,String route,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
-		FeedbackVo fv = new FeedbackVo();
+		FeedbackVO fv = new FeedbackVO();
 		int count = 0;
-		fv.setPublicShow(true);
+		fv.setPublicShow(1);
 		fv.setRoute(route);
 		fv.setPage(pageNo);
 		fv.setRows(Constants.fbperPage);
@@ -104,7 +104,7 @@ public class FeedbackController extends BaseController{
 		fv.getPager().setPageSize(Constants.fbperPage);
 		fv.getPager().setOrderField("create_time");
 		fv.getPager().setOrderDirection(false);
-		List<FeedbackVo> list = Lists.newArrayList();
+		List<FeedbackVO> list = Lists.newArrayList();
 		/*if(Constants.feedbackpage.size() >= Constants.fbperPage){
 			list = Constants.feedbackpage.subList((int)fv.getPager().getPageOffset(), Constants.fbperPage);
 			count = Constants.feedbackpage.size();
@@ -115,8 +115,8 @@ public class FeedbackController extends BaseController{
 			}
 			count = feedbackService.queryByCount(fv);
 		//}
-	//	List<FeedbackVo> records = Lists.newArrayList();
-		BasePage<FeedbackVo> page = new BasePage<FeedbackVo>(fv.getStart(), fv.getLimit(), list, count);
+	//	List<FeedbackVO> records = Lists.newArrayList();
+		BasePage<FeedbackVO> page = new BasePage<FeedbackVO>(fv.getStart(), fv.getLimit(), list, count);
 		//Pager pager = new Pager();
 		page.setPage(pageNo);
 		Pager pager = page.getPager();
@@ -144,11 +144,11 @@ public class FeedbackController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid  datalist(FeedbackVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public EasyUIGrid  datalist(FeedbackVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		if(vo.getCreateTime() != null){
 			vo.setCreateTime(vo.getCreateTime());
 		}
-		BasePage<FeedbackVo> page = feedbackService.pagedQuery(vo);
+		BasePage<FeedbackVO> page = feedbackService.pagedQuery(vo);
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的dataList方法");
 		return dataGridAdapter.wrap(page);
@@ -164,7 +164,7 @@ public class FeedbackController extends BaseController{
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/add", method = RequestMethod.POST)
-	public String add(FeedbackVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String add(FeedbackVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Feedback bean = FeedbackKit.toEntity(vo);
 		String fbId = "";
 		Feedback fb = null;
@@ -297,7 +297,7 @@ public class FeedbackController extends BaseController{
 		feedbackService.logicdelete(id);
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行FeedbackController的logicdelete方法");
-		String logId = logSettingService.add(new LogSetting("feed_back","反馈咨询","feedback/logicdelete",user.getId(),"update feed_back set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		String logId = logSettingService.add(new LogSetting("feed_back","反馈咨询","feedback/logicdelete",user.getId(),"update feed_back set valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"feedback/logicdelete",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return removeSuccessMessage(response);
 	}

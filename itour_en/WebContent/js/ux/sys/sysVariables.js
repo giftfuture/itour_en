@@ -220,4 +220,6 @@ itour.sysVariables = function(){
 
 $(function(){
 	itour.sysVariables.init();
+	  if (window != top)
+          top.location.href = location.href;
 });

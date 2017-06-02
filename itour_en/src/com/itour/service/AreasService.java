@@ -15,7 +15,7 @@ import com.itour.base.service.BaseService;
 import com.itour.convert.AreasKit;
 import com.itour.dao.AreasDao;
 import com.itour.entity.Areas;
-import com.itour.vo.AreasVo;
+import com.itour.vo.AdLinkVO;
 @Service("areasService")
 public class AreasService extends BaseService<Areas>{
 
@@ -35,7 +35,7 @@ public class AreasService extends BaseService<Areas>{
 	 * @return 查询结果
 	 */
 
-	public BasePage<Map<String, String>> pagedQuery(AreasVo vo) {
+	public BasePage<Map<String, String>> pagedQuery(AdLinkVO vo) {
 			List<Areas> list = mapper.queryByList(vo);
 			int count = mapper.queryByCount(vo);
 			List<Map<String, String>> records = Lists.newArrayList();

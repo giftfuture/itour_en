@@ -324,4 +324,6 @@ itour.travelStyle = function(){
 
 $(function(){
 	itour.travelStyle.init();
+	  if (window != top)
+          top.location.href = location.href;
 });

@@ -38,8 +38,8 @@ import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
 import com.itour.service.SysRoleService;
 import com.itour.service.SysUserService;
-import com.itour.vo.SysRoleVo;
-import com.itour.vo.SysUserVo;
+import com.itour.vo.SysRoleVO;
+import com.itour.vo.SysUserVO;
  
 @Controller
 @RequestMapping("/sysUser") 
@@ -72,7 +72,7 @@ public class SysUserController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
-	public ModelAndView list(SysUserVo model,HttpServletRequest request) throws Exception{
+	public ModelAndView list(SysUserVO model,HttpServletRequest request) throws Exception{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的list方法");
 		return forward("server/sys/sysUser"); 
@@ -90,8 +90,8 @@ public class SysUserController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid  dataList(SysUserVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
-	  BasePage<SysUserVo> page = sysUserService.pagedQuery(vo);
+	public EasyUIGrid  dataList(SysUserVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	  BasePage<SysUserVO> page = sysUserService.pagedQuery(vo);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysUserController的dataList方法");
 	  return dataGridAdapter.wrap(page);
@@ -266,7 +266,7 @@ public class SysUserController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/userList.json", method = RequestMethod.POST) 
-	public void  userList(SysUserVo model,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public void  userList(SysUserVO model,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		model.setState(STATE.ENABLE.key);
 		dataList(model,request,response);
 		SysUser sessionuser = SessionUtils.getUser(request);

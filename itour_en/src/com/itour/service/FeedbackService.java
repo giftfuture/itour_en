@@ -13,7 +13,7 @@ import com.itour.base.service.BaseService;
 import com.itour.convert.FeedbackKit;
 import com.itour.dao.FeedbackDao;
 import com.itour.entity.Feedback;
-import com.itour.vo.FeedbackVo;
+import com.itour.vo.FeedbackVO;
 
 /**
  * 
@@ -32,14 +32,14 @@ public class FeedbackService extends BaseService<Feedback> {
 	 * @param pageQuery 查询条件
 	 * @return 查询结果
 	 */
-	public BasePage<FeedbackVo> pagedQuery(FeedbackVo vo) {
-		List<Feedback> list = (List<Feedback>) mapper.queryByList(vo);
+	public BasePage<FeedbackVO> pagedQuery(FeedbackVO vo) {
+		List<FeedbackVO> list = (List<FeedbackVO>) mapper.queryByListVo(vo);
 		int count = mapper.queryByCount(vo);
-		List<FeedbackVo> records = Lists.newArrayList();
+		/*List<FeedbackVO> records = Lists.newArrayList();
 		for(Feedback fb:list) {
 			records.add(FeedbackKit.toRecord(fb));
-		}
-		return new BasePage<FeedbackVo>(vo.getStart(), vo.getLimit(), records, count);
+		}*/
+		return new BasePage<FeedbackVO>(vo.getStart(), vo.getLimit(), list, count);
 	}
 	
 	@Autowired

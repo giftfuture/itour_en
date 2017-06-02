@@ -12,7 +12,7 @@
 	<result column="var_hostip" property="varHostip"/>
 	<result column="var_project" property="varProject"/>
 	<result column="remark" property="remark"/>
-	<result column="is_valid" property="isValid"/>
+	<result column="valid" property="valid"/>
 	<result column="create_by" property="createBy"/>
 	<result column="update_by" property="updateBy"/>
 	<result column="create_time" property="createTime"/>
@@ -21,31 +21,31 @@
        
 <!-- sys_variables table all fields -->
 <sql id="Base_Column_List" >
-	 id, var_name, var_value, var_hostname, var_hostip, remark, var_project,is_valid,create_by,update_by,create_time,update_time
+	 id, var_name, var_value, var_hostname, var_hostip, remark, var_project,valid,create_by,update_by,create_time,update_time
 </sql>
    
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where is_valid=1
+where sys_variables.valid=1
 <trim  suffixOverrides="," >
 	<if test="varName != null and varName != ''" >
-	    and var_name like CONCAT('%', #{varName}, '%')
+	    and sys_variables.var_name like CONCAT('%', #{varName}, '%')
 	</if>
 	<if test="varValue != null and varValue != ''" >
-	    and var_value like CONCAT('%', #{varValue}, '%')
+	    and sys_variables.var_value like CONCAT('%', #{varValue}, '%')
 	</if>
 	<if test="varHostname != null and varHostname != ''" >
-	    and var_hostname like CONCAT('%', #{varHostname}, '%')
+	    and sys_variables.var_hostname like CONCAT('%', #{varHostname}, '%')
 	</if>
 	<if test="varHostip != null and varHostip != ''" >
-	    and var_hostip like CONCAT('%', #{varHostip}, '%')
+	    and sys_variables.var_hostip like CONCAT('%', #{varHostip}, '%')
 	</if>
 	<if test="remark != null and remark != ''" >
-	    and remark like CONCAT('%', #{remark}, '%')
+	    and sys_variables.remark like CONCAT('%', #{remark}, '%')
 	</if>
 	<if test="varProject != null and varProject != ''" >
-	    and var_project like CONCAT('%', #{var_project}, '%')
+	    and sys_variables.var_project like CONCAT('%', #{var_project}, '%')
 	</if>
 </trim>
 </sql>
@@ -56,33 +56,33 @@ where is_valid=1
 <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into sys_variables(id,var_name,var_value,var_hostname,var_hostip,remark,var_project,is_valid,create_by,update_by,create_time,update_time)
+  insert into sys_variables(id,var_name,var_value,var_hostname,var_hostip,remark,var_project,valid,create_by,update_by,create_time,update_time)
  values(#{id},#{varName},#{varValue},#{varHostname},#{varHostip},#{remark},#{varProject},1,#{createBy},#{updateBy},now(),now())
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.SysVariables" >
-	update sys_variables set  update_time=now(),
+	update sys_variables set update_time=now(),
 	<trim  suffixOverrides="," >
-		<if test="isValid!=null">
-			is_valid=#{isValid},
-		</if>
-		<if test="varName != null  ">
+	<!-- 	<if test="valid!=null">
+			valid=#{valid},
+		</if> -->
+		<if test="varName != null and varName != '' ">
 			var_name=#{varName},
 		</if>
-		<if test="varValue != null  ">
+		<if test="varValue != null and varValue != '' ">
 			var_value=#{varValue},
 		</if>
-		<if test="varHostname != null  ">
+		<if test="varHostname != null and varHostname != '' ">
 			var_hostname=#{varHostname},
 		</if>
-		<if test="varHostip != null  ">
+		<if test="varHostip != null and varHostip != '' ">
 			var_hostip=#{varHostip},
 		</if>
-		<if test="remark != null  ">
+		<if test="remark != null and remark != '' ">
 			remark=#{remark},
 		</if>
-		<if test="varProject != null  ">
+		<if test="varProject != null and varProject != '' ">
 			var_project=#{varProject},
 		</if>
 		<if test="updateBy !=null and updateBy !=''">
@@ -97,7 +97,7 @@ where is_valid=1
 </delete>
  <!-- 逻辑删除 -->
 <update id="logicdelete" parameterType="java.lang.String">
-	update sys_variables set is_valid=0 where id = #{id}
+	update sys_variables set valid=0 where id = #{id}
 </update>
 <!-- 根据id查询 系统变量 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">

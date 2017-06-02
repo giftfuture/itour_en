@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.itour.base.dao.BaseDao;
 import com.itour.entity.Feedback;
+import com.itour.vo.FeedbackVO;
 /**
  * 
  * <br>
@@ -15,5 +16,5 @@ import com.itour.entity.Feedback;
 public interface FeedbackDao extends BaseDao<Feedback> {
 	
 	List<Feedback> allFeedback();
-	
+	List<FeedbackVO> queryByListVo(FeedbackVO vo);
 }

@@ -34,8 +34,8 @@ import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
 import com.itour.service.QuotationService;
-import com.itour.vo.FeedbackVo;
-import com.itour.vo.QuotationVo;
+import com.itour.vo.FeedbackVO;
+import com.itour.vo.QuotationVO;
  
 /**
  * 
@@ -76,7 +76,7 @@ public class QuotationController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
-	public ModelAndView list(QuotationVo page,HttpServletRequest request) throws Exception{
+	public ModelAndView list(QuotationVO page,HttpServletRequest request) throws Exception{
 	/*	Map<String,Object>  context = getRootMap();
 		List<Quotation> dataList = quotationService.queryByList(page);
 		//设置页面数据
@@ -97,9 +97,9 @@ public class QuotationController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid  datalist(QuotationVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public EasyUIGrid  datalist(QuotationVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//List<Quotation> dataList = quotationService.queryByList(vo);
-		BasePage<QuotationVo> page = quotationService.pagedQuery(vo);
+		BasePage<QuotationVO> page = quotationService.pagedQuery(vo);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行QuotationController的datalist方法");
 		return dataGridAdapter.wrap(page);
@@ -199,7 +199,7 @@ public class QuotationController extends BaseController{
 		quotationService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行QuotationController的logicdelete方法");
-		String logId = logSettingService.add(new LogSetting("quotation","报价单","quotation/logicdelete",sessionuser.getId(),"update quotation set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		String logId = logSettingService.add(new LogSetting("quotation","报价单","quotation/logicdelete",sessionuser.getId(),"update quotation set valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"quotation/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return removeSuccessMessage(response);
 	}

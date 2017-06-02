@@ -33,7 +33,7 @@ import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
 import com.itour.service.OrderDetailService;
-import com.itour.vo.OrderDetailVo;
+import com.itour.vo.OrderDetailVO;
  
 /**
  * 
@@ -74,7 +74,7 @@ public class OrderDetailController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
-	public ModelAndView  list(OrderDetailVo page,HttpServletRequest request) throws Exception{
+	public ModelAndView  list(OrderDetailVO page,HttpServletRequest request) throws Exception{
 		//Map<String,Object>  context = getRootMap();
 		//List<OrderDetail> dataList = orderDetailService.queryByList(page);
 		//设置页面数据
@@ -95,9 +95,9 @@ public class OrderDetailController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid  datalist(OrderDetailVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public EasyUIGrid  datalist(OrderDetailVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//List<OrderDetail> dataList = orderDetailService.queryByList(page);
-		BasePage<OrderDetailVo> page = orderDetailService.pagedQuery(vo);
+		BasePage<OrderDetailVO> page = orderDetailService.pagedQuery(vo);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行OrderDetailController的dataList方法");
 		return dataGridAdapter.wrap(page);
@@ -114,7 +114,7 @@ public class OrderDetailController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public String save(OrderDetailVo entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String save(OrderDetailVO entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String odId="";
 		OrderDetail od = null;
 		SysUser sessionuser = SessionUtils.getUser(request);
@@ -149,7 +149,7 @@ public class OrderDetailController extends BaseController{
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/booking", method = RequestMethod.POST)
-	public String booking(@RequestBody OrderDetailVo entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String booking(@RequestBody OrderDetailVO entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String vcode = SessionUtils.getHappyValidateCode(request);
 		SessionUtils.removeHappyValidateCode(request);//清除验证码，确保验证码只能用一次
 	 	if(StringUtils.isEmpty(entity.getVerifyCode())){
@@ -233,7 +233,7 @@ public class OrderDetailController extends BaseController{
 		orderDetailService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行OrderDetailController的logicdelete方法");
-		String logId = logSettingService.add(new LogSetting("order_detail","订单明细","orderdetail/logicdelete",sessionuser.getId(),"update order_detail set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		String logId = logSettingService.add(new LogSetting("order_detail","订单明细","orderdetail/logicdelete",sessionuser.getId(),"update order_detail set valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"orderdetail/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return removeSuccessMessage(response);
 	}

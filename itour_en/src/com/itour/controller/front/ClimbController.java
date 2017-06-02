@@ -37,11 +37,11 @@ import com.itour.service.TravelItemService;
 import com.itour.service.TravelOrderService;
 import com.itour.service.TravelStyleService;
 import com.itour.util.Constants;
-import com.itour.vo.CalculateQuoteVo;
-import com.itour.vo.CustomerVo;
-import com.itour.vo.QuoteFormVo;
-import com.itour.vo.RouteTemplateVo;
-import com.itour.vo.TravelItemVo;
+import com.itour.vo.CalculateQuoteVO;
+import com.itour.vo.CustomerVO;
+import com.itour.vo.QuoteFormVO;
+import com.itour.vo.RouteTemplateVO;
+import com.itour.vo.TravelItemVO;
 
 @Controller
 @RequestMapping("/climb") 
@@ -89,12 +89,12 @@ public class ClimbController  extends BaseController{
 		Map<String,Object> context = getRootMap();
 		//page.setDeleted(DELETED.NO.key);
 		if(StringUtils.isNotEmpty(Constants.travelStyles.get(Constants.CLIMB))){			
-			RouteTemplateVo vo = new RouteTemplateVo();
+			RouteTemplateVO vo = new RouteTemplateVO();
 			vo.setTravelStyle(Constants.CLIMB);
 			vo.setPage(Long.parseLong(pageNo));
 			vo.setRows(Constants.rtPerPage);
 			vo.setLimit(Constants.rtPerPage);
-			BasePage<RouteTemplateVo> page = routeTemplateService.pageQueryByStyle(vo);
+			BasePage<RouteTemplateVO> page = routeTemplateService.pageQueryByStyle(vo);
 			page.setPage(Long.parseLong(pageNo));
 			Pager pager = page.getPager();
 			pager.setPageId(Long.parseLong(pageNo));
@@ -117,7 +117,7 @@ public class ClimbController  extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/climb/{alias}", method = RequestMethod.GET) 
 	public ModelAndView hiking(@PathVariable("alias")String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		RouteTemplateVo rt = routeTemplateService.queryByAlias(alias);
+		RouteTemplateVO rt = routeTemplateService.queryByAlias(alias);
 		TravelStyle style = (TravelStyle)travelStyleService.queryById(rt.getTravelStyle());
 		rt.setTravelStyle(style.getType());
 		String httpmappath = FilePros.httprouteMapPath();
@@ -130,8 +130,8 @@ public class ClimbController  extends BaseController{
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
 			String [] ids =  rt.getRelated().split(",");
-			List<RouteTemplateVo> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
-			for(RouteTemplateVo rtp:relates){
+			List<RouteTemplateVO> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
+			for(RouteTemplateVO rtp:relates){
 				TravelStyle ts = (TravelStyle)travelStyleService.queryById(rtp.getTravelStyle());
 				if(ts != null){
 					rtp.setTravelStyleAlias(ts.getAlias());
@@ -139,7 +139,7 @@ public class ClimbController  extends BaseController{
 			}
 			 rt.setRelates(relates);
 		}
-		QuoteFormVo qf = quoteFormService.queryByRtId(rt.getId());
+		QuoteFormVO qf = quoteFormService.queryByRtId(rt.getId());
 	/*	String beriefTrip = qf.getBeriefTrip().replaceAll("\"", "'");//ExecuteScript.exeScript("beriefTrip",qf.getBeriefTrip().replaceAll("\"", "'"),request);
 		rt.setBeriefTrip(beriefTrip);
 		String ftlName = "";
@@ -152,7 +152,7 @@ public class ClimbController  extends BaseController{
         }*/
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
-		List<TravelItemVo> items = travelItemService.queryByIds(itids);
+		List<TravelItemVO> items = travelItemService.queryByIds(itids);
 		//String ptopath = FilePros.itemCoverpath();
 		List<String> photoList = Lists.newArrayList();
 		String rtPhotoPath = FilePros.httpRoutePhotos();
@@ -161,7 +161,7 @@ public class ClimbController  extends BaseController{
 			photoList.add(StringUtils.trim(rtPhotoPath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+photo));
 		}
 		StringBuffer routeLine = new StringBuffer(rt.getDeparture());
-		for(TravelItemVo ti:items){
+		for(TravelItemVO ti:items){
 		/*	String cover = ti.getCover();
 			if(StringUtils.isNotEmpty(cover)){
 				String realCover = ptopath+"/" +StringUtils.trim(ti.getItemCode())+"_"+StringUtils.isNotEmpty(ti.getAlias())+"/"+ ti.getCover();//Constants.basePhoto
@@ -207,7 +207,7 @@ public class ClimbController  extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/detail/{alias}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		RouteTemplateVo rt = routeTemplateService.queryByAlias(alias);
+		RouteTemplateVO rt = routeTemplateService.queryByAlias(alias);
 		String httpmappath = FilePros.httprouteMapPath();
 		String httpcoverpath = FilePros.routeCoverpath();
 		if(rt != null && StringUtils.isNotEmpty(rt.getRouteMap())){
@@ -218,8 +218,8 @@ public class ClimbController  extends BaseController{
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
 			String [] ids =  rt.getRelated().split(",");
-			List<RouteTemplateVo> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
-			for(RouteTemplateVo rtp:relates){
+			List<RouteTemplateVO> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
+			for(RouteTemplateVO rtp:relates){
 				TravelStyle ts = (TravelStyle)travelStyleService.queryById(rtp.getTravelStyle());
 				if(ts != null){
 					rtp.setTravelStyleAlias(ts.getAlias());
@@ -229,9 +229,9 @@ public class ClimbController  extends BaseController{
 		}
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
-		List<TravelItemVo> items = travelItemService.queryByIds(itids);
+		List<TravelItemVO> items = travelItemService.queryByIds(itids);
 		String ptopath = FilePros.itemCoverpath();
-		for(TravelItemVo ti:items){
+		for(TravelItemVO ti:items){
 			String photo = ti.getCover();
 			if(StringUtils.isNotEmpty(photo)){
 				String cover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
@@ -255,7 +255,7 @@ public class ClimbController  extends BaseController{
 	@ResponseBody
 	public ModelAndView selfbooking(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> map = getRootMap();
-		RouteTemplateVo rt = routeTemplateService.queryByAlias(alias);
+		RouteTemplateVO rt = routeTemplateService.queryByAlias(alias);
 		String httpmappath = FilePros.httprouteMapPath();
 		String httpcoverpath = FilePros.routeCoverpath();
 		if(rt != null && StringUtils.isNotEmpty(rt.getRouteMap())){
@@ -266,8 +266,8 @@ public class ClimbController  extends BaseController{
 		}
 		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
 			String [] ids =  rt.getRelated().split(",");
-			List<RouteTemplateVo> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
-			for(RouteTemplateVo rtp:relates){
+			List<RouteTemplateVO> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
+			for(RouteTemplateVO rtp:relates){
 				TravelStyle ts = (TravelStyle)travelStyleService.queryById(rtp.getTravelStyle());
 				if(ts != null){
 					rtp.setTravelStyleAlias(ts.getAlias());
@@ -277,9 +277,9 @@ public class ClimbController  extends BaseController{
 		}
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
-		List<TravelItemVo> items = travelItemService.queryByIds(itids);
+		List<TravelItemVO> items = travelItemService.queryByIds(itids);
 		String ptopath = FilePros.itemCoverpath();
-		for(TravelItemVo ti:items){
+		for(TravelItemVO ti:items){
 			String photo = ti.getCover();
 			if(StringUtils.isNotEmpty(photo)){
 				String cover = ptopath+"/" +ti.getItemCode()+"_"+ti.getAlias()+"/"+ ti.getCover();//Constants.basePhoto
@@ -316,14 +316,14 @@ public class ClimbController  extends BaseController{
 	@ResponseBody
 	public ModelAndView toQuote2(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  context = getRootMap();
-		RouteTemplateVo bean = routeTemplateService.queryByAlias(alias);
-		//RouteTemplateVo bean  = routeTemplateService.selectById(id);
+		RouteTemplateVO bean = routeTemplateService.queryByAlias(alias);
+		//RouteTemplateVO bean  = routeTemplateService.selectById(id);
 		if(bean == null){
 			context.put(SUCCESS, false);
 			context.put("bean", "没有找到对应的记录!");
 			return forward(request.getHeader("Referer"),context);
 		}
-		QuoteFormVo qf = quoteFormService.queryByRtId(bean.getId());
+		QuoteFormVO qf = quoteFormService.queryByRtId(bean.getId());
 		context.put(SUCCESS, true);
 		context.put("bean", bean);
 		context.put("qf", qf);
@@ -340,14 +340,14 @@ public class ClimbController  extends BaseController{
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/calculateSum", method = RequestMethod.POST)
-	public String calculateSum(@RequestBody CalculateQuoteVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String calculateSum(@RequestBody CalculateQuoteVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Float adultsumcost =0f;
 		Float childrensumcost =0f;
 		if(vo !=null && StringUtils.isNotEmpty(vo.getId())){//&& adults !=null && children !=null
 			int adults = vo.getAdults();
 			int children = vo.getChildren();
 			QuoteForm qf = quoteFormService.queryById(vo.getId());
-			if(qf.isAsAdult()){
+			if(qf.getAsAdult()==1){
 				adultsumcost+=qf.getAdults()*adults;
 				childrensumcost+=qf.getAdults()*children;
 			}else{

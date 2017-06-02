@@ -217,7 +217,11 @@ itour.feedback = function(){
 									return "否";
 								}
 							}
-						}
+						},{field:'routeName',title:'路线名称',align:'center',sortable:false,formatter:function(value,row,index){
+							return row.routeName;
+						}},{field:'routeStyle',title:'路线分类',align:'center',sortable:false,formatter:function(value,row,index){
+							return row.routeStyle;
+						}}
 					]],
 					toolbar:[
 								{id:'btnadd',text:'添加',btnType:'add'},
@@ -254,4 +258,6 @@ itour.feedback = function(){
 
 $(function(){
 	itour.feedback.init();
+	  if (window != top)
+          top.location.href = location.href;
 });

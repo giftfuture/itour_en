@@ -45,7 +45,7 @@ import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
 import com.itour.util.Constants;
-import com.itour.vo.AdLinkVo;
+import com.itour.vo.AdLinkVO;
 @Controller
 @RequestMapping("/adLink") 
 public class AdLinkController extends BaseController {
@@ -97,7 +97,7 @@ public class AdLinkController extends BaseController {
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
-	public ModelAndView  list(AdLinkVo page,HttpServletRequest request) throws Exception{
+	public ModelAndView  list(AdLinkVO page,HttpServletRequest request) throws Exception{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行AdLinkController的list方法");
 		return forward("server/sys/adLink"); 
@@ -114,7 +114,7 @@ public class AdLinkController extends BaseController {
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid datalist(AdLinkVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public EasyUIGrid datalist(AdLinkVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//List<OrderDetail> dataList = orderDetailService.queryByList(page);
 		BasePage<Map<String, String>> page = adLinkService.pagedQuery(vo);
 		SysUser sessionuser = SessionUtils.getUser(request);
@@ -133,7 +133,7 @@ public class AdLinkController extends BaseController {
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public String save(AdLinkVo entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String save(AdLinkVO entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String odId="";
 		AdLink od = null;
 		SysUser sessionuser = SessionUtils.getUser(request);
@@ -241,7 +241,7 @@ public class AdLinkController extends BaseController {
 		try {
 			SysUser sessionuser = SessionUtils.getUser(request);
 			AdLink rt = adLinkService.queryById(id);
-			AdLinkVo vo = AdLinkKit.toVo(rt);
+			AdLinkVO vo = AdLinkKit.toVo(rt);
 			if(vo !=null){
 				//String fileName = vo.getCoverImg() != null ? vo.getCoverImg().getName():"";
 				//vo.setCover(fileName);

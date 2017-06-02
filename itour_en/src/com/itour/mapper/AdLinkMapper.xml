@@ -11,30 +11,30 @@
 	<result column="valid" property="valid"/>
 	<result column="title" property="title"/>
 	<result column="remark" property="remark"/>
-	<result column="is_video" property="isVideo"/>
+	<result column="video" property="video"/>
 </resultMap>
        
 <!-- areas table all fields -->
 <sql id="Base_Column_List" >
-	 id, advertise,adlink,valid,title,remark,is_video
+	 id, advertise,adlink,valid,title,remark,video
 </sql>
    
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where valid=1
+where ad_link.valid=1
 <trim  suffixOverrides="," >
 	<if test="advertise != null and advertise != ''" >
-	    and advertise like CONCAT('%', #{advertise}, '%')
+	    and ad_link.advertise like CONCAT('%', #{advertise}, '%')
 	</if>
 	<if test="adlink != null and adlink != ''" >
-	    and adlink like CONCAT('%', #{adlink}, '%') 
+	    and ad_link.adlink like CONCAT('%', #{adlink}, '%') 
 	</if>
 	<if test="title != null and title != ''" >
-	    and title like CONCAT('%', #{title}, '%') 
+	    and ad_link.title like CONCAT('%', #{title}, '%') 
 	</if>
-	<if test="isVideo != null and isVideo != ''" >
-	    and is_video = #{isVideo}
+	<if test="video != null and video != ''" >
+	    and ad_link.video = #{video}
 	</if>
 </trim>
 </sql>
@@ -45,8 +45,8 @@ where valid=1
 <!-- <selectKey resultType="java.lang.String" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into ad_link(id,advertise,adlink,valid,title,remark,is_video)
- values(#{id},#{advertise},#{adlink},1,#{title},#{remark},#{isVideo})
+  insert into ad_link(id,advertise,adlink,valid,title,remark,video)
+ values(#{id},#{advertise},#{adlink},1,#{title},#{remark},#{video})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -68,8 +68,8 @@ where valid=1
 	<if test="remark != null and remark != ''" >
 	    remark = #{remark},
 	</if>
-	<if test="isVideo != null and isVideo != ''" >
-	    is_video = #{isVideo},
+	<if test="video != null and video != ''" >
+	    video = #{video},
 	</if>
 	</trim> where id=#{id}
 </update>
@@ -89,13 +89,13 @@ where valid=1
 </select>
 
 <!-- 地区信息 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.vo.AdLinkVo">
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.vo.AdLinkVO">
 	select count(1) from ad_link 
 	<include refid="Example_Where_Clause"/>
 </select>
   	
 <!-- 查询地区信息列表 -->
-<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.vo.AdLinkVo">
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.vo.AdLinkVO">
 	select 
 	<include refid="Base_Column_List"/>
 	from ad_link 

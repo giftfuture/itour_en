@@ -17,7 +17,7 @@ import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.util.HtmlUtil;
 import com.itour.controller.TravelStyleController;
 import com.itour.entity.TravelStyle;
-import com.itour.vo.TravelStyleVo;
+import com.itour.vo.TravelStyleVO;
 import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
@@ -49,7 +49,7 @@ public class CommonController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/styles") 
-	public void allData(HttpServletResponse response,TravelStyleVo page)throws Exception{
+	public void allData(HttpServletResponse response,TravelStyleVO page)throws Exception{
 		List<TravelStyle> dataList = travelStyleService.queryValid();
 		Map<String,Object> jsonMap = new HashMap<String,Object>();
 		jsonMap.put("rows", dataList);

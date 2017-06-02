@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Light trip in detail</title>
+<title>Lighttripindetail</title>
 <%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
 <link rel="stylesheet" href="${basePath}css/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}css/easyzoom/easyzoom.css" />  
@@ -31,12 +31,12 @@
  <%@include file="/front/header.jsp"  %>
 <table width="1350px" class="commontb" align="center">
   <tr>
-    <td style="float:left" class="h1-black">${rt.title}<input type="hidden" name="idrt" value="${rt.routeCode}"></td>
+    <td width="776" style="float:middle" class="h1-black">${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>
   <tr>
     <td width="624"><table width="600" border="0" cellpadding="0" cellspacing="0">
       <tr>
-        <td width="600" name="magnifying"><img src="${basePath}${rt.cover}" style="border:none;" border="0px" height="900" width="900"/></td>
+        <td width="600" name="magnifying"><img src="${basePath}${rt.cover}" style="border:none;" border="0px"  height="338" width="600"/></td>
       </tr>
       <tr>
         <td height="69"><table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -48,7 +48,7 @@
 <DIV class=LeftBotton id=LeftArr><img src="${basePath}images/arrow01-1.gif" width="20" height="40" /></DIV>
 <DIV class=Cont id=ISL_Cont_1><!-- 图片列表 begin -->
 <c:forEach items="${rt.photoList}" var="photo">
-<div class=box><A class=imgBorder target=_blank><IMG height=84 alt="landscape" src="${basePath }${photo}" width=124 border=0></A> 
+<div class=box><A class=imgBorder target=_blank><IMG height=55 alt="landscape" src="${basePath }${photo}" width=100 border=0></A> 
 </div>
 </c:forEach>
 <!-- 图片列表 end --></DIV>
@@ -198,7 +198,7 @@
   <table class="frametb" align="center">
   <tr>
     <td colspan=2><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span> 
-    <span class="h2-24" style="float:middle"><span class="STYLE148">Brief schedule</span></span></td>
+    <span class="h2-24" style="float:left"><span class="STYLE148">Brief schedule</span></span></td>
   </tr>
     <tr>
     <td width="1140" style="align:left;float:left"><img src="${basePath}images/frame1-1.gif" height="7" /></td>
@@ -210,13 +210,13 @@
   </tr>   
   <tr>
     <td colspan=2><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span>
-    <span class="h2-24" style="float:middle"><span class="STYLE148">Detailed schedule</span></span></td>
+    <span class="h2-24" style="float:left"><span class="STYLE148">Detailed schedule</span></span></td>
   </tr>
   <tr><td colspan="2" background="images/frame1-2.gif">${qf.agodaDetail }</td></tr>
   <tr> <td colspan="2" style="text-align:left"><span class="STYLE7">Note: The above itinerary is for reference only and can be re-adjusted according to your holiday design.</span></td> </tr>
     <tr>
     <td colspan=2 style="float:left"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
-    <span class="h2-24" style="float:middle"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">Service and quotation</span></span></span></span></td>
+    <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">Service and quotation</span></span></span></span></td>
   </tr>
 	  <tr><td colspan=2>
 <table  class="frametb" align="center">
@@ -309,9 +309,9 @@
 </table>
   <table  class="frametb" align="center">
    <tbody><tr>
-     <td width="336"  style="text-align:left;float:left" ><span class="STYLE3">Tell us your needs, free planning for your program GO! </span> 
-     <span class="STYLE3"  ><a  href="${basePath}climb/selfbooking/${rt.alias}">
-     <img src="${basePath }images/tailor.gif" width="134" height="32" ></a></span></td>
+     <td colspan=2 style="text-align:left;float:left" ><span class="STYLE3" style="text-align:left;float:left">Tell us your needs, free planning for your program GO! </span> &nbsp;&nbsp;
+     <span class="STYLE3"  style="text-align:left;float:left"><a href="${basePath}climb/selfbooking/${rt.alias}">
+     <img src="${basePath }images/tailor-made.gif" width="134" height="32" ></a></span></td>
    </tr>
  </tbody></table>
   </div>

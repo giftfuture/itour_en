@@ -42,7 +42,7 @@ import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
 import com.itour.service.SysMenuBtnService;
 import com.itour.service.SysMenuService;
-import com.itour.vo.SysMenuVo;
+import com.itour.vo.SysMenuVO;
  
 @Controller
 @RequestMapping("/sysMenu") 
@@ -75,7 +75,7 @@ public class SysMenuController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/menu")
-	public ModelAndView menu(SysMenuVo model,HttpServletRequest request) throws Exception{
+	public ModelAndView menu(SysMenuVO model,HttpServletRequest request) throws Exception{
 	//	Map<String,Object>  context = getRootMap();
 	//	model.setDeleted(DELETED.NO.key);
 	//	List<SysMenu> dataList = sysMenuService.queryByList(model);
@@ -96,7 +96,7 @@ public class SysMenuController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid dataList(SysMenuVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public EasyUIGrid dataList(SysMenuVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//List<SysMenu> dataList = sysMenuService.queryByList(vo);
 		//dataGridAdapter.getPagination();
 		BasePage<Map<String, Object>> pagination = sysMenuService.pagedQuery(vo);

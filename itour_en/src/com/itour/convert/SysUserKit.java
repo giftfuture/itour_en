@@ -2,13 +2,13 @@ package com.itour.convert;
 
 import com.itour.base.util.DateUtil;
 import com.itour.entity.SysUser;
-import com.itour.vo.SysUserVo;
+import com.itour.vo.SysUserVO;
 
 
 public class SysUserKit{
 	
-	public static SysUserVo toRecord(SysUser su){
-		SysUserVo sv = new SysUserVo();
+	public static SysUserVO toRecord(SysUser su){
+		SysUserVO sv = new SysUserVO();
 		sv.setCreateBy(su.getCreateBy());
 		sv.setCreateTime(DateUtil.getDateYmdHs(su.getCreateTime()));
 		sv.setEmail(su.getEmail());

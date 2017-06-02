@@ -14,7 +14,7 @@ import com.itour.base.service.BaseService;
 import com.itour.convert.AdLinkKit;
 import com.itour.dao.AdLinkDao;
 import com.itour.entity.AdLink;
-import com.itour.vo.AdLinkVo;
+import com.itour.vo.AdLinkVO;
 @Service("adLinkService")
 public class AdLinkService extends BaseService<AdLink>{
 
@@ -34,7 +34,7 @@ public class AdLinkService extends BaseService<AdLink>{
 	 * @return 查询结果
 	 */
 
-	public BasePage<Map<String, String>> pagedQuery(AdLinkVo vo) {
+	public BasePage<Map<String, String>> pagedQuery(AdLinkVO vo) {
 		List<AdLink> list = mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
 		List<Map<String, String>> records = Lists.newArrayList();

@@ -19,71 +19,92 @@
 		<result column="name" property="name" />
 		<result column="team_persons" property="teamPersons"/>
 		<result column="prefered_date" property="preferedDate"/>
-		<result column="is_valid" property="isValid"/>
+		<result column="valid" property="valid"/>
 		<result column="route" property="route"/>
 		<result column="sex" property="sex" />
 		<result column="public_show" property="publicShow"/>
 	</resultMap> 
-
+    <resultMap id="BaseResultMapVo" type="com.itour.vo.FeedbackVO">
+        <result column="id" property="id" />
+        <result column="create_time" property="createTime" />
+        <result column="status" property="status" />
+        <result column="update_time" property="updateTime" />
+        <result column="title" property="title" />
+        <result column="content" property="content" />
+        <result column="customer_id" property="customerId" />
+        <result column="result" property="result" />
+        <result column="customerName" property="customerName"/>
+        <result column="email" property="email"/>
+        <result column="mobile" property="mobile"/>
+        <result column="name" property="name" />
+        <result column="team_persons" property="teamPersons"/>
+        <result column="prefered_date" property="preferedDate"/>
+        <result column="valid" property="valid"/>
+        <result column="route" property="route"/>
+        <result column="sex" property="sex" />
+        <result column="public_show" property="publicShow"/>
+        <result column="routeName" property="routeName"/>
+        <result column="routeStyle" property="routeStyle"/>
+    </resultMap> 
 	<!-- feedback table all fields -->
 	<sql id="Base_Column_List">
-		id, create_time, status, update_time, title, content, customer_id, result,email,mobile,name,team_persons,prefered_date,is_valid,route,sex,public_show
+		id, create_time, status, update_time, title, content, customer_id, result,email,mobile,name,team_persons,prefered_date,valid,route,sex,public_show
 	</sql>
 	<sql id="Extend_Column_List">
-		id, create_time, status, update_time, title, content, customer_id, result,customerName,email,mobile,is_valid,route,sex,public_show
+		id, create_time, status, update_time, title, content, customer_id, result,customerName,email,mobile,valid,route,sex,public_show
 	</sql>
 
 	<!-- 查询条件 -->
 	<sql id="Example_Where_Clause">
-		where feed_back.is_valid=1
+		where feed_back.valid=1
 		<trim suffixOverrides=",">
 			<if test="id != null and id != ''">
-				and id like CONCAT('%', #{id}, '%')
+				and feed_back.id like CONCAT('%', #{id}, '%')
 			</if>
 			<if test="createTime != null and createTime != ''">
 	  <![CDATA[  and  DATE_FORMAT(feed_back.create_time,'%Y-%m-%d')  = DATE_FORMAT( #{createTime},'%Y-%m-%d') ]]>
 			</if>
 			<if test="status != null ">
-				and status = #{status}
+				and feed_back.status = #{status}
 			</if>
 			<if test="updateTime != null and updateTime != ''">
 	 <![CDATA[  and  DATE_FORMAT(feed_back.update_time,'%Y-%m-%d')  = DATE_FORMAT( #{updateTime},'%Y-%m-%d') ]]>
 			</if>
 			<if test="title != null and title != ''">
-				and title like CONCAT('%', #{title}, '%')
+				and feed_back.title like CONCAT('%', #{title}, '%')
 			</if>
 			<if test="content != null and content != ''">
-				and content like CONCAT('%', #{content}, '%')
+				and feed_back.content like CONCAT('%', #{content}, '%')
 			</if>
 			<if test="customerId != null and customerId != ''">
-				and customer_id like CONCAT('%', #{customerId}, '%')
+				and feed_back.customer_id like CONCAT('%', #{customerId}, '%')
 			</if>
 			<if test="result != null and result != ''">
-				and result  like CONCAT('%', #{result}, '%')
+				and feed_back.result  like CONCAT('%', #{result}, '%')
 			</if>
 			<if test="email != null and email != ''">
-				and email like CONCAT('%', #{email}, '%')
+				and feed_back.email like CONCAT('%', #{email}, '%')
 			</if>
 			<if test="name != null and name != ''">
-				and name like CONCAT('%', #{name}, '%')
+				and feed_back.name like CONCAT('%', #{name}, '%')
 			</if>
 			<if test="mobile != null">
-				and mobile= #{mobile}
+				and feed_back.mobile= #{mobile}
 			</if>
 			<if test="preferedDate != null and preferedDate !=''">
-				and prefered_date = #{preferedDate}
+				and feed_back.prefered_date = #{preferedDate}
 			</if>
 			<if test="teamPersons != null and teamPersons !=0">
-				and team_persons = #{teamPersons}
+				and feed_back.team_persons = #{teamPersons}
 			</if>
 			<if test="route != null and route !=''">
-				and route = #{route}
+				and feed_back.route = #{route}
 			</if>
 			<if test="sex != null and sex !=''">
-				and sex = #{sex}
+				and feed_back.sex = #{sex}
 			</if>
 			<if test="publicShow != null and publicShow != ''">
-			    and public_show=#{publicShow}
+			    and feed_back.public_show=#{publicShow}
 			</if>
 		</trim>
 	</sql>
@@ -94,7 +115,7 @@
 		<!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id"> 
 			SELECT LAST_INSERT_ID() </selectKey> -->
 		insert into
-		feed_back(id,create_time,status,update_time,title,content,customer_id,result,mobile,name,email,team_persons,prefered_date,is_valid,route,sex,public_show)
+		feed_back(id,create_time,status,update_time,title,content,customer_id,result,mobile,name,email,team_persons,prefered_date,valid,route,sex,public_show)
 		values(#{id},now(),#{status},now(),#{title},#{content},#{customerId},#{result},#{mobile},#{name},#{email},#{teamPersons},#{preferedDate},1,#{route},#{sex},#{publicShow})
 	</insert>
 
@@ -105,9 +126,9 @@
 			<if test="status != null  ">
 				status=#{status},
 			</if>
-			<if test="isValid != null">
-				is_valid=#{isValid},
-			</if>
+			<!-- <if test="valid != null">
+				valid=#{valid},
+			</if> -->
 			<if test="title != null and title != '' ">
 				title=#{title},
 			</if>
@@ -138,10 +159,10 @@
 			<if test="route != null and route !=''">
 				route=#{route},
 			</if>
-			<if test="sex != null and sex != ''">
+			<if test="sex != null">
 			   sex = #{sex},
 			</if>
-			<if test="publicShow != null and publicShow != ''">
+			<if test="publicShow != null">
 		       public_show=#{publicShow},
 			</if>
 		</trim>
@@ -154,12 +175,12 @@
 </delete>
 <!-- 逻辑删除 -->
  <update id="logicdelete" parameterType="java.lang.String">
-	update feed_back set is_valid=0 where id = #{id}
+	update feed_back set valid=0 where id = #{id}
 </update>
 	<!-- 根据id查询 客户反馈 -->
 	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
-		feed_back.is_valid,feed_back.id, feed_back.create_time, feed_back.status, feed_back.update_time, feed_back.title, feed_back.sex,
+		feed_back.valid,feed_back.id, feed_back.create_time, feed_back.status, feed_back.update_time, feed_back.title, feed_back.sex,
 		feed_back.content, feed_back.customer_id, feed_back.result,customers.email email,customers.mobile mobile,feed_back.route,public_show,
 		customers.customer_name customerName ,rt.title route
 		from feed_back left join customers on feed_back.customer_id = customers.id 
@@ -176,12 +197,13 @@
 
 	<!-- 查询客户反馈列表 -->
 	<select id="queryByList" resultMap="BaseResultMap" parameterType="com.itour.base.page.BasePage">
-		select feed_back.is_valid,feed_back.id, feed_back.create_time, feed_back.status, feed_back.update_time, feed_back.title, feed_back.sex,
+		select feed_back.valid,feed_back.id, feed_back.create_time, feed_back.status, feed_back.update_time, feed_back.title, feed_back.sex,
 		rt.title route,feed_back.content, feed_back.customer_id, feed_back.result,customers.email email,customers.mobile mobile,public_show,
 		customers.customer_name customerName 
 		from feed_back left join customers on feed_back.customer_id = customers.id 
 		left join route_template rt on rt.route_code=feed_back.route
-		<include refid="Example_Where_Clause" />
+		<!-- <include refid="Example_Where_Clause" /> -->
+        where feed_back.valid=1 and feed_back.public_show=1
 		<if test="pager.orderCondition != null and pager.orderCondition != ''">
 			${pager.orderCondition}
 		</if>
@@ -190,4 +212,19 @@
 			${pager.mysqlQueryCondition}
 		</if>
 	</select>
+    <select id="queryByListVo" resultMap="BaseResultMapVo" parameterType="com.itour.base.page.BasePage">
+        select feed_back.valid,feed_back.id, feed_back.create_time, feed_back.status,feed_back.route, feed_back.update_time, feed_back.title, feed_back.sex,
+        tr.title routeName,tr.type routeStyle,feed_back.content, feed_back.customer_id, feed_back.result,customers.email email,customers.mobile mobile,feed_back.public_show,
+        customers.customer_name customerName 
+        from feed_back left join customers on feed_back.customer_id = customers.id 
+        left join (select travel_style.type,rt.route_code,rt.title from route_template rt left join travel_style on rt.travel_style=travel_style.id) tr on tr.route_code=feed_back.route
+        <include refid="Example_Where_Clause" />
+        <if test="pager.orderCondition != null and pager.orderCondition != ''">
+            ${pager.orderCondition}
+        </if>
+        <if
+            test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''">
+            ${pager.mysqlQueryCondition}
+        </if>
+    </select>
 </mapper>   

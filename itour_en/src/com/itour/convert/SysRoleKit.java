@@ -2,11 +2,11 @@ package com.itour.convert;
 
 import com.itour.base.util.DateUtil;
 import com.itour.entity.SysRole;
-import com.itour.vo.SysRoleVo;
+import com.itour.vo.SysRoleVO;
 
 public class SysRoleKit{
-	public static SysRoleVo toRecord(SysRole role){
-		SysRoleVo sv = new SysRoleVo();
+	public static SysRoleVO toRecord(SysRole role){
+		SysRoleVO sv = new SysRoleVO();
 		sv.setCreateBy(role.getCreateBy());
 		sv.setCreateTime(DateUtil.getDateYmdHs(role.getCreateTime()));
 		sv.setDescr(role.getDescr());

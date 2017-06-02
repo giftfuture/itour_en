@@ -30,37 +30,37 @@
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where deleted=0
+where sys_user.deleted=0
 <trim  suffixOverrides="," >
 	<if test="id != null" >
-	    and id like CONCAT('%', #{id}, '%')
+	    and sys_user.id like CONCAT('%', #{id}, '%')
 	</if>
 	 	<if test="email != null and email != ''" >
-	     and email like CONCAT('%', #{email}, '%')
+	     and sys_user.email like CONCAT('%', #{email}, '%')
 	</if>
 	 <if test="nickName != null and nickName != ''" >
-	    and nickName like CONCAT('%', #{nickName}, '%')
+	    and sys_user.nickName like CONCAT('%', #{nickName}, '%')
 	</if>
 	<if test="loginCount != null" >
-	    and loginCount =  #{loginCount}
+	    and sys_user.loginCount =  #{loginCount}
 	</if>
 	<if test="loginTime != null and loginTime != ''" >
-	     and DATE_FORMAT(loginTime,'%Y-%m-%d') = DATE_FORMAT(#{loginTime},'%Y-%m-%d') 
+	     and DATE_FORMAT(sys_user.loginTime,'%Y-%m-%d') = DATE_FORMAT(#{loginTime},'%Y-%m-%d') 
 	</if>
 	<if test="deleted != null" >
-	    and deleted =  #{deleted}
+	    and sys_user.deleted =  #{deleted}
 	</if>
 	<if test="createTime != null and createTime != ''" >
-	    and DATE_FORMAT(createTime,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	    and DATE_FORMAT(sys_user.createTime,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
 	<if test="updateTime != null and updateTime != ''" >
-	     and DATE_FORMAT(updateTime,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
+	     and DATE_FORMAT(sys_user.updateTime,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 	</if>
 	<if test="createBy != null" >
-	    and createBy like CONCAT('%', #{createBy}, '%')
+	    and sys_user.createBy like CONCAT('%', #{createBy}, '%')
 	</if>
 	<if test="updateBy != null" >
-	    and updateBy like CONCAT('%', #{updateBy}, '%')
+	    and sys_user.updateBy like CONCAT('%', #{updateBy}, '%')
 	</if>
 </trim>
 </sql>
@@ -91,22 +91,22 @@ update sys_user set validate_code = #validateCode#,expire_date=#expireDate# wher
 	<if test="nickName != null  and nickName != '' ">
 		nickName=#{nickName},
 	</if>
-	<if test="state != null  ">
+	<if test="state != null and state != '' ">
 		state=#{state},
 	</if>
-	<if test="loginCount != null  ">
+	<if test="loginCount != null and loginCount != '' ">
 		loginCount=#{loginCount},
 	</if>
-	<if test="loginTime != null  ">
+	<if test="loginTime != null and loginTime != '' ">
 		loginTime=#{loginTime},
 	</if>
-	<if test="deleted != null  ">
+	<!-- <if test="deleted != null  ">
 		deleted=#{deleted},
-	</if>
-	<if test="createBy != null  ">
+	</if> -->
+	<if test="createBy != null and createBy != '' ">
 		createBy=#{createBy},
 	</if>
-	<if test="updateBy != null  ">
+	<if test="updateBy != null and updateBy != '' ">
 		updateBy=#{updateBy},
 	</if>
 	</trim> where id=#{id}

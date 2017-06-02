@@ -30,15 +30,15 @@ public class TravelItem extends BaseEntity {
 	private String map;//地图
 	private String season;//建议季节
 	private String recommandEquip;
-	private boolean hot;//1=热门景点，0=非热点
-	private boolean isValid;
+	private int hot;//1=热门景点，0=非热点
+	private int valid;
 	private String createBy;
 	private String updateBy;
 	private Date createTime;
 	private Date updateTime;
 	private int starLevel;//星级
 	private String ticketsBlock;//门票块
-	private boolean fullyearTicket;//是否分淡旺季
+	private int fullyearTicket;//是否分淡旺季
 	private String busyseason;//旺季
 	private String freeseason;//淡季
 	
@@ -53,12 +53,6 @@ public class TravelItem extends BaseEntity {
 	}
 	public void setFreeseason(String freeseason) {
 		this.freeseason = freeseason;
-	}
-	public boolean isFullyearTicket() {
-		return fullyearTicket;
-	}
-	public void setFullyearTicket(boolean fullyearTicket) {
-		this.fullyearTicket = fullyearTicket;
 	}
 	public String getTicketsBlock() {
 		return ticketsBlock;
@@ -95,12 +89,6 @@ public class TravelItem extends BaseEntity {
 	}
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
-	}
-		public boolean isValid() {
-		return isValid;
-	}
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
 	}
 	public String getScopeAlias() {
 		return scopeAlias;
@@ -265,11 +253,23 @@ public class TravelItem extends BaseEntity {
 	public void setSeason(String season) {
 		this.season = season;
 	}
-	public boolean isHot() {
+	public int getHot() {
 		return hot;
 	}
-	public void setHot(boolean hot) {
+	public void setHot(int hot) {
 		this.hot = hot;
+	}
+	public int getValid() {
+		return valid;
+	}
+	public void setValid(int valid) {
+		this.valid = valid;
+	}
+	public int getFullyearTicket() {
+		return fullyearTicket;
+	}
+	public void setFullyearTicket(int fullyearTicket) {
+		this.fullyearTicket = fullyearTicket;
 	}
 	public String getAlias() {
 		return alias;

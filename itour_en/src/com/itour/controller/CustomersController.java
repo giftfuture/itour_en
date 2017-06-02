@@ -35,8 +35,8 @@ import com.itour.service.CustomersService;
 import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
-import com.itour.vo.CustomerVo;
-import com.itour.vo.RouteTemplateVo;
+import com.itour.vo.CustomerVO;
+import com.itour.vo.RouteTemplateVO;
  
 /**
  * 
@@ -75,7 +75,7 @@ public class CustomersController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value = "/list") 
-	public ModelAndView list(CustomerVo vo,HttpServletRequest request) throws Exception{
+	public ModelAndView list(CustomerVO vo,HttpServletRequest request) throws Exception{
 		request.isUserInRole("");
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行CustomersController的list方法");
@@ -92,7 +92,7 @@ public class CustomersController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value = "/dataList.json", method = RequestMethod.POST) 
 	@ResponseBody
-	public EasyUIGrid datalist(CustomerVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public EasyUIGrid datalist(CustomerVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//BasePage page = dataGridAdapter.getPagination();
 		BasePage<Map<String, Object>> pagination = customersService.pagedQuery(vo);
 		//List<Customers> dataList = customersService.queryByList(page);
@@ -189,7 +189,7 @@ public class CustomersController extends BaseController{
 		customersService.logicdelete(id);
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行CustomersController的logicdelete方法");
-		String logId = logSettingService.add(new LogSetting("customers","客户管理","customers/logicdelete",user.getId(),"update customers set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		String logId = logSettingService.add(new LogSetting("customers","客户管理","customers/logicdelete",user.getId(),"update customers set valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"customers/logicdelete",user.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return removeSuccessMessage(response);
 	}
@@ -205,15 +205,15 @@ public class CustomersController extends BaseController{
 	public ModelAndView showOrders(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		String orderhtmls = FilePros.httporderhtmls();
-		List<CustomerVo> vos  = customersService.queryOrdersByCid(id);
-		CustomerVo customers = customersService.selectById(id);
+		List<CustomerVO> vos  = customersService.queryOrdersByCid(id);
+		CustomerVO customers = customersService.selectById(id);
 		context.put("customers", customers);
 		if(vos == null||vos.size()==0){		
 			//sendFailureResult(response, "没有找到对应的记录!");
 			context.put(SUCCESS, false);
 			context.put(MSG,  "没有找到对应的记录!");
 		}else{
-			for(CustomerVo vo:vos){
+			for(CustomerVO vo:vos){
 				vo.setOrderUrl(orderhtmls+"/"+vo.getOrderNo()+".html");
 			}
 			context.put(SUCCESS, true);

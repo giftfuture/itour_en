@@ -33,7 +33,7 @@ import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
 import com.itour.service.SysVariablesService;
-import com.itour.vo.SysVariablesVo;
+import com.itour.vo.SysVariablesVO;
  
 /**
  * 
@@ -71,7 +71,7 @@ public class SysVariablesController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/list") 
-	public ModelAndView list(SysVariablesVo page,HttpServletRequest request) throws Exception{
+	public ModelAndView list(SysVariablesVO page,HttpServletRequest request) throws Exception{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysVariablesController的list方法");
 		return forward("server/sys/sysVariables"); 
@@ -88,7 +88,7 @@ public class SysVariablesController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid datalist(SysVariablesVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public EasyUIGrid datalist(SysVariablesVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		BasePage<SysVariables> pagination = sysVariablesService.pagedQuery(vo);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysVariablesController的dataList方法");
@@ -194,7 +194,7 @@ public class SysVariablesController extends BaseController{
 		sysVariablesService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行SysVariablesController的logicdelete方法");
-		String logId = logSettingService.add(new LogSetting("sys_variables","变量管理","sysVariables/logicdelete",sessionuser.getId(),"update sys_variables set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		String logId = logSettingService.add(new LogSetting("sys_variables","变量管理","sysVariables/logicdelete",sessionuser.getId(),"update sys_variables set valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"sysVariables/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return removeSuccessMessage(response);
 	}

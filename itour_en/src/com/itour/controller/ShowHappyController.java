@@ -36,6 +36,7 @@ import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
 import com.itour.base.page.Pager;
 import com.itour.base.util.ClassReflectUtil;
+import com.itour.base.util.CompressImage;
 import com.itour.base.util.DateUtil;
 import com.itour.base.util.FilePros;
 import com.itour.base.util.IDGenerator;
@@ -52,7 +53,7 @@ import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
 import com.itour.service.ShowHappyService;
 import com.itour.util.Constants;
-import com.itour.vo.ShowHappyVo;
+import com.itour.vo.ShowHappyVO;
 
 /**
  * 
@@ -105,12 +106,12 @@ public class ShowHappyController extends BaseController{
 	@RequestMapping("/pagination") 
 	public String pagination(@RequestParam(value="pageNo",defaultValue="1")int pageNo,HttpServletRequest request) throws Exception{
 		Map<String,Object> context = getRootMap();
-		ShowHappyVo vo = new ShowHappyVo();
+		ShowHappyVO vo = new ShowHappyVO();
 		vo.setPage(pageNo);
 		vo.setLimit(Constants.happyperPage);
 		vo.getPager().setPageSize(Constants.happyperPage);
 		vo.getPager().setPageId(pageNo);
-		BasePage<ShowHappyVo> page = showHappyService.showPageQuery(vo);
+		BasePage<ShowHappyVO> page = showHappyService.showPageQuery(vo);
 		//List<Map<String, Object>> records = page.getRecords();
 		//context.put("records", page.getRecords());
 		//context.put("pageNo",pageNo);
@@ -135,7 +136,7 @@ public class ShowHappyController extends BaseController{
 	 * @throws Exception
 	 */
 	@RequestMapping("/sharehappy") 
-	public ModelAndView sharehappy(ShowHappyVo vo,HttpServletRequest request) throws Exception{
+	public ModelAndView sharehappy(ShowHappyVO vo,HttpServletRequest request) throws Exception{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的shareHappy方法");
 		return forward("front/happy/sharehappy"); 
@@ -150,7 +151,7 @@ public class ShowHappyController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
-	public ModelAndView  list(ShowHappyVo vo,HttpServletRequest request) throws Exception{
+	public ModelAndView  list(ShowHappyVO vo,HttpServletRequest request) throws Exception{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的list方法");
 		return forward("server/sys/showhappy"); 
@@ -166,13 +167,13 @@ public class ShowHappyController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid datalist(ShowHappyVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public EasyUIGrid datalist(ShowHappyVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		if(vo.getCreateTime() != null){
 			//String createTime = DateUtil.getDateYmdHs(vo.getCreateTime());
 			//Timestamp createTime =  new Timestamp(vo.getCreateTime().getTime());//DateUtil.fromStringToDate("YYYY-MM-dd",DateUtil.getDateLong(page.getCreateTime()));
 			vo.setCreateTime(vo.getCreateTime());
 		}
-		BasePage<ShowHappyVo> page = showHappyService.pagedQuery(vo);
+		BasePage<ShowHappyVO> page = showHappyService.pagedQuery(vo);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的datalist方法");
 		return dataGridAdapter.wrap(page);
@@ -189,7 +190,7 @@ public class ShowHappyController extends BaseController{
 	@RequestMapping(value="/detail/{shCode}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("shCode") String shCode,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
-		ShowHappyVo sh = showHappyService.queryByCode(shCode);
+		ShowHappyVO sh = showHappyService.queryByCode(shCode);
 		String content = sh.getContent();
 		String shareHappyPath = FilePros.httpshareHappyPath();
 		//String shCoverPath = FilePros.httpshCoverPath();
@@ -221,7 +222,7 @@ public class ShowHappyController extends BaseController{
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/add", method = RequestMethod.POST)//@RequestBody
-	public String add(@RequestBody ShowHappyVo showhappy,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String add(@RequestBody ShowHappyVO showhappy,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object> context = getRootMap();
 		String vcode = SessionUtils.getHappyValidateCode(request);
 		SessionUtils.removeHappyValidateCode(request); //清除验证码，确保验证码只能用一次
@@ -237,13 +238,14 @@ public class ShowHappyController extends BaseController{
 	 	showhappy.setShCode(IDGenerator.code(19)); 
 	 	//String fileName = showhappy.getSurface().getName();
 	 	if(StringUtils.isNotEmpty(showhappy.getCover())){
-		 	String cover = ImageFilter.writeBase64ImageString(showhappy.getCover(),showhappy.getSurface(),shareHappyCoverPath,showhappy.getShCode()+"_"+showhappy.getRoute());
+		 	String cover = CompressImage.compressBySize(showhappy.getCover(),showhappy.getSurface(),shareHappyCoverPath,showhappy.getShCode()+"_"+showhappy.getRoute());
 		 	showhappy.setCover(cover);
 	 	}
 		String shareHappyPath = FilePros.shareHappyPath();
 		String uuid = IDGenerator.getUUID();
 		ClassReflectUtil.setIdKeyValue(showhappy,"id",uuid);
-		ImageFilter.writeSHBase64Image(showhappy,shareHappyPath);		
+		//ImageFilter.writeSHBase64Image(showhappy,shareHappyPath);		
+		CompressImage.writeSHBase64Image(showhappy,shareHappyPath);
 		showHappyService.addShowHappy(ShowHappyKit.toEntity(showhappy));
 		//String result = JsonUtils.encode(context);
 		return sendSuccessResult(response, "保存成功~");
@@ -260,7 +262,7 @@ public class ShowHappyController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public String save(ShowHappyVo showhappy,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String save(ShowHappyVO showhappy,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String shId = "";
 		ShowHappy sh = null;
 		SysUser sessionuser = SessionUtils.getUser(request);
@@ -342,7 +344,7 @@ public class ShowHappyController extends BaseController{
 		showHappyService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的logicdelete方法");
-		String logId = logSettingService.add(new LogSetting("show_happy","回忆幸福","showhappy/logicdelete",sessionuser.getId(),"update show_happy set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		String logId = logSettingService.add(new LogSetting("show_happy","回忆幸福","showhappy/logicdelete",sessionuser.getId(),"update show_happy set valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"showhappy/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return removeSuccessMessage(response);
 	}

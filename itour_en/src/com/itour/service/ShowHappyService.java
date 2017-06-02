@@ -19,7 +19,7 @@ import com.itour.convert.ShowHappyKit;
 import com.itour.dao.ShowHappyDao;
 import com.itour.entity.ShowHappy;
 import com.itour.util.Constants;
-import com.itour.vo.ShowHappyVo;
+import com.itour.vo.ShowHappyVO;
 
 /**
  * 
@@ -38,14 +38,14 @@ public class ShowHappyService extends BaseService<ShowHappy> {
 	public ShowHappyDao getDao(){
 		return mapper;
 	}
-	public List<ShowHappyVo> queryAll()throws Exception{
+	public List<ShowHappyVO> queryAll()throws Exception{
 		return mapper.queryAll();
 	}
 	public int countAll()	throws Exception{
 		return mapper.countAll();
 	}
-	public BasePage<ShowHappyVo> showPageQuery(ShowHappyVo vo) throws Exception{
-		List<ShowHappyVo> list = null;
+	public BasePage<ShowHappyVO> showPageQuery(ShowHappyVO vo) throws Exception{
+		List<ShowHappyVO> list = null;
 		int count=0;
 		if(Constants.showhappypage.size()>=Constants.happyperPage){
 			list = Constants.showhappypage.subList((int)vo.getPager().getPageOffset(), Constants.happyperPage);
@@ -54,17 +54,17 @@ public class ShowHappyService extends BaseService<ShowHappy> {
 			list = mapper.queryByListVo(vo);
 			count = mapper.countAll();
 			String shareHappyCoverPath = FilePros.httpshCoverPath();
-			for(ShowHappyVo shvo:list) {
+			for(ShowHappyVO shvo:list) {
 				String coverpath = shareHappyCoverPath+"/"+shvo.getShCode()+"_"+shvo.getRoute()+"/";
 				shvo.setCover(coverpath+shvo.getCover());
 			}
 		}
-		return new BasePage<ShowHappyVo>(vo.getStart(), vo.getLimit(), list, count);
+		return new BasePage<ShowHappyVO>(vo.getStart(), vo.getLimit(), list, count);
 	}
 	public void addShowHappy(ShowHappy sh)throws Exception{
 		 mapper.add(sh);
 	}
-	public ShowHappyVo queryByCode(String shCode){
+	public ShowHappyVO queryByCode(String shCode){
 		return mapper.queryByCode(shCode);
 	}
 	/**
@@ -74,27 +74,27 @@ public class ShowHappyService extends BaseService<ShowHappy> {
 	 * @return 查询结果
 	 */
 	@SuppressWarnings("unchecked")
-	public BasePage<ShowHappyVo> pagedQuery(ShowHappyVo vo) {
-		List<ShowHappyVo> list = mapper.queryByListVo(vo);
+	public BasePage<ShowHappyVO> pagedQuery(ShowHappyVO vo) {
+		List<ShowHappyVO> list = mapper.queryByListVo(vo);
 		int count = mapper.queryByCount(vo);
 		String shareHappyCoverPath = FilePros.httpshCoverPath();
-		//BasePage<CustomerVo> basepage = (BasePage<CustomerVo>)mapper.pagedQuery(page);
+		//BasePage<CustomerVO> basepage = (BasePage<CustomerVO>)mapper.pagedQuery(page);
 		//Map<String, String> map = Maps.newHashMap();
 		//List<Map<String, Object>> records = Lists.newArrayList();
-		for(ShowHappyVo shvo:list) {
+		for(ShowHappyVO shvo:list) {
 			//ShowHappy sh = list.get(i);
 			String coverpath = shareHappyCoverPath+"/"+shvo.getShCode()+"_"+shvo.getRoute()+"/";
 			shvo.setCover(coverpath+shvo.getCover());
 			//records.add(ShowHappyKit.toRecord(sh));
 		}
-		return new BasePage<ShowHappyVo>(vo.getStart(), vo.getLimit(), list, count);
+		return new BasePage<ShowHappyVO>(vo.getStart(), vo.getLimit(), list, count);
 	}
 	/**
 	 * 
 	 * @param id
 	 * @return
 	 */
-	public ShowHappyVo selectById(String id){
+	public ShowHappyVO selectById(String id){
 		return mapper.selectById(id);
 	};
 	/**
@@ -102,7 +102,7 @@ public class ShowHappyService extends BaseService<ShowHappy> {
 	 * @param vo
 	 * @return
 	 */
-	List<ShowHappyVo> queryByListVo(ShowHappyVo vo){
+	List<ShowHappyVO> queryByListVo(ShowHappyVO vo){
 		return mapper.queryByListVo(vo);
 	};
 	

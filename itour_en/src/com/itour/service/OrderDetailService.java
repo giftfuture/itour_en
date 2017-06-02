@@ -14,7 +14,7 @@ import com.itour.base.service.BaseService;
 import com.itour.convert.OrderDetailKit;
 import com.itour.dao.OrderDetailDao;
 import com.itour.entity.OrderDetail;
-import com.itour.vo.OrderDetailVo;
+import com.itour.vo.OrderDetailVO;
 
 /**
  * 
@@ -32,18 +32,17 @@ public class OrderDetailService<T> extends BaseService<T> {
 	 * @param pageQuery 查询条件
 	 * @return 查询结果
 	 */
-	@SuppressWarnings("unchecked")
-	public BasePage<OrderDetailVo> pagedQuery(OrderDetailVo vo) {
-		List<OrderDetail> list = (List<OrderDetail>) mapper.queryByList(vo);
+	public BasePage<OrderDetailVO> pagedQuery(OrderDetailVO vo) {
+		List<OrderDetailVO> list = (List<OrderDetailVO>) mapper.queryByListVo(vo);
 		int count = mapper.queryByCount(vo);
-		List<OrderDetailVo> records = Lists.newArrayList();
+		/*List<OrderDetailVO> records = Lists.newArrayList();
 		for(OrderDetail fb:list) {
 			records.add(OrderDetailKit.toRecord(fb));
-		}
-		return new BasePage<OrderDetailVo>(vo.getStart(), vo.getLimit(), records, count);
+		}*/
+		return new BasePage<OrderDetailVO>(vo.getStart(), vo.getLimit(), list, count);
 	}
 	
-	public OrderDetail queryByOrderId(String orderId){
+	public OrderDetailVO queryByOrderId(String orderId){
 		return mapper.queryByOrderId(orderId);
 	};
 	@Autowired

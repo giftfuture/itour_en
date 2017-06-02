@@ -72,15 +72,15 @@
 						<input name="updateTime" type="text" maxlength="" class="easyui-datetimebox" data-options="" missingMessage="请填写updateTime">
 					</div> -->
 					<div class="fitem">
-						<label>审核意见</label>
-						<textarea rows="5" cols="30" name="result" maxlength="500" class="easyui-textbox"  data-options="multiline:true,width:300,height:150"  missingMessage="请填写result"></textarea>
-					</div> 
-					<div class="fitem">
 						<label>是否公开展示</label>
 						<select name="publicShow">
 						   <option value="0">否</option>
 						   <option value="1">是</option>
 						</select>
+					</div> 
+					<div class="fitem">
+						<label>审核意见</label>
+						<textarea rows="5" cols="30" name="result" maxlength="500" class="easyui-textbox"  data-options="multiline:true,width:300,height:150"  missingMessage="请填写result"></textarea>
 					</div> 
   			</div>
      	</form>

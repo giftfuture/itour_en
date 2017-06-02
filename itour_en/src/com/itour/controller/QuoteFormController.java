@@ -32,7 +32,7 @@ import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
 import com.itour.service.QuoteFormService;
-import com.itour.vo.QuoteFormVo;
+import com.itour.vo.QuoteFormVO;
 
 @Controller
 @RequestMapping("/quoteForm") 
@@ -61,7 +61,7 @@ public class QuoteFormController extends BaseController {
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
-	public ModelAndView list(QuoteFormVo page,HttpServletRequest request) throws Exception{
+	public ModelAndView list(QuoteFormVO page,HttpServletRequest request) throws Exception{
 	/*	Map<String,Object>  context = getRootMap();
 		List<Quotation> dataList = quotationService.queryByList(page);
 		//设置页面数据
@@ -82,9 +82,9 @@ public class QuoteFormController extends BaseController {
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid  datalist(QuoteFormVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public EasyUIGrid  datalist(QuoteFormVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//List<Quotation> dataList = quotationService.queryByList(vo);
-		BasePage<QuoteFormVo> page = quoteFormService.pagedQuery(vo);
+		BasePage<QuoteFormVO> page = quoteFormService.pagedQuery(vo);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行QuoteFormController的datalist方法");
 		return dataGridAdapter.wrap(page);

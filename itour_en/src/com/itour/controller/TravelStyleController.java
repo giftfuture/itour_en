@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -49,8 +50,11 @@ import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
 import com.itour.service.TravelStyleService;
 import com.itour.util.Constants;
-import com.itour.vo.RouteTemplateVo;
-import com.itour.vo.TravelStyleVo;
+import com.itour.vo.RouteTemplateVO;
+import com.itour.vo.TravelStyleVO;
+
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.geometry.Positions;
  
 /**
  * 
@@ -88,7 +92,7 @@ public class TravelStyleController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
-	public ModelAndView list(TravelStyleVo page,HttpServletRequest request) throws Exception{
+	public ModelAndView list(TravelStyleVO page,HttpServletRequest request) throws Exception{
 		 Map<String,Object>  context = getRootMap();
 		//context.put("dataList", dataList);//设置页面数据
 			SysUser sessionuser = SessionUtils.getUser(request);
@@ -106,8 +110,8 @@ public class TravelStyleController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid datalist(TravelStyleVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		BasePage<TravelStyleVo> pagination = travelStyleService.pagedQuery(vo);
+	public EasyUIGrid datalist(TravelStyleVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		BasePage<TravelStyleVO> pagination = travelStyleService.pagedQuery(vo);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelStyleController的dataList方法");
 		return dataGridAdapter.wrap(pagination); 
@@ -137,39 +141,40 @@ public class TravelStyleController extends BaseController{
 				//ImageFilter.writeBase64Image(vo.getCoverImg(),path);
 				if(request instanceof MultipartHttpServletRequest){
 						MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
-						OutputStream out = null;
+						//OutputStream out = null;
 						List<MultipartFile> multifiles = multipartRequest.getFiles("fileselect");
 						 String picName = "";
 						// String newpicName = "";
 						 File directory = null;
-						 File uploadpic = null;
-						 MultipartFile f = multifiles.get(0);
-					     if(f.getOriginalFilename().length() > 0) {    
-					    	picName = f.getOriginalFilename();   
+						// File uploadpic = null;
+						 MultipartFile cover = multifiles.get(0);
+					     if(cover.getOriginalFilename().length() > 0) {    
+					    	picName = cover.getOriginalFilename();   
 				            directory = new File(StringUtils.trim(path));
 				            if(!directory.exists()||!directory.isDirectory()){
 				            	directory.mkdirs();
 				            }
 				            //newpicName = Calendar.getInstance(Locale.CHINA).getTimeInMillis()+picName.substring(picName.indexOf("."));
-				            uploadpic = new File(path+File.separatorChar+picName );
+				            //uploadpic = new File(path+File.separatorChar+picName );
+				            Thumbnails.of(cover.getInputStream()).size(Constants.compressWidth,Constants.compressHeight).watermark(Positions.BOTTOM_RIGHT,ImageIO.read(FilePros.watermark()),0.5f).outputQuality(0.8f).keepAspectRatio(false).toFile(path+File.separatorChar+picName);
 				            System.out.println("旅行方式ID="+id+""+ts.getType()+"上传封面图片是" + picName);  
-				            out = new FileOutputStream(uploadpic);  
-				            out.write(f.getBytes());  
-				            out.close();  
+				           // out = new FileOutputStream(uploadpic);  
+				           // out.write(f.getBytes());  
+				          //  out.close();  
 				        }  
 						ts.setCover(picName);
 						picName = null;
 						directory = null;
-						uploadpic = null;
+						//uploadpic = null;
 						ts.setUpdateBy(sessionuser.getId());
 						travelStyleService.updateCover(ts);
-						if(out != null){
+						/*if(out != null){
 							try {
 								out.close();
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
-						}
+						}*/
 						context.put(SUCCESS, true);
 						context.put("msg", "旅行方式封面图片上传成功！");
 				}else{
@@ -248,7 +253,7 @@ public class TravelStyleController extends BaseController{
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public String save(TravelStyle entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	//	Map<String,Object>  context = new HashMap<String,Object>();
-		entity.setValid(true);
+		entity.setValid(1);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		String id = "";
 		TravelStyle ts = null;
@@ -334,7 +339,7 @@ public class TravelStyleController extends BaseController{
 		travelStyleService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelStyleController的logicdelete方法");
-		String logId = logSettingService.add(new LogSetting("travel_style","旅行方式管理","travelStyle/logicdelete",sessionuser.getId(),"update travel_style set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		String logId = logSettingService.add(new LogSetting("travel_style","旅行方式管理","travelStyle/logicdelete",sessionuser.getId(),"update travel_style set valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"travelStyle/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return removeSuccessMessage(response);
 	}

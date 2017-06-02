@@ -20,8 +20,8 @@ import com.itour.entity.SysMenu;
 import com.itour.entity.SysMenuBtn;
 import com.itour.entity.SysRoleRel;
 import com.itour.entity.SysRoleRel.RelType;
-import com.itour.vo.CustomerVo;
-import com.itour.vo.SysMenuVo;
+import com.itour.vo.CustomerVO;
+import com.itour.vo.SysMenuVO;
 
 /**
  * 
@@ -177,7 +177,7 @@ public class SysMenuService<T> extends BaseService<T> {
 	 * @return 查询结果
 	 */
 	@SuppressWarnings("unchecked")
-	public BasePage<Map<String, Object>> pagedQuery(SysMenuVo vo) {
+	public BasePage<Map<String, Object>> pagedQuery(SysMenuVO vo) {
 		List<SysMenu> list = (List<SysMenu>) mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
 		List<Map<String, Object>> records = Lists.newArrayList();

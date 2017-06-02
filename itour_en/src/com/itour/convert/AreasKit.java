@@ -4,10 +4,10 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 import com.itour.entity.Areas;
-import com.itour.vo.AreasVo;
+import com.itour.vo.AreasVO;
 
 public class AreasKit {
-	public static Areas toEntity(AreasVo vo)throws Exception{
+	public static Areas toEntity(AreasVO vo)throws Exception{
 		Areas areas = new Areas();
 		areas.setId(vo.getId());
 		areas.setAreacode(vo.getAreacode());
@@ -24,8 +24,8 @@ public class AreasKit {
 		areas.setZipcode(vo.getZipcode());
 		return areas;
 	}
-	public static AreasVo toVo(Areas vo)throws Exception{
-		AreasVo areas = new AreasVo();
+	public static AreasVO toVo(Areas vo)throws Exception{
+		AreasVO areas = new AreasVO();
 		areas.setId(vo.getId());
 		areas.setAreacode(vo.getAreacode());
 		areas.setAreaname(vo.getAreaname());

@@ -155,9 +155,9 @@ itour.orderDetail = function(){
 							return row.guide;
 						}
 					},
-					{field:'comefrom',title:'来自',align:'center',sortable:true,
+					{field:'areaname',title:'来自地区',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return row.comefrom;
+							return row.areaname;
 						}
 					},{field:'status',title:'状态',align:'center',sortable:true,
 						formatter:function(value,row,index){
@@ -476,4 +476,6 @@ itour.orderDetail = function(){
 
 $(function(){
 	itour.orderDetail.init();
+	  if (window != top)
+          top.location.href = location.href;
 });

@@ -8,8 +8,8 @@ import com.google.common.collect.Maps;
 import com.itour.base.util.DateUtil;
 import com.itour.entity.LogOperation;
 import com.itour.entity.LogSetting;
-import com.itour.vo.LogOperationVo;
-import com.itour.vo.LogSettingVo;
+import com.itour.vo.LogOperationVO;
+import com.itour.vo.LogSettingVO;
 /**
  * 
  * <br>
@@ -17,8 +17,8 @@ import com.itour.vo.LogSettingVo;
  * <b>日期：</b> Feb 2, 2016 <br>
  */
 public class LogOperationKit{
-	public static LogOperationVo toVo(LogOperation ls)throws Exception{
-		LogOperationVo vo = new LogOperationVo();
+	public static LogOperationVO toVo(LogOperation ls)throws Exception{
+		LogOperationVO vo = new LogOperationVO();
     	vo.setCreater(ls.getCreater());
     	vo.setCreateTime(DateUtil.formatDate(ls.getCreateTime(), DateUtil.y_m_dhms));
     	vo.setLogCode(ls.getLogCode());
@@ -32,7 +32,7 @@ public class LogOperationKit{
     	return vo;
     }
     
-    public static LogOperation toEntity(LogOperationVo ls)throws Exception{
+    public static LogOperation toEntity(LogOperationVO ls)throws Exception{
     	LogOperation vo = new LogOperation();
     	vo.setCreater(ls.getCreater());
     	vo.setCreateTime(DateUtil.fromStringToDate(DateUtil.y_m_dhms, ls.getCreateTime()));

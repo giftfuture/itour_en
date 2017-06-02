@@ -9,7 +9,7 @@
 	<result column="roleId" property="roleId"/>
 	<result column="objId" property="objId"/>
 	<result column="relType" property="relType"/>
-	<result column="is_valid" property="isValid"/>
+	<result column="valid" property="valid"/>
 	<result column="create_by" property="createBy"/>
 	<result column="update_by" property="updateBy"/>
 	<result column="create_time" property="createTime"/>
@@ -18,24 +18,24 @@
        
 <!-- sys_role_rel table all fields -->
 <sql id="Base_Column_List" >
-	id, roleId,objId,relType,is_valid,create_by,update_by,create_time,update_time
+	id, roleId,objId,relType,valid,create_by,update_by,create_time,update_time
 </sql>
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where is_valid=1
+where sys_role_rel.valid=1
 <trim  suffixOverrides="," >
 	<if test="id != null and id != ''">
-		and id like CONCAT('%', #{id}, '%')
+		and sys_role_rel.id like CONCAT('%', #{id}, '%')
 	</if>
 	<if test="roleId != null and roleId != ''" >
-	    and roleId like CONCAT('%', #{roleId}, '%')
+	    and sys_role_rel.roleId like CONCAT('%', #{roleId}, '%')
 	</if>
 	<if test="objId != null and objId != ''" >
-	    and objId like CONCAT('%', #{objId}, '%')
+	    and sys_role_rel.objId like CONCAT('%', #{objId}, '%')
 	</if>
 	<if test="relType != null" >
-	    and relType =  #{relType}
+	    and sys_role_rel.relType =  #{relType}
 	</if>
 </trim>
 </sql>
@@ -46,7 +46,7 @@ where is_valid=1
   <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into sys_role_rel(id,roleId,objId,relType,is_valid,create_by,update_by,create_time,update_time)
+  insert into sys_role_rel(id,roleId,objId,relType,valid,create_by,update_by,create_time,update_time)
  values(#{id},#{roleId},#{objId},#{relType},1,#{createBy},#{updateBy},now(),now())
 </insert>
 
@@ -54,13 +54,13 @@ where is_valid=1
 <update id="update" parameterType="Object" >
 	update sys_role_rel set update_time=now(),
 	<trim  suffixOverrides="," >
-		<if test="isValid != null">
-			is_valid=#{isValid},
-		</if>
+		<!-- <if test="valid != null">
+			valid=#{valid},
+		</if> -->
 		<if test="objId != null and objId != '' ">
 			objId=#{objId},
 		</if>
-		<if test="relType != null  ">
+		<if test="relType != null and relType != '' ">
 			relType=#{relType},
 		</if>
 		<if test="updateBy !=null and updateBy !=''">
@@ -75,7 +75,7 @@ where is_valid=1
 </delete>
  <!-- 逻辑删除 -->
  <update id="logicdelete" parameterType="java.lang.String">
-	update sys_role_rel set is_valid=0 where id = #{id}
+	update sys_role_rel set valid=0 where id = #{id}
 </update>
  			
 <!-- 删除记录 -->
@@ -87,7 +87,7 @@ where is_valid=1
 </delete>
  <!-- 通过角色ID逻辑删除记录 -->
 <update id="logicdeleteByRoleId" parameterType="java.lang.String">
-	update sys_role_rel set is_valid=0 where roleId = #{roleId}
+	update sys_role_rel set valid=0 where roleId = #{roleId}
 	<if test="relType != null" >
 		and relType =  #{relType}
 	</if>
@@ -102,7 +102,7 @@ where is_valid=1
 </delete>
 <!-- 通过objId逻辑删除记录 -->
 <update id="logicdeleteByObjId" parameterType="java.lang.String">
-	update sys_role_rel set is_valid=0 where objId = #{objId}
+	update sys_role_rel set valid=0 where objId = #{objId}
 	<if test="relType != null" >
 		and relType =  #{relType}
 	</if>

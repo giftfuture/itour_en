@@ -21,11 +21,11 @@
 	<result column="district" property="district"/>
 	<result column="introduction" property="introduction"/>
 	<result column="birthday" property="birthday"/>
-	<result column="is_valid" property="isValid"/>
+	<result column="valid" property="valid"/>
 </resultMap>
   
   <!-- Result Map VO-->
-<resultMap id="BaseResultMapVo" type="com.itour.vo.CustomerVo" >
+<resultMap id="BaseResultMapVo" type="com.itour.vo.CustomerVO" >
 	<result column="id" property="id"/>
 	<result column="customer_id" property="customerId"/>
 	<result column="create_time" property="createTime"/>
@@ -42,68 +42,68 @@
 	<result column="district" property="district"/>
 	<result column="introduction" property="introduction"/>
 	<result column="birthday" property="birthday"/>
-	<result column="is_valid" property="isValid"/>
+	<result column="valid" property="valid"/>
 	<result column="order_name" property="orderName"/>
 	<result column="order_no" property="orderNo"/>
 	<result column="areaname" property="areaname"/>
 </resultMap>     
 <!-- customers table all fields -->
 <sql id="Base_Column_List" >
-	 id, customer_id, create_time, status, update_time, address, email, scope, city, telephone, mobile, customer_name, nick_name, district, introduction, date_format(birthday,'%Y年%c月%d日') birthday,is_valid
+	 id, customer_id, create_time, status, update_time, address, email, scope, city, telephone, mobile, customer_name, nick_name, district, introduction, date_format(birthday,'%Y年%c月%d日') birthday,valid
 </sql>
    
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where is_valid=1
+where customers.valid=1
 <trim  suffixOverrides="," >
 	<if test="id != null and id != ''" >
-	    and id  like CONCAT('%', #{id}, '%')
+	    and customers.id  like CONCAT('%', #{id}, '%')
 	</if>
 	<if test="customerId != null and customerId != ''" >
-	    and customer_id  like CONCAT('%', #{customerId}, '%')
+	    and customers.customer_id  like CONCAT('%', #{customerId}, '%')
 	</if>
 	<if test="createTime != null and createTime != ''" >
-	    and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	    and DATE_FORMAT(customers.create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
 	<if test="status != null and status != ''" >
-	    and status =  #{status}
+	    and customers.status =  #{status}
 	</if>
 	<if test="updateTime != null and updateTime != ''" >
-	     and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
+	     and DATE_FORMAT(customers.update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 	</if>
 	<if test="address != null and address != ''" >
-	    and address like CONCAT('%', #{address}, '%')
+	    and customers.address like CONCAT('%', #{address}, '%')
 	</if>
 	<if test="email != null and email != ''" >
-	    and email like CONCAT('%', #{email}, '%')
+	    and customers.email like CONCAT('%', #{email}, '%')
 	</if>
 	<if test="scope != null" >
-	    and scope =  #{scope}
+	    and customers.scope =  #{scope}
 	</if>
 	<if test="city != null and city != ''" >
-	    and city  like CONCAT('%', #{city}, '%')
+	    and customers.city  like CONCAT('%', #{city}, '%')
 	</if>
 	<if test="telephone != null and telephone != ''" >
-	    and telephone  like CONCAT('%', #{telephone}, '%')
+	    and customers.telephone  like CONCAT('%', #{telephone}, '%')
 	</if>
 	<if test="mobile != null and mobile != ''" >
-	    and mobile like CONCAT('%', #{mobile}, '%')
+	    and customers.mobile like CONCAT('%', #{mobile}, '%')
 	</if>
 	<if test="customerName != null and customerName != ''" >
-	    and customer_name like CONCAT('%', #{customerName}, '%')
+	    and customers.customer_name like CONCAT('%', #{customerName}, '%')
 	</if>
 	<if test="nickName != null and nickName != ''" >
-	    and nick_name like CONCAT('%', #{nickName}, '%')
+	    and customers.nick_name like CONCAT('%', #{nickName}, '%')
 	</if>
 	<if test="district != null and district != ''" >
-	    and district like CONCAT('%', #{district}, '%')
+	    and customers.district like CONCAT('%', #{district}, '%')
 	</if>
 	<if test="introduction != null and introduction != ''" >
-	    and introduction like CONCAT('%', #{introduction}, '%')
+	    and customers.introduction like CONCAT('%', #{introduction}, '%')
 	</if>
 	<if test="birthday !=null">
-		and birthday like CONCAT('%',#{birthday},'%')
+		and customers.birthday like CONCAT('%',#{birthday},'%')
 	</if>
 </trim>
 </sql>
@@ -114,21 +114,21 @@ where is_valid=1
 <!-- <selectKey resultType="java.lang.String" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into customers(id,customer_id,create_time,status,update_time,address,email,scope,city,telephone,mobile,customer_name,nick_name,district,introduction,birthday,is_valid)
+  insert into customers(id,customer_id,create_time,status,update_time,address,email,scope,city,telephone,mobile,customer_name,nick_name,district,introduction,birthday,valid)
  values(#{id},#{customerId},now(),#{status},now(),#{address},#{email},#{scope},#{city},#{telephone},#{mobile},#{customerName},#{nickName},#{district},#{introduction},#{birthday},1)
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.Customers" >
 	update customers set update_time=now(),
-	<trim  suffixOverrides="," >
-	<if test="isValid !=null">
-		is_valid=#{isValid},
-	</if>
+	<trim suffixOverrides="," >
+<!-- 	<if test="valid !=null">
+		valid=#{valid},
+	</if> -->
 	<if test="customerId != null and customerId != '' ">
 		customer_id=#{customerId},
 	</if>
-	<if test="status != null">
+	<if test="status != null and status != ''">
 		status=#{status},
 	</if>
 	<if test="address != null and address != '' ">
@@ -137,7 +137,7 @@ where is_valid=1
 	<if test="email != null and email != '' ">
 		email=#{email},
 	</if>
-	<if test="scope != null  ">
+	<if test="scope != null and scope != '' ">
 		scope=#{scope},
 	</if>
 	<if test="city != null and city != '' ">
@@ -161,7 +161,7 @@ where is_valid=1
 	<if test="introduction != null and introduction != '' ">
 		introduction=#{introduction},
 	</if>
-	<if test="birthday != null">
+	<if test="birthday != null and birthday != ''">
 		birthday=#{birthday},
 	</if>
 	</trim> where id=#{id}
@@ -173,7 +173,7 @@ where is_valid=1
 </delete>
  <!-- 逻辑删除 -->
  <update id="logicdelete" parameterType="java.lang.String">
-	update customers set is_valid=0 where id = #{id}
+	update customers set valid=0 where id = #{id}
 </update>
 <!-- 根据id查询 客户信息 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
@@ -185,13 +185,13 @@ where is_valid=1
 	 where customers.id = #{id}
 </select>
 <!-- 客户信息 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.vo.CustomerVo">
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.vo.CustomerVO">
 	select count(1) from customers 
 	<include refid="Example_Where_Clause"/>
 </select>
   	
 <!-- 查询客户信息列表 -->
-<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.vo.CustomerVo">
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.vo.CustomerVO">
 	select 
 	<include refid="Base_Column_List"/>
 	from customers 

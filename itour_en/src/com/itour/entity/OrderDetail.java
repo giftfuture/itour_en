@@ -16,7 +16,7 @@ public class OrderDetail extends BaseEntity {
 	 */
 	private static final long serialVersionUID = -1844719160695732166L;
 	private java.lang.String id;//   
-	private java.lang.Integer status;//   	private java.util.Date createTime;//   	private java.util.Date updateTime;//   	private java.lang.String content;//   	private java.lang.String remark;//   	private java.lang.Float perPrice;//   	private java.lang.Float count;//   	private java.lang.String orderId;//  	private boolean isValid;
+	private java.lang.Integer status;//   	private java.util.Date createTime;//   	private java.util.Date updateTime;//   	private java.lang.String content;//   	private java.lang.String remark;//   	private java.lang.Float perPrice;//   	private java.lang.Float count;//   	private java.lang.String orderId;//  	private int valid;
 	private int adults;
 	private int children;
 	private String groupCode;//团号
@@ -258,11 +258,11 @@ public class OrderDetail extends BaseEntity {
 	public void setGroupDate(Date groupDate) {
 		this.groupDate = groupDate;
 	}
-	public boolean isValid() {
-		return isValid;
+	public int getValid() {
+		return valid;
 	}
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
+	public void setValid(int valid) {
+		this.valid = valid;
 	}
 	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
 	public java.lang.Integer getStatus() {

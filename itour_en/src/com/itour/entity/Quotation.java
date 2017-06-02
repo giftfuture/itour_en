@@ -12,14 +12,15 @@ import java.math.BigDecimal;
 public class Quotation extends BaseEntity {
 	
 		private java.lang.String id;//   	private java.lang.String name;//   	private java.lang.String orderId;//   	private java.lang.String quotation;//   	private java.util.Date createTime;//   	private java.util.Date updateTime;//   	private java.lang.String remark;//   	private java.lang.String type;//   1= 总价加利润,2= 明细报价	private BigDecimal totalPrice;//   	private java.lang.String formula;// 
-	private boolean isValid;
+	private int valid;
 	
 	
-		public boolean isValid() {
-		return isValid;
+		
+	public int getValid() {
+		return valid;
 	}
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
+	public void setValid(int valid) {
+		this.valid = valid;
 	}
 	public java.lang.String getId() {	    return this.id;	}	public void setId(java.lang.String id) {	    this.id=id;	}
 	public java.lang.String getName() {

@@ -26,7 +26,7 @@ import com.itour.base.entity.BaseEntity.DELETED;
 import com.itour.base.json.JsonUtils;
 import com.itour.entity.LogOperation;
 import com.itour.entity.LogSettingDetail;
-import com.itour.vo.LogSettingDetailVo;
+import com.itour.vo.LogSettingDetailVO;
 import com.itour.service.LogSettingDetailService;
  
 /**
@@ -60,7 +60,7 @@ public class LogSettingDetailController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
-	public ModelAndView  list(LogSettingDetailVo page,HttpServletRequest request) throws Exception{
+	public ModelAndView  list(LogSettingDetailVO page,HttpServletRequest request) throws Exception{
 		/*Map<String,Object>  context = getRootMap();
 		List<LogSettingDetail> dataList = logSettingDetailService.queryByList(page);
 		//设置页面数据
@@ -78,7 +78,7 @@ public class LogSettingDetailController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public void  datalist(LogSettingDetailVo page,HttpServletResponse response) throws Exception{
+	public void  datalist(LogSettingDetailVO page,HttpServletResponse response) throws Exception{
 		List<LogSettingDetail> dataList = logSettingDetailService.queryByList(page);
 		//设置页面数据
 		Map<String,Object> jsonMap = new HashMap<String,Object>();

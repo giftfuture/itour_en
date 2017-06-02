@@ -28,7 +28,7 @@ A:active {	COLOR: #f00}
 .blk_29 .box IMG {	BORDER-RIGHT: #add2fc 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #add2fc 1px solid; DISPLAY: block; PADDING-LEFT: 3px; BACKGROUND: #fff; PADDING-BOTTOM: 3px; MARGIN: 0px auto; BORDER-LEFT: #add2fc 1px solid; PADDING-TOP: 3px; BORDER-BOTTOM: #add2fc 1px solid}
 .blk_29 .box A:hover IMG {	BORDER-RIGHT: #5385cc 1px solid; BORDER-TOP: #5385cc 1px solid; BORDER-LEFT: #5385cc 1px solid; BORDER-BOTTOM: #5385cc 1px solid}
 .blk_29 .box P {	MARGIN: 6px auto 0px; WIDTH: 97px; LINE-HEIGHT: 20px}
-.rollphotos {	MARGIN-TOP: 10px;WIDTH: 950px}
+.rollphotos {	MARGIN-TOP: 10px;WIDTH: 600px}
 .partC {	MARGIN-TOP: 10px; OVERFLOW: auto; WIDTH: 950px}
 .partC .PC_left {	OVERFLOW: auto; WIDTH: 470px}
 .partC .PC_right {	OVERFLOW: auto; WIDTH: 470px}

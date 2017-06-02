@@ -1,7 +1,7 @@
 package com.itour.convert;
 
 import com.itour.entity.TravelItem;
-import com.itour.vo.TravelItemVo;
+import com.itour.vo.TravelItemVO;
 /**
  * 
  * <br>
@@ -10,8 +10,8 @@ import com.itour.vo.TravelItemVo;
  * <b>日期：</b> Feb 2, 2016 <br>
  */
 public class TravelItemKit{
-	public static TravelItemVo toRecord(TravelItem tt){
-		TravelItemVo vo = new TravelItemVo();
+	public static TravelItemVO toRecord(TravelItem tt){
+		TravelItemVO vo = new TravelItemVO();
 		vo.setContent(tt.getContent());
 		vo.setCover(tt.getCover());
 		vo.setDifficultyRate(tt.getDifficultyRate());
@@ -22,7 +22,7 @@ public class TravelItemKit{
 		vo.setFeature(tt.getFeature());
 		vo.setFileselect(tt.getFileselect());
 		vo.setHappyValue(tt.getHappyValue());
-		vo.setHot(tt.isHot());
+		vo.setHot(tt.getHot());
 		vo.setId(tt.getId());
 		vo.setItem(tt.getItem());
 		vo.setItemCode(tt.getItemCode());
@@ -40,19 +40,19 @@ public class TravelItemKit{
 		vo.setRecommandReason(tt.getRecommandReason());
 		vo.setRecommandEquip(tt.getRecommandEquip());
 		vo.setRecommandCrowd(tt.getRecommandCrowd());
-		vo.setValid(tt.isValid());
-		vo.setHot(tt.isHot());
+		vo.setValid(tt.getValid());
+		vo.setHot(tt.getHot());
 		vo.setCreateBy(tt.getCreateBy());
 		vo.setUpdateBy(tt.getUpdateBy());
 		vo.setStarLevel(tt.getStarLevel());
 		vo.setTicketsBlock(tt.getTicketsBlock());
-		vo.setFullyearTicket(tt.isFullyearTicket());
+		vo.setFullyearTicket(tt.getFullyearTicket());
 		vo.setAlias(tt.getAlias());
 		vo.setBusyseason(tt.getBusyseason());
 		vo.setFreeseason(tt.getFreeseason());
 		return vo;
 	}
-	public static TravelItem toBean(TravelItemVo tt){
+	public static TravelItem toBean(TravelItemVO tt){
 		TravelItem vo = new TravelItem();
 		vo.setContent(tt.getContent());
 		vo.setCover(tt.getCover());
@@ -64,7 +64,7 @@ public class TravelItemKit{
 		vo.setFeature(tt.getFeature());
 		vo.setFileselect(tt.getFileselect());
 		vo.setHappyValue(tt.getHappyValue());
-		vo.setHot(tt.isHot());
+		vo.setHot(tt.getHot());
 		vo.setId(tt.getId());
 		vo.setItem(tt.getItem());
 		vo.setItemCode(tt.getItemCode());
@@ -82,13 +82,13 @@ public class TravelItemKit{
 		vo.setRecommandReason(tt.getRecommandReason());
 		vo.setRecommandEquip(tt.getRecommandEquip());
 		vo.setRecommandCrowd(tt.getRecommandCrowd());
-		vo.setValid(tt.isValid());
-		vo.setHot(tt.isHot());
+		vo.setValid(tt.getValid());
+		vo.setHot(tt.getHot());
 		vo.setCreateBy(tt.getCreateBy());
 		vo.setUpdateBy(tt.getUpdateBy());
 		vo.setStarLevel(tt.getStarLevel());
 		vo.setTicketsBlock(tt.getTicketsBlock());
-		vo.setFullyearTicket(tt.isFullyearTicket());
+		vo.setFullyearTicket(tt.getFullyearTicket());
 		vo.setAlias(tt.getAlias());
 		vo.setBusyseason(tt.getBusyseason());
 		vo.setFreeseason(tt.getFreeseason());

@@ -30,40 +30,40 @@
 where 1=1
 <trim  suffixOverrides="," >
 	<if test="areaname != null and areaname != ''" >
-	    and areaname  = #{customerId}
+	    and areas.areaname  = #{customerId}
 	</if>
 	<!-- <if test="parentid != null and createTime != ''" >
 	    and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if> -->
 	<if test="shortname != null and shortname != ''" >
-	    and shortname =  #{shortname}
+	    and areas.shortname =  #{shortname}
 	</if>
 	<if test="areacode != null and areacode != ''" >
-	     and areacode=#{areacode}
+	     and areas.areacode=#{areacode}
 	</if>
 	<if test="zipcode != null and zipcode != ''" >
-	    and zipcode = #{zipcode}
+	    and areas.zipcode = #{zipcode}
 	</if>
 	<if test="pinyin != null and pinyin != ''" >
-	    and pinyin = #{pinyin}
+	    and areas.pinyin = #{pinyin}
 	</if>
 	<if test="lng != null and lng !=''" >
-	    and lng =  #{lng}
+	    and areas.lng =  #{lng}
 	</if>
 	<if test="lat != null and lat != ''" >
-	    and lat  = #{lat}
+	    and areas.lat  = #{lat}
 	</if>
 	<if test="level != null and level != ''" >
-	    and level  = #{level}
+	    and areas.level  = #{level}
 	</if>
 	<if test="position != null and position  != ''" >
-	    and position = #{position}
+	    and areas.position = #{position}
 	</if>
 	<if test="sortnum != null and sortnum != ''" >
-	    and sortnum= #{sortnum}
+	    and areas.sortnum= #{sortnum}
 	</if>
 	<if test="brief != null and brief != ''" >
-	    and brief = #{brief}
+	    and areas.brief = #{brief}
 	</if>
 </trim>
 </sql>
@@ -127,7 +127,7 @@ where 1=1
 </delete>
  <!-- 逻辑删除 -->
  <update id="logicdelete" parameterType="java.lang.String">
-	update areas set is_valid=0 where id = #{id}
+	update areas set valid=0 where id = #{id}
 </update>
 <!-- 根据id查询 地区信息 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
@@ -139,13 +139,13 @@ where 1=1
 </select>
 
 <!-- 地区信息 列表总数-->
-<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.vo.AreasVo">
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.vo.AdLinkVO">
 	select count(1) from areas 
 	<include refid="Example_Where_Clause"/>
 </select>
   	
 <!-- 查询地区信息列表 -->
-<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.vo.AreasVo">
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.vo.AdLinkVO">
 	select 
 	<include refid="Base_Column_List"/>
 	from areas 

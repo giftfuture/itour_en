@@ -15,48 +15,48 @@
 	<result column="type" property="type"/>
 	<result column="total_price" property="totalPrice"/>
 	<result column="formula" property="formula"/>
-	<result column="is_valid" property="isValid"/>
+	<result column="valid" property="valid"/>
 </resultMap>
        
 <!-- quotation table all fields -->
 <sql id="Base_Column_List" >
-	 id, name, order_id, quotation, create_time, update_time, remark, type, total_price, formula,is_valid
+	 id, name, order_id, quotation, create_time, update_time, remark, type, total_price, formula,valid
 </sql>
    
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where is_valid=1
+where quotation.valid=1
 <trim  suffixOverrides="," >
 	<if test="id != null and id != ''" >
-	    and id like CONCAT('%', #{id}, '%')
+	    and quotation.id like CONCAT('%', #{id}, '%')
 	</if>
 	<if test="name != null and name != ''" >
-	    and name like CONCAT('%', #{name}, '%')
+	    and quotation.name like CONCAT('%', #{name}, '%')
 	</if>
 	<if test="orderId != null and orderId != ''" >
-	    and order_id like CONCAT('%', #{orderId}, '%')
+	    and quotation.order_id like CONCAT('%', #{orderId}, '%')
 	</if>
 	<if test="quotation != null and quotation != ''" >
-	    and quotation like CONCAT('%', #{quotation}, '%')
+	    and quotation.quotation like CONCAT('%', #{quotation}, '%')
 	</if>
 	<if test="createTime != null and createTime !=''" >
-	   and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	   and DATE_FORMAT(quotation.create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
 	<if test="updateTime != null and updateTime !=''" >
-	   and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
+	   and DATE_FORMAT(quotation.update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 	</if>
 	<if test="remark != null and remark != ''" >
-	    and remark like CONCAT('%', #{remark}, '%')
+	    and quotation.remark like CONCAT('%', #{remark}, '%')
 	</if>
 	<if test="type != null and type != ''" >
-	    and type like CONCAT('%', #{type}, '%')
+	    and quotation.type like CONCAT('%', #{type}, '%')
 	</if>
 	<if test="totalPrice != null" >
-	    and total_price =  #{totalPrice}
+	    and quotation.total_price =  #{totalPrice}
 	</if>
 	<if test="formula != null and formula != ''" >
-	    and formula like CONCAT('%', #{formula}, '%')
+	    and quotation.formula like CONCAT('%', #{formula}, '%')
 	</if>
 </trim>
 </sql>
@@ -67,7 +67,7 @@ where is_valid=1
 <!-- <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into quotation(id,name,order_id,quotation,create_time,update_time,remark,type,total_price,formula,is_valid)
+  insert into quotation(id,name,order_id,quotation,create_time,update_time,remark,type,total_price,formula,valid)
  values(#{id},#{name},#{orderId},#{quotation},now(),now(),#{remark},#{type},#{totalPrice},#{formula},1)
 </insert>
 
@@ -75,9 +75,9 @@ where is_valid=1
 <update id="update" parameterType="com.itour.entity.Quotation" >
 	update quotation set update_time=now(),
 	<trim  suffixOverrides="," >
-		<if test="isValid != null">
-			is_valid=#{isValid},
-		</if>
+	<!-- 	<if test="valid != null">
+			valid=#{valid},
+		</if> -->
 		<if test="name != null and name != '' ">
 			name=#{name},
 		</if>
@@ -93,7 +93,7 @@ where is_valid=1
 		<if test="type != null and type != '' ">
 			type=#{type},
 		</if>
-		<if test="totalPrice != null  ">
+		<if test="totalPrice != null  and totalPrice != ''">
 			total_price=#{totalPrice},
 		</if>
 		<if test="formula != null and formula != '' ">
@@ -108,7 +108,7 @@ where is_valid=1
 </delete>
  <!-- 逻辑删除 -->
 <update id="logicdelete" parameterType="java.lang.String">
-	update quotation set is_valid=0 where id = #{id}
+	update quotation set valid=0 where id = #{id}
 </update>
 <!-- 根据id查询 报价单 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">

@@ -35,33 +35,33 @@
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where deleted =  0
+where m.deleted =  0
 <trim  suffixOverrides="," >
 	<!-- <if test="id != null and id !=''" >
 	    and id like CONCAT('%', #{id}, '%')
 	</if> -->
 	 <if test="name != null and name != ''" >
-	 	and name like CONCAT('%', #{name}, '%')
+	 	and m.name like CONCAT('%', #{name}, '%')
 	</if>
 	<if test="url != null and url != ''" >
-	    and url like CONCAT('%', #{url}, '%')
+	    and m.url like CONCAT('%', #{url}, '%')
 	</if>
 	<if test="parentId != null and parentId != ''" >
-	    and parentId = #{parentId}
+	    and m.parentId = #{parentId}
 	</if>
 	<!-- 如果parentId为空,这查询顶级菜单 -->
 	<if test="parentId == null or parentId ==''" >
-	    and parentId is null or parentId = '' 
+	    and m.parentId is null or parentId = '' 
 	</if>
 	
 	<if test="createTime != null and createTime !=''" >
-	     and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	     and DATE_FORMAT(m.create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
 	<if test="rank != null" >
-	    and rank =  #{rank}
+	    and m.rank =  #{rank}
 	</if>
 	<if test="actions != null and actions != ''" >
-	    and actions  like CONCAT('%', #{actions}, '%')
+	    and m.actions  like CONCAT('%', #{actions}, '%')
 	</if>
 </trim>
 </sql>
@@ -92,17 +92,17 @@ select max(rank+1) as rank from sys_menu
 	<if test="parentId != null and parentId != ''  ">
 		parentId=#{parentId},
 	</if>
-	<if test="deleted != null  ">
+	<!-- <if test="deleted != null and deleted != '' ">
 		deleted=#{deleted},
-	</if>
-	<if test="rank != null  ">
+	</if> -->
+	<if test="rank != null and rank != '' ">
 		rank=#{rank},
 	</if>
 	<if test="actions != null  and actions != '' ">
 		actions=#{actions},
 	</if>
 	<if test="updateBy != null and updateBy !=''">
-	update_by=#{updateBy},
+	   update_by=#{updateBy},
 	</if>
 	</trim> where id=#{id}
 </update>
@@ -122,7 +122,7 @@ select max(rank+1) as rank from sys_menu
 
 <!-- 系统菜单 列表总数-->
 <select id="queryByCount" resultType="java.lang.Integer"  parameterType="java.lang.String">
-	select count(1) from sys_menu 
+	select count(1) from sys_menu m
 	<include refid="Example_Where_Clause"/>
 </select>
   	

@@ -8,66 +8,6 @@
 	<result column="id" property="id"/>
 	<result column="title" property="title"/>
 	<result column="cover" property="cover"/>
-	<result column="d1" property="d1"/>
-	<result column="d2" property="d2"/>
-	<result column="d3" property="d3"/>
-	<result column="d4" property="d4"/>
-	<result column="d5" property="d5"/>
-	<result column="d6" property="d6"/>
-	<result column="d7" property="d7"/>
-	<result column="d8" property="d8"/>
-	<result column="d9" property="d9"/>
-	<result column="d10" property="d10"/>
-	<result column="d11" property="d11"/>
-	<result column="d12" property="d12"/>
-	<result column="d13" property="d13"/>
-	<result column="d14" property="d14"/>
-	<result column="d15" property="d15"/>
-	<result column="d16" property="d16"/>
-	<result column="d17" property="d17"/>
-	<result column="d18" property="d18"/>
-	<result column="d19" property="d19"/>
-	<result column="d20" property="d20"/>
-	<result column="d21" property="d21"/>
-	<result column="d22" property="d22"/>
-	<result column="d23" property="d23"/>
-	<result column="d24" property="d24"/>
-	<result column="d25" property="d25"/>
-	<result column="d26" property="d26"/>
-	<result column="d27" property="d27"/>
-	<result column="d28" property="d28"/>
-	<result column="d29" property="d29"/>
-	<result column="d30" property="d30"/>
-	<result column="d31" property="d31"/>
-	<result column="d32" property="d32"/>
-	<result column="d33" property="d33"/>
-	<result column="d34" property="d34"/>
-	<result column="d35" property="d35"/>
-	<result column="d36" property="d36"/>
-	<result column="d37" property="d37"/>
-	<result column="d38" property="d38"/>
-	<result column="d39" property="d39"/>
-	<result column="d40" property="d40"/>
-	<result column="d41" property="d41"/>
-	<result column="d42" property="d42"/>
-	<result column="d43" property="d43"/>
-	<result column="d44" property="d44"/>
-	<result column="d45" property="d45"/>
-	<result column="d46" property="d46"/>
-	<result column="d47" property="d47"/>
-	<result column="d48" property="d48"/>
-	<result column="d49" property="d49"/>
-	<result column="d50" property="d50"/>
-	<result column="d51" property="d51"/>
-	<result column="d52" property="d52"/>
-	<result column="d53" property="d53"/>
-	<result column="d54" property="d54"/>
-	<result column="d55" property="d55"/>
-	<result column="d56" property="d56"/>
-	<result column="d57" property="d57"/>
-	<result column="d58" property="d58"/>
-	<result column="d59" property="d59"/>
-	<result column="d60" property="d60"/>
 	<result column="customer_id" property="customerId"/>
 	<result column="create_time" property="createTime"/>
 	<result column="update_time" property="updateTime"/>
@@ -82,7 +22,7 @@
 	<result column="short_content" property="shortContent"/>
 	<result column="alias" property="alias"/>
 	<result column="route_code" property="routeCode"/>
-	<result column="is_valid" property="isValid"/>
+	<result column="valid" property="valid"/>
 	<result column="rcd_days" property="rcdDays"/>
 	<result column="mileage" property="mileage"/>
 	<result column="arrive" property="arrive"/>
@@ -102,70 +42,10 @@
 	<result column="viewphotos" property="viewphotos"/>
 </resultMap>
        <!-- Result Map-->
-<resultMap id="BaseResultMapVo" type="com.itour.vo.RouteTemplateVo" >
+<resultMap id="BaseResultMapVo" type="com.itour.vo.RouteTemplateVO" >
 	<result column="id" property="id"/>
 	<result column="title" property="title"/>
 	<result column="cover" property="cover"/>
-	<result column="d1" property="d1"/>
-	<result column="d2" property="d2"/>
-	<result column="d3" property="d3"/>
-	<result column="d4" property="d4"/>
-	<result column="d5" property="d5"/>
-	<result column="d6" property="d6"/>
-	<result column="d7" property="d7"/>
-	<result column="d8" property="d8"/>
-	<result column="d9" property="d9"/>
-	<result column="d10" property="d10"/>
-	<result column="d11" property="d11"/>
-	<result column="d12" property="d12"/>
-	<result column="d13" property="d13"/>
-	<result column="d14" property="d14"/>
-	<result column="d15" property="d15"/>
-	<result column="d16" property="d16"/>
-	<result column="d17" property="d17"/>
-	<result column="d18" property="d18"/>
-	<result column="d19" property="d19"/>
-	<result column="d20" property="d20"/>
-	<result column="d21" property="d21"/>
-	<result column="d22" property="d22"/>
-	<result column="d23" property="d23"/>
-	<result column="d24" property="d24"/>
-	<result column="d25" property="d25"/>
-	<result column="d26" property="d26"/>
-	<result column="d27" property="d27"/>
-	<result column="d28" property="d28"/>
-	<result column="d29" property="d29"/>
-	<result column="d30" property="d30"/>
-	<result column="d31" property="d31"/>
-	<result column="d32" property="d32"/>
-	<result column="d33" property="d33"/>
-	<result column="d34" property="d34"/>
-	<result column="d35" property="d35"/>
-	<result column="d36" property="d36"/>
-	<result column="d37" property="d37"/>
-	<result column="d38" property="d38"/>
-	<result column="d39" property="d39"/>
-	<result column="d40" property="d40"/>
-	<result column="d41" property="d41"/>
-	<result column="d42" property="d42"/>
-	<result column="d43" property="d43"/>
-	<result column="d44" property="d44"/>
-	<result column="d45" property="d45"/>
-	<result column="d46" property="d46"/>
-	<result column="d47" property="d47"/>
-	<result column="d48" property="d48"/>
-	<result column="d49" property="d49"/>
-	<result column="d50" property="d50"/>
-	<result column="d51" property="d51"/>
-	<result column="d52" property="d52"/>
-	<result column="d53" property="d53"/>
-	<result column="d54" property="d54"/>
-	<result column="d55" property="d55"/>
-	<result column="d56" property="d56"/>
-	<result column="d57" property="d57"/>
-	<result column="d58" property="d58"/>
-	<result column="d59" property="d59"/>
-	<result column="d60" property="d60"/>
 	<result column="customer_id" property="customerId"/>
 	<result column="create_time" property="createTime"/>
 	<result column="update_time" property="updateTime"/>
@@ -180,7 +60,7 @@
 	<result column="short_content" property="shortContent"/>
 	<result column="alias" property="alias"/>
 	<result column="route_code" property="routeCode"/>
-	<result column="is_valid" property="isValid"/>
+	<result column="valid" property="valid"/>
 	<result column="rcd_days" property="rcdDays"/>
 	<result column="mileage" property="mileage"/>
 	<result column="arrive" property="arrive"/>
@@ -211,279 +91,97 @@
 <!-- route_template table all fields   -->
 <sql id="Base_Column_List" >
     route_template.id,route_template.cover,route_template.title,route_template.short_content,route_template.alias,route_code,similars,star_level,
-    d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16, d17, d18, d19, d20, d21, d22, d23, d24, d25, d26,elevation,level_area,
-    d27, d28, d29, d30, d31, d32, d33, d34, d35, d36, d37, d38, d39, d40, d41, d42, d43, d44, d45, d46, d47, d48, d49, d50,viewphotos,
-    d51, d52, d53, d54, d55, d56, d57, d58, d59, d60, route_template.customer_id, route_template.create_time, route_template.update_time, route_template.create_by, route_template.update_by, 
+    elevation,level_area,viewphotos,route_template.customer_id, route_template.create_time, route_template.update_time, route_template.create_by, route_template.update_by, 
     route_template.remark,route_template.special,route_template.related,route_template.route_map,route_template.travel_style,route_template.travel_items,route_template.rcd_days,route_template.mileage,route_template.arrive,route_template.departure,
     route_template.mount_style,route_template.trek_distance,route_template.transportation,route_template.difficulty_rate,route_template.quoto_form,route_template.design_concept,route_template.customized_service,route_template.before_instruction
 </sql>
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where is_valid=1 
+where route_template.valid=1 
 <trim  suffixOverrides="," >
 	<if test="elevation !=null and elevation !=''">
-		and elevation=#{elevation}
+		and route_template.elevation=#{elevation}
 	</if>
 	<if test="similars != null and similars != ''">
-		and similars=#{similars}
+		and route_template.similars=#{similars}
 	</if>
 	<if test="difficultyRate != null and difficultyRate !=''">
-		and difficulty_rate=#{difficultyRate}
+		and route_template.difficulty_rate=#{difficultyRate}
 	</if>
 	<if test="routeCode != null and routeCode != ''" >
-	    and route_code = #{routeCode}
+	    and route_template.route_code = #{routeCode}
 	</if>
 	<if test="title != null and title != ''" >
-	    and title like CONCAT('%', #{title}, '%')
+	    and route_template.title like CONCAT('%', #{title}, '%')
 	</if>
 	<if test="shortContent != null and shortContent != ''" >
-	    and short_content like CONCAT('%', #{shortContent}, '%')
+	    and route_template.short_content like CONCAT('%', #{shortContent}, '%')
 	</if>
 	<if test="alias != null and alias != ''">
-		and alias like CONCAT('%', #{alias}, '%')
-	</if>
-	<if test="d1 != null and d1 != ''" >
-	    and d1 =  #{d1}
-	</if>
-	<if test="d2 != null and d2 != ''" >
-	    and d2 =  #{d2}
-	</if>
-	<if test="d3 != null and d3 != ''" >
-	    and d3 =  #{d3}
-	</if>
-	<if test="d4 != null and d4 != ''" >
-	    and d4 =  #{d4}
-	</if>
-	<if test="d5 != null and d5 != ''" >
-	    and d5 =  #{d5}
-	</if>
-	<if test="d6 != null and d6 != ''" >
-	    and d6 =  #{d6}
-	</if>
-	<if test="d7 != null and d7 != ''" >
-	    and d7 =  #{d7}
-	</if>
-	<if test="d8 != null and d8 != ''" >
-	    and d8 =  #{d8}
-	</if>
-	<if test="d9 != null and d9 != ''" >
-	    and d9 =  #{d9}
-	</if>
-	<if test="d10 != null and d10 != ''" >
-	    and d10 =  #{d10}
-	</if>
-	<if test="d11 != null and d11 != ''" >
-	    and d11 =  #{d11}
-	</if>
-	<if test="d12 != null and d12 != ''" >
-	    and d12 =  #{d12}
-	</if>
-	<if test="d13 != null and d13 != ''" >
-	    and d13 =  #{d13}
-	</if>
-	<if test="d14 != null and d14 != ''" >
-	    and d14 =  #{d14}
-	</if>
-	<if test="d15 != null and d15 != ''" >
-	    and d15 =  #{d15}
-	</if>
-	<if test="d16 != null and d16 != ''" >
-	    and d16 =  #{d16}
-	</if>
-	<if test="d17 != null and d17 != ''" >
-	    and d17 =  #{d17}
-	</if>
-	<if test="d18 != null and d18 != ''" >
-	    and d18 =  #{d18}
-	</if>
-	<if test="d19 != null and d19 != ''" >
-	    and d19 =  #{d19}
-	</if>
-	<if test="d20 != null and d20 != ''" >
-	    and d20 =  #{d20}
-	</if>
-	<if test="d21 != null and d21 != ''" >
-	    and d21 =  #{d21}
-	</if>
-	<if test="d22 != null and d22 != ''" >
-	    and d22 =  #{d22}
-	</if>
-	<if test="d23 != null and d23 != ''" >
-	    and d23 =  #{d23}
-	</if>
-	<if test="d24 != null and d24 != ''" >
-	    and d24 =  #{d24}
-	</if>
-	<if test="d25 != null and d25 != ''" >
-	    and d25 =  #{d25}
-	</if>
-	<if test="d26 != null and d26 != ''" >
-	    and d26 =  #{d26}
-	</if>
-	<if test="d27 != null and d27 != ''" >
-	    and d27 =  #{d27}
-	</if>
-	<if test="d28 != null and d28 != ''" >
-	    and d28 =  #{d28}
-	</if>
-	<if test="d29 != null and d29 != ''" >
-	    and d29 =  #{d29}
-	</if>
-	<if test="d30 != null and d30 != ''" >
-	    and d30 =  #{d30}
-	</if>
-	<if test="d31 != null and d31 != ''" >
-	    and d31 =  #{d31}
-	</if>
-	<if test="d32 != null and d32 != ''" >
-	    and d32 =  #{d32}
-	</if>
-	<if test="d33 != null and d33 != ''" >
-	    and d33 =  #{d33}
-	</if>
-	<if test="d34 != null and d34 != ''" >
-	    and d34 =  #{d34}
-	</if>
-	<if test="d35 != null and d35 != ''" >
-	    and d35 =  #{d35}
-	</if>
-	<if test="d36 != null and d36 != ''" >
-	    and d36 =  #{d36}
-	</if>
-	<if test="d37 != null and d37 != ''" >
-	    and d37 =  #{d37}
-	</if>
-	<if test="d38 != null and d38 != ''" >
-	    and d38 =  #{d38}
-	</if>
-	<if test="d39 != null and d39 != ''" >
-	    and d39 =  #{d39}
-	</if>
-	<if test="d40 != null and d40 != ''" >
-	    and d40 =  #{d40}
-	</if>
-	<if test="d41 != null and d41 != ''" >
-	    and d41 =  #{d41}
-	</if>
-	<if test="d42 != null and d42 != ''" >
-	    and d42 =  #{d42}
-	</if>
-	<if test="d43 != null and d43 != ''" >
-	    and d43 =  #{d43}
-	</if>
-	<if test="d44 != null and d44 != ''" >
-	    and d44 =  #{d44}
-	</if>
-	<if test="d45 != null and d45 != ''" >
-	    and d45 =  #{d45}
-	</if>
-	<if test="d46 != null and d46 != ''" >
-	    and d46 =  #{d46}
-	</if>
-	<if test="d47 != null and d47 != ''" >
-	    and d47 =  #{d47}
-	</if>
-	<if test="d48 != null and d48 != ''" >
-	    and d48 =  #{d48}
-	</if>
-	<if test="d49 != null and d49 != ''" >
-	    and d49 =  #{d49}
-	</if>
-	<if test="d50 != null and d50 != ''" >
-	    and d50 =  #{d50}
-	</if>
-	<if test="d51 != null and d51 != ''" >
-	    and d51 =  #{d51}
-	</if>
-	<if test="d52 != null and d52 != ''" >
-	    and d52 =  #{d52}
-	</if>
-	<if test="d53 != null and d53 != ''" >
-	    and d53 =  #{d53}
-	</if>
-	<if test="d54 != null and d54 != ''" >
-	    and d54 =  #{d54}
-	</if>
-	<if test="d55 != null and d55 != ''" >
-	    and d55 =  #{d55}
-	</if>
-	<if test="d56 != null and d56 != ''" >
-	    and d56 =  #{d56}
-	</if>
-	<if test="d57 != null and d57 != ''" >
-	    and d57 =  #{d57}
-	</if>
-	<if test="d58 != null and d58 != ''" >
-	    and d58 =  #{d58}
-	</if>
-	<if test="d59 != null and d59 != ''" >
-	    and d59 =  #{d59}
-	</if>
-	<if test="d60 != null and d60 != ''" >
-	    and d60 =  #{d60}
+		and route_template.alias like CONCAT('%', #{alias}, '%')
 	</if>
 	<if test="customerId != null and customerId != ''" >
-	    and customer_id like CONCAT('%', #{customerId}, '%')
+	    and route_template.customer_id like CONCAT('%', #{customerId}, '%')
 	</if>
 	<if test="createTime != null and createTime !=''" >
-	     and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+	     and DATE_FORMAT(route_template.create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
 	<if test="updateTime != null and updateTime !=''" >
-	    and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
+	    and DATE_FORMAT(route_template.update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 	</if>
 	<if test="createBy != null and createBy != ''" >
-	    and create_by like CONCAT('%', #{createBy}, '%')
+	    and route_template.create_by like CONCAT('%', #{createBy}, '%')
 	</if>
 	<if test="updateBy != null and updateBy != ''" >
-	    and update_by like CONCAT('%', #{updateBy}, '%')
+	    and route_template.update_by like CONCAT('%', #{updateBy}, '%')
 	</if>
 	<if test="remark != null and remark != ''" >
-	    and remark like CONCAT('%', #{remark}, '%')
+	    and route_template.remark like CONCAT('%', #{remark}, '%')
 	</if>
 	<if test="special != null and special != ''">
-		and special like  CONCAT('%', #{special}, '%')
+		and route_template.special like  CONCAT('%', #{special}, '%')
 	</if>
 	<if test="related != null and related != ''">
-		and related like  CONCAT('%', #{related}, '%')
+		and route_template.related like  CONCAT('%', #{related}, '%')
 	</if>
 	<if test="routeMap != null and routeMap != ''">
-		and route_map = #{routeMap}
+		and route_template.route_map = #{routeMap}
 	</if>
 	<if test="travelStyle != null and travelStyle != ''">
-		and travel_style = #{travelStyle}
+		and route_template.travel_style = #{travelStyle}
 	</if>
 	<if test="travelItems != null and travelItems != ''">
-		and travel_items=#{travelItems}
+		and route_template.travel_items=#{travelItems}
 	</if>
 	<if test="rcdDays != null and rcdDays != 0">
-		and rcd_days=#{rcdDays}
+		and route_template.rcd_days=#{rcdDays}
 	</if>
 	<if test="mileage != null and mileage != 0">
-		and mileage=#{mileage}
+		and route_template.mileage=#{mileage}
 	</if>
 	<if test="arrive != null and arrive != ''">
-		and arrive=#{arrive}
+		and route_template.arrive=#{arrive}
 	</if>
 	<if test="departure != null and departure != ''">
-		and departure=#{departure}
+		and route_template.departure=#{departure}
 	</if>
 	<if test="mountStyle != null and mountStyle != ''">
-		and mount_style=#{mountStyle}
+		and route_template.mount_style=#{mountStyle}
 	</if>
 	<if test="trekDistance != null and trekDistance != 0">
-		and trek_distance=#{trekDistance}
+		and route_template.trek_distance=#{trekDistance}
 	</if>
 	<if test="transportation != null and transportation != ''">
-		and transportation=#{transportation}
+		and route_template.transportation=#{transportation}
 	</if>
 	<if test="levelArea !=null and levelArea !=''">
-		and level_area=#{levelArea}
+		and route_template.level_area=#{levelArea}
 	</if>
 	<if test="starLevel !=null and starLevel !=''">
-		and star_level=#{starLevel}
+		and route_template.star_level=#{starLevel}
 	</if>
 	<if test="viewphotos !=null and viewphotos !=''">
-		and viewphotos=#{viewphotos}
+		and route_template.viewphotos=#{viewphotos}
 	</if>
 </trim>
 </sql>
@@ -494,13 +192,13 @@ where is_valid=1
  <!--  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into route_template(id,title,cover,route_code,short_content,d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19,d20,d21,d22,d23,d24,d25,d26,d27,d28,d29,d30,d31,d32,d33,d34,d35,d36,d37,d38,d39,d40,d41,d42,d43,d44,d45,d46,d47,d48,d49,d50,d51,d52,d53,d54,d55,d56,d57,d58,d59,d60,customer_id,create_time,update_time,create_by,update_by,remark,special,related,route_map,travel_style,travel_items,alias,is_valid,rcd_days,mileage,arrive,departure,mount_style,trek_distance,transportation,difficulty_rate,quoto_form,design_concept,customized_service,before_instruction,similars,elevation,star_level,level_area,viewphotos)
- values(#{id},#{title},#{cover},#{routeCode},#{shortContent},#{d1},#{d2},#{d3},#{d4},#{d5},#{d6},#{d7},#{d8},#{d9},#{d10},#{d11},#{d12},#{d13},#{d14},#{d15},#{d16},#{d17},#{d18},#{d19},#{d20},#{d21},#{d22},#{d23},#{d24},#{d25},#{d26},#{d27},#{d28},#{d29},#{d30},#{d31},#{d32},#{d33},#{d34},#{d35},#{d36},#{d37},#{d38},#{d39},#{d40},#{d41},#{d42},#{d43},#{d44},#{d45},#{d46},#{d47},#{d48},#{d49},#{d50},#{d51},#{d52},#{d53},#{d54},#{d55},#{d56},#{d57},#{d58},#{d59},#{d60},#{customerId},now(),now(),#{createBy},#{updateBy},#{remark},#{special},#{related},#{routeMap},#{travelStyle},#{travelItems},#{alias},1,#{rcdDays},#{mileage},#{arrive},#{departure},#{mountStyle},#{trekDistance},#{transportation},#{difficultyRate},#{quotoForm},#{designConcept},#{customizedService},#{beforeInstruction},#{similars},#{elevation},#{starLevel},#{levelArea},#{viewphotos})
+  insert into route_template(id,title,cover,route_code,short_content,customer_id,create_time,update_time,create_by,update_by,remark,special,related,route_map,travel_style,travel_items,alias,valid,rcd_days,mileage,arrive,departure,mount_style,trek_distance,transportation,difficulty_rate,quoto_form,design_concept,customized_service,before_instruction,similars,elevation,star_level,level_area,viewphotos)
+ values(#{id},#{title},#{cover},#{routeCode},#{shortContent},#{customerId},now(),now(),#{createBy},#{updateBy},#{remark},#{special},#{related},#{routeMap},#{travelStyle},#{travelItems},#{alias},1,#{rcdDays},#{mileage},#{arrive},#{departure},#{mountStyle},#{trekDistance},#{transportation},#{difficultyRate},#{quotoForm},#{designConcept},#{customizedService},#{beforeInstruction},#{similars},#{elevation},#{starLevel},#{levelArea},#{viewphotos})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.RouteTemplate" >
-	update route_template set is_valid=1, update_time=now(),
+	update route_template set update_time=now(),
 	<trim  suffixOverrides="," >
 	<if test="viewphotos !=null and viewphotos !=''">
 		viewphotos=#{viewphotos},
@@ -525,186 +223,6 @@ where is_valid=1
 	</if>
 	<if test="shortContent != null and shortContent != ''" >
 	     short_content = #{shortContent},
-	</if>
-	<if test="d1 != null and d1 != '' ">
-		d1=#{d1},
-	</if>
-	<if test="d2 != null   and d2 != ''">
-		d2=#{d2},
-	</if>
-	<if test="d3 != null   and d3 != ''">
-		d3=#{d3},
-	</if>
-	<if test="d4 != null   and d4 != ''">
-		d4=#{d4},
-	</if>
-	<if test="d5 != null  and d5 != '' ">
-		d5=#{d5},
-	</if>
-	<if test="d6 != null  and d6 != '' ">
-		d6=#{d6},
-	</if>
-	<if test="d7 != null   and d7 != ''">
-		d7=#{d7},
-	</if>
-	<if test="d8 != null   and d8 != ''">
-		d8=#{d8},
-	</if>
-	<if test="d9 != null  and d9 != '' ">
-		d9=#{d9},
-	</if>
-	<if test="d10 != null   and d10 != ''">
-		d10=#{d10},
-	</if>
-	<if test="d11 != null   and d11 != ''">
-		d11=#{d11},
-	</if>
-	<if test="d12 != null  and d12 != '' ">
-		d12=#{d12},
-	</if>
-	<if test="d13 != null  and d13 != ''">
-		d13=#{d13},
-	</if>
-	<if test="d14 != null   and d14 != ''">
-		d14=#{d14},
-	</if>
-	<if test="d15 != null   and d15 != ''">
-		d15=#{d15},
-	</if>
-	<if test="d16 != null   and d16 != ''">
-		d16=#{d16},
-	</if>
-	<if test="d17 != null  and d17 != '' ">
-		d17=#{d17},
-	</if>
-	<if test="d18 != null  and d18 != '' ">
-		d18=#{d18},
-	</if>
-	<if test="d19 != null   and d19 != ''">
-		d19=#{d19},
-	</if>
-	<if test="d20 != null   and d20 != ''">
-		d20=#{d20},
-	</if>
-	<if test="d21 != null   and d21 != ''">
-		d21=#{d21},
-	</if>
-	<if test="d22 != null  and d22 != '' ">
-		d22=#{d22},
-	</if>
-	<if test="d23 != null  and d23 != '' ">
-		d23=#{d23},
-	</if>
-	<if test="d24 != null  and d24 != '' ">
-		d24=#{d24},
-	</if>
-	<if test="d25 != null  and d25 != '' ">
-		d25=#{d25},
-	</if>
-	<if test="d26 != null   and d26 != ''">
-		d26=#{d26},
-	</if>
-	<if test="d27 != null  and d27 != '' ">
-		d27=#{d27},
-	</if>
-	<if test="d28 != null  and d28 != '' ">
-		d28=#{d28},
-	</if>
-	<if test="d29 != null  and d29 != '' ">
-		d29=#{d29},
-	</if>
-	<if test="d30 != null  and d30 != '' ">
-		d30=#{d30},
-	</if>
-	<if test="d31 != null  and d31 != '' ">
-		d31=#{d31},
-	</if>
-	<if test="d32 != null  and d32 != '' ">
-		d32=#{d32},
-	</if>
-	<if test="d33 != null  and d33 != '' ">
-		d33=#{d33},
-	</if>
-	<if test="d34 != null  and d34 != '' ">
-		d34=#{d34},
-	</if>
-	<if test="d35 != null   and d35 != ''">
-		d35=#{d35},
-	</if>
-	<if test="d36 != null  and d36 != '' ">
-		d36=#{d36},
-	</if>
-	<if test="d37 != null  and d37 != '' ">
-		d37=#{d37},
-	</if>
-	<if test="d38 != null  and d38 != '' ">
-		d38=#{d38},
-	</if>
-	<if test="d39 != null  and d39 != '' ">
-		d39=#{d39},
-	</if>
-	<if test="d40 != null   and d40 != ''">
-		d40=#{d40},
-	</if>
-	<if test="d41 != null  and d41 != '' ">
-		d41=#{d41},
-	</if>
-	<if test="d42 != null  and d42 != '' ">
-		d42=#{d42},
-	</if>
-	<if test="d43 != null  and d43 != '' ">
-		d43=#{d43},
-	</if>
-	<if test="d44 != null  and d44 != '' ">
-		d44=#{d44},
-	</if>
-	<if test="d45 != null  and d45 != '' ">
-		d45=#{d45},
-	</if>
-	<if test="d46 != null   and d46 != ''">
-		d46=#{d46},
-	</if>
-	<if test="d47 != null  and d47 != '' ">
-		d47=#{d47},
-	</if>
-	<if test="d48 != null  and d48 != '' ">
-		d48=#{d48},
-	</if>
-	<if test="d49 != null  and d49 != '' ">
-		d49=#{d49},
-	</if>
-	<if test="d50 != null  and d50 != '' ">
-		d50=#{d50},
-	</if>
-	<if test="d51 != null  and d51 != '' ">
-		d51=#{d51},
-	</if>
-	<if test="d52 != null  and d52 != '' ">
-		d52=#{d52},
-	</if>
-	<if test="d53 != null  and d53 != '' ">
-		d53=#{d53},
-	</if>
-	<if test="d54 != null  and d54 != '' ">
-		d54=#{d54},
-	</if>
-	<if test="d55 != null  and d55 != '' ">
-		d55=#{d55},
-	</if>
-	<if test="d56 != null  and d56 != '' ">
-		d56=#{d56},
-	</if>
-	<if test="d57 != null  and d57 != '' ">
-		d57=#{d57},
-	</if>
-	<if test="d58 != null  and d58 != '' ">
-		d58=#{d58},
-	</if>
-	<if test="d59 != null  and d59 != '' ">
-		d59=#{d59},
-	</if>
-	<if test="d60 != null   and d60 != ''">
-		d60=#{d60},
 	</if>
 	<if test="updateBy != null and updateBy != '' ">
 		update_by=#{updateBy},
@@ -769,7 +287,7 @@ update route_template set quoto_form=#{quotoForm},update_time=now(),update_by = 
 </delete>
  <!-- 逻辑删除 -->
 <update id="logicdelete" parameterType="java.lang.String">
-	update route_template set is_valid=0 where id = #{id}
+	update route_template set valid=0 where id = #{id}
 </update>
 <!-- 根据id查询 路线模板 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
@@ -780,7 +298,7 @@ update route_template set quoto_form=#{quotoForm},update_time=now(),update_by = 
 	select <include refid="Base_Column_List" />,ts.type travelStyleType,ts.alias travelStyleAlias from route_template
 	left join travel_style ts on route_template.travel_style=ts.id  where route_template.travel_items like CONCAT('%', #{travelItems}, '%') order by route_template.star_level desc
 </select>
-<select id="pageQueryByItems"  resultMap="BaseResultMapVo" parameterType="com.itour.vo.RouteTemplateVo">
+<select id="pageQueryByItems"  resultMap="BaseResultMapVo" parameterType="com.itour.vo.RouteTemplateVO">
 	select <include refid="Base_Column_List" />,ts.type travelStyleType,ts.alias travelStyleAlias from route_template
 	left join travel_style ts on route_template.travel_style=ts.id  
 	where route_template.travel_items like CONCAT('%', #{travelItems}, '%') 
@@ -789,7 +307,7 @@ update route_template set quoto_form=#{quotoForm},update_time=now(),update_by = 
        ${pager.mysqlQueryCondition}
     </if>
 </select>
-<select id="countQueryByItems" resultType="java.lang.Integer"  parameterType="com.itour.vo.RouteTemplateVo">
+<select id="countQueryByItems" resultType="java.lang.Integer"  parameterType="com.itour.vo.RouteTemplateVO">
 	select count(1) from route_template where route_template.travel_items like CONCAT('%', #{travelItems}, '%') 
 </select>
 <!-- 根据id查询 路线模板 -->
@@ -805,7 +323,7 @@ select <include refid="Base_Column_List"/>,travel_style.type travelStyleType,tra
 from route_template left join travel_style on route_template.travel_style = travel_style.id 
 where travel_style.alias=#{travelStyle} order by star_level desc
 </select>
-<select id="pageQueryByStyle" parameterType="com.itour.vo.RouteTemplateVo" resultMap="BaseResultMapVo">
+<select id="pageQueryByStyle" parameterType="com.itour.vo.RouteTemplateVO" resultMap="BaseResultMapVo">
 select <include refid="Base_Column_List"/>,travel_style.type travelStyleType,travel_style.alias travelStyleAlias
 from route_template left join travel_style on route_template.travel_style = travel_style.id
  where travel_style.alias=#{travelStyle} order by star_level desc
@@ -813,7 +331,7 @@ from route_template left join travel_style on route_template.travel_style = trav
        ${pager.mysqlQueryCondition}
     </if> 
 </select>
-<select id="countQueryByStyle" resultType="java.lang.Integer"  parameterType="com.itour.vo.RouteTemplateVo">
+<select id="countQueryByStyle" resultType="java.lang.Integer"  parameterType="com.itour.vo.RouteTemplateVO">
  select count(1) from route_template left join travel_style on route_template.travel_style = travel_style.id
  where travel_style.alias=#{travelStyle}
 </select>
@@ -826,7 +344,7 @@ select <include refid="Base_Column_List" /> from route_template where route_code
 </select>
 <!-- 查询所有路线 -->
 <select id="queryAll"  resultMap="BaseResultMap" >
-	select <include refid="Base_Column_List" /> from route_template where is_valid=1 order by star_level desc
+	select <include refid="Base_Column_List" /> from route_template where valid=1 order by star_level desc
 </select>
 <!-- 获取该旅行方式下的相关 -->
 <select id="queryByRelated" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -863,9 +381,7 @@ order by star_level desc
 <!-- 查询路线模板列表 SELECT GROUP_CONCAT ( url SEPARATOR " @ " ) url-->
 <select id="queryByList" resultMap="BaseResultMapVo"  parameterType="com.itour.base.page.BasePage">
 	select route_template.id,route_template.cover,route_template.title,route_template.short_content,route_template.alias,route_code,star_level,
-	d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14, d15, d16, d17, d18, d19, d20, d21, d22, d23, d24, d25, d26,similars,level_area,
-    d27, d28, d29, d30, d31, d32, d33, d34, d35, d36, d37, d38, d39, d40, d41, d42, d43, d44, d45, d46, d47, d48, d49, d50,viewphotos,
-    d51, d52, d53, d54, d55, d56, d57, d58, d59, d60, route_template.customer_id, route_template.create_time, route_template.update_time, 
+	similars,level_area,viewphotos,route_template.customer_id, route_template.create_time, route_template.update_time, 
     concat(cb.nickName,'(',cb.email,')') create_by, concat(ub.nickName,'(',ub.email,')') update_by, elevation,la.level1_area,la.level2_area,
     route_template.remark,route_template.special,(select rt.title from route_template rt where rt.id=route_template.related) related,route_template.route_map,travel_style.type travel_style,route_template.travel_items,route_template.rcd_days,route_template.mileage,route_template.arrive,route_template.departure,
     route_template.mount_style,route_template.trek_distance,route_template.transportation,route_template.difficulty_rate,route_template.quoto_form,route_template.design_concept,route_template.customized_service,route_template.before_instruction
@@ -883,7 +399,7 @@ order by star_level desc
     </if>
 </select>
 <!-- 查询路线模板列表 SELECT GROUP_CONCAT ( url SEPARATOR " @ " ) url-->
-<select id="searchRts" resultMap="BaseResultMapVo"  parameterType="com.itour.vo.RouteTemplateVo">
+<select id="searchRts" resultMap="BaseResultMapVo"  parameterType="com.itour.vo.RouteTemplateVO">
 		select <include refid="Base_Column_List" />,ts.alias travelStyleAlias,la.level1_area,la.level2_area from route_template
 		left join travel_style ts on route_template.travel_style = ts.id 
 		left join level_area la on la.id=route_Template.level_area where 1=1
@@ -911,7 +427,7 @@ order by star_level desc
        ${pager.mysqlQueryCondition}
     </if>
 </select>
-<select id="searchRtsByCount" resultType="java.lang.Integer"  parameterType="com.itour.vo.RouteTemplateVo">
+<select id="searchRtsByCount" resultType="java.lang.Integer"  parameterType="com.itour.vo.RouteTemplateVO">
 	select count(1) from route_template left join travel_style ts on route_template.travel_style = ts.id
 	 left join level_area la on la.id=route_Template.level_area where 1=1
 	<trim  suffixOverrides="," >

@@ -43,9 +43,9 @@ import com.itour.service.ShowHappyService;
 import com.itour.service.TravelItemService;
 import com.itour.service.TravelStyleService;
 import com.itour.util.Constants;
-import com.itour.vo.RouteTemplateVo;
-import com.itour.vo.ShowHappyVo;
-import com.itour.vo.TravelItemVo;
+import com.itour.vo.RouteTemplateVO;
+import com.itour.vo.ShowHappyVO;
+import com.itour.vo.TravelItemVO;
 
 @Controller
 public class IndexController extends BaseController {
@@ -85,10 +85,10 @@ public class IndexController extends BaseController {
 		Map<String,Object> map = getRootMap();
 		//Map<String,String> params = Maps.newHashMap();
 		String tsCoverPath = FilePros.httptsCoverPath();
-		List<TravelItemVo> hotSights = Constants.homehotSights;
-		LinkedHashMap<String,List<RouteTemplateVo>> mapvo = Constants.homertmapvo;
+		List<TravelItemVO> hotSights = Constants.homehotSights;
+		LinkedHashMap<String,List<RouteTemplateVO>> mapvo = Constants.homertmapvo;
 		if(hotSights.size()==0){
-			List<TravelItemVo> temphotSights = travelItemService.queryBystarLevel(Constants.hotview);
+			List<TravelItemVO> temphotSights = travelItemService.queryBystarLevel(Constants.hotview);
 			Constants.homehotSights.addAll(temphotSights);
 			hotSights = Constants.homehotSights;
 		}
@@ -98,11 +98,11 @@ public class IndexController extends BaseController {
 				String style = it.next();
 				TravelStyle ts = travelStyleService.queryByAlias(style);
 				if(StringUtils.isNotEmpty(ts.getAlias())){
-					List<RouteTemplateVo> ttvo = routeTemplateService.queryByStyle(ts.getAlias());
-					List<RouteTemplateVo> newvos = Lists.newArrayList();
+					List<RouteTemplateVO> ttvo = routeTemplateService.queryByStyle(ts.getAlias());
+					List<RouteTemplateVO> newvos = Lists.newArrayList();
 					if(ttvo != null && ttvo.size() >= 1){
 						for(int i=0;i<Math.min(Constants.routesperrow,ttvo.size());i++){
-							RouteTemplateVo rtvo = ttvo.get(i);
+							RouteTemplateVO rtvo = ttvo.get(i);
 							rtvo.setTravelStyleAlias(ts.getAlias());
 							newvos.add(rtvo);
 						}
@@ -112,11 +112,11 @@ public class IndexController extends BaseController {
 				}
 			}
 		}
-		BasePage<ShowHappyVo> page = Constants.homeshpage.get("showhappy");
+		BasePage<ShowHappyVO> page = Constants.homeshpage.get("showhappy");
 		 if(page!=null&&page.getRecords()!=null &&page.getRecords().size()>=1){
 			 map.put("showhappy", page.getRecords().get(0));
 		 }else{
-			 ShowHappyVo pagevo = new ShowHappyVo();
+			 ShowHappyVO pagevo = new ShowHappyVO();
 			 pagevo.setPage(1);
 			 page = showHappyService.pagedQuery(pagevo);
 			 if(page.getRecords() != null && page.getRecords().size() >=1){
@@ -155,15 +155,15 @@ public class IndexController extends BaseController {
 		Map<String,Object> map = getRootMap();
 		Map<String,String> params = Maps.newHashMap();
 		params.put("hot","1");
-		List<TravelItemVo> hots = travelItemService.searchTravelItem(map);
-		List<RouteTemplateVo> hotrtVos = Lists.newArrayList();
-		for(TravelItemVo ti:hots){			
-			List<RouteTemplateVo> vos = routeTemplateService.queryByItems(ti.getId());
+		List<TravelItemVO> hots = travelItemService.searchTravelItem(map);
+		List<RouteTemplateVO> hotrtVos = Lists.newArrayList();
+		for(TravelItemVO ti:hots){			
+			List<RouteTemplateVO> vos = routeTemplateService.queryByItems(ti.getId());
 			if(vos != null && vos.size() >= Constants.hotview){
 				hotrtVos.addAll(vos);
 				break;
 			}
-			for(RouteTemplateVo rt:vos){
+			for(RouteTemplateVO rt:vos){
 				if(!hotrtVos.contains(rt)){
 					if(hotrtVos.size() >= Constants.hotview){
 						break;
@@ -175,17 +175,17 @@ public class IndexController extends BaseController {
 		if(hotrtVos.size() >= Constants.hotview){
 			hotrtVos = hotrtVos.subList(0, Constants.hotview);
 		}
-		Map<String,List<RouteTemplateVo>> mapvo = Maps.newHashMap();
+		Map<String,List<RouteTemplateVO>> mapvo = Maps.newHashMap();
 		Iterator<String> it = Constants.HOTTYLES.keySet().iterator();
 		while(it.hasNext()){
 			String style = it.next();
 			TravelStyle ts = travelStyleService.queryByAlias(style);
 			if(StringUtils.isNotEmpty(ts.getAlias())){
-				List<RouteTemplateVo> ttvo =  routeTemplateService.queryByStyle(ts.getAlias());
-				List<RouteTemplateVo> newvos = Lists.newArrayList();
+				List<RouteTemplateVO> ttvo =  routeTemplateService.queryByStyle(ts.getAlias());
+				List<RouteTemplateVO> newvos = Lists.newArrayList();
 				if(ttvo != null && ttvo.size() >= 1){
 					for(int i=0;i<Math.min(Constants.routesperrow,ttvo.size());i++){
-						RouteTemplateVo rtvo = ttvo.get(i);
+						RouteTemplateVO rtvo = ttvo.get(i);
 						rtvo.setTravelStyleAlias(ts.getAlias());
 						newvos.add(rtvo);
 					}
@@ -193,9 +193,9 @@ public class IndexController extends BaseController {
 				mapvo.put(ts.getType()+"_"+ts.getDescrip(),newvos);
 			}
 		}
-		 ShowHappyVo pagevo = new ShowHappyVo();
+		 ShowHappyVO pagevo = new ShowHappyVO();
 		 pagevo.setPage(1);
-		 BasePage<ShowHappyVo> page = showHappyService.pagedQuery(pagevo);
+		 BasePage<ShowHappyVO> page = showHappyService.pagedQuery(pagevo);
 		 if(page.getRecords() != null && page.getRecords().size() >=1){
 		 	map.put("showhappy", page.getRecords().get(0));
 		 };
@@ -217,7 +217,7 @@ public class IndexController extends BaseController {
 	public ModelAndView searchRt(String pageNo,@RequestParam("travel_style") String travelStyle,@RequestParam("vacation")String rcdDays,@RequestParam("level1Area")String level1Area,@RequestParam("level2Area")String level2Area,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> map = getRootMap();
 		//Map<String,Object> context = getRootMap();
-		//RouteTemplateVo vo = new RouteTemplateVo();
+		//RouteTemplateVO vo = new RouteTemplateVO();
 		if(StringUtils.isNotEmpty(travelStyle)){
 			//vo.setTravelStyle(travelStyle);
 			map.put("travelStyle", travelStyle);
@@ -254,7 +254,7 @@ public class IndexController extends BaseController {
 	public String searchRtResult(String pageNo,@RequestParam("travel_style") String travelStyle,@RequestParam("vacation")String rcdDays,@RequestParam("level1Area")String level1Area,@RequestParam("level2Area")String level2Area,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  map = getRootMap();
 		Map<String,Object>  params = getRootMap();
-		RouteTemplateVo vo = new RouteTemplateVo();
+		RouteTemplateVO vo = new RouteTemplateVO();
 		if(StringUtils.isNotEmpty(travelStyle)){
 			vo.setTravelStyle(travelStyle);
 			params.put("travelStyle", travelStyle);
@@ -283,7 +283,7 @@ public class IndexController extends BaseController {
 		vo.setRows(Constants.happyperPage);
 		vo.setLimit(Constants.happyperPage);
 		//String physicalPath = FilePros.physicalPath();
-		//List<RouteTemplateVo> searchRts = routeTemplateService.searchRts(params);
+		//List<RouteTemplateVO> searchRts = routeTemplateService.searchRts(params);
 		BasePage<Map<String, Object>> page = routeTemplateService.searchpagedQuery(vo);
 		page.setPage(Long.parseLong(pageNo));
 		Pager pager = page.getPager();

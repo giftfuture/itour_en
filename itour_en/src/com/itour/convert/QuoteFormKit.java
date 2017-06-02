@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.itour.base.util.DateUtil;
 import com.itour.entity.QuoteForm;
-import com.itour.vo.QuoteFormVo;
+import com.itour.vo.QuoteFormVO;
 
 public class QuoteFormKit {
 	/**
@@ -14,59 +14,59 @@ public class QuoteFormKit {
 	 * @param qf
 	 * @return
 	 */
-	public static QuoteFormVo toVo(QuoteForm qf){
-		QuoteFormVo qfv = new QuoteFormVo();
+	public static QuoteFormVO toVo(QuoteForm qf){
+		QuoteFormVO qfv = new QuoteFormVO();
 		qfv.setId(qf.getId());
 		qfv.setAdults(qf.getAdults());
-		qfv.setAsAdult(qf.isAsAdult());
-		qfv.setBathcostAsadult(qf.isBathcostAsadult());
+		qfv.setAsAdult(qf.getAsAdult());
+		qfv.setBathcostAsadult(qf.getBathcostAsadult());
 		qfv.setBathorseCost(qf.getBathorseCost());
 		qfv.setBeriefTrip(qf.getBeriefTrip());
 		qfv.setShowTrip(qf.getShowTrip());
 		qfv.setBigTraffic(qf.getBigTraffic());
-		qfv.setBigtrafficeAsadult(qf.isBigtrafficeAsadult());
-		qfv.setBigTrafficSum(qf.isBigTrafficSum());
+		qfv.setBigtrafficeAsadult(qf.getBigtrafficeAsadult());
+		qfv.setBigTrafficSum(qf.getBigTrafficSum());
 		qfv.setChildren(qf.getChildren());
-		qfv.setClimbncostAsadult(qf.isClimbncostAsadult());
+		qfv.setClimbncostAsadult(qf.getClimbncostAsadult());
 		qfv.setClimbNexusCost(qf.getClimbNexusCost());
-		qfv.setClimbrcostAsadult(qf.isClimbrcostAsadult());
+		qfv.setClimbrcostAsadult(qf.getClimbrcostAsadult());
 		qfv.setClimbRegisterCost(qf.getClimbRegisterCost());
-		qfv.setComphcostAsadult(qf.isComphcostAsadult());
+		qfv.setComphcostAsadult(qf.getComphcostAsadult());
 		qfv.setComprehensiveCosts(qf.getComprehensiveCosts());
 		qfv.setCreateBy(qf.getCreateBy());
 		if(qf.getCreateTime()!=null){
 			qfv.setCreateTime(DateUtil.getDateYmdHs(qf.getCreateTime()));
 		}
 		qfv.setDinner(qf.getDinner());
-		qfv.setDinnerAsadult(qf.isDinnerAsadult());
+		qfv.setDinnerAsadult(qf.getDinnerAsadult());
 		qfv.setElseCost(qf.getElseCost());
-		qfv.setElsecostAsadult(qf.isElsecostAsadult());
+		qfv.setElsecostAsadult(qf.getElsecostAsadult());
 		qfv.setHotel(qf.getHotel());
-		qfv.setHotelAsadult(qf.isHotelAsadult());
+		qfv.setHotelAsadult(qf.getHotelAsadult());
 		qfv.setInsurance(qf.getInsurance());
-		qfv.setInsuranceAsadult(qf.isInsuranceAsadult());
+		qfv.setInsuranceAsadult(qf.getInsuranceAsadult());
 		qfv.setItemGuide(qf.getItemGuide());
-		qfv.setItemguideAsadult(qf.isItemguideAsadult());
+		qfv.setItemguideAsadult(qf.getItemguideAsadult());
 		qfv.setPresented(qf.getPresented());
 		qfv.setRecreation(qf.getRecreation());
-		qfv.setRecreationAsadult(qf.isRecreationAsadult());
+		qfv.setRecreationAsadult(qf.getRecreationAsadult());
 		qfv.setRemark(qf.getRemark());
 		qfv.setRentCar(qf.getRentCar());
-		qfv.setRentcarAsadult(qf.isRentcarAsadult());
+		qfv.setRentcarAsadult(qf.getRentcarAsadult());
 		qfv.setRidehorseCost(qf.getRidehorseCost());
-		qfv.setRidecostAsadult(qf.isRidecostAsadult());
+		qfv.setRidecostAsadult(qf.getRidecostAsadult());
 		qfv.setRouteTemplate(qf.getRouteTemplate());
-		qfv.setTicketAsadult(qf.isTicketAsadult());
+		qfv.setTicketAsadult(qf.getTicketAsadult());
 		qfv.setTicketBlock(qf.getTicketBlock());
 		qfv.setTourGuide(qf.getTourGuide());
-		qfv.setTourguideAsadult(qf.isTourguideAsadult());
-		qfv.setTraveldocAsadult(qf.isTraveldocAsadult());
+		qfv.setTourguideAsadult(qf.getTourguideAsadult());
+		qfv.setTraveldocAsadult(qf.getTraveldocAsadult());
 		qfv.setTravelDocs(qf.getTravelDocs());
 		qfv.setUpdateBy(qf.getUpdateBy());
 		if(qf.getUpdateTime() !=null){
 			qfv.setUpdateTime(DateUtil.getDateYmdHs(qf.getUpdateTime()));
 		}
-		qfv.setValid(qf.isValid());
+		qfv.setValid(qf.getValid());
 		qfv.setGroupCode(qf.getGroupCode());
 		if(qf.getGroupDate()!=null){
 			qfv.setGroupDate(DateUtil.getDateYmdCn(qf.getGroupDate()));
@@ -96,53 +96,53 @@ public class QuoteFormKit {
 	 * @param vo
 	 * @return
 	 */
-	public static QuoteForm toRecord(QuoteFormVo vo){
+	public static QuoteForm toRecord(QuoteFormVO vo){
 		QuoteForm qfv = new QuoteForm();
 		qfv.setId(vo.getId());
 		qfv.setAdults(vo.getAdults());
-		qfv.setAsAdult(vo.isAsAdult());
-		qfv.setBathcostAsadult(vo.isBathcostAsadult());
+		qfv.setAsAdult(vo.getAsAdult());
+		qfv.setBathcostAsadult(vo.getBathcostAsadult());
 		qfv.setBathorseCost(vo.getBathorseCost());
 		qfv.setBeriefTrip(vo.getBeriefTrip());
 		qfv.setShowTrip(vo.getShowTrip());
 		qfv.setBigTraffic(vo.getBigTraffic());
-		qfv.setBigtrafficeAsadult(vo.isBigtrafficeAsadult());
-		qfv.setBigTrafficSum(vo.isBigTrafficSum());
+		qfv.setBigtrafficeAsadult(vo.getBigtrafficeAsadult());
+		qfv.setBigTrafficSum(vo.getBigTrafficSum());
 		qfv.setChildren(vo.getChildren());
-		qfv.setClimbncostAsadult(vo.isClimbncostAsadult());
+		qfv.setClimbncostAsadult(vo.getClimbncostAsadult());
 		qfv.setClimbNexusCost(vo.getClimbNexusCost());
-		qfv.setClimbrcostAsadult(vo.isClimbrcostAsadult());
+		qfv.setClimbrcostAsadult(vo.getClimbrcostAsadult());
 		qfv.setClimbRegisterCost(vo.getClimbRegisterCost());
-		qfv.setComphcostAsadult(vo.isComphcostAsadult());
+		qfv.setComphcostAsadult(vo.getComphcostAsadult());
 		qfv.setComprehensiveCosts(vo.getComprehensiveCosts());
 		qfv.setCreateBy(vo.getCreateBy());
 		qfv.setDinner(vo.getDinner());
-		qfv.setDinnerAsadult(vo.isDinnerAsadult());
+		qfv.setDinnerAsadult(vo.getDinnerAsadult());
 		qfv.setElseCost(vo.getElseCost());
-		qfv.setElsecostAsadult(vo.isElsecostAsadult());
+		qfv.setElsecostAsadult(vo.getElsecostAsadult());
 		qfv.setHotel(vo.getHotel());
-		qfv.setHotelAsadult(vo.isHotelAsadult());
+		qfv.setHotelAsadult(vo.getHotelAsadult());
 		qfv.setInsurance(vo.getInsurance());
-		qfv.setInsuranceAsadult(vo.isInsuranceAsadult());
+		qfv.setInsuranceAsadult(vo.getInsuranceAsadult());
 		qfv.setItemGuide(vo.getItemGuide());
-		qfv.setItemguideAsadult(vo.isItemguideAsadult());
+		qfv.setItemguideAsadult(vo.getItemguideAsadult());
 		qfv.setPresented(vo.getPresented());
 		qfv.setRecreation(vo.getRecreation());
-		qfv.setRecreationAsadult(vo.isRecreationAsadult());
+		qfv.setRecreationAsadult(vo.getRecreationAsadult());
 		qfv.setRemark(vo.getRemark());
 		qfv.setRentCar(vo.getRentCar());
-		qfv.setRentcarAsadult(vo.isRentcarAsadult());
+		qfv.setRentcarAsadult(vo.getRentcarAsadult());
 		qfv.setRidehorseCost(vo.getRidehorseCost());
-		qfv.setRidecostAsadult(vo.isRidecostAsadult());
+		qfv.setRidecostAsadult(vo.getRidecostAsadult());
 		qfv.setRouteTemplate(vo.getRouteTemplate());
-		qfv.setTicketAsadult(vo.isTicketAsadult());
+		qfv.setTicketAsadult(vo.getTicketAsadult());
 		qfv.setTicketBlock(vo.getTicketBlock());
 		qfv.setTourGuide(vo.getTourGuide());
-		qfv.setTourguideAsadult(vo.isTourguideAsadult());
-		qfv.setTraveldocAsadult(vo.isTraveldocAsadult());
+		qfv.setTourguideAsadult(vo.getTourguideAsadult());
+		qfv.setTraveldocAsadult(vo.getTraveldocAsadult());
 		qfv.setTravelDocs(vo.getTravelDocs());
 		qfv.setUpdateBy(vo.getUpdateBy());
-		qfv.setValid(vo.isValid());
+		qfv.setValid(vo.getValid());
 		qfv.setGroupCode(vo.getGroupCode());
 		qfv.setShowTicket(vo.getShowTicket());
 		qfv.setShowBathorse(vo.getShowBathorse());

@@ -23,31 +23,31 @@
    
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
-where valid=1
+where travel_style.valid=1
 <trim  suffixOverrides="," >
 	<if test="type != null and type != ''" >
-	    and type like CONCAT('%', #{type}, '%')
+	    and travel_style.type like CONCAT('%', #{type}, '%')
 	</if>
 	<if test="remark != null and remark != ''" >
-	    and remark like CONCAT('%', #{remark}, '%')
+	    and travel_style.remark like CONCAT('%', #{remark}, '%')
 	</if>
 	<if test="alias != null and alias != ''">
-		and alias like CONCAT('%', #{alias}, '%')
+		and travel_style.alias like CONCAT('%', #{alias}, '%')
 	</if>
 	<if test="descrip != null and descrip != ''">
-		and descrip like CONCAT('%', #{descrip}, '%')
+		and travel_style.descrip like CONCAT('%', #{descrip}, '%')
 	</if>
 	<if test="createBy != null and createBy != ''">
-		and create_by = #{createBy},
+		and travel_style.create_by = #{createBy},
 	</if>
 	<if test="createTime != null and createTime != ''">
-		 and DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+		 and DATE_FORMAT(travel_style.create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
 	</if>
 	<if test="updateBy != null and updateBy != ''">
-		and update_by = #{updateBy},
+		and travel_style.update_by = #{updateBy},
 	</if>
 	<if test="updateTime != null and updateTime != ''">
-		and DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
+		and DATE_FORMAT(travel_style.update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
 	</if>
 </trim>
 </sql>
@@ -74,9 +74,9 @@ where valid=1
 		<if test="remark != null and remark != '' ">
 			remark=#{remark},
 		</if>
-		<if test="valid != null and valid!=''">
+		<!-- <if test="valid != null and valid!=''">
 			valid=#{valid},
-		</if>
+		</if> -->
 		<if test="descrip != null and descrip !=''">
 			descrip=#{descrip},
 		</if>
@@ -96,7 +96,7 @@ where valid=1
 </delete>
 <!-- 逻辑删除 -->
 <update id="logicdelete" parameterType="java.lang.String">
-	update travel_style set is_valid=0 where id = #{id}
+	update travel_style set valid=0 where id = #{id}
 </update> 
 <!-- 上传封面 -->
 <update id="updateCover" parameterType="com.itour.entity.TravelStyle">

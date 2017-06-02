@@ -186,18 +186,14 @@ itour.showhappy = function(){
 							return row.route;
 						}
 					}},
-					{field:'signature',title:'晒出人',align:'center',sortable:false,formatter:function(value,row,index){
-						if(row.signature && row.signature.length>30){
-							return row.signature.substring(0,30)+"...";
-						}else{									
-							return row.signature;
-						}
+					{field:'customerName',title:'晒出人',align:'center',sortable:false,formatter:function(value,row,index){
+							return row.customerName;
 					}},
-					{field:'area',title:'来自地区',align:'center',sortable:false,formatter:function(value,row,index){
-						if(row.area && row.area.length>30){
-							return row.area.substring(0,30)+"...";
+					{field:'areaname',title:'来自地区',align:'center',sortable:false,formatter:function(value,row,index){
+						if(row.areaname && row.areaname.length>30){
+							return row.areaname.substring(0,30)+"...";
 						}else{									
-							return row.area;
+							return row.areaname;
 						}
 					}},
 					{field:'status',title:'审核状态',align:'center',sortable:true,
@@ -264,4 +260,6 @@ itour.showhappy = function(){
 
 $(function(){
 	itour.showhappy.init();
+	  if (window != top)
+          top.location.href = location.href;
 });

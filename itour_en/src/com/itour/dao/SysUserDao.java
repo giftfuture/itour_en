@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.itour.base.dao.BaseDao;
 import com.itour.entity.SysUser;
-import com.itour.vo.SysUserVo;
+import com.itour.vo.SysUserVO;
 
 /**
  * SysUser Mapper
@@ -21,7 +21,7 @@ public interface SysUserDao<SysMenuBtn> extends BaseDao<SysMenuBtn> {
 	 * @param pwd
 	 * @return
 	 */
-	SysMenuBtn queryLogin(SysUserVo model);
+	SysMenuBtn queryLogin(SysUserVO model);
 	
 	
 	/**

@@ -44,8 +44,8 @@ import com.itour.service.LogSettingService;
 import com.itour.service.RouteTemplateService;
 import com.itour.service.TravelItemService;
 import com.itour.util.Constants;
-import com.itour.vo.LevelAreaVo;
-import com.itour.vo.TravelItemVo;
+import com.itour.vo.LevelAreaVO;
+import com.itour.vo.TravelItemVO;
 @Controller
 @RequestMapping("/levelarea") 
 public class LevelAreaController extends BaseController {
@@ -96,7 +96,7 @@ public class LevelAreaController extends BaseController {
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
-	public ModelAndView  list(LevelAreaVo page,HttpServletRequest request) throws Exception{
+	public ModelAndView  list(LevelAreaVO page,HttpServletRequest request) throws Exception{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行LevelAreaController的list方法");
 		return forward("server/sys/levelArea"); 
@@ -113,7 +113,7 @@ public class LevelAreaController extends BaseController {
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid datalist(LevelAreaVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public EasyUIGrid datalist(LevelAreaVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//List<OrderDetail> dataList = orderDetailService.queryByList(page);
 		BasePage<Map<String, String>> page = levelAreaService.pagedQuery(vo);
 		SysUser sessionuser = SessionUtils.getUser(request);
@@ -132,7 +132,7 @@ public class LevelAreaController extends BaseController {
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public String save(LevelAreaVo entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String save(LevelAreaVO entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String odId="";
 		SysUser sessionuser = SessionUtils.getUser(request);
 		LevelArea od = null;
@@ -147,7 +147,7 @@ public class LevelAreaController extends BaseController {
 			entity.setLevel2Area(entity.getNewlevel2Area());
 		}		
 		if(StringUtils.isNotEmpty(entity.getItem())){
-			TravelItemVo ti = travelItemService.getByAlias(entity.getItem());
+			TravelItemVO ti = travelItemService.getByAlias(entity.getItem());
 			entity.setTravelItem(ti==null?"":ti.getId());
 		}
 		if(entity.getId()==null||StringUtils.isEmpty(entity.getId())){
@@ -189,7 +189,7 @@ public class LevelAreaController extends BaseController {
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public String getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
-		LevelAreaVo entity  = levelAreaService.selectById(id);
+		LevelAreaVO entity  = levelAreaService.selectById(id);
 		if(entity  == null){
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}

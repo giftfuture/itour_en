@@ -17,7 +17,7 @@ import com.itour.base.service.BaseService;
 import com.itour.base.util.FilePros;
 import com.itour.dao.TravelItemDao;
 import com.itour.entity.TravelItem;
-import com.itour.vo.TravelItemVo;
+import com.itour.vo.TravelItemVO;
 
 /**
  * 
@@ -39,7 +39,7 @@ public class TravelItemService<T> extends BaseService<T> {
 	 * @param pageQuery 查询条件
 	 * @return 查询结果
 	 */
-	public BasePage<TravelItemVo> pagedQuery(TravelItemVo vo) {
+	public BasePage<TravelItemVO> pagedQuery(TravelItemVO vo) {
 		/*Pager pager = new Pager();
 		pager.setOrderDirection(false);
 		pager.setOrderField("star_level");*/
@@ -47,32 +47,32 @@ public class TravelItemService<T> extends BaseService<T> {
 		vo.setSort("star_level");
 		vo.setOrderDirection(false);
 		//System.out.println("#################"+vo.getPager().getOrderCondition());
-		List<TravelItemVo> list = (List<TravelItemVo>) mapper.queryByListVo(vo);
+		List<TravelItemVO> list = (List<TravelItemVO>) mapper.queryByListVo(vo);
 		int count = mapper.queryByCount(vo);
-		/*List<TravelItemVo> records = Lists.newArrayList();
+		/*List<TravelItemVO> records = Lists.newArrayList();
 		for(TravelItem fb:list) {
 			records.add(TravelItemKit.toRecord(fb));
 		}*/
-		return new BasePage<TravelItemVo>(vo.getStart(), vo.getLimit(), list, count);
+		return new BasePage<TravelItemVO>(vo.getStart(), vo.getLimit(), list, count);
 	}
 	/**
 	 * 
 	 * @param vo
 	 * @return
 	 */
-	public BasePage<TravelItemVo> pagedQuery2(TravelItemVo vo) {
+	public BasePage<TravelItemVO> pagedQuery2(TravelItemVO vo) {
 		vo.setSort("star_level");
-		List<TravelItemVo> list = (List<TravelItemVo>) mapper.queryByListVo(vo);
+		List<TravelItemVO> list = (List<TravelItemVO>) mapper.queryByListVo(vo);
 		int count = mapper.queryByCount(vo);
-		//List<TravelItemVo> records = Lists.newArrayList();
+		//List<TravelItemVO> records = Lists.newArrayList();
 		String coverpath = FilePros.httpitemCoverpath();
-		for(TravelItemVo fb:list) {
+		for(TravelItemVO fb:list) {
 			if(StringUtils.isNotEmpty(fb.getCover())){	 				
 				fb.setCover(coverpath+"/"+StringUtils.trim(fb.getItemCode())+"_"+fb.getAlias()+"/"+fb.getCover());
 			}
 			//records.add(fb);
 		}
-		return new BasePage<TravelItemVo>(vo.getStart(), vo.getLimit(), list, count);
+		return new BasePage<TravelItemVO>(vo.getStart(), vo.getLimit(), list, count);
 	}
 	/**
 	 * 
@@ -80,13 +80,13 @@ public class TravelItemService<T> extends BaseService<T> {
 	 * @return
 	 * @throws Exception
 	 */
-	public TravelItemVo getByAlias(String alias)throws Exception{
+	public TravelItemVO getByAlias(String alias)throws Exception{
 		return mapper.getByAlias(alias);
 	}
 	public TravelItemDao<T> getDao() {
 		return mapper;
 	}
-	public List<TravelItemVo> queryByAlias(List<String> alias){
+	public List<TravelItemVO> queryByAlias(List<String> alias){
 		return mapper.queryByAlias(alias);
 	};
 	/**
@@ -95,7 +95,7 @@ public class TravelItemService<T> extends BaseService<T> {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<TravelItemVo> searchTravelItem(Map map)throws Exception{
+	public List<TravelItemVO> searchTravelItem(Map map)throws Exception{
 	   return mapper.searchTravelItem(map);
 	}
 	/**
@@ -112,7 +112,7 @@ public class TravelItemService<T> extends BaseService<T> {
 	 * @param scope
 	 * @return
 	 */
-	public 	List<TravelItemVo> queryByScope(String scope){
+	public 	List<TravelItemVO> queryByScope(String scope){
 		return mapper.queryByScope(scope);
 	}
 	
@@ -121,25 +121,25 @@ public class TravelItemService<T> extends BaseService<T> {
 	 * @param vo
 	 * @return
 	 */
-	public BasePage<TravelItemVo> pageQueryByScope(TravelItemVo vo){
-		List<TravelItemVo> list = (List<TravelItemVo>)mapper.pageQueryByScope(vo);
+	public BasePage<TravelItemVO> pageQueryByScope(TravelItemVO vo){
+		List<TravelItemVO> list = (List<TravelItemVO>)mapper.pageQueryByScope(vo);
 		int count = mapper.countByScope(vo);
-		//List<TravelItemVo> records = Lists.newArrayList();
+		//List<TravelItemVO> records = Lists.newArrayList();
 		String coverpath = FilePros.httpitemCoverpath();
-		for(TravelItemVo fb:list) {
+		for(TravelItemVO fb:list) {
 			if(StringUtils.isNotEmpty(fb.getCover())){	 
 				fb.setCover(coverpath+"/"+StringUtils.trim(fb.getItemCode())+"_"+fb.getAlias()+"/"+fb.getCover());
 			}
 			//records.add(fb);
 		}
-		return new BasePage<TravelItemVo>(vo.getStart(), vo.getLimit(), list, count);
+		return new BasePage<TravelItemVO>(vo.getStart(), vo.getLimit(), list, count);
 	}
 	/**
 	 * @param style
 	 * @return
 	 * @throws Exception
 	 */
-	public List<TravelItemVo> queryByStyle(String style)throws Exception{
+	public List<TravelItemVO> queryByStyle(String style)throws Exception{
 		return mapper.queryByStyle(style);
 	}
 	/**
@@ -148,7 +148,7 @@ public class TravelItemService<T> extends BaseService<T> {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<TravelItemVo> queryByIds(List<String> ids)throws Exception{
+	public List<TravelItemVO> queryByIds(List<String> ids)throws Exception{
 		return mapper.queryByIds(ids);
 	};
 	
@@ -182,7 +182,7 @@ public class TravelItemService<T> extends BaseService<T> {
 	 * @param id
 	 * @return
 	 */
-	public TravelItemVo selectById(String id){
+	public TravelItemVO selectById(String id){
 		return mapper.selectById(id);
 	};
 	/**
@@ -190,7 +190,7 @@ public class TravelItemService<T> extends BaseService<T> {
 	 * @param itemCode
 	 * @return
 	 */
-	public TravelItemVo queryByItemCode(String itemCode){
+	public TravelItemVO queryByItemCode(String itemCode){
 		return mapper.queryByItemCode(itemCode);
 	}
 	
@@ -201,14 +201,14 @@ public class TravelItemService<T> extends BaseService<T> {
 	public void uploadCover(TravelItem vo){
 		mapper.uploadCover(vo);
 	};
-	public List<TravelItemVo> queryMapByScope(String scope){
+	public List<TravelItemVO> queryMapByScope(String scope){
 		return mapper.queryMapByScope(scope);
 	}
 	
-	public List<TravelItemVo> queryBystarLevel(int num){
-		List<TravelItemVo> vos = mapper.queryBystarLevel(num);
+	public List<TravelItemVO> queryBystarLevel(int num){
+		List<TravelItemVO> vos = mapper.queryBystarLevel(num);
 		String ticoverpath = FilePros.httpitemCoverpath();
-		for(TravelItemVo vo:vos){
+		for(TravelItemVO vo:vos){
 			vo.setCover(StringUtils.trim(ticoverpath+"/"+vo.getItemCode()+"_"+vo.getAlias()+"/"+vo.getCover()));
 		}
 		return vos;

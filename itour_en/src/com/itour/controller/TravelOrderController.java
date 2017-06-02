@@ -71,12 +71,12 @@ import com.itour.service.TravelItemService;
 import com.itour.service.TravelOrderService;
 import com.itour.service.TravelStyleService;
 import com.itour.util.Constants;
-import com.itour.vo.CalculateQuoteVo;
-import com.itour.vo.OrderDetailVo;
-import com.itour.vo.QuoteFormVo;
-import com.itour.vo.RouteTemplateVo;
-import com.itour.vo.TravelItemVo;
-import com.itour.vo.TravelOrderVo;
+import com.itour.vo.CalculateQuoteVO;
+import com.itour.vo.OrderDetailVO;
+import com.itour.vo.QuoteFormVO;
+import com.itour.vo.RouteTemplateVO;
+import com.itour.vo.TravelItemVO;
+import com.itour.vo.TravelOrderVO;
 /*import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfWriter;*/
@@ -130,7 +130,7 @@ public class TravelOrderController extends BaseController {
 	 */
 	@Auth(verifyLogin = true, verifyURL = true)
 	@RequestMapping(value = "/list")
-	public ModelAndView list(TravelOrderVo page, HttpServletRequest request) throws Exception {
+	public ModelAndView list(TravelOrderVO page, HttpServletRequest request) throws Exception {
 		/*
 		 * Map<String,Object> context = getRootMap(); List<TravelOrder> dataList
 		 * = travelOrderService.queryByList(page); context.put("dataList",
@@ -152,10 +152,10 @@ public class TravelOrderController extends BaseController {
 	@Auth(verifyLogin = true, verifyURL = true)
 	@ResponseBody
 	@RequestMapping(value = "/dataList.json", method = RequestMethod.POST)
-	public EasyUIGrid datalist(TravelOrderVo vo, HttpServletRequest request, HttpServletResponse response)
+	public EasyUIGrid datalist(TravelOrderVO vo, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		// List<TravelOrder> dataList = travelOrderService.queryByList(page);
-		BasePage<TravelOrderVo> pagination = travelOrderService.pagedQuery(vo);
+		BasePage<TravelOrderVO> pagination = travelOrderService.pagedQuery(vo);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####" + (sessionuser != null ? ("id:" + sessionuser.getId() + "email:" + sessionuser.getEmail()
 				+ ",nickName:" + sessionuser.getNickName()) : "") + "调用执行TravelOrderController的dataList方法");
@@ -174,7 +174,7 @@ public class TravelOrderController extends BaseController {
 	@Auth(verifyLogin = true, verifyURL = true)
 	@ResponseBody
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(TravelOrderVo entity, HttpServletRequest request, HttpServletResponse response)
+	public String save(TravelOrderVO entity, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String id = "";
 		TravelOrder to = null;
@@ -237,7 +237,7 @@ public class TravelOrderController extends BaseController {
 	@Auth(verifyLogin = false, verifyURL = false)
 	@ResponseBody
 	@RequestMapping(value = "/booking", method = RequestMethod.POST)
-	public String booking(@RequestBody OrderDetailVo entity, HttpServletRequest request, HttpServletResponse response)
+	public String booking(@RequestBody OrderDetailVO entity, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String vcode = SessionUtils.getHappyValidateCode(request);
 		SessionUtils.removeHappyValidateCode(request);// 清除验证码，确保验证码只能用一次
@@ -258,12 +258,12 @@ public class TravelOrderController extends BaseController {
 		customers.setCustomerName(entity.getReceiver());
 		customers.setDistrict(entity.getReceiverMobile());
 		customers.setScope(entity.getComefrom());
-		customers.setValid(true);
+		customers.setValid(1);
 		customers.setIntroduction("");
 		customers.setStatus(1);
 		customers.setNickName(entity.getReceiver());
 		String customerId = customersService.add(customers);
-		TravelOrderVo to = new TravelOrderVo();
+		TravelOrderVO to = new TravelOrderVO();
 		to.setBudget(entity.getBudget());
 		if (StringUtils.isNotEmpty(entity.getExpectedBack())) {
 			to.setExpectedBack(entity.getExpectedBack());
@@ -277,7 +277,7 @@ public class TravelOrderController extends BaseController {
 		to.setReceiver(entity.getReceiver());
 		to.setReceiveremail(entity.getReceiveremail());
 		to.setReceiverMobile(entity.getReceiverMobile());
-		to.setGender(entity.isGender());
+		to.setGender(entity.getGender());
 		to.setOrderStatus(1);
 		to.setTotalStaff(entity.getAdults() + entity.getChildren());
 		to.setOrderName(IDGenerator.getUUID() + "_" + entity.getRoutename() + "_" + IDGenerator.code(16) + "_"
@@ -304,7 +304,7 @@ public class TravelOrderController extends BaseController {
 		entity.setTravelOrder(StringUtils.isNotEmpty(travelOrderId) ? travelOrderId : "");
 		String odId = orderDetailService.add(OrderDetailKit.toEntity(entity));
 		String title = "主角旅行itours网站";
-		String content = "尊敬的客户" + entity.getReceiver() + (entity.isGender() ? "先生" : "女士")
+		String content = "尊敬的客户" + entity.getReceiver() + (entity.getGender()==1 ? "先生" : "女士")
 				+ "您好：您的预定信息已收到，预定成功信息将于24小时内发送到您的邮箱，请留意查看";
 		if (EmailService.sendEmail(title, receiveremail, title, content, "")) {
 			String result = sendSuccessResult(response, "预定成功，请稍后查看邮箱预定成功信息！");
@@ -379,7 +379,7 @@ public class TravelOrderController extends BaseController {
 				+ ",nickName:" + sessionuser.getNickName()) : "") + "调用执行TravelOrderController的logicdelete方法");
 		String logId = logSettingService
 				.add(new LogSetting("travel_order", "订单管理", "travelOrder/logicdelete", sessionuser.getId(),
-						"update travel_order set is_valid=0 where id in(" + JsonUtils.encode(id) + ")", "")); 
+						"update travel_order set valid=0 where id in(" + JsonUtils.encode(id) + ")", "")); 
 		logOperationService.add(new LogOperation(logId, "逻辑删除", JsonUtils.encode(id), JsonUtils.encode(id),
 				JsonUtils.encode(id), "travelOrder/logicdelete", sessionuser.getId())); 
 		return removeSuccessMessage(response);
@@ -414,10 +414,10 @@ public class TravelOrderController extends BaseController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Map<String, Object> context = getRootMap();
 		TravelOrder entity = travelOrderService.queryById(id);
-		RouteTemplateVo bean = routeTemplateService.selectById(routeId);
-		OrderDetail od = orderDetailService.queryByOrderId(entity.getId());
-		QuoteFormVo qf = quoteFormService.queryByRtId(bean.getId());
-		// RouteTemplateVo bean = routeTemplateService.selectById(id);
+		RouteTemplateVO bean = routeTemplateService.selectById(routeId);
+		OrderDetailVO od = orderDetailService.queryByOrderId(entity.getId());
+		QuoteFormVO qf = quoteFormService.queryByRtId(bean.getId());
+		// RouteTemplateVO bean = routeTemplateService.selectById(id);
 		if (bean == null || entity == null || qf == null) {
 			context.put(SUCCESS, false);
 			context.put("bean", "没有找到对应的记录!");
@@ -441,16 +441,16 @@ public class TravelOrderController extends BaseController {
 	@Auth(verifyLogin = true, verifyURL = true)
 	@RequestMapping(value = "/toQuote3", method = RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView toQuote3(CalculateQuoteVo vo, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView toQuote3(CalculateQuoteVO vo, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		Float adultsumcost = 0f;
 		Float childrensumcost = 0f;
 		Map<String, Object> context = getRootMap();
 		if (vo != null && StringUtils.isNotEmpty(vo.getId())) {
 			TravelOrder entity = travelOrderService.queryById(vo.getTorderid());
-			RouteTemplateVo bean = routeTemplateService.selectById(vo.getRtid());
-			QuoteFormVo qf = quoteFormService.queryByRtId(bean.getId());
-			OrderDetail od = orderDetailService.queryByOrderId(entity.getId());
+			RouteTemplateVO bean = routeTemplateService.selectById(vo.getRtid());
+			QuoteFormVO qf = quoteFormService.queryByRtId(bean.getId());
+			OrderDetailVO od = orderDetailService.queryByOrderId(entity.getId());
 			adultsumcost += Float.parseFloat(qf.getShowTicket().split("\\|")[0]);
 			adultsumcost += Float.parseFloat(qf.getShowTraveldoc().split("\\|")[0]);
 			adultsumcost += Float.parseFloat(qf.getShowTourguide().split("\\|")[0]);
@@ -522,7 +522,7 @@ public class TravelOrderController extends BaseController {
 		Map<String, Object> context = getRootMap();
 		OrderDetail od = (OrderDetail) Constants.TDQUOTE2.get("od");
 		TravelOrder to = (TravelOrder) Constants.TDQUOTE2.get("torder");
-		RouteTemplateVo bean = (RouteTemplateVo) Constants.TDQUOTE2.get("bean");
+		RouteTemplateVO bean = (RouteTemplateVO) Constants.TDQUOTE2.get("bean");
 		if (bean.getId().equals(routeId) && to.getId().equals(id)) {
 			context.put("adultsumcost", Constants.TDQUOTE2.get("adultsumcost"));
 			context.put("childrensumcost", Constants.TDQUOTE2.get("childrensumcost"));
@@ -545,21 +545,21 @@ public class TravelOrderController extends BaseController {
 	 */
 	@RequestMapping(value = "/toQuote4", method = RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView toQuote4(CalculateQuoteVo vo, HttpServletRequest request, HttpServletResponse response)throws Exception {
+	public ModelAndView toQuote4(CalculateQuoteVO vo, HttpServletRequest request, HttpServletResponse response)throws Exception {
 		Float adultsumcost = 0f;
 		Float childrensumcost = 0f;
 		Map<String, Object> context = getRootMap();
 		if (vo != null && StringUtils.isNotEmpty(vo.getId())) {
 			TravelOrder entity = travelOrderService.queryById(vo.getTorderid());
-			RouteTemplateVo bean = routeTemplateService.selectById(vo.getRtid());
+			RouteTemplateVO bean = routeTemplateService.selectById(vo.getRtid());
 			bean = RouteTemplateKit.toRecord(RouteTemplateKit.toEntity(bean));
 			// TravelStyle ts =	
 			// travelStyleService.queryById(bean.getTravelStyle());
-			QuoteFormVo qf = quoteFormService.selectById(vo.getId());
-			OrderDetail od = orderDetailService.queryByOrderId(entity.getId());
+			QuoteFormVO qf = quoteFormService.selectById(vo.getId());
+			OrderDetailVO od = orderDetailService.queryByOrderId(entity.getId());
 			String itemIds = StringUtils.isNotEmpty(bean.getTravelItems()) ? bean.getTravelItems() : "";
 			List<String> itids = Arrays.asList(itemIds.split(","));
-			List<TravelItemVo> items = travelItemService.queryByAlias(itids);
+			List<TravelItemVO> items = travelItemService.queryByAlias(itids);
 			// String itemCoverpath = FilePros.httpitemCoverpath();
 			// String itemPhotoPath = FilePros.httptravelitemPhotoPath();
 			TravelStyle style = (TravelStyle) travelStyleService.queryByAlias(bean.getTravelStyle());
@@ -576,8 +576,8 @@ public class TravelOrderController extends BaseController {
 			}
 			if (bean != null && StringUtils.isNotEmpty(bean.getRelated())) {
 				String[] ids = bean.getRelated().split(",");
-				List<RouteTemplateVo> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
-				for (RouteTemplateVo rtp : relates) {
+				List<RouteTemplateVO> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
+				for (RouteTemplateVO rtp : relates) {
 					TravelStyle ts = (TravelStyle) travelStyleService.queryById(rtp.getTravelStyle());
 					if (ts != null) {
 						rtp.setTravelStyleAlias(ts.getAlias());
@@ -595,7 +595,7 @@ public class TravelOrderController extends BaseController {
 			}
 			bean.setPhotoList(photoList);
 			StringBuffer routeLine = new StringBuffer(bean.getDeparture());
-			for (TravelItemVo ti : items) {
+			for (TravelItemVO ti : items) {
 				routeLine.append("-" + ti.getItem());
 			}
 			routeLine.append("-" + bean.getArrive());
@@ -673,7 +673,7 @@ public class TravelOrderController extends BaseController {
 		Map<String, Object> context = getRootMap();
 		OrderDetail od = (OrderDetail) Constants.TDQUOTE2.get("od");
 		TravelOrder to = (TravelOrder) Constants.TDQUOTE2.get("torder");
-		RouteTemplateVo bean = (RouteTemplateVo) Constants.TDQUOTE2.get("bean");
+		RouteTemplateVO bean = (RouteTemplateVO) Constants.TDQUOTE2.get("bean");
 		if (bean.getId().equals(routeId) && to.getId().equals(id)) {
 			context.put("adultsumcost", Constants.TDQUOTE3.get("adultsumcost"));
 			context.put("childrensumcost", Constants.TDQUOTE3.get("childrensumcost"));
@@ -702,7 +702,7 @@ public class TravelOrderController extends BaseController {
 		String result = "";
 		// OrderDetail entity = (OrderDetail) Constants.TDQUOTE3.get("od");
 		TravelOrder to = (TravelOrder) Constants.TDQUOTE2.get("torder");
-		RouteTemplateVo bean = (RouteTemplateVo) Constants.TDQUOTE2.get("bean");
+		RouteTemplateVO bean = (RouteTemplateVO) Constants.TDQUOTE2.get("bean");
 		if (bean.getId().equals(idrt) && to.getOrderName().equals(tordername)) {
 			// OrderDetail od =
 			// orderDetailService.queryByOrderId(entity.getId());
@@ -717,7 +717,7 @@ public class TravelOrderController extends BaseController {
 			fromhtmlToPdf(formContent, tordername, orderhtmls + htmlName, orderpdfs + pdfName,markedorderpdfs + pdfName);
 			// File attachment = new File(orderpdfs+pdfName);
 			String title = "主角旅行itours网站";
-			String content = "尊敬的客户" + to.getReceiver() + (to.isGender() ? "先生" : "女士") + "您好：您的信息已经预定成功。请打开邮箱查看您的订单详情";
+			String content = "尊敬的客户" + to.getReceiver() + (to.getGender()==1 ? "先生" : "女士") + "您好：您的信息已经预定成功。请打开邮箱查看您的订单详情";
 			// String attachment =
 			// String httporderpdfs = FilePros.httporderpdfs();
 			String pdfurl = httpmarkedorderpdfs + "/" + pdfName;

@@ -19,7 +19,7 @@ public class LevelArea extends BaseEntity {
 	private String updateBy;
 	private Date createTime;
 	private Date updateTime;
-	private boolean valid;
+	private int valid;
 	private String aliasCode;
 	private String routeTemplate;
 	public LevelArea(){}
@@ -48,10 +48,10 @@ public class LevelArea extends BaseEntity {
 	public void setAliasCode(String aliasCode) {
 		this.aliasCode = aliasCode;
 	}
-	public boolean isValid() {
+	public int getValid() {
 		return valid;
 	}
-	public void setValid(boolean valid) {
+	public void setValid(int valid) {
 		this.valid = valid;
 	}
 	public String getRemark() {

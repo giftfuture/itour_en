@@ -35,8 +35,8 @@ import com.itour.service.LogSettingService;
 import com.itour.service.RouteTemplateService;
 import com.itour.service.TravelItemService;
 import com.itour.util.Constants;
-import com.itour.vo.RouteTemplateVo;
-import com.itour.vo.TravelItemVo;
+import com.itour.vo.RouteTemplateVO;
+import com.itour.vo.TravelItemVO;
 
 @Controller
 @RequestMapping("/destination") 
@@ -62,14 +62,14 @@ public class DestinationController extends BaseController{
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/main") 
-	public ModelAndView main(TravelItemVo vo,HttpServletRequest request) throws Exception{
+	public ModelAndView main(TravelItemVO vo,HttpServletRequest request) throws Exception{
 		long beginTime = System.currentTimeMillis();
 	 	Map<String,Object> context = getRootMap();
 	 	List<Areas> allScopes = areasService.allAreas();
-	 	Map<String,List<TravelItemVo>> sortedItems = Maps.newHashMap();
+	 	Map<String,List<TravelItemVO>> sortedItems = Maps.newHashMap();
 	 	Map<String,String> scopes = Maps.newHashMap();
-	 	List<TravelItemVo> list = Lists.newArrayList();
-	 	List<TravelItemVo> sublist = Lists.newArrayList();
+	 	List<TravelItemVO> list = Lists.newArrayList();
+	 	List<TravelItemVO> sublist = Lists.newArrayList();
 	 	Map<String,Integer> tiSizes = Maps.newHashMap();
 	 	String ptopath = FilePros.httpitemCoverpath();
 	 	for(Areas scope:allScopes){
@@ -79,7 +79,7 @@ public class DestinationController extends BaseController{
 			}else{
 				sublist = list;
 			}
-			for(TravelItemVo ti:sublist){
+			for(TravelItemVO ti:sublist){
 				if(StringUtils.isNotEmpty(ti.getCover())){	 							
 					String realCover = ptopath+"/" +StringUtils.trim(ti.getItemCode())+"_"+ti.getAlias()+"/"+ ti.getCover();
 					ti.setCover(realCover);
@@ -91,7 +91,7 @@ public class DestinationController extends BaseController{
  				scopes.put(scope.getId(), scope.getAreaname());
  			}
 	 	}
-	 	List<TravelItemVo> items = travelItemService.searchTravelItem(new HashMap());		
+	 	List<TravelItemVO> items = travelItemService.searchTravelItem(new HashMap());		
 		//设置页面数据
 		context.put("scopes", scopes); 
 		context.put("items", items);
@@ -115,8 +115,8 @@ public class DestinationController extends BaseController{
 	public ModelAndView detail(@PathVariable("alias")String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	 	Map<String,Object> context = getRootMap();
 	 	List<Areas> allScopes = areasService.allAreas();
-	 	List<TravelItemVo> list = Lists.newArrayList();
-	 	List<TravelItemVo> sublist = Lists.newArrayList();
+	 	List<TravelItemVO> list = Lists.newArrayList();
+	 	List<TravelItemVO> sublist = Lists.newArrayList();
 	 	Map<String,String> scopes = Maps.newHashMap();
 	 	String ptopath = FilePros.httpitemCoverpath();
 	 	for(Areas scope:allScopes){
@@ -126,7 +126,7 @@ public class DestinationController extends BaseController{
 			}else{
 				sublist = list;
 			}
-			for(TravelItemVo ti:sublist){
+			for(TravelItemVO ti:sublist){
 				if(StringUtils.isNotEmpty(ti.getCover())){	 							
 					String realCover = ptopath+"/" +StringUtils.trim(ti.getItemCode())+"_"+ti.getAlias()+"/"+ ti.getCover();
 					ti.setCover(realCover);
@@ -136,9 +136,9 @@ public class DestinationController extends BaseController{
  				scopes.put(scope.getId(), scope.getAreaname());
  			}
 	 	}
-	 	List<TravelItemVo> items = travelItemService.searchTravelItem(new HashMap());		
+	 	List<TravelItemVO> items = travelItemService.searchTravelItem(new HashMap());		
 		context.put("items", items);
-	 	TravelItemVo itemvo = travelItemService.getByAlias(alias);	
+	 	TravelItemVO itemvo = travelItemService.getByAlias(alias);	
 	 	String [] photos = itemvo.getPhotos().split("\\|");
 	 	List<String> photoList = Lists.newArrayList();
 	 	String photoPath = FilePros.httptravelitemPhotoPath();
@@ -153,11 +153,11 @@ public class DestinationController extends BaseController{
 	 	}
 	 	if(StringUtils.isNotEmpty(itemvo.getTicketsBlock())){
 			 	StringBuffer ticketsBlock=new StringBuffer("<table border=0>");
-			 	if(itemvo.isFullyearTicket()){//区分淡旺季
-			 			String[] busytb = itemvo.getTicketsBlock().substring(itemvo.getTicketsBlock().indexOf("淡季")<0?0:itemvo.getTicketsBlock().indexOf("淡季")+3,itemvo.getTicketsBlock().indexOf("旺季")<0?itemvo.getTicketsBlock().length():itemvo.getTicketsBlock().indexOf("旺季")).split("、");
-			 			String[] freetb = itemvo.getTicketsBlock().substring(itemvo.getTicketsBlock().indexOf("旺季")<0?0:itemvo.getTicketsBlock().indexOf("旺季")+3).split("、");
+			 	if(itemvo.getFullyearTicket()==1){//区分淡旺季
+			 			String[] busytb = itemvo.getTicketsBlock().substring(itemvo.getTicketsBlock().indexOf("slack season")<0?0:itemvo.getTicketsBlock().indexOf("slack season")+3,itemvo.getTicketsBlock().indexOf("busy season")<0?itemvo.getTicketsBlock().length():itemvo.getTicketsBlock().indexOf("busy season")).split("、");
+			 			String[] freetb = itemvo.getTicketsBlock().substring(itemvo.getTicketsBlock().indexOf("busy season")<0?0:itemvo.getTicketsBlock().indexOf("busy season")+3).split("、");
 			 			if(busytb.length>0){
-				 			ticketsBlock.append("<tr><td rowspan="+busytb.length+" style='padding-right:5px'><strong>淡季</strong></td><td style='text-align:left'>"+busytb[0]+"</td></tr>");
+				 			ticketsBlock.append("<tr><td rowspan="+busytb.length+" style='padding-right:5px'><strong>slack season</strong></td><td style='text-align:left'>"+busytb[0]+"</td></tr>");
 				 			for(int i=0;i<busytb.length;i++){
 				 				if(i!=0){
 				 					ticketsBlock.append("<tr><td style='text-align:left'>"+busytb[i]+"</td></tr>");
@@ -166,7 +166,7 @@ public class DestinationController extends BaseController{
 			 			}
 			 			if(freetb.length>0){
 			 				ticketsBlock.append("<tr><td colspan=2 style='text-align:center'>-------------------------------------</td></tr>");
-				 			ticketsBlock.append("<tr><td rowspan="+freetb.length+" style='padding-right:5px'><strong>旺季</strong></td><td style='text-align:left'>"+freetb[0]+"</td></tr>");
+				 			ticketsBlock.append("<tr><td rowspan="+freetb.length+" style='padding-right:5px'><strong>busy season</strong></td><td style='text-align:left'>"+freetb[0]+"</td></tr>");
 				 			for(int i=0;i<freetb.length;i++){
 				 				if(i!=0){
 				 					ticketsBlock.append("<tr><td style='text-align:left'>"+freetb[i]+"</td></tr>");
@@ -176,7 +176,7 @@ public class DestinationController extends BaseController{
 			 		 
 			 	}else{
 			 		String [] tb = itemvo.getTicketsBlock().split("、");
-			 		ticketsBlock.append("<tr><td rowspan="+tb.length+" style='padding-right:5px'>全年门票信息</td><td style='text-align:left'>"+tb[0]+"</td></tr>");
+			 		ticketsBlock.append("<tr><td rowspan="+tb.length+" style='padding-right:5px'>Full Year Ticket Information</td><td style='text-align:left'>"+tb[0]+"</td></tr>");
 			 		for(int i=0;i<tb.length;i++){
 		 				if(i!=0){
 		 					ticketsBlock.append("<tr><td style='text-align:left'>"+tb[i]+"</td></tr>");
@@ -186,7 +186,7 @@ public class DestinationController extends BaseController{
 			 	ticketsBlock.append("</table>");
 			 	itemvo.setTicketsBlock(ticketsBlock.toString());
 	 	}
-		List<RouteTemplateVo> rts = routeTemplateService.queryByItems(itemvo.getId());
+		List<RouteTemplateVO> rts = routeTemplateService.queryByItems(itemvo.getId());
 		context.put("scopes", scopes); 
 		context.put("itemvo", itemvo);
 		context.put("photos", photoList);
@@ -220,13 +220,13 @@ public class DestinationController extends BaseController{
 	public String moredestPage(String pageNo,String scope,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	 	Map<String,Object> context = getRootMap();
 	 	Areas areas = areasService.queryByPinyin(scope);
-	 	TravelItemVo vo = new TravelItemVo();
+	 	TravelItemVO vo = new TravelItemVO();
 	 	vo.setScope(areas !=null?areas.getId():"");
-	 	//TravelItemVo ttvo = travelItemService.getByAlias(alias);
+	 	//TravelItemVO ttvo = travelItemService.getByAlias(alias);
 		vo.setPage(Long.parseLong(pageNo));
 		vo.setRows(Constants.moredestsPerPage);
 		vo.setLimit(Constants.moredestsPerPage);
-		BasePage<TravelItemVo> page = travelItemService.pageQueryByScope(vo);
+		BasePage<TravelItemVO> page = travelItemService.pageQueryByScope(vo);
 		page.setPage(Long.parseLong(pageNo));
 		Pager pager = page.getPager();
 		pager.setPageId(Long.parseLong(pageNo));
@@ -270,13 +270,13 @@ public class DestinationController extends BaseController{
 	@RequestMapping(value="/related/searchRtResults", method = RequestMethod.POST) 
 	public String searchRtResults(String pageNo,String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	 	Map<String,Object> context = getRootMap();
-	 	TravelItemVo ttvo = travelItemService.getByAlias(alias);
-	 	RouteTemplateVo vo = new RouteTemplateVo();
+	 	TravelItemVO ttvo = travelItemService.getByAlias(alias);
+	 	RouteTemplateVO vo = new RouteTemplateVO();
 		vo.setPage(Long.parseLong(pageNo));
 		vo.setRows(Constants.destsPerPage);
 		vo.setLimit(Constants.destsPerPage);
 		vo.setTravelItems(ttvo.getId());
-		BasePage<RouteTemplateVo> page = routeTemplateService.pageQueryByItems(vo);
+		BasePage<RouteTemplateVO> page = routeTemplateService.pageQueryByItems(vo);
 		page.setPage(Long.parseLong(pageNo));
 		Pager pager = page.getPager();
 		pager.setPageId(Long.parseLong(pageNo));

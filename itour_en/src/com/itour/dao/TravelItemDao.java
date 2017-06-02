@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import com.itour.base.dao.BaseDao;
 import com.itour.base.page.BasePage;
 import com.itour.entity.TravelItem;
-import com.itour.vo.TravelItemVo;
+import com.itour.vo.TravelItemVO;
 /**
  * 
  * <br>
@@ -25,13 +25,13 @@ public interface TravelItemDao<T> extends BaseDao<T> {
 	 * @param map
 	 * @return
 	 */
-	List<TravelItemVo> searchTravelItem(Map map);
+	List<TravelItemVO> searchTravelItem(Map map);
 	/**
 	 * 
 	 * @param style
 	 * @return
 	 */
-	List<TravelItemVo> queryByStyle(@Param(value="travelStyle")String travelStyle);
+	List<TravelItemVO> queryByStyle(@Param(value="travelStyle")String travelStyle);
 	/**
 	 * 
 	 * @param scopeAlias
@@ -44,26 +44,26 @@ public interface TravelItemDao<T> extends BaseDao<T> {
 	 * @param scope
 	 * @return
 	 */
-	List<TravelItemVo> queryByScope(@Param(value="scope")String scope);
+	List<TravelItemVO> queryByScope(@Param(value="scope")String scope);
 	/**
 	 * 
 	 * @param ids
 	 * @return
 	 */
-	List<TravelItemVo> queryByIds(List<String> ids);
+	List<TravelItemVO> queryByIds(List<String> ids);
 	
 	/**
 	 * 
 	 * @param alias
 	 * @return
 	 */
-	List<TravelItemVo> queryByAlias(List<String> alias);
+	List<TravelItemVO> queryByAlias(List<String> alias);
 	/**
 	 * 
 	 * @param item
 	 * @return
 	 */
-	TravelItemVo getByAlias(@Param(value="alias")String alias);
+	TravelItemVO getByAlias(@Param(value="alias")String alias);
 	
 	/**
 	 * 加载所有地区，省份 List<Map<String, String>>
@@ -90,33 +90,33 @@ public interface TravelItemDao<T> extends BaseDao<T> {
 	 * 
 	 * @return
 	 */
-	List<TravelItemVo> queryByListVo(BasePage vo);
+	List<TravelItemVO> queryByListVo(BasePage vo);
 	
 	/**
 	 * 
 	 * @param id
 	 * @return
 	 */
-    TravelItemVo selectById(@Param(value="id")String id);
+    TravelItemVO selectById(@Param(value="id")String id);
     
     /**
      * 
      * @param itemCode
      * @return
      */
-    TravelItemVo queryByItemCode(@Param(value="itemCode")String itemCode);
+    TravelItemVO queryByItemCode(@Param(value="itemCode")String itemCode);
     /**
      * 
      * @param vo
      * @return
      */
-    List<TravelItemVo> pageQueryByScope(TravelItemVo vo);
+    List<TravelItemVO> pageQueryByScope(TravelItemVO vo);
     /**
      * 
      * @param vo
      * @return
      */
-    int countByScope(TravelItemVo vo);
+    int countByScope(TravelItemVO vo);
     
     /**
      * 
@@ -129,12 +129,12 @@ public interface TravelItemDao<T> extends BaseDao<T> {
      * @param scope
      * @return
      */
-    List<TravelItemVo> queryMapByScope(@Param(value="scope")String scope);
+    List<TravelItemVO> queryMapByScope(@Param(value="scope")String scope);
     
     /**
      * 
      * @return
      */
-    List<TravelItemVo> queryBystarLevel(@Param(value="limit")int limit);
+    List<TravelItemVO> queryBystarLevel(@Param(value="limit")int limit);
     
 }

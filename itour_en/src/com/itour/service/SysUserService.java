@@ -20,7 +20,7 @@ import com.itour.entity.SysRole;
 import com.itour.entity.SysRoleRel;
 import com.itour.entity.SysRoleRel.RelType;
 import com.itour.entity.SysUser;
-import com.itour.vo.SysUserVo;
+import com.itour.vo.SysUserVO;
 
 /**
  * 
@@ -53,7 +53,7 @@ public class SysUserService<T> extends BaseService<T> {
 	 * @return
 	 */
 	public T queryLogin(String email,String pwd){
-		SysUserVo model = new SysUserVo();
+		SysUserVO model = new SysUserVO();
 		model.setEmail(email);
 		model.setPwd(pwd);
 		SysUserDao<T> mapper = getDao();
@@ -112,16 +112,16 @@ public class SysUserService<T> extends BaseService<T> {
 	 * @return 查询结果
 	 */
 	@SuppressWarnings("unchecked")
-	public BasePage<SysUserVo> pagedQuery(SysUserVo vo) {
+	public BasePage<SysUserVO> pagedQuery(SysUserVO vo) {
 		List<SysUser> list = (List<SysUser>) mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
-		List<SysUserVo>	vos = Lists.newArrayList();
+		List<SysUserVO>	vos = Lists.newArrayList();
 		for(SysUser user:list){
 			List<SysRole> roleRels = sysRoleDao.queryByUserid(user.getId());
 			user.setRoleStr(rolesToStr(roleRels));
 			vos.add(SysUserKit.toRecord(user));
 		}
-		return new BasePage<SysUserVo>(vo.getStart(), vo.getLimit(), vos, count);
+		return new BasePage<SysUserVO>(vo.getStart(), vo.getLimit(), vos, count);
 	}
 	/**
 	 * 

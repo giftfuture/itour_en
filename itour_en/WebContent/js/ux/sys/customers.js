@@ -295,4 +295,6 @@ itour.customers = function(){
 
 $(function(){
 	itour.customers.init();
+	  if (window != top)
+          top.location.href = location.href;
 });

@@ -90,23 +90,23 @@ var YDataGrid = function(config){
 					//	try{
 						//	CKEDITOR.replace('txtContent', { toolbar: 'Basic' });
 							if(result.data.beforeInstruction&&result.data.beforeInstruction.length>0){
-								Handler.ckCreate('beforeInstruction');
+								//Handler.ckCreate('beforeInstruction');
 								//console.log(result.data.beforeInstruction);
-								var beforeInstruction = CKEDITOR.replace("beforeInstruction");
+								//var beforeInstruction = CKEDITOR.replace("beforeInstruction");
 								//console.log(CKEDITOR.replace("beforeInstruction"));
-								beforeInstruction.setData(result.data.beforeInstruction);
+								//beforeInstruction.setData(result.data.beforeInstruction);
 							}
 							if(result.data.customizedService&&result.data.customizedService.length>0){
-								Handler.ckCreate('customizedService');
-								var customizedService = CKEDITOR.replace('customizedService');
+								//Handler.ckCreate('customizedService');
+								//var customizedService = CKEDITOR.replace('customizedService');
 								//console.log(CKEDITOR.replace("beforeInstruction"));
-								customizedService.setData(result.data.customizedService);
+								//customizedService.setData(result.data.customizedService);
 							}
 							if(result.data.designConcept&&result.data.designConcept.length>0){
-								Handler.ckCreate('designConcept');
-								var designConcept = CKEDITOR.replace('designConcept');
+								//Handler.ckCreate('designConcept');
+								//var designConcept = CKEDITOR.replace('designConcept');
 								//console.log(CKEDITOR.replace("beforeInstruction"));
-								designConcept.setData(result.data.designConcept);
+								//designConcept.setData(result.data.designConcept);
 							}
 						/*	if(result.data.orderId){
 								$("span[name='orderId']").html("<label>订单号:</label>"+result.data.orderId);

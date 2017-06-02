@@ -4,8 +4,13 @@ $(document).ready(function() {
         height: 400,                  
         minHeight: 300,             
         maxHeight: 500,        
-        focus: true,   
+       // focus: true,   
         lang:'en-US',   
+        dialogsFade : true,// Add fade effect on dialogs
+        dialogsInBody : true,// Dialogs can be placed in body, not in summernote.
+        shortcuts:false,
+        disableDragAndDrop:true,
+        placeholder:'write here...',
       /*  callbacks: { 
 	        onImageUpload: function(files, editor, $editable) {  
 	        	sendFile(files[0],editor,$editable);  //// 重写图片上传  
@@ -16,9 +21,13 @@ $(document).ready(function() {
                     ['style', ['bold', 'italic', 'underline', 'clear']],  
                     ['fontsize', ['fontsize']],  
                     ['color', ['color']],  
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
                     ['para', ['ul', 'ol', 'paragraph']],  
                     ['height', ['height']],  
-                    ['insert', ['picture', 'video']]  
+                    ['table', ['table']],
+                    ['insert', ['link','picture', 'video','table','hr']] ,
+                    ['view', ['fullscreen', 'codeview', 'help']]
                 ],
         fontNames: ['Microsoft YaHei ','Serif', 'Sans', 'Arial', 'Arial Black', 'Courier','Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande','Sacramento'],
         colors: [

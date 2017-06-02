@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -59,10 +60,14 @@ import com.itour.service.QuoteFormService;
 import com.itour.service.RouteTemplateService;
 import com.itour.service.TravelItemService;
 import com.itour.service.TravelStyleService;
-import com.itour.vo.QuoteFormVo;
-import com.itour.vo.RouteTemplateVo;
-import com.itour.vo.ShowHappyVo;
-import com.itour.vo.TravelItemVo;
+import com.itour.util.Constants;
+import com.itour.vo.QuoteFormVO;
+import com.itour.vo.RouteTemplateVO;
+import com.itour.vo.ShowHappyVO;
+import com.itour.vo.TravelItemVO;
+
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.geometry.Positions;
  
 /**
  * 
@@ -104,7 +109,7 @@ public class RouteTemplateController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
-	public ModelAndView list(RouteTemplateVo page,HttpServletRequest request) throws Exception{
+	public ModelAndView list(RouteTemplateVO page,HttpServletRequest request) throws Exception{
 	/*	Map<String,Object>  context = getRootMap();
 		List<RouteTemplate> dataList = routeTemplateService.queryByList(page);
 		//设置页面数据
@@ -124,13 +129,13 @@ public class RouteTemplateController extends BaseController{
 	@RequestMapping(value="/rtschedule") 
 	public ModelAndView rtschedule(String id,HttpServletRequest request) throws Exception{
 		Map<String,Object> context = getRootMap();
-		RouteTemplateVo bean  = routeTemplateService.selectById(id);
+		RouteTemplateVO bean  = routeTemplateService.selectById(id);
 		if(bean == null){
 			context.put(SUCCESS, false);
 			context.put("bean", "没有找到对应的记录!");
 			return forward(request.getHeader("Referer"),context);
 		}
-		QuoteFormVo qf = quoteFormService.queryByRtId(id);
+		QuoteFormVO qf = quoteFormService.queryByRtId(id);
 		//String quotoForm = entity.getQuotoForm();
 		context.put(SUCCESS, true);
 		//context.put("quotoForm", quotoForm);
@@ -153,7 +158,7 @@ public class RouteTemplateController extends BaseController{
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/savertschedule", method = RequestMethod.POST)
-	public String savertschedule(@RequestBody RouteTemplateVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String savertschedule(@RequestBody RouteTemplateVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object> context = getRootMap();
 		String vcode = SessionUtils.getHappyValidateCode(request);
 		SessionUtils.removeHappyValidateCode(request); //清除验证码，确保验证码只能用一次
@@ -171,7 +176,7 @@ public class RouteTemplateController extends BaseController{
 		String subpath = vo.getId();
 		String quotoForm = ImageFilter.writeBase64Image(vo.getQuotoForm(),rtschedulePath,subpath);
 		vo.setQuotoForm(quotoForm);
-		vo.setValid(true);
+		vo.setValid(1);
 		routeTemplateService.updateQuotoForm(RouteTemplateKit.toEntity(vo));
 		//vo.addShowHappy(ShowHappyKit.toEntity(vo));
 		//String result = JsonUtils.encode(context);
@@ -192,9 +197,9 @@ public class RouteTemplateController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
-	public EasyUIGrid datalist(RouteTemplateVo vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public EasyUIGrid datalist(RouteTemplateVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//List<RouteTemplate> dataList = routeTemplateService.queryByList(page);
-		BasePage<RouteTemplateVo> page = routeTemplateService.pagedQuery(vo);
+		BasePage<RouteTemplateVO> page = routeTemplateService.pagedQuery(vo);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的datalist方法");
 		return dataGridAdapter.wrap(page);
@@ -223,12 +228,12 @@ public class RouteTemplateController extends BaseController{
 				photos.append(t.getViewphotos() == null ? "":t.getViewphotos());
 			}
 			// MultipartFile imgFile = null;
-			 OutputStream out = null;
+			 //OutputStream out = null;
 			// Iterator<String> it = multipartRequest.getFileNames();
 			List<MultipartFile> multifiles = multipartRequest.getFiles("fileselect");
 			 String picName = "";
 			 File directory = null;
-			 File uploadpic = null;
+			// File uploadpic = null;
 			 String parpath = "";
 			for(MultipartFile f:multifiles){
 		    	picName = StringUtils.isNotEmpty(f.getOriginalFilename())?f.getOriginalFilename() : Calendar.getInstance(Locale.CHINA).getTimeInMillis()+".jpg";   
@@ -237,27 +242,28 @@ public class RouteTemplateController extends BaseController{
 	            if(!directory.exists()||!directory.isDirectory()){
 	            	directory.mkdirs();
 	            }
-	            uploadpic = new File(parpath+"\\"+picName);
+	            //uploadpic = new File(parpath+"\\"+picName);
+	            Thumbnails.of(f.getInputStream()).size(Constants.compressWidth,Constants.compressHeight).watermark(Positions.BOTTOM_RIGHT,ImageIO.read(FilePros.watermark()),0.5f).outputQuality(0.8f).keepAspectRatio(false).toFile(parpath+"\\"+picName );
 	            photos.append(StringUtils.isNotEmpty(photos.toString())?"|"+picName :picName);
 	            System.out.println("路线ID="+(t!= null?t.getId():"")+"上传图片文件名是：" + picName);  
-	            out = new FileOutputStream(uploadpic);  
-	            out.write(f.getBytes());  
-	            out.close();  
+	          //  out = new FileOutputStream(uploadpic);  
+	          //  out.write(f.getBytes());  
+	          //  out.close();  
 			}
 			picName = null;
 			directory = null;
-			uploadpic = null;
+			//uploadpic = null;
 			parpath = null;
 			rt.setId(id);
 			rt.setViewphotos(photos.toString());
 			routeTemplateService.update(rt);
-			if(out != null){
+		/*	if(out != null){
 				try {
 					out.close();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+			}*/
 			context.put(SUCCESS, true);
 			context.put("msg", "路线图片上传成功！");
 			}else{
@@ -303,7 +309,7 @@ public class RouteTemplateController extends BaseController{
 		try {
 			SysUser sessionuser = SessionUtils.getUser(request);
 			RouteTemplate rt = routeTemplateService.queryById(id);
-			RouteTemplateVo vo = RouteTemplateKit.toRecord(rt);
+			RouteTemplateVO vo = RouteTemplateKit.toRecord(rt);
 			if(vo !=null){
 				//String fileName = vo.getCoverImg() != null ? vo.getCoverImg().getName():"";
 				//vo.setCover(fileName);
@@ -311,12 +317,12 @@ public class RouteTemplateController extends BaseController{
 				//ImageFilter.writeBase64Image(vo.getCoverImg(),path);
 				if(request instanceof MultipartHttpServletRequest){
 						MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
-						OutputStream out = null;
+					//	OutputStream out = null;
 						List<MultipartFile> multifiles = multipartRequest.getFiles("fileselect");
 						 String picName = "";
 						// String newpicName = "";
 						 File directory = null;
-						 File uploadpic = null;
+						// File uploadpic = null;
 						 MultipartFile f = multifiles.get(0);
 					     if(f.getOriginalFilename().length() > 0) {    
 					    	picName = f.getOriginalFilename();   
@@ -325,25 +331,26 @@ public class RouteTemplateController extends BaseController{
 				            	directory.mkdirs();
 				            }
 				            //newpicName = Calendar.getInstance(Locale.CHINA).getTimeInMillis()+picName.substring(picName.indexOf("."));
-				            uploadpic = new File(path+"\\"+picName );
+				            //uploadpic = new File(path+"\\"+picName );
+				            Thumbnails.of(f.getInputStream()).size(Constants.compressWidth,Constants.compressHeight).watermark(Positions.BOTTOM_RIGHT,ImageIO.read(FilePros.watermark()),0.5f).outputQuality(0.8f).keepAspectRatio(false).toFile(path+"\\"+picName );
 				            System.out.println("路线ID="+id+"上传封面图片是" + picName);  
-				            out = new FileOutputStream(uploadpic);  
-				            out.write(f.getBytes());  
-				            out.close();  
+				            //out = new FileOutputStream(uploadpic);  
+				            //out.write(f.getBytes());  
+				           // out.close();  
 				        }  
 						rt.setCover(picName);
 						picName = null;
 						directory = null;
-						uploadpic = null;
+						//uploadpic = null;
 						rt.setUpdateBy(sessionuser.getId());;
 						routeTemplateService.uploadCover(rt);
-						if(out != null){
-							try {
-								out.close();
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-						}
+//						if(out != null){
+//							try {
+//								out.close();
+//							} catch (Exception e) {
+//								e.printStackTrace();
+//							}
+//						}
 						context.put(SUCCESS, true);
 						context.put("msg", "封面图片上传成功！");
 				}else{
@@ -389,7 +396,7 @@ public class RouteTemplateController extends BaseController{
 		try {
 			SysUser sessionuser = SessionUtils.getUser(request);
 			RouteTemplate rt = routeTemplateService.queryById(id);
-			RouteTemplateVo vo = RouteTemplateKit.toRecord(rt);
+			RouteTemplateVO vo = RouteTemplateKit.toRecord(rt);
 			if(vo !=null){
 				//String fileName = vo.getCoverImg() != null ? vo.getCoverImg().getName():"";
 				//vo.setCover(fileName);
@@ -397,12 +404,10 @@ public class RouteTemplateController extends BaseController{
 				//ImageFilter.writeBase64Image(vo.getCoverImg(),path);
 				if(request instanceof MultipartHttpServletRequest){
 						MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
-						OutputStream out = null;
 						List<MultipartFile> multifiles = multipartRequest.getFiles("mapfile");
 						 String picName = "";
 						// String newpicName = "";
 						 File directory = null;
-						 File uploadpic = null;
 						 MultipartFile mf = multifiles.get(0);
 					     if(mf.getOriginalFilename().length() > 0) {    
 					    	picName = mf.getOriginalFilename();   
@@ -411,33 +416,15 @@ public class RouteTemplateController extends BaseController{
 				            	directory.mkdirs();
 				            }
 				            //newpicName = Calendar.getInstance(Locale.CHINA).getTimeInMillis()+picName.substring(picName.indexOf("."));
-				            uploadpic = new File(path+File.separatorChar+picName );
+				           // uploadpic = new File(path+File.separatorChar+picName );
+				            Thumbnails.of(mf.getInputStream()).size(Constants.compressMapWidth,Constants.compressMapHeight).watermark(Positions.BOTTOM_RIGHT,ImageIO.read(FilePros.watermark()),0.5f).outputQuality(0.8f).keepAspectRatio(false).toFile(path+"\\"+picName );
 				            System.out.println("路线ID="+id+"上传地图图片是" + picName);  
-				            out = new FileOutputStream(uploadpic);  
-				            out.write(mf.getBytes());  
-				            out.close();  
 				        }  
 						rt.setRouteMap(picName);
 						rt.setUpdateBy(sessionuser.getId());;
 						routeTemplateService.uploadMap(rt);
-					/*	File[] files = directory.listFiles();
-						if(files !=null && files.length>0){
-							for(File f:files){
-								if(!f.getName().equals(picName)){
-									f.delete();
-								}
-							}
-						}*/
 						picName = null;
 						directory = null;
-						uploadpic = null;
-						if(out != null){
-							try {
-								out.close();
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-						}
 						context.put(SUCCESS, true);
 						context.put("msg", "地图图片上传成功！");
 				}else{
@@ -493,7 +480,7 @@ public class RouteTemplateController extends BaseController{
 				List<String> tis = Lists.newArrayList();
 				List<String> alias = Arrays.asList(vo.getTravelItems().split(","));
 				for(String a:alias){					
-					TravelItemVo ti = travelItemService.getByAlias(a);
+					TravelItemVO ti = travelItemService.getByAlias(a);
 					tis.add(ti!=null?ti.getId():"");
 				}
 				vo.setTravelItems(Joiner.on(",").join(tis));
@@ -524,12 +511,11 @@ public class RouteTemplateController extends BaseController{
 					vo.setUpdateBy(sessionuser.getId());
 					rtId = routeTemplateService.add(vo);
 				}else{
-					vo.setValid(true);
+					vo.setValid(1);
 					vo.setUpdateBy(sessionuser.getId());
 					routeTemplateService.update(vo);
 				}
 			} 
-			
 			logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的save方法");
 			if(StringUtils.isNotEmpty(rtId)){			
 				String logid = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/save",sessionuser.getId(),"",""));
@@ -556,7 +542,7 @@ public class RouteTemplateController extends BaseController{
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public String getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
-		RouteTemplateVo entity  = routeTemplateService.selectById(id);
+		RouteTemplateVO entity  = routeTemplateService.selectById(id);
 		if(entity  == null){
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
@@ -579,7 +565,7 @@ public class RouteTemplateController extends BaseController{
 	@RequestMapping(value="/quoteEdit",method = RequestMethod.GET)
 	public ModelAndView quoteEdit(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
-		RouteTemplateVo bean  = routeTemplateService.selectById(id);
+		RouteTemplateVO bean  = routeTemplateService.selectById(id);
 		if(bean == null){
 			//return sendFailureMessage(response, "没有找到对应的记录!");
 			context.put(SUCCESS, false);
@@ -587,7 +573,7 @@ public class RouteTemplateController extends BaseController{
 		//	return forward("server/sys/quoteEdit",context);
 			return forward(request.getHeader("Referer"),context);
 		}
-		QuoteFormVo qf = quoteFormService.queryByRtId(id);
+		QuoteFormVO qf = quoteFormService.queryByRtId(id);
 		//String quotoForm = entity.getQuotoForm();
 		context.put(SUCCESS, true);
 		//context.put("quotoForm", quotoForm);
@@ -616,7 +602,7 @@ public class RouteTemplateController extends BaseController{
 				alias.add(ti.getItem());
 			}
 			quoteForm.setShowTrip(quoteForm.getShowTrip().replace(quoteForm.getTravelItems(), StringUtils.join(alias.toArray(), ",")));*/
-			QuoteFormVo qf = quoteFormService.queryByRtId(quoteForm.getRouteTemplate());
+			QuoteFormVO qf = quoteFormService.queryByRtId(quoteForm.getRouteTemplate());
 			String qfId = "";
 			SysUser user = SessionUtils.getUser(request);
 			if(user != null){
@@ -627,7 +613,7 @@ public class RouteTemplateController extends BaseController{
 				qfId = quoteFormService.add(quoteForm);
 			}else{
 				quoteForm.setId(qf.getId());
-				quoteForm.setValid(true);
+				quoteForm.setValid(1);
 				quoteFormService.update(quoteForm);				
 			}
 			SysUser sessionuser = SessionUtils.getUser(request);
@@ -676,7 +662,7 @@ public class RouteTemplateController extends BaseController{
 		routeTemplateService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的logicdelete方法");
-		String logId = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/logicdelete",sessionuser.getId(),"update route_template set is_valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
+		String logId = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/logicdelete",sessionuser.getId(),"update route_template set valid=0 where id in("+JsonUtils.encode(id)+")",""));//String tableName,String function,String urlTeimplate,String creater,String deletescriptTemplate,String updatescriptTemplate
 		logOperationService.add(new LogOperation(logId,"逻辑删除",JsonUtils.encode(id),JsonUtils.encode(id),JsonUtils.encode(id),"routeTemplate/logicdelete",sessionuser.getId()));//String logCode,String operationType,String primaryKeyvalue,String content,String url,String creater
 		return removeSuccessMessage(response);
 	}
@@ -689,7 +675,7 @@ public class RouteTemplateController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/loadRoutes", method = RequestMethod.POST)
 	public void loadRoutes(HttpServletResponse response) throws Exception{
-		RouteTemplateVo vo = new RouteTemplateVo();
+		RouteTemplateVO vo = new RouteTemplateVO();
 		List<RouteTemplate> list = routeTemplateService.queryByList(vo);
 		HtmlUtil.writerJson(response, list);
 	}
@@ -701,15 +687,16 @@ public class RouteTemplateController extends BaseController{
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/allRelatedRts", method = RequestMethod.GET)
-	public List<RouteTemplateVo> allRelatedRts(String rtId,HttpServletRequest request,HttpServletResponse response)throws Exception{
+	public List<RouteTemplateVO> allRelatedRts(String rtId,HttpServletRequest request,HttpServletResponse response)throws Exception{
 		RouteTemplate rt = routeTemplateService.queryById(rtId);
 		List<String> related = Lists.newArrayList();
 		if(rt !=null){
 			related.addAll(Arrays.asList(rt.getRelated().split(",")));
 		}
-		List<RouteTemplateVo> list = routeTemplateService.queryByRelated(related);
+		List<RouteTemplateVO> list = routeTemplateService.queryByRelated(related);
 		return list;
 	}
+	
 	/**
 	 * 
 	 * @param response
@@ -718,8 +705,9 @@ public class RouteTemplateController extends BaseController{
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
 	@RequestMapping(value="/queryAll", method = RequestMethod.GET)
-	public List<RouteTemplateVo> queryAll(HttpServletRequest request,HttpServletResponse response)throws Exception{
-		List<RouteTemplateVo> list = routeTemplateService.queryAll();
+	public List<RouteTemplateVO> queryAll(HttpServletRequest request,HttpServletResponse response)throws Exception{
+		List<RouteTemplateVO> list = routeTemplateService.queryAll();
 		return list;
 	}
+	
 }
