@@ -166,7 +166,7 @@ itour.travelOrder = function(){
 					{field:'routeId',title:'订单处理',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							//return '<a href="'+basePath+'travelOrder/toQuote2/'+row.id+'/'+row.routeId+'">订单处理</a>';
-							return '<a href="'+basePath+'travelOrder/toQuote2/'+row.id+'/'+row.routeId+'">订单处理</a>';
+							return '<a href="'+basePath+'travelOrder/toQuote1/'+row.id+'/'+row.routeId+'">订单处理</a>';
 						}
 					},
 					{field:'orderStatus',title:'订单状态',align:'center',sortable:true,

@@ -3,12 +3,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
 <meta http-equiv="description" content="${rt.title }"> 
 <title>${rt.title}</title>
 </head>
 <body>
-<form:form method="post" id="back_form" action="${basePath }travelOrder/list">
+<form:form method="post" id="back_form" action="${basePath }travelOrder/returntoQuote1">
+<input type="hidden" name="id" value="${qf.id }">
+<input type="hidden" name="rtid" value="${bean.id }">
+<input type="hidden" name="torderid" value="${torder.id } ">
+<input type="hidden" name="adultticketTotalPrice" value="${vo.adultticketTotalPrice}" />
+<input type="hidden" name="adultticketsBlock" value="${vo.adultticketsBlock}"  />
+<input type="hidden" name="quotetraveldocadultsBlock"  value="${vo.quotetraveldocadultsBlock}" />
+<input type="hidden" name="quotetourguideadultsBlock"  value="${vo.quotetourguideadultsBlock}" />
+<input type="hidden" name="quoterentcaradultsBlock"   value="${vo.quoterentcaradultsBlock}"/>
+<input type="hidden" name="quotebigtrafficadultsBlock"  value="${vo.quotebigtrafficadultsBlock}" />
+<input type="hidden" name="quoteinsuranceadultsBlock"  value="${vo.quoteinsuranceadultsBlock}" />
+<input type="hidden" name="quotecomphcostadultsBlock"  value="${vo.quotecomphcostadultsBlock}" />
+<input type="hidden" name="quoterecreationadultsBlock"  value="${vo.quoterecreationadultsBlock}" />
+<input type="hidden" name="quoteitemguidecadultsBlock"  value="${vo.quoteitemguidecadultsBlock}" />
+<input type="hidden" name="quotebathorseadultsBlock"  value="${vo.quotebathorseadultsBlock}" />
+<input type="hidden" name="quoteridehorseadultsBlock"  value="${vo.quoteridehorseadultsBlock}" />
+<input type="hidden" name="quoteclimbregisteradultsBlock"  value="${vo.quoteclimbregisteradultsBlock}" />
+<input type="hidden" name="quoteclimbnexusadultsBlock"  value="${vo.quoteclimbnexusadultsBlock}" />
+<input type="hidden" name="quoteelsecostadultsBlock"  value="${vo.quoteelsecostadultsBlock}" />
+<input type="hidden" name="quotetraveldocadultsSumCost"  value="${vo.quotetraveldocadultsSumCost}" />
+<input type="hidden" name="quotetourguideadultsSumCost"  value="${vo.quotetourguideadultsSumCost}" />
+<input type="hidden" name="quoterentcaradultsSumCost"  value="${vo.quoterentcaradultsSumCost}" />
+<input type="hidden" name="quotebigtrafficadultsSumCost"  value="${vo.quotebigtrafficadultsSumCost}" />
+<input type="hidden" name="quoteinsuranceadultsSumCost"  value="${vo.quoteinsuranceadultsSumCost}" />
+<input type="hidden" name="quotecomphcostadultsSumCost"  value="${vo.quotecomphcostadultsSumCost}" />
+<input type="hidden" name="quoterecreationadultsSumCost"  value="${vo.quoterecreationadultsSumCost}" />
+<input type="hidden" name="quoteitemguidecadultsSumCost"  value="${vo.quoteitemguidecadultsSumCost}" />
+<input type="hidden" name="quotebathorseadultsSumCost"  value="${vo.quotebathorseadultsSumCost}" />
+<input type="hidden" name="quoteridehorseadultsSumCost"  value="${vo.quoteridehorseadultsSumCost}" />
+<input type="hidden" name="quoteclimbregisteradultsSumCost"  value="${vo.quoteclimbregisteradultsSumCost}" />
+<input type="hidden" name="quoteclimbnexusadultsSumCost"  value="${vo.quoteclimbnexusadultsSumCost}" />
+<input type="hidden" name="quoteelsecostadultsSumCost"  value="${vo.quoteelsecostadultsSumCost}" />
 <a style="padding-left:20px;margin-left:20px;" onsubmit="" onclick="document:back_form.submit();" class="easyui-linkbutton" iconcls="icon-back" >返回</a>
 </form:form>
 <table border="0" align="center" width="1140" cellpadding="0" cellspacing="0">
@@ -60,6 +90,34 @@
 <input type="hidden" name="id" value="${qf.id }">
 <input type="hidden" name="rtid" value="${bean.id }">
 <input type="hidden" name="torderid" value="${torder.id } ">
+<input type="hidden" name="adultticketTotalPrice" value="${vo.adultticketTotalPrice}" />
+<input type="hidden" name="adultticketsBlock" value="${vo.adultticketsBlock}"  />       
+<input type="hidden" name="quotetraveldocadultsBlock"  value="${vo.quotetraveldocadultsBlock}" />
+<input type="hidden" name="quotetourguideadultsBlock"  value="${vo.quotetourguideadultsBlock}" />
+<input type="hidden" name="quoterentcaradultsBlock"   value="${vo.quoterentcaradultsBlock}"/>
+<input type="hidden" name="quotebigtrafficadultsBlock"  value="${vo.quotebigtrafficadultsBlock}" />
+<input type="hidden" name="quoteinsuranceadultsBlock"  value="${vo.quoteinsuranceadultsBlock}" />
+<input type="hidden" name="quotecomphcostadultsBlock"  value="${vo.quotecomphcostadultsBlock}" />
+<input type="hidden" name="quoterecreationadultsBlock"  value="${vo.quoterecreationadultsBlock}" />
+<input type="hidden" name="quoteitemguidecadultsBlock"  value="${vo.quoteitemguidecadultsBlock}" />
+<input type="hidden" name="quotebathorseadultsBlock"  value="${vo.quotebathorseadultsBlock}" />
+<input type="hidden" name="quoteridehorseadultsBlock"  value="${vo.quoteridehorseadultsBlock}" />
+<input type="hidden" name="quoteclimbregisteradultsBlock"  value="${vo.quoteclimbregisteradultsBlock}" />
+<input type="hidden" name="quoteclimbnexusadultsBlock"  value="${vo.quoteclimbnexusadultsBlock}" />
+<input type="hidden" name="quoteelsecostadultsBlock"  value="${vo.quoteelsecostadultsBlock}" />
+<input type="hidden" name="quotetraveldocadultsSumCost"  value="${vo.quotetraveldocadultsSumCost}" />
+<input type="hidden" name="quotetourguideadultsSumCost"  value="${vo.quotetourguideadultsSumCost}" />
+<input type="hidden" name="quoterentcaradultsSumCost"  value="${vo.quoterentcaradultsSumCost}" />
+<input type="hidden" name="quotebigtrafficadultsSumCost"  value="${vo.quotebigtrafficadultsSumCost}" />
+<input type="hidden" name="quoteinsuranceadultsSumCost"  value="${vo.quoteinsuranceadultsSumCost}" />
+<input type="hidden" name="quotecomphcostadultsSumCost"  value="${vo.quotecomphcostadultsSumCost}" />
+<input type="hidden" name="quoterecreationadultsSumCost"  value="${vo.quoterecreationadultsSumCost}" />
+<input type="hidden" name="quoteitemguidecadultsSumCost"  value="${vo.quoteitemguidecadultsSumCost}" />
+<input type="hidden" name="quotebathorseadultsSumCost"  value="${vo.quotebathorseadultsSumCost}" />
+<input type="hidden" name="quoteridehorseadultsSumCost"  value="${vo.quoteridehorseadultsSumCost}" />
+<input type="hidden" name="quoteclimbregisteradultsSumCost"  value="${vo.quoteclimbregisteradultsSumCost}" />
+<input type="hidden" name="quoteclimbnexusadultsSumCost"  value="${vo.quoteclimbnexusadultsSumCost}" />
+<input type="hidden" name="quoteelsecostadultsSumCost"  value="${vo.quoteelsecostadultsSumCost}" />
 <table width="90%" border="1" align="center" cellpadding="8" cellspacing="2">
   <tr>
     <td style="width:10%" bgcolor="#f0f0f0">&nbsp;</td>
@@ -80,7 +138,7 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>人数： </strong></div></td>
-    <td><label><input name="adultsprice" type="hidden" value="${qf.adults }"/><input name="childrenprice" type="hidden" value="${qf.children }"/>
+    <td><label><input name="adultsprice" type="hidden" value="${vo.adultPrice }"/><input name="childrenprice" type="hidden" value="${vo.childPrice  }"/>
       大人：${od.adults }位 小孩：${od.children }位（按小孩价格核算）</label></td>
      <td></td><td></td>
     <!-- td style="width:150px"><input size="6" name="adults"  class="easyui-numberbox" data-options="min:0,max:100,validType:'number',precision:0,groupSeparator:',',height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/>位</td>
@@ -92,8 +150,8 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><p align="right"><strong>门票：</strong></p></td>
-    <td>${fn:split(qf.showTicket,'|')[1]}</td>
-    <td>${fn:split(qf.showTicket,'|')[0]}</td>
+    <td style="text-align:left"><span name="adultticketsBlock">${vo.adultticketsBlock}</span></td>
+    <td>${vo.adultticketTotalPrice}</td>
     <td>0</td>
     <td><input size="6" id="quoteticketadults" name="quoteticketadults" value="${calvo.quoteticketadults }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><input size="6" id="quoteticketchildren" name="quoteticketchildren" value="${calvo.quoteticketchildren }"   class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
@@ -101,8 +159,8 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>旅行证件：</strong></div></td>
-    <td>${fn:split(qf.showTraveldoc,'|')[1]}</td>
-    <td>${fn:split(qf.showTraveldoc,'|')[0]}</td>
+     <td style="text-align:left"><span name="quotetraveldocadultsBlock">${vo.quotetraveldocadultsBlock}</span></td>
+    <td>${vo.quotetraveldocadultsSumCost}</td>
     <td>0</td>
     <td><input size="6" id="quotetraveldocadults"  name="quotetraveldocadults" value="${calvo.quotetraveldocadults }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><input size="6" id="quotetraveldocchildren" name="quotetraveldocchildren" value="${calvo.quotetraveldocchildren }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
@@ -110,8 +168,8 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>导游：</strong></div></td>
-    <td>${fn:split(qf.showTourguide,'|')[1]}</td>
-    <td>${fn:split(qf.showTourguide,'|')[0]}</td>
+     <td style="text-align:left">${vo.quotetourguideadultsBlock}</td>
+    <td>${vo.quotetourguideadultsSumCost}</td>
     <td>0</td>
     <td><input size="6" id="quotetourguideadults" name="quotetourguideadults" value="${calvo.quotetourguideadults }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)""/></td>
     <td><input size="6" id="quotetourguidechildren" name="quotetourguidechildren" value="${calvo.quotetourguidechildren }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
@@ -119,7 +177,7 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>酒店：<br /></strong></div></td>
-    <td>${fn:split(qf.showHotel,'|')[1]}</td>
+    <td style="text-align:left">${fn:split(qf.showHotel,'|')[1]}</td>
     <td>${fn:split(qf.showHotel,'|')[0]}</td>
     <td>220</td>
     <td><input size="6" id="quoteshowHoteladults" name="quoteshowHoteladults" value="${calvo.quoteshowHoteladults }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
@@ -128,8 +186,8 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>用车：<br /></strong></div></td>
-    <td>${fn:split(qf.showRentcar,'|')[1]}</td>
-    <td>${fn:split(qf.showRentcar,'|')[0]}</td>
+     <td style="text-align:left">${vo.quoterentcaradultsBlock}</td>
+    <td>${vo.quoterentcaradultsSumCost}</td>
     <td>1000</td>
     <td><input size="6" id="quoterentcaradults" name="quoterentcaradults" value="${calvo.quoterentcaradults }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><input size="6" id="quoterentcarchildren" name="quoterentcarchildren" value="${calvo.quoterentcarchildren }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
@@ -137,8 +195,8 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>大交通：<br /></strong></div></td>
-    <td>${fn:split(qf.showBigtraffic,'|')[1]}</td>
-    <td>${fn:split(qf.showBigtraffic,'|')[0]}</td>
+    <td style="text-align:left">${vo.quotebigtrafficadultsBlock}</td>
+    <td>${vo.quotebigtrafficadultsSumCost}</td>
     <td>&nbsp;</td>
     <td><input size="6" id="quotebigtrafficadults" name="quotebigtrafficadults" value="${calvo.quotebigtrafficadults }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><input size="6" id="quotebigtrafficchildren" name="quotebigtrafficchildren" value="${calvo.quotebigtrafficchildren }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
@@ -146,7 +204,7 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>用餐：<br /> <br /></strong></div></td>
-    <td>${fn:split(qf.showDinner,'|')[1]}</td>
+    <td style="text-align:left">${fn:split(qf.showDinner,'|')[1]}</td>
     <td>${fn:split(qf.showDinner,'|')[0]}</td>
     <td>500</td>
     <td><input size="6" id="quotedinneradults" name="quotedinneradults" value="${calvo.quotedinneradults }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
@@ -160,8 +218,8 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>保险：</strong></div></td>
-    <td>${fn:split(qf.showInsurance,'|')[1]}</td>
-    <td>${fn:split(qf.showInsurance,'|')[0]}</td>
+      <td style="text-align:left">${vo.quoteinsuranceadultsBlock}</td>
+    <td>${vo.quoteinsuranceadultsSumCost}</td>
     <td>10</td>
     <td><input size="6" id="quoteinsuranceadults" name="quoteinsuranceadults" value="${calvo.quoteinsuranceadults }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><input size="6" id="quoteinsurancechildren" name="quoteinsurancechildren" value="${calvo.quoteinsurancechildren }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
@@ -169,8 +227,8 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>综费：</strong></div></td>
-    <td>${fn:split(qf.showComphcost,'|')[1]}</td>
-    <td>${fn:split(qf.showComphcost,'|')[0]}</td>
+     <td style="text-align:left">${vo.quotecomphcostadultsBlock}</td>
+    <td>${vo.quotecomphcostadultsSumCost}</td>
     <td>0</td>
     <td><input size="6" id="quotecomphcostadults" name="quotecomphcostadults" value="${calvo.quotecomphcostadults }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><input size="6" id="quotecomphcostchildren" name="quotecomphcostchildren" value="${calvo.quotecomphcostchildren }"   class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
@@ -178,8 +236,8 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>娱乐：</strong></div></td>
-    <td>${fn:split(qf.showRecreation,'|')[1]}</td>
-    <td>${fn:split(qf.showRecreation,'|')[0]}</td>
+     <td style="text-align:left">${vo.quoterecreationadultsBlock}</td>
+    <td>${vo.quoterecreationadultsSumCost}</td>
     <td>10</td>
     <td><input size="6" id="quoterecreationadults" name="quoterecreationadults" value="${calvo.quoterecreationadults }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><input size="6" id="quoterecreationchildren" name="quoterecreationchildren" value="${calvo.quoterecreationchildren }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
@@ -190,8 +248,8 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>向导：</strong></div></td>
-    <td>${fn:split(qf.showItemguide,'|')[1]}</td>
-    <td>${fn:split(qf.showItemguide,'|')[0]}</td>
+       <td style="text-align:left">${vo.quoteitemguidecadultsBlock}</td>
+    <td>${vo.quoteitemguidecadultsSumCost}</td>
     <td>0</td>
     <td><input size="6" id="quoteitemguidecadults" name="quoteitemguidecadults" value="${calvo.quoteitemguidecadults }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><input size="6" id="quoteitemguidechildren" name="quoteitemguidechildren" value="${calvo.quoteitemguidechildren }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
@@ -199,8 +257,8 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>驮马费：</strong></div></td>
-    <td>${fn:split(qf.showBathorse,'|')[1]}</td>
-    <td>${fn:split(qf.showBathorse,'|')[0]}</td>
+     <td style="text-align:left">${vo.quotebathorseadultsBlock}</td>
+    <td>${vo.quotebathorseadultsSumCost}</td>
     <td>0</td>
     <td><input size="6" id="quotebathorseadults" name="quotebathorseadults" value="${calvo.quotebathorseadults }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><input size="6" id="quotebathorsecchildren" name="quotebathorsecchildren" value="${calvo.quotebathorsecchildren }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
@@ -208,8 +266,8 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>骑马费：</strong></div></td>
-    <td>${fn:split(qf.showRidehorse,'|')[1]}</td>
-    <td>${fn:split(qf.showRidehorse,'|')[0]}</td>
+      <td style="text-align:left">${vo.quoteridehorseadultsBlock}</td>
+    <td>${vo.quoteridehorseadultsSumCost}</td>
     <td>0</td>
     <td><input size="6" id="quoteridehorseadults" name="quoteridehorseadults"  value="${calvo.quoteridehorseadults }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><input size="6" id="quoteridehorsechildren" name="quoteridehorsechildren" value="${calvo.quoteridehorsechildren }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
@@ -217,8 +275,8 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>登山注册费：</strong></div></td>
-    <td>${fn:split(qf.showClimbregister,'|')[1]}</td>
-    <td>${fn:split(qf.showClimbregister,'|')[0]}</td>
+    <td style="text-align:left">${vo.quoteclimbregisteradultsBlock}</td>
+    <td>${vo.quoteclimbregisteradultsSumCost}</td>
     <td>0</td>
     <td><input size="6" id="quoteclimbregisteradults" name="quoteclimbregisteradults" value="${calvo.quoteclimbregisteradults }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><input size="6" id="quoteclimbregisterchildren" name="quoteclimbregisterchildren" value="${calvo.quoteclimbregisterchildren }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
@@ -226,8 +284,8 @@
   </tr>
     <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>登山联络官：</strong></div></td>
-    <td>${fn:split(qf.showClimbnexus,'|')[1]}</td>
-    <td>${fn:split(qf.showClimbnexus,'|')[0]}</td>
+    <td style="text-align:left">${vo.quoteclimbnexusadultsBlock}</td>
+    <td>${vo.quoteclimbnexusadultsSumCost}</td>
     <td>0</td>
     <td><input size="6" id="quoteclimbnexusadults"  name="quoteclimbnexusadults" value="${calvo.quoteclimbnexusadults }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><input size="6" id="quoteclimbnexuschildren" name="quoteclimbnexuschildren" value="${calvo.quoteclimbnexuschildren }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
@@ -235,8 +293,8 @@
   </tr>
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>其它 ：</strong></div></td>
-    <td>${fn:split(qf.showElsecost,'|')[1]}</td>
-    <td>${fn:split(qf.showElsecost,'|')[0]}</td>
+     <td style="text-align:left">${vo.quoteelsecostadultsBlock}</td>
+    <td>${vo.quoteelsecostadultsSumCost}</td>
     <td>0</td>
     <td><input size="6" id="quoteelsecostadults" name="quoteelsecostadults"  value="${calvo.quoteelsecostadults }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><input size="6" id="quoteelseecostchildren" name="quoteelseecostchildren" value="${calvo.quoteelseecostchildren }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
@@ -254,9 +312,9 @@
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>核算价格：</strong></div></td>
     <td colspan=3>
-	<input style="float:left" type="submit" name="calculateSum"  style="padding-left:10px;padding-right:10px;margin-left:20px;" class="easyui-linkbutton" value="算算呗" data-options="width:100px">
-	<!-- <a name="reviewcalculate"  class="easyui-linkbutton">预览一下</a> -->
-	<!-- <a name="generateQuote"  class="easyui-linkbutton">生成正式报价单</a></td> -->
+    <input style="float:left" type="submit" name="calculateSum"  style="padding-left:10px;padding-right:10px;margin-left:20px;height:26;width:150;" class="easyui-linkbutton" value="算算呗" data-options="width:150,height:26">
+    <!-- <a name="reviewcalculate"  class="easyui-linkbutton">预览一下</a> -->
+    <!-- <a name="generateQuote"  class="easyui-linkbutton">生成正式报价单</a></td> -->
   <%--       <tr>
           <td>链接1</td>
           <td><a href="${basePath}travelOrder/toQuote3">链接2</a></td>

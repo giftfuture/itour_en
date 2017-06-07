@@ -1,4 +1,4 @@
-$package('itour');
+$package('itour_en');
 var itour={
 	/*Json 工具类*/
 	isJson:function(str){

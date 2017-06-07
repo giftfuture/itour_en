@@ -283,7 +283,8 @@ public class RouteTemplateService<T> extends BaseService<T> {
 		}
 		//StringUtils.collectionToDelimitedString(list, ",");  
 		//StringUtils.join(list.toArray(), ","); 
-		vo.setTravelItems(Joiner.on(",").join(alias));
+		//vo.setTravelItems(Joiner.on(",").join(alias));
+		vo.setTravelItemAliass(Joiner.on(",").join(alias));
 		List<RouteTemplateVO> relates = mapper.queryByRelatedRoutes(id);
 		//List<String> relates = Lists.newArrayList();
 		/*for(RouteTemplateVO rt:rts){

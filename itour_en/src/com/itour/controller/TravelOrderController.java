@@ -419,9 +419,9 @@ public class TravelOrderController extends BaseController {
 		for(TravelItemVO ti:items){
 			String tickets = ti.getTicketsBlock();
 			if(StringUtils.isNotEmpty(tickets)){
-				String[] ticketArray = tickets.replace("slack season:", "").replace("busy season:", "").split("、");
+				String[] ticketArray = tickets.replace("slackseason:", "").replace("busyseason:", "").split(",");
 				for(String map : ticketArray){
-					String [] keyvalue = map.split("：");
+					String [] keyvalue = map.split(":");
 					//ticketsBlock.put(keyvalue[0], keyvalue[1]);
 					if(keyvalue.length==2){
 						adultticketsBlock.append("<span name="+(PinYinUtil.getPinYin(keyvalue[0].length()>=3?keyvalue[0].substring(0, 3):keyvalue[0]))+">"+(++idx)+"."+keyvalue[0]+":&nbsp;&nbsp;&nbsp;<span name=ttprice>"+ keyvalue[1]+"</span>元/人</span>&nbsp;&nbsp;&nbsp;<input type='checkbox' checked='checked'/><br/>");
@@ -432,17 +432,22 @@ public class TravelOrderController extends BaseController {
 		TravelOrder entity = travelOrderService.queryById(id);
 		OrderDetailVO od = orderDetailService.queryByOrderId(entity.getId());
 		QuoteFormVO qf = quoteFormService.queryByRtId(bean.getId());
+		CalculateQuoteVO vo = new CalculateQuoteVO();
+		vo.setAdultticketsBlock(adultticketsBlock.toString());
 		context.put(SUCCESS, true);
 		context.put("bean", bean);
 		context.put("qf", qf);
 		context.put("torder", entity);
 		context.put("od", od);
+		context.put("vo",vo);
 		context.put("adultticketsBlock", adultticketsBlock.toString().replaceAll("\"", ""));
 		Constants.TDQUOTE1.put("bean", bean);
 		Constants.TDQUOTE1.put("qf", qf);
 		Constants.TDQUOTE1.put("torder", entity);
 		Constants.TDQUOTE1.put("od", od);
-		Constants.TDQUOTE1.put("adultticketsBlock",  adultticketsBlock.toString().replaceAll("\"", ""));
+		Constants.TDQUOTE1.put("adultticketsBlock",adultticketsBlock.toString().replaceAll("\"", ""));
+		Constants.TDQUOTE1.put("od", od);
+		Constants.TDQUOTE1.put("vo", vo);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelOrderController的toQuote1方法");
 		String logId = logSettingService.add(new LogSetting("travel_order","订单管理","travelOrder/toQuote1",sessionuser.getId(),"",""));
@@ -737,7 +742,9 @@ public class TravelOrderController extends BaseController {
 		context.put("od", od);
 		if(StringUtils.isEmpty(vo.getAdultticketsBlock())){
 			CalculateQuoteVO vv = (CalculateQuoteVO)Constants.TDQUOTE1.get("vo");
-			vo.setAdultticketsBlock(vv.getAdultticketsBlock());
+			if(vv != null){
+				vo.setAdultticketsBlock(vv.getAdultticketsBlock());
+			}
 		}
 		context.put("vo", vo);
 		//Constants.TDQUOTE2.put("adultsumcost", adultsumcost + "");
