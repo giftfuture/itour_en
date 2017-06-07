@@ -233,6 +233,6 @@ itour.quotation = function(){
 
 $(function(){
 	itour.quotation.init();
-	  if (window != top)
-          top.location.href = location.href;
+	  /*if (window != top)
+          top.location.href = location.href;*/
 });

@@ -5,7 +5,7 @@
 <head>
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
-<title>四姑娘山海子沟徒步、长坪沟穿越毕棚沟</title>
+<title> </title>
 </head>
 <body>
  <%@include file="/front/header.jsp"  %>

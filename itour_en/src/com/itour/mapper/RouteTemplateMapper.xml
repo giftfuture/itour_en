@@ -5,184 +5,179 @@
 <mapper namespace="com.itour.dao.RouteTemplateDao" > 
 <!-- Result Map-->
 <resultMap id="BaseResultMap" type="com.itour.entity.RouteTemplate" >
-	<result column="id" property="id"/>
-	<result column="title" property="title"/>
-	<result column="cover" property="cover"/>
-	<result column="customer_id" property="customerId"/>
-	<result column="create_time" property="createTime"/>
-	<result column="update_time" property="updateTime"/>
-	<result column="create_by" property="createBy"/>
-	<result column="update_by" property="updateBy"/>
-	<result column="remark" property="remark"/>
-	<result column="special" property="special"/>
-	<result column="related" property="related"/>
-	<result column="route_map" property="routeMap"/>
-	<result column="travel_style" property="travelStyle"/>
-	<result column="travel_items" property="travelItems"/>
-	<result column="short_content" property="shortContent"/>
-	<result column="alias" property="alias"/>
-	<result column="route_code" property="routeCode"/>
-	<result column="valid" property="valid"/>
-	<result column="rcd_days" property="rcdDays"/>
-	<result column="mileage" property="mileage"/>
-	<result column="arrive" property="arrive"/>
-	<result column="departure" property="departure"/>
-	<result column="mount_style" property="mountStyle"/>
-	<result column="trek_distance" property="trekDistance"/>
-	<result column="transportation" property="transportation"/>
-	<result column="difficulty_rate" property="difficultyRate"/>
-	<result column="quoto_form" property="quotoForm"/>
-	<result column="design_concept" property="designConcept"/>
-	<result column="customized_service" property="customizedService"/>
-	<result column="before_instruction" property="beforeInstruction"/>
-	<result column="level_area" property="levelArea"/>
-	<result column="star_level" property="starLevel"/>
-	<result column="similars" property="similars"/>
-	<result column="elevation" property="elevation"/>
-	<result column="viewphotos" property="viewphotos"/>
+    <result column="id" property="id"/>
+    <result column="title" property="title"/>
+    <result column="cover" property="cover"/>
+    <result column="customer_id" property="customerId"/>
+    <result column="create_time" property="createTime"/>
+    <result column="update_time" property="updateTime"/>
+    <result column="create_by" property="createBy"/>
+    <result column="update_by" property="updateBy"/>
+    <result column="remark" property="remark"/>
+    <result column="special" property="special"/>
+    <result column="route_map" property="routeMap"/>
+    <result column="travel_style" property="travelStyle"/>
+    <result column="travel_items" property="travelItems"/>
+    <result column="short_content" property="shortContent"/>
+    <result column="alias" property="alias"/>
+    <result column="route_code" property="routeCode"/>
+    <result column="valid" property="valid"/>
+    <result column="rcd_days" property="rcdDays"/>
+    <result column="mileage" property="mileage"/>
+    <result column="arrive" property="arrive"/>
+    <result column="departure" property="departure"/>
+    <result column="mount_style" property="mountStyle"/>
+    <result column="trek_distance" property="trekDistance"/>
+    <result column="transportation" property="transportation"/>
+    <result column="difficulty_rate" property="difficultyRate"/>
+    <result column="quoto_form" property="quotoForm"/>
+    <result column="design_concept" property="designConcept"/>
+    <result column="customized_service" property="customizedService"/>
+    <result column="before_instruction" property="beforeInstruction"/>
+    <result column="level_area" property="levelArea"/>
+    <result column="star_level" property="starLevel"/>
+    <result column="elevation" property="elevation"/>
+    <result column="viewphotos" property="viewphotos"/>
+    <result column="service_and_quote" property="serviceAndQuote"/>
 </resultMap>
        <!-- Result Map-->
 <resultMap id="BaseResultMapVo" type="com.itour.vo.RouteTemplateVO" >
-	<result column="id" property="id"/>
-	<result column="title" property="title"/>
-	<result column="cover" property="cover"/>
-	<result column="customer_id" property="customerId"/>
-	<result column="create_time" property="createTime"/>
-	<result column="update_time" property="updateTime"/>
-	<result column="create_by" property="createBy"/>
-	<result column="update_by" property="updateBy"/>
-	<result column="remark" property="remark"/>
-	<result column="special" property="special"/>
-	<result column="related" property="related"/>
-	<result column="route_map" property="routeMap"/>
-	<result column="travel_style" property="travelStyle"/>
-	<result column="travel_items" property="travelItems"/>
-	<result column="short_content" property="shortContent"/>
-	<result column="alias" property="alias"/>
-	<result column="route_code" property="routeCode"/>
-	<result column="valid" property="valid"/>
-	<result column="rcd_days" property="rcdDays"/>
-	<result column="mileage" property="mileage"/>
-	<result column="arrive" property="arrive"/>
-	<result column="departure" property="departure"/>
-	<result column="mount_style" property="mountStyle"/>
-	<result column="trek_distance" property="trekDistance"/>
-	<result column="transportation" property="transportation"/>
-	<result column="difficulty_rate" property="difficultyRate"/>
-	<result column="quoto_form" property="quotoForm"/>
-	<result column="customer_name" property="customerName"/>
-	<result column="city" property="city"/>
-	<result column="district" property="district"/>
-	<result column="design_concept" property="designConcept"/>
-	<result column="customized_service" property="customizedService"/>
-	<result column="before_instruction" property="beforeInstruction"/>
-	<result column="level_area" property="levelArea"/>
-	<result column="level1_area" property="level1Area"/>
-	<result column="level2_area" property="level2Area"/>
-	<result column="star_level" property="starLevel"/>
-	<result column="travelStyleAlias" property="travelStyleAlias"/>
-	<result column="similars" property="similars"/>
-	<result column="elevation" property="elevation"/>
-	<result column="travelStyleType" property="travelStyleType"/>
-	<result column="travelStyleAlias" property="travelStyleAlias"/>
-	<result column="viewphotos" property="viewphotos"/>
+    <result column="id" property="id"/>
+    <result column="title" property="title"/>
+    <result column="cover" property="cover"/>
+    <result column="customer_id" property="customerId"/>
+    <result column="create_time" property="createTime"/>
+    <result column="update_time" property="updateTime"/>
+    <result column="create_by" property="createBy"/>
+    <result column="update_by" property="updateBy"/>
+    <result column="remark" property="remark"/>
+    <result column="special" property="special"/>
+    <result column="route_map" property="routeMap"/>
+    <result column="travel_style" property="travelStyle"/>
+    <result column="travel_items" property="travelItems"/>
+    <result column="short_content" property="shortContent"/>
+    <result column="alias" property="alias"/>
+    <result column="route_code" property="routeCode"/>
+    <result column="valid" property="valid"/>
+    <result column="rcd_days" property="rcdDays"/>
+    <result column="mileage" property="mileage"/>
+    <result column="arrive" property="arrive"/>
+    <result column="departure" property="departure"/>
+    <result column="mount_style" property="mountStyle"/>
+    <result column="trek_distance" property="trekDistance"/>
+    <result column="transportation" property="transportation"/>
+    <result column="difficulty_rate" property="difficultyRate"/>
+    <result column="quoto_form" property="quotoForm"/>
+    <result column="customer_name" property="customerName"/>
+    <result column="city" property="city"/>
+    <result column="district" property="district"/>
+    <result column="design_concept" property="designConcept"/>
+    <result column="customized_service" property="customizedService"/>
+    <result column="before_instruction" property="beforeInstruction"/>
+    <result column="level_area" property="levelArea"/>
+    <result column="level1_area" property="level1Area"/>
+    <result column="level2_area" property="level2Area"/>
+    <result column="star_level" property="starLevel"/>
+    <result column="travelStyleAlias" property="travelStyleAlias"/>
+    <result column="elevation" property="elevation"/>
+    <result column="travelStyleType" property="travelStyleType"/>
+    <result column="travelStyleAlias" property="travelStyleAlias"/>
+    <result column="viewphotos" property="viewphotos"/>
+    <result column="service_and_quote" property="serviceAndQuote"/>
 </resultMap>
        
 <!-- route_template table all fields   -->
 <sql id="Base_Column_List" >
-    route_template.id,route_template.cover,route_template.title,route_template.short_content,route_template.alias,route_code,similars,star_level,
+    route_template.id,route_template.cover,route_template.title,route_template.short_content,route_template.alias,route_code,star_level,service_and_quote,
     elevation,level_area,viewphotos,route_template.customer_id, route_template.create_time, route_template.update_time, route_template.create_by, route_template.update_by, 
-    route_template.remark,route_template.special,route_template.related,route_template.route_map,route_template.travel_style,route_template.travel_items,route_template.rcd_days,route_template.mileage,route_template.arrive,route_template.departure,
+    route_template.remark,route_template.special,route_template.route_map,route_template.travel_style,route_template.travel_items,route_template.rcd_days,route_template.mileage,route_template.arrive,route_template.departure,
     route_template.mount_style,route_template.trek_distance,route_template.transportation,route_template.difficulty_rate,route_template.quoto_form,route_template.design_concept,route_template.customized_service,route_template.before_instruction
 </sql>
 <!-- 查询条件 -->
 <sql id="Example_Where_Clause">
 where route_template.valid=1 
 <trim  suffixOverrides="," >
-	<if test="elevation !=null and elevation !=''">
-		and route_template.elevation=#{elevation}
-	</if>
-	<if test="similars != null and similars != ''">
-		and route_template.similars=#{similars}
-	</if>
-	<if test="difficultyRate != null and difficultyRate !=''">
-		and route_template.difficulty_rate=#{difficultyRate}
-	</if>
-	<if test="routeCode != null and routeCode != ''" >
-	    and route_template.route_code = #{routeCode}
-	</if>
-	<if test="title != null and title != ''" >
-	    and route_template.title like CONCAT('%', #{title}, '%')
-	</if>
-	<if test="shortContent != null and shortContent != ''" >
-	    and route_template.short_content like CONCAT('%', #{shortContent}, '%')
-	</if>
-	<if test="alias != null and alias != ''">
-		and route_template.alias like CONCAT('%', #{alias}, '%')
-	</if>
-	<if test="customerId != null and customerId != ''" >
-	    and route_template.customer_id like CONCAT('%', #{customerId}, '%')
-	</if>
-	<if test="createTime != null and createTime !=''" >
-	     and DATE_FORMAT(route_template.create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
-	</if>
-	<if test="updateTime != null and updateTime !=''" >
-	    and DATE_FORMAT(route_template.update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
-	</if>
-	<if test="createBy != null and createBy != ''" >
-	    and route_template.create_by like CONCAT('%', #{createBy}, '%')
-	</if>
-	<if test="updateBy != null and updateBy != ''" >
-	    and route_template.update_by like CONCAT('%', #{updateBy}, '%')
-	</if>
-	<if test="remark != null and remark != ''" >
-	    and route_template.remark like CONCAT('%', #{remark}, '%')
-	</if>
-	<if test="special != null and special != ''">
-		and route_template.special like  CONCAT('%', #{special}, '%')
-	</if>
-	<if test="related != null and related != ''">
-		and route_template.related like  CONCAT('%', #{related}, '%')
-	</if>
-	<if test="routeMap != null and routeMap != ''">
-		and route_template.route_map = #{routeMap}
-	</if>
-	<if test="travelStyle != null and travelStyle != ''">
-		and route_template.travel_style = #{travelStyle}
-	</if>
-	<if test="travelItems != null and travelItems != ''">
-		and route_template.travel_items=#{travelItems}
-	</if>
-	<if test="rcdDays != null and rcdDays != 0">
-		and route_template.rcd_days=#{rcdDays}
-	</if>
-	<if test="mileage != null and mileage != 0">
-		and route_template.mileage=#{mileage}
-	</if>
-	<if test="arrive != null and arrive != ''">
-		and route_template.arrive=#{arrive}
-	</if>
-	<if test="departure != null and departure != ''">
-		and route_template.departure=#{departure}
-	</if>
-	<if test="mountStyle != null and mountStyle != ''">
-		and route_template.mount_style=#{mountStyle}
-	</if>
-	<if test="trekDistance != null and trekDistance != 0">
-		and route_template.trek_distance=#{trekDistance}
-	</if>
-	<if test="transportation != null and transportation != ''">
-		and route_template.transportation=#{transportation}
-	</if>
-	<if test="levelArea !=null and levelArea !=''">
-		and route_template.level_area=#{levelArea}
-	</if>
-	<if test="starLevel !=null and starLevel !=''">
-		and route_template.star_level=#{starLevel}
-	</if>
-	<if test="viewphotos !=null and viewphotos !=''">
-		and route_template.viewphotos=#{viewphotos}
-	</if>
+    <if test="serviceAndQuote !=null and serviceAndQuote !=''">
+        and route_template.service_and_quote=#{serviceAndQuote}
+    </if>
+    <if test="elevation !=null and elevation !=''">
+        and route_template.elevation=#{elevation}
+    </if>
+    <if test="difficultyRate != null and difficultyRate !=''">
+        and route_template.difficulty_rate=#{difficultyRate}
+    </if>
+    <if test="routeCode != null and routeCode != ''" >
+        and route_template.route_code = #{routeCode}
+    </if>
+    <if test="title != null and title != ''" >
+        and route_template.title like CONCAT('%', #{title}, '%')
+    </if>
+    <if test="shortContent != null and shortContent != ''" >
+        and route_template.short_content like CONCAT('%', #{shortContent}, '%')
+    </if>
+    <if test="alias != null and alias != ''">
+        and route_template.alias like CONCAT('%', #{alias}, '%')
+    </if>
+    <if test="customerId != null and customerId != ''" >
+        and route_template.customer_id like CONCAT('%', #{customerId}, '%')
+    </if>
+    <if test="createTime != null and createTime !=''" >
+         and DATE_FORMAT(route_template.create_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d') 
+    </if>
+    <if test="updateTime != null and updateTime !=''" >
+        and DATE_FORMAT(route_template.update_time,'%Y-%m-%d') = DATE_FORMAT(#{updateTime},'%Y-%m-%d') 
+    </if>
+    <if test="createBy != null and createBy != ''" >
+        and route_template.create_by like CONCAT('%', #{createBy}, '%')
+    </if>
+    <if test="updateBy != null and updateBy != ''" >
+        and route_template.update_by like CONCAT('%', #{updateBy}, '%')
+    </if>
+    <if test="remark != null and remark != ''" >
+        and route_template.remark like CONCAT('%', #{remark}, '%')
+    </if>
+    <if test="special != null and special != ''">
+        and route_template.special like  CONCAT('%', #{special}, '%')
+    </if>
+    <if test="routeMap != null and routeMap != ''">
+        and route_template.route_map = #{routeMap}
+    </if>
+    <if test="travelStyle != null and travelStyle != ''">
+        and route_template.travel_style = #{travelStyle}
+    </if>
+    <if test="travelItems != null and travelItems != ''">
+        and route_template.travel_items=#{travelItems}
+    </if>
+    <if test="rcdDays != null and rcdDays != 0">
+        and route_template.rcd_days=#{rcdDays}
+    </if>
+    <if test="mileage != null and mileage != 0">
+        and route_template.mileage=#{mileage}
+    </if>
+    <if test="arrive != null and arrive != ''">
+        and route_template.arrive=#{arrive}
+    </if>
+    <if test="departure != null and departure != ''">
+        and route_template.departure=#{departure}
+    </if>
+    <if test="mountStyle != null and mountStyle != ''">
+        and route_template.mount_style=#{mountStyle}
+    </if>
+    <if test="trekDistance != null and trekDistance != 0">
+        and route_template.trek_distance=#{trekDistance}
+    </if>
+    <if test="transportation != null and transportation != ''">
+        and route_template.transportation=#{transportation}
+    </if>
+    <if test="levelArea !=null and levelArea !=''">
+        and route_template.level_area=#{levelArea}
+    </if>
+    <if test="starLevel !=null and starLevel !=''">
+        and route_template.star_level=#{starLevel}
+    </if>
+    <if test="viewphotos !=null and viewphotos !=''">
+        and route_template.viewphotos=#{viewphotos}
+    </if>
 </trim>
 </sql>
    
@@ -190,80 +185,77 @@ where route_template.valid=1
 <!-- 插入记录 -->
 <insert id="add" parameterType="com.itour.entity.RouteTemplate" >
  <!--  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
-	SELECT LAST_INSERT_ID()
+    SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into route_template(id,title,cover,route_code,short_content,customer_id,create_time,update_time,create_by,update_by,remark,special,related,route_map,travel_style,travel_items,alias,valid,rcd_days,mileage,arrive,departure,mount_style,trek_distance,transportation,difficulty_rate,quoto_form,design_concept,customized_service,before_instruction,similars,elevation,star_level,level_area,viewphotos)
- values(#{id},#{title},#{cover},#{routeCode},#{shortContent},#{customerId},now(),now(),#{createBy},#{updateBy},#{remark},#{special},#{related},#{routeMap},#{travelStyle},#{travelItems},#{alias},1,#{rcdDays},#{mileage},#{arrive},#{departure},#{mountStyle},#{trekDistance},#{transportation},#{difficultyRate},#{quotoForm},#{designConcept},#{customizedService},#{beforeInstruction},#{similars},#{elevation},#{starLevel},#{levelArea},#{viewphotos})
+  insert into route_template(id,title,cover,route_code,short_content,customer_id,create_time,update_time,create_by,update_by,remark,special,route_map,travel_style,travel_items,alias,valid,rcd_days,mileage,arrive,departure,mount_style,trek_distance,transportation,difficulty_rate,quoto_form,design_concept,customized_service,before_instruction,elevation,star_level,level_area,viewphotos,service_and_quote)
+ values(#{id},#{title},#{cover},#{routeCode},#{shortContent},#{customerId},now(),now(),#{createBy},#{updateBy},#{remark},#{special},#{routeMap},#{travelStyle},#{travelItems},#{alias},1,#{rcdDays},#{mileage},#{arrive},#{departure},#{mountStyle},#{trekDistance},#{transportation},#{difficultyRate},#{quotoForm},#{designConcept},#{customizedService},#{beforeInstruction},#{elevation},#{starLevel},#{levelArea},#{viewphotos},#{serviceAndQuote})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.RouteTemplate" >
-	update route_template set update_time=now(),
-	<trim  suffixOverrides="," >
-	<if test="viewphotos !=null and viewphotos !=''">
-		viewphotos=#{viewphotos},
-	</if>
-	<if test="elevation !=null and elevation !=''">
-		 elevation=#{elevation},
-	</if>
-	<if test="similars != null and similars != ''">
-		similars=#{similars},
-	</if>
-	<if test="quotoForm != null and quotoForm != ''">
-		quoto_form=#{quotoForm},
-	</if>
-	<if test="difficultyRate !=null and difficultyRate != 0">
-		 difficulty_rate=#{difficultyRate},
-	</if>
-	<if test="cover != null and cover != ''" >
-	     cover=#{cover},
-	</if>
-	<if test="title != null and title != ''" >
-	     title=#{title},
-	</if>
-	<if test="shortContent != null and shortContent != ''" >
-	     short_content = #{shortContent},
-	</if>
-	<if test="updateBy != null and updateBy != '' ">
-		update_by=#{updateBy},
-	</if>
-	<if test="remark != null and remark != '' ">
-		remark=#{remark},
-	</if>
-	<if test="special != null and special != ''">
-		 special = #{special},
-	</if>
-	<if test="related != null and related != ''">
-		 related =#{related},
-	</if>
-	<if test="routeMap != null and routeMap != ''">
-		 route_map = #{routeMap},
-	</if>
-	<if test="travelStyle != null and travelStyle != ''">
-		 travel_style = #{travelStyle},
-	</if>
-	<if test="travelItems != null and travelItems != ''">
-		 travel_items=#{travelItems},
-	</if>
-	<if test="alias != null and alias != ''">
-		 alias = #{alias},
-	</if>
-	<if test="customizedService != null and customizedService != ''">
-		 customized_service=#{customizedService},
-	</if>
-	<if test="designConcept != null and designConcept != ''">
-		design_concept = #{designConcept},
-	</if>
-	<if test="beforeInstruction != null and beforeInstruction != ''">
-		before_instruction = #{beforeInstruction},
-	</if>
-	<if test="levelArea !=null and levelArea !=''">
-		level_area=#{levelArea},
-	</if>
-	<if test="starLevel !=null and starLevel !=''">
-		star_level=#{starLevel},
-	</if>
-	</trim> where id=#{id}
+    update route_template set update_time=now(),
+    <trim  suffixOverrides="," >
+    <if test="serviceAndQuote !=null and serviceAndQuote !=''">
+        service_and_quote=#{serviceAndQuote},
+    </if>
+    <if test="viewphotos !=null and viewphotos !=''">
+        viewphotos=#{viewphotos},
+    </if>
+    <if test="elevation !=null and elevation !=''">
+         elevation=#{elevation},
+    </if>
+    <if test="quotoForm != null and quotoForm != ''">
+        quoto_form=#{quotoForm},
+    </if>
+    <if test="difficultyRate !=null and difficultyRate != 0">
+         difficulty_rate=#{difficultyRate},
+    </if>
+    <if test="cover != null and cover != ''" >
+         cover=#{cover},
+    </if>
+    <if test="title != null and title != ''" >
+         title=#{title},
+    </if>
+    <if test="shortContent != null and shortContent != ''" >
+         short_content = #{shortContent},
+    </if>
+    <if test="updateBy != null and updateBy != '' ">
+        update_by=#{updateBy},
+    </if>
+    <if test="remark != null and remark != '' ">
+        remark=#{remark},
+    </if>
+    <if test="special != null and special != ''">
+         special = #{special},
+    </if>
+    <if test="routeMap != null and routeMap != ''">
+         route_map = #{routeMap},
+    </if>
+    <if test="travelStyle != null and travelStyle != ''">
+         travel_style = #{travelStyle},
+    </if>
+    <if test="travelItems != null and travelItems != ''">
+         travel_items=#{travelItems},
+    </if>
+    <if test="alias != null and alias != ''">
+         alias = #{alias},
+    </if>
+    <if test="customizedService != null and customizedService != ''">
+         customized_service=#{customizedService},
+    </if>
+    <if test="designConcept != null and designConcept != ''">
+        design_concept = #{designConcept},
+    </if>
+    <if test="beforeInstruction != null and beforeInstruction != ''">
+        before_instruction = #{beforeInstruction},
+    </if>
+    <if test="levelArea !=null and levelArea !=''">
+        level_area=#{levelArea},
+    </if>
+    <if test="starLevel !=null and starLevel !=''">
+        star_level=#{starLevel},
+    </if>
+    </trim> where id=#{id}
 </update>
 
 <update id="updateQuoteForm" parameterType="com.itour.entity.RouteTemplate">
@@ -283,38 +275,39 @@ update route_template set quoto_form=#{quotoForm},update_time=now(),update_by = 
 </update>
 <!-- 删除记录 -->
 <delete id="delete" parameterType="java.lang.String">
-	delete from route_template where id = #{id}
+    delete from route_template where id = #{id}
 </delete>
  <!-- 逻辑删除 -->
 <update id="logicdelete" parameterType="java.lang.String">
-	update route_template set valid=0 where id = #{id}
+    update route_template set valid=0 where id = #{id}
 </update>
 <!-- 根据id查询 路线模板 -->
 <select id="queryById"  resultMap="BaseResultMap" parameterType="java.lang.String">
-	select <include refid="Base_Column_List" />  from route_template where route_template.id = #{id} order by star_level desc
+    select <include refid="Base_Column_List" />  from route_template where route_template.id = #{id} order by star_level desc
 </select>
 <!-- 根据包含景点模糊查询路线模板 -->
 <select id="queryByItems"  resultMap="BaseResultMapVo" parameterType="java.lang.String">
-	select <include refid="Base_Column_List" />,ts.type travelStyleType,ts.alias travelStyleAlias from route_template
-	left join travel_style ts on route_template.travel_style=ts.id  where route_template.travel_items like CONCAT('%', #{travelItems}, '%') order by route_template.star_level desc
+    select <include refid="Base_Column_List" />,ts.type travelStyleType,ts.alias travelStyleAlias from route_template
+    left join travel_style ts on route_template.travel_style=ts.id  where route_template.travel_items like CONCAT('%', #{travelItems}, '%') order by route_template.star_level desc
 </select>
 <select id="pageQueryByItems"  resultMap="BaseResultMapVo" parameterType="com.itour.vo.RouteTemplateVO">
-	select <include refid="Base_Column_List" />,ts.type travelStyleType,ts.alias travelStyleAlias from route_template
-	left join travel_style ts on route_template.travel_style=ts.id  
-	where route_template.travel_items like CONCAT('%', #{travelItems}, '%') 
-	order by route_template.star_level desc
+    select <include refid="Base_Column_List" />,ts.type travelStyleType,ts.alias travelStyleAlias from route_template
+    left join travel_style ts on route_template.travel_style=ts.id  
+    where route_template.travel_items like CONCAT('%', #{travelItems}, '%') 
+    order by route_template.star_level desc
     <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
        ${pager.mysqlQueryCondition}
     </if>
 </select>
 <select id="countQueryByItems" resultType="java.lang.Integer"  parameterType="com.itour.vo.RouteTemplateVO">
-	select count(1) from route_template where route_template.travel_items like CONCAT('%', #{travelItems}, '%') 
+    select count(1) from route_template where route_template.travel_items like CONCAT('%', #{travelItems}, '%') 
 </select>
 <!-- 根据id查询 路线模板 -->
 <select id="selectById"  resultMap="BaseResultMapVo" parameterType="java.lang.String">
-select <include refid="Base_Column_List" />,customers.customer_name customerName,customers.district,customers.city,la.level1_area,la.level2_area 
+select <include refid="Base_Column_List" />,customers.customer_name customerName,customers.district,customers.city,la.level1_area,la.level2_area,travel_style.alias travelStyleAlias 
  from route_template left join customers on customers.id=route_template.customer_id 
  left join level_area la on la.id=route_Template.level_area
+ left join travel_style on route_template.travel_style=travel_style.id
  where route_template.id = #{id} order by star_level desc
 </select>
 <!-- 获取该旅行方式下的施行项目 -->
@@ -340,58 +333,66 @@ select <include refid="Base_Column_List" /> from route_template where route_code
 </select>
 <!-- 根据别名查询该路线 -->
 <select id="queryByAlias" resultMap="BaseResultMap" parameterType="java.lang.String">
-	select <include refid="Base_Column_List" /> from route_template where alias = #{alias} order by star_level desc
+    select <include refid="Base_Column_List" /> from route_template where alias = #{alias} order by star_level desc
 </select>
 <!-- 查询所有路线 -->
 <select id="queryAll"  resultMap="BaseResultMap" >
-	select <include refid="Base_Column_List" /> from route_template where valid=1 order by star_level desc
+    select <include refid="Base_Column_List" /> from route_template where valid=1 order by star_level desc
 </select>
-<!-- 获取该旅行方式下的相关 -->
-<select id="queryByRelated" parameterType="java.lang.String" resultMap="BaseResultMap">
+<select id="queryByIds" parameterType="java.lang.String" resultMap="BaseResultMap">
 select <include refid="Base_Column_List"/>
 from route_template where route_template.id in
 <foreach collection="list" item="ids" index="index" open="(" separator="," close=")">  
     #{ids}  
 </foreach>
-order by star_level desc
+order by route_template.star_level desc
+</select> 
+<!-- 获取该旅行方式下的相关 -->
+<select id="queryByRelatedRoutes" parameterType="java.lang.String" resultMap="BaseResultMapVo">
+select <include refid="Base_Column_List"/>,travel_style.alias travelStyleAlias
+from route_template left join level_area on level_area.id=route_template.level_area   
+left join travel_style on route_template.travel_style = travel_style.id 
+where route_template.level_area in(select id from level_area la where la.level2_area=level_area.level2_area and id <![CDATA[<>]]> (select level_area from route_template where id=#{id}))
+and route_template.id=#{id}
+order by route_template.star_level desc
 </select> 
 <!-- 路线模板 列表总数-->
 <select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
-	select count(1) from route_template 
-	<include refid="Example_Where_Clause"/>
+    select count(1) from route_template 
+    <include refid="Example_Where_Clause"/>
 </select>
 <!-- 线路搜索 -->
 <!-- <select id="searchRts" resultMap="BaseResultMapVo" parameterType="java.util.Map">
-	select <include refid="Base_Column_List" />,ts.alias travelStyleAlias from route_template left join travel_style ts on route_template.travel_style = ts.id where 1=1
-	<trim  suffixOverrides="," >
-	<if test="travelStyle != null and travelStyle != ''">
-		and ts.alias=#{travelStyle}
-	</if>
-	<if test="scopeAlias !=null and scopeAlias !=''">
-		 and route_template.scope_alias=#{scopeAlias}
-	</if>
-	<if test="rcdDays1 != null and rcdDays2 != null">
-		and route_template.rcd_days between #{rcdDays1} and #{rcdDays2}
-	</if>
-	<if test="rcdDays != null ">
-		and route_template.rcd_days <![CDATA[>=]]> #{rcdDays}
-	</if>
-	</trim>
-</select>   -->	
+    select <include refid="Base_Column_List" />,ts.alias travelStyleAlias from route_template left join travel_style ts on route_template.travel_style = ts.id where 1=1
+    <trim  suffixOverrides="," >
+    <if test="travelStyle != null and travelStyle != ''">
+        and ts.alias=#{travelStyle}
+    </if>
+    <if test="scopeAlias !=null and scopeAlias !=''">
+         and route_template.scope_alias=#{scopeAlias}
+    </if>
+    <if test="rcdDays1 != null and rcdDays2 != null">
+        and route_template.rcd_days between #{rcdDays1} and #{rcdDays2}
+    </if>
+    <if test="rcdDays != null ">
+        and route_template.rcd_days <![CDATA[>=]]> #{rcdDays}
+    </if>
+    </trim>
+</select>   --> 
 <!-- 查询路线模板列表 SELECT GROUP_CONCAT ( url SEPARATOR " @ " ) url-->
 <select id="queryByList" resultMap="BaseResultMapVo"  parameterType="com.itour.base.page.BasePage">
-	select route_template.id,route_template.cover,route_template.title,route_template.short_content,route_template.alias,route_code,star_level,
-	similars,level_area,viewphotos,route_template.customer_id, route_template.create_time, route_template.update_time, 
+    select route_template.id,route_template.cover,route_template.title,route_template.short_content,route_template.alias,route_code,star_level,
+    level_area,viewphotos,route_template.customer_id, route_template.create_time, route_template.update_time, route_template.service_and_quote,
     concat(cb.nickName,'(',cb.email,')') create_by, concat(ub.nickName,'(',ub.email,')') update_by, elevation,la.level1_area,la.level2_area,
-    route_template.remark,route_template.special,(select rt.title from route_template rt where rt.id=route_template.related) related,route_template.route_map,travel_style.type travel_style,route_template.travel_items,route_template.rcd_days,route_template.mileage,route_template.arrive,route_template.departure,
+    route_template.remark,route_template.special,route_template.route_map,travel_style.type travel_style,route_template.travel_items,route_template.rcd_days,route_template.mileage,route_template.arrive,route_template.departure,
     route_template.mount_style,route_template.trek_distance,route_template.transportation,route_template.difficulty_rate,route_template.quoto_form,route_template.design_concept,route_template.customized_service,route_template.before_instruction
-	    <!-- (SELECT GROUP_CONCAT(item) item from travel_item where id in(route_template.travel_items)) travel_items -->
-	from route_template left join travel_style on route_template.travel_style = travel_style.id
-	left join sys_user cb on cb.id=route_template.create_by 
-	left join sys_user ub on ub.id=route_template.update_by 
-	left join level_area la on la.id=route_Template.level_area
-	<include refid="Example_Where_Clause"/>
-	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+        <!-- (SELECT GROUP_CONCAT(item) item from travel_item where id in(route_template.travel_items)) travel_items -->
+    from route_template left join travel_style on route_template.travel_style = travel_style.id
+    left join sys_user cb on cb.id=route_template.create_by 
+    left join sys_user ub on ub.id=route_template.update_by 
+    left join level_area la on la.id=route_Template.level_area
+    <include refid="Example_Where_Clause"/>
+    <if test="pager.orderCondition != null and pager.orderCondition != ''" >
       ${pager.orderCondition}
     </if>
     <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
@@ -400,27 +401,27 @@ order by star_level desc
 </select>
 <!-- 查询路线模板列表 SELECT GROUP_CONCAT ( url SEPARATOR " @ " ) url-->
 <select id="searchRts" resultMap="BaseResultMapVo"  parameterType="com.itour.vo.RouteTemplateVO">
-		select <include refid="Base_Column_List" />,ts.alias travelStyleAlias,la.level1_area,la.level2_area from route_template
-		left join travel_style ts on route_template.travel_style = ts.id 
-		left join level_area la on la.id=route_Template.level_area where 1=1
-	<trim  suffixOverrides="," >
-		<if test="travelStyle != null and travelStyle != ''">
-			and ts.alias=#{travelStyle}
-		</if>
-		<if test="rcdDays1 != null and rcdDays1 !='' and rcdDays2 != null and rcdDays2 != ''">
-			and route_template.rcd_days between #{rcdDays1} and #{rcdDays2}
-		</if>
-		<if test="rcdDays != null and rcdDays != ''">
-			and route_template.rcd_days <![CDATA[>=]]> #{rcdDays}
-		</if>
-		<if test="level1Area !=null and level1Area !=''">
-			 and la.level1_area=#{level1Area}
-		</if>
-		<if test="level2Area !=null and level2Area !=''">
-			 and la.level2_area=#{level2Area}
-		</if>
-	</trim>
-	<if test="pager.orderCondition != null and pager.orderCondition != ''" >
+        select <include refid="Base_Column_List" />,ts.alias travelStyleAlias,la.level1_area,la.level2_area from route_template
+        left join travel_style ts on route_template.travel_style = ts.id 
+        left join level_area la on la.id=route_Template.level_area where 1=1
+    <trim  suffixOverrides="," >
+        <if test="travelStyle != null and travelStyle != ''">
+            and ts.alias=#{travelStyle}
+        </if>
+        <if test="rcdDays1 != null and rcdDays1 !='' and rcdDays2 != null and rcdDays2 != ''">
+            and route_template.rcd_days between #{rcdDays1} and #{rcdDays2}
+        </if>
+        <if test="rcdDays != null and rcdDays != ''">
+            and route_template.rcd_days <![CDATA[>=]]> #{rcdDays}
+        </if>
+        <if test="level1Area !=null and level1Area !=''">
+             and la.level1_area=#{level1Area}
+        </if>
+        <if test="level2Area !=null and level2Area !=''">
+             and la.level2_area=#{level2Area}
+        </if>
+    </trim>
+    <if test="pager.orderCondition != null and pager.orderCondition != ''" >
       ${pager.orderCondition}
     </if>
     <if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''" >
@@ -428,24 +429,24 @@ order by star_level desc
     </if>
 </select>
 <select id="searchRtsByCount" resultType="java.lang.Integer"  parameterType="com.itour.vo.RouteTemplateVO">
-	select count(1) from route_template left join travel_style ts on route_template.travel_style = ts.id
-	 left join level_area la on la.id=route_Template.level_area where 1=1
-	<trim  suffixOverrides="," >
-		<if test="travelStyle != null and travelStyle != ''">
-			and ts.alias=#{travelStyle}
-		</if>
-		<if test="rcdDays1 != null and rcdDays1 !='' and rcdDays2 != null and rcdDays2 != ''">
-			and route_template.rcd_days between #{rcdDays1} and #{rcdDays2}
-		</if>
-		<if test="rcdDays != null and rcdDays != ''">
-			and route_template.rcd_days <![CDATA[>=]]> #{rcdDays}
-		</if>
-			<if test="level1Area !=null and level1Area !=''">
-			 and la.level1_area=#{level1Area}
-		</if>
-		<if test="level2Area !=null and level2Area !=''">
-			 and la.level2_area=#{level2Area}
-		</if>
-	</trim>
+    select count(1) from route_template left join travel_style ts on route_template.travel_style = ts.id
+     left join level_area la on la.id=route_Template.level_area where 1=1
+    <trim  suffixOverrides="," >
+        <if test="travelStyle != null and travelStyle != ''">
+            and ts.alias=#{travelStyle}
+        </if>
+        <if test="rcdDays1 != null and rcdDays1 !='' and rcdDays2 != null and rcdDays2 != ''">
+            and route_template.rcd_days between #{rcdDays1} and #{rcdDays2}
+        </if>
+        <if test="rcdDays != null and rcdDays != ''">
+            and route_template.rcd_days <![CDATA[>=]]> #{rcdDays}
+        </if>
+            <if test="level1Area !=null and level1Area !=''">
+             and la.level1_area=#{level1Area}
+        </if>
+        <if test="level2Area !=null and level2Area !=''">
+             and la.level2_area=#{level2Area}
+        </if>
+    </trim>
 </select>
 </mapper>   

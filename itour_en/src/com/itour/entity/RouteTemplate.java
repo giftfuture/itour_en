@@ -17,7 +17,6 @@ public class RouteTemplate extends BaseEntity {
 	private String id;
 	private java.lang.String customerId;//   	private java.util.Date createTime;//   	private java.util.Date updateTime;//   
 	private String special;//线路特色
-	private String related;//相关线路
 	private String routeMap;//线路地图
 	private java.lang.String createBy;//   	private java.lang.String updateBy;//   	private java.lang.String remark;//   	private String travelStyle;//线路类别
 	private String travelItems;//线路中的景点
@@ -40,15 +39,23 @@ public class RouteTemplate extends BaseEntity {
 	private String customizedService;//定制服务
 	private String beforeInstruction;//行前须知
 	private float elevation;
-	private String similars;
 	private int starLevel;//线路星级
 	private String levelArea;//线路区域
 	private String viewphotos;
+	private String serviceAndQuote;
+	
 	public RouteTemplate(){} 
 	public RouteTemplate(String id,String levelArea){
 		this.id = id;
 		this.levelArea = levelArea;
 	}	 
+	
+	public String getServiceAndQuote() {
+		return serviceAndQuote;
+	}
+	public void setServiceAndQuote(String serviceAndQuote) {
+		this.serviceAndQuote = serviceAndQuote;
+	}
 	public String getId() {
 		return id;
 	}
@@ -78,12 +85,6 @@ public class RouteTemplate extends BaseEntity {
 	}
 	public void setElevation(float elevation) {
 		this.elevation = elevation;
-	}
-	public String getSimilars() {
-		return similars;
-	}
-	public void setSimilars(String similars) {
-		this.similars = similars;
 	}
 	public String getBeforeInstruction() {
 		return beforeInstruction;
@@ -247,12 +248,6 @@ public class RouteTemplate extends BaseEntity {
 	}
 	public void setSpecial(String special) {
 		this.special = special;
-	}
-	public String getRelated() {
-		return related;
-	}
-	public void setRelated(String related) {
-		this.related = related;
 	}
 	public String getRouteMap() {
 		return routeMap;

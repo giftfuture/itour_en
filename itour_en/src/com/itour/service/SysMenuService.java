@@ -29,7 +29,7 @@ import com.itour.vo.SysMenuVO;
  * <b>功能：</b>SysMenuService<br>
  * <b>日期：</b> Jun 9, 2016 <br>
  */
-@Service("sysMenuService")
+@Service//("sysMenuService")
 public class SysMenuService<T> extends BaseService<T> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 

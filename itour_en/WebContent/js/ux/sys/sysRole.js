@@ -129,6 +129,6 @@ itour.sysRole = function(){
 
 $(function(){
 	itour.sysRole.init();
-	  if (window != top)
-          top.location.href = location.href;
+	 /* if (window != top)
+          top.location.href = location.href;*/
 });		

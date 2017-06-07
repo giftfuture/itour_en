@@ -312,6 +312,6 @@ itour.adLink = function(){
 
 $(function(){
 	itour.adLink.init();
-	  if (window != top)
-          top.location.href = location.href;
+	/*  if (window != top)
+          top.location.href = location.href;*/
 });

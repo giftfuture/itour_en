@@ -428,6 +428,6 @@ itour.travelOrder = function(){
 
 $(function(){
 	itour.travelOrder.init();
-	  if (window != top)
-          top.location.href = location.href;
+	 /* if (window != top)
+          top.location.href = location.href;*/
 });

@@ -175,7 +175,7 @@
       </tr>
  	 <tr><td>相关路线：
       <c:forEach items="${bean.relates}" var="relat">
-      <p><a href="${basePath}${bean.travelStyle }/${bean.travelStyle }/${relat.alias}" >${relat.title }</a></p>
+      <p><a href="${basePath}${bean.travelStyleAlias }/${bean.travelStyleAlias }/${relat.alias}" >${relat.title }</a></p>
       </c:forEach>
       </td></tr>
     </table></td>
@@ -184,9 +184,9 @@
 
 <div  style="width:1350px;text-align:center;align:center;font-family: '微软雅黑';border:0;"  id="tab-container" class='tab-container' cellpadding="3" cellspacing="1">
  <ul style="text-align:left;float:left" class='etabs'>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}${bean.travelStyle}/${bean.travelStyle }/${bean.alias}#review" target="_self">整体概览</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}${bean.travelStyle }/${bean.travelStyle }/${bean.alias}#detail-route" target="_self">详细行程</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}${bean.travelStyle }/${bean.travelStyle }/${bean.alias}#need-know" target="_self">行前需知</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}${bean.travelStyleAlias}/${bean.travelStyleAlias }/${bean.alias}#review" target="_self">整体概览</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}${bean.travelStyleAlias }/${bean.travelStyleAlias }/${bean.alias}#detail-route" target="_self">详细行程</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}${bean.travelStyleAlias }/${bean.travelStyleAlias }/${bean.alias}#need-know" target="_self">行前需知</a></li>
  </ul>
  <div class='panel-container'>
  <div id="review" name="review">

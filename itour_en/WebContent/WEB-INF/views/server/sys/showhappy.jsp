@@ -14,7 +14,7 @@
 			<!-- <label class="ui-label">客户ID:</label><input name="id" class="easyui-box ui-text" style="width:100px;"> -->
 			<label class="ui-label">标题:</label><input name="title" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
 			<label class="ui-label">状态:</label>&nbsp;&nbsp;
-				<select name="status" class="easyui-combobox" style="width:100px;">
+				<select name="status" class="easyui-combobox" data-options="editable:false,width:100">
 				   <option value="">--请选择--</option>
 				   <option value="1">待审核</option>
 				   <option value="2">审核通过</option>
@@ -50,36 +50,36 @@
 					</div> -->
 					<div class="fitem">
 						<label>标题:</label>
-						<input name="title" type="text" maxlength="255" required="true" class="easyui-textbox" data-options="" missingMessage="请填写title">
+						<input name="title" type="text" maxlength="255" class="easyui-textbox" data-options="" missingMessage="请填写title">
 						<span style="color:red">*</span>
 					</div>
 					<div class="fitem">
 						<label>内容:</label>
-						<textarea rows="5" cols="30" name="content" required="true" maxlength="500" class="easyui-textbox" data-options="multiline:true,width:300,height:150" missingMessage="请填写content"></textarea>
+						<textarea rows="5" cols="30" name="content" maxlength="500" class="easyui-textbox" data-options="multiline:true,width:300,height:150" missingMessage="请填写content"></textarea>
 						<span style="color:red">*</span>
 					</div>
 			 		<div class="fitem">
 						<label>旅行日期</label>
-						<input name="tourTime" type="text" maxlength="" class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false,required:true" missingMessage="请填写旅行日期">
+						<input name="tourTime" type="text" maxlength="" class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" missingMessage="请填写旅行日期">
 					</div>  	
 					<div class="fitem">
 						<label>晒出人</label>
-						<input name="title" type="text" maxlength="255" required="true" class="easyui-textbox" data-options="" missingMessage="请填写晒出人">
+						<input name="title" type="text" maxlength="255" class="easyui-textbox" data-options="" missingMessage="请填写晒出人">
 						<span style="color:red">*</span>
 					</div>
 					<div class="fitem">
 						<label>来自地区</label>
-						<input name="area" type="text" maxlength="255" required="true" class="easyui-textbox" data-options="" missingMessage="请填写来自地区">
+						  <input name="area" class="easyui-combobox"  data-options="width:131,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'"> 
 						<span style="color:red">*</span>
 					</div>
 					<div class="fitem">
 						<label>路线</label>
-						<input name="route" type="text" maxlength="255" required="true" class="easyui-textbox" data-options="" missingMessage="请填写路线图">
+						<input name="routeTitle" type="text" maxlength="255" class="easyui-textbox" data-options="editable:false" missingMessage="请填写路线图">
 						<span style="color:red">*</span>
 					</div>
 					<div class="fitem">
 						<label>审核状态</label>
-						<select name="status" class="easyui-combobox">
+						<select name="status" class="easyui-combobox" data-options="editable:false">
 						   <option value="1">待审核</option>
 						   <option value="2">审核通过</option>
 						   <option value="3">审核未通过</option>

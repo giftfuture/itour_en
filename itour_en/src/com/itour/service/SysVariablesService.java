@@ -25,7 +25,7 @@ import com.itour.vo.SysVariablesVO;
  * <b>作者：</b>fred.zhao<br>
  * <b>日期：</b> Feb 2, 2016 <br>
  */
-@Service("sysVariablesService")
+@Service//("sysVariablesService")
 public class SysVariablesService<T> extends BaseService<T> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	/**

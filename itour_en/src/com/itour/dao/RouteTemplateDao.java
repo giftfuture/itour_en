@@ -30,7 +30,7 @@ public interface RouteTemplateDao<T> extends BaseDao<T> {
 	 * @param related
 	 * @return
 	 */
-	List<RouteTemplate> queryByRelated(List<String> ids);
+	List<RouteTemplate> queryByIds(List<String> ids);
 	
 	/**
 	 * 
@@ -128,6 +128,11 @@ public interface RouteTemplateDao<T> extends BaseDao<T> {
 	 * @return
 	 */
 	int countQueryByStyle(RouteTemplateVO vo);
-	//RouteTemplate queryByRouteCode(@Param(value="routeCode")String routeCode);
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	List<RouteTemplateVO> queryByRelatedRoutes(@Param(value="id")String id);
 	
 }

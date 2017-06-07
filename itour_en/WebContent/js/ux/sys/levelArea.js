@@ -232,6 +232,6 @@ itour.levelarea = function(){
 
 $(function(){
 	itour.levelarea.init();
-	  if (window != top)
-          top.location.href = location.href;
+	  /*if (window != top)
+          top.location.href = location.href;*/
 });

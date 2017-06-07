@@ -253,6 +253,15 @@ itour.routeTemplate = function(){
 							return row.routeCode;
 						}
 					},
+					{field:'title',title:'线路名称',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							if((row.title+"").length>30){
+								return (row.title+"").substring(0,30)+"....";
+							}else{									
+								return row.title;
+							}
+						}
+					},
 					{field:'cover',title:'封面',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.cover;
@@ -264,15 +273,6 @@ itour.routeTemplate = function(){
 								return (row.viewphotos+"").substring(0,60)+"....";
 							}else{									
 								return row.viewphotos;
-							}
-						}
-					},
-					{field:'title',title:'线路名称',align:'center',sortable:true,
-						formatter:function(value,row,index){
-							if((row.title+"").length>30){
-								return (row.title+"").substring(0,30)+"....";
-							}else{									
-								return row.title;
 							}
 						}
 					},
@@ -385,15 +385,16 @@ itour.routeTemplate = function(){
 							}
 						}
 					},
-					{field:'related',title:'相关线路',align:'center',sortable:true,
+					{field:'relatedRouteTitles',title:'相关线路',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return row.related;
+							return row.relatedRouteTitles;
 						}
-					},{field:'similars',title:'相似线路',align:'center',sortable:true,
+					},
+				/*	{field:'similars',title:'相似线路',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.similars;
 						}
-					},
+					},*/
 					{field:'routeMap',title:'路线地图',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.routeMap;
@@ -437,306 +438,6 @@ itour.routeTemplate = function(){
 							}
 						}
 					},
-/*					{field:'d1',title:'模板1',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d1;
-							}
-						},
-					{field:'d2',title:'模板2',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d2;
-							}
-						},
-					{field:'d3',title:'模板3',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d3;
-							}
-						},
-					{field:'d4',title:'模板4',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d4;
-							}
-						},
-					{field:'d5',title:'模板5',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d5;
-							}
-						},
-					{field:'d6',title:'模板6',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d6;
-							}
-						},
-					{field:'d7',title:'模板7',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d7;
-							}
-						},
-					{field:'d8',title:'模板8',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d8;
-							}
-						},
-					{field:'d9',title:'模板9',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d9;
-							}
-						},
-					{field:'d10',title:'模板10',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d10;
-							}
-						},
-					{field:'d11',title:'模板11',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d11;
-							}
-						},
-					{field:'d12',title:'模板12',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d12;
-							}
-						},
-					{field:'d13',title:'模板13',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d13;
-							}
-						},
-					{field:'d14',title:'模板14',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d14;
-							}
-						},
-					{field:'d15',title:'模板15',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d15;
-							}
-						},
-					{field:'d16',title:'模板16',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d16;
-							}
-						},
-					{field:'d17',title:'模板17',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d17;
-							}
-						},
-					{field:'d18',title:'模板18',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d18;
-							}
-						},
-					{field:'d19',title:'模板19',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d19;
-							}
-						},
-					{field:'d20',title:'模板20',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d20;
-							}
-						},
-					{field:'d21',title:'模板21',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d21;
-							}
-						},
-					{field:'d22',title:'模板22',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d22;
-							}
-						},
-					{field:'d23',title:'模板23',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d23;
-							}
-						},
-					{field:'d24',title:'模板24',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d24;
-							}
-						},
-					{field:'d25',title:'模板25',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d25;
-							}
-						},
-					{field:'d26',title:'模板26',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d26;
-							}
-						},
-					{field:'d27',title:'模板27',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d27;
-							}
-						},
-					{field:'d28',title:'模板28',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d28;
-							}
-						},
-					{field:'d29',title:'模板29',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d29;
-							}
-						},
-					{field:'d30',title:'模板30',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d30;
-							}
-						},
-					{field:'d31',title:'模板31',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d31;
-							}
-						},
-					{field:'d32',title:'模板32',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d32;
-							}
-						},
-					{field:'d33',title:'模板33',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d33;
-							}
-						},
-					{field:'d34',title:'模板34',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d34;
-							}
-						},
-					{field:'d35',title:'模板35',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d35;
-							}
-						},
-					{field:'d36',title:'模板36',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d36;
-							}
-						},
-					{field:'d37',title:'模板37',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d37;
-							}
-						},
-					{field:'d38',title:'模板38',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d38;
-							}
-						},
-					{field:'d39',title:'模板39',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d39;
-							}
-						},
-					{field:'d40',title:'模板40',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d40;
-							}
-						},
-					{field:'d41',title:'模板41',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d41;
-							}
-						},
-					{field:'d42',title:'模板42',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d42;
-							}
-						},
-					{field:'d43',title:'模板43',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d43;
-							}
-						},
-					{field:'d44',title:'模板44',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d44;
-							}
-						},
-					{field:'d45',title:'模板45',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d45;
-							}
-						},
-					{field:'d46',title:'模板46',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d46;
-							}
-						},
-					{field:'d47',title:'模板47',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d47;
-							}
-						},
-					{field:'d48',title:'模板48',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d48;
-							}
-						},
-					{field:'d49',title:'模板49',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d49;
-							}
-						},
-					{field:'d50',title:'模板50',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d50;
-							}
-						},
-					{field:'d51',title:'模板51',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d51;
-							}
-						},
-					{field:'d52',title:'模板52',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d52;
-							}
-						},
-					{field:'d53',title:'模板53',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d53;
-							}
-						},
-					{field:'d54',title:'模板54',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d54;
-							}
-						},
-					{field:'d55',title:'模板55',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d55;
-							}
-						},
-					{field:'d56',title:'模板56',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d56;
-							}
-						},
-					{field:'d57',title:'模板57',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d57;
-							}
-						},
-					{field:'d58',title:'模板58',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d58;
-							}
-						},
-					{field:'d59',title:'模板59',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d59;
-							}
-						},
-					{field:'d60',title:'模板60',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								return row.d60;
-							}
-						},*/
 					{field:'createTime',title:'创建时间',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.createTime;
@@ -1076,12 +777,13 @@ itour.routeTemplate = function(){
 			});
 		    $('#designConcept').summernote({  
 		        height: 400,                  
-		        minHeight: 300,             
+		        minHeight: 300,   
 		        maxHeight: 500,        
+		        popover:{},
 		       // focus: true,   
 		        lang:'en-US',   
-		        dialogsFade : true,// Add fade effect on dialogs
-		        dialogsInBody : true,// Dialogs can be placed in body, not in summernote.
+		        dialogsFade : false,// Add fade effect on dialogs
+		        dialogsInBody : false,// Dialogs can be placed in body, not in summernote.
 		        shortcuts:false,
 		        disableDragAndDrop:true,
 		        placeholder:'write here...',
@@ -1121,8 +823,51 @@ itour.routeTemplate = function(){
 		        maxHeight: 500,        
 		       // focus: true,   
 		        lang:'en-US',   
-		        dialogsFade : true,// Add fade effect on dialogs
-		        dialogsInBody : true,// Dialogs can be placed in body, not in summernote.
+		        popover:{},
+		        dialogsFade : false,// Add fade effect on dialogs
+		        dialogsInBody : false,// Dialogs can be placed in body, not in summernote.
+		        shortcuts:false,
+		        disableDragAndDrop:true,
+		        placeholder:'write here...',
+		      /*  callbacks: { 
+			        onImageUpload: function(files, editor, $editable) {  
+			        	sendFile(files[0],editor,$editable);  //// 重写图片上传  
+			        }
+		        },*/codemirror: {
+		            theme: 'monokai'
+		        },toolbar: [  
+		                    ['style', ['bold', 'italic', 'underline', 'clear']],  
+		                    ['fontsize', ['fontsize']],  
+		                    ['color', ['color']],  
+		                    ['font', ['bold', 'underline', 'clear']],
+		                    ['fontname', ['fontname']],
+		                    ['para', ['ul', 'ol', 'paragraph']],  
+		                    ['height', ['height']],  
+		                    ['table', ['table']],
+		                    ['insert', ['link','picture', 'video','table','hr']] ,
+		                    ['view', ['fullscreen', 'codeview', 'help']]
+		                ],
+		        fontNames: ['Microsoft YaHei ','Serif', 'Sans', 'Arial', 'Arial Black', 'Courier','Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande','Sacramento'],
+		        colors: [
+		                 ['#000000', '#424242', '#636363', '#9C9C94', '#CEC6CE', '#EFEFEF', '#F7F7F7', '#FFFFFF'],
+		                 ['#FF0000', '#FF9C00', '#FFFF00', '#00FF00', '#00FFFF', '#0000FF', '#9C00FF', '#FF00FF'],
+		                 ['#F7C6CE', '#FFE7CE', '#FFEFC6', '#D6EFD6', '#CEDEE7', '#CEE7F7', '#D6D6E7', '#E7D6DE'],
+		                 ['#E79C9C', '#FFC69C', '#FFE79C', '#B5D6A5', '#A5C6CE', '#9CC6EF', '#B5A5D6', '#D6A5BD'],
+		                 ['#E76363', '#F7AD6B', '#FFD663', '#94BD7B', '#73A5AD', '#6BADDE', '#8C7BC6', '#C67BA5'],
+		                 ['#CE0000', '#E79439', '#EFC631', '#6BA54A', '#4A7B8C', '#3984C6', '#634AA5', '#A54A7B'],
+		                 ['#9C0000', '#B56308', '#BD9400', '#397B21', '#104A5A', '#085294', '#311873', '#731842'],
+		                 ['#630000', '#7B3900', '#846300', '#295218', '#083139', '#003163', '#21104A', '#4A1031']
+		               ]
+		  }); 
+		    $('#beforeInstruction').summernote({  
+		        height: 400,                  
+		        minHeight: 300,             
+		        maxHeight: 500, 
+		        popover:{},
+		       // focus: true,   
+		        lang:'en-US',   
+		        dialogsFade : false,// Add fade effect on dialogs
+		        dialogsInBody : false,// Dialogs can be placed in body, not in summernote.
 		        shortcuts:false,
 		        disableDragAndDrop:true,
 		        placeholder:'write here...',
@@ -1162,8 +907,9 @@ itour.routeTemplate = function(){
 		        maxHeight: 500,        
 		       // focus: true,   
 		        lang:'en-US',   
-		        dialogsFade : true,// Add fade effect on dialogs
-		        dialogsInBody : true,// Dialogs can be placed in body, not in summernote.
+		        popover:{},
+		        dialogsFade : false,// Add fade effect on dialogs
+		        dialogsInBody : false,// Dialogs can be placed in body, not in summernote.
 		        shortcuts:false,
 		        disableDragAndDrop:true,
 		        placeholder:'write here...',
@@ -1203,6 +949,6 @@ itour.routeTemplate = function(){
 }();
 $(function(){
 	itour.routeTemplate.init();
-	  if (window != top)
-          top.location.href = location.href;
+	/*  if (window != top)
+          top.location.href = location.href;*/
 });

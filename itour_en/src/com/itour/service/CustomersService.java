@@ -25,7 +25,7 @@ import com.itour.vo.CustomerVO;
  * <b>作者：</b>fred.zhao<br>
  * <b>日期：</b> Feb 2, 2016 <br>
  */
-@Service("customersService")
+@Service//("customersService")
 public class CustomersService extends BaseService<Customers> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 

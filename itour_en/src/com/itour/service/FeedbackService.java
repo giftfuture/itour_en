@@ -22,7 +22,7 @@ import com.itour.vo.FeedbackVO;
  * <b>作者：</b>fred.zhao<br>
  * <b>日期：</b> Feb 2, 2016 <br>
  */
-@Service("feedbackService")
+@Service//("feedbackService")
 public class FeedbackService extends BaseService<Feedback> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 

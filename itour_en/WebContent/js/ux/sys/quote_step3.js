@@ -17,6 +17,6 @@ itour.serverquotestep3 = function(){
 
 $(function(){
 	itour.serverquotestep3.init();
-	  if (window != top)
-          top.location.href = location.href;
+	/*  if (window != top)
+          top.location.href = location.href;*/
 });

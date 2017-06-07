@@ -37,6 +37,6 @@ itour.showOrders = function(){
 
 $(function(){
 	itour.showOrders.init();
-	  if (window != top)
-          top.location.href = location.href;
+	/*  if (window != top)
+          top.location.href = location.href;*/
 });

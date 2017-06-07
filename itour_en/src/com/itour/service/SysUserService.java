@@ -29,7 +29,7 @@ import com.itour.vo.SysUserVO;
  * <b>作者：</b>fred<br>
  * <b>日期：</b> Jun 9, 2016 <br>
  */
-@Service("sysUserService")
+@Service//("sysUserService")
 public class SysUserService<T> extends BaseService<T> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	

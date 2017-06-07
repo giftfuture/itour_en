@@ -4,7 +4,7 @@
 <head>
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
-<title>四姑娘山海子沟徒步、长坪沟穿越毕棚沟</title>
+<title> </title>
 </head>
 
 <body>
@@ -31,7 +31,7 @@
 </table>
 <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
   <tr>
-    <td class="h1-black">四姑娘山海子沟徒步、长坪沟穿越毕棚沟<span class="STYLE27"> 第一次方案 2016-5-01</span></td>
+    <td class="h1-black"><!-- 四姑娘山海子沟徒步、长坪沟穿越毕棚沟<span class="STYLE27"> 第一次方案 2016-5-01</span> --></td>
   </tr>
 </table>
 <br />

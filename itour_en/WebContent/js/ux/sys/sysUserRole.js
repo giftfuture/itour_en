@@ -80,6 +80,6 @@ itour.UserRole = function(){
 
 $(function(){
 	itour.UserRole.init();
-	  if (window != top)
-          top.location.href = location.href;
+	  /*if (window != top)
+          top.location.href = location.href;*/
 });		

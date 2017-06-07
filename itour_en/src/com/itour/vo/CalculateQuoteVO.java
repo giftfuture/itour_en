@@ -4,6 +4,11 @@ import java.io.Serializable;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+@JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
+@JsonInclude(Include.NON_NULL)
 public class CalculateQuoteVO implements Serializable{
 	
 	/**
@@ -13,6 +18,9 @@ public class CalculateQuoteVO implements Serializable{
 	private String id;
 	private int adults;
 	private int children;
+	private float adultPrice;
+	private float childPrice;
+	private float ticketTotalPrice;
 	private String rtid;
 	private String torderid;
 	private float plusSumPrice;
@@ -57,8 +65,224 @@ public class CalculateQuoteVO implements Serializable{
 	private String adultsumcost;
 	private String childrensumcost;
 	private String isShowDetail;
-
-	 
+	
+	private float adultticketTotalPrice;
+	private String adultticketsBlock;
+	private String quotetraveldocadultsBlock;
+	private String quotetourguideadultsBlock;
+	private String quoterentcaradultsBlock;
+	private String quotebigtrafficadultsBlock;
+	private String quoteinsuranceadultsBlock;
+	private String quotecomphcostadultsBlock;
+	private String quoterecreationadultsBlock;
+	private String quoteitemguidecadultsBlock;
+	private String quotebathorseadultsBlock;
+	private String quoteridehorseadultsBlock;
+	private String quoteclimbregisteradultsBlock;
+	private String quoteclimbnexusadultsBlock;
+	private String quoteelsecostadultsBlock;
+	
+	private float quotetraveldocadultsSumCost;
+	private float quotetourguideadultsSumCost;
+	private float quoterentcaradultsSumCost;
+	private float quotebigtrafficadultsSumCost;
+	private float quoteinsuranceadultsSumCost;
+	private float quotecomphcostadultsSumCost;
+	private float quoterecreationadultsSumCost;
+	private float quoteitemguidecadultsSumCost;
+	private float quotebathorseadultsSumCost;
+	private float quoteridehorseadultsSumCost;
+	private float quoteclimbregisteradultsSumCost;
+	private float quoteclimbnexusadultsSumCost;
+	private float quoteelsecostadultsSumCost;
+	
+	
+	public int getAdults() {
+		return adults;
+	}
+	public void setAdults(int adults) {
+		this.adults = adults;
+	}
+	public int getChildren() {
+		return children;
+	}
+	public void setChildren(int children) {
+		this.children = children;
+	}
+	public float getAdultticketTotalPrice() {
+		return adultticketTotalPrice;
+	}
+	public void setAdultticketTotalPrice(float adultticketTotalPrice) {
+		this.adultticketTotalPrice = adultticketTotalPrice;
+	}
+	public String getAdultticketsBlock() {
+		return adultticketsBlock;
+	}
+	public void setAdultticketsBlock(String adultticketsBlock) {
+		this.adultticketsBlock = adultticketsBlock;
+	}
+	public String getQuotetraveldocadultsBlock() {
+		return quotetraveldocadultsBlock;
+	}
+	public void setQuotetraveldocadultsBlock(String quotetraveldocadultsBlock) {
+		this.quotetraveldocadultsBlock = quotetraveldocadultsBlock;
+	}
+	public String getQuotetourguideadultsBlock() {
+		return quotetourguideadultsBlock;
+	}
+	public void setQuotetourguideadultsBlock(String quotetourguideadultsBlock) {
+		this.quotetourguideadultsBlock = quotetourguideadultsBlock;
+	}
+	public String getQuoterentcaradultsBlock() {
+		return quoterentcaradultsBlock;
+	}
+	public void setQuoterentcaradultsBlock(String quoterentcaradultsBlock) {
+		this.quoterentcaradultsBlock = quoterentcaradultsBlock;
+	}
+	public String getQuotebigtrafficadultsBlock() {
+		return quotebigtrafficadultsBlock;
+	}
+	public void setQuotebigtrafficadultsBlock(String quotebigtrafficadultsBlock) {
+		this.quotebigtrafficadultsBlock = quotebigtrafficadultsBlock;
+	}
+	public String getQuoteinsuranceadultsBlock() {
+		return quoteinsuranceadultsBlock;
+	}
+	public void setQuoteinsuranceadultsBlock(String quoteinsuranceadultsBlock) {
+		this.quoteinsuranceadultsBlock = quoteinsuranceadultsBlock;
+	}
+	public String getQuotecomphcostadultsBlock() {
+		return quotecomphcostadultsBlock;
+	}
+	public void setQuotecomphcostadultsBlock(String quotecomphcostadultsBlock) {
+		this.quotecomphcostadultsBlock = quotecomphcostadultsBlock;
+	}
+	public String getQuoterecreationadultsBlock() {
+		return quoterecreationadultsBlock;
+	}
+	public void setQuoterecreationadultsBlock(String quoterecreationadultsBlock) {
+		this.quoterecreationadultsBlock = quoterecreationadultsBlock;
+	}
+	public String getQuoteitemguidecadultsBlock() {
+		return quoteitemguidecadultsBlock;
+	}
+	public void setQuoteitemguidecadultsBlock(String quoteitemguidecadultsBlock) {
+		this.quoteitemguidecadultsBlock = quoteitemguidecadultsBlock;
+	}
+	public String getQuotebathorseadultsBlock() {
+		return quotebathorseadultsBlock;
+	}
+	public void setQuotebathorseadultsBlock(String quotebathorseadultsBlock) {
+		this.quotebathorseadultsBlock = quotebathorseadultsBlock;
+	}
+	public String getQuoteridehorseadultsBlock() {
+		return quoteridehorseadultsBlock;
+	}
+	public void setQuoteridehorseadultsBlock(String quoteridehorseadultsBlock) {
+		this.quoteridehorseadultsBlock = quoteridehorseadultsBlock;
+	}
+	public String getQuoteclimbregisteradultsBlock() {
+		return quoteclimbregisteradultsBlock;
+	}
+	public void setQuoteclimbregisteradultsBlock(String quoteclimbregisteradultsBlock) {
+		this.quoteclimbregisteradultsBlock = quoteclimbregisteradultsBlock;
+	}
+	public String getQuoteclimbnexusadultsBlock() {
+		return quoteclimbnexusadultsBlock;
+	}
+	public void setQuoteclimbnexusadultsBlock(String quoteclimbnexusadultsBlock) {
+		this.quoteclimbnexusadultsBlock = quoteclimbnexusadultsBlock;
+	}
+	public String getQuoteelsecostadultsBlock() {
+		return quoteelsecostadultsBlock;
+	}
+	public void setQuoteelsecostadultsBlock(String quoteelsecostadultsBlock) {
+		this.quoteelsecostadultsBlock = quoteelsecostadultsBlock;
+	}
+	public float getQuotetraveldocadultsSumCost() {
+		return quotetraveldocadultsSumCost;
+	}
+	public void setQuotetraveldocadultsSumCost(float quotetraveldocadultsSumCost) {
+		this.quotetraveldocadultsSumCost = quotetraveldocadultsSumCost;
+	}
+	public float getQuoteelsecostadultsSumCost() {
+		return quoteelsecostadultsSumCost;
+	}
+	public void setQuoteelsecostadultsSumCost(float quoteelsecostadultsSumCost) {
+		this.quoteelsecostadultsSumCost = quoteelsecostadultsSumCost;
+	}
+	public float getQuotetourguideadultsSumCost() {
+		return quotetourguideadultsSumCost;
+	}
+	public void setQuotetourguideadultsSumCost(float quotetourguideadultsSumCost) {
+		this.quotetourguideadultsSumCost = quotetourguideadultsSumCost;
+	}
+	public float getQuoterentcaradultsSumCost() {
+		return quoterentcaradultsSumCost;
+	}
+	public void setQuoterentcaradultsSumCost(float quoterentcaradultsSumCost) {
+		this.quoterentcaradultsSumCost = quoterentcaradultsSumCost;
+	}
+	public float getQuotebigtrafficadultsSumCost() {
+		return quotebigtrafficadultsSumCost;
+	}
+	public void setQuotebigtrafficadultsSumCost(float quotebigtrafficadultsSumCost) {
+		this.quotebigtrafficadultsSumCost = quotebigtrafficadultsSumCost;
+	}
+	public float getQuoteinsuranceadultsSumCost() {
+		return quoteinsuranceadultsSumCost;
+	}
+	public void setQuoteinsuranceadultsSumCost(float quoteinsuranceadultsSumCost) {
+		this.quoteinsuranceadultsSumCost = quoteinsuranceadultsSumCost;
+	}
+	public float getQuotecomphcostadultsSumCost() {
+		return quotecomphcostadultsSumCost;
+	}
+	public void setQuotecomphcostadultsSumCost(float quotecomphcostadultsSumCost) {
+		this.quotecomphcostadultsSumCost = quotecomphcostadultsSumCost;
+	}
+	public float getQuoterecreationadultsSumCost() {
+		return quoterecreationadultsSumCost;
+	}
+	public void setQuoterecreationadultsSumCost(float quoterecreationadultsSumCost) {
+		this.quoterecreationadultsSumCost = quoterecreationadultsSumCost;
+	}
+	public float getQuoteitemguidecadultsSumCost() {
+		return quoteitemguidecadultsSumCost;
+	}
+	public void setQuoteitemguidecadultsSumCost(float quoteitemguidecadultsSumCost) {
+		this.quoteitemguidecadultsSumCost = quoteitemguidecadultsSumCost;
+	}
+	public float getQuotebathorseadultsSumCost() {
+		return quotebathorseadultsSumCost;
+	}
+	public void setQuotebathorseadultsSumCost(float quotebathorseadultsSumCost) {
+		this.quotebathorseadultsSumCost = quotebathorseadultsSumCost;
+	}
+	public float getQuoteridehorseadultsSumCost() {
+		return quoteridehorseadultsSumCost;
+	}
+	public void setQuoteridehorseadultsSumCost(float quoteridehorseadultsSumCost) {
+		this.quoteridehorseadultsSumCost = quoteridehorseadultsSumCost;
+	}
+	public float getQuoteclimbregisteradultsSumCost() {
+		return quoteclimbregisteradultsSumCost;
+	}
+	public void setQuoteclimbregisteradultsSumCost(float quoteclimbregisteradultsSumCost) {
+		this.quoteclimbregisteradultsSumCost = quoteclimbregisteradultsSumCost;
+	}
+	public float getQuoteclimbnexusadultsSumCost() {
+		return quoteclimbnexusadultsSumCost;
+	}
+	public void setQuoteclimbnexusadultsSumCost(float quoteclimbnexusadultsSumCost) {
+		this.quoteclimbnexusadultsSumCost = quoteclimbnexusadultsSumCost;
+	}
+	public float getTicketTotalPrice() {
+		return ticketTotalPrice;
+	}
+	public void setTicketTotalPrice(float ticketTotalPrice) {
+		this.ticketTotalPrice = ticketTotalPrice;
+	}
 	public String getIsShowDetail() {
 		return isShowDetail;
 	}
@@ -95,17 +319,17 @@ public class CalculateQuoteVO implements Serializable{
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getAdults() {
-		return adults;
+	public float getAdultPrice() {
+		return adultPrice;
 	}
-	public void setAdults(int adults) {
-		this.adults = adults;
+	public void setAdultPrice(float adultPrice) {
+		this.adultPrice = adultPrice;
 	}
-	public int getChildren() {
-		return children;
+	public float getChildPrice() {
+		return childPrice;
 	}
-	public void setChildren(int children) {
-		this.children = children;
+	public void setChildPrice(float childPrice) {
+		this.childPrice = childPrice;
 	}
 	public String getQuoteadults() {
 		return quoteadults;

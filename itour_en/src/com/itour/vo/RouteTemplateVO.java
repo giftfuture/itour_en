@@ -31,13 +31,14 @@ public class RouteTemplateVO extends BasePage implements Serializable{
 	private String special;//线路特色	private java.lang.String createBy;//   	private java.lang.String updateBy;//   	private java.lang.String remark;//  
 	private String routeLine;//路线图
 	private List<RouteTemplateVO> relates;//相关线路
+	private String relatedRouteTitles;
 	private List<String> photoList;//照片
-	private String related;
 	private String routeMap;//线路地图
 	private String travelStyle;//线路类别
 	private String travelStyleType;//线路类别名称
 	private String travelStyleAlias;
 	private String travelItems;//线路中的景点
+	private String travelItemAliass;
 	private String cover;//封面图片
 	//private File coverImg;//
 	private String title;//路线名称
@@ -71,11 +72,23 @@ public class RouteTemplateVO extends BasePage implements Serializable{
 	private String level1Area;//线路一级区域
 	private String level2Area;//线路一级区域
 	private String viewphotos;
-	//private String travelStyleAlias;
+	private String serviceAndQuote;
 	
 	
+	public String getServiceAndQuote() {
+		return serviceAndQuote;
+	}
+	public void setServiceAndQuote(String serviceAndQuote) {
+		this.serviceAndQuote = serviceAndQuote;
+	}
 	public String getViewphotos() {
 		return viewphotos;
+	}
+	public String getRelatedRouteTitles() {
+		return relatedRouteTitles;
+	}
+	public void setRelatedRouteTitles(String relatedRouteTitles) {
+		this.relatedRouteTitles = relatedRouteTitles;
 	}
 	public void setViewphotos(String viewphotos) {
 		this.viewphotos = viewphotos;
@@ -304,12 +317,6 @@ public class RouteTemplateVO extends BasePage implements Serializable{
 	public void setCover(String cover) {
 		this.cover = cover;
 	}
-	public String getRelated() {
-		return related;
-	}
-	public void setRelated(String related) {
-		this.related = related;
-	}
 	public String getTravelItems() {
 		return travelItems;
 	}
@@ -388,6 +395,12 @@ public class RouteTemplateVO extends BasePage implements Serializable{
 	}
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
+	}
+	public String getTravelItemAliass() {
+		return travelItemAliass;
+	}
+	public void setTravelItemAliass(String travelItemAliass) {
+		this.travelItemAliass = travelItemAliass;
 	}	
 }
 

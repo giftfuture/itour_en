@@ -16,7 +16,7 @@ import com.itour.convert.LevelAreaKit;
 import com.itour.dao.LevelAreaDao;
 import com.itour.entity.LevelArea;
 import com.itour.vo.LevelAreaVO;
-@Service("levelAreaService")
+@Service//("levelAreaService")
 public class LevelAreaService extends BaseService<LevelArea>{
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 

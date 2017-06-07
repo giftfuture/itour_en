@@ -95,18 +95,28 @@ var YDataGrid = function(config){
 								//var beforeInstruction = CKEDITOR.replace("beforeInstruction");
 								//console.log(CKEDITOR.replace("beforeInstruction"));
 								//beforeInstruction.setData(result.data.beforeInstruction);
+								$("#beforeInstruction").summernote('code',result.data.beforeInstruction);
 							}
 							if(result.data.customizedService&&result.data.customizedService.length>0){
 								//Handler.ckCreate('customizedService');
 								//var customizedService = CKEDITOR.replace('customizedService');
 								//console.log(CKEDITOR.replace("beforeInstruction"));
 								//customizedService.setData(result.data.customizedService);
+								$("#customizedService").summernote('code',result.data.customizedService);
 							}
 							if(result.data.designConcept&&result.data.designConcept.length>0){
 								//Handler.ckCreate('designConcept');
 								//var designConcept = CKEDITOR.replace('designConcept');
 								//console.log(CKEDITOR.replace("beforeInstruction"));
 								//designConcept.setData(result.data.designConcept);
+								$("#designConcept").summernote('code',result.data.designConcept);
+							}
+							if(result.data.serviceAndQuote&&result.data.serviceAndQuote.length>0){
+								//Handler.ckCreate('designConcept');
+								//var designConcept = CKEDITOR.replace('designConcept');
+								//console.log(CKEDITOR.replace("beforeInstruction"));
+								//designConcept.setData(result.data.designConcept);
+								$("#serviceAndQuote").summernote('code',result.data.serviceAndQuote);
 							}
 						/*	if(result.data.orderId){
 								$("span[name='orderId']").html("<label>订单号:</label>"+result.data.orderId);
@@ -208,11 +218,18 @@ var YDataGrid = function(config){
 			            }
 		            CKupdate(); //在提交表单前需要做以上处理
 */ 				try{
-					if(CKEDITOR.instances.length>0){
+					/*if(CKEDITOR.instances.length>0){
 						Form.edit.attr("beforeInstruction",CKEDITOR.instances.beforeInstruction.getData());
 						Form.edit.attr("customizedService",CKEDITOR.instances.customizedService.getData());
 						Form.edit.attr("designConcept",CKEDITOR.instances.designConcept.getData());	
-					}
+					}*/
+				/*	var bi = $("#beforeInstruction").summernote('code') ;
+					Form.edit.attr({"beforeInstruction":bi});
+					var cs = $("#customizedService").summernote('code');
+					Form.edit.attr({"customizedService":cs});
+					var dc = $("#designConcept").summernote('code');
+					console.log(dc);
+					Form.edit.attr({"designConcept":dc});*/
 				}catch(e){
 					console.log("name: " + e.name + 
 							 ",description: " +e.description+
@@ -227,10 +244,10 @@ var YDataGrid = function(config){
 						var fullyearTicket = !$("input:radio[name='isfullyearTicket']:checked").val()||$("input:radio[name='isfullyearTicket']:checked").val()=="1";
 						var ticketsBlock = "";
 						if(fullyearTicket){
-							ticketsBlock += "淡季："
+							ticketsBlock += "slack season:"
 							$(ticketprices).each(function(i,e){
 								if(i>=4){
-									if(i==8){ ticketsBlock += "旺季："};
+									if(i==8){ ticketsBlock += "busy season:"};
 									if(tickets[i].value && ticketprices[i].value){
 										ticketsBlock+=tickets[i].value+":"+ticketprices[i].value+"、";
 									}
@@ -283,11 +300,18 @@ var YDataGrid = function(config){
 			            }
 		            CKupdate(); //在提交表单前需要做以上处理
 */ 				try{
-					if(CKEDITOR.instances.length>0){
+				/*	if(CKEDITOR.instances.length>0){
 						Form.edit.attr("beforeInstruction",CKEDITOR.instances.beforeInstruction.getData());
 						Form.edit.attr("customizedService",CKEDITOR.instances.customizedService.getData());
 						Form.edit.attr("designConcept",CKEDITOR.instances.designConcept.getData());	
-					}
+					}*/
+				/*	var bi = $("#beforeInstruction").summernote('code') ;
+					Form.edit.attr({"beforeInstruction":bi});
+					var cs = $("#customizedService").summernote('code');
+					Form.edit.attr({"customizedService":cs});
+					var dc = $("#designConcept").summernote('code');
+					console.log(dc);
+					Form.edit.attr({"designConcept":dc});*/
 				}catch(e){
 					console.log("name: " + e.name + 
 							 ",description: " +e.description+

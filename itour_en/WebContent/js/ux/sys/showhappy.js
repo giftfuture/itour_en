@@ -179,11 +179,11 @@ itour.showhappy = function(){
 							return row.createTime;
 						}
 					},
-					{field:'route',title:'路线',align:'center',sortable:false,formatter:function(value,row,index){
-						if(row.route && row.route.length>30){
-							return row.route.substring(0,30)+"...";
+					{field:'routeTitle',title:'路线',align:'center',sortable:false,formatter:function(value,row,index){
+						if(row.routeTitle && row.routeTitle.length>30){
+							return row.routeTitle.substring(0,30)+"...";
 						}else{									
-							return row.route;
+							return row.routeTitle;
 						}
 					}},
 					{field:'customerName',title:'晒出人',align:'center',sortable:false,formatter:function(value,row,index){
@@ -198,7 +198,7 @@ itour.showhappy = function(){
 					}},
 					{field:'status',title:'审核状态',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								if(value == 1){
+								if(value == 1||value == 0){
 									return "待审核";
 								}
 								if(value == 2){
@@ -260,6 +260,6 @@ itour.showhappy = function(){
 
 $(function(){
 	itour.showhappy.init();
-	  if (window != top)
-          top.location.href = location.href;
+	 /* if (window != top)
+          top.location.href = location.href;*/
 });

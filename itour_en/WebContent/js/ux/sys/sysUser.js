@@ -101,6 +101,6 @@ itour.sysUser = function(){
 
 $(function(){
 	itour.sysUser.init();
-	  if (window != top)
-          top.location.href = location.href;
+	 /* if (window != top)
+          top.location.href = location.href;*/
 });		

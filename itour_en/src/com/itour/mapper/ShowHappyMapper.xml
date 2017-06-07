@@ -204,7 +204,7 @@
 	<select id="queryByListVo" resultMap="BaseResultMapVo" parameterType="com.itour.vo.ShowHappyVO">
 		select show_happy.valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,customers.customer_name ,
 		show_happy.sh_code,show_happy.short_content,show_happy.cover,result,signature,area,DATE_FORMAT(show_happy.tour_time,'%Y-%m-%d') tour_time,show_happy.route ,areas.areaname,route_template.title routeTitle   
-		from show_happy left join route_template on show_happy.route = route_template.id 
+		from show_happy left join route_template on show_happy.route = route_template.route_code 
 		left join customers on show_happy.customer=customers.id
 		left join areas on show_happy.area=areas.id 
 		<include refid="Example_Where_Clause" />

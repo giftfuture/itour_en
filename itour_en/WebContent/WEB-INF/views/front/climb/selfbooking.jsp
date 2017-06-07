@@ -11,65 +11,68 @@
 <%@include file="/front/header.jsp"  %>
 <body leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
 <div id="append_parent"></div>
-<table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+<table width="1227px" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <tr> 
-    <td width="10" background="images/default/shadowleft.gif"><img src="images/default/shadowleft.gif" width="10" height="8" /></td>
+    <td width="50" background="images/default/shadowleft.gif"><img src="images/default/shadowleft.gif" width="10" height="8" /></td>
     <td width="177">
-<div align="center"><img src="images/logo.jpg" width="160" height="96" /></div></td>
-    <td width="10" background="images/default/shadowright.gif"><img src="images/default/shadowright.gif" width="10" height="8" /></td>
+<div  style="width:1027px" align="center"><img src="images/logo.jpg" width="160" height="96" /></div></td>
+    <td width="50" background="images/default/shadowright.gif"><img src="images/default/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
-<table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+<table width="1227px" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <tr> 
     <td width="10" background="images/default/shadowleft.gif"><img src="images/default/shadowleft.gif" width="10" height="8" /></td>
-    <td> </div> <div align="center"><span class="headline"> itour Travel personality customization service</span></div></td>
+    <td> <div style="width:987px" align="center"><span class="headline"> itour Travel personality customization service</span></div></td>
     <td width="10" background="images/default/shadowright.gif"><img src="images/default/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
  <form name="booking" method="post">
-<table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+<table width="1227px" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
 <!--   <tr>
     <td><input type="hidden" id="site_id" name="site_id" value="3" /></td>
     <td><input type="hidden" id="line_url" name="line_url" value="http://www.travel-sichuan.com/sichuan/daocheng/t-dc-01.htm" /></td></tr> -->
   <tr>
     <td width="10" background="images/default/shadowleft.gif"><img src="images/default/shadowleft.gif" width="10" height="8" /></td>
-    <td> <div align="center"> </div>
-      <br />
+    <td> 
       <table width="100%" border="0" align="center" cellpadding="2" cellspacing="0" class="heedline1">
+         <tr> 
+          <td width="30%" align="right" style="padding-left:250px;text-align:right;"></td>
+          <td width="70%" style="text-align:left;width:70%"></td>
+        </tr>
         <tr> 
-          <td width="20%" align="right" style="text-align:right"><strong>Travel routes: </strong></td>
-          <td width="81%" style="text-align:left"><input type="hidden" name="routeId" value="${rt.id }"/><span style="valign:top"><strong>${rt.title }</strong></span>
+          <td width="30%" align="right" style="text-align:right"><strong>Travel routes: </strong></td>
+          <td width="70%" style="text-align:left"><input type="hidden" name="routeId" value="${rt.id }"/><span style="valign:top"><strong>${rt.title }</strong></span>
           <%-- <input name="routename" type="text" data-options="editable:false" class="easyui-textbox" size="80" value="${rt.title } " /> --%>
           </td>
         </tr>
         <tr> 
-          <td><div align="right"><strong>Expected travel date：</strong></div></td>
-          <td style="text-align:left"><input name="expectedDepart" id="expectedDepart" type="text" class='easyui-datetimebox' data-options="showSeconds:false, width:150,validType:'dateValided',editable:false,split:true,border:false,region:'north',onSelect:itour.climbselfbooking.onChangeDate(this)" /></td>
+          <td width="30%"  height="22px" align="right" style="text-align:right;"><strong>Expected travel date：</strong></td>
+          <td  width="70%" style="text-align:left;width:70%"><input name="expectedDepart" id="expectedDepart" type="text" class='easyui-datetimebox' data-options="showSeconds:false, width:150,validType:'dateValided',editable:false,split:true,border:false,region:'north',onSelect:itour.climbselfbooking.onChangeDate(this)" /></td>
         </tr>
         <tr> 
           <td><div align="right"><strong>Expected return date：</strong></div></td>
           <td style="text-align:left"><input id="expectedBack" name="expectedBack" type="text" class='easyui-datetimebox' data-options="showSeconds:false,width:150,validType:'md[\'#expectedDepart\']',editable:false,split:true,border:false,region:'north',onSelect:itour.climbselfbooking.onChangeDate(this)" />
             </td>
         </tr>
-		<tr> 
+        <tr> 
           <td><div align="right"><strong>Travel Mode：</strong></div></td>
           <td style="text-align:left"><select id="travelfashion" name="travelfashion" class="easyui-combobox" data-options="editable:false,panelHeight:100">
-		  	<option value="">Please choose</option>
-		  	<option value="Separate arrangements">Separate arrangements</option>
-			<option value="Join FIT">Join FIT</option>
-		  </select>&nbsp;&nbsp;&nbsp;&nbsp;
-		  <span id="groupdiv" style="display:none">
-		  Group number:<input id="groupCode" type="text" class="easyui-textbox" size="80" />
-		  The date of the group：<input id="groupDate" name="groupDate" type="text" class='easyui-datebox' data-options="width:100,validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.climbselfbooking.onChangeDate(this)" />
-		  </span> </td>
+            <option value="">Please choose</option>
+            <option value="Separate arrangements">Separate arrangements</option>
+            <option value="Join FIT">Join FIT</option>
+          </select>&nbsp;&nbsp;&nbsp;&nbsp;
+          <span id="groupdiv" style="display:none">
+          Group number:<input id="groupCode" type="text" class="easyui-textbox" size="80" />
+          The date of the group：<input id="groupDate" name="groupDate" type="text" class='easyui-datebox' data-options="width:100,validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.climbselfbooking.onChangeDate(this)" />
+          </span> </td>
         </tr>
         <tr> 
           <td><div align="right"><strong>Travel budget：</strong></div></td>
           <td style="text-align:left"><input name="budget" type="text" min=0 class="easyui-numberbox" data-options="precision:2,groupSeparator:',',width:151,height:22" />&nbsp;￥/
           &nbsp;<select id="singleorcluster" name="singleorcluster" class="easyui-combobox" data-options="editable:false,panelHeight:100">
-		  	<option value="Per person">Per person</option>
-			<option value="Per group">Per group</option>
-		  </select>
+            <option value="Per person">Per person</option>
+            <option value="Per group">Per group</option>
+          </select>
            (Please specify the budget for each person or the total budget for the whole group)</td>
         </tr>
         <tr> 
@@ -98,7 +101,7 @@
         <tr>
           <td><div align="right"><strong>Hotel：</strong></div></td>
           <td style="text-align:left"><select id="hotel" name="hotel" class="easyui-combobox" data-options="editable:false,panelHeight:200">
-		  	<option value="">Please Choose</option>
+            <option value="">Please Choose</option>
             <option value="Luxury (best hotel)">Luxury (best hotel)</option>
             <option value="Distinguished (five-star)">Distinguished (five-star)</option>
             <option value="Comfortable (four star)">Comfortable (four star)</option>
@@ -205,7 +208,7 @@
             China domestic
             <input name="plane[]" type="radio" value="International" />
             International<br />
-		Accommodation： 
+        Accommodation： 
             <input type="radio" name="shipping_space" value="First class" />
           First class
             <input type="radio" name="shipping_space" value="Business class" />

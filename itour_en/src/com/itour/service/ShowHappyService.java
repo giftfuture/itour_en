@@ -28,7 +28,7 @@ import com.itour.vo.ShowHappyVO;
  * <b>作者：</b>fred.zhao<br>
  * <b>日期：</b> Feb 2, 2016 <br>
  */
-@Service("showHappyService")
+@Service//("showHappyService")
 public class ShowHappyService extends BaseService<ShowHappy> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 

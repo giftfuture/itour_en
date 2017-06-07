@@ -7,10 +7,14 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import static java.lang.Character.UnicodeBlock.*;  
-import com.google.common.base.Strings; 
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+
 import sun.io.ByteToCharConverter;
 import sun.io.CharToByteConverter;
 
@@ -1186,7 +1190,25 @@ public class StringUtil
     	}
     	return str;
     }
-	
+    //截取数字  
+    public static List<String> getNumbers(String content) {  
+        Pattern pattern = Pattern.compile("\\d+");  
+        Matcher matcher = pattern.matcher(content); 
+        List<String> result = Lists.newArrayList();
+        while (matcher.find()) {  
+        	result.add(matcher.group(0));  
+        }  
+        return result;  
+    }
+    public static String [] trimEmpyArray(String [] array){
+    	List<String> tmp = new ArrayList<String>();
+    	for(String str:array){
+	    	if(str!=null&& !str.equals("") && str.length()!=0){
+	    		tmp.add(str);
+	    	}
+    	}
+    	return tmp.toArray(array);
+    }
 	public static void main(String[] args) {
 		String str="a  www.lord.org";
 		System.out.println(getByteLength(str));

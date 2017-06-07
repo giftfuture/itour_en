@@ -232,6 +232,6 @@ itour.rtschedule = function(){
 
 $(function(){
 	itour.rtschedule.init();
-	  if (window != top)
-          top.location.href = location.href;
+	  /*if (window != top)
+          top.location.href = location.href;*/
 });

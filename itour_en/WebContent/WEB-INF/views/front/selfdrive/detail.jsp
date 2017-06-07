@@ -27,14 +27,14 @@
 </script>
 </head>
 <body>
-<center>
  <%@include file="/front/header.jsp"  %>
+<center>
 <table width="1350px" class="commontb" align="center">
   <tr>
     <td width="776" style="float:middle" class="h1-black">${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>
   <tr>
-    <td width="624"><table width="600" border="0" cellpadding="0" cellspacing="0">
+    <td width="750"><table width="600"  style="float:right;text-align:right;align:right;margin-right:50px;" border="0" cellpadding="0" cellspacing="0">
       <tr>
         <td width="600" name="magnifying"><img src="${basePath}${rt.cover}" style="border:none;" border="0px"  height="338" width="600"/></td>
       </tr>
@@ -46,7 +46,7 @@
 <DIV class=rollphotos>
 <DIV class=blk_29>
 <DIV class=LeftBotton id=LeftArr><img src="${basePath}images/arrow01-1.gif" width="20" height="40" /></DIV>
-<DIV class=Cont id=ISL_Cont_1><!-- 图片列表 begin -->
+<DIV style="margin-left:15px" class=Cont id=ISL_Cont_1><!-- 图片列表 begin -->
 <c:forEach items="${rt.photoList}" var="photo">
 <div class=box><A class=imgBorder target=_blank><IMG height=55 alt="landscape" src="${basePath }${photo}" width=100 border=0></A> 
 </div>
@@ -54,30 +54,39 @@
 <!-- 图片列表 end --></DIV>
 <DIV class=RightBotton id=RightArr><img src="${basePath}images/arrow01-2.gif" width="20" height="40" /></DIV></DIV>
 <SCRIPT language=javascript type=text/javascript>
-		<!--//--><![CDATA[//><!--
-		var scrollPic_02 = new ScrollPic();
-		scrollPic_02.scrollContId   = "ISL_Cont_1"; //内容容器ID
-		scrollPic_02.arrLeftId      = "LeftArr";//左箭头ID
-		scrollPic_02.arrRightId     = "RightArr"; //右箭头ID
-		scrollPic_02.frameWidth     = 908;//显示框宽度
-		scrollPic_02.pageWidth      = 152; //翻页宽度
-		scrollPic_02.speed          = 10; //移动速度(单位毫秒，越小越快)
-		scrollPic_02.space          = 10; //每次移动像素(单位px，越大越快)
-		scrollPic_02.autoPlay       = false; //自动播放
-		scrollPic_02.autoPlayTime   = 3; //自动播放间隔时间(秒)
-		scrollPic_02.initialize(); //初始化
-		//--><!]]>
+        <!--//--><![CDATA[//><!--
+        var scrollPic_02 = new ScrollPic();
+        scrollPic_02.scrollContId   = "ISL_Cont_1"; //内容容器ID
+        scrollPic_02.arrLeftId      = "LeftArr";//左箭头ID
+        scrollPic_02.arrRightId     = "RightArr"; //右箭头ID
+        scrollPic_02.frameWidth     = 608;//显示框宽度
+        scrollPic_02.pageWidth      = 152; //翻页宽度
+        scrollPic_02.speed          = 10; //移动速度(单位毫秒，越小越快)
+        scrollPic_02.space          = 10; //每次移动像素(单位px，越大越快)
+        scrollPic_02.autoPlay       = false; //自动播放
+        scrollPic_02.autoPlayTime   = 3; //自动播放间隔时间(秒)
+        scrollPic_02.initialize(); //初始化
+        //--><!]]>
 </SCRIPT>
 </DIV>
 <!--滚动图片 end-->
 </div>
       </tr></table></td>
       </tr></table></td>
-    <td width="476" valign="top"><div align="center"><span class="STYLE2">Is this line for me?</span>
-    </div>
+       <td width="600" style="float:left" valign="top" > 
+    
       <table width="442" border="0" cellpadding="4" cellspacing="2" class="STYLE126">
-        <tr>
-          <td class="STYLE126"><div align="right"><strong>Type</strong></div></td>
+      <tbody><tr>
+        <td style="float:left"><img src="images/frame2-1.gif" width="480" height="7"></td>
+      </tr>
+<tr>
+        <td background="images/frame2-2.gif"><table cellspacing="0" cellpadding="5" border="0" align="center">
+          <tbody><tr>
+            <td><div align="center"><span class="STYLE2">Is this Line for me？</span></div></td>    
+          </tr>
+          <tr>
+            <td><table class="STYLE126" width="442" cellspacing="2" cellpadding="4" border="0">
+              <tbody><tr>          <td class="STYLE126"><div align="right"><strong>Type</strong></div></td>
           <td class="STYLE126" style="text-align:left"><strong>${rt.travelStyle} </strong><a href="javascript:void(0)" title="${rt.travelStyle}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
@@ -112,10 +121,10 @@
           <td class="STYLE126"><div align="right"><strong>Walking difficulty</strong></div></td>
           <td class="STYLE126" style="text-align:left">
           <c:forEach items="${rt.diffRate}" var="dr">
-          	 <img src="${basePath}images/shoe-1.gif" width="16" height="16" />
+             <img src="${basePath}images/shoe-1.gif" width="16" height="16" />
           </c:forEach>
           <c:forEach items="${rt.undiffRate}" var="rd">
-         	 <img src="${basePath}images/shoe-2.gif" width="16" height="16" />
+             <img src="${basePath}images/shoe-2.gif" width="16" height="16" />
           </c:forEach>
            <a href="javascript:void(0)" title="Dark shoes logo on the difficulty level">Explain&gt;&gt;</a></td>
         </tr>
@@ -127,10 +136,11 @@
           <td class="STYLE126"><div align="right"><strong>Mountain Style</strong></div></td>
           <td class="STYLE126" style="text-align:left">${rt.mountStyle } <a href="javascript:void(0)" title="${rt.mountStyle}">Explain&gt;&gt; </a></td>
         </tr>
+         <tr>
+        <td colspan=2 style="text-align:left"><span class="STYLE148">
+        Note: The needs of each group are different, according to your holiday to<br /> re-adjust the design process.</span></td>
+        </tr>
       </table>
-      <span class="STYLE148"><br />
-    Note: The needs of each group are different, according to your holiday to re-adjust the design process.</span><br />
-    <br />
     <table class="f12-gao1">
       <tr>
         <td><img src="${basePath}images/facebook.png" width="24" height="24" />
@@ -144,12 +154,20 @@
          <tr><td>Related routes:
               <c:forEach items="${rt.relates}" var="relat"><br>
               <a href="${basePath}climb/climb/${relat.alias}" >${relat.title }</a>
-              	<%-- <a href="${basePath}climb/toQuote2/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a> --%>
+                <%-- <a href="${basePath}climb/toQuote2/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a> --%>
               </c:forEach>
               </td></tr>
-			<%--  <tr><td><a href="${basePath}climb/toQuote2/${rt.alias}" class="easyui-linkbutton" >预定本路线</a></td></tr>	 --%>
+            <%--  <tr><td><a href="${basePath}climb/toQuote2/${rt.alias}" class="easyui-linkbutton" >预定本路线</a></td></tr>     --%>
     </table></td>
+  </tr></tbody></table>
+    </td>
   </tr>
+ <tr>
+    <td style="float:left"><img src="images/frame2-3.gif" width="480" height="7"></td>
+  </tr>
+  </tbody>
+</table>
+</td></tr>
 </table>
 <br />
 <br />
@@ -178,21 +196,21 @@
           ${rt.customizedService }</span>
         </td>
         <td width="299" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">Travel map</span><br />
-   			<div class="easyzoom easyzoom--overlay">
-				<a href="${basePath}images/map-002.jpg">
-					<img src="${basePath}images/map-002.jpg" alt="" width="640" height="360" />
-				</a>
-			</div>
+            <div class="easyzoom easyzoom--overlay">
+                <a href="${basePath}images/map-002.jpg">
+                    <img src="${basePath}images/map-002.jpg" alt="" width="640" height="360" />
+                </a>
+            </div>
           </div>
         </td>
       </tr>
     </table>
-	</td>
-	</tr>
-	 <tr>
+    </td>
+    </tr>
+     <tr>
     <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr> 
-	</table>
+    </table>
   </div>
   <div id="detail-route">
   <table class="frametb" align="center">
@@ -214,18 +232,14 @@
   </tr>
   <tr><td colspan="2" background="images/frame1-2.gif">${qf.agodaDetail }</td></tr>
   <tr> <td colspan="2" style="text-align:left"><span class="STYLE7">Note: The above itinerary is for reference only and can be re-adjusted according to your holiday design.</span></td> </tr>
-    <tr>
-    <td colspan=2 style="float:left"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
-    <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">Service and quotation</span></span></span></span></td>
-  </tr>
-	  <tr><td colspan=2>
+    <%--   <tr><td colspan=2>
 <table  class="frametb" align="center">
   <tr>
     <td style="float:left"><img style="float:left" src="images/frame1-1.gif" width="1140" height="7" /></td>
   </tr>
   <tr>
     <td background="images/frame1-2.gif">
-	<table  class="frametb" align="center">
+    <table  class="frametb" align="center">
         <tr>
           <td valign="top"><br />
           <table width="1140" border="0" align="center" cellpadding="4" cellspacing="2">
@@ -291,10 +305,7 @@
       </td>
       </tr>
       </table>
-      </td></tr>  <tr>
-    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
-  </tr> 
-      <tr> <td colspan="2" style="text-align:left"><span class="STYLE7">Note: The above itinerary is for reference only and can be re-adjusted according to your holiday design.</span></td> </tr>
+      </td></tr>  --%> 
 </table>
   </div>
   <div id="need-know">
@@ -305,6 +316,13 @@
   </tr>
   <tr>
     <td colspan=2 style="text-align:left">${rt.beforeInstruction }</td>
+  </tr>
+    <tr>
+    <td colspan=2 style="float:left"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
+    <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">Service and quotation</span></span></span></span></td>
+  </tr>
+    <tr>
+    <td colspan=2 style="text-align:left;align:left;">${rt.serviceAndQuote }</td>
   </tr>
 </table>
   <table  class="frametb" align="center">
@@ -371,9 +389,9 @@
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140">Verification code</td>
                 <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><div class="tip">
-     		 	<input type="text" id="verifyCode" class=" easyui-textbox" title="Verification code" name="verifyCode"  data-options="prompt:'Please type in the correct verification code!'"/><br/>
-           		<img alt="Click to replace" src="${basePath}ImageServlet" id="validateCodeImg" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">
-           		&nbsp;&nbsp;<a href="javascript:void(0)" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">Can not see, change one</a>
+                <input type="text" id="verifyCode" class=" easyui-textbox" title="Verification code" name="verifyCode"  data-options="prompt:'Please type in the correct verification code!'"/><br/>
+                <img alt="Click to replace" src="${basePath}ImageServlet" id="validateCodeImg" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">
+                &nbsp;&nbsp;<a href="javascript:void(0)" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">Can not see, change one</a>
       </div></td>
               </tr>
               <tr>
@@ -385,9 +403,9 @@
               </tr>
           </table></td>
           <td width="733" valign="top"><div>
-         		<div id="fbcontent"></div>
-			</div>
-		
+                <div id="fbcontent"></div>
+            </div>
+        
             </td>
         </tr>
       </table></form></td>

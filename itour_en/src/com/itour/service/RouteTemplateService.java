@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ import com.itour.vo.TravelItemVO;
  * <b>作者：</b>fred.zhao<br>
  * <b>日期：</b> Feb 2, 2016 <br>
  */
-@Service("routeTemplateService")
+@Service//("routeTemplateService")
 public class RouteTemplateService<T> extends BaseService<T> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
@@ -55,7 +56,7 @@ public class RouteTemplateService<T> extends BaseService<T> {
 				String travelItems = tiDao.travelItems(Arrays.asList(params));
 				fb.setTravelItems(travelItems);
 			}
-			if(StringUtils.isNotEmpty(fb.getSimilars())){
+		/*	if(StringUtils.isNotEmpty(fb.getSimilars())){
 				String[] similars = fb.getSimilars().split(",");
 				List<RouteTemplate> simlist = mapper.queryByRelated(Arrays.asList(similars));
 				List<String> sims = Lists.newArrayList();
@@ -63,7 +64,14 @@ public class RouteTemplateService<T> extends BaseService<T> {
 					sims.add(rt.getTitle());
 				}
 				fb.setSimilars(StringUtils.join(sims.toArray(), ","));
+			}*/
+			List<RouteTemplateVO>  relates = mapper.queryByRelatedRoutes(vo.getId());
+			fb.setRelates(relates);
+			StringBuffer relatedRouteTitles = new StringBuffer();
+			for(RouteTemplateVO rtvo:relates){
+				relatedRouteTitles.append(rtvo.getTitle()+",");
 			}
+			fb.setRelatedRouteTitles(relatedRouteTitles.toString());
 			//String coverpath = rtCoverPath+"/"+fb.getRouteCode()+"_"+fb.getAlias()+"/"+fb.getCover();
 			//fb.setCover(coverpath);
 			records.add(fb);
@@ -102,6 +110,13 @@ public class RouteTemplateService<T> extends BaseService<T> {
 			//rt.setCover(coverpath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover());
 			String coverpath = rtCoverPath+"/"+StringUtils.trim(fb.getRouteCode())+"_"+StringUtils.trim(fb.getAlias())+"/"+fb.getCover();
 			fb.setCover(coverpath);
+			List<RouteTemplateVO> relates = mapper.queryByRelatedRoutes(fb.getId());
+			fb.setRelates(relates);
+			StringBuffer relatedRouteTitles = new StringBuffer();
+			for(RouteTemplateVO rtvo:relates){
+				relatedRouteTitles.append(rtvo.getTitle()+",");
+			}
+			fb.setRelatedRouteTitles(relatedRouteTitles.toString());
 			records.add(fb);
 		}
 		return new BasePage<RouteTemplateVO>(vo.getStart(), vo.getLimit(), list,count);
@@ -138,6 +153,13 @@ public class RouteTemplateService<T> extends BaseService<T> {
 		for(RouteTemplateVO rt :list){
 			String coverpath = rtCoverPath+"/"+StringUtils.trim(rt.getRouteCode())+"_"+StringUtils.trim(rt.getAlias())+"/"+rt.getCover();
 			rt.setCover(coverpath);
+			List<RouteTemplateVO> relates = mapper.queryByRelatedRoutes(rt.getId());
+			rt.setRelates(relates);
+			StringBuffer relatedRouteTitles = new StringBuffer();
+			for(RouteTemplateVO rtvo:relates){
+				relatedRouteTitles.append(rtvo.getTitle()+",");
+			}
+			rt.setRelatedRouteTitles(relatedRouteTitles.toString());
 			//vos.add(RouteTemplateKit.toRecord(rt));
 		}
 		return new BasePage<RouteTemplateVO>(vo.getStart(), vo.getLimit(), list,count);
@@ -148,8 +170,8 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<RouteTemplateVO> queryByRelated(List<String> related)throws Exception{
-		List<RouteTemplate> list = mapper.queryByRelated(related);
+	public List<RouteTemplateVO> queryByIds(List<String> ids)throws Exception{
+		List<RouteTemplate> list = mapper.queryByIds(ids);
 		List<RouteTemplateVO> vos = Lists.newArrayList();
 		for(RouteTemplate rt:list){
 			vos.add(RouteTemplateKit.toRecord(rt));
@@ -170,6 +192,13 @@ public class RouteTemplateService<T> extends BaseService<T> {
 		for(RouteTemplateVO rt:list){
 			String coverpath = rtCoverPath+"/"+StringUtils.trim(rt.getRouteCode())+"_"+StringUtils.trim(rt.getAlias())+"/"+rt.getCover();
 			rt.setCover(coverpath);
+			List<RouteTemplateVO> relates = mapper.queryByRelatedRoutes(rt.getId());
+			rt.setRelates(relates);
+			StringBuffer relatedRouteTitles = new StringBuffer();
+			for(RouteTemplateVO rtvo:relates){
+				relatedRouteTitles.append(rtvo.getTitle()+",");
+			}
+			rt.setRelatedRouteTitles(relatedRouteTitles.toString());
 			vos.add(rt);
 		}
 		return vos;
@@ -187,6 +216,13 @@ public class RouteTemplateService<T> extends BaseService<T> {
 		for(RouteTemplateVO rt:list){
 			String coverpath = rtCoverPath+"/"+StringUtils.trim(rt.getRouteCode())+"_"+StringUtils.trim(rt.getAlias())+"/"+rt.getCover();
 			rt.setCover(coverpath);
+			List<RouteTemplateVO> relates = mapper.queryByRelatedRoutes(rt.getId());
+			rt.setRelates(relates);
+			StringBuffer relatedRouteTitles = new StringBuffer();
+			for(RouteTemplateVO rtvo:relates){
+				relatedRouteTitles.append(rtvo.getTitle()+",");
+			}
+			rt.setRelatedRouteTitles(relatedRouteTitles.toString());
 			vos.add(rt);
 		}
 		int count = mapper.countQueryByItems(vo);
@@ -248,15 +284,19 @@ public class RouteTemplateService<T> extends BaseService<T> {
 		//StringUtils.collectionToDelimitedString(list, ",");  
 		//StringUtils.join(list.toArray(), ","); 
 		vo.setTravelItems(Joiner.on(",").join(alias));
-		String related = vo.getRelated();
-		List<RouteTemplate> rts = mapper.queryByRelated(Arrays.asList(related.split(",")));
-		List<String> relates = Lists.newArrayList();
-		for(RouteTemplate rt:rts){
+		List<RouteTemplateVO> relates = mapper.queryByRelatedRoutes(id);
+		//List<String> relates = Lists.newArrayList();
+		/*for(RouteTemplateVO rt:rts){
 			relates.add(rt.getRouteCode());
+		}*/
+		vo.setRelates(relates);
+		StringBuffer relatedRouteTitles = new StringBuffer();
+		for(RouteTemplateVO rtvo:relates){
+			relatedRouteTitles.append(rtvo.getTitle()+",");
 		}
-		TravelStyle tstyle =(TravelStyle)tsDao.queryById(vo.getTravelStyle());
-		vo.setTravelStyle(tstyle!=null?tstyle.getAlias():"");
-		vo.setRelated(Joiner.on(",").join(relates));
+		vo.setRelatedRouteTitles(relatedRouteTitles.toString());
+		/*TravelStyle tstyle =(TravelStyle)tsDao.queryById(vo.getTravelStyle());
+		vo.setTravelStyle(tstyle!=null?tstyle.getAlias():"");*/
 		return vo;
 	}
 
@@ -279,6 +319,14 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	};*/
 	public 	List<RouteTemplateVO> queryAll()throws Exception{
 		return mapper.queryAll();
+	};
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public List<RouteTemplateVO> queryByRelatedRoutes(String id){
+		return mapper.queryByRelatedRoutes(id);
 	};
 	@Autowired
     private RouteTemplateDao<T> mapper;

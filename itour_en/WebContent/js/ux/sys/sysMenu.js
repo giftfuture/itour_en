@@ -177,6 +177,6 @@ itour.sysMenu = function(){
 
 $(function(){
 	itour.sysMenu.init();
-	  if (window != top)
-          top.location.href = location.href;
+	/*  if (window != top)
+          top.location.href = location.href;*/
 });		

@@ -21,10 +21,10 @@ A:active {	COLOR: #f00}
 .RForm DT {	LINE-HEIGHT: 23px}
 .RformB {	PADDING-LEFT: 10px}
 .blk_29 {	BORDER-RIGHT: #a1d2fd 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #a1d2fd 0px solid; PADDING-LEFT: 0px; PADDING-BOTTOM: 10px; OVERFLOW: hidden; BORDER-LEFT: #a1d2fd 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: #a1d2fd 1px solid; ZOOM: 1; POSITION: relative}
-.blk_29 .LeftBotton {	BACKGROUND: url(../images/ca_hz_002.gif) no-repeat 0px 0px; LEFT: 5px; FLOAT: left; WIDTH: 11px; CURSOR: pointer; POSITION: absolute; TOP: 33px;valign:middle; HEIGHT: 114px;}
-.blk_29 .RightBotton {padding-right:18px;	RIGHT: 5px; BACKGROUND: url(../images/ca_hz_002.gif) no-repeat -11px 0px; FLOAT: right; WIDTH: 11px; CURSOR: pointer; POSITION: absolute;  HEIGHT:114px;TOP:33px;valign:middle;}
+.blk_29 .LeftBotton {	BACKGROUND: url(../images/ca_hz_002.gif) no-repeat 0px 0px; LEFT: 5px; FLOAT: left; WIDTH: 11px; CURSOR: pointer; POSITION: absolute; TOP: 25px;valign:middle; HEIGHT: 114px;}
+.blk_29 .RightBotton {/* padding-right:18px; */	RIGHT: 5px; BACKGROUND: url(../images/ca_hz_002.gif) no-repeat -11px 0px; FLOAT: right; WIDTH: 11px; CURSOR: pointer; POSITION: absolute;  HEIGHT:114px;TOP:25px;valign:middle;}
 .blk_29 .Cont {	MARGIN: 0px auto; OVERFLOW: hidden; WIDTH: 888px; PADDING-TOP: 5px}
-.blk_29 .box {	FLOAT: left; WIDTH: 152px; TEXT-ALIGN: center}
+.blk_29 .box {	FLOAT: left; WIDTH: 102px; TEXT-ALIGN: center}
 .blk_29 .box IMG {	BORDER-RIGHT: #add2fc 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #add2fc 1px solid; DISPLAY: block; PADDING-LEFT: 3px; BACKGROUND: #fff; PADDING-BOTTOM: 3px; MARGIN: 0px auto; BORDER-LEFT: #add2fc 1px solid; PADDING-TOP: 3px; BORDER-BOTTOM: #add2fc 1px solid}
 .blk_29 .box A:hover IMG {	BORDER-RIGHT: #5385cc 1px solid; BORDER-TOP: #5385cc 1px solid; BORDER-LEFT: #5385cc 1px solid; BORDER-BOTTOM: #5385cc 1px solid}
 .blk_29 .box P {	MARGIN: 6px auto 0px; WIDTH: 97px; LINE-HEIGHT: 20px}

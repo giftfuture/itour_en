@@ -52,6 +52,8 @@ public class IDGenerator {
 		        'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',  
 		        'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',  
 		        'Z' };  
+	  public final static char[] chars={'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',  
+		        'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y','Z'};
 	  final static char[] numbers = { '0', '1', '2', '3', '4', '5', '6', '7', '8','9' };  
 		/** 
 		 * 随机ID生成器，由数字、小写字母和大写字母组成 

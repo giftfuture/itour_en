@@ -38,7 +38,7 @@ public class Constants {
 	//private TravelStyleDao baseDao;
 	@Autowired
 	private static JdbcTemplate jdbcTemplate;
-	
+	public static final Map<String,Object> TDQUOTE1 = Maps.newConcurrentMap();
 	public static final Map<String,Object> TDQUOTE2 = Maps.newConcurrentMap();
 	public static final Map<String,Object> TDQUOTE3 = Maps.newConcurrentMap();
 	public static final Map<String,String> travelStyles = Maps.newHashMap();

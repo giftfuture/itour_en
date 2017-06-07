@@ -11,48 +11,51 @@
 <%@include file="/front/header.jsp"  %>
 <body leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
 <div id="append_parent"></div>
-<table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+<table width="1227px" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <tr> 
-    <td width="10" background="images/default/shadowleft.gif"><img src="images/default/shadowleft.gif" width="10" height="8" /></td>
-    <td width="177">
-<div align="center"><img src="images/logo.jpg" width="160" height="96" /></div></td>
-    <td width="10" background="images/default/shadowright.gif"><img src="images/default/shadowright.gif" width="10" height="8" /></td>
+    <td width="50" background="images/default/shadowleft.gif"><img src="images/default/shadowleft.gif" width="10" height="8" /></td>
+    <td width=" ">
+    <div  align="center"><img src="images/logo.jpg" width="160" height="96" /></div></td>
+    <td width="50" background="images/default/shadowright.gif"><img src="images/default/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
-<table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+<table width="1227px" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <tr> 
     <td width="10" background="images/default/shadowleft.gif"><img src="images/default/shadowleft.gif" width="10" height="8" /></td>
-    <td> </div> <div align="center"><span class="headline"> itour Travel personality customization service</span></div></td>
+    <td><div  align="center"><span class="headline"> itour Travel personality customization service</span></div></td>
     <td width="10" background="images/default/shadowright.gif"><img src="images/default/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
  <form name="booking" method="post">
-<table width="996" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+<table width="1227px" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
 <!--   <tr>
     <td><input type="hidden" id="site_id" name="site_id" value="3" /></td>
     <td><input type="hidden" id="line_url" name="line_url" value="http://www.travel-sichuan.com/sichuan/daocheng/t-dc-01.htm" /></td></tr> -->
   <tr>
     <td width="10" background="images/default/shadowleft.gif"><img src="images/default/shadowleft.gif" width="10" height="8" /></td>
-    <td> <div align="center"> </div>
-      <br />
+    <td>
       <table width="100%" border="0" align="center" cellpadding="2" cellspacing="0" class="heedline1">
+       <tr> 
+          <td width="30%" align="right" style="padding-left:250px;text-align:right;"></td>
+          <td width="70%" style="text-align:left;width:70%"></td>
+        </tr>
         <tr> 
-          <td width="20%" align="right" style="text-align:right"><strong>Travel routes: </strong></td>
-          <td width="81%" style="text-align:left"><input type="hidden" name="routeId" value="${rt.id }"/><span style="valign:top"><strong>${rt.title }</strong></span>
+          <td width="30%" align="right" style="text-align:right;"><strong>Travel routes: </strong></td>
+          <td width="70%" style="text-align:left;width:70%"><input type="hidden" name="routeId" value="${rt.id }"/><span style="valign:top"><strong>${rt.title }</strong></span>
           <%-- <input name="routename" type="text" data-options="editable:false" class="easyui-textbox" size="80" value="${rt.title } " /> --%>
           </td>
         </tr>
         <tr> 
-          <td><div align="right"><strong>Expected travel date：</strong></div></td>
-          <td style="text-align:left"><input name="expectedDepart" id="expectedDepart" type="text" class='easyui-datetimebox' data-options="showSeconds:false, width:150,validType:'dateValided',editable:false,split:true,border:false,region:'north',onSelect:itour.climbselfbooking.onChangeDate(this)" /></td>
+          <td width="30%"  align="right" style="text-align:right;"><strong>Expected travel date：</strong></td>
+          <td  width="70%" style="text-align:left;width:70%"><input name="expectedDepart" id="expectedDepart" type="text" class='easyui-datetimebox' data-options="showSeconds:false, width:150,validType:'dateValided',editable:false,split:true,border:false,region:'north',onSelect:itour.trekselfbooking.onChangeDate(this)" /></td>
         </tr>
         <tr> 
-          <td><div align="right"><strong>Expected return date：</strong></div></td>
-          <td style="text-align:left"><input id="expectedBack" name="expectedBack" type="text" class='easyui-datetimebox' data-options="showSeconds:false,width:150,validType:'md[\'#expectedDepart\']',editable:false,split:true,border:false,region:'north',onSelect:itour.climbselfbooking.onChangeDate(this)" />
+          <td style="text-align:right"><strong>Expected return date：</strong></td>
+          <td style="text-align:left"><input id="expectedBack" name="expectedBack" type="text" class='easyui-datetimebox' data-options="showSeconds:false,width:150,validType:'md[\'#expectedDepart\']',editable:false,split:true,border:false,region:'north',onSelect:itour.trekselfbooking.onChangeDate(this)" />
             </td>
         </tr>
 		<tr> 
-          <td><div align="right"><strong>Travel Mode：</strong></div></td>
+          <td style="text-align:right"><strong>Travel Mode：</strong></td>
           <td style="text-align:left"><select id="travelfashion" name="travelfashion" class="easyui-combobox" data-options="editable:false,panelHeight:100">
 		  	<option value="">Please choose</option>
 		  	<option value="Separate arrangements">Separate arrangements</option>
@@ -64,7 +67,7 @@
 		  </span> </td>
         </tr>
         <tr> 
-          <td><div align="right"><strong>Travel budget：</strong></div></td>
+          <td style="text-align:right"><strong>Travel budget：</strong></td>
           <td style="text-align:left"><input name="budget" type="text" min=0 class="easyui-numberbox" data-options="precision:2,groupSeparator:',',width:151,height:22" />&nbsp;￥/
           &nbsp;<select id="singleorcluster" name="singleorcluster" class="easyui-combobox" data-options="editable:false,panelHeight:100">
 		  	<option value="Per person">Per person</option>
@@ -73,8 +76,8 @@
            (Please specify the budget for each person or the total budget for the whole group)</td>
         </tr>
         <tr> 
-          <td valign="top"> <div align="right"><strong>Travel requirements：<br />
-             (Check) </strong></div></td>
+          <td valign="top" style="text-align:right"><strong>Travel requirements：<br />
+             (Check) </strong></td>
           <td style="text-align:left"><span class="radioSpan">
           <input name="travelrequest[]" type="checkbox" value="Photography mainly" />
             Photography mainly
@@ -96,7 +99,7 @@
             <input name="travelrequest[]" type="checkbox" value="No shopping" />No shopping</span> </td>
         </tr>
         <tr>
-          <td><div align="right"><strong>Hotel：</strong></div></td>
+          <td style="text-align:right"><strong>Hotel：</strong></td>
           <td style="text-align:left"><select id="hotel" name="hotel" class="easyui-combobox" data-options="editable:false,panelHeight:200">
 		  	<option value="">Please Choose</option>
             <option value="Luxury (best hotel)">Luxury (best hotel)</option>
@@ -106,7 +109,7 @@
             </select></td>
         </tr>
         <tr> 
-          <td><div align="right"><strong>Tourist guide：</strong></div></td>
+          <td style="text-align:right"><strong>Tourist guide：</strong></td>
           <td style="text-align:left"><span class="radioSpan">
           <input type="radio" name="guide" value="Chinese" />Chinese
             <input type="radio" name="guide" value="English" />English 
@@ -117,7 +120,7 @@
             <input type="radio" name="guide" value="No tour guide" />No tour guide</span> </td>
         </tr>
         <tr> 
-          <td><div align="right"><strong>Whether to arrange a diet ：</strong></div></td>
+          <td style="text-align:right"><strong>Whether to arrange a diet ：</strong></td>
           <td style="text-align:left"><input type="checkbox" name="foodArrange" value="Please arrange" />
           <!--   <input type="radio" name="foodrequest" value="自行安排"  />  请安排  自行安排 -->
            </td>
@@ -127,7 +130,7 @@
           <td>&nbsp;</td>
         </tr> -->
         <tr> 
-          <td><div align="right"><strong>Contact name：</strong></div></td>
+          <td style="text-align:right"><strong>Contact name：</strong></td>
           <td style="text-align:left"><input name="receiver" type="text" class="easyui-textbox"/> 
           <select id="gender" name="gender" class="easyui-combobox" data-options="editable:false,panelHeight:100">
               <option>Gender</option>
@@ -136,23 +139,23 @@
             </select> </td>
         </tr>
         <tr> 
-          <td><div align="right"><strong>The number of people：</strong></div></td>
+          <td style="text-align:right"><strong>The number of people：</strong></td>
           <td style="text-align:left"><input name="adults" size="6" min=0 class="easyui-numberbox" data-options="groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/>
             Adult
             <input name="children" size="6" min=0 class="easyui-numberbox" data-options="precision:0,groupSeparator:',',width:151,height:22 " onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" />
           Child (under 12 years old) </td>
         </tr>
         <tr> 
-          <td><div align="right"><strong>Countries and regions：</strong></div></td>
+          <td style="text-align:right"><strong>Countries and regions：</strong></td>
           <td style="text-align:left"><input id="comefrom" name="comefrom" class="easyui-combobox"  data-options="width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">
             (Eg, Hong Kong, China)</td>
         </tr>
         <tr> 
-          <td><div align="right"><strong>E-mail：</strong></div></td>
+          <td style="text-align:right"><strong>E-mail：</strong></td>
           <td style="text-align:left"><input name="receiveremail" type='text' class="easyui-textbox" data-options="validType:'email',groupSeparator:',',width:151,height:22" /> </td>
         </tr>
         <tr> 
-          <td><div align="right"><strong>Contact number：</strong></div></td>
+          <td style="text-align:right"><strong>Contact number：</strong></td>
           <td style="text-align:left"><input name="receiverMobile" class="easyui-textbox" type="text" data-options="validType:'mobileTelephone',groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
         </tr>
    <!--      <tr> 

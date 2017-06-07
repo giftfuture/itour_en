@@ -53,7 +53,7 @@
     <td background="images/frame1-2.gif">
     <table width="100%" cellspacing="0" cellpadding="10" border="0" align="center">
         <tbody><tr>
-          <td class="STYLE126" width="761" valign="top"><span class="STYLE3">简要行程</span><span class="STYLE2">：</span></td>
+          <td class="STYLE126" width="761" valign="top"><span class="STYLE3">行程规划：</span></td>
         </tr>
       </tbody></table>
       <div id="routetablediv">
@@ -99,9 +99,10 @@
   <tr>
     <td><img src="images/frame1-3.gif" width="100%" height="7"></td>
   </tr>
+   <tr><td><input type="button" name="rtbtn" value="芝麻开门"><div id="alertMessage"></div></td></tr>
 </tbody></table>
 <br>
-<table width="80%" cellspacing="2" cellpadding="8" border="1" align="center">
+<%-- <table width="80%" cellspacing="2" cellpadding="8" border="1" align="center">
   <tbody><tr>
     <td width="78"><strong>项目</strong></td>
     <td width="639"><div align="center"><strong>成本及计算</strong></div></td>
@@ -136,7 +137,7 @@
       	${qf.ticketBlock}</div></td>
     <td><div align="center">
     <c:choose> 
-      <c:when test="${qf.ticketAsadult ==true}">
+      <c:when test="${qf.ticketAsadult == 1}">
             <input name="ticketAsadult" value="" checked="checked" type="checkbox">
       </c:when><c:otherwise>
       		<input name="ticketAsadult" value="" type="checkbox">
@@ -155,7 +156,7 @@
    </div></td>
     <td><div align="center">
     <c:choose> 
-    	<c:when test="${qf.traveldocAsadult==true }">
+    	<c:when test="${qf.traveldocAsadult== 1 }">
       <input name="traveldocAsadult" checked="checked" type="checkbox">
     	</c:when><c:otherwise>
       <input name="traveldocAsadult" type="checkbox">
@@ -172,7 +173,7 @@
    </div></td>
     <td><div align="center">
     <c:choose> 
-      <c:when test="${qf.tourguideAsadult==true }">
+      <c:when test="${qf.tourguideAsadult== 1 }">
       <input name="tourguideAsadult" type="checkbox" checked="checked">
       </c:when><c:otherwise>
       <input name="tourguideAsadult" type="checkbox">
@@ -204,7 +205,7 @@
     </div></td>
     <td><div align="center">
     <c:choose> 
-      <c:when test="${qf.rentcarAsadult==true }">
+      <c:when test="${qf.rentcarAsadult== 1 }">
       <input name="rentcarAsadult" checked="checked" type="checkbox">
       </c:when><c:otherwise>
        <input name="rentcarAsadult" type="checkbox">
@@ -219,7 +220,7 @@
     </strong></div></td>
     <td>添加大交通：<a name="addbigtraffic" ><img src="images/add.gif" width="16" height="16" ></a> 
     <c:choose>
-    	<c:when test="${qf.bigtrafficeAsadult==true }">
+    	<c:when test="${qf.bigtrafficeAsadult== 1 }">
     	    <label>
         <input name="train-ticket" value="bigTrafficSum" checked="checked"type="radio">
       计入总价
@@ -240,7 +241,7 @@
     	</c:otherwise>
     </c:choose>
     	<div id="addbigtrafficdiv">
-  			${qf.bigTraffic }
+  			${qf.bigTraffic}
             </div>  </td>
     <td><div align="center">
       <input name="bigtrafficeAsadult" checked="checked" type="checkbox">
@@ -272,7 +273,7 @@
         </div></td>
     <td><div align="center">
       <c:choose>
-      	<c:when test="${qf.insuranceAsadult==true }">
+      	<c:when test="${qf.insuranceAsadult== 1 }">
       <input name="insuranceAsadult" checked="checked" type="checkbox">      	
       	</c:when>
       	<c:otherwise>
@@ -291,7 +292,7 @@
       </div></td>
     <td><div align="center">
     <c:choose>
-    	<c:when test="${qf.comphcostAsadult==true }">
+    	<c:when test="${qf.comphcostAsadult== 1 }">
        <input name="comphcostAsadult" checked="checked" type="checkbox">
     	</c:when><c:otherwise>
       <input name="comphcostAsadult" type="checkbox">
@@ -308,7 +309,7 @@
        </div></td>
     <td><div align="center">
      <c:choose>
-    	<c:when test="${qf.comphcostAsadult==true }">
+    	<c:when test="${qf.comphcostAsadult== 1 }">
       <input name="recreationAsadult" checked="checked" type="checkbox">
     	</c:when><c:otherwise>
       <input name="recreationAsadult" type="checkbox">
@@ -328,7 +329,7 @@
    	</div></td>       
     <td><div align="center">  
        <c:choose>
-    	<c:when test="${qf.itemguideAsadult==true }">
+    	<c:when test="${qf.itemguideAsadult == 1 }">
       <input name="itemguideAsadult" checked="checked" type="checkbox">
     	</c:when><c:otherwise>
       <input name="itemguideAsadult" type="checkbox">
@@ -345,7 +346,7 @@
         </div></td>
     <td><div align="center">
      <c:choose>
-    	<c:when test="${qf.bathcostAsadult==true }">
+    	<c:when test="${qf.bathcostAsadult== 1 }">
       <input name="bathcostAsadult" checked="checked" type="checkbox">
     	</c:when><c:otherwise>
       <input name="bathcostAsadult" type="checkbox">
@@ -363,7 +364,7 @@
      </td>
     <td><div align="center">
     <c:choose>
-    	<c:when test="${qf.ridecostAsadult==true }">
+    	<c:when test="${qf.ridecostAsadult== 1 }">
       <input name="ridecostAsadult" checked="checked" type="checkbox">
     	</c:when><c:otherwise>
       <input name="ridecostAsadult" type="checkbox">
@@ -380,7 +381,7 @@
       </div></td>
     <td><div align="center">
     <c:choose>
-    	<c:when test="${qf.climbrcostAsadult==true }">
+    	<c:when test="${qf.climbrcostAsadult== 1 }">
       <input name="climbrcostAsadult" checked="checked" type="checkbox">
     	</c:when><c:otherwise>
       <input name="climbrcostAsadult" type="checkbox">
@@ -397,7 +398,7 @@
       </div></td>
     <td><div align="center">
      <c:choose>
-    	<c:when test="${qf.climbncostAsadult==true }">
+    	<c:when test="${qf.climbncostAsadult== 1 }">
       <input name="climbncostAsadult" checked="checked" type="checkbox">
     	</c:when><c:otherwise>
       <input name="climbncostAsadult" type="checkbox">
@@ -418,7 +419,7 @@
       </td>
     <td><div align="center">
      <c:choose>
-    	<c:when test="${qf.elsecostAsadult==true }">
+    	<c:when test="${qf.elsecostAsadult== 1 }">
       <input name="elsecostAsadult" checked="checked" type="checkbox">
     	</c:when><c:otherwise>
       <input name="elsecostAsadult" type="checkbox">
@@ -434,20 +435,6 @@
     <td><span class="STYLE10"></span></td>
   </tr>
   <tr><td><input type="button" name="rtbtn" value="芝麻开门"><div id="alertMessage"></div></td></tr>
-<%--   <tr>
-    <td><div align="right">核算价格：</div></td>
-    <td><label></label>
-      <table cellspacing="0" cellpadding="3" border="0">
-        <tbody><tr>
-          <td><input type="button" name="rtbtn" value="芝麻开门"></td>
-        </tr>
-        <tr>
-          <td><a href="${basePath}hiking/toQuote2">链接</a></td>
-        </tr>
-      </tbody></table></td>
-    <td><div align="center"></div></td>
-    <td><span class="STYLE10">两种核算价格的方式，出来两个不同的页面</span></td>
-  </tr> --%>
   <tr>
     <td><div align="right"></div></td>
     <td>**线路在外面售卖的价格可能通过这套系统来评估<br>
@@ -455,10 +442,7 @@
     <td><div align="center"></div></td>
     <td><span class="STYLE10"></span></td>
   </tr>
- <!--  <tr>
-    <td colspan="4"><p><a href="#" class="STYLE136">算价管理（门票在景点内管理）</a></p>    </td>
-  </tr> -->
-</tbody></table>
+</tbody></table> --%>
 </div>
 </form:form>
 <iframe id="rfFrame" name="rfFrame" src="about:blank" style="display:none;"></iframe> 

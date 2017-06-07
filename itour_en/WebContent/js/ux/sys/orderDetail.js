@@ -476,6 +476,6 @@ itour.orderDetail = function(){
 
 $(function(){
 	itour.orderDetail.init();
-	  if (window != top)
-          top.location.href = location.href;
+	  /*if (window != top)
+          top.location.href = location.href;*/
 });

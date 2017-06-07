@@ -258,6 +258,6 @@ itour.feedback = function(){
 
 $(function(){
 	itour.feedback.init();
-	  if (window != top)
-          top.location.href = location.href;
+	  /*if (window != top)
+          top.location.href = location.href;*/
 });

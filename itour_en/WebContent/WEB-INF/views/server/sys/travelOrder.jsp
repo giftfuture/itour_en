@@ -66,7 +66,7 @@
 					</div>
 			  	    <div class="fitem">
 						<label>订单路线:</label>
-						<input name="routename" type="text" maxlength="20" class="easyui-textbox" missingMessage="请填写receiverMobile">
+						<input name="routename" type="text" maxlength="20" class="easyui-textbox" data-options="editable:false" missingMessage="请填写receiverMobile">
 					</div>
 					<div class="fitem">
 						<label>联系电话:</label>

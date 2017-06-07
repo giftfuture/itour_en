@@ -23,7 +23,7 @@ import com.itour.vo.LogSettingVO;
  * <b>作者：</b>fred.zhao<br>
  * <b>日期：</b> Feb 2, 2016 <br>
  */
-@Service("logSettingService")
+@Service//("logSettingService")
 public class LogSettingService<T> extends BaseService<T> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 

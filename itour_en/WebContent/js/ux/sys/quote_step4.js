@@ -72,9 +72,11 @@ itour.serverquotestep4 = function(){
 			});
 			//generateReport
 			$("a[name='generateReport']").click(function(){
-				$.post('travelOrder/generateReport',{'formContent':document.getElementById("reportdiv").innerHTML,'tordername':$("input[name='tordername']").val(),'idrt':$("input[name='idrt']").val()},function(responseText){
+				itour.progress('Please waiting','Booking...');
+				$.post('travelOrder/generateReport',{'formContent':document.getElementById("reportdiv").innerHTML,'tordername':$("input[name='tordername']").val(),'idrt':$("input[name='idrt']").val(),'basePath':basePath},function(responseText){
 					var result = $.parseJSON(responseText);
 					//console.log(result);
+					itour.closeProgress();
 					if(result.success&&result.msg){
 						itour.alert("提示",result.msg,"info",function(){
 							$("a[name='viewReport']").attr("href",basePath+result.data);
@@ -99,6 +101,6 @@ $(function(){
 	   itour.serverquotestep4.init();
 	   itour.serverquotestep4.copyUrl();
 	   var homeurl = window.location.href;
-	   if (window != top)
-           top.location.href = location.href;
+	   /*if (window != top)
+           top.location.href = location.href;*/
 });

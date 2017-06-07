@@ -156,17 +156,8 @@ public class HikingController extends BaseController{
 		if(rt != null && StringUtils.isNotEmpty(rt.getCover())){
 			rt.setCover(coverpath+"/"+StringUtils.trim(rt.getRouteCode())+"_"+rt.getAlias()+"/"+rt.getCover());
 		}
-		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
-			String [] ids =  rt.getRelated().split(",");
-			List<RouteTemplateVO> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
-			for(RouteTemplateVO rtp:relates){
-				TravelStyle ts = (TravelStyle)travelStyleService.queryById(rtp.getTravelStyle());
-				if(ts != null){
-					rtp.setTravelStyleAlias(ts.getAlias());
-				}
-			}
-			 rt.setRelates(relates);
-		}
+		List<RouteTemplateVO> relates = routeTemplateService.queryByRelatedRoutes(rt.getId());
+		rt.setRelates(relates);
 		QuoteFormVO qf = quoteFormService.queryByRtId(rt.getId());
 		/*String beriefTrip = qf.getBeriefTrip().replaceAll("\"", "'");//ExecuteScript.exeScript("beriefTrip",qf.getBeriefTrip().replaceAll("\"", "'"),request);
 		rt.setBeriefTrip(beriefTrip);
@@ -246,17 +237,8 @@ public class HikingController extends BaseController{
 		if(rt != null && StringUtils.isNotEmpty(rt.getCover())){
 			rt.setCover(coverpath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover());
 		}
-		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
-			String [] ids =  rt.getRelated().split(",");
-			List<RouteTemplateVO> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
-			for(RouteTemplateVO rtp:relates){
-				TravelStyle ts = (TravelStyle)travelStyleService.queryById(rtp.getTravelStyle());
-				if(ts != null){
-					rtp.setTravelStyleAlias(ts.getAlias());
-				}
-			}
-			 rt.setRelates(relates);
-		}
+		List<RouteTemplateVO> relates = routeTemplateService.queryByRelatedRoutes(rt.getId());
+		rt.setRelates(relates);
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
 		List<TravelItemVO> items = travelItemService.queryByIds(itids);
@@ -295,17 +277,8 @@ public class HikingController extends BaseController{
 		if(rt != null && StringUtils.isNotEmpty(rt.getCover())){
 			rt.setCover(coverpath+"/"+rt.getRouteCode()+"_"+rt.getAlias()+"/"+rt.getCover());
 		}
-		if(rt != null && StringUtils.isNotEmpty(rt.getRelated())){
-			String [] ids =  rt.getRelated().split(",");
-			List<RouteTemplateVO> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
-			for(RouteTemplateVO rtp:relates){
-				TravelStyle ts = (TravelStyle)travelStyleService.queryById(rtp.getTravelStyle());
-				if(ts != null){
-					rtp.setTravelStyleAlias(ts.getAlias());
-				}
-			}
-			 rt.setRelates(relates);
-		}
+		List<RouteTemplateVO> relates = routeTemplateService.queryByRelatedRoutes(rt.getId());
+		rt.setRelates(relates);
 		String itemIds = StringUtils.isNotEmpty(rt.getTravelItems())?rt.getTravelItems():"";
 		List<String> itids = Arrays.asList(itemIds.split(","));
 		List<TravelItemVO> items = travelItemService.queryByIds(itids);

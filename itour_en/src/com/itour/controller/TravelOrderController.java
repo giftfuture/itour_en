@@ -36,6 +36,7 @@ import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itour.base.annotation.Auth;
 import com.itour.base.cache.CacheService;
+import com.itour.base.convert.ImageFilter;
 import com.itour.base.easyui.DataGridAdapter;
 import com.itour.base.easyui.EasyUIGrid;
 import com.itour.base.json.JsonUtils;
@@ -44,7 +45,9 @@ import com.itour.base.util.DateUtil;
 import com.itour.base.util.FilePros;
 import com.itour.base.util.HtmlToPdf;
 import com.itour.base.util.IDGenerator;
+import com.itour.base.util.PinYinUtil;
 import com.itour.base.util.SessionUtils;
+import com.itour.base.util.StringUtil;
 import com.itour.base.util.WaterMarkUtilPDF;
 import com.itour.base.util.email.EmailService;
 import com.itour.base.web.BaseController;
@@ -302,15 +305,20 @@ public class TravelOrderController extends BaseController {
 		 */
 		entity.setStatus(1);
 		entity.setTravelOrder(StringUtils.isNotEmpty(travelOrderId) ? travelOrderId : "");
+		entity.setGroupDate(entity.getExpectedDepart());
+		//entity.setCount(entity.getAdults()+entity.getChildren());
+		String groupCode = "Itour"+entity.getGroupDate();
+		String gCode = orderDetailService.queryGroupCode(groupCode);
+		entity.setGroupCode(gCode);
 		String odId = orderDetailService.add(OrderDetailKit.toEntity(entity));
-		String title = "主角旅行itours网站";
-		String content = "尊敬的客户" + entity.getReceiver() + (entity.getGender()==1 ? "先生" : "女士")
-				+ "您好：您的预定信息已收到，预定成功信息将于24小时内发送到您的邮箱，请留意查看";
+		String title = "Itours Booking Info";
+		String content = "Hello!Dear"  + (entity.getGender()==1 ? "Mr" : "Mrs")+ entity.getReceiver()
+				+ " Your booking information has been received and the booking success message will be sent to your email within 24 hours. Please pay attention to view.";
 		if (EmailService.sendEmail(title, receiveremail, title, content, "")) {
-			String result = sendSuccessResult(response, "预定成功，请稍后查看邮箱预定成功信息！");
+			String result = sendSuccessResult(response, "Reservation is successful, please check the mailbox reservation success later!");
 			return result;
 		} else {
-			String result = sendSuccessResult(response, "预定成功，邮件未发送成功,请等待客服24小时内发送预定成功信息到您的邮箱！");
+			String result = sendSuccessResult(response, "The reservation is successful, the message is not sent successfully, please wait 24 hours to send a scheduled success message to your mailbox!");
 			return result;
 		}
 	}
@@ -392,13 +400,54 @@ public class TravelOrderController extends BaseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/toQuote1", method = RequestMethod.GET)
+	@RequestMapping(value = "/toQuote1/{id}/{routeId}", method = RequestMethod.GET)
 	@ResponseBody
-	public ModelAndView toQuote1(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Map<String, Object> context = getRootMap();
-		// context.put("items", items);
-		// context.put("rt", rt);
-		return forward("front/trek/quote_step1", context);
+	public ModelAndView toQuote1(@PathVariable("id") String id, @PathVariable("routeId") String routeId,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Map<String,Object> context = getRootMap();
+		RouteTemplateVO bean  = routeTemplateService.selectById(routeId);
+		if(bean == null){
+			context.put(SUCCESS, false);
+			context.put("bean", "没有找到对应的记录!");
+			return forward(request.getHeader("Referer"),context);
+		}
+		String itemIds = StringUtils.isNotEmpty(bean.getTravelItems())?bean.getTravelItems():"";
+		List<String> itids = Arrays.asList(itemIds.split(","));
+		List<TravelItemVO> items = travelItemService.queryByIds(itids);
+		//Map<String,String> ticketsBlock = new HashMap<String,String>();
+		StringBuffer adultticketsBlock = new StringBuffer();
+		int idx = 0;
+		for(TravelItemVO ti:items){
+			String tickets = ti.getTicketsBlock();
+			if(StringUtils.isNotEmpty(tickets)){
+				String[] ticketArray = tickets.replace("slack season:", "").replace("busy season:", "").split("、");
+				for(String map : ticketArray){
+					String [] keyvalue = map.split("：");
+					//ticketsBlock.put(keyvalue[0], keyvalue[1]);
+					if(keyvalue.length==2){
+						adultticketsBlock.append("<span name="+(PinYinUtil.getPinYin(keyvalue[0].length()>=3?keyvalue[0].substring(0, 3):keyvalue[0]))+">"+(++idx)+"."+keyvalue[0]+":&nbsp;&nbsp;&nbsp;<span name=ttprice>"+ keyvalue[1]+"</span>元/人</span>&nbsp;&nbsp;&nbsp;<input type='checkbox' checked='checked'/><br/>");
+					}
+				}
+			}
+		}
+		TravelOrder entity = travelOrderService.queryById(id);
+		OrderDetailVO od = orderDetailService.queryByOrderId(entity.getId());
+		QuoteFormVO qf = quoteFormService.queryByRtId(bean.getId());
+		context.put(SUCCESS, true);
+		context.put("bean", bean);
+		context.put("qf", qf);
+		context.put("torder", entity);
+		context.put("od", od);
+		context.put("adultticketsBlock", adultticketsBlock.toString().replaceAll("\"", ""));
+		Constants.TDQUOTE1.put("bean", bean);
+		Constants.TDQUOTE1.put("qf", qf);
+		Constants.TDQUOTE1.put("torder", entity);
+		Constants.TDQUOTE1.put("od", od);
+		Constants.TDQUOTE1.put("adultticketsBlock",  adultticketsBlock.toString().replaceAll("\"", ""));
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelOrderController的toQuote1方法");
+		String logId = logSettingService.add(new LogSetting("travel_order","订单管理","travelOrder/toQuote1",sessionuser.getId(),"",""));
+		logOperationService.add(new LogOperation(logId,"查看",bean.getId(),JsonUtils.encode(bean),"","travelOrder/toQuote1",sessionuser.getId())); 
+		return forward("server/sys/quote_step1",context);
 	}
 
 	/**
@@ -408,13 +457,270 @@ public class TravelOrderController extends BaseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/toQuote2/{id}/{routeId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/returntoQuote1", method = RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView toQuote2(@PathVariable("id") String id, @PathVariable("routeId") String routeId,
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView returntoQuote1(CalculateQuoteVO vo,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Map<String,Object> context = getRootMap();
+		RouteTemplateVO bean  = routeTemplateService.selectById(vo.getRtid());
+		if(bean == null){
+			context.put(SUCCESS, false);
+			context.put("bean", "没有找到对应的记录!");
+			return forward(request.getHeader("Referer"),context);
+		}
+		String itemIds = StringUtils.isNotEmpty(bean.getTravelItems())?bean.getTravelItems():"";
+		List<String> itids = Arrays.asList(itemIds.split(","));
+		List<TravelItemVO> items = travelItemService.queryByIds(itids);
+		//Map<String,String> ticketsBlock = new HashMap<String,String>();
+		StringBuffer adultticketsBlock = new StringBuffer();
+		int idx = 0;
+		for(TravelItemVO ti:items){
+			String tickets = ti.getTicketsBlock();
+			if(StringUtils.isNotEmpty(tickets)){
+				String[] ticketArray = tickets.replace("淡季：", "").replace("旺季：", "").split("、");
+				for(String map : ticketArray){
+					String [] keyvalue = map.split("：");
+					//ticketsBlock.put(keyvalue[0], keyvalue[1]);
+					if(keyvalue.length==2){
+						adultticketsBlock.append("<span name="+(PinYinUtil.getPinYin(keyvalue[0].length()>=3?keyvalue[0].substring(0, 3):keyvalue[0]))+">"+(++idx)+"."+keyvalue[0]+":&nbsp;&nbsp;&nbsp;<span name=ttprice>"+ keyvalue[1]+"</span>元/人</span>&nbsp;&nbsp;&nbsp;");
+						if(vo.getAdultticketsBlock().contains(keyvalue[0])){
+							adultticketsBlock.append("<input type='checkbox' checked='checked'/><br/>");
+						}else{
+							adultticketsBlock.append("<input type='checkbox'/><br/>");
+						}
+					}
+				}
+			}
+		}
+		TravelOrder entity = travelOrderService.queryById(vo.getTorderid() );
+		OrderDetailVO od = orderDetailService.queryByOrderId(entity.getId());
+		QuoteFormVO qf = quoteFormService.queryByRtId(bean.getId());
+		context.put(SUCCESS, true);
+		context.put("bean", bean);
+		context.put("qf", qf);
+		context.put("torder", entity);
+		context.put("od", od);
+		vo.setAdultticketsBlock(adultticketsBlock.toString().replaceAll("\"", ""));
+		if(StringUtils.isNotEmpty(vo.getQuotetraveldocadultsBlock())){
+			String[] array = vo.getQuotetraveldocadultsBlock().split("<br/>");
+			StringBuffer quotetraveldocadultsBlock = new StringBuffer();
+			for(String span:array){
+				String [] spandata = span.replace("<span>", "").replace("</span>", "").split(":");
+				quotetraveldocadultsBlock.append("<span class='STYLE126'><input name='card' size='20' value='"+spandata[0]+"' type='text'>&nbsp;&nbsp;"+
+                "<input name='cardprice' size='6' type='number' min='0' value='"+StringUtil.getNumbers(spandata[1]).get(0)+"' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
+            	"元/人&nbsp;&nbsp;备注：<input name='cardremark' size='20' type='text'><a name='minusCard'><img src='images/minus.png' onclick='javascript:itour.quoteEdit.sightMinus(this)' width='20' height='20'></a></span>");
+			}
+			vo.setQuotetraveldocadultsBlock(quotetraveldocadultsBlock.toString());
+		}
+		if(StringUtils.isNotEmpty(vo.getQuotetourguideadultsBlock())){
+			String [] array = vo.getQuotetourguideadultsBlock().split("<br/>");
+			StringBuffer quotetourguideadultsBlock = new StringBuffer();
+			for(String span:array){ 
+				String [] spandata = StringUtil.trimEmpyArray(span.replace("<span>", "").replace("</span>", "").split(" "));
+				quotetourguideadultsBlock.append("<span class='style126'>"+ 
+	            "<br><input name='alltheway' value='"+spandata[0]+"' size='10' type='text'> "+ 
+	          "<select name='choselanguage' id='choselanguage' > "+ 
+	           " <option>选择语种</option> "+ 
+	           " <option value='中文'"+(spandata[1].equals("中文")?"selected='selected'":"")+">中文</option> "+ 
+	           " <option value='英文'"+(spandata[1].equals("英文")?"selected='selected'":"")+">英文</option> "+ 
+	          "</select>&nbsp;&nbsp; "+ 
+	          "<input name='priceperday' size='6' value='"+StringUtil.getNumbers(spandata[2]).get(0)+"' style='width:50px' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+ 
+	          "元/天 &nbsp;&nbsp;X "+ 
+	          " <input name='days' size='6' value='"+StringUtil.getNumbers(spandata[2]).get(1)+"' style='width:50px' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+ 
+	          "  天 &nbsp;&nbsp;备注：<input name='guideremark' size='10' type='text'>"+ 
+              "<a name='guideminus' onclick='javascript:itour.quoteEdit.guideMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png'></a></span> ");
+			}
+			vo.setQuotetourguideadultsBlock(quotetourguideadultsBlock.toString());
+		}
+		if(StringUtils.isNotEmpty(vo.getQuoterentcaradultsBlock())){
+			String[] array = vo.getQuoterentcaradultsBlock().split("<br/>");
+			StringBuffer quoterentcaradultsBlock = new StringBuffer();
+			for(String span :array){
+				String [] spandata = StringUtil.trimEmpyArray(span.replace("<span>", "").replace("</span>", "").split(" "));
+				String style=spandata[1].substring(spandata[1].indexOf('/')+1, spandata[1].indexOf('X'));
+				quoterentcaradultsBlock.append(
+				"<span class='STYLE126'><input name='alltheway' value='"+spandata[0]+"' size='10' type='text'>&nbsp;&nbsp; "+
+				 "<input name='carprice' size='6' style='width:50px' value='"+StringUtil.getNumbers(spandata[1]).get(0)+"' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
+				"元/ <select name='carstyle' id='carstyle' > "+
+	            "<option selected='selected'>方式</option> "+
+	            "<option value='天'"+(style.equals("天")?"selected='selected'":"")+">天</option> "+
+	            "<option value='公里'"+(style.equals("公里")?"selected='selected'":"")+">公里 </option> "+
+	            "<option value='趟'"+(style.equals("趟")?"selected='selected'":"")+">趟</option> "+
+	              "</select>"+
+	              "X<input name='carcount' size='6' value='"+StringUtil.getNumbers(spandata[1]).get(1)+"' style='width:50px' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
+	                	"数量&nbsp;&nbsp;　备注： "+
+	              "<input name='carremark' size='20' type='text'><a name='carminus' onclick='javascript:itour.quoteEdit.carMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png'></a></span>");
+			}
+			vo.setQuoterentcaradultsBlock(quoterentcaradultsBlock.toString());
+		}
+		if(StringUtils.isNotEmpty(vo.getQuotebigtrafficadultsBlock())){//大交通
+			String[] array = vo.getQuotebigtrafficadultsBlock().split("<br/>");
+			StringBuffer quotebigtrafficadultsBlock = new StringBuffer();
+			for(String span :array){
+				String [] spandata = StringUtil.trimEmpyArray(span.replace("<span>", "").replace("</span>", "").split(" "));
+				quotebigtrafficadultsBlock.append("<span class='STYLE126'><input name='traffic' value='"+spandata[0]+"' type='text'> "+
+				"<input name='trafficperprice' size='6' type='number' value='"+StringUtil.getNumbers(spandata[1]).get(0)+"'  min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
+				"元/ 人 &nbsp;&nbsp;备注： <input name='trafficremark' size='20' type='text'>"+
+				"<a name='trafficminus' onclick='javascript:itour.quoteEdit.trafficMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png'></a></span>");
+			}
+			vo.setQuotebigtrafficadultsBlock(quotebigtrafficadultsBlock.toString());
+		}
+		if(StringUtils.isNotEmpty(vo.getQuoteinsuranceadultsBlock())){
+			String [] array = vo.getQuoteinsuranceadultsBlock().split("<br/>");
+			StringBuffer quoteinsuranceadultsBlock = new StringBuffer();
+			for(String span:array){
+				String [] spandata = StringUtil.trimEmpyArray(span.replace("<span>", "").replace("</span>", "").split(" "));
+				quoteinsuranceadultsBlock.append("<span class='style126'><br><select style='width:151' value='"+spandata[0]+"' name='insuranceselect' id='insuranceselect'> "+
+					" <option value='内宾旅游意外保险'"+(spandata[1].equals("内宾旅游意外保险")?"selected='selected'":"")+">内宾旅游意外保险</option> "+
+					" <option value='入境旅游意外保险'"+(spandata[1].equals("入境旅游意外保险")?"selected='selected'":"")+">入境旅游意外保险</option> "+
+					" </select> "+
+					"<input name='insuranceprice' value='"+StringUtil.getNumbers(spandata[1]).get(0)+"' size='6' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
+					" 元/人&nbsp;&nbsp;备注： "+
+					"<input name='insuranceremark' size='20' type='text'> "+
+					"<a name='insuranceminus' onclick='javascript:itour.quoteEdit.insuranceMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png'></a></span>");
+			}
+			vo.setQuoteinsuranceadultsBlock(quoteinsuranceadultsBlock.toString());
+		}
+		if(StringUtils.isNotEmpty(vo.getQuotecomphcostadultsBlock())){
+			String[] array = vo.getQuotecomphcostadultsBlock().split("<br/>");
+			StringBuffer quotecomphcostadultsBlock = new StringBuffer();
+			for(String span:array){
+				String [] spandata = StringUtil.trimEmpyArray(span.replace("<span>", "").replace("</span>", "").split(" "));
+				quotecomphcostadultsBlock.append("<span class='style126'>  "+
+		        "<input name='feeName' value='"+spandata[0]+"' size='20' type='text'>  "+
+		        "<input name='feeperperson' value='"+StringUtil.getNumbers(spandata[1]).get(0)+"' size='6' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\"> "+
+		        "元/人&nbsp;&nbsp;备注： <input name='feeremark' size='20' type='text'>  "+
+		        "<a name='allfeeminus' onclick='javascript:itour.quoteEdit.allfeeMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png'></a></span>");
+			}
+			vo.setQuotecomphcostadultsBlock(quotecomphcostadultsBlock.toString());
+		}
+		if(StringUtils.isNotEmpty(vo.getQuoterecreationadultsBlock())){
+			String[] array = vo.getQuoterecreationadultsBlock().split("<br/>");
+			StringBuffer quoterecreationadultsBlock = new StringBuffer();
+			for(String span:array){
+				String [] spandata = StringUtil.trimEmpyArray(span.replace("<span>", "").replace("</span>", "").split(" "));
+				quoterecreationadultsBlock.append("<span class='STYLE126'><input name='joyitem'value='"+spandata[0]+"' size='20' type='text'> "+
+						 "<input name='perjoyprice' size='6' type='number' value='"+StringUtil.getNumbers(spandata[1]).get(0)+"' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
+						 "元/人　&nbsp;&nbsp;备注：<input name='joyremark' size='20'  type='text'>"+
+						 "<a name='joyminus' onclick='javascript:itour.quoteEdit.joyMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png'></a></span>");
+			}
+			vo.setQuoterecreationadultsBlock(quoterecreationadultsBlock.toString());
+		}
+		if(StringUtils.isNotEmpty(vo.getQuoteitemguidecadultsBlock())){
+			String[] array = vo.getQuoteitemguidecadultsBlock().split("<br/>");
+			StringBuffer quoteitemguidecadultsBlock = new StringBuffer();
+			for(String span:array){
+				String [] spandata = StringUtil.trimEmpyArray(span.replace("<span>", "").replace("</span>", "").split(" "));
+				quoteitemguidecadultsBlock.append("<span class='style126'> "+
+	            "<input name='hikingitem' value='"+spandata[0]+"' size='20' type='text'> "+
+	            "<input name='guidename' size='4' value='"+StringUtil.getNumbers(spandata[1]).get(0)+"' type='text'> 向导数 X "+
+	            "<input name='guideperday' size='6' value='"+StringUtil.getNumbers(spandata[1]).get(1)+"' style='width:50px' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\"> 元/天 X   "+
+	            "<input name='guidedays' size='4' value='"+StringUtil.getNumbers(spandata[1]).get(2)+"' style='width:50px' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\"> 天　&nbsp;&nbsp;备注： "+
+	            "<input name='hikingguideremark' size='20' type='text'> "+
+	            "<a name='joyminus' onclick='javascript:itour.quoteEdit.joyMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png'></a></span>");
+			}
+			vo.setQuoteitemguidecadultsBlock(quoteitemguidecadultsBlock.toString());
+		}
+		if(StringUtils.isNotEmpty(vo.getQuotebathorseadultsBlock())){
+			String[] array = vo.getQuotebathorseadultsBlock().split("<br/>");
+			StringBuffer quotebathorseadultsBlock = new StringBuffer();
+			for(String span:array){
+				String [] spandata = StringUtil.trimEmpyArray(span.replace("<span>", "").replace("</span>", "").split(" "));
+				quotebathorseadultsBlock.append("<span class='STYLE126'><br><input value='"+spandata[0]+"' name='bathorseCost' size='20' type='text'> "+
+				"<input name='bathorsenum' value='"+StringUtil.getNumbers(spandata[1]).get(0)+"' size='4' style='width:50px' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
+				"马匹数 X<input name='bathorseperday' value='"+StringUtil.getNumbers(spandata[1]).get(1)+"' size='6' style='width:50px' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
+				"元/天  X  <input name='bathorseprice' value='"+StringUtil.getNumbers(spandata[1]).get(2)+"' size='4' style='width:50px' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
+				"天　&nbsp;&nbsp;备注：<input name='bathorseremark' size='20' type='text'> <a name='bathorseminus' onclick='javascript:itour.quoteEdit.bathhorseMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png'></a></span>");
+				
+			}
+			vo.setQuotebathorseadultsBlock(quotebathorseadultsBlock.toString());
+		}
+		if(StringUtils.isNotEmpty(vo.getQuoteridehorseadultsBlock())){
+			String[] array = vo.getQuoteridehorseadultsBlock().split("<br/>");
+			StringBuffer quoteridehorseadultsBlock = new StringBuffer();
+			for(String span:array){
+				String [] spandata = StringUtil.trimEmpyArray(span.replace("<span>", "").replace("</span>", "").split(" "));
+				quoteridehorseadultsBlock.append("<span class='style126'> "+
+				"<input name='ridehorse' value='"+spandata[0]+"' size='20' type='text'> "+
+				"<input name='ridehorseperday'  value='"+StringUtil.getNumbers(spandata[1]).get(0)+"' size='4' style='width:50px' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\"> "+
+				"元/天  X<input name='ridehorsedays'  value='"+StringUtil.getNumbers(spandata[1]).get(1)+"' size='4' style='width:50px' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">天　&nbsp;&nbsp;备注： "+
+				"<input name='ridehorseremark' size='20' type='text'> "+
+				"<a name='rideorseminus' onclick='javascript:itour.quoteEdit.ridehorseMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png'></a></span>");
+			}
+			vo.setQuoteridehorseadultsBlock(quoteridehorseadultsBlock.toString());
+		}
+		if(StringUtils.isNotEmpty(vo.getQuoteclimbregisteradultsBlock())){
+			String [] array = vo.getQuoteclimbregisteradultsBlock().split("<br/>");
+			StringBuffer quoteclimbregisteradultsBlock = new StringBuffer();
+			for(String span:array){
+				String [] spandata = StringUtil.trimEmpyArray(span.replace("<span>", "").replace("</span>", "").split(" "));
+				quoteclimbregisteradultsBlock.append("<span class='style126'> "+
+						"<input name='climbRegister' size='20' value='"+spandata[0]+"' type='text'>&nbsp;&nbsp;<input name='climbRegisterperday'  value='"+StringUtil.getNumbers(spandata[1]).get(0)+"'size='6' type='text'> "+
+						"元/天  X<input name='climbRegisterdays'  value='"+StringUtil.getNumbers(spandata[1]).get(1)+"'size='4' style='width:50' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
+						"天　&nbsp;&nbsp;备注：<input name='climbRegisterremark' size='20' type='text'> "+
+						"<a name='climbRegisterminus' onclick='javascript:itour.quoteEdit.climbRegisterMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png'></a></span>");
+			}
+			vo.setQuoteclimbregisteradultsBlock(quoteclimbregisteradultsBlock.toString());
+		}
+		if(StringUtils.isNotEmpty(vo.getQuoteclimbnexusadultsBlock())){
+			String[] array = vo.getQuoteclimbnexusadultsBlock().split("<br/>");
+			StringBuffer quoteclimbnexusadultsBlock = new StringBuffer();
+			for(String span:array){
+				String [] spandata = StringUtil.trimEmpyArray(span.replace("<span>", "").replace("</span>", "").split(" "));
+				quoteclimbnexusadultsBlock.append("<span class=style126><br>"+
+						"<input name=climbnexus value='"+spandata[0]+"' size=20 type=text>&nbsp;&nbsp;<input style='width:50px;' name=climbnexusnum  value='"+StringUtil.getNumbers(spandata[1]).get(0)+"' size=4 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">人数 X"+
+						"<input name=climbnexusperday style='width:50px;' value='"+StringUtil.getNumbers(spandata[1]).get(1)+"' size=6 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">元/天  X  "+
+						"<input name=climbnexusdays style='width:50px;' value='"+StringUtil.getNumbers(spandata[1]).get(2)+"' size=4  type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">天　&nbsp;&nbsp;备注："+
+						"<input name=climbnexusremark size=20 type=text>"+
+						"<a name=climbnexusminus onclick='javascript:itour.quoteEdit.climbnexusMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>");
+			}
+			vo.setQuoteclimbnexusadultsBlock(quoteclimbnexusadultsBlock.toString());
+		}
+		if(StringUtils.isNotEmpty(vo.getQuoteelsecostadultsBlock())){
+			String[] array = vo.getQuoteelsecostadultsBlock().split("<br/>");
+			StringBuffer quoteelsecostadultsBlock = new StringBuffer();
+			for(String span:array){
+				String [] spandata = StringUtil.trimEmpyArray(span.replace("<span>", "").replace("</span>", "").split(" "));
+				String style = spandata[1].substring(spandata[1].indexOf('/')+1);
+				quoteelsecostadultsBlock.append("<span class=STYLE126><br>"+
+						"<input name=elseitem value='"+spandata[0]+"'  size=20 type=text>&nbsp;&nbsp;"+
+						"<input name=elseitemprice value='"+StringUtil.getNumbers(spandata[1]).get(0)+"' size=6 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
+			       	 	" 元/<select name=elseitemstyle   id=elseitemstyle>"+
+			       	 	" <option selected=selected>方式</option>"+
+			       	 	" <option value='人' "+(style.equals("人")?"selected='selected'":"")+">人</option>"+
+			       	 	" <option value='团' "+(style.equals("团")?"selected='selected'":"")+">团</option>"+
+			       	 	"</select>&nbsp;&nbsp;备注：<input name=elseitemremark size=20 type=text>"+
+			           	" <a name=elseitemminus onclick='javascript:itour.quoteEdit.elsefeeMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>");
+			}
+			vo.setQuoteelsecostadultsBlock(quoteelsecostadultsBlock.toString());
+		}
+		//context.put("adultticketsBlock", adultticketsBlock.toString());
+		context.put("returnvo",  vo);
+		Constants.TDQUOTE1.put("bean", bean);
+		Constants.TDQUOTE1.put("qf", qf);
+		Constants.TDQUOTE1.put("torder", entity);
+		Constants.TDQUOTE1.put("od", od);		
+		Constants.TDQUOTE1.put("returnvo",  vo);
+		Constants.TDQUOTE1.put("vo",  vo);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelOrderController的toQuote1方法");
+		String logId = logSettingService.add(new LogSetting("travel_order","订单管理","travelOrder/toQuote1",sessionuser.getId(),"",""));
+		logOperationService.add(new LogOperation(logId,"查看",bean.getId(),JsonUtils.encode(bean),"","travelOrder/toQuote1",sessionuser.getId())); 
+		return forward("server/sys/quote_step1",context);
+	}
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
+	@RequestMapping(value = "/toQuote2", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView toQuote2(CalculateQuoteVO vo,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Map<String, Object> context = getRootMap();
-		TravelOrder entity = travelOrderService.queryById(id);
-		RouteTemplateVO bean = routeTemplateService.selectById(routeId);
+		TravelOrder entity = travelOrderService.queryById(vo.getTorderid());
+		RouteTemplateVO bean = routeTemplateService.selectById(vo.getRtid());
 		OrderDetailVO od = orderDetailService.queryByOrderId(entity.getId());
 		QuoteFormVO qf = quoteFormService.queryByRtId(bean.getId());
 		// RouteTemplateVO bean = routeTemplateService.selectById(id);
@@ -423,11 +729,26 @@ public class TravelOrderController extends BaseController {
 			context.put("bean", "没有找到对应的记录!");
 			return forward(request.getHeader("Referer"), context);
 		}
+		vo.setAdultticketsBlock(vo.getAdultticketsBlock().replaceAll("\"", ""));
 		context.put(SUCCESS, true);
 		context.put("bean", bean);
 		context.put("qf", qf);
 		context.put("torder", entity);
 		context.put("od", od);
+		if(StringUtils.isEmpty(vo.getAdultticketsBlock())){
+			CalculateQuoteVO vv = (CalculateQuoteVO)Constants.TDQUOTE1.get("vo");
+			vo.setAdultticketsBlock(vv.getAdultticketsBlock());
+		}
+		context.put("vo", vo);
+		//Constants.TDQUOTE2.put("adultsumcost", adultsumcost + "");
+		//Constants.TDQUOTE2.put("childrensumcost", childrensumcost + "");
+		Constants.TDQUOTE2.put("rtid", vo.getRtid());
+		Constants.TDQUOTE2.put("bean", bean);
+		Constants.TDQUOTE2.put("qf", qf);
+		Constants.TDQUOTE2.put("od", od);
+		Constants.TDQUOTE2.put("torder", entity);
+		Constants.TDQUOTE2.put("vo", vo);
+		//context.put(MSG, "");
 		return forward("server/sys/quote_step2", context);
 	}
 
@@ -493,7 +814,7 @@ public class TravelOrderController extends BaseController {
 			context.put("qf", qf);
 			context.put("od", od);
 			context.put("torder", entity);
-			context.put("calvo", vo);
+			context.put("vo", vo);
 			Constants.TDQUOTE2.clear();
 			Constants.TDQUOTE2.put("adultsumcost", adultsumcost + "");
 			Constants.TDQUOTE2.put("childrensumcost", childrensumcost + "");
@@ -502,11 +823,11 @@ public class TravelOrderController extends BaseController {
 			Constants.TDQUOTE2.put("qf", qf);
 			Constants.TDQUOTE2.put("od", od);
 			Constants.TDQUOTE2.put("torder", entity);
-			Constants.TDQUOTE2.put("calvo", vo);
+			Constants.TDQUOTE2.put("vo", vo);
 		}
 		return forward("server/sys/quote_step3", context);
 	}
-
+	
 	/**
 	 * 
 	 * @param request
@@ -520,7 +841,7 @@ public class TravelOrderController extends BaseController {
 	public ModelAndView returntoQuote2(@PathVariable("id") String id, @PathVariable("routeId") String routeId,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Map<String, Object> context = getRootMap();
-		OrderDetail od = (OrderDetail) Constants.TDQUOTE2.get("od");
+		OrderDetailVO od = (OrderDetailVO) Constants.TDQUOTE2.get("od");
 		TravelOrder to = (TravelOrder) Constants.TDQUOTE2.get("torder");
 		RouteTemplateVO bean = (RouteTemplateVO) Constants.TDQUOTE2.get("bean");
 		if (bean.getId().equals(routeId) && to.getId().equals(id)) {
@@ -531,7 +852,7 @@ public class TravelOrderController extends BaseController {
 			context.put("qf", Constants.TDQUOTE2.get("qf"));
 			context.put("od", od);
 			context.put("torder", to);
-			context.put("calvo", Constants.TDQUOTE2.get("calvo"));
+			context.put("vo", Constants.TDQUOTE2.get("vo"));
 		}
 		return forward("server/sys/quote_step2", context);
 	}
@@ -574,17 +895,8 @@ public class TravelOrderController extends BaseController {
 				bean.setCover(coverpath + "/" + StringUtils.trim(bean.getRouteCode()) + "_" + bean.getAlias() + "/"
 						+ bean.getCover());
 			}
-			if (bean != null && StringUtils.isNotEmpty(bean.getRelated())) {
-				String[] ids = bean.getRelated().split(",");
-				List<RouteTemplateVO> relates = routeTemplateService.queryByRelated(Arrays.asList(ids));
-				for (RouteTemplateVO rtp : relates) {
-					TravelStyle ts = (TravelStyle) travelStyleService.queryById(rtp.getTravelStyle());
-					if (ts != null) {
-						rtp.setTravelStyleAlias(ts.getAlias());
-					}
-				}
-				bean.setRelates(relates);
-			}
+			List<RouteTemplateVO> relates = routeTemplateService.queryByRelatedRoutes(bean.getId());
+			bean.setRelates(relates);
 			List<String> photoList = Lists.newArrayList();
 			String rtPhotoPath = FilePros.httpRoutePhotos();
 			String[] photos = StringUtils.isNotEmpty(bean.getViewphotos()) ? bean.getViewphotos().split("\\|")
@@ -642,7 +954,7 @@ public class TravelOrderController extends BaseController {
 			context.put("qf", qf);
 			context.put("od", od);
 			context.put("torder", entity);
-			context.put("calvo", vo);
+			context.put("vo", vo);
 			// context.put("ts", ts);
 			Constants.TDQUOTE3.clear();
 			Constants.TDQUOTE3.put("adultsumcost", adultsumcost + "");
@@ -652,7 +964,7 @@ public class TravelOrderController extends BaseController {
 			Constants.TDQUOTE3.put("qf", qf);
 			Constants.TDQUOTE3.put("od", od);
 			Constants.TDQUOTE3.put("torder", entity);
-			Constants.TDQUOTE3.put("calvo", vo);
+			Constants.TDQUOTE3.put("vo", vo);
 			// Constants.TDQUOTE3.put("ts", ts);
 		}
 		return forward("server/sys/quote_step4", context);
@@ -671,7 +983,7 @@ public class TravelOrderController extends BaseController {
 	public ModelAndView returntoQuote3(@PathVariable("id") String id, @PathVariable("routeId") String routeId,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Map<String, Object> context = getRootMap();
-		OrderDetail od = (OrderDetail) Constants.TDQUOTE2.get("od");
+		OrderDetailVO od = (OrderDetailVO) Constants.TDQUOTE2.get("od");
 		TravelOrder to = (TravelOrder) Constants.TDQUOTE2.get("torder");
 		RouteTemplateVO bean = (RouteTemplateVO) Constants.TDQUOTE2.get("bean");
 		if (bean.getId().equals(routeId) && to.getId().equals(id)) {
@@ -682,7 +994,7 @@ public class TravelOrderController extends BaseController {
 			context.put("qf", Constants.TDQUOTE3.get("qf"));
 			context.put("od", od);
 			context.put("torder", to);
-			context.put("calvo", Constants.TDQUOTE3.get("calvo"));
+			context.put("vo", Constants.TDQUOTE3.get("vo"));
 		}
 		return forward("server/sys/quote_step3", context);
 	}
@@ -697,7 +1009,7 @@ public class TravelOrderController extends BaseController {
 	@Auth(verifyLogin = true, verifyURL = true)
 	@RequestMapping(value = "/generateReport", method = RequestMethod.POST)
 	@ResponseBody
-	public String generateReport(String formContent, String tordername, String idrt, HttpServletRequest request,
+	public String generateReport(String basePath,String formContent, String tordername, String idrt, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		String result = "";
 		// OrderDetail entity = (OrderDetail) Constants.TDQUOTE3.get("od");
@@ -714,15 +1026,15 @@ public class TravelOrderController extends BaseController {
 			String pdfName = to.getOrderNo() + ".pdf";
 			//System.out.println(formContent);
 			// writehtmlToPdf(formContent,tordername, torders+pdfName);
-			fromhtmlToPdf(formContent, tordername, orderhtmls + htmlName, orderpdfs + pdfName,markedorderpdfs + pdfName);
+			fromhtmlToPdf(basePath,formContent, tordername, orderhtmls + htmlName, orderpdfs + pdfName,markedorderpdfs + pdfName);
 			// File attachment = new File(orderpdfs+pdfName);
-			String title = "主角旅行itours网站";
-			String content = "尊敬的客户" + to.getReceiver() + (to.getGender()==1 ? "先生" : "女士") + "您好：您的信息已经预定成功。请打开邮箱查看您的订单详情";
+			String title = "Itours Booking Info";
+			String content = "Hello!Dear "  + (to.getGender()==1 ? "Mr" : "Mrs") + to.getReceiver() + "Your information has been booked successfully. Please open the mailbox to view your order details.";
 			// String attachment =
 			// String httporderpdfs = FilePros.httporderpdfs();
 			String pdfurl = httpmarkedorderpdfs + "/" + pdfName;
 			if (EmailService.sendEmail(title, to.getReceiveremail(), title, content, markedorderpdfs + pdfName)) {
-				result = sendSuccessResult(response, "预定成功，请稍后查看邮箱预定成功信息！", pdfurl);
+				result = sendSuccessResult(response, "The reservation is successful, please check the mailbox reservation success later!", pdfurl);
 			}
 		}
 		return result;
@@ -753,7 +1065,7 @@ public class TravelOrderController extends BaseController {
 	 * @throws DocumentException
 	 * @throws IOException
 	 */
-	public static void fromhtmlToPdf(String content, String tordername, String htmlpath, String pdfpath,
+	public static void fromhtmlToPdf(String basePath,String content, String tordername, String htmlpath, String pdfpath,
 			String markedorderpdfs) throws DocumentException, IOException {
 		// Document document = new Document();
 		// document.open();
@@ -774,18 +1086,20 @@ public class TravelOrderController extends BaseController {
 			content = content.replace(input, input + "</input>");
 		}
 		content = content.replaceAll("</input></input>", "</input>");
+		content = ImageFilter.replaceImagesrc(content,basePath);
+		content = ImageFilter.replaceTdBg(content,basePath);
 		// content="<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0
 		// Transitional//EN'
 		// 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'> <html
 		// xmlns='http://www.w3.org/1999/xhtml'><head><title>"+tordername+"</title></head><body>"+content+"</body></html>";
 		content = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='applicable-device' content='pc'>"
 				+ "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />"
-				+ "<link rel='stylesheet' type='text/css' href='http://localhost:8080/itour/css/easytab.css'>"
-				+ "<link rel='stylesheet' type='text/css' href='http://localhost:8080/itour/css/ScrollPic.css'>"
-				+ "<script type='text/javascript' src='http://localhost:8080/itour/js/jquery-easyui-1.5.1/jquery.min.js'></script>"
-				+ "<script type='text/javascript' src='http://localhost:8080/itour/js/commons/ScrollPic.js'></script>"
-				+ "<script type='text/javascript' src='http://localhost:8080/itour/js/plug-in/easytab/jquery.easytabs.min.js'></script>"
-				+ "<script type='text/javascript' src='http://localhost:8080/itour/js/plug-in/easytab/jquery.hashchange.min.js'></script>"
+				+ "<link rel='stylesheet' type='text/css' href='"+basePath+"css/easytab.css'>"
+				+ "<link rel='stylesheet' type='text/css' href='"+basePath+"css/ScrollPic.css'>"
+				+ "<script type='text/javascript' src='"+basePath+"js/jquery-easyui-1.5.1/jquery.min.js'></script>"
+				+ "<script type='text/javascript' src='"+basePath+"js/commons/ScrollPic.js'></script>"
+				+ "<script type='text/javascript' src='"+basePath+"js/plug-in/easytab/jquery.easytabs.min.js'></script>"
+				+ "<script type='text/javascript' src='"+basePath+"js/plug-in/easytab/jquery.hashchange.min.js'></script>"
 				+ "<title>" + tordername + "</title></head><body><center>" + content
 				+ "<table style=width:1350;text-align:center;align:center;font-family: '微软雅黑'; border:0;>"
 				+ "<tr><td width='1350' height='30' bgcolor='#EFEFEF'><div align='center' class='STYLE6'>主角旅行 www.iTours.com.cn</div></td></tr>"

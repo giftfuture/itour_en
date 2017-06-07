@@ -90,7 +90,7 @@
 					</div>
 					<div class="fitem">
 						<label>出行日期:</label>
-						<input id="groupDate" name="groupDate" type="text" class='easyui-datebox' data-options="validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north'" style="width:100px;" />
+						<input id="groupDate" name="groupDate" type="text" class='easyui-datebox' data-options="validType:'dateValided',editable:false,split:true,border:false,region:'north',width:100" />
 					</div>
 					<!-- <div class="fitem">
 						<label>创建时间:</label>

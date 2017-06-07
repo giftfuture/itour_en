@@ -22,6 +22,7 @@ import javax.imageio.stream.ImageOutputStream;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.itour.base.util.IDGenerator;
 import com.itour.base.util.StringUtil;
@@ -87,8 +88,127 @@ public class ImageFilter {
      }
      matcherForTag.appendTail(sb);         
      return sb.toString();
+  } 
+	/**
+	 * 
+	 * @param htmlStr
+	 * @return
+	 */
+	public static String replaceImagesrc(String content,String replacenew) {  
+    //String img = "";  
+    List<String> imgs = Lists.newArrayList();
+//   String regEx_img = "<img.*src=(.*?)[^>]*?>"; //图片链接地址  
+    Pattern p_image = Pattern.compile("<img.*src\\s*=\\s*(.*?)[^>]*?>");  //, Pattern.CASE_INSENSITIVE		
+    Matcher  m_image = p_image.matcher(content);  
+    while (m_image.find()) {  
+        //img = img + "," + m_image.group();  
+  	  imgs.add(m_image.group());
+        // Matcher m =  
+        // Pattern.compile("src=\"?(.*?)(\"|>|\\s+)").matcher(img); //匹配src  
+     /*   Matcher m = Pattern.compile("src\\s*=\\s*\"?(.*?)(\"|>|\\s+)").matcher(img); 
+        while(m.find()) {  
+      	  String result = m.group(1);
+      	  if(!result.contains(replacenew)){
+      		  content = content.replaceFirst(result, replacenew+result.replaceAll("'", ""));// content.replace(result, replacenew+result.replaceAll("'", ""));
+      	  }
+        } */ 
+        
+    }
+   //String[] imgs = img.split(",");
+   for(String img:imgs){
+  	 if(StringUtils.isNotEmpty(img)&&!img.contains(replacenew)){
+  		  //Pattern.compile("src=\"?(.*?)(\"|>|\\s+)").matcher(img); //匹配src 
+		  	 String newimg = "";
+		  	 Matcher m = Pattern.compile("src\\s*=\\s*\"?(.*?)(\"|>|\\s+)").matcher(img); 
+	          while (m.find()){ 
+	        	  String result = m.group(); 
+      		  //content = content.replaceFirst(td, replacenew+result.replaceAll("'", ""));
+	        	  newimg = img.replaceAll(result, result.split("=")[0]+"=\""+replacenew+result.split("=")[1].substring(1));
+	          } 
+		  content = content.replaceAll(img, newimg);
+  	 }
+   }
+    return content;  
+}
+	/**
+	 * 
+	 * @param htmlStr
+	 * @return
+	 */
+	public static String replaceTdBg(String content,String replacenew) {  
+    String img = "";  
+    List<String> tds = Lists.newArrayList();
+//   String regEx_img = "<img.*src=(.*?)[^>]*?>"; //图片链接地址  
+    Pattern p_image = Pattern.compile("<td.*background\\s*=\\s*(.*?)[^>]*?>");  //, Pattern.CASE_INSENSITIVE		
+    Matcher  m_image = p_image.matcher(content);  
+    while (m_image.find()) {  
+       // img = img + "," + m_image.group();  
+  	  tds.add(m_image.group());
+        // Matcher m =  
+        // Pattern.compile("src=\"?(.*?)(\"|>|\\s+)").matcher(img); //匹配src  
+      /*  Matcher m = Pattern.compile("background\\s*=\\s*\"?(.*?)(\"|>|\\s+)").matcher(img); 
+        while (m.find()) { 
+      	  String result = m.group(1);
+      	  if(!result.contains(replacenew)){
+      		  content = content.replaceFirst(result, replacenew+result.replaceAll("'", ""));
+      	  }
+        } */ 
+    }    
+    for(String td:tds){
+  	  if(StringUtils.isNotEmpty(td) && !td.contains(replacenew)){
+  		  	  //Pattern.compile("src=\"?(.*?)(\"|>|\\s+)").matcher(img); //匹配src 
+  		  	  String newtd = "";
+  	          Matcher m = Pattern.compile("background\\s*=\\s*\"?(.*?)(\"|>|\\s+)").matcher(td); 
+  	          while (m.find()){ 
+  	        	  String result = m.group(); 
+	        		  //content = content.replaceFirst(td, replacenew+result.replaceAll("'", ""));
+  	        	  newtd = td.replaceAll(result, result.split("=")[0]+"=\""+replacenew+result.split("=")[1].substring(1));
+  	          } 
+  		  content = content.replaceAll(td, newtd);
+  	  }
+    }
+    return content;  
+} 
+	/*public static String replaceImagesrc(String content,String replacenew) {  
+      String img = "";  
+//     String regEx_img = "<img.*src=(.*?)[^>]*?>"; //图片链接地址  
+      Pattern p_image = Pattern.compile("<img.*src\\s*=\\s*(.*?)[^>]*?>");  //, Pattern.CASE_INSENSITIVE		
+      Matcher  m_image = p_image.matcher(content);  
+      while (m_image.find()) {  
+          img = img + "," + m_image.group();  
+          // Matcher m =  
+          // Pattern.compile("src=\"?(.*?)(\"|>|\\s+)").matcher(img); //匹配src  
+          Matcher m = Pattern.compile("src\\s*=\\s*\"?(.*?)(\"|>|\\s+)").matcher(img); 
+          while (m.find()) {  
+        	  String result = m.group(1);
+        	  if(!result.contains(replacenew)){
+        		  content = content.replaceFirst(result, replacenew+result.replaceAll("'", ""));
+        	  }
+          }  
+      }  
+      return content;  
   }
-  
+	 
+	public static String replaceTdBg(String content,String replacenew) {  
+      String img = "";  
+//     String regEx_img = "<img.*src=(.*?)[^>]*?>"; //图片链接地址  
+      Pattern p_image = Pattern.compile("<td.*background\\s*=\\s*(.*?)[^>]*?>");  //, Pattern.CASE_INSENSITIVE		
+      Matcher  m_image = p_image.matcher(content);  
+      while (m_image.find()) {  
+          img = img + "," + m_image.group();  
+          // Matcher m =  
+          // Pattern.compile("src=\"?(.*?)(\"|>|\\s+)").matcher(img); //匹配src  
+          Matcher m = Pattern.compile("background\\s*=\\s*\"?(.*?)(\"|>|\\s+)").matcher(img); 
+          while (m.find()) { 
+        	  String result = m.group(1);
+        	  if(!result.contains(replacenew)){
+        		  content = content.replaceFirst(result, replacenew+result.replaceAll("'", ""));
+        	  }
+          }  
+      }    
+      return content;  
+  } */
+	
   private String replaceImgSrc(String content,String replaceHttp){
       String result ="";
 		//    String patternStr="^.*<img\\s*.*\\s*src=\\\"(.*)\\\"\\s*.*>.*$";

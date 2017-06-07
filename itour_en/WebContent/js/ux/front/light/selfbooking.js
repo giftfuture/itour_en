@@ -10,6 +10,7 @@ itour.lightselfbooking = function(){
             //$(obj).prev().val(date);  
         },
         check_form:function(){
+        	itour.progress('Please waiting','Booking...');
         	var formData = {};
         	formData.routename=$("input[name='routename'").val();
     		formData.expectedDepart = $("#expectedDepart").datebox('getValue');

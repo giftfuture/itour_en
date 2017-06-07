@@ -18,7 +18,7 @@ import com.itour.dao.SysMenuBtnDao;
  * <b>作者：</b>fred<br>@Autowired
  * <b>日期：</b> Jun 9, 2016 <br>
  */
-@Service("sysMenuBtnService")
+@Service//("sysMenuBtnService")
 public class SysMenuBtnService<T> extends BaseService<T> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	

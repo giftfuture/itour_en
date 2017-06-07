@@ -299,7 +299,7 @@ public class ShowHappyController extends BaseController{
 	@RequestMapping(value="/getId", method = RequestMethod.POST)
 	public String getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
-		ShowHappy entity  = showHappyService.queryById(id);
+		ShowHappyVO entity  = showHappyService.selectById(id);
 		if(entity  == null){
 			return sendFailureResult(response, "没有找到对应的记录!");
 		}
