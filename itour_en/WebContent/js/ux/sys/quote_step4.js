@@ -1,5 +1,5 @@
-$package('itour.serverquotestep4');
-itour.serverquotestep4 = function(){
+$package('itouren.serverquotestep4');
+itouren.serverquotestep4 = function(){
 	var _this = {
 			printff:function(){
 				//window.print();
@@ -26,7 +26,7 @@ itour.serverquotestep4 = function(){
 				// 当触发copy事件时，设置用于复制的文本数据
 				//复制成功： 
 				client.on( "aftercopy", function(){
-				    itour.alert('提示', "复制成功！",'info');
+				    itouren.alert('提示', "复制成功！",'info');
 				});
 			},
 			addFavorite:function () {
@@ -72,23 +72,23 @@ itour.serverquotestep4 = function(){
 			});
 			//generateReport
 			$("a[name='generateReport']").click(function(){
-				itour.progress('Please waiting','Booking...');
+				itouren.progress('Please waiting','Booking...');
 				$.post('travelOrder/generateReport',{'formContent':document.getElementById("reportdiv").innerHTML,'tordername':$("input[name='tordername']").val(),'idrt':$("input[name='idrt']").val(),'basePath':basePath},function(responseText){
 					var result = $.parseJSON(responseText);
 					//console.log(result);
-					itour.closeProgress();
+					itouren.closeProgress();
 					if(result.success&&result.msg){
-						itour.alert("提示",result.msg,"info",function(){
+						itouren.alert("提示",result.msg,"info",function(){
 							$("a[name='viewReport']").attr("href",basePath+result.data);
 							$("a[name='viewReport']").show();
-							itour.confirm("操作提示", "回到订单管理页面？", function (data) {  
+							itouren.confirm("操作提示", "回到订单管理页面？", function (data) {  
 								if (data) {  
 									document.forms["back_form"].submit();
 								}  
 							});
 						});
 					}else{
-						itour.alert("提示","生成报价单出错，请重新操作或联系管理员。","info",function(){});
+						itouren.alert("提示","生成报价单出错，请重新操作或联系管理员。","info",function(){});
 					}
 				});
 			});
@@ -98,8 +98,8 @@ itour.serverquotestep4 = function(){
 }();
 
 $(function(){
-	   itour.serverquotestep4.init();
-	   itour.serverquotestep4.copyUrl();
+	   itouren.serverquotestep4.init();
+	   itouren.serverquotestep4.copyUrl();
 	   var homeurl = window.location.href;
 	   /*if (window != top)
            top.location.href = location.href;*/

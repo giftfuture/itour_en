@@ -1,5 +1,5 @@
-$package('itour.rtschedule');
-itour.rtschedule = function(){
+$package('itouren.rtschedule');
+itouren.rtschedule = function(){
 	var _this = {
 			changeValidateCode:function () {  
 			    var timenow = new Date().getTime();//这是为了防止每次刷新的时候验证码相同
@@ -18,7 +18,7 @@ itour.rtschedule = function(){
 				__.post(actionurl, formData, function(result) {
 					//console.log("data.success="+data.success);
 					if (result.success) {
-						itour.alert("提示",result.msg||"详细日程更新成功！",'info');
+						itouren.alert("提示",result.msg||"详细日程更新成功！",'info');
 					/*	$("table[name='rtscheduleTable']").find('tbody:eq(2)').hide();
 						$("table[name='rtscheduleTable']").find('tbody:eq(1)').show();
 						$("table[name='rtscheduleTable']").find('tbody:eq(0)').find('tr:eq(1)').hide();
@@ -31,7 +31,7 @@ itour.rtschedule = function(){
 						$("#submittbody").hide();
 						//_this.showSuccess(result.msg);
 					} else {
-						itour.alert("提示",result.msg||"详细日程更新出错！",'info');
+						itouren.alert("提示",result.msg||"详细日程更新出错！",'info');
 					/*	$("table[name='rtscheduleTable']").find('tbody:eq(2)').show();
 						$("table[name='rtscheduleTable']").find('tbody:eq(1)').hide();
 						$("table[name='rtscheduleTable']").find('tbody:eq(0)').find('tr:eq(2)').hide();
@@ -231,7 +231,7 @@ itour.rtschedule = function(){
 }();
 
 $(function(){
-	itour.rtschedule.init();
+	itouren.rtschedule.init();
 	  /*if (window != top)
           top.location.href = location.href;*/
 });

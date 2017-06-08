@@ -1,5 +1,5 @@
-$package('itour.sysVariables');
-itour.sysVariables = function(){
+$package('itouren.sysVariables');
+itouren.sysVariables = function(){
 /*	var _box = null;
 	var _this = {
 		config:{
@@ -68,7 +68,7 @@ itour.sysVariables = function(){
 				var line = $(html);
 				//版定删除按钮事件
 				$(".remove-btn",line).click(function(){
-					itour.confirm('提示','你确定删除当前记录吗?',function(r){
+					itouren.confirm('提示','你确定删除当前记录吗?',function(r){
 						if(r){
 							_this.delLine(line);
 						}
@@ -208,7 +208,7 @@ itour.sysVariables = function(){
 			$('#addLine_btn').click(_this.addLine);
 			$('#addDefLine_btn').click(_this.addDefBtns);
 			$('#delAllLine_btn').click(function(){
-				itour.confirm('提示','你确定删除当前记录吗?',function(r){
+				itouren.confirm('提示','你确定删除当前记录吗?',function(r){
 					_this.delAllLine(false);
 				});
 			});
@@ -219,7 +219,7 @@ itour.sysVariables = function(){
 }();
 
 $(function(){
-	itour.sysVariables.init();
+	itouren.sysVariables.init();
 	 /* if (window != top)
           top.location.href = location.href;*/
 });

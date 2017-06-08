@@ -1,5 +1,5 @@
-$package('itour.destinationssc');
-itour.destinationssc = function(){
+$package('itouren.destinationssc');
+itouren.destinationssc = function(){
 	var _this = {
 			fbpagination:function (pageno,scope){
 			    var element = $('#fbpage');
@@ -60,5 +60,5 @@ itour.destinationssc = function(){
 }();
 
 $(function(){
-	itour.destinationssc.init();
+	itouren.destinationssc.init();
 });

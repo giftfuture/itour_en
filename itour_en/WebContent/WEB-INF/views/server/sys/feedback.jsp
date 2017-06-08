@@ -9,8 +9,9 @@
  	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">客户ID:</label><input name="id" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
-			<label class="ui-label">标题:</label><input name="title" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
+			<label class="ui-label">客户姓名:</label><input name="customerName" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
+            <label class="ui-label">邮箱:</label><input name="email" class="easyui-textbox" data-options="width:100,validType:'email'">&nbsp;&nbsp; 
+            <!-- <label class="ui-label">标题:</label><input name="title" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp; -->
 			<label class="ui-label">状态:</label>
 				<select name="status" class="easyui-combobox" data-options="editable:false,width:100">
 				   <option value="">--请选择--</option>
@@ -43,11 +44,11 @@
 						<label>客户ID</label>
 						<input name="customerId" type="text" maxlength="64" class="easyui-validatebox" data-options="" missingMessage="请填写customerId">
 					</div> -->
-					<div class="fitem">
+					<!-- <div class="fitem">
 						<label>标题:</label>
 						<input name="title" type="text" maxlength="255" required="true" class="easyui-textbox" data-options="" missingMessage="请填写title">
 						<span style="color:red">*</span>
-					</div>
+					</div> -->
 					<p></p>
 					<div class="fitem">
 						<label>内容:</label>

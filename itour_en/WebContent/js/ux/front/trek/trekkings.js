@@ -1,5 +1,5 @@
-$package('itour.trekkings');
-itour.trekkings = function(){
+$package('itouren.trekkings');
+itouren.trekkings = function(){
 	var _this = {
 			fbpagination:function (pageno){
 			    var element = $('#fbpage');
@@ -71,5 +71,5 @@ itour.trekkings = function(){
 }();
 
 $(function(){
-	itour.trekkings.init();
+	itouren.trekkings.init();
 });

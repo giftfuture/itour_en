@@ -1,5 +1,5 @@
-$package('itour.destdetail');
-itour.destdetail = function(){
+$package('itouren.destdetail');
+itouren.destdetail = function(){
 	var _this = {
 		init:function(){
 			_this.menuClick();
@@ -29,6 +29,6 @@ itour.destdetail = function(){
 }();
 
 $(function(){
-	itour.destdetail.init();
-	//itour.destinations.menuClick();
+	itouren.destdetail.init();
+	//itouren.destinations.menuClick();
 });

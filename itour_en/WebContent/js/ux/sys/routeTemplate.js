@@ -1,5 +1,5 @@
-$package('itour.routeTemplate');
-itour.routeTemplate = function(){
+$package('itouren.routeTemplate');
+itouren.routeTemplate = function(){
 	var _box = null;
 	var _this = {
 			uploadCoverAction:'routeTemplate/uploadCover',
@@ -10,15 +10,16 @@ itour.routeTemplate = function(){
 				return $("#uploadCover-photo");
 			},
 			saveuploadCover:function(){
-					itour.progress();//缓冲条
+					itouren.progress();//缓冲条
 					_this.uploadCoverForm().attr('action',_this.uploadCoverAction);
 					_this.uploadCoverForm().ajaxForm();
-					itour.saveForm(_this.uploadCoverForm(),function(data){
+					itouren.saveForm(_this.uploadCoverForm(),function(data){
 						///console.log(data);
 						//if(data.success){	
-							itour.alert('提示', data.msg, 'info',function(){								
-								itour.closeProgress();//关闭缓冲条
+							itouren.alert('提示', data.msg, 'info',function(){								
+								itouren.closeProgress();//关闭缓冲条
 								_box.handler.refresh();
+								$("#preview",this.uploadCoverWin).html('');
 								_this.uploadCoverForm().resetForm();
 								_this.uploadCoverWin().dialog('close');
 							})
@@ -32,6 +33,7 @@ itour.routeTemplate = function(){
 				_this.uploadCoverWin().find("#win-close").click(function(){	
 					$.messager.confirm('提示','您确定关闭当前窗口吗?',function(r){  
 					    if (r){  
+						$("#preview",this.uploadCoverWin).html('');
 					     	_this.uploadCoverWin().dialog('close');
 					    }  
 					});
@@ -46,15 +48,16 @@ itour.routeTemplate = function(){
 				return $("#upload-map");
 			},
 			saveMap:function(){
-					itour.progress();//缓冲条
+					itouren.progress();//缓冲条
 					_this.uploadMapForm().attr('action',_this.uploadMapAction);
 					_this.uploadMapForm().ajaxForm();
-					itour.saveForm(_this.uploadMapForm(),function(data){
+					itouren.saveForm(_this.uploadMapForm(),function(data){
 						///console.log(data);
 						//if(data.success){	
-						itour.alert('提示', data.msg||'地图保存成功！', 'info',function(){								
-								itour.closeProgress();//关闭缓冲条
+						itouren.alert('提示', data.msg||'地图保存成功！', 'info',function(){								
+								itouren.closeProgress();//关闭缓冲条
 								_box.handler.refresh();
+								$("#preview",this.uploadMapWin).html('');
 								_this.uploadMapForm().resetForm();
 								_this.uploadMapWin().dialog('close');
 							})
@@ -68,6 +71,7 @@ itour.routeTemplate = function(){
 				_this.uploadMapWin().find("#win-close").click(function(){	
 					$.messager.confirm('提示','您确定关闭当前窗口吗?',function(r){  
 					    if (r){  
+						$("#preview",this.uploadMapWin).html('');
 					     	_this.uploadMapWin().dialog('close');
 					    }  
 					});
@@ -82,14 +86,17 @@ itour.routeTemplate = function(){
 				return $("#upload-photo");
 			},
 			savePhoto:function(){
-					itour.progress();//缓冲条
+					itouren.progress();//缓冲条
 					_this.uploadPhotoForm().attr('action',_this.uploadPhotoAction);
 					_this.uploadPhotoForm().ajaxForm();
-					itour.saveForm(_this.uploadPhotoForm(),function(data){
+					itouren.saveForm(_this.uploadPhotoForm(),function(data){
 						///console.log(data);
 						//if(data.success){	
 							$.messager.alert('提示', data.msg, 'info',function(){								
-								itour.closeProgress();//关闭缓冲条
+								itouren.closeProgress();//关闭缓冲条
+								_box.handler.refresh();
+								$("#preview",this.uploadPhotoWin).html('');
+								_this.uploadPhotoForm().resetForm();
 								_this.uploadPhotoWin().dialog('close');
 							})
 						//}
@@ -102,6 +109,7 @@ itour.routeTemplate = function(){
 				_this.uploadPhotoWin().find("#win-close").click(function(){	
 					$.messager.confirm('提示','您确定关闭当前窗口吗?',function(r){  
 					    if (r){  
+						$("#preview",this.uploadPhotoWin).html('');
 					     	_this.uploadPhotoWin().dialog('close');
 					    }  
 					});
@@ -161,7 +169,7 @@ itour.routeTemplate = function(){
 			var line = $(html);
 			//版定删除按钮事件
 			$(".remove-btn",line).click(function(){
-				itour.confirm('提示','你确定删除当前记录吗?',function(r){
+				itouren.confirm('提示','你确定删除当前记录吗?',function(r){
 					if(r){
 						_this.delLine(line);
 					}
@@ -562,6 +570,7 @@ itour.routeTemplate = function(){
 			},
 			onSuccess: function(file, response) {
 				$("#uploadInf",this.uploadCoverWin).append("<p>封面图片"+file.name+"上传成功，"  + response + "</p>");
+				$("#preview",this.uploadCoverWin).html('');
 				Grid.datagrid('reload',param);
 				_this.config.datagrid('reload',param);
 			   Form.uploadCoverForm.resetForm();
@@ -569,6 +578,7 @@ itour.routeTemplate = function(){
 			onFailure: function(file) {
 				$("#uploadInf",this.uploadCoverWin).append("<p>封面图片" + file.name + "上传失败！</p>");	
 				$("#uploadImage_" + file.index,this.uploadCoverWin).css("opacity", 0.2);
+				$("#preview",this.uploadCoverWin).html('');
 			},
 			onComplete: function() {
 				//提交按钮隐藏
@@ -576,6 +586,7 @@ itour.routeTemplate = function(){
 				//file控件value置空
 				$("#fileImage",this.uploadCoverWin).val("");
 				$("#uploadInf",this.uploadCoverWin).append("<p>当前图片上传完毕。</p>");
+				$("#preview",this.uploadCoverWin).html('');
 			}
 		},
 		mapparams:{
@@ -630,6 +641,7 @@ itour.routeTemplate = function(){
 			},
 			onSuccess: function(file, response) {
 				$("#mapuploadInf",this.uploadMapWin).append("<p>路线地图"+file.name+"上传成功，"  + response + "</p>");
+				$("#preview",this.uploadMapWin).html('');
 				Grid.datagrid('reload',param);
 				_this.config.datagrid('reload',param);
 			   Form.uploadMapForm.resetForm();
@@ -637,6 +649,7 @@ itour.routeTemplate = function(){
 			onFailure: function(file) {
 				$("#mapuploadInf",this.uploadMapWin).append("<p>路线地图" + file.name + "上传失败！</p>");	
 				$("#mapuploadImage_" + file.index,this.uploadMapWin).css("opacity", 0.2);
+				$("#preview",this.uploadMapWin).html('');
 			},
 			onComplete: function() {
 				//提交按钮隐藏
@@ -645,6 +658,7 @@ itour.routeTemplate = function(){
 				//file控件value置空
 				$("#mapfile",this.uploadMapWin).val("");
 				$("#mapuploadInf",this.uploadMapWin).append("<p>当前地图上传完毕。</p>");
+				$("#preview",this.uploadMapWin).html('');
 			}
 		},
 		photosparams:{
@@ -704,6 +718,7 @@ itour.routeTemplate = function(){
 			},
 			onSuccess: function(file, response) {
 				$("#uploadInf",this.uploadPhotoWin).append("<p>图片"+file.name+"上传成功，"  + response + "</p>");
+				$("#preview",this.uploadPhotoWin).html('');
 				Grid.datagrid('reload',param);
 				_this.config.datagrid('reload',param);
 			   Form.uploadPhotoForm.resetForm();
@@ -711,22 +726,24 @@ itour.routeTemplate = function(){
 			onFailure: function(file) {
 				$("#uploadInf",this.uploadPhotoWin).append("<p>图片" + file.name + "上传失败！</p>");	
 				$("#uploadImage_" + file.index,this.uploadPhotoWin).css("opacity", 0.2);
+				$("#preview",this.uploadPhotoWin).html('');
 			},
 			onComplete: function() {
 				//提交按钮隐藏
 				$("#fileSubmit",this.uploadPhotoWin).hide();
 				//file控件value置空
 				$("#fileImage",this.uploadPhotoWin).val("");
+				$("#preview",this.uploadPhotoWin).html('');
 				$("#uploadInf",this.uploadPhotoWin).append("<p>当前图片全部上传完毕，可继续添加上传。</p>");
 			}
 		},
 		init:function(){
 			_box = new YDataGrid(_this.config); 
 			_box.init();
-			/*var zxxfile = $.extend(ZXXFILE,this.coverparams);
+			var zxxfile = $.extend(ZXXFILE,this.coverparams);
 			zxxfile.init();
 			var zxxmapfile = $.extend(uploadFile,this.mapparams);
-			zxxmapfile.init();*/
+			zxxmapfile.init(); 
 			var photoszxxfile =  $.extend(uploadPhotos,this.photosparams);
 			photoszxxfile.init();
 			this.uploadCoverForm();
@@ -735,7 +752,7 @@ itour.routeTemplate = function(){
 			$('#addLine_btn').click(_this.addLine);
 			$('#addDefLine_btn').click(_this.addDefBtns);
 			$('#delAllLine_btn').click(function(){
-				itour.confirm('提示','你确定删除当前记录吗?',function(r){
+				itouren.confirm('提示','你确定删除当前记录吗?',function(r){
 					_this.delAllLine(false);
 				});
 			});
@@ -948,7 +965,7 @@ itour.routeTemplate = function(){
 	return _this;
 }();
 $(function(){
-	itour.routeTemplate.init();
+	itouren.routeTemplate.init();
 	/*  if (window != top)
           top.location.href = location.href;*/
 });

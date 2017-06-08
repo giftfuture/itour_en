@@ -17,4 +17,5 @@ public interface FeedbackDao extends BaseDao<Feedback> {
 	
 	List<Feedback> allFeedback();
 	List<FeedbackVO> queryByListVo(FeedbackVO vo);
+	int queryByCountVO(FeedbackVO vo);
 }

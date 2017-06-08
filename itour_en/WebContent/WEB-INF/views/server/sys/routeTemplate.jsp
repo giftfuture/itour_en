@@ -3,10 +3,10 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-  <link rel="stylesheet" type="text/css" href="${basePath}/css/zxxFile.css">
-  <script type="text/javascript" src="${basePath}/js/commons/zxxFile.js"></script> 
-  <script type="text/javascript" src="${basePath}/js/commons/uploadFile.js"></script> 
-  <script type="text/javascript" src="${basePath}/js/commons/uploadPhotos.js"></script> 
+  <link rel="stylesheet" type="text/css" href="${basePath}css/zxxFile.css">
+  <script type="text/javascript" src="${basePath}js/commons/zxxFile.js"></script> 
+  <script type="text/javascript" src="${basePath}js/commons/uploadFile.js"></script> 
+  <script type="text/javascript" src="${basePath}js/commons/uploadPhotos.js"></script> 
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->

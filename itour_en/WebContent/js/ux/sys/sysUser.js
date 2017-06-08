@@ -1,5 +1,5 @@
-$package('itour.sysUser');//class="easyui-layout"
-itour.sysUser = function(){
+$package('itouren.sysUser');//class="easyui-layout"
+itouren.sysUser = function(){
 	var _box = null;
 	var _this = {
 		updatePwdAction:'sysUser/updatePwd',
@@ -10,11 +10,11 @@ itour.sysUser = function(){
 			return $("#edit-pwd-win");
 		},
 		savePwd:function(){
-			itour.progress();//缓冲条
+			itouren.progress();//缓冲条
 			if(_this.editPwdForm().form('validate')){
 				_this.editPwdForm().attr('action',_this.updatePwdAction);
-				itour.saveForm(_this.editPwdForm(),function(data){
-					itour.closeProgress();//关闭缓冲条
+				itouren.saveForm(_this.editPwdForm(),function(data){
+					itouren.closeProgress();//关闭缓冲条
 					_this.editPwdWin().dialog('close');
 				});
 			 }
@@ -100,7 +100,7 @@ itour.sysUser = function(){
 }();
 
 $(function(){
-	itour.sysUser.init();
+	itouren.sysUser.init();
 	 /* if (window != top)
           top.location.href = location.href;*/
 });		

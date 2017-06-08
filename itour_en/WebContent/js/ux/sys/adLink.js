@@ -1,5 +1,5 @@
-$package('itour.adLink');
-itour.adLink = function(){
+$package('itouren.adLink');
+itouren.adLink = function(){
 	var _box = null;
 	var _this = {
 			uploadPhotoAction:'adLink/uploadPhoto',
@@ -10,14 +10,14 @@ itour.adLink = function(){
 				return $("#upload-photo");
 			},
 			savePhoto:function(){
-					itour.progress();//缓冲条
+					itouren.progress();//缓冲条
 					_this.uploadPhotoForm().attr('action',_this.uploadPhotoAction);
 					_this.uploadPhotoForm().ajaxForm();
-					itour.saveForm(_this.uploadPhotoForm(),function(data){
+					itouren.saveForm(_this.uploadPhotoForm(),function(data){
 						///console.log(data);
 						//if(data.success){	
 							$.messager.alert('提示', data.msg, 'info',function(){								
-								itour.closeProgress();//关闭缓冲条
+								itouren.closeProgress();//关闭缓冲条
 								_this.uploadPhotoWin().dialog('close');
 							})
 						//}
@@ -36,8 +36,8 @@ itour.adLink = function(){
 				});
 			},
 			loadPhotoList:function(id){
-				itour.loadPhotos('editPhoto',{'id':id},function(data){
-					itour.closeProgress();
+				itouren.loadPhotos('editPhoto',{'id':id},function(data){
+					itouren.closeProgress();
 					var images = "";
 					if(data.success){
 						//console.log(data.uris);
@@ -95,7 +95,7 @@ itour.adLink = function(){
 			var line = $(html);
 			//版定删除按钮事件
 			$(".remove-btn",line).click(function(){
-				itour.confirm('提示','你确定删除当前记录吗?',function(r){
+				itouren.confirm('提示','你确定删除当前记录吗?',function(r){
 					if(r){
 						_this.delLine(line);
 					}
@@ -219,12 +219,12 @@ itour.adLink = function(){
 					for (var i = 0, file; file = files[i]; i++) {
 						if (file.type.indexOf("image") == 0) {
 							if (file.size >= 5120000) {
-								itour.alert('提示','您这张"'+ file.name +'"图片大小过大，应小于5M','info');	
+								itouren.alert('提示','您这张"'+ file.name +'"图片大小过大，应小于5M','info');	
 							} else {
 								arrFiles.push(file);	
 							}			
 						} else {
-							itour.alert('提示','文件"' + file.name + '"不是图片。','info');	
+							itouren.alert('提示','文件"' + file.name + '"不是图片。','info');	
 						}
 					}
 					return arrFiles;
@@ -301,7 +301,7 @@ itour.adLink = function(){
 				$('#addLine_btn').click(_this.addLine);
 				$('#addDefLine_btn').click(_this.addDefBtns);
 				$('#delAllLine_btn').click(function(){
-					itour.confirm('提示','你确定删除当前记录吗?',function(r){
+					itouren.confirm('提示','你确定删除当前记录吗?',function(r){
 						_this.delAllLine(false);
 					});
 				});
@@ -311,7 +311,7 @@ itour.adLink = function(){
 }();
 
 $(function(){
-	itour.adLink.init();
+	itouren.adLink.init();
 	/*  if (window != top)
           top.location.href = location.href;*/
 });

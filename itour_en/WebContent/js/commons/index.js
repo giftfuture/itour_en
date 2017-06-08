@@ -1,5 +1,5 @@
-$package('itour.index');
-itour.index = function(){
+$package('itouren.index');
+itouren.index = function(){
 	var _this = {
 		loadLinks:function(arr,links,titles){
 			$.ajax({
@@ -105,9 +105,9 @@ return _this;
 }();
 
 window.onload=function(){
-	itour.index.init();
-	//setInterval(itour.index.changeImg(parseInt(curIndex),arr,titles,links),parseInt(timeInterval));
+	itouren.index.init();
+	//setInterval(itouren.index.changeImg(parseInt(curIndex),arr,titles,links),parseInt(timeInterval));
 }
 /*$(function(){
-	itour.index.init();
+	itouren.index.init();
 });*/

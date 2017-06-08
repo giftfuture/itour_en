@@ -1,5 +1,5 @@
-$package('itour.hotsightmain');
-itour.hotsightmain = function(){
+$package('itouren.hotsightmain');
+itouren.hotsightmain = function(){
 	var _this = {
 			fbpagination:function (pageno){
 			    var element = $('#fbpage');
@@ -86,5 +86,5 @@ itour.hotsightmain = function(){
 }();
 
 $(function(){
-	itour.hotsightmain.init();
+	itouren.hotsightmain.init();
 });

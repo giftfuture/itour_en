@@ -1,5 +1,5 @@
-$package('itour.UserRole');
-itour.UserRole = function(){
+$package('itouren.UserRole');
+itouren.UserRole = function(){
 	var _box = null;
 	var _this = {
 		openAddRole:function(record){
@@ -79,7 +79,7 @@ itour.UserRole = function(){
 }();
 
 $(function(){
-	itour.UserRole.init();
+	itouren.UserRole.init();
 	  /*if (window != top)
           top.location.href = location.href;*/
 });		

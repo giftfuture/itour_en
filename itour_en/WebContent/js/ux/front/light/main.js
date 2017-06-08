@@ -1,5 +1,5 @@
-$package('itour.lightmain');
-itour.lightmain = function(){
+$package('itouren.lightmain');
+itouren.lightmain = function(){
 	var _this = {
 			fbpagination:function (pageno){
 			    var element = $('#fbpage');
@@ -86,5 +86,5 @@ itour.lightmain = function(){
 }();
 
 $(function(){
-	itour.lightmain.init();
+	itouren.lightmain.init();
 });

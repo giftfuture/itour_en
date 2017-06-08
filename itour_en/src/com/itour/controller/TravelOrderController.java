@@ -312,8 +312,8 @@ public class TravelOrderController extends BaseController {
 		entity.setGroupCode(gCode);
 		String odId = orderDetailService.add(OrderDetailKit.toEntity(entity));
 		String title = "Itours Booking Info";
-		String content = "Hello!Dear"  + (entity.getGender()==1 ? "Mr" : "Mrs")+ entity.getReceiver()
-				+ " Your booking information has been received and the booking success message will be sent to your email within 24 hours. Please pay attention to view.";
+		String content = "Hello!Dear "  + (entity.getGender()==1 ? " Mr " : " Mrs ")+ entity.getReceiver()
+				+ ", Your booking information has been received and the booking success message will be sent to your email within 24 hours. Please pay attention to view.";
 		if (EmailService.sendEmail(title, receiveremail, title, content, "")) {
 			String result = sendSuccessResult(response, "Reservation is successful, please check the mailbox reservation success later!");
 			return result;
@@ -424,7 +424,7 @@ public class TravelOrderController extends BaseController {
 					String [] keyvalue = map.split(":");
 					//ticketsBlock.put(keyvalue[0], keyvalue[1]);
 					if(keyvalue.length==2){
-						adultticketsBlock.append("<span name="+(PinYinUtil.getPinYin(keyvalue[0].length()>=3?keyvalue[0].substring(0, 3):keyvalue[0]))+">"+(++idx)+"."+keyvalue[0]+":&nbsp;&nbsp;&nbsp;<span name=ttprice>"+ keyvalue[1]+"</span>元/人</span>&nbsp;&nbsp;&nbsp;<input type='checkbox' checked='checked'/><br/>");
+						adultticketsBlock.append("<span name="+(PinYinUtil.getPinYin(keyvalue[0].length()>=3?keyvalue[0].substring(0, 3):keyvalue[0]))+">"+(++idx)+"."+keyvalue[0]+":&nbsp;&nbsp;&nbsp;<span name=ttprice>"+ keyvalue[1]+"</span>￥ per person</span>&nbsp;&nbsp;&nbsp;<input type='checkbox' checked='checked'/><br/>");
 					}
 				}
 			}
@@ -481,12 +481,12 @@ public class TravelOrderController extends BaseController {
 		for(TravelItemVO ti:items){
 			String tickets = ti.getTicketsBlock();
 			if(StringUtils.isNotEmpty(tickets)){
-				String[] ticketArray = tickets.replace("淡季：", "").replace("旺季：", "").split("、");
+				String[] ticketArray = tickets.replace("slackseason:", "").replace("busyseason:", "").split(",");
 				for(String map : ticketArray){
-					String [] keyvalue = map.split("：");
+					String [] keyvalue = map.split(":");
 					//ticketsBlock.put(keyvalue[0], keyvalue[1]);
 					if(keyvalue.length==2){
-						adultticketsBlock.append("<span name="+(PinYinUtil.getPinYin(keyvalue[0].length()>=3?keyvalue[0].substring(0, 3):keyvalue[0]))+">"+(++idx)+"."+keyvalue[0]+":&nbsp;&nbsp;&nbsp;<span name=ttprice>"+ keyvalue[1]+"</span>元/人</span>&nbsp;&nbsp;&nbsp;");
+						adultticketsBlock.append("<span name="+(PinYinUtil.getPinYin(keyvalue[0].length()>=3?keyvalue[0].substring(0, 3):keyvalue[0]))+">"+(++idx)+"."+keyvalue[0]+":&nbsp;&nbsp;&nbsp;<span name=ttprice>"+ keyvalue[1]+"</span>￥ per person</span>&nbsp;&nbsp;&nbsp;");
 						if(vo.getAdultticketsBlock().contains(keyvalue[0])){
 							adultticketsBlock.append("<input type='checkbox' checked='checked'/><br/>");
 						}else{
@@ -524,9 +524,9 @@ public class TravelOrderController extends BaseController {
 				quotetourguideadultsBlock.append("<span class='style126'>"+ 
 	            "<br><input name='alltheway' value='"+spandata[0]+"' size='10' type='text'> "+ 
 	          "<select name='choselanguage' id='choselanguage' > "+ 
-	           " <option>选择语种</option> "+ 
-	           " <option value='中文'"+(spandata[1].equals("中文")?"selected='selected'":"")+">中文</option> "+ 
-	           " <option value='英文'"+(spandata[1].equals("英文")?"selected='selected'":"")+">英文</option> "+ 
+	           " <option>Choose Language</option> "+ 
+	           " <option value='Chinese'"+(spandata[1].equals("Chinese")?"selected='selected'":"")+">Chinese</option> "+ 
+	           " <option value='English'"+(spandata[1].equals("English")?"selected='selected'":"")+">English</option> "+ 
 	          "</select>&nbsp;&nbsp; "+ 
 	          "<input name='priceperday' size='6' value='"+StringUtil.getNumbers(spandata[2]).get(0)+"' style='width:50px' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+ 
 	          "元/天 &nbsp;&nbsp;X "+ 
@@ -546,10 +546,10 @@ public class TravelOrderController extends BaseController {
 				"<span class='STYLE126'><input name='alltheway' value='"+spandata[0]+"' size='10' type='text'>&nbsp;&nbsp; "+
 				 "<input name='carprice' size='6' style='width:50px' value='"+StringUtil.getNumbers(spandata[1]).get(0)+"' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
 				"元/ <select name='carstyle' id='carstyle' > "+
-	            "<option selected='selected'>方式</option> "+
-	            "<option value='天'"+(style.equals("天")?"selected='selected'":"")+">天</option> "+
-	            "<option value='公里'"+(style.equals("公里")?"selected='selected'":"")+">公里 </option> "+
-	            "<option value='趟'"+(style.equals("趟")?"selected='selected'":"")+">趟</option> "+
+	            "<option selected='selected'>style</option> "+
+	            "<option value='day'"+(style.equals("day")?"selected='selected'":"")+">day</option> "+
+	            "<option value='Km'"+(style.equals("Km")?"selected='selected'":"")+">Km </option> "+
+	            "<option value='trip'"+(style.equals("trip")?"selected='selected'":"")+">trip</option> "+
 	              "</select>"+
 	              "X<input name='carcount' size='6' value='"+StringUtil.getNumbers(spandata[1]).get(1)+"' style='width:50px' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
 	                	"数量&nbsp;&nbsp;　备注： "+
@@ -575,8 +575,8 @@ public class TravelOrderController extends BaseController {
 			for(String span:array){
 				String [] spandata = StringUtil.trimEmpyArray(span.replace("<span>", "").replace("</span>", "").split(" "));
 				quoteinsuranceadultsBlock.append("<span class='style126'><br><select style='width:151' value='"+spandata[0]+"' name='insuranceselect' id='insuranceselect'> "+
-					" <option value='内宾旅游意外保险'"+(spandata[1].equals("内宾旅游意外保险")?"selected='selected'":"")+">内宾旅游意外保险</option> "+
-					" <option value='入境旅游意外保险'"+(spandata[1].equals("入境旅游意外保险")?"selected='selected'":"")+">入境旅游意外保险</option> "+
+					" <option value='Neighborhood travel accident insurance'"+(spandata[1].equals("Neighborhood travel accident insurance")?"selected='selected'":"")+">Neighborhood travel accident insurance</option> "+
+					" <option value='Inbound tourism accident insurance'"+(spandata[1].equals("Inbound tourism accident insurance")?"selected='selected'":"")+">Inbound tourism accident insurance</option> "+
 					" </select> "+
 					"<input name='insuranceprice' value='"+StringUtil.getNumbers(spandata[1]).get(0)+"' size='6' type='number' min='0' onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
 					" 元/人&nbsp;&nbsp;备注： "+
@@ -690,9 +690,9 @@ public class TravelOrderController extends BaseController {
 						"<input name=elseitem value='"+spandata[0]+"'  size=20 type=text>&nbsp;&nbsp;"+
 						"<input name=elseitemprice value='"+StringUtil.getNumbers(spandata[1]).get(0)+"' size=6 type=number min=0 onkeyup=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onafterpaste=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\" onblur=\"(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)\">"+
 			       	 	" 元/<select name=elseitemstyle   id=elseitemstyle>"+
-			       	 	" <option selected=selected>方式</option>"+
-			       	 	" <option value='人' "+(style.equals("人")?"selected='selected'":"")+">人</option>"+
-			       	 	" <option value='团' "+(style.equals("团")?"selected='selected'":"")+">团</option>"+
+			       	 	" <option selected=selected>style</option>"+
+			       	 	" <option value='person' "+(style.equals("person")?"selected='selected'":"")+">person</option>"+
+			       	 	" <option value='group' "+(style.equals("group")?"selected='selected'":"")+">group</option>"+
 			       	 	"</select>&nbsp;&nbsp;备注：<input name=elseitemremark size=20 type=text>"+
 			           	" <a name=elseitemminus onclick='javascript:itour.quoteEdit.elsefeeMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>");
 			}
@@ -1036,7 +1036,7 @@ public class TravelOrderController extends BaseController {
 			fromhtmlToPdf(basePath,formContent, tordername, orderhtmls + htmlName, orderpdfs + pdfName,markedorderpdfs + pdfName);
 			// File attachment = new File(orderpdfs+pdfName);
 			String title = "Itours Booking Info";
-			String content = "Hello!Dear "  + (to.getGender()==1 ? "Mr" : "Mrs") + to.getReceiver() + "Your information has been booked successfully. Please open the mailbox to view your order details.";
+			String content = "Hello!Dear "  + (to.getGender()==1 ? " Mr " : " Mrs ") + to.getReceiver() + ",Your information has been booked successfully. Please open the mailbox to view your order details.";
 			// String attachment =
 			// String httporderpdfs = FilePros.httporderpdfs();
 			String pdfurl = httpmarkedorderpdfs + "/" + pdfName;

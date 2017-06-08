@@ -1,5 +1,5 @@
-$package('itour.climbmain');
-itour.climbmain = function(){
+$package('itouren.climbmain');
+itouren.climbmain = function(){
 	var _this = {
 			fbpagination:function (pageno){
 			    var element = $('#fbpage');
@@ -86,5 +86,5 @@ itour.climbmain = function(){
 }();
 
 $(function(){
-	itour.climbmain.init();
+	itouren.climbmain.init();
 });

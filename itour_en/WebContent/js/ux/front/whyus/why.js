@@ -1,5 +1,5 @@
-$package('itour.why');
-itour.why = function(){
+$package('itouren.why');
+itouren.why = function(){
 	var _this = {
 		init:function(){
 		 	//$("select[name='selectScopes']").combobox({ 
@@ -15,5 +15,5 @@ itour.why = function(){
 }();
 
 $(function(){
-	itour.why.init();
+	itouren.why.init();
 });

@@ -64,7 +64,7 @@
 			<if test="createTime != null and createTime != ''">
 	  <![CDATA[  and  DATE_FORMAT(feed_back.create_time,'%Y-%m-%d')  = DATE_FORMAT( #{createTime},'%Y-%m-%d') ]]>
 			</if>
-			<if test="status != null ">
+			<if test="status != null and status != ''">
 				and feed_back.status = #{status}
 			</if>
 			<if test="updateTime != null and updateTime != ''">
@@ -88,7 +88,7 @@
 			<if test="name != null and name != ''">
 				and feed_back.name like CONCAT('%', #{name}, '%')
 			</if>
-			<if test="mobile != null">
+			<if test="mobile != null and mobile != ''">
 				and feed_back.mobile= #{mobile}
 			</if>
 			<if test="preferedDate != null and preferedDate !=''">
@@ -106,6 +106,9 @@
 			<if test="publicShow != null and publicShow != ''">
 			    and feed_back.public_show=#{publicShow}
 			</if>
+            <if test="customerName != null and customerName != ''">
+                and customers.customer_name like CONCAT('%', #{customerName}, '%')
+            </if>
 		</trim>
 	</sql>
 
@@ -123,7 +126,7 @@
 	<update id="update" parameterType="com.itour.entity.Feedback">
 		update feed_back set update_time=now(),
 		<trim suffixOverrides=",">
-			<if test="status != null  ">
+			<if test="status != null and status != '' ">
 				status=#{status},
 			</if>
 			<!-- <if test="valid != null">
@@ -147,22 +150,22 @@
 			<if test="name != null and name != '' ">
 				name=#{name},
 			</if>
-			<if test="mobile != null">
+			<if test="mobile != null and mobile != ''">
 				result=#{mobile},
 			</if>
-			<if test="teamPersons != null">
+			<if test="teamPersons != null and teamPersons != ''">
 				team_persons=#{teamPersons},
 			</if>
-			<if test="preferedDate != null ">
+			<if test="preferedDate != null and preferedDate != ''">
 				prefered_date=#{preferedDate},
 			</if>
 			<if test="route != null and route !=''">
 				route=#{route},
 			</if>
-			<if test="sex != null">
+			<if test="sex != null and sex != ''">
 			   sex = #{sex},
 			</if>
-			<if test="publicShow != null">
+			<if test="publicShow != null and publicShow != ''">
 		       public_show=#{publicShow},
 			</if>
 		</trim>
@@ -191,7 +194,8 @@
 	<!-- 客户反馈 列表总数 -->
 	<select id="queryByCount" resultType="java.lang.Integer"
 		parameterType="com.itour.base.page.BasePage">
-		select count(1) from feed_back
+		select count(1) from feed_back left join customers on feed_back.customer_id = customers.id 
+        left join route_template rt on rt.route_code=feed_back.route
 		<include refid="Example_Where_Clause" />
 	</select>
 
@@ -226,5 +230,10 @@
             test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''">
             ${pager.mysqlQueryCondition}
         </if>
+    </select>
+    <select id="queryByCountVO" resultType="java.lang.Integer" parameterType="com.itour.base.page.BasePage">
+        select count(1) from feed_back  left join customers on feed_back.customer_id = customers.id 
+        left join (select travel_style.type,rt.route_code,rt.title from route_template rt left join travel_style on rt.travel_style=travel_style.id) tr on tr.route_code=feed_back.route
+        <include refid="Example_Where_Clause" />
     </select>
 </mapper>   

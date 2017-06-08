@@ -1,5 +1,5 @@
-$package('itour.travelOrder');
-itour.travelOrder = function(){
+$package('itouren.travelOrder');
+itouren.travelOrder = function(){
 	var _box = null;
 	var _this = {
 			toList:function(parentId){
@@ -55,7 +55,7 @@ itour.travelOrder = function(){
 				var line = $(html);
 				//版定删除按钮事件
 				$(".remove-btn",line).click(function(){
-					itour.confirm('提示','你确定删除当前记录吗?',function(r){
+					itouren.confirm('提示','你确定删除当前记录吗?',function(r){
 						if(r){
 							_this.delLine(line);
 						}
@@ -347,7 +347,7 @@ itour.travelOrder = function(){
 			$('#addLine_btn').click(_this.addLine);
 			$('#addDefLine_btn').click(_this.addDefBtns);
 			$('#delAllLine_btn').click(function(){
-				itour.confirm('提示','你确定删除当前记录吗?',function(r){
+				itouren.confirm('提示','你确定删除当前记录吗?',function(r){
 					_this.delAllLine(false);
 				});
 			});
@@ -367,9 +367,9 @@ itour.travelOrder = function(){
 			    dateValided : {  
 			        validator : function(value) { //参数value为当前文本框的值
 			        	var d =  _this.formatterDate(new Date());
-			        //	itour.alert('提示',value +"    "+ d+"   "+(value > d),'info');
+			        //	itouren.alert('提示',value +"    "+ d+"   "+(value > d),'info');
 			           if(d>=value){
-			        	   //itour.alert('提示','选择行程安排日期应在当前日期之后','warn');
+			        	   //itouren.alert('提示','选择行程安排日期应在当前日期之后','warn');
 			        	   //$("input[name='tourTime']").datebox('setValue','');  
 			           }else{
 			        	   return value > d;  
@@ -380,9 +380,9 @@ itour.travelOrder = function(){
 			    dateLimited : {  
 			        validator : function(value,param) { //参数value为当前文本框的值
 			        	var d =  _this.formatterDate(new Date());
-			        //	itour.alert('提示',value +"    "+ d+"   "+(value > d),'info');
+			        //	itouren.alert('提示',value +"    "+ d+"   "+(value > d),'info');
 			           if(d>=value){
-			        	   //itour.alert('提示','选择行程安排日期应在当前日期之后','warn');
+			        	   //itouren.alert('提示','选择行程安排日期应在当前日期之后','warn');
 			        	   //$("input[name='tourTime']").datebox('setValue','');  
 			           }else{
 			        	   return value > d;  
@@ -427,7 +427,7 @@ itour.travelOrder = function(){
 }();
 
 $(function(){
-	itour.travelOrder.init();
+	itouren.travelOrder.init();
 	 /* if (window != top)
           top.location.href = location.href;*/
 });

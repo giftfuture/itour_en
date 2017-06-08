@@ -1,5 +1,5 @@
-$package('itour.happiness');
-itour.happiness = function(){
+$package('itouren.happiness');
+itouren.happiness = function(){
 		var _this = {
 		fbpagination:function(pageno){
 	        var element = $('#fbpage');
@@ -129,5 +129,5 @@ itour.happiness = function(){
 	return  _this;
 }();
 $(function(){
-	   itour.happiness.init();
+	   itouren.happiness.init();
 });

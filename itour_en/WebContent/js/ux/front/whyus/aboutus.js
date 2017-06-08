@@ -1,5 +1,5 @@
-$package('itour.aboutus');
-itour.aboutus = function(){
+$package('itouren.aboutus');
+itouren.aboutus = function(){
 	var _this = {
 		init:function(){
 		 	//$("select[name='selectScopes']").combobox({ 
@@ -15,5 +15,5 @@ itour.aboutus = function(){
 }();
 
 $(function(){
-	itour.aboutus.init();
+	itouren.aboutus.init();
 });

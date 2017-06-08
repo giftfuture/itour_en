@@ -1,5 +1,5 @@
-$package('itour.logSettingDetail');
-itour.logSettingDetail = function(){
+$package('itouren.logSettingDetail');
+itouren.logSettingDetail = function(){
 	var _box = null;
 	var _this = {
 		config:{
@@ -65,7 +65,7 @@ itour.logSettingDetail = function(){
 }();
 
 $(function(){
-	itour.logSettingDetail.init();
+	itouren.logSettingDetail.init();
 	  /*if (window != top)
           top.location.href = location.href;*/
 });

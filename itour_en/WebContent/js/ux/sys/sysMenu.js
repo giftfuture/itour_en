@@ -1,6 +1,6 @@
-$package('itour.sysMenu');
+$package('itouren.sysMenu');
 
-itour.sysMenu = function(){
+itouren.sysMenu = function(){
 	var _box = null;
 	var _this = {
 		toList:function(parentId){
@@ -57,7 +57,7 @@ itour.sysMenu = function(){
 			var line = $(html);
 			//版定删除按钮事件
 			$(".remove-btn",line).click(function(){
-				itour.confirm('提示','你确定删除当前记录吗?',function(r){
+				itouren.confirm('提示','你确定删除当前记录吗?',function(r){
 					if(r){
 						_this.delLine(line);
 					}
@@ -138,7 +138,7 @@ itour.sysMenu = function(){
 					{field:'updateBy',title:'更新人',width:120,sortable:true},
 					{field:'updateTime',title:'更新时间',width:120,sortable:true},
 					{field:'childMenus',title:'子目录',width:120,align:'center',formatter:function(value,row,index){
-						var html ="<a href='javascript:void(0)' title='本菜单有"+row.subCount+"个子菜单' onclick='itour.sysMenu.toList("+row.id+")'>进入子菜单</a>";
+						var html ="<a href='javascript:void(0)' title='本菜单有"+row.subCount+"个子菜单' onclick='itouren.sysMenu.toList("+row.id+")'>进入子菜单</a>";
 						return html;
 					}}
 				]],
@@ -165,7 +165,7 @@ itour.sysMenu = function(){
 			$('#addLine_btn').click(_this.addLine);
 			$('#addDefLine_btn').click(_this.addDefBtns);
 			$('#delAllLine_btn').click(function(){
-				itour.confirm('提示','你确定删除当前记录吗?',function(r){
+				itouren.confirm('提示','你确定删除当前记录吗?',function(r){
 					_this.delAllLine(false);
 				});
 			});
@@ -176,7 +176,7 @@ itour.sysMenu = function(){
 }();
 
 $(function(){
-	itour.sysMenu.init();
+	itouren.sysMenu.init();
 	/*  if (window != top)
           top.location.href = location.href;*/
 });		

@@ -1,5 +1,5 @@
-$package('itour.trekking');
-itour.trekking = function(){
+$package('itouren.trekking');
+itouren.trekking = function(){
 	var _this = {
 			feedback:function(){
 				$.ajax({type:'post',
@@ -13,16 +13,16 @@ itour.trekking = function(){
 				 	success:function(data){
 				 		var result= $.parseJSON(data);
 				 		//$.messager.alert('提示',result.msg,'info');
-				 		itour.alert('alert', result.msg ,'info');
+				 		itouren.alert('alert', result.msg ,'info');
 				 	},
 				 	error:function(response, textStatus, errorThrown){
 				 		try{
-				 			itour.closeProgress();
+				 			itouren.closeProgress();
 				 			var data = $.parseJSON(response.responseText);
 				 			//console.log(data);
-				 			itour.alert('alert', data.msg ,'error');
+				 			itouren.alert('alert', data.msg ,'error');
 				 		}catch(e){
-				 			itour.alert('alert',"Request an exception, please contact the administrator.",'error');
+				 			itouren.alert('alert',"Request an exception, please contact the administrator.",'error');
 				 		}
 				 	}
 				 })
@@ -39,5 +39,5 @@ itour.trekking = function(){
 }();
 
 $(function(){
-	itour.trekking.init();
+	itouren.trekking.init();
 });

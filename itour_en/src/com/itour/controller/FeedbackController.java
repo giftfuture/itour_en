@@ -100,9 +100,12 @@ public class FeedbackController extends BaseController{
 		fv.setPage(pageNo);
 		fv.setRows(Constants.fbperPage);
 		//fv.setLimit(Constants.fbperPage);
-		fv.getPager().setPageId(pageNo);
-		fv.getPager().setPageSize(Constants.fbperPage);
-		fv.getPager().setOrderField("create_time");
+		//fv.getPager().setPageId(pageNo);
+		//fv.getPager().setPageSize(Constants.fbperPage);
+		//fv.getPager().setOrderField("create_time");
+		//fv.getPager().setOrderDirection(false);
+		fv.setSort("create_time");
+		fv.setOrderDirection(false);
 		fv.getPager().setOrderDirection(false);
 		List<FeedbackVO> list = Lists.newArrayList();
 		/*if(Constants.feedbackpage.size() >= Constants.fbperPage){

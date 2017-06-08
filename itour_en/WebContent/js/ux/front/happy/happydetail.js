@@ -1,5 +1,5 @@
- $package('itour.happydetail');
-itour.happydetail = function(){
+ $package('itouren.happydetail');
+itouren.happydetail = function(){
 		var _this = {
 			printff:function(){
 				//window.print();
@@ -26,7 +26,7 @@ itour.happydetail = function(){
 				// 当触发copy事件时，设置用于复制的文本数据
 				//复制成功： 
 				client.on( "aftercopy", function(){
-				    itour.alert('alert', "Copy Successfully!",'info');
+				    itouren.alert('alert', "Copy Successfully!",'info');
 				});
 			},
 			addFavorite:function () {
@@ -43,7 +43,7 @@ itour.happydetail = function(){
 						catch (e){
 							try{
 								window.external.toString(); //360浏览器不支持window.external，无法收藏
-								itour.alert('alert',"Domestic development of the 360 browser does not support the initiative to join the collection. \ NYou can try using the browser menu bar or the shortcut ctrl + D.",'info');
+								itouren.alert('alert',"Domestic development of the 360 browser does not support the initiative to join the collection. \ NYou can try using the browser menu bar or the shortcut ctrl + D.",'info');
 							}
 							catch (e){
 								window.external.addToFavoritesBar(url,title);  //IE8
@@ -52,13 +52,13 @@ itour.happydetail = function(){
 					}else if (window.sidebar) { //firfox等浏览器
 						window.sidebar.addPanel(url	,title, "");
 					}else if(window.opera){
-						itour.alert('alert','opera You can try via shortcuts' + ctrl + ' + D Add to Favorites ~','info');
+						itouren.alert('alert','opera You can try via shortcuts' + ctrl + ' + D Add to Favorites ~','info');
 					}else{
-						itour.alert('alert',' You can try via shortcuts' + ctrl + ' + D Add to Favorites ~','info');
+						itouren.alert('alert',' You can try via shortcuts' + ctrl + ' + D Add to Favorites ~','info');
 					}
 				}
 				catch (e){
-					itour.alert('alert',"Because IE browser bug, add the collection failed! \ N Workaround: Find in the registry\n HKEY_CLASSES_ROOT\\TypeLib\\{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}\\1.1\\0\\win32 \n C:\\WINDOWS\\system32\\shdocvw.dll changed to C:\\WINDOWS\\system32\\ieframe.dll ",'info');
+					itouren.alert('alert',"Because IE browser bug, add the collection failed! \ N Workaround: Find in the registry\n HKEY_CLASSES_ROOT\\TypeLib\\{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}\\1.1\\0\\win32 \n C:\\WINDOWS\\system32\\shdocvw.dll changed to C:\\WINDOWS\\system32\\ieframe.dll ",'info');
 				}
 			},
 			init:function(){
@@ -68,5 +68,5 @@ itour.happydetail = function(){
 	return  _this;
 	}();
 	$(function(){
-	   itour.happydetail.init();
+	   itouren.happydetail.init();
 	});

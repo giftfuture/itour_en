@@ -1,5 +1,5 @@
-$package('itour.serverquotestep2');
-itour.serverquotestep2 = function(){
+$package('itouren.serverquotestep2');
+itouren.serverquotestep2 = function(){
 	var _this = {
 			checkedAll:function (name){//全选
 				  var names=document.getElementsByName(name);
@@ -145,7 +145,7 @@ itour.serverquotestep2 = function(){
 }();
 
 $(function(){
-	itour.serverquotestep2.init();
+	itouren.serverquotestep2.init();
 	 /* if (window != top)
           top.location.href = location.href;*/
 });

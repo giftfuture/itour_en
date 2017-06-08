@@ -1,5 +1,5 @@
-$package('itour.showOrders');
-itour.showOrders = function(){
+$package('itouren.showOrders');
+itouren.showOrders = function(){
 	var _this = {
 		  showSuccess:function (str) {
 				$('#alertMessage').removeClass('error').html(str).stop(true, true).show().animate({
@@ -36,7 +36,7 @@ itour.showOrders = function(){
 }();
 
 $(function(){
-	itour.showOrders.init();
+	itouren.showOrders.init();
 	/*  if (window != top)
           top.location.href = location.href;*/
 });

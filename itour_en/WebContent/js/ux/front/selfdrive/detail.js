@@ -1,5 +1,5 @@
-$package('itour.selfdrivedetail');
-itour.selfdrivedetail = function(){
+$package('itouren.selfdrivedetail');
+itouren.selfdrivedetail = function(){
 	var _this = {
 			fbpagination:function(pageno){
 			            var element = $('#fbpage');
@@ -130,7 +130,7 @@ itour.selfdrivedetail = function(){
 				// 当触发copy事件时，设置用于复制的文本数据
 				//复制成功： 
 				client.on( "aftercopy", function(){
-				    itour.alert('alert', "Copy Successfully",'info');
+				    itouren.alert('alert', "Copy Successfully",'info');
 				});
 			},
 			addFavorite:function () {
@@ -147,7 +147,7 @@ itour.selfdrivedetail = function(){
 						catch (e){
 							try{
 								window.external.toString(); //360浏览器不支持window.external，无法收藏
-								itour.alert('alert',"Domestic development of the 360 browser does not support the initiative to join the collection. \ NYou can try using the browser menu bar or the shortcut ctrl + D.",'info');
+								itouren.alert('alert',"Domestic development of the 360 browser does not support the initiative to join the collection. \ NYou can try using the browser menu bar or the shortcut ctrl + D.",'info');
 							}
 							catch (e){
 								window.external.addToFavoritesBar(url,title);  //IE8
@@ -156,13 +156,13 @@ itour.selfdrivedetail = function(){
 					}else if (window.sidebar) { //firfox等浏览器
 						window.sidebar.addPanel(url	,title, "");
 					}else if(window.opera){
-						itour.alert('alert','opera You can try via shortcuts' + ctrl + ' + D Add to Favorites ~','info');
+						itouren.alert('alert','opera You can try via shortcuts' + ctrl + ' + D Add to Favorites ~','info');
 					}else{
-						itour.alert('alert',' You can try via shortcuts' + ctrl + ' + D Add to Favorites ~','info');
+						itouren.alert('alert',' You can try via shortcuts' + ctrl + ' + D Add to Favorites ~','info');
 					}
 				}
 				catch (e){
-					itour.alert('alert',"Because IE browser bug, add the collection failed! \ N Workaround: Find in the registry\n HKEY_CLASSES_ROOT\\TypeLib\\{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}\\1.1\\0\\win32 \n C:\\WINDOWS\\system32\\shdocvw.dll changed to C:\\WINDOWS\\system32\\ieframe.dll ",'info');
+					itouren.alert('alert',"Because IE browser bug, add the collection failed! \ N Workaround: Find in the registry\n HKEY_CLASSES_ROOT\\TypeLib\\{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}\\1.1\\0\\win32 \n C:\\WINDOWS\\system32\\shdocvw.dll changed to C:\\WINDOWS\\system32\\ieframe.dll ",'info');
 				}
 			},ajaxSubmit:function (form,option){
 				form.ajaxSubmit(option);
@@ -181,19 +181,19 @@ itour.selfdrivedetail = function(){
 					 	success:function(data){
 					 		var jsondata= $.parseJSON(data);//$(data).text()
 				 			//console.log(data);
-							itour.closeProgress();
+							itouren.closeProgress();
 						 	if(jsondata.success||jsondata.success=="true"){
-					       		 itour.alert('alert','Saved Successfully!','info');
+					       		 itouren.alert('alert','Asked Successfully!','info');
 						       	 document.forms["fastask"].reset();
 					        }else{
-					        	itour.alert('alert', jsondata.msg || "Request an exception, please contact the administrator.",'error'); 
+					        	itouren.alert('alert', jsondata.msg || "Request an exception, please contact the administrator.",'error'); 
 					        }
 					 	},
 					 	error:function(response, textStatus, errorThrown){
-				 			itour.alert('alert',"Request an exception, please contact the administrator.",'error');
+				 			itouren.alert('alert',"Request an exception, please contact the administrator.",'error');
 					 	}
 					 }
-			   		 itour.progress('Please waiting','Saving...');
+			   		 itouren.progress('Please waiting','Saving...');
 					_this.ajaxSubmit($(document.forms["fastask"]),option);
 					 return false;
 				}
@@ -291,6 +291,6 @@ itour.selfdrivedetail = function(){
 }();
 
 $(function(){
-	   itour.selfdrivedetail.init();
-	   itour.selfdrivedetail.copyUrl();
+	   itouren.selfdrivedetail.init();
+	   itouren.selfdrivedetail.copyUrl();
 });

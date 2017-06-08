@@ -1,5 +1,5 @@
-$package('itour.sysRole');
-itour.sysRole = function(){
+$package('itouren.sysRole');
+itouren.sysRole = function(){
 	var _box = null;
 	var _this = {
 		menu: $('#menu-tree'),
@@ -68,7 +68,7 @@ itour.sysRole = function(){
 					//判断是否被禁用帐号
 					var state = $("input[name='state']",_box.form.edit).val();
 					if(state != 0){
-						itour.confirm("提示","禁用角色将会自动解除关联的用户授权,是否确定?",function(r){
+						itouren.confirm("提示","禁用角色将会自动解除关联的用户授权,是否确定?",function(r){
 							if(r){
 								_this.save();
 							}
@@ -128,7 +128,7 @@ itour.sysRole = function(){
 }();
 
 $(function(){
-	itour.sysRole.init();
+	itouren.sysRole.init();
 	 /* if (window != top)
           top.location.href = location.href;*/
 });		

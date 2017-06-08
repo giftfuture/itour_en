@@ -1,11 +1,11 @@
-$package('itour.main');
-itour.main = function(){
+$package('itouren.main');
+itouren.main = function(){
 	return {
 		treeSelect:function(){
 			var _this = $(this);
 			var title=_this.text();
 			var url=_this.attr('href');
-			itour.main.addTab(title,url);
+			itouren.main.addTab(title,url);
 			return false;
 		},
 		treeInit:function(){
@@ -53,7 +53,7 @@ itour.main = function(){
 			if(pwdForm.form('validate')){
 				var parentId =$('#search_parentId').val();
 				$("#edit_parentId").val(parentId)
-				itour.saveForm(pwdForm,function(data){
+				itouren.saveForm(pwdForm,function(data){
 					$('#modify-pwd-win').dialog('close');
 				    pwdForm.resetForm();
 				});
@@ -79,5 +79,5 @@ itour.main = function(){
 $(function(){
 	 /* if (window != top)
           top.location.href = location.href;*/
-	itour.main.init();
+	itouren.main.init();
 });		

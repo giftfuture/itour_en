@@ -1,5 +1,5 @@
-$package('itour.customers');
-itour.customers = function(){
+$package('itouren.customers');
+itouren.customers = function(){
 	var _box = null;
 	var _this = {
 			toList:function(parentId){
@@ -55,7 +55,7 @@ itour.customers = function(){
 				var line = $(html);
 				//版定删除按钮事件
 				$(".remove-btn",line).click(function(){
-					itour.confirm('提示','你确定删除当前记录吗?',function(r){
+					itouren.confirm('提示','你确定删除当前记录吗?',function(r){
 						if(r){
 							_this.delLine(line);
 						}
@@ -283,7 +283,7 @@ itour.customers = function(){
 			$('#addLine_btn').click(_this.addLine);
 			$('#addDefLine_btn').click(_this.addDefBtns);
 			$('#delAllLine_btn').click(function(){
-				itour.confirm('提示','你确定删除当前记录吗?',function(r){
+				itouren.confirm('提示','你确定删除当前记录吗?',function(r){
 					_this.delAllLine(false);
 				});
 			});
@@ -294,7 +294,7 @@ itour.customers = function(){
 }();
 
 $(function(){
-	itour.customers.init();
+	itouren.customers.init();
 	/*  if (window != top)
           top.location.href = location.href;*/
 });

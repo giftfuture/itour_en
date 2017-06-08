@@ -1,5 +1,5 @@
-$package('itour.selfdrivemain');
-itour.selfdrivemain = function(){
+$package('itouren.selfdrivemain');
+itouren.selfdrivemain = function(){
 	var _this = {
 			fbpagination:function (pageno){
 			    var element = $('#fbpage');
@@ -79,5 +79,5 @@ itour.selfdrivemain = function(){
 }();
 
 $(function(){
-	itour.selfdrivemain.init();
+	itouren.selfdrivemain.init();
 });

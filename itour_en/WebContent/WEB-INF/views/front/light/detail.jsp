@@ -372,7 +372,7 @@
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>Mobile Phone</strong>:</div></td>
-                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="mobile"  class="easyui-textbox" data-options="prompt:'Please type your contact number',validType:'phoneNum'"/>
+                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="mobile"  class="easyui-numberbox" data-options="prompt:'Please type your contact number'"/>
                     <!-- <a href="javascript:void(0)" title="合法且正在使用的11位大陆手机号码">Explains</a>&gt;&gt; --> </td>
               </tr>
           <!--     <tr>

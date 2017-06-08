@@ -25,10 +25,11 @@
       <tbody><tr>
         <td width="685">
         <table width="1053" cellspacing="0" cellpadding="0" border="0">
-          <tbody><tr>
+          <tbody>
+         <%--  <tr>
             <td width="32"><img src="images/man.gif" width="32" height="32"></td>
             <td width="1021"><span class="style148"><span class="style24">来自：</span>${bean.city }${bean.district }${bean.customerName} <span class="STYLE24">团号：</span>${qf.groupCode }  <span class="STYLE149">出团日期：</span>${qf.groupDate }<span class="STYLE149">人数：</span>${qf.adults }大${qf.children }小 </span></td>
-          </tr>
+          </tr> --%>
         </tbody></table></td>
       </tr>
     </tbody></table></td>
@@ -44,7 +45,7 @@
   </tr>
 </tbody></table>
 <br>
-<span class="style10">备注：提前要连接好客人的信息，团号，出团日期，人数几大几小。</span><br>
+<!-- <span class="style10">备注：提前要连接好客人的信息，团号，出团日期，人数几大几小。</span><br> -->
 <table width="80%" cellspacing="0" cellpadding="0" border="0" align="center">
   <tbody><tr>
     <td><img src="images/frame1-1.gif" width="100%" height="7"></td>

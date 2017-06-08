@@ -39,7 +39,7 @@
         <td width="685"><table width="1053" border="0" cellpadding="0" cellspacing="0">
           <tr>
             <td width="32"><img src="${basePath}images/man.gif" width="32" height="32" /></td>
-            <td width="1021" style="color: #990000;"><span class="STYLE148"><span class="STYLE14">来自：</span>${bean.city }${bean.district } ${bean.customerName} <span class="STYLE14"> 团号：</span>${qf.groupCode }  <span class="STYLE14">出团日期：</span>${qf.groupDate }<span class="STYLE14">人数：</span>${qf.adults }大${qf.children }小 </span></td>
+            <td width="1021" style="color: #990000;"><span class="STYLE148"><span class="STYLE14">Come From:</span>${bean.city }${bean.district } ${bean.customerName} <span class="STYLE14"> Group Number:</span>${qf.groupCode }  <span class="STYLE14">The date of the group：</span>${qf.groupDate }<span class="STYLE14">The number of people：</span>${qf.adults }Adults${qf.children }Children</span></td>
           </tr>
         </table></td>
       </tr>
@@ -114,43 +114,43 @@
             <td><table class="STYLE126" width="442" cellspacing="2" cellpadding="4" border="0">
               <tbody><tr>
 
-          <td class="STYLE126" style="width:130px;margin-right:10px;padding-right:10px;"><div align="right"><strong>类型</strong></div></td>
+          <td class="STYLE126" style="width:130px;margin-right:10px;padding-right:10px;"><div align="right"><strong>Type:</strong></div></td>
           <td class="STYLE126" style="margin-left:10px;padding-left:10px;text-align:left" style="font-size: 14px;"><strong>${bean.travelStyle} </strong><a href="javascript:void(0)" title="${bean.travelStyle}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
-          <td width="70" class="STYLE126" style="width:130px;margin-right:10px;padding-right:10px;"><div align="right"><strong>线路编号</strong></div></td>
+          <td width="70" class="STYLE126" style="width:130px;margin-right:10px;padding-right:10px;"><div align="right"><strong>Route Number:</strong></div></td>
           <td width="350" class="STYLE126" style="margin-left:10px;text-align:left" style="font-size: 14px;">${bean.routeCode}</td>
         </tr>
          <tr>
-          <td width="70" class="STYLE126" style="width:130px;margin-right:10px;padding-right:10px;"><div align="right"><strong>线路名称</strong></div></td>
+          <td width="70" class="STYLE126" style="width:130px;margin-right:10px;padding-right:10px;"><div align="right"><strong>Route Name:</strong></div></td>
           <td width="350" class="STYLE126" style="margin-left:10px;text-align:left" style="font-size: 14px;">${bean.title}</td>
         </tr>
         <tr>
-          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>旅行天数</strong></div></td>
-          <td class="STYLE126" style="margin-left:10px;text-align:left" style="font-size: 14px;">${bean.rcdDays}天<strong> </strong><a href="javascript:void(0)" title="${bean.rcdDays}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>Travel Days:</strong></div></td>
+          <td class="STYLE126" style="margin-left:10px;text-align:left" style="font-size: 14px;">${bean.rcdDays}days<strong> </strong><a href="javascript:void(0)" title="${bean.rcdDays}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
-          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>最高海拔</strong></div></td>
-          <td class="STYLE126" style="margin-left:10px;text-align:left" style="font-size: 14px;">${bean.mileage}米</td>
+          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>Highest elevation:</strong></div></td>
+          <td class="STYLE126" style="margin-left:10px;text-align:left" style="font-size: 14px;">${bean.mileage}Meter</td>
         </tr>
         <tr>
-          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>起始地</strong></div></td>
+          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>Depatrute:</strong></div></td>
           <td class="STYLE126" style="margin-left:10px;text-align:left" style="font-size: 14px;">${bean.departure }<a href="javascript:void(0)" title="${bean.departure}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
-          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>完成地</strong></div></td>
+          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>Completed:</strong></div></td>
           <td class="STYLE126" style="margin-left:10px;text-align:left" style="font-size: 14px;">${bean.arrive }</td>
         </tr>
         <tr>
-          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>路线</strong></div></td>
+          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>Route:</strong></div></td>
           <td class="STYLE126" style="margin-left:10px;text-align:left" style="font-size: 14px;">${bean.routeLine }</td>
         </tr>
         <tr>
-          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>交通方式</strong></div></td>
+          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>Transportation:</strong></div></td>
           <td class="STYLE126" style="margin-left:10px;text-align:left" style="font-size: 14px;">${bean.transportation }</td>
         </tr>
         <tr>
-          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>徒步难度</strong></div></td>
+          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>Walking difficulty:</strong></div></td>
           <td class="STYLE126" style="margin-left:10px;text-align:left">
           <c:forEach items="${bean.diffRate}" var="dr">
              <img src="${basePath}images/shoe-1.gif" width="16" height="16" />
@@ -158,31 +158,31 @@
           <c:forEach items="${bean.undiffRate}" var="rd">
              <img src="${basePath}images/shoe-2.gif" width="16" height="16" />
           </c:forEach>
-           <a href="javascript:void(0)" title="深色鞋子标识徒步难度等级">Explain&gt;&gt;</a></td>
+           <a href="javascript:void(0)" title="Dark shoes logo on the difficulty level">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
-          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>徒步距离 </strong></div></td>
+          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>Walking distance:</strong></div></td>
           <td class="STYLE126" style="margin-left:10px;text-align:left" style="font-size: 14px;">${bean.trekDistance }km</td>
         </tr>
         <tr>
-          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>山峰类型</strong></div></td>
+          <td class="STYLE126" style="margin-right:10px;padding-right:10px;"><div align="right"><strong>Mountain Style:</strong></div></td>
           <td class="STYLE126" style="margin-left:10px;text-align:left" style="font-size: 14px;">${bean.mountStyle } <a href="javascript:void(0)" title="${bean.mountStyle}">Explain&gt;&gt; </a></td>
         </tr>
       </table>
       <span class="STYLE148" style="color: #990000"> 
-    注：每个团的需求都不同，可根据您的假期重新调整设计行程。</span> 
+        Note: The needs of each group are different, according to your holiday to<br /> re-adjust the design process.</span> 
     <table class="f12-gao1">
       <tr>
         <td><img src="${basePath}images/facebook.png" width="24" height="24" />
-        <a >分享至FB</a></td>
+        <a >Share to FB</a></td>
         <td><img src="${basePath}images/share.png" width="24" height="24" />
-        <a >复制链接</a><div style="display:none" id="flashcopier"></div></td>
+        <a >Copy Url</a><div style="display:none" id="flashcopier"></div></td>
         <td><img src="${basePath}images/favorite01.png" width="24" height="24" />
-        <a rel="sidebar">收藏本页</a></td>
+        <a rel="sidebar">Bookmark</a></td>
         <td><img src="${basePath}images/print.png" width="24" height="24" />
-        <a>打印页面</a></td>
+        <a>Print</a></td>
       </tr>
-     <tr><td>相关路线：
+     <tr><td>Related routes:
       <c:forEach items="${bean.relates}" var="relat">
       <p><a >${relat.title }</a></p>
       </c:forEach>
@@ -202,9 +202,9 @@
 
 <div  style="width:1350px;text-align:center;align:center;font-family: '微软雅黑';border:0;"  id="tab-container" class='tab-container' cellpadding="3" cellspacing="1">
  <ul style="text-align:left;float:left" class='etabs'>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}${bean.travelStyleAlias}/${bean.travelStyleAlias }/${bean.alias}#review" target="_self">整体概览</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}${bean.travelStyleAlias }/${bean.travelStyleAlias }/${bean.alias}#detail-route" target="_self">详细行程</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}${bean.travelStyleAlias }/${bean.travelStyleAlias }/${bean.alias}#need-know" target="_self">行前需知</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}${bean.travelStyleAlias}/${bean.travelStyleAlias }/${bean.alias}#review" target="_self">Overall overview</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}${bean.travelStyleAlias }/${bean.travelStyleAlias }/${bean.alias}#detail-route" target="_self">Detailed Itinerary</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}${bean.travelStyleAlias }/${bean.travelStyleAlias }/${bean.alias}#need-know" target="_self">Before the line to know</a></li>
  </ul>
  <div class='panel-container'>
  <div id="review" name="review">
@@ -215,12 +215,12 @@
   <tr>
     <td background="${basePath}images/frame1-2.gif" width="1140" ><table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
       <tr> 
-        <td width="761" valign="top" style="text-align:left;color: #990000;font-family:'微软雅黑';font-size: 16px; font-weight: bold;" class="STYLE126" ><span class="STYLE3">设计理念：</span>
+        <td width="761" valign="top" style="text-align:left;color: #990000;font-family:'微软雅黑';font-size: 16px; font-weight: bold;" class="STYLE126" ><span class="STYLE3">design concept:</span>
        	 <p style="color: #990000;"> ${bean.designConcept }</p>
-          <span class="STYLE148" style="color: #990000;font-weight: bold;text-align: left;font-size: 14px;"><strong>主角旅行團隊定製服務：</strong> </span>
+          <span class="STYLE148" style="color: #990000;font-weight: bold;text-align: left;font-size: 14px;"><strong>iTour travel team customization service:</strong> </span>
           <p style="color: #990000;">${bean.customizedService }</p>
         </td>
-        <td width="299" valign="top" class="STYLE126"><div align="center"><span class="STYLE3" style="color: #990000;font-family: '微软雅黑';font-size: 24px;">行程地图</span>
+        <td width="299" valign="top" class="STYLE126"><div align="center"><span class="STYLE3" style="color: #990000;font-family: '微软雅黑';font-size: 24px;">Travel map</span>
    			<div class="easyzoom easyzoom--overlay"><p>
 				<a href="${basePath}images/map-002.jpg">
 					<img src="${basePath}images/map-002.jpg" alt="" width="640" height="360" />		
@@ -241,7 +241,7 @@
    <table  class="frametb" align="center">
   <tr>
     <td colspan=2><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span> 
-    <span class="h2-24" style="float:middle"><span class="STYLE148" style="color: #990000;font-family: '微软雅黑';font-size: 24px;">简要日程</span></span></td>
+    <span class="h2-24" style="text-align:left;float:left"><span class="STYLE148" style="color: #990000;font-family: '微软雅黑';font-size: 24px;">Brief Schedule</span></span></td>
   </tr>
    <tr>
     <td width="1140" style="align:left;float:left"><img style="align:left;float:left" src="${basePath}images/frame1-1.gif" height="7" /></td>
@@ -252,14 +252,14 @@
     <td style="float:left"><img style="float:left" src="${basePath}images/frame1-3.gif" width="1140" height="7" /></td>
   </tr> 
     <td colspan=2><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span>
-    <span class="h2-24" style="float:middle"><span class="STYLE148" style="color: #990000;font-family: '微软雅黑';font-size: 24px;">详细日程</span></span></td>
+    <span class="h2-24" style="text-align:left;float:left"><span class="STYLE148" style="color: #990000;font-family: '微软雅黑';font-size: 24px;">Detailed Schedule</span></span></td>
   </tr>
   <tr><td colspan="2" background="${basePath}images/frame1-2.gif">${qf.agodaDetail }</td></tr>
   <tr><td colspan=2>  <div id="need-know" name="need-know">
   <table  class="frametb" align="center">
   <tr>
     <td width="32"><img src="${basePath}images/document2.png" width="32" height="32" /></td>
-    <td width="1028" style="float:middle"><span class="h2-24"><span class="STYLE148" style="color: #990000;font-family: '微软雅黑';font-size: 24px;">行前需知</span></span></td>
+    <td width="1028" style="text-align:left;float:left"><span class="h2-24"><span class="STYLE148" style="color: #990000;font-family: '微软雅黑';font-size: 24px;">Before the line to know</span></span></td>
   </tr>
    <tr>
     <td colspan=2 style="text-align:left;align:left;">${bean.beforeInstruction }</td>
@@ -278,7 +278,7 @@
 <table width="1140" border="0" align="center" cellpadding="5" cellspacing="0">
   <tr>
     <td width="32"><img src="${basePath}images/heart02.png" width="32" height="32" /></td>
-    <td width="1028"><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2" style="color: #990000;font-family: '微软雅黑';font-size: 24px;">服务及报价</span></span></span></span></td>
+    <td width="1028" style="text-align:left;float:left;"><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2" style="color: #990000;font-family: '微软雅黑';font-size: 24px;">Service and Quotation</span></span></span></span></td>
   </tr>
 </table>
 <table width="1140" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -291,56 +291,55 @@
         <tr>
           <td valign="top">
           <table width="1100" border="0" align="center" cellpadding="4" cellspacing="2">
-          	<c:if test="${calvo.isShowDetail=='true' }">
+          	<c:if test="${vo.isShowDetail=='true' }">
               <tr>
-                <td width="95" bgcolor="#f0f0f0"><p align="right"><strong>门票：</strong></p></td>
-                <td width="529" style="text-align:left">${fn:split(qf.showTicket,'|')[1]}
-                </td>
-                <td width="444" style="text-align:left">${fn:split(qf.showTicket,'|')[0]}元/人</td>
+                <td width="150"  bgcolor="#f0f0f0"><p align="right"><strong>Tickets:</strong></p></td>
+                <td width="529" style="text-align:left">${vo.adultticketsBlock}</td>
+                <td width="444" style="text-align:left">${vo.adultticketTotalPrice}￥per person</td>
               </tr>
               <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>导游：</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showTourguide,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showTourguide,'|')[0]}元/人</td>
+                <td bgcolor="#f0f0f0"><div align="right"><strong>Tourist guide:</strong></div></td>
+                <td style="text-align:left">${vo.quotetourguideadultsBlock}</td>
+                <td style="text-align:left"></td>
               </tr>
               <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>酒店：
+                <td bgcolor="#f0f0f0"><div align="right"><strong>Hotel:
                 </strong></div></td>
                 <td style="text-align:left">${fn:split(qf.showHotel,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showHotel,'|')[0]}元/人</td>
+                <td style="text-align:left"> </td>
               </tr>
               <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>用车：
+                <td bgcolor="#f0f0f0"><div align="right"><strong>Car:
                 </strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showRentcar,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showRentcar,'|')[0]}元/人</td>
+                <td style="text-align:left">${vo.quoterentcaradultsBlock}</td>
+                <td style="text-align:left"></td>
               </tr>
               <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>用餐： 
+                <td bgcolor="#f0f0f0"><div align="right"><strong>Dinner: 
                 </strong></div></td>
                 <td style="text-align:left">${fn:split(qf.showDinner,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showDinner,'|')[0]}元/人</td>
+                <td style="text-align:left"> </td>
               </tr>
               <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>保险：</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showInsurance,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showInsurance,'|')[0]}元/人</td>
+                <td bgcolor="#f0f0f0"><div align="right"><strong>Insurance:</strong></div></td>
+                <td style="text-align:left">${vo.quoteinsuranceadultsBlock}</td>
+                <td style="text-align:left"></td>
               </tr>
               <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>综费：</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showComphcost,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showComphcost,'|')[0]}元/人</td>
+                <td bgcolor="#f0f0f0"><div align="right"><strong>Comprehensive fee:</strong></div></td>
+                <td style="text-align:left">${vo.quotecomphcostadultsBlock}</td>
+                <td style="text-align:left"></td>
               </tr>
               <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>娱乐：</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showRecreation,'|')[1]} </td>
-                <td style="text-align:left">${fn:split(qf.showRecreation,'|')[0]}元/人</td>
+                <td bgcolor="#f0f0f0"><div align="right"><strong>Entertainment:</strong></div></td>
+                <td style="text-align:left">${vo.quoterecreationadultsBlock} </td>
+                <td style="text-align:left"></td>
               </tr>
 			</c:if>
             <tr>
-              <td bgcolor="#f0f0f0"><div align="right"><strong>报价：</strong></div></td>
-              <td style="text-align:left;float:left">大人：<span name="adultsperguy">${calvo.plusSumPrice+adultsumcost }</span>元/人*${od.adults }人 
-                小孩：<span name="childsperguy">${calvo.plusDevicePrice+childrensumcost }</span>元/人*${od.children }人（小孩不含门票） </td>
+              <td bgcolor="#f0f0f0"><div align="right"><strong>Quotes:</strong></div></td>
+              <td style="text-align:left;float:left">Aduts:<span name="adultsperguy">${vo.plusSumPrice+adultsumcost }</span>￥ per person*${od.adults }  
+                Children:<span name="childsperguy">${vo.plusDevicePrice+childrensumcost }</span>￥per person*${od.children }person(Children do not have tickets) </td>
               <td>&nbsp;</td>
             </tr>
         

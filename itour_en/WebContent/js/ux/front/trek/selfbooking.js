@@ -1,5 +1,5 @@
-$package('itour.trekselfbooking');
-itour.trekselfbooking = function(){
+$package('itouren.trekselfbooking');
+itouren.trekselfbooking = function(){
 	var _this = {
 		formatterDate : function(date) {//得到当前日期
 			var day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate();
@@ -14,7 +14,7 @@ itour.trekselfbooking = function(){
             $("#validateCode").attr("src",basePath+"RandomCodeServlet?d="+timenow);  
         }, 
         check_form:function(){
-        	itour.progress('Please waiting','Booking...');
+        	itouren.progress('Please waiting','Booking...');
         	var formData = {};
         	formData.routename=$("input[name='routename'").val();
     		formData.expectedDepart = $("#expectedDepart").datebox('getValue');
@@ -97,16 +97,16 @@ itour.trekselfbooking = function(){
         	formData.specialrequest = $("input[name='specialrequest']").val();
         	formData.verifyCode = $("input[name='verifyCode']").val();
         /*	document.forms["booking"].action=basePath+"orderDetail/booking";
-    		itour.saveFormWithoutLogin($(document.forms["booking"]),function(data){
-				itour.closeProgress();
-				itour.alert('提示',data.msg||'保存成功！','info');
+    		itouren.saveFormWithoutLogin($(document.forms["booking"]),function(data){
+				itouren.closeProgress();
+				itouren.alert('提示',data.msg||'保存成功！','info');
 			});*/
         	//$(document.forms["booking"]).serializeObject()
         	//console.log(formData);
         	__.post(basePath+"travelOrder/booking",formData,function(data){
-				itour.closeProgress();
+				itouren.closeProgress();
 				//console.log(data);
-				itour.alert('提示',data.msg||'Scheduled success, please check the mailbox reservation success later!','info');
+				itouren.alert('提示',data.msg||'Scheduled success, please check the mailbox reservation success later!','info');
 			});
         },
 		init:function(){
@@ -149,9 +149,9 @@ itour.trekselfbooking = function(){
 				dateValided:{
 			        validator : function(value) { //参数value为当前文本框的值
 			        	var d =  _this.formatterDate(new Date());
-			        //	itour.alert('提示',value +"    "+ d+"   "+(value > d),'info');
+			        //	itouren.alert('提示',value +"    "+ d+"   "+(value > d),'info');
 			           if(d>=value){
-			        	   //itour.alert('提示','选择行程安排日期应在当前日期之后','warn');
+			        	   //itouren.alert('提示','选择行程安排日期应在当前日期之后','warn');
 			        	   //$("input[name='tourTime']").datebox('setValue','');  
 			           }else{
 			        	   return value > d;  
@@ -173,5 +173,5 @@ itour.trekselfbooking = function(){
 }();
 
 $(function(){
-	itour.trekselfbooking.init();
+	itouren.trekselfbooking.init();
 });

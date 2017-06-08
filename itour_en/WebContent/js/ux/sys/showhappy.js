@@ -1,5 +1,5 @@
-$package('itour.showhappy');
-itour.showhappy = function(){
+$package('itouren.showhappy');
+itouren.showhappy = function(){
 	var _box = null;
 	var _this = {
 			toList:function(parentId){
@@ -55,7 +55,7 @@ itour.showhappy = function(){
 				var line = $(html);
 				//版定删除按钮事件
 				$(".remove-btn",line).click(function(){
-					itour.confirm('提示','你确定删除当前记录吗?',function(r){
+					itouren.confirm('提示','你确定删除当前记录吗?',function(r){
 						if(r){
 							_this.delLine(line);
 						}
@@ -248,7 +248,7 @@ itour.showhappy = function(){
 			$('#addLine_btn').click(_this.addLine);
 			$('#addDefLine_btn').click(_this.addDefBtns);
 			$('#delAllLine_btn').click(function(){
-				itour.confirm('提示','你确定删除当前记录吗?',function(r){
+				itouren.confirm('提示','你确定删除当前记录吗?',function(r){
 					_this.delAllLine(false);
 				});
 			});
@@ -259,7 +259,7 @@ itour.showhappy = function(){
 }();
 
 $(function(){
-	itour.showhappy.init();
+	itouren.showhappy.init();
 	 /* if (window != top)
           top.location.href = location.href;*/
 });

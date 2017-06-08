@@ -1,5 +1,5 @@
-$package('itour.searchRt');
-itour.searchRt = function(){
+$package('itouren.searchRt');
+itouren.searchRt = function(){
 	var _this = {
 			fbpagination:function (pageno,alias){
 			    var element = $('#fbpage');
@@ -60,6 +60,6 @@ itour.searchRt = function(){
 }();
 
 window.onload=function(){
-	itour.searchRt.init();
+	itouren.searchRt.init();
 	
 }

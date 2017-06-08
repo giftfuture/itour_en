@@ -176,11 +176,11 @@
     </c:when>
     <c:otherwise>
     <span class=style126> 
-            <br><input name=alltheway value=全程 size=10 type=text> 
+            <br><input name=alltheway value='all the way' size=10 type=text> 
           <select name=choselanguage id=choselanguage> 
-            <option>选择语种</option> 
-            <option value=中文>中文</option> 
-            <option value=英文>英文</option> 
+            <option>Choose Language</option> 
+            <option value='Chinese'>Chinese</option> 
+            <option value='English'>English</option> 
           </select>&nbsp;&nbsp; 
         <input name=priceperday size=6  style='width:50px' type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
         元/天 &nbsp;&nbsp;X 
@@ -218,13 +218,13 @@
          ${returnvo.quoterentcaradultsBlock }
     </c:when>
     <c:otherwise>
-    <span class=STYLE126><input name=alltheway value=全程 size=10 type=text>&nbsp;&nbsp; 
+    <span class=STYLE126><input name=alltheway value='all the way' size=10 type=text>&nbsp;&nbsp; 
 <input name=carprice size=6 style='width:50px' type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
             元/ <select name=carstyle id=carstyle> 
-            <option selected=selected>方式</option> 
-            <option value=天>天</option> 
-            <option value=公里>公里 </option> 
-            <option value=趟>趟</option> 
+            <option selected=selected>style</option> 
+            <option value='day'>day</option> 
+            <option value='Km'>Km</option> 
+            <option value='trip'>trip</option> 
               </select>
               X<input name=carcount size=6 style='width:50px' type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
                 数量&nbsp;&nbsp;　备注： 
@@ -303,8 +303,8 @@
     </c:when>
     <c:otherwise>
     <span class=style126><br><select style='width:151' name=insuranceselect id=insuranceselect> 
-         <option value="内宾旅游意外保险">内宾旅游意外保险</option> 
-         <option value="入境旅游意外保险">入境旅游意外保险</option> 
+         <option value="Neighborhood travel accident insurance">Neighborhood travel accident insurance</option> 
+         <option value="Inbound tourism accident insurance">Inbound tourism accident insurance</option> 
         </select> 
         <input name=insuranceprice size=6 type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
                  元/人&nbsp;&nbsp;备注： 
@@ -329,7 +329,7 @@
     </c:when>
     <c:otherwise>
         <span class=style126> 
-      <input name=feeName value='旅行社综合服务费' size=20 type=text> 
+         <input name=feeName value='Travel agency service fee' size=20 type=text> 
          <input name=feeperperson size=6 type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
         元/人&nbsp;&nbsp;备注： <input name=feeremark size=20 type=text> 
       <a name=allfeeminus onclick='javascript:itour.quoteEdit.allfeeMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>
@@ -494,9 +494,9 @@
         <input name=elseitem size=20 type=text> 
         <input name=elseitemprice size=6 type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
          元/ <select name=elseitemstyle id=elseitemstyle>
-         <option selected=selected>方式</option>
-         <option value=人>人</option>
-         <option value=团>团</option>
+         <option selected=selected>style</option>
+         <option value='person'>person</option>
+         <option value='group'>group</option>
         </select>&nbsp;&nbsp;备注：<input name=elseitemremark size=20 type=text>
          <a name=elseitemminus onclick='javascript:itour.quoteEdit.elsefeeMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png'></a></span>
          </c:otherwise>

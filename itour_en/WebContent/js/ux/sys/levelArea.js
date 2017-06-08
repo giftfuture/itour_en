@@ -1,5 +1,5 @@
-$package('itour.levelarea');
-itour.levelarea = function(){
+$package('itouren.levelarea');
+itouren.levelarea = function(){
 	var _box = null;
 	var _this = {
 			//设置默认按钮数据
@@ -43,7 +43,7 @@ itour.levelarea = function(){
 				var line = $(html);
 				//版定删除按钮事件
 				$(".remove-btn",line).click(function(){
-					itour.confirm('提示','你确定删除当前记录吗?',function(r){
+					itouren.confirm('提示','你确定删除当前记录吗?',function(r){
 						if(r){
 							_this.delLine(line);
 						}
@@ -173,7 +173,7 @@ itour.levelarea = function(){
 			$('#addLine_btn').click(_this.addLine);
 			$('#addDefLine_btn').click(_this.addDefBtns);
 			$('#delAllLine_btn').click(function(){
-				itour.confirm('提示','你确定删除当前记录吗?',function(r){
+				itouren.confirm('提示','你确定删除当前记录吗?',function(r){
 					_this.delAllLine(false);
 				});
 			});
@@ -231,7 +231,7 @@ itour.levelarea = function(){
 }();
 
 $(function(){
-	itour.levelarea.init();
+	itouren.levelarea.init();
 	  /*if (window != top)
           top.location.href = location.href;*/
 });

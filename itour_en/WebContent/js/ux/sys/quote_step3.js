@@ -1,5 +1,5 @@
-$package('itour.serverquotestep2');
-itour.serverquotestep3 = function(){
+$package('itouren.serverquotestep2');
+itouren.serverquotestep3 = function(){
 	var _this = {
 		init:function(){
 			$("input[name='plusSumPrice']").numberbox({  
@@ -16,7 +16,7 @@ itour.serverquotestep3 = function(){
 }();
 
 $(function(){
-	itour.serverquotestep3.init();
+	itouren.serverquotestep3.init();
 	/*  if (window != top)
           top.location.href = location.href;*/
 });

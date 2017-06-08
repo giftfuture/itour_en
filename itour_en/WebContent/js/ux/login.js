@@ -1,19 +1,19 @@
-$package('itour.login');
-itour.login = function(){
+$package('itouren.login');
+itouren.login = function(){
 	return {
 		toLogin:function(){
 			try{
 				var form = $("#loginForm");
 				if(form.form('validate')){
-					itour.progress('Please waiting','Loading...');
-					itour.submitForm(form,function(data){
-						itour.closeProgress();
+					itouren.progress('Please waiting','Loading...');
+					itouren.submitForm(form,function(data){
+						itouren.closeProgress();
 						if(data.success){
-							itour.alert('提示',data.msg,'info'); 
+							itouren.alert('提示',data.msg,'info'); 
 					 		window.location= basePath+"main/manage";
 				        }else{
-				        	itour.alert('提示',data.msg,'error');  
-				        	itour.login.loadVrifyCode();//刷新验证码
+				        	itouren.alert('提示',data.msg,'error');  
+				        	itouren.login.loadVrifyCode();//刷新验证码
 				        }
 					});
 				}
@@ -31,14 +31,14 @@ itour.login = function(){
 				window.top.location =  window.self.location;
 			}
 			//验证码图片绑定点击事件
-			$(".vc-pic").click(itour.login.loadVrifyCode);
+			$(".vc-pic").click(itouren.login.loadVrifyCode);
 			//but_login
 			//var form = $("#loginForm");
-		//	form.submit(itour.login.toLogin);
+		//	form.submit(itouren.login.toLogin);
 		}
 	}
 }();
 
 $(function(){
-	itour.login.init();
+	itouren.login.init();
 });		
