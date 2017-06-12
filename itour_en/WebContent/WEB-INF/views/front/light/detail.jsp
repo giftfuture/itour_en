@@ -312,8 +312,8 @@
   <div id="need-know">
   <table  class="frametb" align="center">
   <tr>
-    <td width="32"><img src="images/document2.png" width="32" height="32" /></td>
-    <td width="1028"  style="text-align:left"><span class="h2-24"><span class="STYLE148">Before the line to know</span></span></td>
+    <td width="32" style="text-align:left;float:left;"><img src="images/document2.png" width="32" height="32" /></td>
+    <td width="1028"  style="text-align:left;float:left;"><span class="h2-24"><span class="STYLE148">Before the line to know</span></span></td>
   </tr>
   <tr>
     <td colspan=2 style="text-align:left">${rt.beforeInstruction }</td>

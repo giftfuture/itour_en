@@ -323,8 +323,8 @@
     <td colspan=2 style="text-align:left">${rt.beforeInstruction }</td>
   </tr>
   <tr>
-    <td colspan=2 style="float:left"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
-    <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">Service and quotation</span></span></span></span></td>
+    <td colspan=2 style="text-align:left;float:left;"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
+    <span class="h2-24" style="text-align:left;float:left;"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">Service and quotation</span></span></span></span></td>
   </tr>
     <tr>
     <td colspan=2 style="text-align:left;align:left;">${rt.serviceAndQuote }</td>

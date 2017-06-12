@@ -12,100 +12,100 @@
     panelHeight: "auto",
     editable: false,
     onSelect: function (record) {
-    	,onChange:function(n,o){ var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?level1Area='+n ;$('#level2Area').combobox('reload',urlurl);}
+        ,onChange:function(n,o){ var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?level1Area='+n ;$('#level2Area').combobox('reload',urlurl);}
         ,onselect:function(){ var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?level1Area='+$(this).combobox('getValue');$('#level2Area').combobox('reload',urlurl);}
     },
 onChange:function(n,o){ var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?level1Area='+n ;$('#level2Area').combobox('reload',urlurl);} */
 $(document).ready(function(){
-	var level1Area ='${level1Area}';
-	$.ajax({  
-		url:'${basePath}levelarea/queryLevel1',
-	    async : false,  
-	    method: 'get',
-	    success:function(rest){
-	    	var result = eval('('+rest+")");//转换为json对象 
-	    	$("#level1Area").combobox({ 
-	    		valueField:'level1Area',
-	    		textField:'level1Area',
-	    		mode:'local',
-	    		data:result,
-	    		onLoadSuccess:function(){$(this).combobox('select', level1Area)},
-	    		onChange:function(n,o){
-	    	    	loadlevel2Area(n);
-	   	    	} 
-	    	});   
-	    }  
-	})
-	loadlevel2Area(level1Area);
-	//console.log('${rcdDays}');$(this).combobox('select', '${rcdDays}')
-	$("#vacation").combobox({ 
-		onLoadSuccess:function(){$(this).combobox('setValue', '${rcdDays}');}
-	})  
+    var level1Area ='${level1Area}';
+    $.ajax({  
+        url:'${basePath}levelarea/queryLevel1',
+        async : false,  
+        method: 'get',
+        success:function(rest){
+            var result = eval('('+rest+")");//转换为json对象 
+            $("#level1Area").combobox({ 
+                valueField:'level1Area',
+                textField:'level1Area',
+                mode:'local',
+                data:result,
+                onLoadSuccess:function(){$(this).combobox('select', level1Area)},
+                onChange:function(n,o){
+                    loadlevel2Area(n);
+                } 
+            });   
+        }  
+    })
+    loadlevel2Area(level1Area);
+    //console.log('${rcdDays}');$(this).combobox('select', '${rcdDays}')
+    $("#vacation").combobox({ 
+        onLoadSuccess:function(){$(this).combobox('setValue', '${rcdDays}');}
+    })  
 })
 function loadlevel2Area(level1Area){
-	var templevel2Areaindex=0;
-	if(level1Area&&level1Area.length>0){
+    var templevel2Areaindex=0;
+    if(level1Area&&level1Area.length>0){
    //console.log(level1Area);
-	$.ajax({  
-	    url : '${basePath}levelarea/queryLevel2ByLevel1',  
-	    async : false,  
-	    method: 'get',
-	    data:{'level1Area':level1Area},
-	    success : function(rest){ 
-	    	var result = eval('('+rest+")");//转换为json对象 
-	    	//console.log(result);    	
-	        $("#level2Area").combobox({  
-	        	valueField:'aliasCode',
-	        	textField:'level2Area',
-	            mode : 'local',  
-	            data: result,
-	            onLoadSuccess:function(){$(this).combobox('select','${level2Area}')}
-	        });  
-	    }  
-	}); 
+    $.ajax({  
+        url : '${basePath}levelarea/queryLevel2ByLevel1',  
+        async : false,  
+        method: 'get',
+        data:{'level1Area':level1Area},
+        success : function(rest){ 
+            var result = eval('('+rest+")");//转换为json对象 
+            //console.log(result);      
+            $("#level2Area").combobox({  
+                valueField:'aliasCode',
+                textField:'level2Area',
+                mode : 'local',  
+                data: result,
+                onLoadSuccess:function(){$(this).combobox('select','${level2Area}')}
+            });  
+        }  
+    }); 
   }
 }
 </script>
 <form name="searchForm" method="post">
-<table class="commontb" align="center" >
+<table class="frametb" align="center" >
   <tr>
     <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2">fast Search</div></td>
     <td width="60%" bgcolor="#CCCCCC" class="f14-gao1" >  
        Travel mode：<input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:130,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
       <label>
       Tourist area：<!--onBeforeLoad
-     	   -->
-        	<!-- width:130,height:20,valueField:'level1Area',textField:'level1Area',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}levelarea/queryLevel1' -->
+           -->
+            <!-- width:130,height:20,valueField:'level1Area',textField:'level1Area',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}levelarea/queryLevel1' -->
          <input class="easyui-combobox" id="level1Area" name="level1Area" value="${level1Area}" data-options="width:130,height:20,panelHeight:'auto',editable:false"
         <%-- ,onLoadSuccess:function(){$(this).combobox('select', '${level1Area}');} --%>
     <%--     ,onChange:function(n,o){ var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?level1Area='+n ;$('#level2Area').combobox('reload',urlurl);} --%>
         >
-     	<!--  width:130,height:20,valueField:'aliasCode',textField:'level2Area',mode:'remote',panelHeight:'auto',editable:false, method:'get'  -->
-     	 <input id="level2Area" name="level2Area" class="easyui-combobox" data-options="width:130,height:20,panelHeight:'auto',editable:false"/> 
-	     	 <%--  ,onLoadSuccess:function(){
-	    		var level1Area = $('#level1Area').combobox('getValue');
-	     	   console.log(level1Area);	
-	     	   if(level1Area.length>0){
-		     	  $(this).combobox('reload','${basePath}levelarea/queryLevel2ByLevel1?level1Area='+level1Area);
-	     	  } 
-	     	  $(this).combobox('select','${level2Area}'); --%>
-     <%-- 	  },onBeforeLoad:function(){
-	     	var level1Area = '${level1Area}';
-	     	  alert(level1Area);
-	     	  //console.log(level1Area);
-	     	   if(level1Area.length>0){
-		     	  $(this).combobox('reload','${basePath}levelarea/queryLevel2ByLevel1?level1Area='+level1Area);
-	     	  } 
-	     	  
-     	  }--%>
-        Holiday days：<a href="javascript:void(0)">
-	<select class="easyui-combobox" data-options="width:130,height:20,editable:false" name="vacation" id="vacation">
-	  <option value="">-All-</option>
-	  <option value="1_5">1-5days</option>
-	  <option value="6_9">6-9days</option>
-	  <option value="10_15">10-15days</option>
-	  <option value="16">16days+</option>
-	</select>
+        <!--  width:130,height:20,valueField:'aliasCode',textField:'level2Area',mode:'remote',panelHeight:'auto',editable:false, method:'get'  -->
+         <input id="level2Area" name="level2Area" class="easyui-combobox" data-options="width:130,height:20,panelHeight:'auto',editable:false"/> 
+             <%--  ,onLoadSuccess:function(){
+                var level1Area = $('#level1Area').combobox('getValue');
+               console.log(level1Area); 
+               if(level1Area.length>0){
+                  $(this).combobox('reload','${basePath}levelarea/queryLevel2ByLevel1?level1Area='+level1Area);
+              } 
+              $(this).combobox('select','${level2Area}'); --%>
+     <%--     },onBeforeLoad:function(){
+            var level1Area = '${level1Area}';
+              alert(level1Area);
+              //console.log(level1Area);
+               if(level1Area.length>0){
+                  $(this).combobox('reload','${basePath}levelarea/queryLevel2ByLevel1?level1Area='+level1Area);
+              } 
+              
+          }--%>
+        Holiday days:<a href="javascript:void(0)">
+    <select class="easyui-combobox" data-options="width:130,height:20,editable:false" name="vacation" id="vacation">
+      <option value="">-All-</option>
+      <option value="1_5">1-5days</option>
+      <option value="6_9">6-9days</option>
+      <option value="10_15">10-15days</option>
+      <option value="16">16days+</option>
+    </select>
       </a></label></td>
       <td width="10%" bgcolor="#CCCCCC"><a name="search" href="javascript:itour.footer.searchRtResult()"><img name="search" src="${basePath}images/search.png" width="48" height="48" /></a> </td>
     <!-- <td width="15%" bgcolor="#CCCCCC" class="f14-gao1"><a class="easyui-linkbutton" iconcls="icon-search" id="searchbtn">搜索</a></td> -->
@@ -173,33 +173,33 @@ function loadlevel2Area(level1Area){
    </div>
 </div>
 </center> --%>
-<table class="commontb" align="center">
-  <tr>
-    <td width="1350" height="105" valign="top" bgcolor="#666666">
-    <table width="1350" height="60" border="0" align="center" cellpadding="0" cellspacing="0">
+<table class="lefttxt frametb" align="center">
+  <tbody><tr>
+    <td width="611" valign="top" height="105" bgcolor="#666666"><table width="1100" height="60" cellspacing="0" cellpadding="0" border="0" align="center">
       <tbody>
         <tr>
-          <td width="1350" height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE6">iTour Travel: www.iTours.com.cn</div></td>
+          <td width="883" height="30" bgcolor="#EFEFEF"><div class="STYLE6" align="center">iTour Travel www.iTours.com.cn</div></td>
         </tr>
         <tr>
-          <td height="30" bgcolor="#EFEFEF"><div align="center" class="STYLE6">Add: Chengdu City, a ring road on the 15th Overseas Chinese Building on the 9th floor<br />
-            Tel: +86-28-85580038 / 85562905<br />
+          <td height="30" bgcolor="#EFEFEF"><div class="STYLE6" align="center">Add: Chengdu City, a ring road on the 15th Overseas Chinese Building on the 9th floor<br>
+            Tel: +86-28-85580038 / 85562905<br>
             E-mail: info@itours.com.cn </div></td>
         </tr>
       </tbody>
-    </table>
-    </td>
+    </table></td>
   </tr>
+</tbody></table>
+<p></p><p></p>
+<p></p><p></p><table class="frametb" align="center">
+<tbody>
   <tr>
     <td><div align="center">
 <!-- <script src="https://s11.cnzz.com/z_stat.php?id=1261858669&amp;web_id=1261858669" language="JavaScript"></script>
 <script src="https://c.cnzz.com/core.php?web_id=1261858669&amp;t=z" charset="utf-8" type="text/javascript"></script> -->
-<a href="http://www.cnzz.com/stat/website.php?web_id=1261858669" target="_blank" title="Webmaster Statistics">Webmaster Statistics</a>	
-	</div></td>
-  </tr>
+<a href="http://www.cnzz.com/stat/website.php?web_id=1261858669" target="_blank" title="Webmaster Statistics">Webmaster Statistics</a>  
+    </div></td>
+  </tr></tbody>
 </table>
 </div>
-<script type="text/javascript">
-/* var areas = $("#areas").combobox('getValue'); 
-console.log(travel_style+"  "+vacation+"   "+areas); */
-</script>
+
+
