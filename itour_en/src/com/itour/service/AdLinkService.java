@@ -15,7 +15,7 @@ import com.itour.convert.AdLinkKit;
 import com.itour.dao.AdLinkDao;
 import com.itour.entity.AdLink;
 import com.itour.vo.AdLinkVO;
-@Service//("adLinkService")
+@Service 
 public class AdLinkService extends BaseService<AdLink>{
 
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());

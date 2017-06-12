@@ -26,7 +26,7 @@ import com.itour.vo.TravelStyleVO;
  * <b>作者：</b>fred.zhao<br>
  * <b>日期：</b> Feb 2, 2016 <br>
  */
-@Service//("travelStyleService")
+@Service 
 public class TravelStyleService<T> extends BaseService<T> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	/**

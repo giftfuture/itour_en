@@ -16,11 +16,11 @@ itouren.travelItem = function(){
 				itouren.saveForm(_this.uploadCoverForm(),function(data){
 					///console.log(data);
 					//if(data.success){	
-						itouren.alert('提示', data.msg, 'info',function(){								
+						itouren.alert('提示', data.msg||'Cover picture saved successfully!', 'info',function(){								
 							itouren.closeProgress();//关闭缓冲条
 							_box.handler.refresh();
 							_this.uploadCoverForm().resetForm();
-							$("#preview",this.uploadCoverWin).html('');
+							$("#coverpreview",this.uploadCoverWin).html('');
 							_this.uploadCoverWin().dialog('close');
 						})
 					//}
@@ -29,13 +29,13 @@ itouren.travelItem = function(){
 			initUploadCoverForm:function(){
 				/*var uploadCoverFile = $.extend(uploadFile,this.uploadCoverParams);
 				uploadCoverFile.init(); */
-				_this.uploadCoverWin().find("#fileSubmit").click(function(){
+				_this.uploadCoverWin().find("#coverSubmit").click(function(){
 					_this.saveuploadCover();
 				});
-				_this.uploadCoverWin().find("#win-close").click(function(){	
+				_this.uploadCoverWin().find("#coverwin-close").click(function(){	
 					$.messager.confirm('提示','您确定关闭当前窗口吗?',function(r){  
 					    if (r){  
-						$("#preview",this.uploadCoverWin).html('');
+						$("#coverpreview",this.uploadCoverWin).html('');
 					     	_this.uploadCoverWin().dialog('close');
 					    }  
 					});
@@ -101,26 +101,35 @@ itouren.travelItem = function(){
 						itour.closeProgress();//关闭缓冲条
 						_box.handler.refresh();
 						_this.editPhotoForm().resetForm();
-						$("#preview",this.editPhotoWin).html('');
+						$("#previewPhotos",this.editPhotoWin).html('');
 						_this.editPhotoWin().dialog('close');
-						
 					})
 				});
 			},
 			loadPhotoList:function(id){
-				itouren.loadPhotos('travelItem/editPhoto',{'id':id},function(data){
-					itouren.closeProgress();
-					var images = "";
+				itour.loadPhotos('travelItem/editPhoto',{'id':id},function(data){
+					itour.closeProgress();
+					var images = "<tr>";
 					if(data.success){
 						//console.log(data.uris);
-						for(var i in data.uris){
-							if(i !=0 && i%3==0){
-								images+='<br/>';
+						var k=0;
+						for(var i in data.map){
+							if(k !=0 && k%3==0){
+								images+='</tr><tr>';
 							}
-						  images+='<img alt="图片浏览" src="'+basePath+data.uris[i]+'" style="width:100px;height:100px;">';	
+						  images+='<td><a href="javascript:" class="upload_delete" title="删除" data-index="'+ i +'">删除</a><img alt="图片浏览" name="'+i+'" src="'+basePath+data.map[i]+'" style="width:100px;height:100px;"><input type="hidden" name="fileNames" value="'+i+'"/></td>';	
+						  k++;
 						}
 					}
-					$("#previewPhotos").html(images);
+					$("#previewPhotos table").html(images+="</tr>");
+					var zxxeditphoto = $.extend(ZxxeditPhoto,{});
+					zxxeditphoto.init();
+					//删除方法
+					$(".upload_delete",this.editPhotoWin).click(function() {
+						zxxeditphoto.funDeleteFile($(this).attr("data-index"));
+						return false;	
+					});
+					$("#editPhotoSubmit",this.editPhotoWin).show();	
 					_this.editPhotoWin().dialog('open'); 
 					//_this.editPhotoWin().window('open'); 
 					//回调函数
@@ -690,7 +699,7 @@ itouren.travelItem = function(){
 					} else {
 						//console.log(html);
 						$("#preview",this.uploadPhotoWin).html(html);
-						if (html) {
+						if (html){
 							//删除方法
 							$(".upload_delete",this.uploadPhotoWin).click(function() {
 								zxxfile.funDeleteFile(files[parseInt($(this).attr("data-index"))]);
@@ -720,14 +729,14 @@ itouren.travelItem = function(){
 				eleProgress.show().html(percent);
 			},
 			onSuccess: function(file, response) {
-				$("#uploadInf",this.uploadPhotoWin).append("<p>图片"+file.name+"上传成功，"  + response + "</p>");
+				$("#uploadInf",this.uploadPhotoWin).append("<p>封面图片"+file.name+"上传成功，"  + response + "</p>");
 				$("#preview",this.uploadPhotoWin).html('');
 				Grid.datagrid('reload',{});
 				_this.config.datagrid('reload',{});
 			   Form.uploadPhotoForm.resetForm();
 			},
 			onFailure: function(file) {
-				$("#uploadInf",this.uploadPhotoWin).append("<p>图片" + file.name + "上传失败！</p>");	
+				$("#uploadInf",this.uploadPhotoWin).append("<p>封面图片" + file.name + "上传失败！</p>");	
 				$("#uploadImage_" + file.index,this.uploadPhotoWin).css("opacity", 0.2);
 				$("#preview",this.uploadPhotoWin).html('');
 			},
@@ -741,75 +750,75 @@ itouren.travelItem = function(){
 			}
 		},
 		uploadCoverParams:{
-			fileInput: $("#fileImage",this.uploadCoverWin).get(0),
-		//	dragDrop: $("#fileDragArea").get(0),
-			upButton: $("#fileSubmit",this.uploadCoverWin).get(0),
-			url: 'travelItem/uploadCover',// _this.config.action.save,//$("#uploadForm").attr("action"),
-			onSelect: function(files) {
-				var html = '', i = 0;
-				$("#preview",this.uploadCoverWin).html('<div class="upload_loading"></div>');
-				var funAppendImage = function() {
-					file = files[i];
-					//alert("ffffff"+file.name);
-					if (file) {
-						var reader = new FileReader();
-						reader.onload = function(e) {
-							html += '<div id="uploadList_'+ i +'" class="upload_append_list"><p><strong></strong>'+ 
-								'<img id="uploadImage_' + i + '" title="' +file.name + '" src="' + e.target.result + '" class="upload_image" /></p>'+ 
-								'<span id="uploadProgress_' + i + '" class="upload_progress"></span>' +
-							'</div>';
-							i++;
-							funAppendImage();
-						}
-						reader.readAsDataURL(file);
-					} else {
-						//console.log(html);
-						$("#preview",this.uploadCoverWin).html(html);
-						if (html) {
-							//提交按钮显示
-							$("#fileSubmit",this.uploadCoverWin).show();	
+			fileInput: $("#coverImage",this.uploadCoverWin).get(0),
+			//	dragDrop: $("#fileDragArea").get(0),
+				upButton: $("#coverSubmit",this.uploadCoverWin).get(0),
+				url: 'travelItem/uploadCover',// _this.config.action.save,//$("#uploadForm").attr("action"),
+				onSelect: function(files) {
+					var html = '', i = 0;
+					$("#coverpreview",this.uploadCoverWin).html('<div class="upload_loading"></div>');
+					var funAppendImage = function() {
+						file = files[i];
+						//alert("ffffff"+file.name);
+						if (file) {
+							var reader = new FileReader();
+							reader.onload = function(e) {
+								html += '<div id="uploadList_'+ i +'" class="upload_append_list"><p><strong></strong>'+ 
+									'<img id="uploadImage_' + i + '" title="' +file.name + '" src="' + e.target.result + '" class="upload_image" /></p>'+ 
+									'<span id="uploadProgress_' + i + '" class="upload_progress"></span>' +
+								'</div>';
+								i++;
+								funAppendImage();
+							}
+							reader.readAsDataURL(file);
 						} else {
-							//提交按钮隐藏
-							$("#fileSubmit",this.uploadCoverWin).hide();	
+							//console.log(html);
+							$("#coverpreview",this.uploadCoverWin).html(html);
+							if (html) {
+								//提交按钮显示
+								$("#coverSubmit",this.uploadCoverWin).show();	
+							} else {
+								//提交按钮隐藏
+								$("#coverSubmit",this.uploadCoverWin).hide();	
+							}
 						}
-					}
-				};
-				funAppendImage();		
-			},
-			onDelete: function(file) {
-				$("#uploadList_" + file.index,this.uploadCoverWin).fadeOut();
-			},
-			onDragOver: function() {
-				$(this).addClass("upload_drag_hover");
-			},
-			onDragLeave: function() {
-				$(this).removeClass("upload_drag_hover");
-			},
-			onProgress: function(file, loaded, total) {
-				var eleProgress = $("#uploadProgress_" + file.index,this.uploadCoverWin), percent = (loaded / total * 100).toFixed(2) + '%';
-				eleProgress.show().html(percent);
-			},
-			onSuccess: function(file, response) {
-				$("#uploadInf",this.uploadCoverWin).append("<p>图片"+file.name+"上传成功，"  + response + "</p>");
-				$("#preview",this.uploadPhotoWin).html('');
-				Grid.datagrid('reload',{});
-				_this.config.datagrid('reload',{});
-			   Form.uploadCoverForm.resetForm();
-			},
-			onFailure: function(file) {
-				$("#uploadInf",this.uploadCoverWin).append("<p>图片" + file.name + "上传失败！</p>");	
-				$("#uploadImage_" + file.index,this.uploadCoverWin).css("opacity", 0.2);
-				$("#preview",this.uploadPhotoWin).html('');
-			},
-			onComplete: function() {
-				//提交按钮隐藏
-				$("#fileSubmit",this.uploadCoverWin).hide();
-				//file控件value置空
-				$("#fileImage",this.uploadCoverWin).val("");
-				$("#uploadInf",this.uploadCoverWin).append("<p>当前图片全部上传完毕，可继续添加上传。</p>");
-				$("#preview",this.uploadPhotoWin).html('');
+					};
+					funAppendImage();		
+				},
+				onDelete: function(file) {
+					$("#uploadList_" + file.index,this.uploadCoverWin).fadeOut();
+				},
+				onDragOver: function() {
+					$(this).addClass("upload_drag_hover");
+				},
+				onDragLeave: function() {
+					$(this).removeClass("upload_drag_hover");
+				},
+				onProgress: function(file, loaded, total) {
+					var eleProgress = $("#uploadProgress_" + file.index,this.uploadCoverWin), percent = (loaded / total * 100).toFixed(2) + '%';
+					eleProgress.show().html(percent);
+				},
+				onSuccess: function(file, response) {
+					$("#coveruploadInf",this.uploadCoverWin).append("<p>图片"+file.name+"上传成功，"  + response + "</p>");
+					$("#coverpreview",this.uploadCoverWin).html('');
+					Grid.datagrid('reload',{});
+					_this.config.datagrid('reload',{});
+				   Form.uploadCoverForm.resetForm();
+				},
+				onFailure: function(file) {
+					$("#coveruploadInf",this.uploadCoverWin).append("<p>图片" + file.name + "上传失败！</p>");	
+					$("#uploadImage_" + file.index,this.uploadCoverWin).css("opacity", 0.2);
+					$("#coverpreview",this.uploadCoverWin).html('');
+				},
+				onComplete: function() {
+					//提交按钮隐藏
+					$("#coverSubmit",this.uploadCoverWin).hide();
+					//file控件value置空
+					$("#coverImage",this.uploadCoverWin).val("");
+					$("#coveruploadInf",this.uploadCoverWin).append("<p>当前图片全部上传完毕，可继续添加上传。</p>");
+					$("#coverpreview",this.uploadCoverWin).html('');
+				}
 			}
-		}
 	};
 	return _this;
 }();

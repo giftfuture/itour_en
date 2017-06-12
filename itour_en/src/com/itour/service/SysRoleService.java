@@ -31,7 +31,7 @@ import com.itour.vo.SysRoleVO;
  * <b>作者：</b>fred<br>
  * <b>日期：</b> Jun 9, 2016 <br>
  */
-@Service//("sysRoleService")
+@Service 
 public class SysRoleService<T> extends BaseService<T> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	

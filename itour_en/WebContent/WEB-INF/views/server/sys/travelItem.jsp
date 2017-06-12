@@ -6,6 +6,7 @@
  <link rel="stylesheet" type="text/css" href="${basePath}css/zxxFile.css">
  <script type="text/javascript" src="${basePath}js/commons/zxxFile.js"></script> 
  <script type="text/javascript" src="${basePath}js/commons/uploadFile.js"></script> 
+ <script type="text/javascript" src="${basePath}js/commons/ZxxeditPhoto.js"></script> 
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
@@ -100,24 +101,24 @@
  	 <div id="uploadCover-photo" title="封面上传" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
      	<form class="ui-form" id="uploadCoverForm" name="uploadCoverForm" method="post" enctype="multipart/form-data" autocomplete="off">
    				 <input class="hidden" name="id">
- 			   <div class="ui-edit">
-    		       <div class="fitem upload">
-					<div class="upload_box">
+ 			    <div class="ui-edit">
+                   <div class="fitem upload">
+                    <div class="upload_box">
                         <div class="upload_main">
                             <div class="upload_choose">
-                                <input id="fileImage" type="file" name="fileselect" accept="image/*"  />
+                                <input id="coverImage" type="file" name="fileselect" accept="image/*"  />
                             </div>
-                            <div id="preview" class="upload_preview"></div>
+                            <div id="coverpreview" class="upload_preview"></div>
                         </div>
                         <div class="upload_submit">
-                            <button type="submit" id="fileSubmit" class="upload_submit_btn">确认上传</button>
+                            <button type="submit" id="coverSubmit" class="upload_submit_btn">确认上传</button>
                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button class="upload_cancel_btn" id="win-close">取消上传</button>
+                            <button class="upload_cancel_btn" id="coverwin-close">取消上传</button>
                         </div>
-                        <div id="uploadInf" class="upload_inf"></div>
+                        <div id="coveruploadInf" class="upload_inf"></div>
                     </div>
-				</div>
-			</div>
+                </div>
+            </div>
      	</form>
 	 </div> 
 
@@ -129,7 +130,7 @@
 					<div class="upload_box">
                         <div class="upload_main">
                             <div id="previewPhotos" class="upload_preview">
-								<!-- <img alt="图片浏览" src=""> -->
+								 <table></table>
                             </div>
                         </div>
                         <div class="upload_submit">
@@ -137,7 +138,7 @@
                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <button class="upload_cancel_btn" id="editwin-close">取消</button>
                         </div>
-                        <div id="uploadInf" class="upload_inf"></div>
+                        <div id="edituploadInf" class="upload_inf"></div>
                     </div>
 				</div>
 				</div>

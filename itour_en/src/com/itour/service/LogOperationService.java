@@ -26,7 +26,7 @@ import com.itour.vo.LogOperationVO;
  * <b>作者：</b>fred.zhao<br>
  * <b>日期：</b> Feb 2, 2016 <br>
  */
-@Service//("logOperationService")
+@Service
 public class LogOperationService<T> extends BaseService<T> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	

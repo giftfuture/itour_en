@@ -15,7 +15,7 @@ import com.itour.convert.QuoteFormKit;
 import com.itour.dao.QuoteFormDao;
 import com.itour.entity.QuoteForm;
 import com.itour.vo.QuoteFormVO;
-@Service//("quoteFormService")
+@Service 
 public class QuoteFormService extends BaseService<QuoteForm> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	/**

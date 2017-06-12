@@ -65,16 +65,16 @@
 					<div class="upload_box">
                         <div class="upload_main">
                             <div class="upload_choose">
-                                                 封面：<input id="fileImage" type="file" name="fileselect" accept="image/*"  />
+                              <input id="coverImage" type="file" name="fileselect" accept="image/*"  />
                             </div>
-                            <div id="preview" class="upload_preview"></div>
+                            <div id="coverpreview" class="upload_preview"></div>
                         </div>
                         <div class="upload_submit">
-                            <button type="submit" id="fileSubmit" class="upload_submit_btn">确认上传</button>
+                            <button type="submit" id="coverSubmit" class="upload_submit_btn">确认上传</button>
                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button class="upload_cancel_btn" id="win-close">取消上传</button>
+                            <button class="upload_cancel_btn" id="coverwin-close">取消上传</button>
                         </div>
-                        <div id="uploadInf" class="upload_inf"></div>
+                        <div id="coveruploadInf" class="upload_inf"></div>
                     </div>
 				</div>
 				</div>
@@ -95,7 +95,7 @@
                         <div class="upload_submit">
                             <button type="submit" id="mapSubmit" class="upload_submit_btn">确认上传</button>
                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button class="upload_cancel_btn" id="win-close">取消上传</button>
+                            <button class="upload_cancel_btn" id="mapwin-close">取消上传</button>
                         </div>
                         <div id="mapuploadInf" class="upload_inf"></div>
                     </div>

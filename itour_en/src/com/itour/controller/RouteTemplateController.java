@@ -505,6 +505,12 @@ public class RouteTemplateController extends BaseController{
 				vo.setCreateBy(sessionuser.getId());
 				vo.setUpdateBy(sessionuser.getId());
 				rtId = routeTemplateService.add(RouteTemplateKit.toEntity(vo));
+				QuoteForm qf = new QuoteForm();
+				qf.setRouteTemplate(rtId);	
+				qf.setCreateBy(sessionuser.getId());
+				qf.setUpdateBy(sessionuser.getId());
+				qf.setValid(1);
+				quoteFormService.add(qf);
 			}else{
 				rt = routeTemplateService.queryById(vo.getId());
 				if(rt == null){
@@ -512,6 +518,12 @@ public class RouteTemplateController extends BaseController{
 					vo.setCreateBy(sessionuser.getId());
 					vo.setUpdateBy(sessionuser.getId());
 					rtId = routeTemplateService.add(RouteTemplateKit.toEntity(vo));
+					QuoteForm qf = new QuoteForm();
+					qf.setRouteTemplate(rtId);	
+					qf.setCreateBy(sessionuser.getId());
+					qf.setUpdateBy(sessionuser.getId());
+					qf.setValid(1);
+					quoteFormService.add(qf);
 				}else{
 					vo.setValid(1);
 					vo.setUpdateBy(sessionuser.getId());
@@ -623,14 +635,14 @@ public class RouteTemplateController extends BaseController{
 			if(StringUtils.isNotEmpty(qfId)){			
 				String logid = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/updateQuoteForm",sessionuser.getId(),"",""));
 				logOperationService.add(new LogOperation(logid,"新增",qfId,JsonUtils.encode(quoteForm),"","routeTemplate/updateQuoteForm",sessionuser.getId()));
-				sendSuccessMessage(response, "详细价目表内容添加成功!");
+				sendSuccessMessage(response, "线路日程内容添加成功!");
 			}else{
 				String logid = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/updateQuoteForm(update)",sessionuser.getId(),"",""));
 				logOperationService.add(new LogOperation(logid,"更新",qf!= null?qf.getId():"",JsonUtils.encode(qf),JsonUtils.encode(quoteForm),"routeTemplate/updateQuoteForm(update)",sessionuser.getId()));
-				sendSuccessMessage(response, "详细价目表内容更新成功!");
+				sendSuccessMessage(response, "线路日程内容更新成功!");
 			}
 		} catch (Exception e) {
-			sendFailureMessage(response, "详细价目表内容更新出错!");
+			sendFailureMessage(response, "线路日程内容更新出错!");
 			e.printStackTrace();
 		}
 	}

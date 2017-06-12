@@ -16,7 +16,7 @@
 <form:form method="post" name="quoteEditForm">
 <input type="hidden" name="rtId" value="${bean.id}">
 <div id="quoteForm">
-<table width="80%" cellspacing="0" cellpadding="0" border="0" align="center">
+<%-- <table width="80%" cellspacing="0" cellpadding="0" border="0" align="center">
   <tbody><tr>
     <td><img src="images/frame1-1.gif" width="100%" height="7"></td>
   </tr>
@@ -26,10 +26,11 @@
         <td width="685">
         <table width="1053" cellspacing="0" cellpadding="0" border="0">
           <tbody>
-         <%--  <tr>
+           <tr>
+           <td>${bean.title }</td>
             <td width="32"><img src="images/man.gif" width="32" height="32"></td>
-            <td width="1021"><span class="style148"><span class="style24">来自：</span>${bean.city }${bean.district }${bean.customerName} <span class="STYLE24">团号：</span>${qf.groupCode }  <span class="STYLE149">出团日期：</span>${qf.groupDate }<span class="STYLE149">人数：</span>${qf.adults }大${qf.children }小 </span></td>
-          </tr> --%>
+            <td width="1021"><span class="style148"><span class="style24">来自：</span>${bean.city }${bean.district }${bean.customerName} <span class="STYLE24">团号：</span>${qf.groupCode }  <span class="STYLE149">出团日期：</span>${qf.groupDate }<span class="STYLE149">人数：</span>${qf.adults }大${qf.children }小 </span></td>  
+          </tr>  
         </tbody></table></td>
       </tr>
     </tbody></table></td>
@@ -37,10 +38,10 @@
   <tr>
     <td><img src="images/frame1-3.gif" width="100%" height="7"></td>
   </tr>
-</tbody></table>
+</tbody></table> --%>
 <table width="80%" cellspacing="0" cellpadding="10" border="0" align="center">
   <tbody><tr>
-    <td class="h1-black">${bean.title }<span class="STYLE27"><input name="rttitle" type="hidden" value="${bean.title }" />
+    <td class="h1-black"><span class="STYLE27"><input name="rttitle" type="hidden" value="${bean.title }" />
     <input name="rtelevation" type="hidden" value="${bean.elevation }" /></span></td>
   </tr>
 </tbody></table>
@@ -51,14 +52,14 @@
     <td><img src="images/frame1-1.gif" width="100%" height="7"></td>
   </tr>
   <tr>
-    <td background="images/frame1-2.gif">
+    <td width="100%"  background="images/frame1-2.gif">
     <table width="100%" cellspacing="0" cellpadding="10" border="0" align="center">
         <tbody><tr>
-          <td class="STYLE126" width="761" valign="top"><span class="STYLE3">行程规划：</span></td>
+          <td class="STYLE126" width="761" valign="top"><span class="STYLE3">行程规划</span></td>
         </tr>
       </tbody></table>
       <div id="routetablediv">
-      <table name="routetable" width="80%" cellspacing="1" cellpadding="5" border="0" align="center">
+      <table name="routetable" width="100%" cellspacing="1" cellpadding="5" border="0" align="center">
         <thead><tr>
           <td class="STYLE129" valign="middle" bgcolor="#F0F0F0" height="31"><div class="style18" align="center">
             <div align="center"><strong><strong>天数</strong></strong></div>

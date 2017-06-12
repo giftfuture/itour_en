@@ -21,7 +21,7 @@ import com.itour.entity.SysRoleRel;
  * <b>作者：</b>fred<br>
  * <b>日期：</b> Jun 9, 2016 <br>
  */
-@Service//("sysRoleRelService")
+@Service 
 public class SysRoleRelService<T> extends BaseService<T> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	

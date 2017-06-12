@@ -16,7 +16,7 @@ import com.itour.convert.AreasKit;
 import com.itour.dao.AreasDao;
 import com.itour.entity.Areas;
 import com.itour.vo.AdLinkVO;
-@Service//("areasService")
+@Service 
 public class AreasService extends BaseService<Areas>{
 
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
