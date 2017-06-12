@@ -72,7 +72,7 @@ itouren.serverquotestep4 = function(){
 			});
 			//generateReport
 			$("a[name='generateReport']").click(function(){
-				itouren.progress('Please waiting','Booking...');
+				itouren.progress('Please waiting','Processing...');
 				$.post('travelOrder/generateReport',{'formContent':document.getElementById("reportdiv").innerHTML,'tordername':$("input[name='tordername']").val(),'idrt':$("input[name='idrt']").val(),'basePath':basePath},function(responseText){
 					var result = $.parseJSON(responseText);
 					//console.log(result);

@@ -7,10 +7,8 @@ import java.util.List;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.itour.base.page.BasePage;
-import com.itour.entity.OrderDetail;
+import org.hibernate.validator.constraints.Email;
+
 /**
  * 
  * <br>
@@ -19,6 +17,10 @@ import com.itour.entity.OrderDetail;
  */
 //import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.itour.base.page.BasePage;
+import com.itour.entity.OrderDetail;
 @JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
 public class TravelOrderVO extends BasePage implements Serializable{
@@ -33,6 +35,7 @@ public class TravelOrderVO extends BasePage implements Serializable{
 	private int valid;
 	private BigDecimal budget;  //旅行预算
 	private String routename;
+	@Email
 	private String receiveremail;
     @Min(value = 0, message = "gender 的最小值为0")
     @Max(value = 1, message = "gender 的最大值为1")

@@ -54,15 +54,15 @@
      		 <div class="ui-edit">
 	           <div class="fitem">  
 	              <label>旧密码:</label>  
-	              <input id="oldPwd" name="oldPwd" type="password" class="easyui-validatebox"  data-options="required:true"/>
+	              <input id="oldPwd" name="oldPwd" type="password" class="easyui-textbox"  data-options="required:true"/>
 	           </div>
 	            <div class="fitem">  
 	               <label>新密码:</label>  
-	               <input id="newPwd" name="newPwd" type="password" class="easyui-validatebox" data-options="required:true" />
+	               <input id="newPwd" name="newPwd" type="password" class="easyui-textbox" data-options="required:true" />
 	           </div> 
 	           <div class="fitem">  
 	               <label>重复密码:</label>  
-	              <input id="rpwd" name="rpwd" type="password" class="easyui-validatebox"   data-options="required:true" required="required" validType="equals['#newPwd']" />
+	              <input id="rpwd" name="rpwd" type="password" class="easyui-textbox"   data-options="required:true" required="required" validType="equals['#newPwd']" />
 	           </div> 
 	         </div>
      	 </form>

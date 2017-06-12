@@ -25,7 +25,51 @@ $(document).ready(function() {
 			}, 200).hide();
 		});
 	});
-
+	// 点击登录
+	$("#but_login").click(function(e){
+		submit();
+	});
+	//回车登录
+	$(document).keydown(function(e){
+		 e = e || window.event;
+		  //阻止默认事件
+	  /*   if(e.preventDefault){
+	         e.preventDefault();
+	     }else{
+	         e.returnValue = false;
+	     }*/
+		if(e.keyCode == 13) {
+			submit();
+		}
+	});
+	// 重置
+	$('#forgetpass').click(function(e) {
+		$(":input").each(function() {
+		$('#'+this.name).val("");
+		});
+		$("#forget-pwd-win").dialog('open');
+	});
+	$("#btn-forgetpwd-close").click(function(){
+		$("#forget-pwd-win").dialog('close');
+	})
+	$("#btn-forgetpwd-submit").click(function(){
+		itouren.progress('Please waiting','Processing...');
+		$.post(basePath+'main/toresetPwd',{'email':$("#loginEmail").val()},function(result){
+			itouren.closeProgress();
+			if(result.success||result.success=='true'){
+				$("#forget-pwd-win").dialog('close');
+				$("#modify-pwd-win").dialog('open');
+			}else{
+				itour.alert("alert",result.msg||"To reset the password by email, please contact the administrator.","info");
+			}
+		});
+	})
+	$("#btn-pwd-close").click(function(){
+		$("#modify-pwd-win").dialog('close');
+	})
+	$("#btn-pwd-submit").click(function(){
+		modifyPwd();
+	})
 });
 $('.userload').click(function(e){
 	$('.formLogin').animate({
@@ -43,25 +87,29 @@ $('#forgetpass').click(function(e) {
 	$(":input").each(function() {
 	$('#'+this.name).val("");
 	});
+	//回车登录
+	$(document).keydown(function(e){
+		 e = e || window.event;
+		  //阻止默认事件
+	  /*   if(e.preventDefault){
+	         e.preventDefault();
+	     }else{
+	         e.returnValue = false;
+	     }*/
+		if(e.keyCode == 13) {
+			submit();
+		}
+	});
 });
-// 点击登录
-$("#but_login").click(function(e){
-	//console.log("btn_login click trigger");
-	submit();
-});
-//回车登录
-$(document).keydown(function(e){
-	 e = e || window.event;
-	  //阻止默认事件
-  /*   if(e.preventDefault){
-         e.preventDefault();
-     }else{
-         e.returnValue = false;
-     }*/
-	if(e.keyCode == 13) {
-		submit();
-	}
-});
+function modifyPwd(){
+	var pwdForm = $("#pwdForm");
+	if(pwdForm.form('validate')){
+		itour.saveForm(pwdForm,function(data){
+			$('#modify-pwd-win').dialog('close');
+		    pwdForm.resetForm();
+		});
+	 }
+};
 //表单提交
 function submit(){
 	var submit = true;

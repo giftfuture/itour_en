@@ -6,6 +6,8 @@ import java.sql.Timestamp;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import org.hibernate.validator.constraints.Email;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
@@ -22,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class FeedbackVO extends BasePage implements Serializable {
 	
 		private java.lang.String id;//   	private String createTime;//   	private java.lang.Integer status;//   	private String updateTime;//   	private java.lang.String title;//   	private java.lang.String content;//   	private java.lang.String customerId;//   	private java.lang.String result;//   	private java.lang.String customerName;
+	@Email
 	private String email;
 	private String mobile;
 	private String name;

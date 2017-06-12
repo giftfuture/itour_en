@@ -1209,6 +1209,30 @@ public class StringUtil
     	}
     	return tmp.toArray(array);
     }
+    /* 
+     * 1.地址中不包括@ 或 . 
+     * 2.地址中包括多个 @ 或 . 
+     * 3.邮箱地址中 . 出现 在@ 前面 
+     * 4.用户名中出现其他字符 
+     */  
+    public static boolean verifyMail(String email) {  
+        /* if(strMail.indexOf("@") == -1 || strMail.indexOf(".") == -1) {  
+        return false;  
+	    }  
+	    if(strMail.indexOf("@") != strMail.lastIndexOf("@") || strMail.indexOf(".") != strMail.lastIndexOf(".")){  
+	        return false;  
+	    }  
+	    if(strMail.indexOf("@")>strMail.indexOf(".")) {  
+	        return false;  
+	    }  
+	    for(int i = 0; i<strMail.indexOf("@"); i++) {  
+	        if(!((strMail.charAt(i) > 'A' && strMail.charAt(i) < 'Z') || (strMail.charAt(i) > 'a' && strMail.charAt(i) < 'z'))) {  
+	            return false;  
+	        }  
+	    }  */
+		return email.matches("^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\\.[a-zA-Z0-9_-]{2,3}){1,2})$");
+    } 
+    
 	public static void main(String[] args) {
 		String str="a  www.lord.org";
 		System.out.println(getByteLength(str));

@@ -32,7 +32,7 @@ public final class SessionUtils {
 	
 	private static final String SESSION_MENUBTN_MAP = "session_menubtn_map"; //系统菜单按钮
 
-	
+	private static final String EMAIL_RESET_PWD_CODE = "email_reset_pwd_code";//邮箱重置密码的验证码
 	
 	/**
 	  * 设置session的值
@@ -70,7 +70,25 @@ public final class SessionUtils {
 			if(session!=null)
 			 session.removeAttribute(key);
 	 }
-	 
+	 /**
+	  * 
+	  * @param request
+	  * @param value
+	  */
+	 public static void setEmailResetpwdCode(HttpServletRequest request,String value){
+		 HttpSession session = request.getSession(true);
+		 session.setMaxInactiveInterval(60*60);//一小时
+		 session.setAttribute(EMAIL_RESET_PWD_CODE, value);
+	 }
+	 public static String getEmailResetpwdCode(HttpServletRequest request){
+		 HttpSession session = request.getSession(false);
+			if(session!=null)
+				return (String)session.getAttribute(EMAIL_RESET_PWD_CODE);
+			return null;
+	 }
+	 public static void removeEmailResetpwdCode(HttpServletRequest request){
+		 removeAttr(request, EMAIL_RESET_PWD_CODE);
+	 }
 	 /**
 	  * 设置用户信息 到session
 	  * @param request

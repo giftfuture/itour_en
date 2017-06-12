@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import org.hibernate.validator.constraints.Email;
+
 import com.itour.base.entity.BaseEntity;
 
 
@@ -14,7 +16,8 @@ public class SysUser extends BaseEntity {
 	 * 
 	 */
 	private static final long serialVersionUID = -7694404748102354148L;
-	private String id;//   id主键	private String email;//   邮箱也是登录帐号	private String pwd;//   登录密码	private String nickName;//   昵称
+	private String id;//   id主键
+	@Email	private String email;//   邮箱也是登录帐号	private String pwd;//   登录密码	private String nickName;//   昵称
 	@Min(value = 0, message = "state 的最小值为0")
     @Max(value = 1, message = "state 的最大值为1")	private Integer state;//   状态 0=可用,1=禁用	private Integer loginCount;//   登录总次数	private java.sql.Timestamp loginTime;//   最后登录时间
 	@Min(value = 0, message = "deleted 的最小值为0")

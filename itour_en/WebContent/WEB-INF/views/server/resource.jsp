@@ -12,7 +12,7 @@
     /* Counter counthandler=new Counter();//创建对象  
     int count=1;  														
     application.setAttribute("count",count);  */
-    String homePage = "http://localhost:8080/itour_en";  //"http://zjj.itours.com.cn/";
+  //  String homePage = "http://localhost:8080/itour_en";  //"http://zjj.itours.com.cn/";
   /*   if(application.getAttribute("count")==null|| count == 0){  
 	    count=counthandler.readCount();//读取文件获取数据赋给count  
 	    application.setAttribute("count",count);  
@@ -60,7 +60,7 @@
 var tougao="mrr";
 var lmname="JavaScript";
 var ourl="";
-var homepage="<%=homePage%>";
+ <%-- var homepage="<%=homePage%>"; --%>
 /* (function(){
 	var reWriteUrl=function(url){
 	if(url){
@@ -97,7 +97,7 @@ var basePath = '${basePath}';
 <meta http-equiv="cache-control" content="no-cache">  
 <meta http-equiv="expires" content="0">      
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="mobile-agent" content="format=html5; url=<%=homePage%>" />
-<meta http-equiv="mobile-agent" content="format=xhtml; url=<%=homePage%>" />
+<meta http-equiv="mobile-agent" content="format=html5; url=<%=basePath%>" />
+<meta http-equiv="mobile-agent" content="format=xhtml; url=<%=basePath%>" />
 <link rel="SHORTCUT ICON" href="<%=basePath%>images/head2016.gif"> 
 <%-- <p>我们的友谊海枯石不烂！ 您是第 <%=application.getAttribute("count") %> 位访客</p>   --%>

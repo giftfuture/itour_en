@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.Email;
 /**
  * 
  * <br>
@@ -22,6 +24,7 @@ public class Customers extends BaseEntity {
 	private java.util.Date updateTime;//   
 	private java.lang.String address;//   
 	private java.lang.String email;//   
+	@Email
 	private java.lang.String scope;//   1=中国大陆,2=香港,3=澳门,4=台湾,5=海外
 	private java.lang.String city;//   
 	private java.lang.String telephone;//   

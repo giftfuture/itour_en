@@ -30,12 +30,16 @@ import com.itour.base.entity.BaseEntity.STATE;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.util.DateUtil;
 import com.itour.base.util.HtmlUtil;
+import com.itour.base.util.IDGenerator;
 import com.itour.base.util.MethodUtil;
 import com.itour.base.util.SHA;
 import com.itour.base.util.SessionUtils;
+import com.itour.base.util.StringUtil;
 import com.itour.base.util.TreeUtil;
 import com.itour.base.util.URLUtils;
 import com.itour.base.util.RoleConstant.SuperAdmin;
+import com.itour.base.util.email.CheckEmail;
+import com.itour.base.util.email.EmailService;
 import com.itour.base.web.BaseController;
 import com.itour.entity.LogOperation;
 import com.itour.entity.LogSetting;
@@ -343,7 +347,99 @@ public class MainController extends BaseController {
 		return forward("server/main/main",context); 
 	}
 	
-	
+	/**
+	 * 通过邮箱重置密码
+	 * @param url
+	 * @param classifyId
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	@ResponseBody
+	//@Auth(verifyLogin=true,verifyURL=false)
+	@RequestMapping(value="/toresetPwd") 
+	public String toresetPwd(String email,HttpServletRequest request,HttpServletResponse response){
+		//String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath()+"/";  
+		try {
+			request.setCharacterEncoding("UTF-8");
+			if(!CheckEmail.checkEmailMethod(email)){
+				return sendFailureResult(response, "邮箱"+email+"格式不合法!");
+			}
+			SysUser user = sysUserService.getUserByEmail(email);
+			if(user == null || user.getId() == null || DELETED.YES.key == user.getDeleted()){
+				return sendFailureResult(response, "没有找到邮箱"+email+"对应的用户!");
+			}else{
+			String title = "主角旅行itours网站后台管理";
+			String content = IDGenerator.code(19);
+			SessionUtils.setEmailResetpwdCode(request, content);
+			  ///邮件的内容  
+	   /*     StringBuffer content=new StringBuffer("点击下面链接激活账号，24小时内有效，链接只能使用一次，请尽快操作！</br>");  
+	        content.append("<a href=\"http://localhost:8080/springmvc/user/register?action=activate&email=");  
+	        content.append(email);   
+	        content.append("&validateCode=");   
+	        content.append(user.getValidateCode());  
+	        content.append("\">http://localhost:8080/springmvc/user/register?action=activate&email=");   
+	        content.append(email);  
+	        content.append("&validateCode=");  
+	        content.append(user.getValidateCode());  
+	        content.append("</a>"); */ 
+				if (EmailService.sendEmail(title, email, title, content, "")) {
+					logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行MainController的toresetPwd方法");
+					String logId = logSettingService.add(new LogSetting("sys_user","发送重置密码邮件","main/toresetPwd",user.getId(),"","")); 
+					logOperationService.add(new LogOperation(logId,"发送重置密码邮件",user.getId(),"",JsonUtils.encode(user),"main/toresetPwd",user.getId())); 
+					return sendSuccessResult(response, "重置密码的验证码已发送到您的邮箱"+email+"，只有一个小时有效期，请尽快打开邮箱查收并操作!");
+				}else{
+					return sendFailureResult(response, "给邮箱"+email+"发送重置密码邮件失败，请呆会儿重试或联系超级管理员!");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null; 
+	}
+	/**
+	 * 通过邮箱重置密码
+	 * @param url
+	 * @param classifyId
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	@ResponseBody
+	//@Auth(verifyLogin=true,verifyURL=false)
+	@RequestMapping(value="/resetPwd") 
+	public String resetPwd(String email,String oldPwd,String newPwd,String pwdCode,HttpServletRequest request,HttpServletResponse response){
+		try {
+			String emailCode = SessionUtils.getEmailResetpwdCode(request);
+			SessionUtils.removeEmailResetpwdCode(request);//清除验证码，确保验证码只能用一次
+		 	if(StringUtils.isEmpty(pwdCode)){
+		 		return sendFailureResult(response, "验证码不能为空.");
+			}
+			//判断验证码是否正确
+		 	if(!pwdCode.toLowerCase().equals(emailCode.toLowerCase())){   
+		 		return sendFailureResult(response, "验证码输入错误.");
+			} 
+			SysUser bean  = sysUserService.getUserByEmail(email);
+			if(bean == null || bean.getId() == null || DELETED.YES.key == bean.getDeleted()){
+				return sendFailureResult(response, "对不起,用户不存在或已被删除.");
+			}
+			if(StringUtils.isEmpty(newPwd) || newPwd.length()<6){
+				return sendFailureResult(response, "密码不能为空且长度不小于六位.");
+			}
+			//不是超级管理员，匹配旧密码
+			if(!MethodUtil.compareSHA(oldPwd,bean.getPwd())){
+				return sendFailureResult(response, "旧密码输入不匹配.");
+			}
+			bean.setPwd(MethodUtil.encryptSHA(newPwd));
+			sysUserService.update(bean);
+			SysUser newuser = sysUserService.queryById(bean.getId());
+			logger.info("#####"+(bean != null?("id:"+bean .getId()+"email:"+bean.getEmail()+",nickName:"+bean.getNickName()):"")+"调用执行MainController的resetPwd方法");
+			String logId = logSettingService.add(new LogSetting("sys_user","重置密码","main/resetPwd",bean.getId(),"",""));
+			logOperationService.add(new LogOperation(logId,"重置密码",bean .getId(),JsonUtils.encode(bean),JsonUtils.encode(newuser),"main/resetPwd",bean.getId()));
+			return sendSuccessResult(response, "密码重置成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	/**
 	 * 构建树形数据
 	 * @return

@@ -6,6 +6,8 @@ import java.io.Serializable;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import org.hibernate.validator.constraints.Email;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
@@ -27,7 +29,8 @@ public class CustomerVO extends BasePage implements Serializable{
 	private java.util.Date createTime;//   
 	private java.lang.Integer status;//   
 	private java.util.Date updateTime;//   
-	private java.lang.String address;//   
+	private java.lang.String address;// 
+	@Email
 	private java.lang.String email;//   
 	private java.lang.String scope;//   
 	private java.lang.String city;//   

@@ -119,6 +119,54 @@ label.iPhoneCheckLabelOn span {
     <span class="tip"><a href="http://www.itours.com.cn" title="主角旅行"></a> (推荐使用IE8+,谷歌浏览器可以获得更快,更安全的页面响应速度)技术支持:<a href="#" title="主角旅行">itours</a></span>
    </div>
   </div>
+ <!--  forget password start -->
+    <div id="forget-pwd-win"  class="easyui-dialog" buttons="#forgetPwdbtn" title="忘记用户密码" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:350px;height:200px;">
+        <form id="forgetpwdForm" action="${basePath}main/modifyPwd" class="ui-form" method="post">
+             <div class="ui-edit">
+                  <div class="fitem">  
+                      <label>登录邮箱:</label>  
+                      <input id="loginEmail" name="loginEmail" type="text" class="easyui-textbox"  data-options="required:true,width:200"/>
+                   </div>
+             </div>
+         <div id="forgetPwdbtn" class="dialog-button" >  
+            <a href="javascript:void(0)" class="easyui-linkbutton" id="btn-pwd-submit">确定</a>  
+            <a href="javascript:void(0)" class="easyui-linkbutton" id="btn-pwd-close">关闭</a>  
+         </div>
+         </form>
+    </div>
+    <!-- forget password end  -->
+    <!--  modify password start -->
+    <div id="modify-pwd-win"  class="easyui-dialog" buttons="#editPwdbtn" title="修改用户密码" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:350px;height:200px;">
+        <form id="pwdForm" action="${basePath}main/resetPwd" class="ui-form" method="post">
+             <div class="ui-edit">
+              <div class="fitem">  
+                  <label>邮箱:</label>  
+                  <input id="email" name="email" type="text" class="easyui-textbox"  data-options="required:true"/>
+               </div>
+               <div class="fitem">  
+                  <label>旧密码:</label>  
+                  <input id="oldPwd" name="oldPwd" type="password" class="easyui-textbox"  data-options="required:true"/>
+               </div>
+                <div class="fitem">  
+                   <label>新密码:</label>  
+                   <input id="newPwd" name="newPwd" type="password" class="easyui-textbox" data-options="required:true" />
+               </div> 
+               <div class="fitem">  
+                   <label>重复密码:</label>  
+                  <input id="rpwd" name="rpwd" type="password" class="easyui-textbox"   data-options="required:true" required="required" validType="equals['#newPwd']" />
+               </div> 
+                <div class="fitem">  
+                       <label>验证码:</label>  
+                       <input id="pwdCode" name="pwdCode" type="text" class="easyui-textbox" data-options="required:true,width:200" />
+                 </div> 
+             </div>
+         </form>
+         <div id="editPwdbtn" class="dialog-button" >  
+            <a href="javascript:void(0)" class="easyui-linkbutton" id="btn-pwd-submit">确定</a>  
+            <a href="javascript:void(0)" class="easyui-linkbutton" id="btn-pwd-close">关闭</a>  
+         </div>
+    </div>
+    <!-- modify password end  -->
   <!-- Link JScript-->
 <!--   
   <script type="text/javascript" src="js/plug-in/login/js/jquery-jrumble.js"></script>

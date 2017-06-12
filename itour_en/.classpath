@@ -124,5 +124,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mail-1.5.0-b01.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/thumbnailator-0.4.8.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bean-validator-2.5.0-b05.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-net-3.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/dnsjava-2.1.7.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -7,6 +7,8 @@ import java.util.List;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import org.hibernate.validator.constraints.Email;
+
 import com.itour.base.entity.BaseEntity;
 /**
  * 
@@ -30,6 +32,7 @@ public class TravelOrder extends BaseEntity {
 	private int valid;
 	
 	private String routename;
+	@Email
 	private String receiveremail;
     @Min(value = 0, message = "gender 的最小值为0")
 	@Max(value = 1, message = "gender 的最大值为1")
