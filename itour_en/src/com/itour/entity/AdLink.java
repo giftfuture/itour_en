@@ -2,6 +2,9 @@ package com.itour.entity;
 
 import java.util.Date;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import com.itour.base.entity.BaseEntity;
 
 public class AdLink extends BaseEntity {
@@ -13,8 +16,12 @@ public class AdLink extends BaseEntity {
 	private String id;
 	private String advertise;
 	private String adlink;
+    @Min(value = 0, message = "video 的最小值为0")
+    @Max(value = 1, message = "video 的最大值为1")
 	private int video;
 	private String title;
+    @Min(value = 0, message = "valid 的最小值为0")
+    @Max(value = 1, message = "valid 的最大值为1")
 	private int valid;
 	private String remark;
 	private String createBy;

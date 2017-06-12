@@ -3,6 +3,9 @@ package com.itour.entity;
 import com.itour.base.entity.BaseEntity;
 import java.math.BigDecimal;
 import java.util.Date;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 /**
  * 
  * <br>
@@ -16,7 +19,9 @@ public class SysVariables extends BaseEntity {
 	 * 
 	 */
 	private static final long serialVersionUID = -8356212737850829975L;
-	private java.lang.String id;//   	private java.lang.String varName;//   	private java.lang.String varValue;//   	private java.lang.String varHostname;//   	private java.lang.String varHostip;//   	private java.lang.String remark;//   	private java.lang.String varProject;//   
+	private java.lang.String id;//   	private java.lang.String varName;//   	private java.lang.String varValue;//   	private java.lang.String varHostname;//   	private java.lang.String varHostip;//   	private java.lang.String remark;//   	private java.lang.String varProject;//  
+	@Min(value = 0, message = "valid 的最小值为0")
+    @Max(value = 1, message = "valid 的最大值为1")
 	private int valid;
 	private String createBy;
 	private String updateBy;

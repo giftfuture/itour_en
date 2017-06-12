@@ -3,6 +3,9 @@ package com.itour.entity;
 import com.itour.base.entity.BaseEntity;
 import java.math.BigDecimal;
 import java.util.Date;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 /**
  * 
  * <br>
@@ -16,7 +19,9 @@ public class OrderDetail extends BaseEntity {
 	 */
 	private static final long serialVersionUID = -1844719160695732166L;
 	private java.lang.String id;//   
-	private java.lang.Integer status;//   	private java.util.Date createTime;//   	private java.util.Date updateTime;//   	private java.lang.String content;//   	private java.lang.String remark;//   	private java.lang.Float perPrice;//   	private java.lang.Float count;//   	private java.lang.String orderId;//  	private int valid;
+	private java.lang.Integer status;//   	private java.util.Date createTime;//   	private java.util.Date updateTime;//   	private java.lang.String content;//   	private java.lang.String remark;//   	private java.lang.Float perPrice;//   	private java.lang.Float count;//   	private java.lang.String orderId;//  
+    @Min(value = 0, message = "valid 的最小值为0")
+    @Max(value = 1, message = "valid 的最大值为1")	private int valid;
 	private int adults;
 	private int children;
 	private String groupCode;//团号

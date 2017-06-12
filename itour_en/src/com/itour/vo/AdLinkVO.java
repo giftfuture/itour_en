@@ -4,6 +4,9 @@ import com.itour.base.page.BasePage;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import com.itour.base.page.BasePage;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -26,12 +29,16 @@ public class AdLinkVO extends BasePage implements Serializable {
 	private String advertise;
 	private String adlink;
 	private String title;
+    @Min(value = 0, message = "valid 的最小值为0")
+    @Max(value = 1, message = "valid 的最大值为1")
 	private int valid;
 	private String remark;
 	private String createBy;
 	private String updateBy;
 	private String createTime;
 	private String updateTime;
+	@Min(value = 0, message = "video 的最小值为0")
+    @Max(value = 1, message = "video 的最大值为1")
 	private int video;
 	
 	 

@@ -48,11 +48,10 @@ public class CalculateQuoteVO implements Serializable{
 	private String quoterecreationadults;
 	private String quoterecreationchildren;
 	
-	private String quotebathorseadults;
-	private String quotebathorsecchildren;
 	private String quoteitemguidecadults;
 	private String quoteitemguidechildren;
-	
+	private String quotebathorseadults;
+	private String quotebathorsecchildren;
 	private String quoteridehorseadults;
 	private String quoteridehorsechildren;
 	private String quoteclimbregisteradults;

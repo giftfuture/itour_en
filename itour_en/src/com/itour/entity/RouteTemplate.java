@@ -2,6 +2,9 @@ package com.itour.entity;
 
 import com.itour.base.entity.BaseEntity;
 import java.math.BigDecimal;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 /**
  * 
  * <br>
@@ -25,6 +28,8 @@ public class RouteTemplate extends BaseEntity {
 	private String shortContent;//简略介绍
 	private String alias;//线路别称
 	private String routeCode;//线路编号
+    @Min(value = 0, message = "valid 的最小值为0")
+    @Max(value = 1, message = "valid 的最大值为1")
 	private int valid;
 	private int rcdDays;//建议天数
 	private float mileage;//海拔
@@ -33,17 +38,20 @@ public class RouteTemplate extends BaseEntity {
 	private String arrive;//到达地
 	private float trekDistance;//徒步距离
 	private String transportation;//交通工具
+    @Min(value = 1, message = "difficultyRate 的最小值为1")
+    @Max(value = 5, message = "difficultyRate 的最大值为5")
 	private int difficultyRate;//难度
 	private String quotoForm;//报价单表
 	private String designConcept;//设计理念
 	private String customizedService;//定制服务
 	private String beforeInstruction;//行前须知
 	private float elevation;
+    @Min(value = 1, message = "starLevel 的最小值为1")
+    @Max(value = 5, message = "starLevel 的最大值为5")
 	private int starLevel;//线路星级
 	private String levelArea;//线路区域
 	private String viewphotos;
 	private String serviceAndQuote;
-	
 	public RouteTemplate(){} 
 	public RouteTemplate(String id,String levelArea){
 		this.id = id;

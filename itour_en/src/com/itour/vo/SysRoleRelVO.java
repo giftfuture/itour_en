@@ -3,6 +3,9 @@ package com.itour.vo;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
@@ -16,7 +19,11 @@ public class SysRoleRelVO extends BasePage implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 6080631663815131651L;
-	private String id;	private String roleId;//   角色主键 sys_role.id	private String objId;//     关联主键 relType=0管理sys_menu.id, relType=1关联sys_user.id,relType=2,sys_menu_btn.id	private Integer relType;//    关联类型 0=菜单,1=用户,2=按钮
+	private String id;	private String roleId;//   角色主键 sys_role.id	private String objId;//     关联主键 relType=0管理sys_menu.id, relType=1关联sys_user.id,relType=2,sys_menu_btn.id    @Min(value = 0, message = "relType 的最小值为0")
+    @Max(value = 2, message = "relType 的最大值为2")
+	private Integer relType;//    关联类型 0=菜单,1=用户,2=按钮
+    @Min(value = 0, message = "valid 的最小值为0")
+    @Max(value = 1, message = "valid 的最大值为1")
 	private int valid;//是否有效
 	private String createBy;
 	private String updateBy;

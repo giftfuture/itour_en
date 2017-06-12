@@ -69,11 +69,11 @@ function loadlevel2Area(level1Area){
 <form name="searchForm" method="post">
 <table class="frametb" align="center" >
   <tr>
-    <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2">fast Search</div></td>
+    <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2"><strong>fast Search</strong></div></td>
     <td width="60%" bgcolor="#CCCCCC" class="f14-gao1" >  
-       Travel mode：<input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:130,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
+      <strong>Travel mode:</strong> <input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:130,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
       <label>
-      Tourist area：<!--onBeforeLoad
+      Tourist area:<!--onBeforeLoad
            -->
             <!-- width:130,height:20,valueField:'level1Area',textField:'level1Area',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}levelarea/queryLevel1' -->
          <input class="easyui-combobox" id="level1Area" name="level1Area" value="${level1Area}" data-options="width:130,height:20,panelHeight:'auto',editable:false"
@@ -175,7 +175,7 @@ function loadlevel2Area(level1Area){
 </center> --%>
 <table class="lefttxt frametb" align="center">
   <tbody><tr>
-    <td width="611" valign="top" height="105" bgcolor="#666666"><table width="1100" height="60" cellspacing="0" cellpadding="0" border="0" align="center">
+    <td   valign="middle" height="135"  bgcolor="#666666"><table width="1100" height="60" cellspacing="0" cellpadding="0" border="0" align="center">
       <tbody>
         <tr>
           <td width="883" height="30" bgcolor="#EFEFEF"><div class="STYLE6" align="center">iTour Travel www.iTours.com.cn</div></td>

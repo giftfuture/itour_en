@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +22,8 @@ public class ShowHappyVO extends BasePage implements Serializable{
 	private String customer;
 	private java.util.Date createTime;
 	private java.util.Date updateTime;
+    @Min(value = 0, message = "status 的最小值为0")
+    @Max(value = 1, message = "status 的最大值为1")
 	private int status;
 	private String content;
 	private String title;
@@ -29,6 +34,8 @@ public class ShowHappyVO extends BasePage implements Serializable{
 	private String route;//该晒图所属路线
 	private String cover;//分享的封面图片
 	private String surface;//封面图片文件
+    @Min(value = 0, message = "valid 的最小值为0")
+    @Max(value = 1, message = "valid 的最大值为1")
 	private int valid;
 	private String verifyCode;
 	private List<MultipartFile> imagefiles;

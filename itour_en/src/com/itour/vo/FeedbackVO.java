@@ -3,6 +3,9 @@ package com.itour.vo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
@@ -24,10 +27,16 @@ public class FeedbackVO extends BasePage implements Serializable {
 	private String name;
 	private short teamPersons;
 	private String preferedDate;
+    @Min(value = 0, message = "valid 的最小值为0")
+    @Max(value = 1, message = "valid 的最大值为1")
 	private int valid;
 	private String route;//路线
+    @Min(value = 0, message = "sex 的最小值为0")
+    @Max(value = 1, message = "sex 的最大值为1")
 	private int sex;//true=male,false=female
 	private String verifyCode;
+    @Min(value = 0, message = "publicShow 的最小值为0")
+    @Max(value = 1, message = "publicShow 的最大值为1")
 	private int publicShow;//公开展示
 	private String routeName;
 	private String routeStyle;

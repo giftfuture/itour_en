@@ -3,6 +3,9 @@ package com.itour.vo;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
@@ -20,7 +23,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class TravelStyleVO extends BasePage implements Serializable{
 		private java.lang.String id;//   	private java.lang.String type;//   
 	private java.lang.String remark;//  
-	private String alias;	private int valid;
+	private String alias;
+    @Min(value = 0, message = "valid 的最小值为0")
+    @Max(value = 1, message = "valid 的最大值为1")	private int valid;
 	private String descrip;
 	private String cover;
 	private String createBy;

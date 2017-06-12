@@ -3,6 +3,9 @@ package com.itour.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import com.itour.base.entity.BaseEntity;
 
 public class QuoteForm extends BaseEntity implements Serializable {
@@ -20,42 +23,80 @@ public class QuoteForm extends BaseEntity implements Serializable {
 	private String travelItems;//旅行景点
 	private int adults;
 	private int children;
+    @Min(value = 0, message = "asAdult 的最小值为0")
+    @Max(value = 1, message = "asAdult 的最大值为1")
 	private int asAdult;
 	private String ticketBlock;//门票明细
+    @Min(value = 0, message = "ticketAsadult 的最小值为0")
+    @Max(value = 1, message = "ticketAsadult 的最大值为1")
 	private int ticketAsadult;//小孩门票是否按孩子核算
 	private String travelDocs;//旅行证件
+    @Min(value = 0, message = "traveldocAsadult 的最小值为0")
+    @Max(value = 1, message = "traveldocAsadult 的最大值为1")
 	private int traveldocAsadult;//小孩旅行证件是否按孩子核算
 	private String tourGuide;//导游
+    @Min(value = 0, message = "tourguideAsadult 的最小值为0")
+    @Max(value = 1, message = "tourguideAsadult 的最大值为1")
 	private int tourguideAsadult;//小孩导游是否按孩子核算
 	private String hotel;//酒店
+    @Min(value = 0, message = "hotelAsadult 的最小值为0")
+    @Max(value = 1, message = "hotelAsadult 的最大值为1")
 	private int hotelAsadult;//小孩住酒店是否按孩子核算
 	private String rentCar;//用车情况
+    @Min(value = 0, message = "rentcarAsadult 的最小值为0")
+    @Max(value = 1, message = "rentcarAsadult 的最大值为1")
 	private int rentcarAsadult;//小孩用车是否按孩子核算
+    @Min(value = 0, message = "bigTrafficSum 的最小值为0")
+    @Max(value = 1, message = "bigTrafficSum 的最大值为1")
 	private int bigTrafficSum;//true=计入总价，false=另外核算
 	private String bigTraffic;//大交通
+    @Min(value = 0, message = "bigtrafficeAsadult 的最小值为0")
+    @Max(value = 1, message = "bigtrafficeAsadult 的最大值为1")
 	private int bigtrafficeAsadult;//小孩大交通是否按孩子核算
 	private String dinner;//用餐
+    @Min(value = 0, message = "dinnerAsadult 的最小值为0")
+    @Max(value = 1, message = "dinnerAsadult 的最大值为1")
 	private int dinnerAsadult;//小孩用餐是否按孩子核算
 	private String insurance;//保险
+	@Min(value = 0, message = "insuranceAsadult 的最小值为0")
+	@Max(value = 1, message = "insuranceAsadult 的最大值为1")
 	private int insuranceAsadult;//小孩保险是否按孩子核算
 	private String comprehensiveCosts;//综合费用 
+	@Min(value = 0, message = "comphcostAsadult 的最小值为0")
+	@Max(value = 1, message = "comphcostAsadult 的最大值为1")
 	private int comphcostAsadult;//小孩子综合费用是否按孩子核算
 	private String recreation;//娱乐费用
+	@Min(value = 0, message = "recreationAsadult 的最小值为0")
+	@Max(value = 1, message = "recreationAsadult 的最大值为1")
 	private int recreationAsadult;//小孩娱乐费用是否按孩子核算
 	private String itemGuide;//单项向导
+	@Min(value = 0, message = "itemguideAsadult 的最小值为0")
+	@Max(value = 1, message = "itemguideAsadult 的最大值为1")
 	private int itemguideAsadult;//小孩向导费用是否按孩子核算
 	private String bathorseCost;//驮马费
+	@Min(value = 0, message = "bathcostAsadult 的最小值为0")
+	@Max(value = 1, message = "bathcostAsadult 的最大值为1")
 	private int bathcostAsadult;//小孩驮马费是否按孩子核算
 	private String ridehorseCost;//骑马费
+	@Min(value = 0, message = "ridecostAsadult 的最小值为0")
+	@Max(value = 1, message = "ridecostAsadult 的最大值为1")
 	private int ridecostAsadult;//小孩骑马费是否按孩子核算
 	private String climbRegisterCost;//登山注册费
+	@Min(value = 0, message = "climbrcostAsadult 的最小值为0")
+	@Max(value = 1, message = "climbrcostAsadult 的最大值为1")
 	private int climbrcostAsadult;//小孩登山注册费是否按孩子核算
 	private String climbNexusCost;//登协联络官
+	@Min(value = 0, message = "climbncostAsadult 的最小值为0")
+	@Max(value = 1, message = "climbncostAsadult 的最大值为1")
 	private int climbncostAsadult;//小孩登协联络官是否按孩子核算
 	private String elseCost;//其他费用
+	@Min(value = 0, message = "elsecostAsadult 的最小值为0")
+	@Max(value = 1, message = "elsecostAsadult 的最大值为1")
 	private int elsecostAsadult;//小孩其他费用是否按孩子核算
 	private String presented;//赠送
 	private String remark;
+    @Min(value = 0, message = "valid 的最小值为0")
+    @Max(value = 1, message = "valid 的最大值为1")
 	private int valid;
 	private String createBy;
 	private Date createTime;

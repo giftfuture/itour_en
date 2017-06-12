@@ -1,5 +1,8 @@
 package com.itour.entity;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import com.itour.base.entity.BaseEntity;
 
 public class ShowHappy extends BaseEntity {
@@ -12,6 +15,8 @@ public class ShowHappy extends BaseEntity {
 	private String customer;
 	private java.util.Date createTime;
 	private java.util.Date updateTime;
+    @Min(value = 0, message = "status 的最小值为0")
+    @Max(value = 1, message = "status 的最大值为1")
 	private int status;
 	private String content;
 	private String title;
@@ -21,6 +26,8 @@ public class ShowHappy extends BaseEntity {
 	private java.util.Date tourTime;//旅行时间
 	private String route;//该晒图所属路线
 	private String cover;//分享的封面图片
+    @Min(value = 0, message = "valid 的最小值为0")
+    @Max(value = 1, message = "valid 的最大值为1")
 	private int valid;
 	private String shortContent;
 	private String shCode;

@@ -3,6 +3,9 @@ package com.itour.entity;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import com.itour.base.entity.BaseEntity;
 /**
  * 
@@ -23,9 +26,15 @@ public class Feedback extends BaseEntity {
 	private String name;
 	private short teamPersons;
 	private Timestamp preferedDate;
+    @Min(value = 0, message = "valid 的最小值为0")
+    @Max(value = 1, message = "valid 的最大值为1")
 	private int valid;
 	private String route;//路线
+    @Min(value = 0, message = "sex 的最小值为0")
+    @Max(value = 1, message = "sex 的最大值为1")
 	private int sex;//true=male,false=female
+    @Min(value = 0, message = "publicShow 的最小值为0")
+    @Max(value = 1, message = "publicShow 的最大值为1")
 	private int publicShow;//公开展示
 	
 	

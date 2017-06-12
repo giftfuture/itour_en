@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
@@ -13,7 +16,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonInclude(Include.NON_NULL)
 public class OrderDetailVO extends BasePage implements Serializable{
 	
-		private java.lang.String id;//   	private java.lang.Integer status;//   	private String createTime;//   	private String updateTime;//   	private java.lang.String content;//   	private java.lang.String remark;//   	private java.lang.Float perPrice;//   	private java.lang.Float count;//   	private java.lang.String orderId;//   
+		private java.lang.String id;//   	private java.lang.Integer status;//   	private String createTime;//   	private String updateTime;//   	private java.lang.String content;//   	private java.lang.String remark;//   	private java.lang.Float perPrice;//   	private java.lang.Float count;//   	private java.lang.String orderId;//
+    @Min(value = 0, message = "valid 的最小值为0")
+    @Max(value = 1, message = "valid 的最大值为1")
 	private int valid;
 	private int adults;
 	private int children;
@@ -57,6 +62,8 @@ public class OrderDetailVO extends BasePage implements Serializable{
 	private BigDecimal budget;  //旅行预算
 	private String routename;
 	private String receiveremail;
+    @Min(value = 0, message = "gender 的最小值为0")
+    @Max(value = 1, message = "gender 的最大值为1")
 	private int gender;
 	private java.lang.String receiver;//   
 	private java.lang.String receiverMobile;//   

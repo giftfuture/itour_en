@@ -5,6 +5,10 @@ import com.itour.base.entity.BaseEntity;
 import com.itour.base.page.BasePage;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 /**
  * 
  * <br>
@@ -30,6 +34,8 @@ public class LevelAreaVO extends BasePage {
 	private String updateBy;
 	private String createTime;
 	private String updateTime;
+    @Min(value = 0, message = "valid 的最小值为0")
+    @Max(value = 1, message = "valid 的最大值为1")
 	private int valid;
 	private String aliasCode;
 	private String item;

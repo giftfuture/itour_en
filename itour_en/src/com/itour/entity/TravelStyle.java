@@ -2,6 +2,9 @@ package com.itour.entity;
 
 import java.util.Date;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import com.itour.base.entity.BaseEntity;
 /**
  * 
@@ -18,6 +21,8 @@ public class TravelStyle extends BaseEntity {
 	private static final long serialVersionUID = 857054434524741892L;
 	private java.lang.String id;//   	private java.lang.String type;//   
 	private java.lang.String remark;//  	private String alias;
+    @Min(value = 0, message = "valid 的最小值为0")
+	@Max(value = 1, message = "valid 的最大值为1")
 	private int valid;
 	private String descrip;
 	private String cover;

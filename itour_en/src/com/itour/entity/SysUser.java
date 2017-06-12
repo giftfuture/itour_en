@@ -2,6 +2,9 @@ package com.itour.entity;
 
 import java.sql.Timestamp;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import com.itour.base.entity.BaseEntity;
 
 
@@ -11,8 +14,13 @@ public class SysUser extends BaseEntity {
 	 * 
 	 */
 	private static final long serialVersionUID = -7694404748102354148L;
-	private String id;//   id主键	private String email;//   邮箱也是登录帐号	private String pwd;//   登录密码	private String nickName;//   昵称	private Integer state;//   状态 0=可用,1=禁用	private Integer loginCount;//   登录总次数	private java.sql.Timestamp loginTime;//   最后登录时间	private Integer deleted;//   删除状态 0=未删除,1=已删除	private java.sql.Timestamp createTime;//   创建时间	private java.sql.Timestamp updateTime;//   修改时间	private String createBy;//   创建人	private String updateBy;//   修改人
-	
+	private String id;//   id主键	private String email;//   邮箱也是登录帐号	private String pwd;//   登录密码	private String nickName;//   昵称
+	@Min(value = 0, message = "state 的最小值为0")
+    @Max(value = 1, message = "state 的最大值为1")	private Integer state;//   状态 0=可用,1=禁用	private Integer loginCount;//   登录总次数	private java.sql.Timestamp loginTime;//   最后登录时间
+	@Min(value = 0, message = "deleted 的最小值为0")
+    @Max(value = 1, message = "deleted 的最大值为1")	private Integer deleted;//   删除状态 0=未删除,1=已删除	private java.sql.Timestamp createTime;//   创建时间	private java.sql.Timestamp updateTime;//   修改时间	private String createBy;//   创建人	private String updateBy;//   修改人
+	@Min(value = 0, message = "superAdmin 的最小值为0")
+    @Max(value = 1, message = "superAdmin 的最大值为1")
 	private Integer superAdmin;//超级管理员
 	
 	private String validateCode;

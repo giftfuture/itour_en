@@ -5,6 +5,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
@@ -37,15 +40,23 @@ public class TravelItemVO extends BasePage implements Serializable{
 	private String map;//地图
 	private String season;//建议季节
 	private String recommandEquip;
+    @Min(value = 0, message = "hot 的最小值为0")
+    @Max(value = 1, message = "hot 的最大值为1")
 	private int hot;//1=热门景点，0=非热点
+    @Min(value = 0, message = "valid 的最小值为0")
+    @Max(value = 1, message = "valid 的最大值为1")
 	private int valid;
 	private String createBy;
 	private String updateBy;
 	private String createTime;
 	private String updateTime;
+    @Min(value = 1, message = "starLevel 的最小值为1")
+	@Max(value = 5, message = "starLevel 的最大值为5")
 	private int starLevel;//星级
 	private String areaname;
 	private String ticketsBlock;//门票块
+    @Min(value = 0, message = "fullyearTicket 的最小值为0")
+    @Max(value = 1, message = "fullyearTicket 的最大值为1")
 	private int fullyearTicket;//是否分淡旺季
 	private String busyseason;//旺季
 	private String freeseason;//淡季

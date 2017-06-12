@@ -2,6 +2,9 @@ package com.itour.vo;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
@@ -15,6 +18,8 @@ public class SysMenuBtnVO extends BasePage implements Serializable{
 		private String id;//   主键	private String menuid;//    菜单id关联 sys_menu.id	private String btnName;//   按钮名称	private String btnType;//   按钮类型，用于列表页显示的按钮	private String actionUrls;//   url注册，用"," 分隔 。用于权限控制URL
 	
 	private String deleteFlag; //删除标记，与数据库字段无关 1=删除,其他不删除
+    @Min(value = 0, message = "deleted 的最小值为0")
+    @Max(value = 1, message = "deleted 的最大值为1")
 	private java.lang.Integer deleted;//   是否删除,0=未删除，1=已删除
 	private java.util.Date createTime;//   创建时间
 	private java.util.Date updateTime;//   修改时间

@@ -2,6 +2,9 @@ package com.itour.entity;
 
 import com.itour.base.entity.BaseEntity;
 import java.math.BigDecimal;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 /**
  * 
  * <br>
@@ -12,6 +15,8 @@ import java.math.BigDecimal;
 public class Quotation extends BaseEntity {
 	
 		private java.lang.String id;//   	private java.lang.String name;//   	private java.lang.String orderId;//   	private java.lang.String quotation;//   	private java.util.Date createTime;//   	private java.util.Date updateTime;//   	private java.lang.String remark;//   	private java.lang.String type;//   1= 总价加利润,2= 明细报价	private BigDecimal totalPrice;//   	private java.lang.String formula;// 
+    @Min(value = 0, message = "valid 的最小值为0")
+    @Max(value = 1, message = "valid 的最大值为1")
 	private int valid;
 	
 	

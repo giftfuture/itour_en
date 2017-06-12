@@ -2,6 +2,9 @@ package com.itour.entity;
 
 import com.itour.base.entity.BaseEntity;
 import java.math.BigDecimal;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 /**
  * 
  * <br>
@@ -28,6 +31,8 @@ public class Customers extends BaseEntity {
 	private java.lang.String district;//   
 	private java.lang.String introduction;// 
 	private String birthday;
+    @Min(value = 0, message = "valid 的最小值为0")
+    @Max(value = 1, message = "valid 的最大值为1")
 	private int valid;
 	public Customers(){}
 	public Customers(String customerId,String customerName,String introduce){
