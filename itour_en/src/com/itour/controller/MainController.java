@@ -46,6 +46,7 @@ import com.itour.entity.LogSetting;
 import com.itour.entity.SysMenu;
 import com.itour.entity.SysMenuBtn;
 import com.itour.entity.SysUser;
+import com.itour.vo.LoginVO;
 import com.itour.vo.SysUserVO;
 import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
@@ -361,7 +362,7 @@ public class MainController extends BaseController {
 		//String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath()+"/";  
 		try {
 			request.setCharacterEncoding("UTF-8");
-			if(!CheckEmail.checkEmailMethod(email)){
+			if(!CheckEmail.checkEmailMethod(email)&&!CheckEmail.checkEmail(email)){//!CheckEmail.checkEmail(email)
 				return sendFailureResult(response, "邮箱"+email+"格式不合法!");
 			}
 			SysUser user = sysUserService.getUserByEmail(email);
@@ -386,7 +387,7 @@ public class MainController extends BaseController {
 					logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行MainController的toresetPwd方法");
 					String logId = logSettingService.add(new LogSetting("sys_user","发送重置密码邮件","main/toresetPwd",user.getId(),"","")); 
 					logOperationService.add(new LogOperation(logId,"发送重置密码邮件",user.getId(),"",JsonUtils.encode(user),"main/toresetPwd",user.getId())); 
-					return sendSuccessResult(response, "重置密码的验证码已发送到您的邮箱"+email+"，只有一个小时有效期，请尽快打开邮箱查收并操作!");
+					return sendSuccessResult(response, "重置密码的验证码已发送到您的邮箱"+email+"，有效期为一个小时，请尽快打开邮箱查收并重置密码!");
 				}else{
 					return sendFailureResult(response, "给邮箱"+email+"发送重置密码邮件失败，请呆会儿重试或联系超级管理员!");
 				}
@@ -405,36 +406,36 @@ public class MainController extends BaseController {
 	@SuppressWarnings("unchecked")
 	@ResponseBody
 	//@Auth(verifyLogin=true,verifyURL=false)
-	@RequestMapping(value="/resetPwd") 
-	public String resetPwd(String email,String oldPwd,String newPwd,String pwdCode,HttpServletRequest request,HttpServletResponse response){
+	@RequestMapping(value="/resetPwd", method = RequestMethod.POST) 
+	public String resetPwd(LoginVO vo,HttpServletRequest request,HttpServletResponse response){
 		try {
 			String emailCode = SessionUtils.getEmailResetpwdCode(request);
 			SessionUtils.removeEmailResetpwdCode(request);//清除验证码，确保验证码只能用一次
-		 	if(StringUtils.isEmpty(pwdCode)){
-		 		return sendFailureResult(response, "验证码不能为空.");
+		 	if(StringUtils.isEmpty(vo.getPwdCode())){
+		 		return sendFailureResult(response, "邮箱验证码不能为空.");
 			}
 			//判断验证码是否正确
-		 	if(!pwdCode.toLowerCase().equals(emailCode.toLowerCase())){   
-		 		return sendFailureResult(response, "验证码输入错误.");
+		 	if(!vo.getPwdCode().toLowerCase().equals(emailCode.toLowerCase())){   
+		 		return sendFailureResult(response, "邮箱验证码输入错误.");
 			} 
-			SysUser bean  = sysUserService.getUserByEmail(email);
+			SysUser bean  = sysUserService.getUserByEmail(vo.getEmail());
 			if(bean == null || bean.getId() == null || DELETED.YES.key == bean.getDeleted()){
-				return sendFailureResult(response, "对不起,用户不存在或已被删除.");
+				return sendFailureResult(response, "对不起,邮箱为"+vo.getEmail()+"的用户不存在或已被删除.");
 			}
-			if(StringUtils.isEmpty(newPwd) || newPwd.length()<6){
-				return sendFailureResult(response, "密码不能为空且长度不小于六位.");
+			if(StringUtils.isEmpty(vo.getNewPwd()) || vo.getNewPwd().length()<6){
+				return sendFailureResult(response, "新密码不能为空且长度不小于六位.");
 			}
 			//不是超级管理员，匹配旧密码
-			if(!MethodUtil.compareSHA(oldPwd,bean.getPwd())){
+			/*if(!MethodUtil.compareSHA(oldPwd,bean.getPwd())){
 				return sendFailureResult(response, "旧密码输入不匹配.");
-			}
-			bean.setPwd(MethodUtil.encryptSHA(newPwd));
+			}*/
+			bean.setPwd(MethodUtil.encryptSHA(vo.getNewPwd()));
 			sysUserService.update(bean);
 			SysUser newuser = sysUserService.queryById(bean.getId());
 			logger.info("#####"+(bean != null?("id:"+bean .getId()+"email:"+bean.getEmail()+",nickName:"+bean.getNickName()):"")+"调用执行MainController的resetPwd方法");
 			String logId = logSettingService.add(new LogSetting("sys_user","重置密码","main/resetPwd",bean.getId(),"",""));
 			logOperationService.add(new LogOperation(logId,"重置密码",bean .getId(),JsonUtils.encode(bean),JsonUtils.encode(newuser),"main/resetPwd",bean.getId()));
-			return sendSuccessResult(response, "密码重置成功");
+			return sendSuccessResult(response, "登录密码重置成功!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -126,5 +126,9 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bean-validator-2.5.0-b05.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-net-3.3.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/dnsjava-2.1.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/IsEMail.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-modules-validation-0.8.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/springside-core-4.3.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/springside-utils-4.3.0-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

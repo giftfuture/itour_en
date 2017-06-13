@@ -12,6 +12,9 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.ValidationException;
+import javax.validation.Validator;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -30,7 +33,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
-
+import org.springmodules.validation.bean.BeanValidator;
+import org.springside.modules.beanvalidator.BeanValidators;
 import com.google.common.collect.Lists;
 import com.itour.base.annotation.Auth;
 import com.itour.base.cache.CacheService;
@@ -316,13 +320,17 @@ public class AdLinkController extends BaseController {
 		String result = JsonUtils.encode(context);
 		return result;
 	}
-/*	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody SysUser user, UriComponentsBuilder uriBuilder) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
+		 //获得验证器
+        Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<SysUser>> failures = validator.validate(user);
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
+		}else{
+			throw new ValidationException();
 		}
-	}*/
+	}
 }

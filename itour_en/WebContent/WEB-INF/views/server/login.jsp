@@ -81,13 +81,13 @@ label.iPhoneCheckLabelOn span {
     <div class="formLogin"><!--  check="${basePath}main/checkuser" -->
      <form name="formLogin" id="formLogin" action="" method="" check="${basePath}main/checkuser">
       <div class="tip">
-       <input class="userName easyui-validatebox" name="email" type="text" id="email"  value='admin@qq.com' title="用户名" iscookie="true"  data-options="required:true" nullmsg="请输入用户名!"/>
+       <input class="userName easyui-validatebox" name="email" type="text" id="email"  value='admin@qq.com' title="用户名" iscookie="true"  data-options="required:true,prompt:'请输入用户名!'" nullmsg="请输入用户名!"/>
       </div>
       <div class="tip">
-       <input class="password easyui-validatebox" name="pwd" type="password"  value='admin' id="pwd" title="密码" nullmsg="请输入密码!" data-options="required:true"/>
+       <input class="password easyui-validatebox" name="pwd" type="password"  value='admin' id="pwd" title="密码" nullmsg="请输入密码!" data-options="required:true,prompt:'请输入密码!'"/>
       </div>
       <div class="tip">
-      <input type="text" id="verifyCode" class=" easyui-validatebox" title="验证码" name="verifyCode"  data-options="required:true,message:'请输入验证码!'"/><br/>
+      <input type="text" id="verifyCode" class=" easyui-validatebox" title="验证码" name="verifyCode"  data-options="required:true,prompt:'请输入验证码!'"/><br/>
            <img alt="点击更换" src="${basePath}ImageServlet" id="validateCodeImg" onclick="changeImg()">
            &nbsp;&nbsp;<a href="javascript:void(0)" onclick="changeImg()">看不清，换一张</a>
       </div>
@@ -120,10 +120,10 @@ label.iPhoneCheckLabelOn span {
    </div>
   </div>
  <!--  forget password start -->
-    <div id="forget-pwd-win"  class="easyui-dialog" buttons="#forgetPwdbtn" title="忘记用户密码" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:350px;height:200px;">
+    <div id="forget-pwd-win"  class="easyui-dialog" buttons="#forgetPwdbtn" title="忘记用户密码" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:150px;">
         <form id="forgetpwdForm" action="${basePath}main/modifyPwd" class="ui-form" method="post">
              <div class="ui-edit">
-                  <div class="fitem">  
+                  <div class="fitem" style="padding-top:13px;">  
                       <label>登录邮箱:</label>  
                       <input id="loginEmail" name="loginEmail" type="text" class="easyui-textbox"  data-options="required:true,width:200"/>
                    </div>
@@ -136,16 +136,12 @@ label.iPhoneCheckLabelOn span {
     </div>
     <!-- forget password end  -->
     <!--  modify password start -->
-    <div id="modify-pwd-win"  class="easyui-dialog" buttons="#editPwdbtn" title="修改用户密码" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:350px;height:200px;">
-        <form id="pwdForm" action="${basePath}main/resetPwd" class="ui-form" method="post">
+    <div id="modify-pwd-win"  class="easyui-dialog" buttons="#editPwdbtn" title="修改用户密码" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:280px;">
+        <form id="pwdForm" name="pwdForm" action="${basePath}main/resetPwd" class="ui-form" method="post">
              <div class="ui-edit">
               <div class="fitem">  
                   <label>邮箱:</label>  
                   <input id="email" name="email" type="text" class="easyui-textbox"  data-options="required:true"/>
-               </div>
-               <div class="fitem">  
-                  <label>旧密码:</label>  
-                  <input id="oldPwd" name="oldPwd" type="password" class="easyui-textbox"  data-options="required:true"/>
                </div>
                 <div class="fitem">  
                    <label>新密码:</label>  
@@ -153,10 +149,10 @@ label.iPhoneCheckLabelOn span {
                </div> 
                <div class="fitem">  
                    <label>重复密码:</label>  
-                  <input id="rpwd" name="rpwd" type="password" class="easyui-textbox"   data-options="required:true" required="required" validType="equals['#newPwd']" />
+                  <input id="rpwd" name="rpwd" type="password" class="easyui-textbox"  data-options="required:true,width:200"  validType="equals['#newPwd']"/>
                </div> 
                 <div class="fitem">  
-                       <label>验证码:</label>  
+                       <label>邮箱验证码:</label>  
                        <input id="pwdCode" name="pwdCode" type="text" class="easyui-textbox" data-options="required:true,width:200" />
                  </div> 
              </div>
