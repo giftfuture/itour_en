@@ -7,58 +7,58 @@ body {
 }
 .h1-black {
 	font-family: "微软雅黑";
-	font-size: 36px;
+	font-size: 2.25em;
 	font-weight: bold;
 	color: #333333;
 }
 .h1-2 {
 	font-family: "微软雅黑";
-	font-size: 30px;
+	font-size: 1.875em;
 	color: #666666;
 }
 .h2-24 {
 	font-family: "微软雅黑";
-	font-size: 24px;
+	font-size: 1.5em;
 }
 .h2-24red {
 	font-family: "微软雅黑";
-	font-size: 24px;
+	font-size: 1.5em;
 	font-color: #990000;
 }
 .f12-gao1 {
-	font-size: 12px;
+	font-size: 0.75em;
 	line-height: 20px;
 	color: #333333;
 }
 .f14-gao1 {
-	font-size: 14px;
+	font-size: 0.875em;
 	line-height: 30px;
 	color: #333333;
 }
-.STYLE2 {font-family: "微软雅黑"; font-size: 24px; color: #990000; }
+.STYLE2 {font-family: "微软雅黑"; font-size: 1.5em; color: #990000; }
 .STYLE3 {
 	color: #990000;font-family: "微软雅黑";
 }
 .STYLE5 {font-family: "黑体";
-font-size: 36px;
+font-size: 2.25em;
 font-weight: bold;
 color: #990000;}
 .STYLE6 {font-family: "微软雅黑"}
 .STYLE7 {color: #666666; font-family: "微软雅黑"; }
-.STYLE8 {font-size: 14px; line-height: 30px; color: #333333; font-family: "微软雅黑"; }
-.STYLE9 {font-family: "微软雅黑"; font-size: 36px; font-weight: bold; color: #333333; }
-.STYLE10 {font-family: "微软雅黑"; font-size: 30px; color: #666666; }
-.trbanner{font-family: "微软雅黑"; font-size: 30px; background-color: #FF0000;}
+.STYLE8 {font-size: 14px; line-height: 1.875em; color: #333333; font-family: "微软雅黑"; }
+.STYLE9 {font-family: "微软雅黑"; font-size: 2.25em; font-weight: bold; color: #333333; }
+.STYLE10 {font-family: "微软雅黑"; font-size: 1.875em; color: #666666; }
+.trbanner{font-family: "微软雅黑"; font-size: 1.4em; background-color: #FF0000;}
 .btn-item {
   background: grey;  /* transparent */
-  width:12px;
-  height:12px;
+  width:1.75em;
+  height:1.75em;
    float:middle; 
 }
 .btn-item__cur {
   background: #8B0000;
   border-color: #fff;
-  width:14px;
+  width:0.875em;
   float:middle; 
   height:14px;
 }
@@ -83,17 +83,17 @@ a:visited {
 	color: #FFFFFF;
 }  */
 #banner-index{
-  width:1350px;
-  height:598px;
+/*   width:72.6%;
+  height:28.8%; */
 }
 #top-menu{
-  width:1350px;
-  height:153px;
+  width:72.6%;
+  /*height:17.36%;*/
   text-align:center;
   align:center;
   font-family: "微软雅黑";
-  font-size: 36px;
-  font-weight: bold;
+ /*  font-size: 2.25em;
+  font-weight: bold; */
 }
 #top-menu tr.trbanner{
 	color:#FFFFFF;
@@ -102,6 +102,6 @@ a:visited {
 }
 #top-menu td{
   font-family: "微软雅黑";
-  font-size: 27px;
+  /*font-size: 1.69em;*/
  
 }

@@ -31,20 +31,20 @@ function ww4(date){
         <td valign="top">		
         <form:form name="sharehappy" method="post" enctype="multipart/form-data" autocomplete="off">
 	        <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
-	         <tr><td  style="text-align:left" class="STYLE18">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title:<input type="text" class="easyui-textbox" data-options="" name="title" id="title"/></td>
+	         <tr><td  style="text-align:left" class="STYLE18">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title<input type="text" class="easyui-textbox" data-options="" name="title" id="title"/></td>
 	         <td rowspan=4 style="vertical-align:top; padding-top:10px;" class="STYLE18">
-	            	cover image：<input type="file" name="surface" id="surface" value="" onchange="change('cover','surface')"  accept="image/jpg,image/jpeg,image/gif,image/png" />
+	            	cover image<input type="file" name="surface" id="surface" value="" onchange="change('cover','surface')"  accept="image/jpg,image/jpeg,image/gif,image/png" />
 	            	<img id="cover" style="border:none;" border="0px" height="200" width="200" /></td></tr><!-- opacity:0 -->
 	         <tr>
-	            <td style="text-align:left"><span class="STYLE23 STYLE18">Travel routes:</span>
+	            <td style="text-align:left"><span class="STYLE23 STYLE18">Travel routes</span>
 	            	<input id="route" name="route" class="easyui-combobox"  data-options="width:171,valueField:'routeCode',textField:'title',mode:'remote',panelHeight:'auto',editable:false,method:'POST',url:'${basePath}routeTemplate/loadRoutes'">
 	            </td>
 	            <td></td>
 	       </tr>
-	       <tr><td style="text-align:left"><span class="STYLE23 STYLE18">&nbsp;&nbsp;&nbsp;Travel date:</span><span class="STYLE22"><span class="STYLE148">
+	       <tr><td style="text-align:left"><span class="STYLE23 STYLE18">&nbsp;&nbsp;&nbsp;Travel date</span><span class="STYLE22"><span class="STYLE148">
 	             <input id="tourTime" name="tourTime" class="easyui-datebox" data-options="width:171,editable:false,region:'north',split:true,border:false,validType:'checkDated'"/></span> 
 	           </span></td><td></td></tr>
-	        <tr> <td style="text-align:left" colspan=2 class="STYLE18">&nbsp;&nbsp;&nbsp;&nbsp;Memories:
+	        <tr> <td style="text-align:left" colspan=2 class="STYLE18">&nbsp;&nbsp;&nbsp;&nbsp;Memories
             	<span class="STYLE18"><input type="text" class="easyui-textbox" id="signature" name="signature"/>Come From
             	<input name="area" id="area" class="easyui-combobox STYLE18"  data-options="width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">
             	</span></td></tr>
@@ -55,8 +55,8 @@ function ww4(date){
 	       <td colspan=2 style="text-align:left" class="STYLE18">verify Code： <input type="text" id="verifyCode" name="verifyCode" class=" easyui-textbox" title="verify Code" data-options="prompt:'please enter verification code!'"/> 
 	           <img alt="Click to replace" src="${basePath}RandomCodeServlet" id="validateCode" onclick="changeValidateCode()">
 	           &nbsp;&nbsp;<a href="javascript:void(0)" onclick="changeValidateCode()">Can not see, change one</a></td></tr>
-	      <tr><td style="text-align:left"><a href="javascript:sharehappy()" class="easyui-linkbutton STYLE18" name="savehappy" iconcls="icon-save">Save</a></td>
-	      <td style="text-align:left"><a href="javascript:void(0);" class="easyui-linkbutton STYLE18" onclick="${basePath}showhappy/sharehappy" iconcls="icon-cancel">Cancel</a></td></tr>
+	      <tr><td style="text-align:left"><a href="javascript:sharehappy()" class="easyui-linkbutton STYLE18" name="savehappy" iconcls="icon-save">Share Memory</a></td>
+	      <td style="text-align:left"><a href="javascript:void(0);" class="easyui-linkbutton STYLE18" onclick="${basePath}showhappy/sharehappy" iconcls="icon-cancel">Cancel Share</a></td></tr>
 	    </table><div id="alertMessage"></div>
     </form:form> 
     </td>

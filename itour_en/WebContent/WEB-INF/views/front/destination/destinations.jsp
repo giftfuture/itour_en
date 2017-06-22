@@ -18,19 +18,19 @@
      <td width="197" valign="top">
       <table width="197" border="0" cellspacing="0" cellpadding="5"float:right;>
           <tr>
-            <td height="30" valign="top" style="width:20%;height:auto" bgcolor="#990000"><!-- padding-left:150 -->
+            <td height="30" valign="top" style="width:200px;height:auto" bgcolor="#990000"><!-- padding-left:150 -->
             <div style="align:center;font-size:18px;background-color:#8B0000;text-decoration:none;color:white;">Travel Destination</div>
             <div class="treebox" >
                 <ul class="menu">
                 <c:forEach items="${scopes}" var="scope" varStatus="status">
-                    <li class="level1">
-                        <a href="javascript:void(0)"><%-- <em class="ico ico${status.index + 1}"></em> --%>
+                    <li style="width:100%" class="level1">
+                        <a style="width:100%" href="javascript:void(0)"><%-- <em class="ico ico${status.index + 1}"></em> --%>
                         <!-- <img src="images/arrow4-1.gif" width="10" height="10"> -->
                         <c:out value="${scope.value}"></c:out><i class="down"></i></a>
-                        <ul class="level2" style="float:middle">
+                        <ul class="level2" style="float:middle;width:100%">
                             <c:forEach items="${items}" var="item">
                                 <c:if test="${scope.key==item.scope }">
-                                    <li style="float:middle"><a href="${basePath }destination/detail/${item.alias}"><c:out value="${item.item}"></c:out></a></li>       
+                                    <li style="float:middle;width:100%"><a style="float:left" href="${basePath }destination/detail/${item.alias}"><c:out value="${item.item}"></c:out></a></li>       
                                 </c:if>
                             </c:forEach>
                         </ul>
@@ -57,20 +57,15 @@
                  </c:if>
                 </div></span></td>
               </tr>
-              <tr>
-                 <c:forEach items="${sortitem.value}" var="ti" varStatus="ix">
-                    <c:choose>
-                         <c:when test="${ix.index==0}">
-                            <td style="text-align:left;align:left">
-                                <a href="${basePath }destination/detail/${ti.alias}">${ti.item}<br/><img width="550px" height="309px" alt="" src="${basePath }${ti.cover}"/></a>
-                            </td>
-                         </c:when>
-                         <c:otherwise>
-                            <td style="text-align:left;align:left">
-                                <a href="${basePath }destination/detail/${ti.alias}">${ti.item}<br/><img width="262px" height="145px" alt="" src="${basePath }${ti.cover}"/></a>
-                            </td>
-                         </c:otherwise>
-                     </c:choose>
+               <tr width="100%">
+                  <c:forEach items="${sortitem.value}" var="ti" varStatus="ix">
+                    <td style="text-align:left;align:left;width:33%;float:left;" width="33%">
+                         <c:if test="${not empty ti.alias  && not empty ti.item  && not empty ti.cover}">
+                              <a href="${basePath }destination/detail/${ti.alias}">${ti.item}<br/>
+                                <img width="100%" style="float:left;margin:3px;padding:3px;"  alt="" src="${basePath }${ti.cover}"/>
+                              </a>
+                           </c:if>
+                     </td>
                  </c:forEach>
               </tr>
             </tbody></table>

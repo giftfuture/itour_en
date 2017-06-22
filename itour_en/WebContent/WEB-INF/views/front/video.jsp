@@ -8,7 +8,7 @@
     pageContext.setAttribute("basePath", basePath);
     int count=1;  														
     application.setAttribute("count",count); 
-    String homePage = "http://localhost:8080/itour";  //"http://zjj.itours.com.cn/";
+    //String homePage = "http://localhost:8080/itour";  //"http://zjj.itours.com.cn/";
     long getTimestamp=new Date().getTime();
 %>
 <script type="text/javascript">
@@ -50,32 +50,18 @@ var basePath = '${basePath}';
 <meta http-equiv="cache-control" content="no-cache">  
 <meta http-equiv="expires" content="0">      
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="mobile-agent" content="format=html5; url=<%=homePage%>" />
-<meta http-equiv="mobile-agent" content="format=xhtml; url=<%=homePage%>" />
+<meta http-equiv="mobile-agent" content="format=html5; url=<%=basePath%>" />
+<meta http-equiv="mobile-agent" content="format=xhtml; url=<%=basePath%>" />
 <link rel="SHORTCUT ICON" href="<%=basePath%>images/head2016.gif"> 
 <link rel="stylesheet" href="${basePath}css/index.css" />  
  <!-- <meta http-equiv="Refresh" content="0; URL=/"> -->
 <title>Welcome to iTour Travel</title>
- <link href="css/index.css" rel="stylesheet" type="text/css" />
- <script type="text/javascript">
- jQuery.browser={};
- (function(){
-	 jQuery.browser.msie=false; 
-	 jQuery.browser.version=0;
-	 if(navigator.userAgent.match(/MSIE ([0-9]+)./)){
-		 jQuery.browser.msie=true;
-		 jQuery.browser.version=RegExp.$1;
-  }})();
- </script>
+<link href="css/index.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><%@include file="/front/header.jsp" %></td>
-  </tr>
- <%-- <tr>
-    <td><img id="banner-index"  src="${basePath }images/Route001.jpg"/></td>
-  </tr> --%>  
+<%@include file="/front/header.jsp" %>
+<center>
+<table width="72.6%" style="width:72.6%">
 <tr><td style="padding-top:70px;margin-top:70px">
 <!--此 param 标签提示使用 Flash Player 6.0 r65 和更高版本的用户下载最新版本的 Flash Player。如果您不想让用户看到该提示，请将其删除。 -->
 <script type="text/javascript">
@@ -112,6 +98,7 @@ your browser does not support the video tag
 </video> --%>
 </td></tr>
 </table>
-<%@include file="/front/footer.jsp" %>
+<table><tr><td width="100%" style="width:100%"><%@include file="/frontm/footer.jsp" %></td></tr>
+</center>
 </body>
 </html>

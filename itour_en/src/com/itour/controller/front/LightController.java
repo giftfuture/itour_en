@@ -41,6 +41,9 @@ import com.itour.vo.QuoteFormVO;
 import com.itour.vo.RouteTemplateVO;
 import com.itour.vo.TravelItemVO;
 
+import eu.bitwalker.useragentutils.OperatingSystem;
+import eu.bitwalker.useragentutils.UserAgent;
+
 @Controller
 @RequestMapping("/light") 
 public class LightController extends BaseController{
@@ -66,6 +69,13 @@ public class LightController extends BaseController{
 	@RequestMapping(value="/main", method = RequestMethod.GET) 
 	public ModelAndView main(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########LightControll main当前是移动浏览器#####");
+        	return forward("mfront/light/main",context);
+        }
 		return forward("front/light/main",context); 
 	}
 	/**
@@ -177,6 +187,13 @@ public class LightController extends BaseController{
 		map.put("rt", rt);
 		map.put("qf", qf);
 		map.put("alias", alias);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########LightControll light{alias}当前是移动浏览器#####");
+        	return forward("mfront/light/detail",map);
+        }
 		return forward("front/light/detail",map); 
 	}
 	/**
@@ -216,6 +233,13 @@ public class LightController extends BaseController{
 		Map<String,Object> map =getRootMap();
 		map.put("items", items);
 		map.put("rt", rt);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########LightControll detail{alias}当前是移动浏览器#####");
+        	return forward("mfront/light/detail",map);
+        }
 		return forward("front/light/detail",map); 
 	}
 	/**
@@ -254,6 +278,13 @@ public class LightController extends BaseController{
 		}
 		map.put("items", items);
 		map.put("rt", rt);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########LightControll selfbooking当前是移动浏览器#####");
+        	return forward("mfront/light/selfbooking",map);
+        }
 		return forward("front/light/selfbooking",map); 
 	}
 	/**

@@ -38,6 +38,8 @@ import com.itour.util.Constants;
 import com.itour.vo.RouteTemplateVO;
 import com.itour.vo.TravelItemVO;
 
+import eu.bitwalker.useragentutils.OperatingSystem;
+import eu.bitwalker.useragentutils.UserAgent;
 @Controller
 @RequestMapping("/destination") 
 public class DestinationController extends BaseController{
@@ -70,14 +72,23 @@ public class DestinationController extends BaseController{
 	 	Map<String,String> scopes = Maps.newHashMap();
 	 	List<TravelItemVO> list = Lists.newArrayList();
 	 	List<TravelItemVO> sublist = Lists.newArrayList();
+	 	List<TravelItemVO> fulllist = null;
 	 	Map<String,Integer> tiSizes = Maps.newHashMap();
 	 	String ptopath = FilePros.httpitemCoverpath();
 	 	for(Areas scope:allScopes){
+	 		fulllist = Lists.newArrayList();
 			list = travelItemService.queryByScope(scope.getId());
 			if(list != null && list.size() > Constants.maxDestinations){
-				sublist = list.subList(0, Constants.maxDestinations);
+				sublist=list.subList(0, Constants.maxDestinations);
+				fulllist.addAll(sublist);
 			}else{
-				sublist = list;
+				sublist=list;
+				if(list.size()>0){
+					fulllist.addAll(list);
+					for ( int i=0;i < Constants.maxDestinations-list.size();i++){
+						fulllist.add(new TravelItemVO());
+					}
+				}
 			}
 			for(TravelItemVO ti:sublist){
 				if(StringUtils.isNotEmpty(ti.getCover())){	 							
@@ -85,8 +96,10 @@ public class DestinationController extends BaseController{
 					ti.setCover(realCover);
 				}
 			}
- 			if(StringUtils.isNoneEmpty(scope.getId(),scope.getAreaname()) && sublist != null && sublist.size() >0){	 				
- 				sortedItems.put(scope.getPinyin()+"_"+scope.getShortname(), sublist);
+			System.out.println("########sublist="+sublist.size());
+			System.out.println("########fulllist="+fulllist.size());
+ 			if(StringUtils.isNoneEmpty(scope.getId(),scope.getAreaname()) && list != null && list.size() >0){	
+ 				sortedItems.put(scope.getPinyin()+"_"+scope.getShortname(), fulllist);
  				tiSizes.put(scope.getPinyin()+"_"+scope.getShortname(), list.size());		
  				scopes.put(scope.getId(), scope.getAreaname());
  			}
@@ -99,6 +112,13 @@ public class DestinationController extends BaseController{
 		context.put("tiSizes",tiSizes);
 		context.put("maxd", Constants.maxDestinations);
 		System.out.println("用时："+(System.currentTimeMillis()-beginTime));
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########DestinationController main当前是移动浏览器#####");
+        	return forward("mfront/destination/destinations",context);
+        }
 		return forward("front/destination/destinations",context); 
 	}
 	/**
@@ -191,6 +211,14 @@ public class DestinationController extends BaseController{
 		context.put("itemvo", itemvo);
 		context.put("photos", photoList);
 		context.put("rts", rts);
+		context.put("showMore", rts.size()>Constants.maxMoreDestinations);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########DestinationController detail{alias}当前是移动浏览器#####");
+        	return forward("mfront/destination/destdetail",context);
+        }
 		return forward("front/destination/destdetail",context); 
 	}
 	/**
@@ -205,6 +233,13 @@ public class DestinationController extends BaseController{
 	public ModelAndView moredests(@PathVariable("scope")String scope,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	 	Map<String,Object> context = getRootMap();
 	 	context.put("scope",scope);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########DestinationController moredests当前是移动浏览器#####");
+        	return forward("mfront/destination/moredests",context);
+        }
 		return forward("front/destination/moredests",context);   
 	}
 	/**
@@ -256,6 +291,13 @@ public class DestinationController extends BaseController{
 		Map<String,Object> context = getRootMap();
 		context.put("pageNo", 1);
 		context.put("alias", alias);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########DestinationController searchRt当前是移动浏览器#####");
+        	return forward("mfront/destination/searchRt",context);
+        }
 		return forward("front/destination/searchRt",context); 
 	}
 	/**

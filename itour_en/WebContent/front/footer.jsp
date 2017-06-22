@@ -70,7 +70,7 @@ function loadlevel2Area(level1Area){
 <table class="frametb" align="center" >
   <tr>
     <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2"><strong>fast Search</strong></div></td>
-    <td width="60%" bgcolor="#CCCCCC" class="f14-gao1" >  
+    <td width="75%" bgcolor="#CCCCCC" class="f14-gao1" >  
       <strong>Travel mode:</strong> <input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:130,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
       <label>
       Tourist area:<!--onBeforeLoad
@@ -173,7 +173,7 @@ function loadlevel2Area(level1Area){
    </div>
 </div>
 </center> --%>
-<table class="lefttxt frametb" align="center">
+<table class="lefttxt frametb" align="center" style="margin-top:30px">
   <tbody><tr>
     <td   valign="middle" height="135"  bgcolor="#666666"><table width="1100" height="60" cellspacing="0" cellpadding="0" border="0" align="center">
       <tbody>

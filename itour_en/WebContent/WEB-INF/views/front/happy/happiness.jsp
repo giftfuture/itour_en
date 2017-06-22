@@ -25,9 +25,9 @@
   </tr>
   <tr>
     <td style="text-align:left;padding-left:170px;margin-left:170px;background-image:url('images/frame1-2.gif');background-position:115px 0px;">
-          ※ travel is the course of the flow <br />
-    ※ touched the eternity of the moment<br/>
-    ※ memories of life is a happy landscape
+	    <span>※ travel is the course of the flow<br /></span> 
+ <span>※ touched the eternity of the moment<br/></span>
+ <span>※ memories of life is a happy landscape</span>
       <span style="float:right;padding-right:120px"><a href="${basePath}showhappy/sharehappy">《<strong>Share memories</strong>》</a></span></td>
   </tr>
   <tr><!--  style="vertical-align:top;valign:top;height:7px;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;"  -->

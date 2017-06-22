@@ -41,6 +41,9 @@ import com.itour.vo.QuoteFormVO;
 import com.itour.vo.RouteTemplateVO;
 import com.itour.vo.TravelItemVO;
 
+import eu.bitwalker.useragentutils.OperatingSystem;
+import eu.bitwalker.useragentutils.UserAgent;
+
 @Controller
 @RequestMapping("/selfdrive") 
 public class SelfdriveController  extends BaseController{
@@ -66,6 +69,13 @@ public class SelfdriveController  extends BaseController{
 	@RequestMapping(value="/main", method = RequestMethod.GET) 
 	public ModelAndView main(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########SelfdriveController main当前是移动浏览器#####");
+        	return forward("mfront/selfdrive/main",context);
+        }
 		return forward("front/selfdrive/main",context); 
 	}
 	/**
@@ -177,6 +187,13 @@ public class SelfdriveController  extends BaseController{
 		map.put("rt", rt);
 		map.put("qf", qf);
 		map.put("alias", alias);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########SelfdriveController selfdrive{alias}当前是移动浏览器#####");
+        	return forward("mfront/selfdrive/detail",map);
+        }
 		return forward("front/selfdrive/detail",map); 
 	}
 	/**
@@ -216,6 +233,13 @@ public class SelfdriveController  extends BaseController{
 		Map<String,Object> map = getRootMap();
 		map.put("items", items);
 		map.put("rt", rt);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########SelfdriveController detail{alias}当前是移动浏览器#####");
+        	return forward("mfront/selfdrive/detail",map);
+        }
 		return forward("front/selfdrive/detail",map); 
 	}
 	/**
@@ -254,6 +278,13 @@ public class SelfdriveController  extends BaseController{
 		}
 		map.put("items", items);
 		map.put("rt", rt);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########SelfdriveController selfbooking当前是移动浏览器#####");
+        	return forward("mfront/selfdrive/selfbooking",map);
+        }
 		return forward("front/selfdrive/selfbooking",map); 
 	}
 	/**

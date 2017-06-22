@@ -21,6 +21,20 @@
 <script type="text/javascript" src="${basePath}js/plug-in/pdf/html2canvas.min.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/pdf/jspdf.min.js"></script>
 <title>${bean.title }</title>
+<script type="text/javascript">
+</script>
+<style type="text/css">
+  .ui-progressbar {
+    position: relative;
+  }
+  .progress-label {
+    position: absolute;
+    left: 50%;
+    top: 4px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #fff;
+  }
+</style>
 </head>
 <body>
 <form:form method="post" id="back_form" name="back_form" action="${basePath }travelOrder/list">
@@ -264,9 +278,6 @@
    <tr>
     <td colspan=2 style="text-align:left;align:left;">${bean.beforeInstruction }</td>
   </tr>
- <!--  <tr>
-    <td><img src="images/frame1-3.gif" width="100%" height="7" /></td>
-  </tr> -->
 </table>
 </div></td></tr>
 <tr><td colspan=2>

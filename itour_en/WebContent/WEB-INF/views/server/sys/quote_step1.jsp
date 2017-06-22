@@ -197,10 +197,23 @@
       ——算出总价，平摊到团员</span></td>
   </tr>
   <tr>
-    <td bgcolor="#f0f0f0"><div align="right"><strong>酒店：<br>
-    </strong></div></td>
-    <td>
-    请在概要行程里面填写价格，请<span class="STYLE129">务必注意节假日及会议期间</span>哟。</td>
+    <td bgcolor="#f0f0f0"><div align="right"><strong>酒店: </strong></div></td>
+   <td style="text-align:left">添加酒店：<a name="addhotel" ><img src="images/add.gif" width="16" height="16" ></a> 
+    <div id="addhoteliv">
+    <c:choose>
+    <c:when test="${returnvo != null }">
+         ${returnvo.hotel }
+    </c:when>
+    <c:otherwise>
+    <span class=STYLE126><input name='hotelName' class='easyui-textbox' data-options="prompt:'hotel name'" type=text>&nbsp;&nbsp; 
+    <input name='hotelPosition'  class='easyui-textbox' data-options="prompt:'hotel location'" />
+    <input name="checkinDate"  class="easyui-datebox" data-options="prompt:'check in date',width:80,editable:false,region:'north',split:true,border:false" >
+     <input name='hotelpriceperday' style='width:50px' type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
+            元/晚 X<input name=hoteldays size=6 style='width:50px' type=number min=0 onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)">
+                天数&nbsp;&nbsp;　<!--备注： <input name=hotelremark size=20 type=text> --><a name=hotelminus onclick='javascript:itour.quoteEdit.hotelMinus(this)'><img alt='' style='height:20px;height:20px;' src='images/minus.png' ></a></span>
+     </c:otherwise>
+    </c:choose>
+    </div></td>
     <td><div align="center">
      <!--  <input name="hotelAsadult" checked="checked" type="checkbox"> -->
     </div></td>

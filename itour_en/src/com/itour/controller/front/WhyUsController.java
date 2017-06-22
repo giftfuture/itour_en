@@ -1,5 +1,8 @@
 package com.itour.controller.front;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,9 @@ import com.itour.base.web.BaseController;
 import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
+
+import eu.bitwalker.useragentutils.OperatingSystem;
+import eu.bitwalker.useragentutils.UserAgent;
 
 @Controller 
 @RequestMapping("/whyus")
@@ -34,7 +40,14 @@ public class WhyUsController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value="/why")
-	public ModelAndView why(){
+	public ModelAndView why(HttpServletRequest request,HttpServletResponse response){
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########WhyUsController why当前是移动浏览器#####");
+        	return forward("mfront/whyus/why");
+        }
 		return forward("front/whyus/why");
 	}
 	
@@ -43,7 +56,14 @@ public class WhyUsController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value="/aboutus")
-	public ModelAndView aboutus(){
+	public ModelAndView aboutus(HttpServletRequest request,HttpServletResponse response){
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########WhyUsController aboutus当前是移动浏览器#####");
+        	return forward("mfront/whyus/aboutus");
+        }
 		return forward("front/whyus/aboutus");
 	}
 }

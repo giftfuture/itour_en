@@ -34,9 +34,8 @@
       </tr>
       <tr>
         <td style="text-align:left"><p>Bring the family, about friends </p>
-          <p>Climbed the summit<br />  
-              <br />
-         <%--    》》<a href="${basePath }light/main">了解更多</a> --%></p>
+          <p>Know More about Light Travel<br />  
+              </p>
           <p></p></td>
       </tr>
       <tr>
@@ -53,30 +52,6 @@
 </table>
 <table class="commontb" align="center">
  <tbody id="fbcontent">
-<%-- <c:forEach begin="0" end="${rows}" varStatus="status">
-  <tr>
-    <c:forEach items="${rts.get(status.index)}" var="rt" >
-    <td valign="top">
-    <table width="353" border="0" align="left" cellpadding="0" cellspacing="0">
-      <tr>
-        <td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">
-            <tr>
-              <td width="296" class="h2-24"><a href="${basePath}light/light/${rt.alias}">${rt.title}</a></td>
-            </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td><a href="${basePath }light/light/${rt.alias}"><img src="${basePath }${rt.cover}" width="353" height="166" ></a></td>
-      </tr>
-      <tr>
-        <td class="f12-gao1">${rt.shortContent}</td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-      </tr>
-    </table></td>
-    </c:forEach>
-  </tr></c:forEach> --%>
   </tbody>
 </table>
 <center><ul id='fbpage'></ul></center>

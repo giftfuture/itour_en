@@ -42,6 +42,7 @@ public class Constants {
 	public static final Map<String,Object> TDQUOTE2 = Maps.newConcurrentMap();
 	public static final Map<String,Object> TDQUOTE3 = Maps.newConcurrentMap();
 	public static final Map<String,String> travelStyles = Maps.newHashMap();
+	public static final int maxMoreDestinations = 5;//每个景点的相关景点多于5个才显示MOre
 	public static final int maxDestinations = 3;//每个地区最多显示的目的地数，若超出，则显示更多目的地选项
 	public static final int perPage = 3;//前端回忆幸福每页数据
 	public static final int happyperPage = 8;//前端回忆幸福每页数据

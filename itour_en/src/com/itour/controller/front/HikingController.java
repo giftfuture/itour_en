@@ -40,6 +40,9 @@ import com.itour.vo.QuoteFormVO;
 import com.itour.vo.RouteTemplateVO;
 import com.itour.vo.TravelItemVO;
 
+import eu.bitwalker.useragentutils.OperatingSystem;
+import eu.bitwalker.useragentutils.UserAgent;
+
 @Controller
 //@RestController
 @RequestMapping("/hiking") 
@@ -66,6 +69,14 @@ public class HikingController extends BaseController{
 	@RequestMapping(value="/main", method = RequestMethod.GET) 
 	public ModelAndView main(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########HikingController main当前是移动浏览器#####");
+        	return forward("mfront/trek/trekkings",context);
+        }
+        System.out.println("###########HikingController main当前不###是移动浏览器#####");
 		return forward("front/trek/trekkings",context); 
 	}
 	/**
@@ -214,6 +225,13 @@ public class HikingController extends BaseController{
 		map.put("qf", qf);
 		//map.put("homeurl", "front/trek/trekking");
 		map.put("alias", alias);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########HikingController hiking{alias}当前是移动浏览器#####");
+        	return forward("mfront/trek/hiking",map);
+        }
 		return forward("front/trek/hiking",map); 
 	}
 	/**
@@ -253,6 +271,13 @@ public class HikingController extends BaseController{
 		Map<String,Object> map = getRootMap();
 		map.put("items", items);
 		map.put("rt", rt);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########HikingController detail{alias}当前是移动浏览器#####");
+        	return forward("mfront/trek/trekking",map);
+        }
 		return forward("front/trek/trekking",map); 
 	}
 	
@@ -292,6 +317,13 @@ public class HikingController extends BaseController{
 		}
 		map.put("items", items);
 		map.put("rt", rt);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########HikingController selfbooking当前是移动浏览器#####");
+        	return forward("mfront/trek/selfbooking",map);
+        }
 		return forward("front/trek/selfbooking",map); 
 	}
 	

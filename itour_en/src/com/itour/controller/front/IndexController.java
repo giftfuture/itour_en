@@ -4,8 +4,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +24,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfig;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.itour.base.json.JsonUtils;
 import com.itour.base.page.BasePage;
 import com.itour.base.page.Pager;
@@ -46,6 +45,10 @@ import com.itour.util.Constants;
 import com.itour.vo.RouteTemplateVO;
 import com.itour.vo.ShowHappyVO;
 import com.itour.vo.TravelItemVO;
+
+import eu.bitwalker.useragentutils.Browser;
+import eu.bitwalker.useragentutils.OperatingSystem;
+import eu.bitwalker.useragentutils.UserAgent;
 
 @Controller
 public class IndexController extends BaseController {
@@ -82,6 +85,101 @@ public class IndexController extends BaseController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/",method = RequestMethod.GET) 
 	public ModelAndView main(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object> map = getRootMap();
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=utf-8");
+		//Map<String,String> params = Maps.newHashMap();
+		String tsCoverPath = FilePros.httptsCoverPath();
+		List<TravelItemVO> hotSights = Constants.homehotSights;
+		LinkedHashMap<String,List<RouteTemplateVO>> mapvo = Constants.homertmapvo;
+		if(hotSights.size()==0){
+			List<TravelItemVO> temphotSights = travelItemService.queryBystarLevel(Constants.hotview);
+			Constants.homehotSights.addAll(temphotSights);
+			hotSights = Constants.homehotSights;
+		}
+		if(mapvo.isEmpty()){
+			Iterator<String> it = Constants.HOTTYLES.keySet().iterator();
+			while(it.hasNext()){
+				String style = it.next();
+				TravelStyle ts = travelStyleService.queryByAlias(style);
+				if(StringUtils.isNotEmpty(ts.getAlias())){
+					List<RouteTemplateVO> ttvo = routeTemplateService.queryByStyle(ts.getAlias());
+					List<RouteTemplateVO> newvos = Lists.newArrayList();
+					if(ttvo != null && ttvo.size() >= 1){
+						for(int i=0;i<Math.min(Constants.routesperrow,ttvo.size());i++){
+							RouteTemplateVO rtvo = ttvo.get(i);
+							rtvo.setTravelStyleAlias(ts.getAlias());
+							newvos.add(rtvo);
+						}
+					}
+					ts.setCover(tsCoverPath+"/"+PinYinUtil.getPinYin(ts.getType())+"_"+ts.getAlias()+"/"+ts.getCover());
+					mapvo.put(ts.getType()+"#"+ts.getDescrip()+"#"+ts.getCover()+"#"+ts.getAlias(),newvos);
+				}
+			}
+		}
+		BasePage<ShowHappyVO> page = Constants.homeshpage.get("showhappy");
+		 if(page!=null&&page.getRecords()!=null &&page.getRecords().size()>=1){
+			 map.put("showhappy", page.getRecords().get(0));
+		 }else{
+			 ShowHappyVO pagevo = new ShowHappyVO();
+			 pagevo.setPage(1);
+			 page = showHappyService.pagedQuery(pagevo);
+			 if(page.getRecords() != null && page.getRecords().size() >=1){
+				 Constants.homeshpage.put("showhappy", page.getRecords().get(0));
+				 map.put("showhappy",Constants.homeshpage.get("showhappy"));
+			 };
+		 }
+		map.put("hotrtVos", hotSights);
+		map.put("mapvo",mapvo);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########当前是移动浏览器#####");
+        	return forward("mIndex",map);
+        }
+        String ua = request.getHeader("User-Agent");
+        Pattern pattern = Pattern.compile(";\\s?(\\S*?\\s?\\S*?)\\s?(Build)?/");  
+        Matcher matcher = pattern.matcher(ua);  
+        String model = null;  
+        if (matcher.find()) {  
+            model = matcher.group(1).trim();  
+            logger.debug("通过userAgent解析出机型：" + model);  
+        }
+		return forward("index",map); 
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/video/{videoName}",method = RequestMethod.GET) 
+	public ModelAndView video(@PathVariable("videoName")String videoName,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object> map = getRootMap();
+		String videopath = FilePros.httpbannervideoPath();
+		map.put("videopath",videopath+"/"+videoName);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########当前是移动浏览器#####");
+        	return forward("mfront/video",map);
+        }
+		return forward("front/video",map);		
+	}
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/mobileIndex",method = RequestMethod.GET) 
+	public ModelAndView mobileIndex(HttpServletRequest request,HttpServletResponse response) throws Exception{
+
 		Map<String,Object> map = getRootMap();
 		//Map<String,String> params = Maps.newHashMap();
 		String tsCoverPath = FilePros.httptsCoverPath();
@@ -125,81 +223,6 @@ public class IndexController extends BaseController {
 			 };
 		 }
 		map.put("hotrtVos", hotSights);
-		map.put("mapvo",mapvo);
-		return forward("index",map); 
-	}
-	
-	/**
-	 * 
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/video/{videoName}",method = RequestMethod.GET) 
-	public ModelAndView video(@PathVariable("videoName")String videoName,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		Map<String,Object> map = getRootMap();
-		String videopath = FilePros.httpbannervideoPath();
-		map.put("videopath",videopath+"/"+videoName);
-		return forward("front/video",map);		
-	}
-	/**
-	 * 
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/mobileIndex",method = RequestMethod.GET) 
-	public ModelAndView mobileIndex(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		Map<String,Object> map = getRootMap();
-		Map<String,String> params = Maps.newHashMap();
-		params.put("hot","1");
-		List<TravelItemVO> hots = travelItemService.searchTravelItem(map);
-		List<RouteTemplateVO> hotrtVos = Lists.newArrayList();
-		for(TravelItemVO ti:hots){			
-			List<RouteTemplateVO> vos = routeTemplateService.queryByItems(ti.getId());
-			if(vos != null && vos.size() >= Constants.hotview){
-				hotrtVos.addAll(vos);
-				break;
-			}
-			for(RouteTemplateVO rt:vos){
-				if(!hotrtVos.contains(rt)){
-					if(hotrtVos.size() >= Constants.hotview){
-						break;
-					}
-					hotrtVos.add(rt);
-				}	
-			}
-		}
-		if(hotrtVos.size() >= Constants.hotview){
-			hotrtVos = hotrtVos.subList(0, Constants.hotview);
-		}
-		Map<String,List<RouteTemplateVO>> mapvo = Maps.newHashMap();
-		Iterator<String> it = Constants.HOTTYLES.keySet().iterator();
-		while(it.hasNext()){
-			String style = it.next();
-			TravelStyle ts = travelStyleService.queryByAlias(style);
-			if(StringUtils.isNotEmpty(ts.getAlias())){
-				List<RouteTemplateVO> ttvo =  routeTemplateService.queryByStyle(ts.getAlias());
-				List<RouteTemplateVO> newvos = Lists.newArrayList();
-				if(ttvo != null && ttvo.size() >= 1){
-					for(int i=0;i<Math.min(Constants.routesperrow,ttvo.size());i++){
-						RouteTemplateVO rtvo = ttvo.get(i);
-						rtvo.setTravelStyleAlias(ts.getAlias());
-						newvos.add(rtvo);
-					}
-				}
-				mapvo.put(ts.getType()+"_"+ts.getDescrip(),newvos);
-			}
-		}
-		 ShowHappyVO pagevo = new ShowHappyVO();
-		 pagevo.setPage(1);
-		 BasePage<ShowHappyVO> page = showHappyService.pagedQuery(pagevo);
-		 if(page.getRecords() != null && page.getRecords().size() >=1){
-		 	map.put("showhappy", page.getRecords().get(0));
-		 };
-		map.put("hotrtVos", hotrtVos);
 		map.put("mapvo",mapvo);
 		return forward("mobileIndex",map);
 	}
