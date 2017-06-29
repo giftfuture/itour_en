@@ -53,9 +53,9 @@ $(document).ready(function() {
 		$("#forget-pwd-win").dialog('close');
 	})
 	$("#btn-forgetpwd-submit").click(function(){
-		itouren.progress('Please waiting','Processing...');
+		itour.progress('Please waiting','Processing...');
 		$.post(basePath+'main/toresetPwd',{'email':$("#loginEmail").val()},function(data){
-			itouren.closeProgress();
+			itour.closeProgress();
 			var result = $.parseJSON(data);
 			if(result.success||result.success=='true'){
 				itour.alert("提示",result.msg,"info",function(){
@@ -67,10 +67,10 @@ $(document).ready(function() {
 			}
 		});
 	})
-	$("#btn-pwd-close").click(function(){
+	$("#btn-forgetpwd-close").click(function(){
 		$("#modify-pwd-win").dialog('close');
 	})
-	$("#btn-pwd-submit").click(function(){
+	$("#btn-forgetpwd-submit").click(function(){
 		modifyPwd();
 	})
 $('.userload').click(function(e){
@@ -120,6 +120,17 @@ function modifyPwd(){
 		});*/
 	 }
 };
+function forgetPwdForm(){
+	var pwdForm = $("#forgetpwdForm");
+	if(pwdForm.form('validate')){
+		//var parentId =$('#search_parentId').val();
+		/*$("#edit_parentId").val(parentId)*/
+		itour.saveForm(pwdForm,function(data){
+			$('#forget-pwd-win').dialog('close');
+		    pwdForm.resetForm();
+		});
+	 }
+}
 //表单提交
 function submit(){
 	var submit = true;

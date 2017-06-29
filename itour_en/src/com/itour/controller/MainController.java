@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -184,9 +185,13 @@ public class MainController extends BaseController {
 		}
 		user.setLoginCount(loginCount+1);
 		user.setLoginTime(DateUtil.getDateByString(""));
-		sysUserService.update(user);
+		sysUserService.update(user);//SessionUtils.getUser(request)
 		//设置User到Session
 		SessionUtils.setUser(request,user);
+	//	Cookie[] cookies = request.getCookies();
+	    Cookie userNameCookie = new Cookie(SessionUtils.SESSION_USER, user.getEmail());  
+	    userNameCookie.setMaxAge(60 * 60); //一小时过期
+	    response.addCookie(userNameCookie);  
 		//记录成功登录日志
 		message =  "用户: " + user.getNickName() +"["+email+"]"+"登录成功";
 		logger.debug(message);

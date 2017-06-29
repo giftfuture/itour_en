@@ -1,5 +1,5 @@
-$package('itouren.climbselfbooking');
-itouren.climbselfbooking = function(){
+$package('itouren.mclimbselfbooking');
+itouren.mclimbselfbooking = function(){
 	var _this = {
 		formatterDate : function(date) {//得到当前日期
 			var day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate();
@@ -146,5 +146,5 @@ itouren.climbselfbooking = function(){
 }();
 
 $(function(){
-	itouren.climbselfbooking.init();
+	itouren.mclimbselfbooking.init();
 });

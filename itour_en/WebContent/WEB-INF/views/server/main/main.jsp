@@ -1,11 +1,28 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,com.itour.base.util.SessionUtils" pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/server/resource.jsp"  %>
+ <%  
+ request.setCharacterEncoding("UTF-8");  
+ String session_user = "";  
+ Cookie[] cookies = request.getCookies();  
+ if(null != cookies && cookies.length > 0) {  
+     for(Cookie c : cookies) {  
+         if(SessionUtils.SESSION_USER.equals(c.getName())) {  
+         	session_user = c.getValue();  
+         	break;
+         } 
+     }  
+ }  
+// System.out.println("################"+session_user);
+%>  
 <!DOCTYPE HTML>
 <html>
   <head>
      <title>itour后台管理界面</title>
      <link rel="stylesheet" type="text/css" href="css/main.css">
      <script type="text/javascript" src="js/ux/main/main.js"></script>
+     <script type="text/javascript">
+       itouren.main.setCookie('<%=SessionUtils.SESSION_USER%>','<%=session_user%>');
+     </script>  
   </head>
   <body class="easyui-layout">
  	<div class="ui-header" data-options="region:'north',split:true,border:false" style="height:40px;overflow: hidden;">
@@ -25,11 +42,26 @@
 			<c:forEach var="item" items="${menuList}">
 				<div title="${item.text}">
 					<c:forEach var="node" items="${item.children}">
-					<a class="menu-item" href="${basePath}${node.url}">${node.text}</a>
+					<a class="menu-item" onclick="javascript:dirurl(this,'${basePath}${node.url}')"  href="javascript:void(0)">${node.text}</a><!--  onclick="javascript:dirurl(this,'${basePath}${node.url}')" -->
 					</c:forEach>
 				</div>
 			</c:forEach>
 		</div>
+	 <script type="text/javascript">
+	      var curuser =itouren.main.getCookie('<%=SessionUtils.SESSION_USER%>');
+	      if(!curuser && document.referrer != basePath+"main/login" && window.location.href != basePath+"main/login"){
+	    	  window.parent.location.href = basePath+"main/login";        
+	      }
+	      function dirurl(obj,uul){
+	    	  console.log("curuser="+itouren.main.getCookie('<%=SessionUtils.SESSION_USER%>'));
+	    	  if(!itouren.main.getCookie('<%=SessionUtils.SESSION_USER%>') && window.location.href != basePath+"main/login"){
+	    		  window.parent.location.href = basePath+"main/login"; 
+	          }else{
+	        	  $(obj).attr("href",uul);
+	          }
+	      }
+	      
+     </script>
 	</div>
 	<div data-options="region:'south',split:true,border:false" style="height: 30px;overflow:hidden;">
 		<div class="panel-header" style="border: none;text-align: center;" >CopyRight &copy; 2016 itour 版权所有. &nbsp;&nbsp;官方网址: www.itours.com.cn</div>
@@ -44,6 +76,7 @@
 				<div style="margin-top:20px;">
 				</div>
 			</div>
+	 
 		</div>	
 	</div>
 	<!--  modify password start -->

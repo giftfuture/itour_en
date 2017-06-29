@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
-<%@include file="/WEB-INF/views/server/resource.jsp"  %>
+<%@include file="/WEB-INF/views/server/mResource.jsp"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +45,7 @@
 <!--滚动图片 start-->
 <DIV class=rollphotos>
 <DIV class=blk_29>
-<DIV class=LeftBotton id=LeftArr><img src="${basePath}images/arrow01-1.gif" width="20" height="40" /></DIV>
+<DIV class=LeftBotton id=LeftArr  style="margin-right:15px"><img src="${basePath}images/arrow01-1.gif" width="20" height="40" /></DIV>
 <DIV style="margin-left:15px" class=Cont id=ISL_Cont_1><!-- 图片列表 begin -->
 <c:forEach items="${rt.photoList}" var="photo">
 <div class=box><A class=imgBorder target=_blank><IMG height=55 alt="landscape" src="${basePath }${photo}" width=100 border=0></A> 
@@ -407,6 +407,11 @@
         </tr>
       </table></form></td>
   </tr>
+ <tr><td>
+   <table  class="frametb" align="center">
+        <div id="fbcontent"></div>
+   </table>
+  </td></tr>
   <tr>
     <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="100%" height="7" /></td>
   </tr>

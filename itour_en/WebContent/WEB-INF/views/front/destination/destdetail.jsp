@@ -77,7 +77,7 @@
               <c:forEach items="${rts}" var="item">
               <tr>
                 <td style="text-align:right"><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}"><img src="${basePath }${item.cover}" width="91" height="50"></a></td>
-               <td style="text-align:left"><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}">【${item.travelStyleType}】${item.title}</a></td>
+               <td style="text-align:left"><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}">[${item.travelStyleType}]${item.title}</a></td>
               </tr>
             </c:forEach>
             <c:if test="${showMore}">

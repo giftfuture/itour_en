@@ -13,7 +13,7 @@
 <title>Light Travel</title>
 </head>
 <body>
-<table class="commontb" align="center">
+<table class="commontb" align="center" style="width:100%">
    <tr>
     <td> <%@include file="/frontm/header.jsp"  %> </td>
   </tr>

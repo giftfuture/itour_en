@@ -19,7 +19,7 @@
       <table><tr><td width="20%" style="width:20%;vertical-align:top;" >
        <table valign="top" width="100%" border="0" cellspacing="0"  style="float:left;" >
           <tr>
-            <td height="30" valign="top" style="width:20%;height:auto;" bgcolor="#990000"><span style="font-size:1em">旅遊目的地</span>
+            <td height="30" valign="top" style="width:20%;height:auto;" bgcolor="#990000"><span style="font-size:0.75em">Destinations</span>
             <div valign="top" style="align:center;font-size:1.125em;width:20%;background-color:#8B0000;text-decoration:none;color:white;">
             <div valign="top" class="treebox" style="float:left">
                 <ul class="menu">

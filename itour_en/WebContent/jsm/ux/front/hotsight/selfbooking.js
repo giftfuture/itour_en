@@ -1,5 +1,5 @@
-$package('itouren.hotsightselfbooking');
-itouren.hotsightselfbooking = function(){
+$package('itouren.mhotsightselfbooking');
+itouren.mhotsightselfbooking = function(){
 	var _this = {
 		formatterDate : function(date) {//得到当前日期
 			var day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate();
@@ -146,5 +146,5 @@ itouren.hotsightselfbooking = function(){
 }();
 
 $(function(){
-	itouren.hotsightselfbooking.init();
+	itouren.mhotsightselfbooking.init();
 });

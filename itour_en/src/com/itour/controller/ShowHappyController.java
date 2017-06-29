@@ -55,6 +55,9 @@ import com.itour.service.ShowHappyService;
 import com.itour.util.Constants;
 import com.itour.vo.ShowHappyVO;
 
+import eu.bitwalker.useragentutils.OperatingSystem;
+import eu.bitwalker.useragentutils.UserAgent;
+
 /**
  * 
  * <br>
@@ -93,6 +96,13 @@ public class ShowHappyController extends BaseController{
 	public ModelAndView main(@RequestParam(value="pageNo",defaultValue="1")int pageNo,HttpServletRequest request) throws Exception{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的main方法");
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########ShowhappyController main当前是移动浏览器#####");
+        	return forward("mfront/happy/happiness");
+        }
 		return forward("front/happy/happiness"); 
 	}
 	/**
@@ -139,6 +149,13 @@ public class ShowHappyController extends BaseController{
 	public ModelAndView sharehappy(ShowHappyVO vo,HttpServletRequest request) throws Exception{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的shareHappy方法");
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########ShowhappyController sharehappy当前是移动浏览器#####");
+        	return forward("mfront/happy/sharehappy");
+        }
 		return forward("front/happy/sharehappy"); 
 	}
 	
@@ -210,6 +227,13 @@ public class ShowHappyController extends BaseController{
 			}
 		//Map<String,Object> record = ShowHappyKit.toRecord(sh);
 		context.put("sh", sh);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########ShowhappyController happydetail当前是移动浏览器#####");
+        	return forward("mfront/happy/happydetail",context);
+        }
 		return forward("front/happy/happydetail",context); 
 	}
 	/**

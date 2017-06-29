@@ -1,5 +1,5 @@
-$package('itouren.lightselfbooking');
-itouren.lightselfbooking = function(){
+$package('itouren.mlightselfbooking');
+itouren.mlightselfbooking = function(){
 	var _this = {
 		formatterDate : function(date) {//得到当前日期
 			var day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate();
@@ -147,5 +147,5 @@ itouren.lightselfbooking = function(){
 }();
 
 $(function(){
-	itouren.lightselfbooking.init();
+	itouren.mlightselfbooking.init();
 });

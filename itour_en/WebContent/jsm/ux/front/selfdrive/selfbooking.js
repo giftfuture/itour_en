@@ -1,5 +1,5 @@
-$package('itouren.selfdriveselfbooking');
-itouren.selfdriveselfbooking = function(){
+$package('itouren.mselfdriveselfbooking');
+itouren.mselfdriveselfbooking = function(){
 	var _this = {
 		formatterDate : function(date) {//得到当前日期
 			var day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate();
@@ -146,5 +146,5 @@ itouren.selfdriveselfbooking = function(){
 }();
 
 $(function(){
-	itouren.selfdriveselfbooking.init();
+	itouren.mselfdriveselfbooking.init();
 });

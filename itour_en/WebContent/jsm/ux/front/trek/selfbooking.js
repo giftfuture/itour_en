@@ -1,5 +1,5 @@
-$package('itouren.trekselfbooking');
-itouren.trekselfbooking = function(){
+$package('itouren.mtrekselfbooking');
+itouren.mtrekselfbooking = function(){
 	var _this = {
 		formatterDate : function(date) {//得到当前日期
 			var day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate();
@@ -173,5 +173,5 @@ itouren.trekselfbooking = function(){
 }();
 
 $(function(){
-	itouren.trekselfbooking.init();
+	itouren.mtrekselfbooking.init();
 });

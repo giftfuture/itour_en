@@ -21,7 +21,7 @@ public final class SessionUtils {
 	
 	protected static final Logger logger = Logger.getLogger(SessionUtils.class);
 	
-	private static final String SESSION_USER = "session_user";
+	public static final String SESSION_USER = "session_user";
 
 	private static final String SESSION_VALIDATECODE = "session_validatecode";//验证码
 	

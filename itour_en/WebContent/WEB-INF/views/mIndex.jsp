@@ -40,7 +40,7 @@
                 <table width="100%" border="0" align="left" cellpadding="0"
                     cellspacing="0">
                     <tr>
-                        <td class="STYLE9" style="text-align: left">iTour travel - custom travel service providers</td>
+                        <td class="STYLE9" style="text-align: left">iTour travel <br/>- custom travel service providers</td>
                     </tr>
                     <tr>
                         <td class="STYLE10" style="text-align: left">You are the protagonist of the trip</td>
@@ -83,9 +83,8 @@ The protagonist travel belongs to the professional travel service team affiliate
                             <td valign="top"><table width="100%" border="0"
                                     align="left" cellpadding="0" cellspacing="0">
                                     <tr>
-                                        <td width="100%" class="h2-24red" colspan=3
-                                            style="text-align: left;><a
-                                            width="100%" href="${basePath}${fn:split(entry['key'], '#')[3]}/main"><img
+                                        <td width="100%" class="h2-24red" colspan=3 style="text-align: left;">
+                                            <a width="100%" href="${basePath}${fn:split(entry['key'], '#')[3]}/main"><img
                                                 src="images/icon-0${status.index+1 }.jpg" width="57"
                                                 height="43">${fn:split(entry['key'],'#')[0]}</a></td>
                                     </tr>

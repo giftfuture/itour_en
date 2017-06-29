@@ -6,11 +6,11 @@
  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
  <meta http-equiv="description" content="This is my page"> 
 <title>Destination details</title>
-<link rel="stylesheet" type="text/css" href="${basePath}css/easing.css">
+<link rel="stylesheet" type="text/css" href="${basePath}cssm/easing.css">
 <script type="text/javascript" src="${basePath}js/plug-in/easing.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/jquery.easing.compatibility.js"></script> 
-<link rel="stylesheet" type="text/css" href="${basePath}css/ScrollPic.css">
-<script type="text/javascript" src="${basePath}js/commons/ScrollPic.js"></script>
+<link rel="stylesheet" type="text/css" href="${basePath}cssm/ScrollPic.css">
+<script type="text/javascript" src="${basePath}jsm/commons/ScrollPic.js"></script>
 </head>
 <body>
 <center>
@@ -71,7 +71,8 @@
             </script>
             </DIV>
     <!--滚动图片 end--></td></tr>
-    <tr><td style="width:80%;text-align:center;float:middle;"><span style="text-align:left;">${itemvo.content }</span> </td>
+    <tr><td style="width:80%;text-align:center;float:middle;"><span style="text-align:left;">${itemvo.content }</span> </td></tr>
+    <tr>
             <td style="text-align:left;valign:top;vertical-align:top;align:left;display:inline-block;width:80%;"><img src="images/ticket.png" width="30" height="30">
             <span class="STYLE3">${itemvo.item}Ticket information(CNY)：</span><br/>
            <span style="text-align:center;valign:top;vertical-align:top;display:inline-block;" align="center" >${itemvo.ticketsBlock}</span><br/><br/><br/><br/>
@@ -81,8 +82,8 @@
               <tbody>
               <c:forEach items="${rts}" var="item">
               <tr>
-          <td style="text-align:left"><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}">【${item.travelStyleType}】${item.title}</a></td>
-                <td style="text-align:left"><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}"><img src="${basePath }${item.cover}"  width="60%"></a></td>
+          <td style="text-align:left"><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}">[${item.travelStyleType}]${item.title}</a><br/>
+                <a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}"><img src="${basePath }${item.cover}"  width="60%"></a></td>
                              </tr>
             </c:forEach>
             <c:if test="${showMore}">
@@ -93,10 +94,7 @@
             </c:if>
           </tbody></table></td>
           </tr>
-          <tr>
-            <td valign="top"  style="weight:100%;height:100%;text-align:left;valign:top;">
-        </td> 
-         </tr>
+
  <tr><td colspan="2"><%@include file="/frontm/footer.jsp"  %></td></tr>
 </table>
 <script type="text/javascript" src="${basePath}jsm/ux/front/destination/destdetail.js"></script>

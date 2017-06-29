@@ -14,11 +14,11 @@
     <td width="75%" bgcolor="#CCCCCC" class="f14-gao1" >  
       <p style="height:15px"><span style="text-align:left"><strong>Travel Mode:</strong>&nbsp;<input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'"/></span></p>
       <p style="height:15px"><span style="text-align:left">
-       <strong>Travel Area:</strong>
+       <strong>&nbsp;&nbsp;Travel Area:</strong>
          <input class="easyui-combobox" id="level1Area" name="level1Area" value="${level1Area}" data-options="height:20,panelHeight:'auto',editable:false"/></span></p>
-         <p style="height:15px"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><input id="level2Area" name="level2Area" class="easyui-combobox" data-options="height:20,panelHeight:'auto',editable:false"/></span> 
+         <p style="height:15px"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><input id="level2Area" name="level2Area" class="easyui-combobox" data-options="height:20,panelHeight:'auto',editable:false"/></span> 
          </p>
-        <p style="height:15px"><span style="text-align:left"><strong> Holiday days:</strong><a href="javascript:void(0)">
+        <p style="height:15px"><span style="text-align:left"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Holiday:</strong><a href="javascript:void(0)">
     <input class="easyui-combobox" data-options="height:20,editable:false" name="vacation" id="vacation"/>
       
       </a></span></p></td>

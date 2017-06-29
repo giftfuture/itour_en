@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	//getCookie();
+	getCookie();
 	onfocus();
 	$(".on_off_checkbox").iphoneStyle();
 	$('.tip a ').tipsy({
@@ -53,9 +53,9 @@ $(document).ready(function() {
 		$("#forget-pwd-win").dialog('close');
 	})
 	$("#btn-forgetpwd-submit").click(function(){
-		itouren.progress('Please waiting','Processing...');
+		itour.progress('Please waiting','Processing...');
 		$.post(basePath+'main/toresetPwd',{'email':$("#loginEmail").val()},function(data){
-			itouren.closeProgress();
+			itour.closeProgress();
 			var result = $.parseJSON(data);
 			if(result.success||result.success=='true'){
 				itour.alert("提示",result.msg,"info",function(){
@@ -67,10 +67,10 @@ $(document).ready(function() {
 			}
 		});
 	})
-	$("#btn-pwd-close").click(function(){
+	$("#btn-forgetpwd-close").click(function(){
 		$("#modify-pwd-win").dialog('close');
 	})
-	$("#btn-pwd-submit").click(function(){
+	$("#btn-forgetpwd-submit").click(function(){
 		modifyPwd();
 	})
 $('.userload').click(function(e){
@@ -83,6 +83,7 @@ $('.userload').click(function(e){
 	}, 200, function() {
 		$('.userbox').hide();
 	});
+});
 	/* 自定义密码验证*/
 	$.extend($.fn.validatebox.defaults.rules, {  
 	    equals: {  
@@ -92,7 +93,7 @@ $('.userload').click(function(e){
 	        message: '两次输入密码不匹配.'  
 	    }
 	})
-});
+
 });
 function modifyPwd(){
 	itour.progress('请稍侯','信息提交中...');
@@ -120,6 +121,17 @@ function modifyPwd(){
 		});*/
 	 }
 };
+function forgetPwdForm(){
+	var pwdForm = $("#forgetpwdForm");
+	if(pwdForm.form('validate')){
+		//var parentId =$('#search_parentId').val();
+		/*$("#edit_parentId").val(parentId)*/
+		itour.saveForm(pwdForm,function(data){
+			$('#forget-pwd-win').dialog('close');
+		    pwdForm.resetForm();
+		});
+	 }
+}
 //表单提交
 function submit(){
 	var submit = true;
@@ -145,7 +157,7 @@ function changeImg(){
 }
 //登录处理函数
 function login() {
-	//setCookie();
+	setCookie();
 	var actionurl=basePath+"main/logIn";//$("#formLogin").attr("action");//提交路径
 	var checkurl=$("#formLogin").attr("check");//验证路径
 	 var formData = new Object();

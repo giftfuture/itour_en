@@ -17,7 +17,6 @@
 <div align="center"><img src="images/logo.jpg" width="160" height="96" /></div></td>
     <td width="5" background="images/default/shadowright.gif"><img src="images/default/shadowright.gif" width="5" height="8" /></td>
   </tr>
-
   <tr> 
     <td width="5" background="images/default/shadowleft.gif"><img src="images/default/shadowleft.gif" width="5" height="8" /></td>
     <td> <div align="center"><span class="headline"> itour Travel personality customization service</span></div></td>
@@ -41,16 +40,16 @@
           </td>
         </tr>
         <tr> 
-          <td width="35%" align="right" style="text-align:right;width:35%;"><strong>Expected travel date：</strong></td>
-          <td  width="65%" style="text-align:left;width:65%"><input name="expectedDepart" id="expectedDepart" type="text" class='easyui-datetimebox' data-options="showSeconds:false, height:22,validType:'dateValided',editable:false,split:true,border:false,region:'north',onSelect:itour.mclimbselfbooking.onChangeDate(this)" /></td>
+          <td width="35%" align="right" style="text-align:right;width:35%;"><strong>Travel date:</strong></td>
+          <td  width="65%" style="text-align:left;width:65%"><input name="expectedDepart" id="expectedDepart" type="text" class='easyui-datetimebox' data-options="showSeconds:false, height:22,validType:'dateValided',editable:false,split:true,border:false,region:'north',onSelect:itouren.mtrekselfbooking.onChangeDate(this)" /></td>
         </tr>
         <tr> 
-          <td width="35%"align="right" style="text-align:right"><strong>Expected return date：</strong></td>
-          <td style="text-align:left"><input id="expectedBack" name="expectedBack" type="text" class='easyui-datetimebox' data-options="showSeconds:false,height:22,validType:'md[\'#expectedDepart\']',editable:false,split:true,border:false,region:'north',onSelect:itour.mclimbselfbooking.onChangeDate(this)" />
+          <td width="35%"align="right" style="text-align:right"><strong>Return date:</strong></td>
+          <td style="text-align:left"><input id="expectedBack" name="expectedBack" type="text" class='easyui-datetimebox' data-options="showSeconds:false,height:22,validType:'md[\'#expectedDepart\']',editable:false,split:true,border:false,region:'north',onSelect:itouren.mtrekselfbooking.onChangeDate(this)" />
             </td>
         </tr>
         <tr> 
-          <td width="35%"align="right" style="text-align:right"><strong>Travel Mode：</strong></td>
+          <td width="35%"align="right" style="text-align:right"><strong>Travel Mode:</strong></td>
           <td style="text-align:left;width:65%"><select id="travelfashion" name="travelfashion" class="easyui-combobox" data-options="width:150,height:22,editable:false,panelHeight:100">
             <option value="">Please choose</option>
             <option value="Separate arrangements">Separate arrangements</option>
@@ -58,26 +57,26 @@
           </select><br/> 
           <span id="groupdiv" style="display:none">
          <!-- Group number:<input id="groupCode" type="text" class="easyui-textbox" size="80" />-->
-          The date of the group：<input id="groupDate" name="groupDate" type="text" class='easyui-datebox' data-options="prompt:'--The date of the group--',height:22,validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north',onSelect:itour.climbselfbooking.onChangeDate(this)" />
+          The date of the group:<input id="groupDate" name="groupDate" type="text" class='easyui-datebox' data-options="prompt:'--The date of the group--',height:22,validType:'dateValided',editable:false,required:true,split:true,border:false,region:'north',onSelect:itouren.mtrekselfbooking.onChangeDate(this)" />
           </span> </td>
         </tr>
         <tr> 
-          <td width="35%"align="right" style="text-align:right"><strong>Travel budget：</strong></td>
+          <td width="35%"align="right" style="text-align:right"><strong>Travel budget:</strong></td>
           <td style="text-align:left"><input name="budget" type="text" min=0 class="easyui-numberbox" data-options="width:150,precision:2,groupSeparator:',',height:22" />&nbsp;￥/
           &nbsp;<select id="singleorcluster" name="singleorcluster" class="easyui-combobox" data-options="height:22,editable:false,panelHeight:100">
             <option value="Per person">Per person</option>
             <option value="Per group">Per group</option>
           </select>
-          <br/> (Please specify the budget for each person or the total budget for the whole group)</td>
+          <br/> (Please specify the budget for each person or the total<br/> budget for the whole group)</td>
         </tr>
         <tr> 
-          <td width="35%"align="right" style="text-align:right"><strong>Travel requirements：<br />
+          <td width="35%"align="right" style="text-align:right"><strong>Travel requirements:<br />
              (Check) </strong></td>
           <td style="text-align:left;width:65%"><span class="radioSpan">
           <input name="travelrequest[]" type="checkbox" value="Photography mainly" />
             Photography mainly
             <input name="travelrequest[]" type="checkbox" value="Experience folk culture" />
-            Experience folk culture
+            Experience folk culture<br/>
             <input name="travelrequest[]" type="checkbox" value="Beautiful natural scenery" />
             Beautiful natural scenery
             <input name="travelrequest[]" type="checkbox" value="Adventure challenge" />
@@ -94,7 +93,7 @@
             <input name="travelrequest[]" type="checkbox" value="No shopping" />No shopping</span> </td>
         </tr>
         <tr>
-          <td><strong>Hotel：</strong></td>
+          <td><strong>Hotel:</strong></td>
           <td style="text-align:left;width:65%"><select id="hotel" name="hotel" class="easyui-combobox" data-options="height:22,editable:false,panelHeight:200">
             <option value="">Please Choose</option>
             <option value="Luxury (best hotel)">Luxury (best hotel)</option>
@@ -104,18 +103,18 @@
             </select></td>
         </tr>
         <tr> 
-          <td width="35%"align="right" style="text-align:right"> <strong>Tourist guide：</strong></td>
+          <td width="35%"align="right" style="text-align:right"> <strong>Tourist guide:</strong></td>
           <td style="text-align:left;width:65%"><span class="radioSpan">
           <input type="radio" name="guide" value="Chinese" />Chinese
             <input type="radio" name="guide" value="English" />English 
-            <input type="radio" name="guide" value="Cantonese" />Cantonese 
+            <input type="radio" name="guide" value="Cantonese" />Cantonese <br/>
             <input type="radio" name="guide" value="Other languages" />Other languages
             <span id="elseguide" style="display:none" >
             <input type="text" class="easyui-textbox"name="guide_other" id="guide_other" value=""> </span>
             <input type="radio" name="guide" value="No tour guide" />No tour guide</span> </td>
         </tr>
         <tr> 
-          <td width="35%"align="right" style="text-align:right"><strong>Whether to arrange a diet ：</strong></td>
+          <td width="35%"align="right" style="text-align:right"><strong>Whether to arrange a diet :</strong></td>
           <td style="text-align:left;width:65%"><input type="checkbox" name="foodArrange" value="Please arrange" />
           <!--   <input type="radio" name="foodrequest" value="自行安排"  />  请安排  自行安排 -->
            </td>
@@ -125,7 +124,7 @@
           <td>&nbsp;</td>
         </tr> -->
         <tr> 
-          <td width="35%"align="right" style="text-align:right"><strong>Contact name：</strong></td>
+          <td width="35%"align="right" style="text-align:right"><strong>Contact name:</strong></td>
           <td style="text-align:left;width:65%"><input name="receiver" type="text" class="easyui-textbox" data-options="width:100,height:22"/> 
           <select id="gender" name="gender" class="easyui-combobox" data-options="height:22,editable:false,panelHeight:100">
               <option>Gender</option>
@@ -134,36 +133,36 @@
             </select> </td>
         </tr>
         <tr> 
-          <td width="35%"align="right" style="text-align:right"> <strong>The number of people：</strong></td>
+          <td width="35%"align="right" style="text-align:right"> <strong>The number of people:</strong></td>
           <td style="text-align:left"><input name="adults" size="6" min=0 class="easyui-numberbox" data-options="groupSeparator:',',width:100,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/>
             Adult
             <br/><input name="children" size="6" min=0 class="easyui-numberbox" data-options="precision:0,groupSeparator:',',width:100,height:22 " onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" />
           Child (under 12 years old) </td>
         </tr>
         <tr> 
-          <td width="35%"align="right" style="text-align:right"><strong>Countries and regions：</strong></td>
+          <td width="35%"align="right" style="text-align:right"><strong>Countries and regions:</strong></td>
           <td style="text-align:left;width:65%"><input id="comefrom" name="comefrom" class="easyui-combobox"  data-options="width:150,height:22,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">
            </td>
         </tr>
         <tr> 
-          <td width="35%"align="right" style="text-align:right"><strong>E-mail：</strong></td>
+          <td width="35%"align="right" style="text-align:right"><strong>E-mail:</strong></td>
           <td style="text-align:left;width:65%"><input name="receiveremail" type='text' class="easyui-textbox" data-options="validType:'email',groupSeparator:',',width:150,height:22" /> </td>
         </tr>
         <tr> 
-          <td width="35%"align="right" style="text-align:right"><strong>Contact number：</strong></td>
+          <td width="35%"align="right" style="text-align:right"><strong>Contact number:</strong></td>
           <td style="text-align:left;width:65%"><input name="receiverMobile" class="easyui-textbox" type="text" data-options="validType:'mobileTelephone',groupSeparator:',',width:150,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
         </tr>
    <!--      <tr> 
-          <td valign="top"> <div align="right"><strong>详细要求：</strong></div></td>
-          <td style="text-align:left">希望能知道您对这次旅游的想法和期望，这样我们更更好的为您设计：<br /> <textarea name="description" cols="70" rows="8" id="description"></textarea> 
+          <td valign="top"> <div align="right"><strong>详细要求:</strong></div></td>
+          <td style="text-align:left">希望能知道您对这次旅游的想法和期望，这样我们更更好的为您设计:<br /> <textarea name="description" cols="70" rows="8" id="description"></textarea> 
           </td>
         </tr> -->
       <!-- <tr> 
           <td colspan=2>To understand your individual needs, please fill out the form below to get a more detailed personalized service. (Just tick your question or fill it out) </td>
         </tr>-->
         <tr> 
-          <td  width="35%"align="right" style="text-align:right"><strong>Accommodation requirements：</strong></td>
-          <td style="text-align:left;width:65%" ><label>Featured Hotels： 
+          <td  width="35%"align="right" style="text-align:right"><strong>Accommodation requirements:</strong></td>
+          <td style="text-align:left;width:65%" ><label>Featured Hotels: 
           <span class="radioSpan">
             <input name="stayrequest[]" type="checkbox"  value="Cultural theme hotel" />
             Cultural theme hotel
@@ -171,7 +170,7 @@
             National characteristics hotel <br/>
             <input name="stayrequest[]" type="checkbox"   value="Residential experience" />
            Residential experience<br />
-            Location： <br />
+            Location: <br />
             <input name="position[]" type="checkbox"  value="City center" />
             City center
             <input name="position[]" type="checkbox" value="Good environment" />
@@ -185,7 +184,7 @@
             King bed room 
             <input name="bb_room"  size="6" type="number" min=0 class="easyui-numberbox" data-options="groupSeparator:',',width:51,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" />
              suite <br /><input name="suite"  size="6" type="number" min=0 class="easyui-numberbox" data-options="groupSeparator:',',width:51,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/>
-             Remark：
+             Remark:
             <input name="hotel_no_smoking" type="checkbox" value="Smoke free" />
             Smoke free
             <input name="hotel_quiet" type="checkbox" value="Be Quiet" />
@@ -196,21 +195,21 @@
         </tr>
         <tr><td></td><td></td></tr>
         <tr> 
-          <td valign="top"><strong>Traffic：
+          <td valign="top"><strong>Traffic:
               </strong></td>
-          <td  style="text-align:left;width:65%"><span class="radioSpan">Airplanes： 
+          <td  style="text-align:left;width:65%"><span class="radioSpan">Airplanes: 
             <input name="plane[]" type="radio" value="China domestic" />
             China domestic
             <input name="plane[]" type="radio" value="International" />
             International<br />
-        Accommodation： 
+        Accommodation: 
             <input type="radio" name="shipping_space" value="First class" />
           First class
             <input type="radio" name="shipping_space" value="Business class" />
             Business class 
             <input type="radio" name="shipping_space" value="Economy class" />
             Economy class<br />
-          Car： 
+          Car: 
             <input type="radio" name="car" value="SUV" />
             SUV
             <input type="radio" name="car" value="Car" />
@@ -223,12 +222,12 @@
             Smoke Free
             <input name="car_new" type="checkbox" value="New Car" />
             New Car<br />
-            Train： 
+            Train: 
             <input type="radio" name="train" value="Hard sleeper" />
             Hard sleeper
             <input type="radio" name="train" value="Soft sleeper" />
             Soft sleeper<br />
-            Cruise ship： 
+            Cruise ship: 
             <input type="radio" name="cruise" value="Five Stars" />
             Five Stars
             <input type="radio" name="cruise" value="Four Stars" />
@@ -238,7 +237,7 @@
         </tr>
         <tr><td></td><td></td></tr>
         <tr> 
-          <td  width="35%"align="right" style="text-align:right"> <strong>Ticket： </strong></td>
+          <td  width="35%"align="right" style="text-align:right"> <strong>Ticket: </strong></td>
           <td style="text-align:left;width:65%"><span class="radioSpan">
           <input type="radio" name="tickets" value="Only big ticket" />
             Only big ticket
@@ -249,17 +248,17 @@
         </tr>
         <tr><td></td><td></td></tr>
         <tr> 
-          <td  width="35%"align="right" style="text-align:right"><p align="right"><strong>Meal requirements： </strong></p></td>
-          <td valign="top" style="text-align:left">Features： <span class="radioSpan">
+          <td  width="35%"align="right" style="text-align:right"><p align="right"><strong>Meal requirements: </strong></p></td>
+          <td valign="top" style="text-align:left">Features: <span class="radioSpan">
             <input name="foodrequest[]" type="checkbox" value="Flavor meal" />
             Flavor meal
             <input name="foodrequest[]" type="checkbox" value="snack" />
             snack
             <input name="foodrequest[]" type="checkbox" value="Hot pot" />
-            Hot pot <br />other： 
+            Hot pot <br />other: 
             <input name="foodrequest[]" type="text"  class="easyui-textbox" data-options="height:22"/> 
             <br />
-            Taste： 
+            Taste: 
             <input name="taste[]" type="checkbox" value="Light" />
             Light 
             <input name="taste[]" type="checkbox" value="Spicy" />
@@ -270,31 +269,31 @@
             Succulents 
             <input name="taste[]" type="checkbox" value="Vegetarian" />
             Vegetarian<br />
-            diet： 
+            diet: 
             <input name="hatefood" type="text" class="easyui-textbox" data-options="height:22" /><br/>  There are other requirements or you like the restaurant <br/>can fill in the individual needs to fill in
             </span>
            </td>
         </tr>
         <tr><td></td><td></td></tr>
         <tr> 
-          <td  width="35%"align="right" style="text-align:right"><strong>Entertainment：</strong></td>
+          <td  width="35%"align="right" style="text-align:right"><strong>Entertainment:</strong></td>
           <td valign="top" style="text-align:left"><span class="radioSpan"><input type="checkbox" name="recreation" value="Expect experience of local ethnic customs" /></span>
              Expect experience of local ethnic customs</td>
         </tr>
         <tr> 
-          <td width="35%"align="right" style="text-align:right"><strong>More personality needs：</strong></td>
-          <td valign="top" style="text-align:left">Hope to know your thoughts and expectations of this tour, so that we are better for you：<br/>
-          <textarea name="specialrequest" cols="25" rows="8" class="easyui-textbox" data-options="multiline:true"></textarea></td>
+          <td width="35%"align="right" style="text-align:right"><strong>More personality needs:</strong></td>
+          <td valign="top" style="text-align:left">Hope to know your thoughts and expectations of this tour, so that we are better for you:<br/>
+          <textarea name="specialrequest" cols="50" rows="8" class="easyui-textbox" data-options="multiline:true"></textarea></td>
         </tr>
   <!--  <tr> 
           <td valign="top"><div align="right"></div></td>
           <td valign="top" style="text-align:left"><input type="submit" name="Submit2" value="预定" /></td>
         </tr> -->
     <tr> 
-        <td width="35%"align="right" style="text-align:right"><strong>Verify Code：</strong></td>
+        <td width="35%"align="right" style="text-align:right"><strong>Verify Code:</strong></td>
         <td  style="text-align:left"> <input type="text" id="verifyCode" name="verifyCode"  class="easyui-textbox" title="verify Code" data-options="prompt:'please enter verification code!'" />
           <img alt="Click to replace" src="${basePath}RandomCodeServlet" id="validateCode" onclick="itour.climbselfbooking.changeValidateCode()">
-          &nbsp;&nbsp;<a href="javascript:void(0)" onclick="itour.climbselfbooking.changeValidateCode()">Can not see, change one</a></td>
+          <br/>&nbsp;&nbsp;<a href="javascript:void(0)" onclick="itour.climbselfbooking.changeValidateCode()">Can not see, change one</a></td>
        <!--  <td><input name="code" id="code" type="text" size="8" />&nbsp;<img src='index.php?action=authcode&",Math.random(),"' alt="CAPTCHA" name="vcode" width="130" height="25" border="1" align="absmiddle" id='vcode' style="cursor: pointer;" title="看不清？点击更换另一个验证码。" onclick= this.src="index.php?action=authcode&"+Math.random() />&nbsp;看不清，请点击图片更换验证码。</td> -->
       </tr>
       <tr> <td></td>
@@ -309,7 +308,7 @@
   <tr><td colspan="3"><%@include file="/frontm/footer.jsp" %></td></tr>
   </table>
 
-<script type="text/javascript" src="${basePath}jsm/ux/front/climb/selfbooking.js"></script>
+<script type="text/javascript" src="${basePath}jsm/ux/front/trek/selfbooking.js"></script>
 
 </body>
 </html>

@@ -7,45 +7,46 @@
 <%-- Mountain trip in detail <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
 <link rel="stylesheet" href="${basePath}cssm/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}cssm/easyzoom/easyzoom.css" />  
-<link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
-<link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />  
-<link rel="stylesheet" type="text/css" href="${basePath}css/ScrollPic.css">
-<script type="text/javascript" src="${basePath}js/commons/ScrollPic.js"></script>
-<script type="text/javascript" src="${basePath}js/plug-in/easing.js"></script>
-<script type="text/javascript" src="${basePath}js/plug-in/easyzoom.js"></script>
-<script type="text/javascript" src="${basePath}js/plug-in/easytab/jquery.easytabs.min.js"></script>
-<script type="text/javascript" src="${basePath}js/plug-in/easytab/jquery.hashchange.min.js"></script>
-<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
-<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
-<script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
-<script type="text/javascript" src="${basePath}js/plug-in/zeroclip/ZeroClipboard.js"></script>
-<script type="text/javascript" src="${basePath}js/plug-in/zeroclip/ZeroClipboard.swf"></script>
-<script type="text/javascript" src="${basePath}js/plug-in/pdf/html2canvas.min.js"></script>
-<script type="text/javascript" src="${basePath}js/plug-in/pdf/jspdf.min.js"></script>
+<link rel="stylesheet" href="${basePath}cssm/bootstrap/bootstrapv3.css" />
+<link rel="stylesheet" href="${basePath}cssm/bootstrap/qunit-1.11.0.css" />  
+<link rel="stylesheet" type="text/css" href="${basePath}cssm/ScrollPic.css">
+<script type="text/javascript" src="${basePath}jsm/commons/ScrollPic.js"></script>
+<script type="text/javascript" src="${basePath}jsm/plug-in/easing.js"></script>
+<script type="text/javascript" src="${basePath}jsm/plug-in/easyzoom.js"></script>
+<script type="text/javascript" src="${basePath}jsm/plug-in/easytab/jquery.easytabs.min.js"></script>
+<script type="text/javascript" src="${basePath}jsm/plug-in/easytab/jquery.hashchange.min.js"></script>
+<script type="text/javascript" src="${basePath}jsm/plug-in/bootstrap/bootstrapv3.js"></script>
+<script type="text/javascript" src="${basePath}jsm/plug-in/bootstrap/bootstrap-paginator.js"></script>
+<script type="text/javascript" src="${basePath}jsm/plug-in/bootstrap/qunit-1.11.0.js"></script>
+<script type="text/javascript" src="${basePath}jsm/plug-in/zeroclip/ZeroClipboard.js"></script>
+<script type="text/javascript" src="${basePath}jsm/plug-in/zeroclip/ZeroClipboard.swf"></script>
+<script type="text/javascript" src="${basePath}jsm/plug-in/pdf/html2canvas.min.js"></script>
+<script type="text/javascript" src="${basePath}jsm/plug-in/pdf/jspdf.min.js"></script>
 <script type="text/javascript">
 </script>
 </head>
 <body>
- <%@include file="/frontm/header.jsp" %>
+  
 <center>
-<table class="commontb" align="center">
+<table class="commontb" align="center" width="100%" style="width:100%;text-align:center;float:middle" >
+  <tr><td><%@include file="/frontm/header.jsp"  %> </td></tr>  
   <tr>
-    <td width="776" style="float:middle" class="h1-black">${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
+    <td width="60%" style="float:middle" class="h1-black">${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>
   <tr>
-    <td width="750"><table width="600" style="float:right;text-align:right;align:right;margin-right:50px;" border="0" cellpadding="0" cellspacing="0">
-      <tr>
-        <td width="600" name="magnifying"><img src="${basePath}${rt.cover}" style="border:none;" border="0px" height="338" width="600"/></td>
+  <td>
+     <table style="float:middle;text-align:center;" align="center" valign="top" >
+   <tr>
+        <td width="100%" name="magnifying"><img src="${basePath}${rt.cover}"  style="border:none;width:100%;float:middle" border="0px" width="100%"/></td>
       </tr>
       <tr>
-        <td height="69"><table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
-            <tr>
+        <td height="69">
 <div align="center">
 <!--滚动图片 start-->
 <DIV class=rollphotos>
 <DIV class=blk_29>
-<DIV class=LeftBotton id=LeftArr><img src="${basePath}images/arrow01-1.gif" width="20" height="40" /></DIV>
-<DIV class=Cont id=ISL_Cont_1><!-- 图片列表 begin -->
+<DIV style="margin-right:15px" class=LeftBotton id=LeftArr><img src="${basePath}images/arrow01-1.gif" width="20" height="40" /></DIV>
+<DIV style="margin-left:15px" class=Cont id=ISL_Cont_1><!-- 图片列表 begin -->
 <c:forEach items="${rt.photoList}" var="photo">
 <div class=box><A class=imgBorder target=_blank><IMG height=55 alt="landscape" src="${basePath }${photo}" width=100 border=0></A> 
 </div>
@@ -60,7 +61,7 @@
         scrollPic_02.arrRightId     = "RightArr"; //右箭头ID
         scrollPic_02.frameWidth     = 608;//显示框宽度
         scrollPic_02.pageWidth      = 152; //翻页宽度
-        scrollPic_02.speed          = 10; //移动速度(单位毫秒，越小越快)
+        scrollPic_02.speed          = 20; //移动速度(单位毫秒，越小越快)
         scrollPic_02.space          = 10; //每次移动像素(单位px，越大越快)
         scrollPic_02.autoPlay       = false; //自动播放
         scrollPic_02.autoPlayTime   = 3; //自动播放间隔时间(秒)
@@ -70,28 +71,30 @@
 </DIV>
 <!--滚动图片 end-->
 </div>
-      </tr></table></td>
-      </tr></table></td>
-        <td width="600" style="float:left" valign="top" > 
-    
-      <table width="442" border="0" cellpadding="4" cellspacing="2" class="STYLE126">
+      </td></tr></table></td>
+</tr>
+<!-- </table>
+<table class="commontb" align="center" width="100%"  style="width:100%;text-align:center;float:middle" > -->
+<tr>
+ <td style="text-align:center;float:middle;width:100%;"> 
+     <table style="text-align:center;float:middle;width:100%;" align="center">
       <tbody><tr>
-        <td style="float:left"><img src="images/frame2-1.gif" width="480" height="7"></td>
+        <td><img src="images/frame2-1.gif" width="100%" height="7"></td>
       </tr>
 <tr>
-        <td background="images/frame2-2.gif"><table cellspacing="0" cellpadding="5" border="0" align="center">
+        <td background="images/frame2-2.gif"><table cellspacing="0" cellpadding="0" border="0" align="center">
           <tbody><tr>
             <td><div align="center"><span class="STYLE2">Is this Line for me？</span></div></td>    
           </tr>
           <tr>
-            <td><table class="STYLE126" width="442" cellspacing="2" cellpadding="4" border="0">
+            <td><table class="STYLE126" width="100%" cellspacing="2" cellpadding="4" border="0">
               <tbody><tr>
           <td class="STYLE126"><div align="right"><strong>Type</strong></div></td>
           <td class="STYLE126" style="text-align:left"><strong>${rt.travelStyle} </strong><a href="javascript:void(0)" title="${rt.travelStyle}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
-          <td width="70" class="STYLE126"><div align="right"><strong>Line number</strong></div></td>
-          <td width="350" class="STYLE126" style="text-align:left">${rt.routeCode}</td>
+          <td width=" " class="STYLE126"><div align="right"><strong>Line number</strong></div></td>
+          <td width=" " class="STYLE126" style="text-align:left">${rt.routeCode}</td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>Travel days</strong></div></td>
@@ -103,7 +106,7 @@
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>Departure</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.departure }<a href="javascript:void(0)" title="${rt.departure}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="float:left;text-align:left">${rt.departure }<a href="javascript:void(0)" title="${rt.departure}">Explain&gt;&gt;</a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>Arrive</strong></div></td>
@@ -143,13 +146,13 @@
       </table>
     <table class="f12-gao1">
       <tr>
-        <td><img src="${basePath}images/facebook.png" width="24" height="24" />
+        <td><img src="${basePath}images/facebook.png" width=" " height=" " />
         <a target="_blank" href="https://www.facebook.com/dialog/feed">share to FB</a></td>
-        <td><img src="${basePath}images/share.png" width="24" height="24" />
+        <td><img src="${basePath}images/share.png" width=" " height=" " />
         <a target="_blank" id="copyurl" href="javascript:void(0)" data-clipboard-target="flashcopier">Copy Url</a><div style="display:none" id="flashcopier"></div></td>
-        <td><img src="${basePath}images/favorite01.png" width="24" height="24" />
+        <td><img src="${basePath}images/favorite01.png" width=" " height=" " />
         <a target="_blank"  href="javascript:itour.hiking.addFavorite()" rel="sidebar">Bookmark this page</a></td>
-        <td><img src="${basePath}images/print.png" width="24" height="24" />
+        <td><img src="${basePath}images/print.png" width=" " height=" " />
         <a target="_blank"  href="javascript:itour.hiking.printff()">Print the page</a></td></tr>
          <tr><td>Related routes:
               <c:forEach items="${rt.relates}" var="relat"><br>
@@ -163,42 +166,39 @@
     </td>
   </tr>
  <tr>
-    <td style="float:left"><img src="images/frame2-3.gif" width="480" height="7"></td>
+     <td><img src="images/frame2-3.gif" width="100%" height="7"></td>
   </tr>
   </tbody>
 </table>
 </td></tr>
-</table>
-<br />
-<br />
-<br />
-<table class="frametb" align="center"><tr><td>
-<div class="frametb" id="tab-container" class='tab-container' border="0" cellpadding="3" cellspacing="1">
+  <tr><td style="text-align:center;float:middle;width:100%;" align="center"> 
+<div class="frametb" id="tab-container" class='tab-container' width="100%"  style="width:100%;text-align:center;float:middle" >
+
  <ul style="text-align:left;float:left" class='etabs'>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#review">Overall overview</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#detail-route">Detailed itinerary</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#need-know">Before the line to know</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#feed-back">Client feedback</a></li>
+   <li width="15%" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#review" target="_self">Overall overview</a></li>
+   <li width="15%" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#detail-route" target="_self">Detailed itinerary</a></li>
+   <li width="15%" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#need-know" target="_self">Before the line to know</a></li>
+   <li width="15%" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#feed-back" target="_self">Client feedback</a></li>
   <!--  <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#consulting">咨询预定</a></li> -->
  </ul>
  <div class='panel-container'>
- <div id="review">
+ <div id="review" name="review">
   <table  class="frametb" align="center">
   <tr>
-    <td style="float:left"><img style="float:left" src="${basePath}images/frame1-1.gif" width="1140" height="7" /></td>
+    <td width="100%" style="align:left;float:left"><img   src="${basePath}images/frame1-1.gif" width="100%" height="7" /></td>
   </tr>
   <tr>
-    <td background="${basePath}images/frame1-2.gif"><table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
+    <td background="${basePath}images/frame1-2.gif" width="100%"><table  width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
-        <td width="761" valign="top" class="STYLE126" style="text-align:left"><span class="STYLE3">design concept</span><span class="STYLE2">:</span><br />
+        <td width="40%" valign="top" class="STYLE126" style="text-align:left"><span class="STYLE3">design concept</span><span class="STYLE2">:</span><br />
           ${rt.designConcept }
           <span class="STYLE148"><strong>iTour travel team customization service:</strong><br />
           ${rt.customizedService }</span>
         </td>
-        <td width="299" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">Travel map</span><br />
+        <td width="60%" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">Travel map</span><br />
             <div class="easyzoom easyzoom--overlay">
                 <a href="${basePath}images/map-002.jpg">
-                    <img src="${basePath}images/map-002.jpg" alt="" width="640" height="360" />
+                    <img src="${basePath}images/map-002.jpg" alt="" width="100%" />
                 </a>
             </div>
           </div>
@@ -208,43 +208,40 @@
     </td>
     </tr>
      <tr>
-    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
+    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="100%" height="7" /></td>
   </tr> 
     </table>
   </div>
-  <div id="detail-route">
+  <div id="detail-route" name="detail-route">
   <table class="frametb" align="center">
   <tr>
     <td colspan=2><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span> 
     <span class="h2-24" style="float:left"><span class="STYLE148">Brief schedule</span></span></td>
   </tr>
     <tr>
-    <td width="1140" style="align:left;float:left"><img src="${basePath}images/frame1-1.gif" height="7" /></td>
+    <td width="100%" style="align:left;float:left"><img src="${basePath}images/frame1-1.gif" height="7" /></td>
   </tr>
-  <tr><td colspan="2" background="images/frame1-2.gif" style="valign:top;">${qf.showTrip }</td></tr>   
+  <tr><td colspan="2" background="images/frame1-2.gif">${qf.showTrip }</td></tr>   
   <tr>
   <tr>
-    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
+    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="100%" height="7" /></td>
   </tr>   
   <tr>
     <td colspan=2><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span>
     <span class="h2-24" style="float:left"><span class="STYLE148">Detailed schedule</span></span></td>
   </tr>
   <tr><td colspan="2" background="images/frame1-2.gif">${qf.agodaDetail }</td></tr>
-        <tr>
-    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
-  </tr> 
-      <tr> <td colspan="2" style="text-align:left"><span class="STYLE7">Note: The above itinerary is for reference only and can be re-adjusted according to your holiday design.</span></td> </tr>
-</table>
+  <tr> <td colspan="2" style="text-align:left"><span class="STYLE7">Note: The needs of each group are different, according to your holiday to<br /> re-adjust the design process.</span></td> </tr>
+     </table>
   </div>
-  <div id="need-know">
+  <div id="need-know" name="need-know">
   <table  class="frametb" align="center">
   <tr>
     <td width="32" style="text-align:left;float:left;"><img src="images/document2.png" width="32" height="32" /></td>
-    <td width="1028"  style="text-align:left;float:left;"><span class="h2-24"><span class="STYLE148">Before the line to know</span></span></td>
+    <td width="100%"  style="text-align:left;float:left;"><span class="h2-24" style="float:left"><span class="STYLE148">Before the line to know</span></span></td>
   </tr>
   <tr>
-    <td colspan=2 style="text-align:left">${rt.beforeInstruction }</td>
+    <td colspan=2 style="text-align:left;align:left;">${rt.beforeInstruction }</td>
   </tr>
   <tr>
     <td colspan=2 style="float:left"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
@@ -253,20 +250,18 @@
     <tr>
     <td colspan=2 style="text-align:left;align:left;">${rt.serviceAndQuote }</td>
   </tr>
-</table>
-  <table  class="frametb" align="center">
-   <tbody><tr>
+  <tr>
    <td colspan=2 ><span style="text-align:left;float:left" class="STYLE3">Tell us your needs, free planning for your program GO!</span> &nbsp;&nbsp;
      <span class="STYLE3" style="text-align:left;float:left;"><a style="text-align:left;float:left;" href="${basePath}climb/selfbooking/${rt.alias}">
-     <img src="${basePath }images/tailor-made.gif" width="134" height="32" ></a></span></td>
+     <img style="float:middle" src="${basePath }images/tailor-made.gif" width="134" height="32" ></a></span></td>
    </tr>
- </tbody></table>
+</table>
   </div>
-  <div id="feed-back">
+  <div id="feed-back" name="feed-back">
   <table  class="frametb" align="center">
   <tr>
-    <td width="32"><img src="${basePath}images/ask03.png" width="32" height="32" /></td>
-    <td width="1028" style="text-align:left;float:left" ><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2" style="text-align:left;float:left" >Would you like to know what? Come and talk to us:</span><a href="#"></a></span></span></span></td>
+    <td width="32" style="text-align:left"><img src="${basePath}images/ask03.png" width="32" height="32" /></td>
+    <td width="100%" style="text-align:left;float:left" ><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2" style="text-align:left;float:left" >Would you like to know what? Come and talk to us:</span><a href="#"></a></span></span></span></td>
   </tr>
 </table>
 <table  class="frametb" align="center">
@@ -276,9 +271,9 @@
   <tr>
     <td background="${basePath}images/frame1-2.gif">
     <form name="fastask"  class="ui-form">
-    <table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
+     <table  class="frametb" align="center">
         <tr>
-          <td width="357" valign="top"><table width="357" border="0" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
+          <td width="31%" valign="top"><table width="357" border="0" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
               <tr>
                 <td height="30" colspan="2" bgcolor="#CCCCCC" class="STYLE140"><div align="center" class="STYLE3">Quick inquiry</div>
                     <div align="center"></div></td>
@@ -286,7 +281,7 @@
               <tr>
                 <td width="51" bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*Name</strong>:</div></td>
                 <td width="249" bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="name"  class="easyui-textbox" data-options="prompt:'Please type your name',validType:'string'"/><!--  -->
-                    <select name="sex" id="sex" class="easyui-combobox" data-options="width:80,editable:false,panelHeight:80">
+                    <select name="sex" id="sex" class="easyui-combobox" data-options="editable:false,panelHeight:80">
                       <option value="1">Mr</option>
                       <option value="0">Ms</option>
                     </select>
@@ -327,20 +322,21 @@
                 <td colspan=2 bgcolor="#F0F0F0" class="STYLE140"><a class="easyui-linkbutton" iconcls="icon-ok" name="SubmitSend" >Ask</a></td>
               </tr>
               <tr>
-                <td bgcolor="#F0F0F0" class="STYLE140" colspan=2><input type="hidden" name="route" value="${rt.routeCode}"/> 
-                 *We will keep your information confidential.</td>
+                <td bgcolor="#F0F0F0" class="STYLE140"><input type="hidden" name="route" value="${rt.routeCode}"/> </td>
+                 <td bgcolor="#F0F0F0" class="STYLE140"> *We will keep your information confidential.</td>
               </tr>
           </table></td>
-          <td width="733" valign="top"><div>
-                <div id="fbcontent"></div>
-            </div>
-        
-            </td>
+   
         </tr>
       </table></form></td>
   </tr>
+ <tr><td>
+   <table  class="frametb" align="center">
+        <div id="fbcontent"></div>
+   </table>
+  </td></tr>
   <tr>
-    <td style="float:left"><img style="float:left" src="${basePath}images/frame1-3.gif" width="1140" height="7" /></td>
+    <td style="float:left"><img style="float:left" src="${basePath}images/frame1-3.gif" width="100%" height="7" /></td>
   </tr>
    <tr>
     <td style="text-align:center"><ul id='fbpage'></ul></td>
@@ -350,9 +346,10 @@
 <!--   <div id="consulting" style="display:none;">
   </div> -->
   </div>
-  </div></td></tr></table>
+  </div></td></tr> 
+      <tr><td><%@include file="/frontm/footer.jsp" %></td></tr>
+</table>
 <script type="text/javascript" src="${basePath}jsm/ux/front/climb/detail.js"></script>
-<%@include file="/frontm/footer.jsp" %>
 </center>
 </body>
 </html>

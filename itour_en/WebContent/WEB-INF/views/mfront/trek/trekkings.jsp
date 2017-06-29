@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.lang.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
-<%@include file="/WEB-INF/views/server/resource.jsp"  %>
+<%@include file="/WEB-INF/views/server/mResource.jsp"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,17 +13,17 @@
 <title>Hiking Travel</title>
 </head>
 <body>
-<table class="commontb" align="center">
+<div data-role="content"  data-fullscreen="true">    
+<table class="commontb" align="center"  width="100%" style="width:100%">
    <tr>
-    <td> <%@include file="/front/header.jsp"  %> </td>
+    <td width="100%" > <%@include file="/frontm/header.jsp"  %> </td>
   </tr>
   <tr>
-    <td><img src="images/banner-trekking.jpg"  /></td>
+    <td><img src="images/banner-trekking.jpg" width="100%" /></td>
   </tr>
-</table>
-<table class="commontb" align="center">
+
   <tr>
-    <td height="106" valign="top" bgcolor="#fafafa">
+    <td height="106" valign="top" bgcolor="#fafafa" width="100%">
     <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
       <tr>
         <td class="h1-black" style="text-align:left">Hiking on foot</td>
@@ -42,43 +42,16 @@
       </tr>
     </table></td>
   </tr>
-  <tr>
-    <td valign="top">&nbsp;</td>
+ <tr>
+    <td width="100%"  ><ul id="fbpage"></ul> </td>
   </tr>
-  <tr>
-    <td valign="top">&nbsp;</td>
+   <tr>
+    <td width="100%" > <%@include file="/frontm/footer.jsp" %> </td>
   </tr>
+
 </table>
-<table class="commontb" align="center">
-<tbody id="fbcontent">
-<%-- <c:forEach begin="0" end="${rows}" varStatus="status">
-  <tr>
-    <c:forEach items="${rts.get(status.index)}" var="rt" >
-    <td valign="top">
-    <table width="353" border="0" align="left" cellpadding="0" cellspacing="0">
-      <tr>
-        <td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">
-            <tr>
-              <td width="296" class="h2-24"><a href="${basePath}hiking/hiking/${rt.alias}">${rt.title}</a></td>
-            </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td><a href="${basePath }hiking/hiking/${rt.alias}"><img src="${basePath }${rt.cover}" width="353" height="166" ></a></td>
-      </tr>
-      <tr>
-        <td class="f12-gao1" style="text-align:left">${rt.shortContent}</td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-      </tr>
-    </table></td>
-    </c:forEach>
-  </tr></c:forEach> --%>
-  </tbody>
-</table>
-  <center><ul id="fbpage"></ul></center>
-<script type="text/javascript" src="${basePath}js/ux/front/trek/trekkings.js"></script>
-<%@include file="/front/footer.jsp" %>
+  </div>
+<script type="text/javascript" src="${basePath}jsm/ux/front/trek/trekkings.js"></script>
+
 </body>
 </html>
