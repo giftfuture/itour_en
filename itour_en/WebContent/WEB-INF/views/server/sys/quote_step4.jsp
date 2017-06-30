@@ -71,7 +71,7 @@
     <td><span class="STYLE126 STYLE3" style="font-size: 16px;font-weight: bold;font-family: Arial, Helvetica, sans-serif;color: #990000;">${torder.orderName } </span><input type="hidden" name="tordername" value="${torder.orderName }"/><input type="hidden" name="idrt" value="${rtid}"/></td>
   </tr>  
 </table>
-<table  style="width:1350px;text-align:center;align:center;font-family: '微软雅黑';border:0;"  align="center">
+<table  style="width:1140px;text-align:center;align:center;font-family: '微软雅黑';border:0;"  align="center">
  <!--  <tr>
     <td style="float:left" class="h1-black" style="color: #990000;" ></td>
   </tr> -->
@@ -214,7 +214,7 @@
 </td></tr>
 </table>
 
-<div  style="width:1350px;text-align:center;align:center;font-family: '微软雅黑';border:0;"  id="tab-container" class='tab-container' cellpadding="3" cellspacing="1">
+<div  style="width:1140px;text-align:center;align:center;font-family: '微软雅黑';border:0;"  id="tab-container" class='tab-container' cellpadding="3" cellspacing="1">
  <ul style="text-align:left;float:left" class='etabs'>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}${bean.travelStyleAlias}/${bean.travelStyleAlias }/${bean.alias}#review" target="_self">Overall overview</a></li>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}${bean.travelStyleAlias }/${bean.travelStyleAlias }/${bean.alias}#detail-route" target="_self">Detailed Itinerary</a></li>
@@ -379,6 +379,7 @@
       <td>&nbsp;</td>
     </tr></table>
 </form>
+</center>
 <script type="text/javascript" src="${basePath}js/ux/sys/quote_step4.js"></script>
 </body>
 </html>

@@ -25,9 +25,10 @@
 </script>
 </head>
 <body>
-<%@include file="/front/header.jsp"%>
+
 <center>
     <table class="commontb" align="center" width="72.6%" style="width:72.6%">
+        <tr><td><%@include file="/front/header.jsp"%></td></tr>
         <tr>
             <td style="width:100%;text-align:center" align="center" width="100%" colspan=2>
         <a target="_blank"><img id="banner-index" width="100%" src="${basePath }images/Route001.jpg" /></a></td>

@@ -26,7 +26,7 @@ itouren.serverquotestep4 = function(){
 				// 当触发copy事件时，设置用于复制的文本数据
 				//复制成功： 
 				client.on( "aftercopy", function(){
-				    itouren.alert('提示', "复制成功！",'info');
+				    itour.alert('提示', "复制成功！",'info');
 				});
 			},
 			addFavorite:function () {
@@ -72,23 +72,25 @@ itouren.serverquotestep4 = function(){
 			});
 			//generateReport
 			$("a[name='generateReport']").click(function(){
-				itouren.progress('Please waiting','Processing...');
+				itour.progress('Please waiting','Processing...');
+				var timee = new Date().getTime();
 				$.post('travelOrder/generateReport',{'formContent':document.getElementById("reportdiv").innerHTML,'tordername':$("input[name='tordername']").val(),'idrt':$("input[name='idrt']").val(),'basePath':basePath},function(responseText){
 					var result = $.parseJSON(responseText);
 					//console.log(result);
-					itouren.closeProgress();
+					itour.closeProgress();
 					if(result.success&&result.msg){
-						itouren.alert("提示",result.msg,"info",function(){
+						console.log((new Date().getTime()-timee)/1000);
+						itour.alert("提示",result.msg,"info",function(){
 							$("a[name='viewReport']").attr("href",basePath+result.data);
 							$("a[name='viewReport']").show();
-							itouren.confirm("操作提示", "回到订单管理页面？", function (data) {  
+							itour.confirm("操作提示", "回到订单管理页面？", function (data) {  
 								if (data) {  
 									document.forms["back_form"].submit();
 								}  
 							});
 						});
 					}else{
-						itouren.alert("提示","生成报价单出错，请重新操作或联系管理员。","info",function(){});
+						itour.alert("提示","生成报价单出错，请重新操作或联系管理员。","info",function(){});
 					}
 				});
 			});

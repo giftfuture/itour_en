@@ -18,7 +18,7 @@
     <td> <%@include file="/front/header.jsp"  %> </td>
   </tr>
   <tr>
-    <td><img src="images/img/gonga-04.jpg"/></td>
+    <td align="center" style="text-align:center;width:100%" width="100%"><img width="100%" src="images/img/gonga-04.jpg"/></td>
   </tr>
 </table>
 <table  class="commontb" align="center">

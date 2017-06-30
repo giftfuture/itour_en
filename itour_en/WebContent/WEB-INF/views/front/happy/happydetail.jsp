@@ -8,20 +8,20 @@
 <script type="text/javascript" src="${basePath}js/plug-in/pdf/html2canvas.min.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/pdf/jspdf.min.js"></script>
 <title>回忆幸福详情</title>
-<meta name="description" content="四姑娘山海子沟徒步、长坪沟穿越毕棚沟">
-<meta name="keywords" content="四姑娘山登山，四姑娘山露營，四姑娘山穿越，四姑娘山徒步">
+<meta name="description" content="">
+<meta name="keywords" content="">
 </head>
 <body>
-<%@include file="/front/header.jsp"  %>
-<table class="" align="center" border="0" cellpadding="0" cellspacing="0">
+<table class="" width="72.6%" style="text-align:center" align="center" border="0" cellpadding="0" cellspacing="0">
+ <tr><td><%@include file="/front/header.jsp"  %> </td></tr>  
   <tr>
     <td class="STYLE17"><div align="center"><span class="STYLE19">${sh.title }</span></div></td>
   </tr>
   <tr>
-    <td background="images/frame1-2.gif">
+    <td style="text-align:center" align="center"  width="1140" background="images/frame1-2.gif">
     <table class="frametb" width="1140" align="center" border="0" cellpadding="0" cellspacing="0">
      <tr>
-    <td width="1140" style="align:left;float:left"><img src="${basePath}images/frame1-1.gif" height="7" /></td>
+    <td  width="1140"><img src="${basePath}images/frame1-1.gif" height="7" /></td><!--  style="align:left;float:left" -->
   </tr>
       <tr>
         <td valign="top"><table width="1100" border="0" align="center" cellpadding="0" cellspacing="0">

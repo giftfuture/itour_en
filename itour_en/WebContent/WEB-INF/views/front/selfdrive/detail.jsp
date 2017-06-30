@@ -27,9 +27,10 @@
 </script>
 </head>
 <body>
- <%@include file="/front/header.jsp"  %>
+
 <center>
 <table width="1350px" class="commontb" align="center">
+  <tr><td colspan=2> <%@include file="/front/header.jsp"  %></td></tr>  
   <tr>
     <td width="776" style="float:middle" class="h1-black">${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>

@@ -11,9 +11,10 @@
 <title>Destination</title>
 </head>
 <body>
-<%@include file="/front/header.jsp" %>  
+ 
 <center>
 <table class="frametb" align="center" style="text-align:center;">
+  <tr><td colspan=2><%@include file="/front/header.jsp" %> </td></tr>  
   <tr>
      <td width="197" valign="top">
       <table width="197" border="0" cellspacing="0" cellpadding="5"float:right;>

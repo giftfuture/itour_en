@@ -16,8 +16,9 @@ function ww4(date){
 </script>
 </head>
 <body>
-<%@include file="/front/header.jsp"  %> 
+
 <table border="0" align="center" width="1140" cellpadding="0" cellspacing="0">
+  <tr><td><%@include file="/front/header.jsp"  %> </td></tr>  
   <tr>
     <td class="STYLE17"><div align="center"><span class="STYLE19"></span></div></td>
   </tr>

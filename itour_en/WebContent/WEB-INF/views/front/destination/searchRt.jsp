@@ -25,8 +25,8 @@
  </script>
 </head>
 <body>
-
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<center>
+<table width="72.6%" style="width:72.6%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td><%@include file="/front/header.jsp" %></td>
   </tr>
@@ -50,6 +50,7 @@
 </table>
 <center><ul id='fbpage'></ul></center>
 <%@include file="/front/footer.jsp" %>
+</center>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/searchRt.js"></script>
 </body>
 </html>

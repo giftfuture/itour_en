@@ -8,8 +8,9 @@
 <title>Why Us</title>
 </head>
 <body>
- <%@include file="/front/header.jsp"  %>
+
 <table width="1140" border="0" align="center" cellpadding="30" cellspacing="0">
+<tr><td> <%@include file="/front/header.jsp"  %></td></tr>
   <tr>
     <td class="STYLE17"><div align="center"><span class="STYLE19"><span class="STYLE13">Why Us </span></span></div></td>
   </tr>

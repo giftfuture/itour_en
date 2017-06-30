@@ -53,7 +53,7 @@
 	    	  window.parent.location.href = basePath+"main/login";        
 	      }
 	      function dirurl(obj,uul){
-	    	  console.log("curuser="+itouren.main.getCookie('<%=SessionUtils.SESSION_USER%>'));
+	    	 // console.log("curuser="+itouren.main.getCookie('<%=SessionUtils.SESSION_USER%>'));
 	    	  if(!itouren.main.getCookie('<%=SessionUtils.SESSION_USER%>') && window.location.href != basePath+"main/login"){
 	    		  window.parent.location.href = basePath+"main/login"; 
 	          }else{

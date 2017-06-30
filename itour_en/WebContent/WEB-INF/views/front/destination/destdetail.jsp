@@ -14,8 +14,9 @@
 </head>
 <body>
 <center>
-<%@include file="/front/header.jsp"  %> 
+
 <table class="commontb" valign="middle" style="height:100%">
+<tr><td colspan=3> <%@include file="/front/header.jsp"  %></td></tr>
   <tr style="align:center">
     <td valign="top" rowspan=2 style="text-align:center" align="center">
             <div  style="float:middle;display:inline-block;valign:top;text-align:center;align:center;font-size:18px;background-color:#8B0000;text-decoration:none;color:white;width:202px;height:30px;"  >Vacation destination</div>
