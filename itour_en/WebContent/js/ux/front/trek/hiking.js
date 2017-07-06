@@ -25,7 +25,7 @@ itouren.hiking = function(){
 								                '<td width="669" style="text-align:left"><strong>'+(e.customerName?e.customerName:"")+'</strong> <span class="STYLE140">'+(e.preferedDate?e.preferedDate:"")+' </span></td>'+
 								              '</tr>'+
 								              '<tr>'+
-								                '<td width="150">'+(e.createTime?e.createTime:"")+'</td>'+
+								                '<td width="150"></td>'+
 								                '<td style="text-align:left"><span class="STYLE148">'+(e.content?e.content:"")+'</span></td>'+
 								              '</tr>'+
 								              '<tr>'+

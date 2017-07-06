@@ -47,11 +47,11 @@
         </tr>
         <tr> 
           <td width="30%"  align="right" style="text-align:right;"><strong>Expected travel date:</strong></td>
-          <td  width="70%" style="text-align:left;width:70%"><input name="expectedDepart" id="expectedDepart" type="text" class='easyui-datetimebox' data-options="showSeconds:false, width:150,validType:'dateValided',editable:false,split:true,border:false,region:'north',onSelect:itouren.trekselfbooking.onChangeDate(this)" /></td>
+          <td  width="70%" style="text-align:left;width:70%"><input name="expectedDepart" id="expectedDepart" type="text" class='easyui-datebox' data-options="showSeconds:false, width:150,validType:'dateValided',editable:false,split:true,border:false,region:'north',onSelect:itouren.trekselfbooking.onChangeDate(this)" /></td>
         </tr>
         <tr> 
           <td style="text-align:right"><strong>Expected return date:</strong></td>
-          <td style="text-align:left"><input id="expectedBack" name="expectedBack" type="text" class='easyui-datetimebox' data-options="showSeconds:false,width:150,validType:'md[\'#expectedDepart\']',editable:false,split:true,border:false,region:'north',onSelect:itouren.trekselfbooking.onChangeDate(this)" />
+          <td style="text-align:left"><input id="expectedBack" name="expectedBack" type="text" class='easyui-datebox' data-options="showSeconds:false,width:150,validType:'md[\'#expectedDepart\']',editable:false,split:true,border:false,region:'north',onSelect:itouren.trekselfbooking.onChangeDate(this)" />
             </td>
         </tr>
 		<tr> 

@@ -47,11 +47,11 @@
         </tr>
         <tr> 
           <td width="30%"  height="22px" align="right" style="text-align:right;"><strong>Expected travel date:</strong></td>
-          <td style="text-align:left"><input name="expectedDepart" id="expectedDepart" type="text" class='easyui-datetimebox' data-options="showSeconds:false, width:150,validType:'dateValided',editable:false,split:true,border:false,region:'north',onSelect:itouren.hotsightselfbooking.onChangeDate(this)" /></td>
+          <td style="text-align:left"><input name="expectedDepart" id="expectedDepart" type="text" class='easyui-datebox' data-options="showSeconds:false, width:150,validType:'dateValided',editable:false,split:true,border:false,region:'north',onSelect:itouren.hotsightselfbooking.onChangeDate(this)" /></td>
         </tr>
         <tr> 
           <td><div align="right"><strong>Expected return date:</strong></div></td>
-          <td style="text-align:left"><input id="expectedBack" name="expectedBack" type="text" class='easyui-datetimebox' data-options="showSeconds:false,width:150,validType:'md[\'#expectedDepart\']',editable:false,split:true,border:false,region:'north',onSelect:itouren.hotsightselfbooking.onChangeDate(this)" />
+          <td style="text-align:left"><input id="expectedBack" name="expectedBack" type="text" class='easyui-datebox' data-options="showSeconds:false,width:150,validType:'md[\'#expectedDepart\']',editable:false,split:true,border:false,region:'north',onSelect:itouren.hotsightselfbooking.onChangeDate(this)" />
             </td>
         </tr>
 		<tr> 

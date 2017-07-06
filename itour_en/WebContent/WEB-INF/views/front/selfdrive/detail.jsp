@@ -357,8 +357,8 @@
               </tr>
               <tr>
                 <td width="51" bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*Name</strong>:</div></td>
-                <td width="249" bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="name"  class="easyui-textbox" data-options="prompt:'Please type your name',validType:'string'"/><!--  -->
-                    <select name="sex" id="sex" class="easyui-combobox" data-options="width:80,editable:false,panelHeight:80">
+                <td width="249" bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="name"  class="easyui-textbox" data-options="height:22,prompt:'Please type your name',validType:'string'"/><!--  -->
+                    <select name="sex" id="sex" class="easyui-combobox" data-options="height:22,width:80,editable:false,panelHeight:80">
                       <option value="1">Mr</option>
                       <option value="0">Ms</option>
                     </select>
@@ -367,12 +367,12 @@
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*Email</strong>:</div></td>
-                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" class="easyui-textbox" name="email" data-options="prompt:'Please type a legal email',validType:'email'"/>
+                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" class="easyui-textbox" name="email" data-options="height:22,prompt:'Please type a legal email',validType:'email'"/>
                     <!-- <a href="javascript:void(0)" title="合法的电子邮箱">Explains</a>&gt;&gt;  --></td>
               </tr>
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140"><div align="right"><strong>Mobile Phone</strong>:</div></td>
-                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="mobile"  class="easyui-numberbox" data-options="prompt:'Please type your contact number'"/>
+                <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="mobile"  class="easyui-numberbox" data-options="height:22,prompt:'Please type your contact number'"/>
                     <!-- <a href="javascript:void(0)" title="合法且正在使用的11位大陆手机号码">Explains</a>&gt;&gt; --> </td>
               </tr>
           <!--     <tr>
@@ -390,7 +390,7 @@
               <tr>
                 <td bgcolor="#F0F0F0" class="STYLE140">Verification code</td>
                 <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><div class="tip">
-                <input type="text" id="verifyCode" class=" easyui-textbox" title="Verification code" name="verifyCode"  data-options="prompt:'Please type in the correct verification code!'"/><br/>
+                <input type="text" id="verifyCode" class=" easyui-textbox" title="Verification code" name="verifyCode"  data-options="height:22,prompt:'Please type in the correct verification code!'"/><br/>
                 <img alt="Click to replace" src="${basePath}ImageServlet" id="validateCodeImg" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">
                 &nbsp;&nbsp;<a href="javascript:void(0)" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">Can not see, change one</a>
       </div></td>

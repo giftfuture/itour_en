@@ -80,12 +80,12 @@ var YDataGrid = function(config){
 			//	Win.edit.dialog('open'); 
 				var record = Utils.getCheckedRows();
 				if (Utils.checkSelectOne(record)){
-					itouren.progress();
+					itour.progress();
 					var data ={};
 					var idKey = dataGrid.idField || 'id'; //主键名称
  					data[idKey] = (record[0][idKey]);
-					itouren.getById(Action.getId,data,function(result){
-						itouren.closeProgress();
+					itour.getById(Action.getId,data,function(result){
+						itour.closeProgress();
 						Form.edit.form('load',result.data);
 					//	try{
 						//	CKEDITOR.replace('txtContent', { toolbar: 'Basic' });
@@ -156,17 +156,17 @@ var YDataGrid = function(config){
 				if (Utils.checkSelect(records)){
 					$.messager.confirm('提示','确认删除记录?',function(r){  
 					    if (r){
-					    	itouren.progress();
+					    	itour.progress();
 					    	var arr = [],idKey = dataGrid.idField || 'id'; //主键名称
 					    	$.each(records,function(i,record){
 					    		arr.push('id='+record[idKey]);
 					    	});
 					    	var data = arr.join("&");
-					   		itouren.deleteForm(Action.remove,data,function(result){
-								itouren.closeProgress();
+					   		itour.deleteForm(Action.remove,data,function(result){
+								itour.closeProgress();
 								Events.refresh();
 								//回调函数
-								itouren.alert('提示',result.msg||'删除成功.','info');
+								itour.alert('提示',result.msg||'删除成功.','info');
 							/*	if(jQuery.isFunction(callback)){
 									console.log(result);
 									callback(result);
@@ -182,17 +182,17 @@ var YDataGrid = function(config){
 				if (Utils.checkSelect(records)){
 					$.messager.confirm('提示','确认删除记录?',function(r){  
 					    if (r){
-					    	itouren.progress();
+					    	itour.progress();
 					    	var arr = [],idKey = dataGrid.idField || 'id'; //主键名称
 					    	$.each(records,function(i,record){
 					    		arr.push('id='+record[idKey]);
 					    	});
 					    	var data = arr.join("&");
-					   		itouren.logicdeleteForm(Action.logicremove,data,function(result){
-								itouren.closeProgress();
+					   		itour.logicdeleteForm(Action.logicremove,data,function(result){
+								itour.closeProgress();
 								Events.refresh();
 								//回调函数
-								itouren.alert('提示',result.msg||'删除成功.','info');
+								itour.alert('提示',result.msg||'删除成功.','info');
 								/*if(jQuery.isFunction(callback)){
 									console.log(result);
 									callback(result);
@@ -204,7 +204,7 @@ var YDataGrid = function(config){
 			},//保存调用方法
 			save: function(callback){
 				if(Form.edit.form('validate')){
-					itouren.progress();
+					itour.progress();
 					Form.edit.attr('action',Action.save);
 					var parentId =$('#search_parentId').val();
 					$("#edit_parentId").val(parentId);
@@ -269,8 +269,8 @@ var YDataGrid = function(config){
 						//Form.edit.attr("fullyearTicket",fullyearTicket);
 					} 
 					//console.log(Form.edit.serializeJSON());
-					itouren.saveForm(Form.edit,function(data){
-						itouren.closeProgress();
+					itour.saveForm(Form.edit,function(data){
+						itour.closeProgress();
 						Win.edit.dialog('close');
 					    Events.refresh();
 					    Form.edit.resetForm();
@@ -279,14 +279,14 @@ var YDataGrid = function(config){
 							//console.log(callback(data));
 							callback(data);
 						}else{
-							itouren.alert('提示',data.msg||'保存成功！','info');
+							itour.alert('提示',data.msg||'保存成功！','info');
 						}
 					});
 				 }
 			},
 			saveas: function(callback){
 				if(Form.edit.form('validate')){
-					itouren.progress();
+					itour.progress();
 					Form.edit.attr('action',Action.save);
 					var parentId =$('#search_parentId').val();
 					$("#edit_parentId").val(parentId);
@@ -322,8 +322,8 @@ var YDataGrid = function(config){
 				}
 					Form.edit[0].id.value='';
 					console.log(Form.edit.serializeJSON());
-					itouren.saveForm(Form.edit,function(data){
-						itouren.closeProgress();
+					itour.saveForm(Form.edit,function(data){
+						itour.closeProgress();
 						Win.edit.dialog('close');
 					    Events.refresh();
 					    Form.edit.resetForm();
@@ -332,7 +332,7 @@ var YDataGrid = function(config){
 							//console.log(callback(data));
 							callback(data);
 						}else{
-							itouren.alert('提示',data.msg||'另存成功！','info');
+							itour.alert('提示',data.msg||'另存成功！','info');
 						}
 					});
 				 }
@@ -361,7 +361,7 @@ var YDataGrid = function(config){
 				if(records && records.length > 0){
 					return true;
 				}
-				itouren.alert('警告','请选中一条记录.','warning');  
+				itour.alert('警告','请选中一条记录.','warning');  
 				return false;
 			},
 			checkSelectOne : function(rows){//检查grid是否只勾选了一行,是返回 true,否返回false
@@ -372,7 +372,7 @@ var YDataGrid = function(config){
 				if(records.length == 1){
 					return true;
 				}
-				itouren.alert('警告','只能选择一行记录.','warning');  
+				itour.alert('警告','只能选择一行记录.','warning');  
 				return false;
 			}
 		}
@@ -525,7 +525,7 @@ var YDataGrid = function(config){
 			//查询页面授权的btnType  
 			//console.log(_url);	
 			//console.log(data);	
-			itouren.ajaxJson(_url,params,function(data){
+			itour.ajaxJson(_url,params,function(data){
 				//console.log(data);
 				if(data.success||data.success=='true'){
 					if(data.allType){
@@ -553,7 +553,7 @@ var YDataGrid = function(config){
 						}
 					}
 				}else{
-					itouren.alert('提示',data.msg||'YDataGrid ajaxJson请求出现异常,请联系管理员','info');
+					itour.alert('提示',data.msg||'YDataGrid ajaxJson请求出现异常,请联系管理员','info');
 				}
 			});
 		}

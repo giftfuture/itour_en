@@ -37,9 +37,10 @@
 </style>
 </head>
 <body>
+<center>
 <form:form method="post" id="back_form" name="back_form" action="${basePath }travelOrder/list">
 </form:form>
-<center>
+
 <form name="calculatespendForm" action="travelOrder/generateReport" method="post">
 <div id="reportdiv">
 <table border="0" align="center" width="1140" cellpadding="0" cellspacing="0">
@@ -183,14 +184,12 @@
           <td class="STYLE126" style="margin-left:10px;text-align:left" style="font-size: 14px;">${bean.mountStyle } <a href="javascript:void(0)" title="${bean.mountStyle}">Explain&gt;&gt; </a></td>
         </tr>
       </table>
-      <span class="STYLE148" style="color: #990000"> 
-        Note: The needs of each group are different, according to your holiday to<br /> re-adjust the design process.</span> 
     <table class="f12-gao1">
       <tr>
         <td><img src="${basePath}images/facebook.png" width="24" height="24" />
         <a >Share to FB</a></td>
         <td><img src="${basePath}images/share.png" width="24" height="24" />
-        <a >Copy Url</a><div style="display:none" id="flashcopier"></div></td>
+        <a  data-clipboard-target="flashcopier">Copy Url</a><div style="display:none" id="flashcopier"></div></td>
         <td><img src="${basePath}images/favorite01.png" width="24" height="24" />
         <a rel="sidebar">Bookmark</a></td>
         <td><img src="${basePath}images/print.png" width="24" height="24" />
@@ -216,9 +215,9 @@
 
 <div  style="width:1140px;text-align:center;align:center;font-family: '微软雅黑';border:0;"  id="tab-container" class='tab-container' cellpadding="3" cellspacing="1">
  <ul style="text-align:left;float:left" class='etabs'>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}${bean.travelStyleAlias}/${bean.travelStyleAlias }/${bean.alias}#review" target="_self">Overall overview</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}${bean.travelStyleAlias }/${bean.travelStyleAlias }/${bean.alias}#detail-route" target="_self">Detailed Itinerary</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}${bean.travelStyleAlias }/${bean.travelStyleAlias }/${bean.alias}#need-know" target="_self">Before the line to know</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a>Overall overview</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a>Detailed Itinerary</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a>Before the line to know</a></li>
  </ul>
  <div class='panel-container'>
  <div id="review" name="review">
@@ -230,16 +229,16 @@
     <td background="${basePath}images/frame1-2.gif" width="1140" ><table width="1140" border="0" align="center" cellpadding="10" cellspacing="0">
       <tr> 
         <td width="761" valign="top" style="text-align:left;color: #990000;font-family:'微软雅黑';font-size: 16px; font-weight: bold;" class="STYLE126" ><span class="STYLE3">design concept:</span>
-       	 <p style="color: #990000;"> ${bean.designConcept }</p>
+         <p style="color: #990000;"> ${bean.designConcept }</p>
           <span class="STYLE148" style="color: #990000;font-weight: bold;text-align: left;font-size: 14px;"><strong>iTour travel team customization service:</strong> </span>
           <p style="color: #990000;">${bean.customizedService }</p>
         </td>
         <td width="299" valign="top" class="STYLE126"><div align="center"><span class="STYLE3" style="color: #990000;font-family: '微软雅黑';font-size: 24px;">Travel map</span>
-   			<div class="easyzoom easyzoom--overlay"><p>
-				<a href="${basePath}images/map-002.jpg">
-					<img src="${basePath}images/map-002.jpg" alt="" width="640" height="360" />		
-				</a></p>
-			</div>
+            <div class="easyzoom easyzoom--overlay"><p>
+                <a>
+                    <img src="${basePath}images/map-002.jpg" alt="" width="640" height="360" />     
+                </a></p>
+            </div>
           </div>
         </td>
       </tr>
@@ -298,13 +297,13 @@
   </tr>
   <tr>
     <td background="${basePath}images/frame1-2.gif">
-	<table  class="commontb" align="center">
+    <table  class="commontb" align="center">
         <tr>
           <td valign="top">
           <table width="1100" border="0" align="center" cellpadding="4" cellspacing="2">
-          	<c:if test="${vo.isShowDetail=='true' }">
+            <c:if test="${vo.isShowDetail=='true' }">
               <tr>
-                <td width="150"  bgcolor="#f0f0f0"><p align="right"><strong>Tickets:</strong></p></td>
+                <td width="95"  bgcolor="#f0f0f0"><p align="right"><strong>Tickets:</strong></p></td>
                 <td width="529" style="text-align:left">${vo.adultticketsBlock}</td>
                 <td width="444" style="text-align:left">${vo.adultticketTotalPrice}￥per person</td>
               </tr>
@@ -346,7 +345,7 @@
                 <td style="text-align:left">${vo.quoterecreationadultsBlock} </td>
                 <td style="text-align:left"></td>
               </tr>
-			</c:if>
+            </c:if>
             <tr>
               <td bgcolor="#f0f0f0"><div align="right"><strong>Quotes:</strong></div></td>
               <td style="text-align:left;float:left">Aduts:<span name="adultsperguy">${vo.plusSumPrice+adultsumcost }</span>￥ per person*${od.adults }  
@@ -364,20 +363,21 @@
     <td style="float:left"><img  style="float:left" src="${basePath}images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
 </table>
-</td></tr></table></div></div></div>
+</td></tr><tr><td>
+
+</td></tr>
+</table></div></div></div>
 </div>
-    <table><tr>
-      <td><label></label>
+ <div ><div class="easyui-progressbar" id="divProgressbar" align="center" style="text-align:center;width:15%;display:none;"></div>
+     
           <table border="0" cellspacing="0" cellpadding="3">
             <tr>
               <td><a style="padding-left:10px;padding-right:10px;margin-left:20px;" href="travelOrder/returntoQuote3/${torder.id}/${bean.id }" class="easyui-linkbutton" iconcls="icon-back" >返回上页修改</a></td>
-              <td><a  style="padding-left:10px;padding-right:10px;margin-left:20px;" class="easyui-linkbutton" name="modefyProject" value="改下项目描述" >改下项目描述</a></td>
+              <td><a style="padding-left:10px;padding-right:10px;margin-left:20px;" class="easyui-linkbutton" name="modefyProject" value="改下项目描述" >改下项目描述</a></td>
               <td><input type="hidden" name="formContent"/><a style="padding-left:10px;padding-right:10px;margin-left:20px;" class="easyui-linkbutton" name="generateReport" value="生成正式报价单" >生成正式报价单</a></td>
-               <td><a style="padding-left:10px;padding-right:10px;margin-left:20px;display:none" class="easyui-linkbutton" name="viewReport" value="查看报价单" >查看报价单</a></td>	
+               <td><a style="padding-left:10px;padding-right:10px;margin-left:20px;display:none" class="easyui-linkbutton" name="viewReport" value="查看报价单" >查看报价单</a></td>  
             </tr>
-        </table></td>
-      <td>&nbsp;</td>
-    </tr></table>
+        </table></div></div> </div>
 </form>
 </center>
 <script type="text/javascript" src="${basePath}js/ux/sys/quote_step4.js"></script>

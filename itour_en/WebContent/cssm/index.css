@@ -22,7 +22,7 @@ body {
 }
 .h2-24red {
     font-family: "微软雅黑";
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-color: #990000;
 }
 .f12-gao1 {
@@ -35,7 +35,7 @@ body {
     line-height: 30px;
     color: #333333;
 }
-.STYLE2 {font-family: "微软雅黑"; font-size: 1.5em; color: #990000; }
+.STYLE2 {font-family: "微软雅黑"; font-size: 1.5rem; color: #990000; }
 .STYLE3 {
     color: #990000;font-family: "微软雅黑";
 }
@@ -44,7 +44,7 @@ font-size: 2.25em;
 font-weight: bold;
 color: #990000;}
 .STYLE6 {font-family: "微软雅黑";font-size:0.875em}
-.STYLE7 {color: #666666; font-family: "微软雅黑"; }
+.STYLE7 {color: #666666; font-family: "微软雅黑";font-size:0.875em }
 .STYLE8 {font-size: 14px; line-height: 1.875em; color: #333333; font-family: "微软雅黑"; }
 .STYLE9 {font-family: "微软雅黑"; font-size: 1.5em; font-weight: bold; color: #333333; }
 .STYLE10 {font-family: "微软雅黑"; font-size: 1.5em; color: #666666; }

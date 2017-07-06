@@ -89,6 +89,7 @@ public class ImageFilter {
      matcherForTag.appendTail(sb);         
      return sb.toString();
   } 
+  
 	/**
 	 * 
 	 * @param htmlStr
@@ -116,14 +117,16 @@ public class ImageFilter {
     }
    //String[] imgs = img.split(",");
    for(String img:imgs){
-  	 if(StringUtils.isNotEmpty(img)&&!img.contains(replacenew)){
+  	 if(StringUtils.isNotEmpty(img) && !img.contains(replacenew) && !img.contains("images/frame")){
   		  //Pattern.compile("src=\"?(.*?)(\"|>|\\s+)").matcher(img); //匹配src 
 		  	 String newimg = "";
 		  	 Matcher m = Pattern.compile("src\\s*=\\s*\"?(.*?)(\"|>|\\s+)").matcher(img); 
 	          while (m.find()){ 
 	        	  String result = m.group(); 
       		  //content = content.replaceFirst(td, replacenew+result.replaceAll("'", ""));
-	        	  newimg = img.replaceAll(result, result.split("=")[0]+"=\""+replacenew+result.split("=")[1].substring(1));
+	        	  if(base64ImgExt.containsKey(result.substring(result.indexOf('.')+1))){
+	        	     newimg = img.replaceAll(result, result.split("=")[0]+"=\""+replacenew+result.split("=")[1].substring(1)+"\"");
+	        	  }
 	          } 
 		  content = content.replaceAll(img, newimg);
   	 }

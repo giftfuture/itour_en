@@ -1044,7 +1044,7 @@ public class TravelOrderController extends BaseController {
 				result = sendSuccessResult(response, "The reservation is successful, please check the mailbox reservation success later!", pdfurl);
 			}
 		}
-		return result;
+		return JsonUtils.encode(result) ;
 	}
 
 	@Auth(verifyLogin = true, verifyURL = true)

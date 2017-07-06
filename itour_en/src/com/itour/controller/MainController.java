@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -283,12 +285,19 @@ public class MainController extends BaseController {
 			sendFailureMessage(response, "密码不能为空且长度不小于六位.");
 			return;
 		}
-
 		//不是超级管理员，匹配旧密码
 		if(!MethodUtil.compareSHA(oldPwd,bean.getPwd())){
 			sendFailureMessage(response, "旧密码输入不匹配.");
 			return;
 		}
+		//只能有数字和字母和@#$三种符号,长度只能6-8位,字母必须2位或以上,数字必须1位或以上
+		/*String regEx ="(?=.*([a-zA-Z].*){2,})(?=.*[0-9].*)[a-zA-Z0-9@$#]{6,8}$";
+	    Pattern pattern = Pattern.compile(regEx);// 编译正则表达式
+	    Matcher matcher = pattern.matcher(bean.getPwd());
+	    if(!matcher.matches()){// 字符串是否与正则表达式相匹配
+	    	 sendFailureMessage(response, "新密码强度不够，请重新设置密码.");
+	    	 return;
+	    }*/
 		bean.setPwd(MethodUtil.encryptSHA(newPwd));
 		sysUserService.update(bean);
 		SysUser newuser = sysUserService.queryById(user.getId());
@@ -434,6 +443,13 @@ public class MainController extends BaseController {
 			/*if(!MethodUtil.compareSHA(oldPwd,bean.getPwd())){
 				return sendFailureResult(response, "旧密码输入不匹配.");
 			}*/
+			//只能有数字和字母和@#$三种符号,长度只能6-8位,字母必须2位或以上,数字必须1位或以上
+			/*String regEx ="(?=.*([a-zA-Z].*){2,})(?=.*[0-9].*)[a-zA-Z0-9@$#]{6,8}$";
+		    Pattern pattern = Pattern.compile(regEx);// 编译正则表达式
+		    Matcher matcher = pattern.matcher(vo.getNewPwd());
+		    if(!matcher.matches()){// 字符串是否与正则表达式相匹配
+		    	return sendFailureResult(response, "新密码强度不够，请重新设置密码.");
+		    }*/
 			bean.setPwd(MethodUtil.encryptSHA(vo.getNewPwd()));
 			sysUserService.update(bean);
 			SysUser newuser = sysUserService.queryById(bean.getId());

@@ -71,17 +71,17 @@ function loadlevel2Area(level1Area){
   <tr>
     <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2"><strong>fast Search</strong></div></td>
     <td width="75%" bgcolor="#CCCCCC" class="f14-gao1" >  
-      <strong>Travel mode:</strong> <input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:130,height:20,valueField:'alias',textField:'type',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
+      <strong>Travel mode:</strong> <input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:120,minWidth:80,height:22,valueField:'alias',textField:'type',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
       <label>
       Tourist area:<!--onBeforeLoad
            -->
             <!-- width:130,height:20,valueField:'level1Area',textField:'level1Area',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}levelarea/queryLevel1' -->
-         <input class="easyui-combobox" id="level1Area" name="level1Area" value="${level1Area}" data-options="width:130,height:20,panelHeight:'auto',editable:false"
+         <input class="easyui-combobox" id="level1Area" name="level1Area" value="${level1Area}" data-options="width:120,minWidth:80,height:22,panelHeight:'auto',editable:false"
         <%-- ,onLoadSuccess:function(){$(this).combobox('select', '${level1Area}');} --%>
     <%--     ,onChange:function(n,o){ var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?level1Area='+n ;$('#level2Area').combobox('reload',urlurl);} --%>
         >
         <!--  width:130,height:20,valueField:'aliasCode',textField:'level2Area',mode:'remote',panelHeight:'auto',editable:false, method:'get'  -->
-         <input id="level2Area" name="level2Area" class="easyui-combobox" data-options="width:130,height:20,panelHeight:'auto',editable:false"/> 
+         <input id="level2Area" name="level2Area" class="easyui-combobox" data-options="width:120,minWidth:80,height:22,panelHeight:'auto',editable:false"/> 
              <%--  ,onLoadSuccess:function(){
                 var level1Area = $('#level1Area').combobox('getValue');
                console.log(level1Area); 
@@ -99,7 +99,7 @@ function loadlevel2Area(level1Area){
               
           }--%>
         Holiday days:<a href="javascript:void(0)">
-    <select class="easyui-combobox" data-options="width:130,height:20,editable:false" name="vacation" id="vacation">
+    <select class="easyui-combobox" data-options="width:120,minWidth:80,height:22,editable:false" name="vacation" id="vacation">
       <option value="">-All-</option>
       <option value="1_5">1-5days</option>
       <option value="6_9">6-9days</option>

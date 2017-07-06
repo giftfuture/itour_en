@@ -61,6 +61,42 @@ itouren.serverquotestep4 = function(){
 					window.alert("因为IE浏览器存在bug，添加收藏失败！\n解决办法：在注册表中查找\n HKEY_CLASSES_ROOT\\TypeLib\\{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}\\1.1\\0\\win32 \n将 C:\\WINDOWS\\system32\\shdocvw.dll 改为 C:\\WINDOWS\\system32\\ieframe.dll ");
 				}
 			},
+		generateReportFun:function(intervalId){
+			      var progressBar = $("#divProgressbar");  
+			      progressBar.show();
+				//想要修改进度条的颜色去css文件中去修改
+			      progressBar.progressbar({
+					width : 200,		//设置进度条宽度 默认400
+					height : 15,		//设置进度条高度 默认22
+					value : 0,			//设置进度条值 默认0
+					text : '{value}%',	//设置进度条百分比模板 默认 {value}%
+					//在value改变的时候触发
+					onChange : function (newValue, oldValue) {
+						console.log('新:' + newValue + ',旧:' + oldValue);
+					},
+				});
+			      intervalId = setInterval(function(){
+					var value = progressBar.progressbar('getValue');
+					if (value < 100){
+					    value += Math.floor(Math.random() * 5);
+					    progressBar.progressbar('setValue', value);
+					}
+					//getValue  setValue 分别是返回当前进度值  和 设置一个进度值
+					//progressBar.progressbar('setValue', progressBar.progressbar('getValue') + 5);
+				},1000);
+		 },
+		 msgProgress:function(intervalId){
+			  		var progressBar = $("#divProgressbar");  
+					var value = progressBar.progressbar('getValue');
+					if (value < 100){
+					    value += Math.floor(Math.random() * 6);
+					    progressBar.progressbar('setValue', value);
+					    //console.log("value="+value);    
+					}else{
+						 progressBar.progressbar('setValue', 100);
+						 window.clearInterval(intervalId);  
+					}
+		 },
 		init:function(){
 			$("a.imgBorder img").on('click',function(){
 				$(this).parents("tr").prev().find("td img").attr("src",$(this).attr("src"));
@@ -72,14 +108,48 @@ itouren.serverquotestep4 = function(){
 			});
 			//generateReport
 			$("a[name='generateReport']").click(function(){
-				itour.progress('Please waiting','Processing...');
-				var timee = new Date().getTime();
-				$.post('travelOrder/generateReport',{'formContent':document.getElementById("reportdiv").innerHTML,'tordername':$("input[name='tordername']").val(),'idrt':$("input[name='idrt']").val(),'basePath':basePath},function(responseText){
+					   var totalTime = 35;	
+				   var intervalId = null;
+				   var progressBar = $("#divProgressbar");  
+				      progressBar.show();
+					//想要修改进度条的颜色去css文件中去修改
+				      progressBar.progressbar({
+						width : 300,		//设置进度条宽度 默认400
+						height : 22,		//设置进度条高度 默认22
+						value : 0,			//设置进度条值 默认0
+						text : '{value}%',	//设置进度条百分比模板 默认 {value}%
+						onChange : function (newValue, oldValue) {//在value改变的时候触发
+							//console.log('新:' + newValue + ',旧:' + oldValue);	 
+						}
+					 });
+				     
+				//itour.progress('请稍侯','信息提交中...', interval:0);
+				//var nowtime = new Date().getTime();
+				//progressBar.progressbar({value: 0});
+			   // nowtime,progressBar,intervalId,document.getElementById("reportdiv").innerHTML,$("input[name='tordername']").val(),$("input[name='idrt']").val()
+				$.ajax({url:'travelOrder/generateReport',method:'post',data:{'formContent':document.getElementById("reportdiv").innerHTML,'tordername':$("input[name='tordername']").val(),'idrt':$("input[name='idrt']").val(),'basePath':basePath},
+					dataType:'json',
+					timeout:40000,//超时时间：40秒 
+					beforeSend: function(){
+						//console.log("beforeSend####intervalId="+intervalId);
+						intervalId = setInterval("itouren.serverquotestep4.msgProgress("+intervalId+")",1000);
+					},
+					complete:function(){
+					},
+					success:function(responseText){
+					progressBar.progressbar('setValue', 100);
+					window.clearInterval(intervalId);  
+					console.log(responseText);
 					var result = $.parseJSON(responseText);
 					//console.log(result);
-					itour.closeProgress();
-					if(result.success&&result.msg){
-						console.log((new Date().getTime()-timee)/1000);
+					//itour.closeProgress();
+					//clearInterval(intervalId);  
+	               /* if(progressBar != null){  
+	                    progressBar.progressbar("setValue",100);      
+	                }*/
+		                //console.log(result);
+						if(result && result.success && result.msg){
+					 
 						itour.alert("提示",result.msg,"info",function(){
 							$("a[name='viewReport']").attr("href",basePath+result.data);
 							$("a[name='viewReport']").show();
@@ -92,6 +162,12 @@ itouren.serverquotestep4 = function(){
 					}else{
 						itour.alert("提示","生成报价单出错，请重新操作或联系管理员。","info",function(){});
 					}
+			  },//请求出错的处理  
+	                error:function(){  
+	                	progressBar.progressbar('setValue', 0);
+	                    window.clearInterval(intervalId);  
+	                    itour.alert("提示","请求出错，请重新生成","info");  
+	                 }  
 				});
 			});
 		}

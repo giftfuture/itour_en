@@ -201,7 +201,7 @@
 
 	<!-- 查询客户反馈列表 -->
 	<select id="queryByList" resultMap="BaseResultMap" parameterType="com.itour.base.page.BasePage">
-		select feed_back.valid,feed_back.id, feed_back.create_time, feed_back.status, feed_back.update_time, feed_back.title, feed_back.sex,
+		select feed_back.valid,feed_back.id, feed_back.create_time, feed_back.status, feed_back.update_time, feed_back.title, feed_back.sex,feed_back.prefered_date,
 		rt.title route,feed_back.content, feed_back.customer_id, feed_back.result,customers.email email,customers.mobile mobile,public_show,
 		customers.customer_name customerName 
 		from feed_back left join customers on feed_back.customer_id = customers.id 
