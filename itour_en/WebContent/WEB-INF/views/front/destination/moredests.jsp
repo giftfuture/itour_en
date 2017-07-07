@@ -20,12 +20,7 @@
     </td>
   </tr>
 </table>
-<!-- <table width="100%" border="0" align="center" cellpadding="15" cellspacing="0">
-  <tr>
-    <td>目的地》四川》四姑娘山》四姑娘山长坪沟</td>  
-  </tr>
-</table> -->
-<table  class="commontb" align="center">
+<table  class="frametb" align="center" style="text-align:center;width:61.3%" width="61.3%">
   <tr> 
     <td style="text-align:center;float:middle" valign="top" colspan=3>
 	  Sichuan, referred to as "Sichuan" or "Shu", the capital of Chengdu, located in the hinterland of the southwest of mainland China, the eastern part of the eastern Sichuan Ling and Chuanzhong hills, the central Sichuan Basin and the Chengdu Plain, western Sichuan Plateau, and Shaanxi, Guizhou, Yunnan , Tibet, Qinghai, Gansu, Chongqing provinces and cities at the junction, is the hometown of National Treasure giant panda.

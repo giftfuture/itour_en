@@ -96,7 +96,7 @@ $('.userload').click(function(e){
 
 });
 function modifyPwd(){
-	itour.progress('请稍侯','信息提交中...');
+	itour.progress('请稍候','信息提交中...');
 	var pwdForm = $("#pwdForm");
 	var param = {'email':$("#email",pwdForm).val(),'newPwd':$("#newPwd",pwdForm).val(),'pwdCode':$("#pwdCode",pwdForm).val()};
 	//console.log(param);

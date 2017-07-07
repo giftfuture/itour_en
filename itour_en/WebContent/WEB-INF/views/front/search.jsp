@@ -47,7 +47,9 @@
   </tr>
 </table>
 <center><ul id='fbpage'></ul></center>
-<%@include file="/front/footer.jsp" %>
+<table class="frametb" align="center" width="61.3%" style="width:61.3%">
+ <tr><td><%@include file="/front/footer.jsp" %></td></tr>
+</table>
 <script type="text/javascript">
 /* 	var travelStyle = '${travelStyle}';
  	var level1Area = '${level1Area}';

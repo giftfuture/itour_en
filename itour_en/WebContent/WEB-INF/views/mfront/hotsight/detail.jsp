@@ -73,11 +73,11 @@
 </div>
       </tr></table></td>
       </tr></table></td>
-     <td width="600" style="float:left" valign="top" > 
+     <td    style="text-align:center;float:middle; " valign="top" > 
     
-      <table width="442" border="0" cellpadding="4" cellspacing="2" class="STYLE126">
+      <table style="text-align:center;float:middle; " border="0" cellpadding="0" cellspacing="0" class="STYLE126">
       <tbody><tr>
-        <td style="float:left"><img src="images/frame2-1.gif" width="480" height="7"></td>
+        <td style="float:left"><img src="images/frame2-1.gif"  height="7"></td>
       </tr>
 <tr>
         <td background="images/frame2-2.gif"><table cellspacing="0" cellpadding="5" border="0" align="center">
@@ -164,7 +164,7 @@
     </td>
   </tr>
  <tr>
-    <td style="float:left"><img src="images/frame2-3.gif" width="480" height="7"></td>
+    <td style="float:left"><img src="images/frame2-3.gif"  height="7"></td>
   </tr>
   </tbody>
 </table>

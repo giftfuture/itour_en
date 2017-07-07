@@ -347,7 +347,33 @@ public class TravelOrderController extends BaseController {
 		logOperationService.add(new LogOperation(logId, "查看", entity.getId(), JsonUtils.encode(entity), "","travelOrder/getId", sessionuser.getId())); 
 		return JsonUtils.encode(context);
 	}
-
+	
+	/**
+	 * 待处理订单
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	@Auth(verifyLogin = true, verifyURL = true)
+	@ResponseBody
+	@RequestMapping(value = "/unDealedOrders", method = RequestMethod.POST)
+	public String unDealedOrders(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Map<String, Object> context = getRootMap();
+		List<TravelOrder> list = travelOrderService.unDealedOrders();
+		if (list == null) {
+			return sendFailureResult(response, "无待处理订单!");
+		}
+		context.put(SUCCESS, true);
+		context.put("data", list);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####" + (sessionuser != null ? ("id:" + sessionuser.getId() + "email:" + sessionuser.getEmail()+ ",nickName:" + sessionuser.getNickName()) : "") + "调用执行TravelOrderController的unDealedOrders方法");
+		String logId = logSettingService.add(new LogSetting("travel_order", "订单管理", "travelOrder/unDealedOrders", sessionuser.getId(), "", "")); 
+		logOperationService.add(new LogOperation(logId, "查看", list.size()+"", JsonUtils.encode(list), "","travelOrder/unDealedOrders", sessionuser.getId())); 
+		return JsonUtils.encode(context);
+	}
+	
 	/**
 	 * 
 	 * @param id

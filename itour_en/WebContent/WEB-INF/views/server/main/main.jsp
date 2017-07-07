@@ -67,16 +67,16 @@
 		<div class="panel-header" style="border: none;text-align: center;" >CopyRight &copy; 2016 itour 版权所有. &nbsp;&nbsp;官方网址: www.itours.com.cn</div>
 	</div>
 	<!-- 中间内容页面 -->
-	<div data-options="region:'center'" >
+	<div data-options="region:'center'">
 		<div class="easyui-tabs" id="tab-box" data-options="fit:true,border:false">
 			<div title="Welcome" style="padding:20px;overflow:hidden;"> 
 				<div style="margin-top:20px;">
 				</div>
 				<pre>欢迎进入主角旅行英文版网站后台管理界面</pre>
-				<div style="margin-top:20px;">
+				<div style="margin-top:20px;" id="unDealedOrders">
+				    
 				</div>
 			</div>
-	 
 		</div>	
 	</div>
 	<!--  modify password start -->

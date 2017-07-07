@@ -75,11 +75,11 @@
 <!-- </table>
 <table class="commontb" align="center" width="100%"  style="width:100%;text-align:center;float:middle" > -->
 <tr>
- <td style="text-align:center;float:middle;width:100%;"> 
-     <table style="text-align:center;float:middle;width:72.2%;" align="center">
+ <td style="text-align:center;float:middle; "> 
+     <table style="text-align:center;float:middle; " align="center">
 
       <tbody><tr>
-        <td ><img src="images/frame2-1.gif" width="100%" height="7"></td>
+        <td ><img src="images/frame2-1.gif" height="7"></td>
       </tr>
 <tr>
         <td background="images/frame2-2.gif"><table cellspacing="0" cellpadding="0" border="0" align="center">
@@ -166,7 +166,7 @@
     </td>
   </tr>
  <tr>
-    <td><img src="images/frame2-3.gif" width="100%" height="7"></td>
+    <td><img src="images/frame2-3.gif"  height="7"></td>
   </tr>
   </tbody>
 </table>

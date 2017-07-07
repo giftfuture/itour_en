@@ -69,8 +69,8 @@ function loadlevel2Area(level1Area){
 <form name="searchForm" method="post">
 <table class="frametb" align="center" >
   <tr>
-    <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2"><strong>fast Search</strong></div></td>
-    <td width="75%" bgcolor="#CCCCCC" class="f14-gao1" >  
+    <td width="10%" bgcolor="#CCCCCC"><div align="left" class="STYLE2"><strong>fast Search</strong></div></td>
+    <td width="80%" bgcolor="#CCCCCC" class="f14-gao1" >  
       <strong>Travel mode:</strong> <input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:120,minWidth:80,height:22,valueField:'alias',textField:'type',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'">
       <label>
       Tourist area:<!--onBeforeLoad

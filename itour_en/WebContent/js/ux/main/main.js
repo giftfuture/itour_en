@@ -71,10 +71,30 @@ itouren.main = function(){
 		     exp.setTime(exp.getTime() + 60*60*1000);
 		     document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
 	     },
+	     unDealedOrders:function(){
+	    		$.ajax({
+	    			url:basePath+'travelOrder/unDealedOrders',
+	    			method:'post',
+	    			async:false,
+	    			data:{},
+	    			success:function(responseText){
+						var resp = $.parseJSON(responseText);
+						if(resp.success||resp.success=="true"){
+							$("#unDealedOrders").append("<p style='text-align:left;'>待处理订单：</p>");
+							$(resp.data).each(function(idx,ex){
+								$("#unDealedOrders").append("<p>("+(idx+1)+").<a target='_blank' href="+basePath+"travelOrder/toQuote1/"+ex.id+'/'+ex.routeId+">"+ex.orderName+"</a></p>");
+							});
+						}else{
+							$("#unDealedOrders").append("<p style='text-align:left;'>无待处理订单：</p>");
+						}
+					
+	    			}
+				});
+	     },
 		init:function(){
 			this.treeInit();
 			this.menuHover();
-			
+			this.unDealedOrders();
 			//修改密码绑定事件
 			$('.modify-pwd-btn').click(function(){
 				$('#modify-pwd-win').dialog('open');

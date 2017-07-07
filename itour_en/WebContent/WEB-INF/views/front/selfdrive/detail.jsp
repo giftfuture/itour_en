@@ -75,12 +75,11 @@
       </tr></table></td>
       </tr></table></td>
        <td width="600" style="float:left" valign="top" > 
-    
       <table width="442" border="0" cellpadding="4" cellspacing="2" class="STYLE126">
       <tbody><tr>
-        <td style="float:left"><img src="images/frame2-1.gif" width="480" height="7"></td>
+        <td style="float:left;"><img src="images/frame2-1.gif" width="480" height="7"></td>
       </tr>
-<tr>
+    <tr>
         <td background="images/frame2-2.gif"><table cellspacing="0" cellpadding="5" border="0" align="center">
           <tbody><tr>
             <td><div align="center"><span class="STYLE2">Is this Line for me？</span></div></td>    

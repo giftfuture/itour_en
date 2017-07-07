@@ -43,7 +43,6 @@
       </tr>
       <tr>
         <td height="69">
-
 <div align="center">
 <!--滚动图片 start-->
 <DIV class=rollphotos>
@@ -79,12 +78,12 @@
 <!-- </table>
 <table class="commontb" align="center" width="100%"  style="width:100%;text-align:center;float:middle" > -->
 <tr>
- <td style="text-align:center;float:middle;width:100%;"> 
-     <table style="text-align:center;float:middle;width:100%;" align="center">
+ <td style="text-align:center;float:middle;"> 
+     <table style="text-align:center;float:middle; " align="center">
       <tbody><tr>
-        <td style="float:left"><img src="images/frame2-1.gif" width="100%" height="7"></td>
+        <td style="float:middle;" align="center"><img src="images/frame2-1.gif" height="7"></td>
       </tr>
-<tr>
+    <tr>
         <td background="images/frame2-2.gif"><table cellspacing="0" cellpadding="0" border="0" align="center">
           <tbody><tr>
             <td><div align="center"><span class="STYLE2">Is this Line for me？</span></div></td>    
@@ -168,7 +167,7 @@
     </td>
   </tr>
  <tr>
-    <td ><img src="images/frame2-3.gif" width="100%" height="7"></td>
+    <td style="float:left"><img src="images/frame2-3.gif"  height="7"></td>
   </tr>
   </tbody>
 </table>

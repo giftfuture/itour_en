@@ -20,7 +20,8 @@ itouren.mindex = function(){
 						titles[i]=e.title;
 						//console.log(links);
 					});
-				},error:function(){
+				},error:function(e){
+					itour.alert("提示","加载首页链接出错","info");
 				}
 			})
 		},

@@ -223,7 +223,10 @@ where valid=1
 	select count(1) from travel_order 
 	<include refid="Example_Where_Clause"/>
 </select>
-  	
+<!-- 查询待处理订单 -->
+<select id="unDealedOrders"  resultMap="BaseResultMap">
+select <include refid="Base_Column_List"/> from travel_order where order_status =1 or order_status is null
+</select>     	
 <!-- 查询客户订单列表 -->
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
 	select 

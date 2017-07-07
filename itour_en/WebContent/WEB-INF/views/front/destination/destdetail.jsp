@@ -61,7 +61,7 @@
                     scrollPic_02.pageWidth      = 152; //翻页宽度
                     scrollPic_02.speed          = 10; //移动速度(单位毫秒，越小越快)
                     scrollPic_02.space          = 10; //每次移动像素(单位px，越大越快)
-                    scrollPic_02.autoPlay       = false; //自动播放
+                    scrollPic_02.autoPlay       = true; //自动播放
                     scrollPic_02.autoPlayTime   = 3; //自动播放间隔时间(秒)
                     scrollPic_02.initialize(); //初始化
                     //--><!]]>
