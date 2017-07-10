@@ -400,6 +400,14 @@ where order_detail.valid=1
     select order_detail.*,areas.areaname
      from order_detail left join areas on order_detail.comefrom = areas.id where travel_order = #{orderId}
 </select>
+<select id="queryByOrderIds"  resultMap="BaseResultMapVo" parameterType="java.lang.String">
+    select order_detail.*,areas.areaname
+     from order_detail left join areas on order_detail.comefrom = areas.id where travel_order in 
+      <foreach item="item" index="index" collection="orderIds" 
+               open="(" separator="," close=")">
+              #{item}
+      </foreach>
+</select>
 <!-- 订单详情 列表总数-->
 <select id="queryByCount" resultType="java.lang.Integer"  parameterType="com.itour.base.page.BasePage">
 	select count(1) from order_detail 

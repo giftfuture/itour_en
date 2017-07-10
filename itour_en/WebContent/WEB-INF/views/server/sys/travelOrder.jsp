@@ -9,8 +9,8 @@
  	 <div class="ui-search-panel" region="north" style="height: 120px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">订单号:</label><input name="orderNo" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
-			<label class="ui-label">订单名称:</label><input name="orderName" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
+			<label class="ui-label">订单号:</label><input name="orderNo" class="easyui-textbox" data-options="width:100">&nbsp;&nbsp;
+			<label class="ui-label">订单名称:</label><input name="orderName" class="easyui-textbox" data-options="width:100">&nbsp;&nbsp;
 			<label class="ui-label">订单状态:</label>
 				<select name="orderStatus" class="easyui-combobox" data-options="editable:false,width:100">
 					<option value="">--请选择--</option>
@@ -21,7 +21,7 @@
 			</p>
 		<p class="ui-fields"><label class="ui-label">联系人:</label><input name="receiver" class="easyui-textbox" data-options="width:100">&nbsp;&nbsp;
 			<label class="ui-label">下单时间:</label><input name="createTime"  class="easyui-datebox" data-options="width:100,editable:false,region:'north',split:true,border:false" ></p>
-	    &nbsp; &nbsp; <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    &nbsp; &nbsp; <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search" style="margin-top:10">查询</a>
       </form>  
      </div> 
      <!--  Search panel end -->

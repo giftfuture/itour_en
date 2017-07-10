@@ -154,7 +154,7 @@ var YDataGrid = function(config){
 			remove: function(callback){
 				var records = Utils.getCheckedRows();
 				if (Utils.checkSelect(records)){
-					$.messager.confirm('提示','确认删除记录?',function(r){  
+					$.messager.confirm('提示','确认删除记录?<br/>删除后不可恢复！',function(r){  
 					    if (r){
 					    	itour.progress();
 					    	var arr = [],idKey = dataGrid.idField || 'id'; //主键名称

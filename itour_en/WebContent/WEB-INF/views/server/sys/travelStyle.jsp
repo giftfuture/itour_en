@@ -8,12 +8,12 @@
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
- 	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
+ 	 <div class="ui-search-panel" region="north" style="height: 100px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">旅行方式:</label><input name="type" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
+			<label class="ui-label">旅行方式:</label><input name="type" class="easyui-textbox" data-options="width:120">&nbsp;&nbsp;
 	    </p>
-	    <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search" style="margin-top:10">查询</a>
       </form>  
      </div> 
      <!--  Search panel end -->

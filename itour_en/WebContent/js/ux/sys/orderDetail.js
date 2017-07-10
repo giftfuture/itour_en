@@ -137,7 +137,9 @@ itouren.orderDetail = function(){
 			},
   			dataGrid:{
   				title:'订单详情',
-	   			url:'orderDetail/dataList.json',
+	   			url:'orderDetail/dataList.json?orderId='+orderId,
+	   			rownumbers: true,
+	   			//queryParams: { 'orderId': orderId },
 	   			columns:[[
 					{field:'id',checkbox:true},
 					{field:'travelOrder',title:'订单号',align:'center',sortable:true,
@@ -159,7 +161,8 @@ itouren.orderDetail = function(){
 						formatter:function(value,row,index){
 							return row.areaname;
 						}
-					},{field:'status',title:'状态',align:'center',sortable:true,
+					},
+				/*	{field:'status',title:'状态',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							if(value == 1){
 								return "待处理";
@@ -170,7 +173,7 @@ itouren.orderDetail = function(){
 							if(value == 3){
 								return "处理完成";
 							}
-					}},
+					}},*/
 					{field:'createTime',title:'创建时间',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.createTime;
@@ -394,10 +397,10 @@ itouren.orderDetail = function(){
 										//$("span[name='orderId']").text("aaaa");
 									}},*/
 									/*{id:'btnadd',text:'添加',btnType:'add'},*/
-									{id:'btnedit',text:'修改',btnType:'edit'},
-									{id:'btndelete',text:'物理删除',btnType:'remove'},
-									{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
-									{
+									{id:'btnedit',text:'修改',btnType:'edit'}//,
+									/*{id:'btndelete',text:'物理删除',btnType:'remove'},
+									{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},*/
+								/*	{
 										id:'btnback',
 										text:'back',
 										disabled: true,
@@ -405,7 +408,7 @@ itouren.orderDetail = function(){
 										handler:function(){
 											_this.toList();
 										}
-									}
+									}*/
 								]
 			}
 		},

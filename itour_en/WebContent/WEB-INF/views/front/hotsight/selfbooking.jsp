@@ -297,7 +297,7 @@
         </tr> -->
     <tr> 
         <td> <div align="right"><strong>Verify Code:</strong></div></td>
-        <td  style="text-align:left"> <input type="text" id="verifyCode" name="verifyCode"  class="easyui-textbox" title="verify Code" data-options="prompt:'please enter verification code!'" />
+        <td  style="text-align:left;padding-bottom:50px;"> <input type="text" id="verifyCode" name="verifyCode"  class="easyui-textbox" title="verify Code" data-options="prompt:'please enter verification code!'" />
           <img alt="Click to replace" src="${basePath}RandomCodeServlet" id="validateCode" onclick="itouren.hotsightselfbooking.changeValidateCode()">
           &nbsp;&nbsp;<a href="javascript:void(0)" onclick="itouren.hotsightselfbooking.changeValidateCode()">Can not see, change one</a></td>
        <!--  <td><input name="code" id="code" type="text" size="8" />&nbsp;<img src='index.php?action=authcode&",Math.random(),"' alt="CAPTCHA" name="vcode" width="130" height="25" border="1" align="absmiddle" id='vcode' style="cursor: pointer;" title="看不清？点击更换另一个验证码。" onclick= this.src="index.php?action=authcode&"+Math.random() />&nbsp;看不清，请点击图片更换验证码。</td> -->

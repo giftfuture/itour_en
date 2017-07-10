@@ -26,6 +26,7 @@
 </head>
 <body>
 <center>
+
 <table width="72.6%" style="width:72.6%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td><%@include file="/front/header.jsp" %></td>
@@ -40,16 +41,18 @@
 <!-- <div id="fbcontent"></div> -->
 <input type="hidden" name="alias" value="${alias }"	/>
 <input type="hidden" name="pageNo" value="${pageNo }"	/>
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="72.6%" style="width:72.6%"  border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td width="766" valign="top">
     <table border="0" align="center" cellpadding="15" cellspacing="0" name="searchRtstb">
    	<tbody id="fbcontent"></tbody>
     </table></td>
   </tr>
+  <tr><td><ul id='fbpage'></ul></td></tr>
 </table>
-<center><ul id='fbpage'></ul></center>
-<%@include file="/front/footer.jsp" %>
+<table  style="width:61.3%" width="61.3%" border="0" cellspacing="0" cellpadding="0">
+<tr><td><%@include file="/front/footer.jsp" %></td></tr>
+</table>
 </center>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/searchRt.js"></script>
 </body>

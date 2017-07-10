@@ -202,7 +202,7 @@
 		</if>
 	</select>
 	<select id="queryByListVo" resultMap="BaseResultMapVo" parameterType="com.itour.vo.ShowHappyVO">
-		select show_happy.valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,customers.customer_name ,
+		select show_happy.valid,show_happy.id,customer,show_happy.create_time,show_happy.content,show_happy.status, show_happy.update_time, show_happy.title,customers.customer_name ,
 		show_happy.sh_code,show_happy.short_content,show_happy.cover,result,signature,area,DATE_FORMAT(show_happy.tour_time,'%Y-%m-%d') tour_time,show_happy.route ,areas.areaname,route_template.title routeTitle   
 		from show_happy left join route_template on show_happy.route = route_template.route_code 
 		left join customers on show_happy.customer=customers.id
@@ -211,8 +211,7 @@
 		<if test="pager.orderCondition != null and pager.orderCondition != ''">
 			${pager.orderCondition}
 		</if>
-		<if
-			test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''">
+		<if test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''">
 			${pager.mysqlQueryCondition}
 		</if>
 	</select>

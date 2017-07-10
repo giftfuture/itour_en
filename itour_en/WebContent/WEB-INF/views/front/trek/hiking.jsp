@@ -153,12 +153,6 @@
         <a target="_blank"  href="javascript:itour.hiking.addFavorite()" rel="sidebar">Bookmark this page</a></td>
         <td><img src="${basePath}images/print.png" width="24" height="24" />
         <a target="_blank"  href="javascript:itour.hiking.printff()">Print the page</a></td></tr>
-         <tr><td>Related routes:
-              <c:forEach items="${rt.relates}" var="relat"><br>
-              <a href="${basePath}hiking/hiking/${relat.alias}" >${relat.title }</a>
-                <%-- <a href="${basePath}hiking/toQuote2/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a> --%>
-              </c:forEach>
-              </td></tr>
             <%--  <tr><td><a href="${basePath}hiking/toQuote2/${rt.alias}" class="easyui-linkbutton" >预定本路线</a></td></tr>    --%>
     </table></td></tr></tbody></table>
     </td>
@@ -233,84 +227,6 @@
   </tr>
   <tr><td colspan="2" background="images/frame1-2.gif">${qf.agodaDetail }</td></tr>
   <tr> <td colspan="2" style="text-align:left"><span class="STYLE7">Note: The above itinerary is for reference only and can be re-adjusted according to your holiday design.</span></td> </tr>
- <%--     <tr><td colspan=2>
-<table  class="frametb" align="center">
-  <tr>
-    <td style="float:left"><img style="float:left" src="images/frame1-1.gif" width="1140" height="7" /></td>
-  </tr>
-<tr>
-    <td background="images/frame1-2.gif">
-    <table  class="frametb" align="center">
-        <tr>
-          <td valign="top"><br />
-          <table width="1140" border="0" align="center" cellpadding="4" cellspacing="2">
-                             <tr>
-                <td width="95" bgcolor="#f0f0f0"><p align="right"><strong>Tickets:</strong></p></td>
-                <td width="529" style="text-align:left">${fn:split(qf.showTicket,'|')[1]}
-                </td>
-                <td width="444" style="text-align:left">${fn:split(qf.showTicket,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>Tourist guide:</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showTourguide,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showTourguide,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>Hotel: 
-                </strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showHotel,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showHotel,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>Car: 
-                </strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showRentcar,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showRentcar,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>Dining:
-                </strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showDinner,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showDinner,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>Insurance:</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showInsurance,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showInsurance,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>Comprehensive fee:</strong><strong>:</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showComphcost,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showComphcost,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>entertainment:</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showRecreation,'|')[1]} </td>
-                <td style="text-align:left">${fn:split(qf.showRecreation,'|')[0]}￥/person</td>
-              </tr>
-
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="center"><strong>other fee:</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showElsecost,'|')[1]} </td>
-                <td style="text-align:left">${fn:split(qf.showElsecost,'|')[0]}</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="center"><strong>Quotes</strong></div></td>
-                <td style="text-align:left">Adults:${qf.adultsQuote}￥/person*4 persons<br />
-                Children  :${qf.childquote }￥/person*2 persons(Children do not include tickets) </td>
-                <td>&nbsp;</td>
-              </tr>
-            </table>          
-            <br /></td></tr>
-      </table>
-      </td>
-      </tr>
-      </table>
-      </td></tr> --%>
-      <!--   <tr>
-    <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
-  </tr> 
-      <tr> <td colspan="2" style="text-align:left"><span class="STYLE7">Note: The above itinerary is for reference only and can be re-adjusted according to your holiday design.</span></td> </tr> -->
 </table>
   </div>
   <div id="need-know">
@@ -328,6 +244,22 @@
   </tr>
     <tr>
     <td colspan=2 style="text-align:left;align:left;">${rt.serviceAndQuote }</td>
+  </tr>
+   <tr>
+    <td colspan=2 style="float:left"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
+    <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">Related Routes:</span></span></span></span></td>
+  </tr>
+  <tr>
+    <td  colspan=2 width="1140" style="float:left"><img style="float:left; vertical-align:text-top;" valign="top" src="${basePath}images/frame1-1.gif" height="7" /></td>
+  </tr>
+  <tr><td colspan=2 style="float:left" background="images/frame1-2.gif" style="valign:top;"> 
+     <c:forEach items="${rt.relates}" var="relat"><br>
+     <a href="${basePath}hiking/hiking/${relat.alias}" >${relat.title }</a>
+       <%-- <a href="${basePath}climb/toQuote2/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a> --%>
+     </c:forEach>
+     </td></tr>
+   <tr>
+    <td colspan=2 style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
 </table>
   <table  class="frametb" align="center">

@@ -12,13 +12,13 @@
  	 	<input class="hidden" id='search_parentId' name="parentId">
  	 	<p class="ui-fields">
             <label class="ui-label">菜单名:</label> 
-            <input name="name" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
+            <input name="name" class="easyui-textbox" data-options="width:120">&nbsp;&nbsp;
              <label class="ui-label">URL:</label> 
-            <input name="url" class="easyui-textbox" style="width:100px;" data-options="region:'north',split:true,border:false" >&nbsp;&nbsp;
-             <label class="ui-label">创建时间:</label> 
-            <input name="createTime" class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;">&nbsp;&nbsp;
+            <input name="url" class="easyui-textbox" data-options="width:120,region:'north',split:true,border:false" >&nbsp;&nbsp;
+             <label class="ui-label">创建日期:</label> 
+            <input name="createTime" class="easyui-datebox" data-options="width:120,editable:false,region:'north',split:true,border:false" style="width:100px;">&nbsp;&nbsp;
         </p>
-        <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+        <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search" style="margin-top:10">查询</a>
       </form>  
      </div> 
      <!--  Search panel end -->

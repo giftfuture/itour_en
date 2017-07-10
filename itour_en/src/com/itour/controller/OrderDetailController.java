@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -64,7 +65,6 @@ public class OrderDetailController extends BaseController{
 	@Autowired
 	private LogOperationService logOperationService;
 	
-	
 	/**
 	 * 
 	 * @param url
@@ -75,13 +75,32 @@ public class OrderDetailController extends BaseController{
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
 	public ModelAndView  list(OrderDetailVO page,HttpServletRequest request) throws Exception{
-		//Map<String,Object>  context = getRootMap();
+		Map<String,Object>  context = getRootMap();
 		//List<OrderDetail> dataList = orderDetailService.queryByList(page);
 		//设置页面数据
 	//	context.put("dataList", dataList);
 		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行OrderDetailController的list/{orderId}方法");
+		return forward("server/sys/orderDetail",context); 
+	}
+	/**
+	 * 
+	 * @param url
+	 * @param classifyId
+	 * @return
+	 * @throws Exception 
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
+	@RequestMapping(value="/list/{orderId}") 
+	public ModelAndView  list(@PathVariable("orderId")String orderId,OrderDetailVO page,HttpServletRequest request) throws Exception{
+		Map<String,Object>  context = getRootMap();
+		//List<OrderDetail> dataList = orderDetailService.queryByList(page);
+		//设置页面数据
+	//	context.put("dataList", dataList);
+		context.put("orderId", orderId);
+		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行OrderDetailController的list方法");
-		return forward("server/sys/orderDetail"); 
+		return forward("server/sys/orderDetail",context); 
 	}
 	
 	
@@ -97,7 +116,7 @@ public class OrderDetailController extends BaseController{
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
 	public EasyUIGrid  datalist(OrderDetailVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//List<OrderDetail> dataList = orderDetailService.queryByList(page);
-		BasePage<OrderDetailVO> page = orderDetailService.pagedQuery(vo);
+		BasePage<OrderDetailVO> page = orderDetailService.singleQuery(vo.getOrderId());//orderDetailService.pagedQuery(vo);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行OrderDetailController的dataList方法");
 		return dataGridAdapter.wrap(page);

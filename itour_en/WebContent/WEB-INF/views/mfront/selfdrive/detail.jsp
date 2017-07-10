@@ -155,12 +155,6 @@
         <a target="_blank"  href="javascript:itour.hiking.addFavorite()" rel="sidebar">Bookmark this page</a></td>
         <td><img src="${basePath}images/print.png" width=" " height=" " />
         <a target="_blank"  href="javascript:itour.hiking.printff()">Print the page</a></td></tr>
-         <tr><td>Related routes:
-              <c:forEach items="${rt.relates}" var="relat"><br>
-              <a href="${basePath}selfdrive/selfdrive/${relat.alias}" >${relat.title }</a>
-                <%-- <a href="${basePath}selfdrive/toQuote2/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a> --%>
-              </c:forEach>
-              </td></tr>
             <%--  <tr><td><a href="${basePath}climb/toQuote2/${rt.alias}" class="easyui-linkbutton" >预定本路线</a></td></tr>     --%>
     </table></td>
   </tr></tbody></table>
@@ -325,6 +319,22 @@
     <tr>
     <td colspan=2 style="text-align:left;float:left;">${rt.serviceAndQuote }</td>
   </tr>
+     <tr>
+    <td colspan=2 style="float:left"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
+    <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">Related Routes:</span></span></span></span></td>
+  </tr>
+  <tr>
+    <td  colspan=2 width="100%" style="float:left"><img style="float:left; vertical-align:text-top;" valign="top" src="${basePath}images/frame1-1.gif" height="7" /></td>
+  </tr>
+  <tr><td colspan=2 style="float:left" background="images/frame1-2.gif" style="valign:top;"> 
+     <c:forEach items="${rt.relates}" var="relat"><br>
+     <a href="${basePath}selfdrive/selfdrive/${relat.alias}" >${relat.title }</a>
+       <%-- <a href="${basePath}climb/toQuote2/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a> --%>
+     </c:forEach>
+     </td></tr>
+   <tr>
+    <td colspan=2 style="float:left"><img style="float:left" src="images/frame1-3.gif" width="100%" height="7" /></td>
+  </tr>
 <tr>
      <td colspan=2><span class="STYLE3" style="text-align:left;float:left">Tell us your needs, free planning for your program GO! </span> &nbsp;&nbsp;
      <span class="STYLE3"   style="text-align:left;float:left"><a  style="text-align:left;float:left" href="${basePath}selfdrive/selfbooking/${rt.alias}">
@@ -333,7 +343,7 @@
  </tbody></table>
   </div>
   <div id="feed-back">
-  <table  class="frametb" align="center">
+  <table class="frametb" align="center">
   <tr>
     <td width="32"><img src="${basePath}images/ask03.png" width="32" height="32" /></td>
     <td width="100%" style="text-align:left;float:left" ><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2" style="text-align:left;float:left" >Would you like to know what? Come and talk to us:</span><a href="#"></a></span></span></span></td>

@@ -146,6 +146,7 @@ itouren.travelOrder = function(){
   			dataGrid:{
   				title:'客户订单',
 	   			url:'travelOrder/dataList.json',
+	   			rownumbers: true,
 	   			columns:[[
 					{field:'id',checkbox:true},
 				/*	{field:'customerId',title:'客户ID',align:'center',sortable:true,
@@ -153,6 +154,12 @@ itouren.travelOrder = function(){
 							return row.customerId;
 						}
 					},*/
+					{field:'routeId',title:'订单处理',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							//return '<a href="'+basePath+'travelOrder/toQuote2/'+row.id+'/'+row.routeId+'">订单处理</a>';
+							return '<a href="'+basePath+'travelOrder/toQuote1/'+row.id+'/'+row.routeId+'">订单处理</a>';
+						}
+					},
 					{field:'orderNo',title:'订单号',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return '<span title="'+row.orderNo+'">'+row.orderNo+'</span>';
@@ -160,13 +167,16 @@ itouren.travelOrder = function(){
 					},
 					{field:'orderName',title:'订单名称',align:'left',sortable:true,
 						formatter:function(value,row,index){
-							return '<span title="'+row.orderName+'">'+row.orderName+'</span>';
+							if(row.orderName && row.orderName.length>50){
+								return '<span title="'+row.orderName+'">'+row.orderName.substring(0,50)+'....</span>';
+							}else{									
+								return '<span title="'+row.orderName+'">'+row.orderName+'</span>';
+							}
 						}
 					},
-					{field:'routeId',title:'订单处理',align:'center',sortable:true,
+					{field:'orderDetail',title:'订单详情',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							//return '<a href="'+basePath+'travelOrder/toQuote2/'+row.id+'/'+row.routeId+'">订单处理</a>';
-							return '<a href="'+basePath+'travelOrder/toQuote1/'+row.id+'/'+row.routeId+'">订单处理</a>';
+							return '<a href="'+basePath+'orderDetail/list/'+row.id+'">订单详情</a>';
 						}
 					},
 					{field:'orderStatus',title:'订单状态',align:'center',sortable:true,
@@ -321,16 +331,7 @@ itouren.travelOrder = function(){
 							/*	{id:'btnadd',text:'添加',btnType:'add',disabled:true},*/
 								{id:'btnedit',text:'修改',btnType:'edit'},
 								{id:'btndelete',text:'物理删除',btnType:'remove'},
-								{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
-								{
-									id:'btnback',
-									text:'back',
-									disabled: true,
-									iconCls:'icon-back',
-									handler:function(){
-										_this.toList();
-									}
-								}
+								{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'}
 							]
 			}
 		},

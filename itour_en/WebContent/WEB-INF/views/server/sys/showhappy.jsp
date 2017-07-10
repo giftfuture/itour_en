@@ -6,23 +6,23 @@
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
- 	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
+ 	 <div class="ui-search-panel" region="north" style="height: 100px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
 			<!-- <label class="ui-label">客户ID:</label><input name="id" class="easyui-box ui-text" style="width:100px;"> -->
-			<label class="ui-label">标题:</label><input name="title" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
+			<label class="ui-label">标题:</label><input name="title" class="easyui-textbox" data-options="width:120">&nbsp;&nbsp;
 			<label class="ui-label">状态:</label>&nbsp;&nbsp;
-				<select name="status" class="easyui-combobox" data-options="editable:false,width:100">
+				<select name="status" class="easyui-combobox" data-options="editable:false,width:120">
 				   <option value="">--请选择--</option>
 				   <option value="1">待审核</option>
 				   <option value="2">审核通过</option>
 				   <option value="3">审核未通过</option>
 				</select>&nbsp;&nbsp;
 			<!-- <input name="status" class="easyui-box ui-text" style="width:100px;"/> -->
-			<label class="ui-label">晒出日期:</label><input name="createTime" class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;">&nbsp;&nbsp;
-			<label class="ui-label">旅行日期:</label><input name="tourTime" class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;">&nbsp;&nbsp;
+			<label class="ui-label">晒出日期:</label><input name="createTime" class="easyui-datebox" data-options="width:120,editable:false,region:'north',split:true,border:false">&nbsp;&nbsp;
+			<label class="ui-label">旅行日期:</label><input name="tourTime" class="easyui-datebox" data-options="width:120,editable:false,region:'north',split:true,border:false">&nbsp;&nbsp;
 	    </p>
-	    <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search" style="margin-top:10">查询</a>
       </form>  
      </div> 
      <!--  Search panel end -->

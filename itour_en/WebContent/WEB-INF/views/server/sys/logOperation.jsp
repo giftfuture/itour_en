@@ -7,14 +7,14 @@
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
- 	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
+ 	 <div class="ui-search-panel" region="north" style="height: 100px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">操作码:</label><input name="operCode" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
-			<label class="ui-label">日志码:</label><input name="logCode" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
-			<label class="ui-label">操作类型:</label><input name="operationType" class="easyui-textbox" style="width:100px;">
+			<label class="ui-label">操作码:</label><input name="operCode" class="easyui-textbox"  data-options="width:120">&nbsp;&nbsp;
+			<label class="ui-label">日志码:</label><input name="logCode" class="easyui-textbox"  data-options="width:120">&nbsp;&nbsp;
+			<label class="ui-label">操作类型:</label><input name="operationType" class="easyui-textbox"  data-options="width:120">
 	    </p>&nbsp;&nbsp;
-	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    <a href="#" id="btn-search" class="easyui-linkbutton" iconCls="icon-search" style="margin-top:10">查询</a>
       </form>  
      </div> 
      <!--  Search panel end -->

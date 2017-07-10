@@ -82,7 +82,9 @@ itouren.main = function(){
 						if(resp.success||resp.success=="true"){
 							$("#unDealedOrders").append("<p style='text-align:left;'>待处理订单：</p>");
 							$(resp.data).each(function(idx,ex){
-								$("#unDealedOrders").append("<p>("+(idx+1)+").<a target='_blank' href="+basePath+"travelOrder/toQuote1/"+ex.id+'/'+ex.routeId+">"+ex.orderName+"</a></p>");
+								if(ex.id && ex.routeId && ex.orderName){
+									$("#unDealedOrders").append("<p>("+(idx+1)+").<a target='_blank' href="+basePath+"travelOrder/toQuote1/"+ex.id+'/'+ex.routeId+">"+ex.orderName+"</a></p>");
+								}
 							});
 						}else{
 							$("#unDealedOrders").append("<p style='text-align:left;'>无待处理订单：</p>");

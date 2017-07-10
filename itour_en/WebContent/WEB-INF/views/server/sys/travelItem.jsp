@@ -14,15 +14,15 @@
  	 <form id="searchForm">
         <p class="ui-fields">
 			<label class="ui-label">景点代码:</label>
-			<input name="itemCode" class="easyui-textbox" style="width:110px;"/>&nbsp;&nbsp;
+			<input name="itemCode" class="easyui-textbox" data-options="width:120"/>&nbsp;&nbsp;
 			<label class="ui-label">景点名称:</label>
-			<input name="item" class="easyui-textbox" style="width:108px;"/>&nbsp;&nbsp;
+			<input name="item" class="easyui-textbox" data-options="width:120"/>&nbsp;&nbsp;
 			<!-- <label class="ui-label">是否热门:</label>
 			<select name="hot" class="easyui-combobox" style="width:108px;">
 				<option value="0">否</option>
 			 	<option value="1">是</option>
 			 </select> -->
-			 <label class="ui-label">热门度:</label><select name="starLevel" class="easyui-combobox" data-options="width:131,editable:false">
+			 <label class="ui-label">热门度:</label><select name="starLevel" class="easyui-combobox" data-options="width:120,editable:false">
 			<option value="">--请选择--</option>
 			<option value="5">五星</option>
 			<option value="4">四星</option>
@@ -31,7 +31,7 @@
 			<option value="1">一星</option>
 			</select>&nbsp;&nbsp;
 			<label class="ui-label">海&nbsp;&nbsp;拔:</label>
-			<select name="elevation" class="easyui-combobox" data-options="width:131,editable:false">
+			<select name="elevation" class="easyui-combobox" data-options="width:120,editable:false">
 				<option value="">--请选择--</option>
 				<option value="1">100米以下</option>
 				<option value="2">500米以下</option>
@@ -45,7 +45,7 @@
 			<!-- var v = $(this).combobox('panel')[0].childElementCount; -->
 			 
 			<label class="ui-label">所属省市:</label><!-- onShowPanel:function(){$(this).combobox('panel').height(1000);} -->
-		  <input name="scope" class="easyui-combobox"  data-options="width:131,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">  &nbsp;&nbsp;
+		  <input name="scope" class="easyui-combobox"  data-options="width:120,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">  &nbsp;&nbsp;
 		<!-- 	<select name="scope" class="easyui-box ui-text" style="width:100px;">
 				<option value="">--请选择--</option>
 				<option value="四川">四川</option>
@@ -56,7 +56,7 @@
 			</p><p class="ui-fields"><label id="rcmdCrowd" class="ui-label">推荐人群:&nbsp;</label>&nbsp;&nbsp;
 			<label class="ui-label" id="SelectrankLabel">推荐指数:&nbsp;</label>&nbsp;&nbsp;
 			<label class="ui-label">里&nbsp;&nbsp;程:</label>&nbsp;&nbsp;
-			<select name="mileage" class="easyui-combobox"  data-options="width:131,editable:false">
+			<select name="mileage" class="easyui-combobox"  data-options="width:120,editable:false">
 				<option value="">--请选择--</option>
 				<option value="1">5公里以内</option>
 				<option value="2">20公里以内</option>

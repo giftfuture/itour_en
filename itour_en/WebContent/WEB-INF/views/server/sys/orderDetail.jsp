@@ -3,20 +3,26 @@
 <!DOCTYPE HTML>
 <html>
   <head>
+  <script type="text/javascript">
+    var orderId = '${orderId}';
+  </script>
  </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
- 	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
+ 	 <div class="ui-search-panel" region="north" style="height: 120px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
+	  <form:form method="post" id="back_form" action="${basePath }travelOrder/list">
+	<a style="padding-left:20px;margin-left:20px;" onsubmit="" onclick="document:back_form.submit();" class="easyui-linkbutton" iconcls="icon-back" >返回</a>
+	</form:form>
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">状态:</label>
-			<select name="status" class="easyui-combobox" style="width:100px;">
+			<label class="ui-label">状态:</label><input type="hidden" name="orderId" value="${orderId }" />
+			<select name="status" class="easyui-combobox" data-options="width:120,editable:false">
 				<option value="">--请选择--</option>
 				<option value="1">待处理</option>
 				<option value="2">处理中</option>
 				<option value="3">处理完成</option>
 			</select>&nbsp;&nbsp;
-			<label class="ui-label">创建时间:</label><input name="createTime"  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;">
+			<label class="ui-label">创建时间:</label><input name="createTime"  class="easyui-datebox" data-options="width:120,editable:false,region:'north',split:true,border:false" style="width:100px;">
 	    </p>
 	    &nbsp; &nbsp;<a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
       </form>  
@@ -40,27 +46,27 @@
 					</div>
 					<div class="fitem">
 						<label>导游:</label>
-						<span class="radioSpan">
+						<span class="radioSpan" style="margin-left:100">
 				            <input type="radio" name="guide" value="中文" />中文 
 				            <input type="radio" name="guide" value="英文" />英文 
 				            <input type="radio" name="guide" value="广东话" />广东话 <br/>
 				            <input type="radio" name="guide" value="其他语种" />其它语种
 				            <span id="elseguide" style="display:none" >
-				            <input type="text" class="easyui-textbox"name="guide_other" id="guide_other" value=""> </span>
+				            <input type="text" class="easyui-textbox"name="guide_other" id="guide_other" value=""> </span><br/>
 				            <input type="radio" name="guide" value="无需导游" />无需导游</span>
 					</div>
 					<div class="fitem">
 						<label>来自:</label>
 						<input id="comefrom" name="comefrom" class="easyui-combobox"  data-options="width:130,height:20,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">
 					</div>
-					<div class="fitem">
+				<!-- 	<div class="fitem">
 						<label>状&nbsp;&nbsp;态:</label>
 						<select id="status" name="status" class="easyui-combobox" data-options="editable:false">
 							<option value="1">待处理</option>
 							<option value="2">处理中</option>
 							<option value="3">处理完成</option>
 						</select>
-					</div>
+					</div> -->
         			<div class="fitem">
 						<label>出行方式:</label>
 						<select id="travelfashion" name="travelfashion" class="easyui-combobox" data-options="editable:false">

@@ -10,13 +10,13 @@
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
- 	 <div class="ui-search-panel" region="north" style="height: 80px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
+ 	 <div class="ui-search-panel" region="north" style="height:100px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">客户ID:</label><input name="customerId" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
-			<label class="ui-label">创建人:</label><input name="createBy" class="easyui-textbox" style="width:100px;">&nbsp;&nbsp;
-			<label class="ui-label">创建时间:</label><input name="createTime"  class="easyui-datebox" data-options="editable:false,region:'north',split:true,border:false" style="width:100px;">&nbsp;&nbsp;
-			<label class="ui-label">热门度:</label><select name="starLevel" class="easyui-combobox" data-options="width:131,height:20,editable:false">
+			<label class="ui-label">客户ID:</label><input name="customerId" class="easyui-textbox" data-options="width:120">&nbsp;&nbsp;
+			<label class="ui-label">创建人:</label><input name="createBy" class="easyui-textbox"  data-options="width:120">&nbsp;&nbsp;
+			<label class="ui-label">创建时间:</label><input name="createTime"  class="easyui-datebox" data-options="width:120,editable:false,region:'north',split:true,border:false">&nbsp;&nbsp;
+			<label class="ui-label">热门度:</label><select name="starLevel" class="easyui-combobox" data-options="width:120,editable:false">
 			<option value="">--请选择--</option>
 			<option value="5">五星</option>
 			<option value="4">四星</option>
@@ -25,7 +25,7 @@
 			<option value="1">一星</option>
 			</select>
 	    </p> &nbsp;&nbsp;
-	    <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search" style="margin-top:10">查询</a>
       </form>  
      </div> 
      <!--  Search panel end -->

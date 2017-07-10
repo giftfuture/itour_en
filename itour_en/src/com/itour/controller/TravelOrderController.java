@@ -385,7 +385,19 @@ public class TravelOrderController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(String[] id, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		travelOrderService.delete(id);
+		if(id.length >= 1){
+			if(id.length == 1){
+				OrderDetailVO vo = orderDetailService.queryByOrderId(id[0]);
+				travelOrderService.delete(id);
+				orderDetailService.delete(vo.getId());
+			}else{
+				List<OrderDetailVO> vos = orderDetailService.queryByOrderIds(id);
+				travelOrderService.delete(id);
+				for(OrderDetailVO vo:vos){
+					orderDetailService.delete(vo.getId());
+				}
+			}
+		}
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####" + (sessionuser != null ? ("id:" + sessionuser.getId() + "email:" + sessionuser.getEmail()
 				+ ",nickName:" + sessionuser.getNickName()) : "") + "调用执行TravelOrderController的delete方法");
@@ -407,7 +419,19 @@ public class TravelOrderController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "/logicdelete", method = RequestMethod.POST)
 	public String logicdelete(String[] id, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		travelOrderService.logicdelete(id);
+		if(id.length >= 1){
+			if(id.length == 1){
+				OrderDetailVO vo = orderDetailService.queryByOrderId(id[0]);
+				travelOrderService.logicdelete(id);
+				orderDetailService.logicdelete(vo.getId());
+			}else{
+				List<OrderDetailVO> vos = orderDetailService.queryByOrderIds(id);
+				travelOrderService.logicdelete(id);
+				for(OrderDetailVO vo:vos){
+					orderDetailService.logicdelete(vo.getId());
+				}
+			}
+		}
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####" + (sessionuser != null ? ("id:" + sessionuser.getId() + "email:" + sessionuser.getEmail()
 				+ ",nickName:" + sessionuser.getNickName()) : "") + "调用执行TravelOrderController的logicdelete方法");
@@ -1070,6 +1094,10 @@ public class TravelOrderController extends BaseController {
 				result = sendSuccessResult(response, "The reservation is successful, please check the mailbox reservation success later!", pdfurl);
 			}
 		}
+		TravelOrder t = new TravelOrder();
+		t.setId(to.getId());
+		t.setOrderStatus(4);//表示订单处理完成 的状态
+		travelOrderService.update(t);//更新订单状态
 		return JsonUtils.encode(result) ;
 	}
 
