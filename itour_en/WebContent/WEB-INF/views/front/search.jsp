@@ -13,6 +13,9 @@
  <link href="css/index.css" rel="stylesheet" type="text/css" />
  <script type="text/javascript">
 /*  $(document.forms["searchForm"]).form('load','${context}'); */
+  var rcdDays='${rcdDays}';
+ var level1Area ='${level1Area}';
+ var level2Area = '${level2Area}';
  jQuery.browser={};
  (function(){
 	 jQuery.browser.msie=false; 
@@ -24,13 +27,10 @@
  </script>
 </head>
 <body>
-
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><%@include file="/front/header.jsp" %></td>
-  </tr>
+<center>
+<table width="72.6%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr><td><%@include file="/front/header.jsp" %></td></tr>
 </table>
-
 <%-- <input type="hidden" name="travelStyle" value="${travelStyle }"/>
 <input type="hidden" name="level1Area" value="${level1Area }"/>
 <input type="hidden" name="level2Area" value="${level2Area }"/>
@@ -50,6 +50,7 @@
 <table class="frametb" align="center" width="61.3%" style="width:61.3%">
  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
 </table>
+</center>
 <script type="text/javascript">
 /* 	var travelStyle = '${travelStyle}';
  	var level1Area = '${level1Area}';

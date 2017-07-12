@@ -116,7 +116,12 @@ public class OrderDetailController extends BaseController{
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
 	public EasyUIGrid  datalist(OrderDetailVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//List<OrderDetail> dataList = orderDetailService.queryByList(page);
-		BasePage<OrderDetailVO> page = orderDetailService.singleQuery(vo.getOrderId());//orderDetailService.pagedQuery(vo);
+		BasePage<OrderDetailVO> page = null;
+		if(StringUtils.isNotEmpty(vo.getOrderId())){
+		   page = orderDetailService.singleQuery(vo.getOrderId());
+		}else{ 
+		   page = orderDetailService.pagedQuery(vo);
+		}
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行OrderDetailController的dataList方法");
 		return dataGridAdapter.wrap(page);

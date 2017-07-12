@@ -12,7 +12,10 @@
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
  <link href="css/index.css" rel="stylesheet" type="text/css" />
  <script type="text/javascript">
-/*  $(document.forms["searchForm"]).form('load','${context}'); */
+/**  $(document.forms["searchForm"]).form('load','${context}'); */
+ var rcdDays='${rcdDays}';
+ var level1Area ='${level1Area}';
+ var level2Area = '${level2Area}';
  jQuery.browser={};
  (function(){
 	 jQuery.browser.msie=false; 
@@ -24,7 +27,6 @@
  </script>
 </head>
 <body>
-
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td><%@include file="/front/header.jsp" %></td>
@@ -59,6 +61,6 @@
  	jQuery("#level2Area").combobox('setValue',level2Area);
  	jQuery("#vacation").combobox('setValue',rcdDays); */
 </script>
-<script type="text/javascript" src="js/commons/search.js"></script>
+<script type="text/javascript" src="jsm/commons/search.js"></script>
 </body>
 </html>

@@ -34,7 +34,7 @@
      <table id="data-list"></table>
 	 </div>
      <!-- Edit Win&Form -->
-      	 <div id="upload-photo" title="图片上传" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
+      	 <div id="upload-photo" title="图片上传" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;display:none;">	 
      	<form  class="ui-form" id="uploadPhotoForm" name="uploadPhotoForm" method="post" enctype="multipart/form-data" autocomplete="off">
    				 <input class="hidden" name="id">
    				 <div class="ui-edit">
@@ -57,7 +57,7 @@
 				</div>
      	</form>
 	 </div> 
-   	 <div id="uploadCover-photo" title="封面上传" class="easyui-dialog" data-options="autoOpen: false,closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
+   	 <div id="uploadCover-photo" title="封面上传" class="easyui-dialog" data-options="autoOpen: false,closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;display:none;">	 
      	<form  class="ui-form" id="uploadCoverForm" name="uploadCoverForm" method="post" enctype="multipart/form-data" autocomplete="off">
    				 <input class="hidden" name="id">
    				 <div class="ui-edit">
@@ -80,7 +80,7 @@
 				</div>
      	</form>
 	 </div> 
-   	 <div id="upload-map" title="地图上传" class="easyui-dialog" data-options="autoOpen: false,closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
+   	 <div id="upload-map" title="地图上传" class="easyui-dialog" data-options="autoOpen: false,closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;display:none;">	 
      	<form class="ui-form" id="uploadMapForm" name="uploadMapForm" method="post" enctype="multipart/form-data" autocomplete="off">
 			<input class="hidden" name="id">
    				 <div class="ui-edit">

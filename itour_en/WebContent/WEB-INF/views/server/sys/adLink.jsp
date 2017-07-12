@@ -26,7 +26,7 @@
      <table id="data-list"></table>
 	 </div>
 	 <!-- Edit Win&Form -->
-	 <div id="upload-photo" title="图片上传" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
+	 <div id="upload-photo" title="图片上传" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;display:none;">	 
      	<form  class="ui-form" id="multiDataForm" name="multiDataForm" method="post" enctype="multipart/form-data" autocomplete="off">
    				 <input class="hidden" name="id">
    				 <div class="ui-edit">
@@ -49,7 +49,7 @@
 				</div>
      	</form>
 	 </div>   
-     <div id="edit-win" title="首页链接" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">  
+     <div id="edit-win" title="首页链接" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;display:none;">  
      	<form id="editForm" class="ui-form" method="post">  
      		 <input class="hidden" name="id">
      		 <div class="ui-edit">

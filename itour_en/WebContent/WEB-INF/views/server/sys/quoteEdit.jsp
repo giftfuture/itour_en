@@ -10,9 +10,11 @@
 <link rel="stylesheet" type="text/css" href="${basePath}css/multiselect/css/multi-select.css"> --%>
 </head>
 <body ><!-- class="easyui-layout" -->
+<div style="margin-top:20">
 <form:form method="post" id="back_form" action="${basePath }routeTemplate/list">
 <a style="padding-left:20px;margin-left:20px;" onsubmit="" onclick="document:back_form.submit();" class="easyui-linkbutton" iconcls="icon-back" >返回</a>
 </form:form>
+</div>
 <form:form method="post" name="quoteEditForm">
 <input type="hidden" name="rtId" value="${bean.id}">
 <div id="quoteForm">
@@ -39,7 +41,7 @@
     <td><img src="images/frame1-3.gif" width="100%" height="7"></td>
   </tr>
 </tbody></table> --%>
-<table width="80%" cellspacing="0" cellpadding="10" border="0" align="center">
+<table width="65%" cellspacing="0" cellpadding="10" border="0" align="center">
   <tbody><tr>
     <td class="h1-black"><span class="STYLE27"><input name="rttitle" type="hidden" value="${bean.title }" />
     <input name="rtelevation" type="hidden" value="${bean.elevation }" /></span></td>
@@ -47,13 +49,13 @@
 </tbody></table>
 <br>
 <!-- <span class="style10">备注：提前要连接好客人的信息，团号，出团日期，人数几大几小。</span><br> -->
-<table width="80%" cellspacing="0" cellpadding="0" border="0" align="center">
+<table width="65%" cellspacing="0" cellpadding="0" border="0" align="center">
   <tbody><tr>
     <td><img src="images/frame1-1.gif" width="100%" height="7"></td>
   </tr>
   <tr>
-    <td width="100%"  background="images/frame1-2.gif">
-    <table width="100%" cellspacing="0" cellpadding="10" border="0" align="center">
+    <td width="1140"  background="images/frame1-2.gif">
+    <table width="1140" cellspacing="0" cellpadding="10" border="0" align="center">
         <tbody><tr>
           <td class="STYLE126" width="761" valign="top"><span class="STYLE3">行程规划</span></td>
         </tr>
@@ -101,7 +103,7 @@
   <tr>
     <td><img src="images/frame1-3.gif" width="100%" height="7"></td>
   </tr>
-   <tr><td><input type="button" name="rtbtn" value="芝麻开门"><div id="alertMessage"></div></td></tr>
+   <tr><td style="margin-top:10"><input type="button" name="rtbtn" value="芝麻开门"><div id="alertMessage"></div></td></tr>
 </tbody></table>
 <br>
 <%-- <table width="80%" cellspacing="2" cellpadding="8" border="1" align="center">

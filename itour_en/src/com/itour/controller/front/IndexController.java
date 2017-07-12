@@ -291,9 +291,9 @@ public class IndexController extends BaseController {
 			params.put("level2Area", level2Area);
 		}
 		if(StringUtils.isNotEmpty(rcdDays)){
-			if(rcdDays.indexOf('-')>0){
-				vo.setRcdDays1(Integer.parseInt(rcdDays.split("-")[0]));
-				vo.setRcdDays2(Integer.parseInt(rcdDays.split("-")[1]));
+			if(rcdDays.indexOf('_')>0){
+				vo.setRcdDays1(Integer.parseInt(rcdDays.split("_")[0]));
+				vo.setRcdDays2(Integer.parseInt(rcdDays.split("_")[1]));
 				//params.put("rcdDays1", rcdDays.split("-")[0]);
 				//params.put("rcdDays2", rcdDays.split("-")[1]);
 			}else{

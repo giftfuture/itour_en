@@ -77,8 +77,11 @@ itouren.travelItem = function(){
 				_this.uploadPhotoWin().find("#win-close").click(function(){	
 					$.messager.confirm('提示','您确定关闭当前窗口吗?',function(r){  
 					    if (r){  
-						$("#preview",this.uploadPhotoWin).html('');
-					     	_this.uploadPhotoWin().dialog('close');
+					    	$("#preview",this.uploadPhotoWin).html('');
+					    	_this.uploadPhotoWin().dialog('close');
+					    	itour.closeProgress();//关闭缓冲条
+					    	_this.uploadPhotoForm().resetForm();
+							_box.handler.refresh();
 					    }  
 					});
 				});
@@ -700,6 +703,7 @@ itouren.travelItem = function(){
 							$(".upload_delete",this.uploadPhotoWin).click(function() {
 								//var zxxfile = $.extend(ZXXFILE,this.uploadparams);
 								zf.funDeleteFile(files[parseInt($(this).attr("data-index"))]);
+								this.onDelete(files[parseInt($(this).attr("data-index"))]);
 								return false;	
 							});
 							//提交按钮显示
@@ -714,6 +718,11 @@ itouren.travelItem = function(){
 			},
 			onDelete: function(file) {
 				$("#uploadList_" + file.index,this.uploadPhotoWin).fadeOut();
+				$("#uploadList_"+file.index,this.uploadPhotoWin).remove();
+				var remhtml = $("#preview",this.uploadPhotoWin).html();
+				if(!remhtml){
+					$("#fileSubmit",this.uploadPhotoWin).hide();
+				}
 			},
 			onDragOver: function() {
 				$(this).addClass("upload_drag_hover");

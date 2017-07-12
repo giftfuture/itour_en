@@ -107,7 +107,7 @@ function loadlevel2Area(level1Area){
       <option value="16">16days+</option>
     </select>
       </a></label></td>
-      <td width="10%" bgcolor="#CCCCCC"><a name="search" href="javascript:itour.footer.searchRtResult()"><img name="search" src="${basePath}images/search.png" width="48" height="48" /></a> </td>
+      <td width="10%" bgcolor="#CCCCCC"><a name="search" href="javascript:itouren.footer.searchRtResult()"><img name="search" src="${basePath}images/search.png" width="48" height="48" /></a> </td>
     <!-- <td width="15%" bgcolor="#CCCCCC" class="f14-gao1"><a class="easyui-linkbutton" iconcls="icon-search" id="searchbtn">搜索</a></td> -->
   </tr>
 </table>

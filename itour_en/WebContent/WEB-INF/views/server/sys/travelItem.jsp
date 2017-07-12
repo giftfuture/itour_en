@@ -75,7 +75,7 @@
      <table id="data-list"></table>
 	 </div>
 	 <!-- Edit Win&Form -->
- 	 <div id="upload-photo" title="图片上传" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
+ 	 <div id="upload-photo" title="图片上传" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;display:none;">	 
      	<form class="ui-form" id="uploadPhotoForm" name="uploadPhotoForm" method="post" enctype="multipart/form-data" autocomplete="off">
    				 <input class="hidden" name="id">
    				 <div class="ui-edit">
@@ -98,7 +98,7 @@
 				</div>
      	</form>
 	 </div>  
- 	 <div id="uploadCover-photo" title="封面上传" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
+ 	 <div id="uploadCover-photo" title="封面上传" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;display:none;">	 
      	<form class="ui-form" id="uploadCoverForm" name="uploadCoverForm" method="post" enctype="multipart/form-data" autocomplete="off">
    				 <input class="hidden" name="id">
  			    <div class="ui-edit">
@@ -122,7 +122,7 @@
      	</form>
 	 </div> 
 
- 	 <div id="edit-photo" title="图片编辑" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
+ 	 <div id="edit-photo" title="图片编辑" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;display:none;">	 
      	<form action="" class="ui-form" id="editPhotoForm" name="editPhotoForm" method="post" ><!-- enctype="multipart/form-data" -->
    				 <input class="hidden" name="id">
    				 <div class="ui-edit">
@@ -234,7 +234,7 @@
 						<label>里&nbsp;&nbsp;程:</label><input name="mileage" type="text" maxlength="255" class="easyui-validatebox" data-options="" missingMessage="请填写mileage">
 					</div> -->
 					<div class="fitem">
-						<label>具体介绍:</label><textarea rows="7" cols="30" name="content" maxlength="500" class="easyui-textbox" data-options="multiline:true,width:205,height:130" missingMessage="请填写具体介绍"></textarea>
+						<label>具体介绍:</label><br/><textarea rows="7" cols="50" name="content" maxlength="5000" class="easyui-textbox" data-options="multiline:true,width:350,height:150" missingMessage="请填写具体介绍"></textarea>
 					</div> 
 <!-- 					<div class="fitem">
 						<label>推荐原因:</label><input name="recommandReason" type="text" maxlength="512" class="easyui-validatebox" data-options="" missingMessage="请填写recommandReason">
@@ -252,7 +252,7 @@
 						<label id="rucrowd">建议人群:</label>
 					</div> -->
 					<div class="fitem">
-						<label>备注(提醒建议):</label><textarea rows="7" cols="30" name="remark" maxlength="500" class="easyui-textbox"  data-options="multiline:true,width:205,height:130" missingMessage="请填写remark"></textarea>
+						<label>备注(提醒建议):</label><br/><textarea rows="7" cols="50" name="remark" maxlength="5000" class="easyui-textbox"  data-options="multiline:true,width:350,height:130" missingMessage="请填写remark"></textarea>
 					</div>
   			</div>
      	</form>

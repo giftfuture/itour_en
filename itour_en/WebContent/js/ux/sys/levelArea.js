@@ -125,9 +125,9 @@ itouren.levelarea = function(){
 	   			url:'levelarea/dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
-					{field:'title',title:'路线名称',align:'center',sortable:true,width:'200',
+					{field:'item',title:'景点',align:'center',sortable:true,width:'200',
 						formatter:function(value,row,index){
-							return row.title;
+							return row.item;
 						}
 					},
 					{field:'level1Area',title:'一级区域',align:'center',sortable:true,width:'200',
@@ -139,17 +139,17 @@ itouren.levelarea = function(){
 						formatter:function(value,row,index){
 							return row.level2Area;
 						}
-					},
+					},{field:'title',title:'路线名称',align:'center',sortable:true,width:'200',
+						formatter:function(value,row,index){
+							return row.title;
+						}
+					} 
 				/*	{field:'aliasCode',title:'别名码',align:'center',sortable:true,
 							formatter:function(value,row,index){
 								return row.aliasCode;
 							}
 					},*/
-					{field:'item',title:'景点',align:'center',sortable:true,width:'200',
-						formatter:function(value,row,index){
-							return row.item;
-						}
-					}
+					
 				 ]],
 				toolbar:[{id:'btnadd',text:'添加',btnType:'add'},
 							{id:'btnedit',text:'修改',btnType:'edit'},

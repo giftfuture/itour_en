@@ -141,9 +141,14 @@ var YDataGrid = function(config){
 			},
 			//刷新Grid 数据
 			refresh: function(callback){
+				Form.search.find("#orderId").attr("value","");
 				var param = Form.search.serializeObject();
+				//param.orderId="";
 				//Grid.datagrid("resize");
 				//console.log(param);
+				var gdurl = Grid.datagrid('options').url;
+				//console.log(gdurl.substring(0,gdurl.indexOf('?')));
+				Grid.datagrid({'url':gdurl.indexOf('?')>0 ? gdurl.substring(0,gdurl.indexOf('?')) : gdurl});
 				Grid.datagrid('reload',param);
 				//回调函数
 				if(jQuery.isFunction(callback)){

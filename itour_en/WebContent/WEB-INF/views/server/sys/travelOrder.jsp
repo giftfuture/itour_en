@@ -59,7 +59,6 @@
 					<div class="fitem">
 						<label>联系人性别:</label>
 						<select id="gender" name="gender" class="easyui-combobox" data-options="editable:false">
-			              <option>性别</option>
 			              <option value="1">男</option>
 			              <option value="0">女</option>
 			            </select>

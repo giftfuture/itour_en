@@ -106,7 +106,7 @@ public class TravelItemController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@RequestMapping(value="/list") 
-	public ModelAndView list(TravelItemVO page,HttpServletRequest request) throws Exception{
+	public ModelAndView list(HttpServletRequest request) throws Exception{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行TravelItemController的list方法");
 		return forward("server/sys/travelItem"); 

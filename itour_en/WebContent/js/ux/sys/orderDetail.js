@@ -137,7 +137,9 @@ itouren.orderDetail = function(){
 			},
   			dataGrid:{
   				title:'订单详情',
-	   			url:'orderDetail/dataList.json?orderId='+orderId,
+	   			//url:'orderDetail/dataList.json?orderId='+orderId,
+	   			//url:'orderDetail/dataList.json'+(orderId?'?orderId='+orderId:''),
+	   			url:'orderDetail/dataList.json'+($("#orderId").val()?'?orderId='+$("#orderId").val():''),
 	   			rownumbers: true,
 	   			//queryParams: { 'orderId': orderId },
 	   			columns:[[

@@ -479,6 +479,8 @@ itouren.routeTemplate = function(){
 					toolbar:[
 								{id:'btnadd',text:'添加',btnType:'add'},
 								{id:'btnedit',text:'修改',btnType:'edit'},
+								{id:'btndelete',text:'物理删除',btnType:'remove'},
+								{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
 								{id:'btnedit',text:'上传封面',btnType:'upload',iconCls:'icon-large-picture',handler:function(){
 									var selected = _box.utils.getCheckedRows();
 									if (_box.utils.checkSelectOne(selected)){
@@ -502,9 +504,7 @@ itouren.routeTemplate = function(){
 										_this.uploadPhotoForm().find("input[name='id']").val(selected[0].id);
 										_this.uploadPhotoWin().window('open'); 		
 									}
-								}},
-								{id:'btndelete',text:'物理删除',btnType:'remove'},
-								{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'}
+								}}
 							]
 			}
 		},
@@ -683,6 +683,7 @@ itouren.routeTemplate = function(){
 							//删除方法
 							$(".upload_delete",this.uploadPhotoWin).click(function() {
 								photoszxxfile.funDeleteFile(files[parseInt($(this).attr("data-index"))]);
+								this.onDelete(files[parseInt($(this).attr("data-index"))]);
 								return false;	
 							});
 							//提交按钮显示
@@ -697,6 +698,11 @@ itouren.routeTemplate = function(){
 			},//viewPhotoForm
 			onDelete: function(file) {
 				$("#uploadList_" + file.index,this.uploadPhotoWin).fadeOut();
+				$("#uploadList_"+file.index,this.uploadPhotoWin).remove();
+				var remhtml = $("#preview",this.uploadPhotoWin).html();
+				if(!remhtml){
+					$("#fileSubmit",this.uploadPhotoWin).hide();
+				}
 			},
 			onDragOver: function() {
 				$(this).addClass("upload_drag_hover");

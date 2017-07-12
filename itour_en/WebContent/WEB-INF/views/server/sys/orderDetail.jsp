@@ -15,20 +15,19 @@
 	</form:form>
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">状态:</label><input type="hidden" name="orderId" value="${orderId }" />
+			<label class="ui-label">状态:</label><input type="hidden" id="orderId" name="orderId" value="${orderId }" />
 			<select name="status" class="easyui-combobox" data-options="width:120,editable:false">
 				<option value="">--请选择--</option>
 				<option value="1">待处理</option>
 				<option value="2">处理中</option>
 				<option value="3">处理完成</option>
 			</select>&nbsp;&nbsp;
-			<label class="ui-label">创建时间:</label><input name="createTime"  class="easyui-datebox" data-options="width:120,editable:false,region:'north',split:true,border:false" style="width:100px;">
+			<label class="ui-label">创建时间:</label><input name="createTime"  class="easyui-datebox" data-options="width:120,editable:false,region:'north',split:true,border:false" />
 	    </p>
-	    &nbsp; &nbsp;<a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	    &nbsp; &nbsp;<a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search" style="margin-top:6">查询</a>
       </form>  
      </div> 
      <!--  Search panel end -->
-
      <!-- Data List -->
      <div region="center" border="false" >
      <table id="data-list"></table>

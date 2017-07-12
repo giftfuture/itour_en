@@ -23,7 +23,7 @@
      <table id="data-list"></table>
 	 </div>
 	      <!-- Edit Win&Form -->
-   	 <div id="upload-photo" title="图片上传" class="easyui-dialog" data-options="autoOpen: false,closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;">	 
+   	 <div id="upload-photo" title="图片上传" class="easyui-dialog" data-options="autoOpen: false,closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;display:none;">	 
      	<form  class="ui-form" id="multiDataForm" name="multiDataForm" method="post" enctype="multipart/form-data" autocomplete="off">
 			 <input class="hidden" name="id">
 			 	<div class="ui-edit">

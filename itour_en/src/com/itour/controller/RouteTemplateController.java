@@ -635,14 +635,14 @@ public class RouteTemplateController extends BaseController{
 			if(StringUtils.isNotEmpty(qfId)){			
 				String logid = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/updateQuoteForm",sessionuser.getId(),"",""));
 				logOperationService.add(new LogOperation(logid,"新增",qfId,JsonUtils.encode(quoteForm),"","routeTemplate/updateQuoteForm",sessionuser.getId()));
-				sendSuccessMessage(response, "线路日程内容添加成功!");
+				sendSuccessMessage(response, "路线详情添加成功!");
 			}else{
 				String logid = logSettingService.add(new LogSetting("route_template","路线模板","routeTemplate/updateQuoteForm(update)",sessionuser.getId(),"",""));
 				logOperationService.add(new LogOperation(logid,"更新",qf!= null?qf.getId():"",JsonUtils.encode(qf),JsonUtils.encode(quoteForm),"routeTemplate/updateQuoteForm(update)",sessionuser.getId()));
-				sendSuccessMessage(response, "线路日程内容更新成功!");
+				sendSuccessMessage(response, "路线详情更新成功!");
 			}
 		} catch (Exception e) {
-			sendFailureMessage(response, "线路日程内容更新出错!");
+			sendFailureMessage(response, "路线详情更新出错!");
 			e.printStackTrace();
 		}
 	}

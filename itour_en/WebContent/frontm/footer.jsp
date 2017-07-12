@@ -21,7 +21,7 @@
         <p style="height:15px"><span style="text-align:left"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Holiday:</strong><a href="javascript:void(0)">
     <input class="easyui-combobox" data-options="width:120,minWidth:50,height:22,editable:false" name="vacation" id="vacation"/>
       </a></span></p></td>
-      <td width="10%" bgcolor="#CCCCCC"><a name="search" href="javascript:itour.footer.searchRtResult()"><img name="search" src="${basePath}images/search.png" width="48" height="48" /></a> </td>
+      <td width="10%" bgcolor="#CCCCCC"><a name="search" href="javascript:itouren.footer.searchRtResult()"><img name="search" src="${basePath}images/search.png" width="48" height="48" /></a> </td>
   </tr>
 </table>
 </form>

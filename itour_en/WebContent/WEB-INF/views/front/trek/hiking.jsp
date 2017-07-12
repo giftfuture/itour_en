@@ -28,7 +28,7 @@
 </head>
 <body>
 <center>
-<table width="1350px" class="commontb" align="center">
+<table  class="commontb" align="center">
   <tr><td colspan=2> <%@include file="/front/header.jsp"  %></td></tr>  
   <tr>
     <td width="776" style="float:middle" class="h1-black">${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
@@ -232,8 +232,8 @@
   <div id="need-know">
   <table  class="frametb" align="center">
   <tr>
-    <td width="32"><img src="images/document2.png" width="32" height="32" /></td>
-    <td width="1028"  style="text-align:left"><span class="h2-24"><span class="STYLE148">Before the line to know</span></span></td>
+    <td width="5%"><img src="images/document2.png" width="32" height="32" /></td>
+    <td width="95%"  style="text-align:left"><span class="h2-24"><span class="STYLE148">Before the line to know</span></span></td>
   </tr>
   <tr>
     <td colspan=2 style="text-align:left">${rt.beforeInstruction }</td>
@@ -273,8 +273,8 @@
   <div id="feed-back">
   <table  class="frametb" align="center">
   <tr>
-    <td width="32"><img src="${basePath}images/ask03.png" width="32" height="32" /></td>
-    <td width="1028" style="text-align:left;float:left" ><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2" style="text-align:left;float:left" >Would you like to know what? Come and talk to us:</span></span></span></span></td>
+    <td width="5%"><img src="${basePath}images/ask03.png" width="32" height="32" /></td>
+    <td width="95%" style="text-align:left;float:left" ><span class="h2-24"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2" style="text-align:left;float:left" >Would you like to know what? Come and talk to us:</span></span></span></span></td>
   </tr>
 </table>
 <table class="frametb" align="center">

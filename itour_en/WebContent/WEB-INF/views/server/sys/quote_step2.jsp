@@ -39,8 +39,8 @@
 <input type="hidden" name="quoteclimbregisteradultsSumCost"  value="${vo.quoteclimbregisteradultsSumCost}" />
 <input type="hidden" name="quoteclimbnexusadultsSumCost"  value="${vo.quoteclimbnexusadultsSumCost}" />
 <input type="hidden" name="quoteelsecostadultsSumCost"  value="${vo.quoteelsecostadultsSumCost}" />
-<a style="padding-left:20px;margin-left:20px;" onsubmit="" onclick="document:back_form.submit();" class="easyui-linkbutton" iconcls="icon-back" >返回</a>
-</form:form>
+<a style="padding-left:20px;margin-left:20px;" onsubmit="" onclick="document:back_form.submit();" class="easyui-linkbutton" iconcls="icon-back" >返回上页修改</a>
+</form:form>  
 <table border="0" align="center" width="1140" cellpadding="0" cellspacing="0">
   <tr>
     <td><img src="images/frame1-1.gif" width="1140" height="7" /></td>
@@ -300,15 +300,6 @@
     <td><input size="6" id="quoteelseecostchildren" name="quoteelseecostchildren" value="${calvo.quoteelseecostchildren }"  class="easyui-numberbox" data-options="min:0,validType:'number',precision:2,groupSeparator:',',width:151,height:22" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" size="6" min="0" onafterpaste="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"/></td>
     <td><span class="STYLE10"></span></td>
   </tr>
-<!--   <tr>
-    <td><div align="right"></div></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td><span class="STYLE10"></span></td>
-  </tr> -->
   <tr>
     <td bgcolor="#f0f0f0"><div align="right"><strong>核算价格：</strong></div></td>
     <td colspan=3>
@@ -319,6 +310,7 @@
           <td>链接1</td>
           <td><a href="${basePath}travelOrder/toQuote3">链接2</a></td>
         </tr> --%>
+        </td>
     <td> </td>
     <td> </td>
     <td><span class="STYLE10"></span></td>

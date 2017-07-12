@@ -196,6 +196,8 @@ itouren.adLink = function(){
 					toolbar:[
 						{id:'btnadd',text:'添加',btnType:'add'},
 						{id:'btnedit',text:'修改',btnType:'edit'},
+						{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
+						{id:'btndelete',text:'物理删除',btnType:'remove'},
 						{id:'btnedit',text:'上传图片',btnType:'upload',iconCls:'icon-large-picture',handler:function(){
 							var selected = _box.utils.getCheckedRows();
 							if (_box.utils.checkSelectOne(selected)){
@@ -203,9 +205,7 @@ itouren.adLink = function(){
 								_this.uploadPhotoForm().find("input[name='id']").val(selected[0].id);
 								_this.uploadPhotoWin().window('open'); 		
 							}
-						}},
-						{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
-						{id:'btndelete',text:'物理删除',btnType:'remove'}
+						}}
 			     	]
 			}
 		},
@@ -239,8 +239,8 @@ itouren.adLink = function(){
 							var reader = new FileReader();
 							reader.onload = function(e) {
 								if(i==0){
-									html = html + '<div id="uploadList_'+ i +'" class="upload_append_list"><p><strong>' + file.name + '</strong>'+ 
-									'<img id="uploadImage_' + i + '" src="' + e.target.result + '" class="upload_image" /></p>'+ 
+									html = html + '<div id="uploadList_'+ i +'" class="upload_append_list"><p><strong></strong>'+ 
+									'<img id="uploadImage_' + i + '" title=' + file.name + ' src="' + e.target.result + '" class="upload_image" /></p>'+ 
 									'<span id="uploadProgress_' + i + '" class="upload_progress"></span>' +
 									'</div>';
 									i++;

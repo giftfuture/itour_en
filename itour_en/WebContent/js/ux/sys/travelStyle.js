@@ -206,6 +206,8 @@ itouren.travelStyle = function(){
 					toolbar:[
 								{id:'btnadd',text:'添加',btnType:'add'},
 								{id:'btnedit',text:'修改',btnType:'edit'},
+								{id:'btndelete',text:'物理删除',btnType:'remove'},
+								{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'},
 								{id:'btnedit',text:'上传封面',btnType:'upload',iconCls:'icon-large-picture',handler:function(){
 									var selected = _box.utils.getCheckedRows();
 									if (_box.utils.checkSelectOne(selected)){
@@ -213,9 +215,7 @@ itouren.travelStyle = function(){
 										_this.uploadPhotoForm().find("input[name='id']").val(selected[0].id);
 										_this.uploadPhotoWin().window('open'); 		
 									}
-								}},
-								{id:'btndelete',text:'物理删除',btnType:'remove'},
-								{id:'btnlogicdelete',text:'删除',iconCls:'icon-remove',btnType:'logicremove'}
+								}}
 							]
 			}
 		},
@@ -249,8 +249,8 @@ itouren.travelStyle = function(){
 						var reader = new FileReader();
 						reader.onload = function(e) {
 							if(i==0){
-								html = html + '<div id="uploadList_'+ i +'" class="upload_append_list"><p><strong>' + file.name + '</strong>'+ 
-								'<img id="uploadImage_' + i + '" src="' + e.target.result + '" class="upload_image" /></p>'+ 
+								html = html + '<div id="uploadList_'+ i +'" class="upload_append_list"><p><strong></strong>'+ 
+								'<img id="uploadImage_' + i + '" title=' + file.name + ' src="' + e.target.result + '" class="upload_image" /></p>'+ 
 								'<span id="uploadProgress_' + i + '" class="upload_progress"></span>' +
 								'</div>';
 								i++;
