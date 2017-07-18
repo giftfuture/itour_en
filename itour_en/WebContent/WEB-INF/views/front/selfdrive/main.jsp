@@ -16,22 +16,48 @@
 
  <table class="commontb" align="center">
  <tr><td> <%@include file="/front/header.jsp"  %></td></tr>
- <tr><td align="center" style="text-align:center;width:100%" width="100%"><img width="100%" src="images/index-ad/banner.jpg"  /></td></tr></table>
-<table  class="commontb" align="center" bgcolor="#FFFFFF">
-  <!--DWLayoutTable-->
+ <tr><td align="center" style="text-align:center;width:100%" width="100%">
+ <img width="100%" src="images/index-ad/banner.jpg"  height="598px"  /></td></tr></table>
+ 
+<table class="frametb" align="center">
   <tr>
-    <td width="10" background="images/shadowleft.gif"><img src="images/shadowleft.gif" width="10" height="8" /></td>
-    <td valign="top" class="title"><table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+    <td height="106" valign="top" bgcolor="#fafafa">
+    
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td class="h1-black" style="text-align:left">Self-drive Travel</td>
+      </tr>
+      <tr>
+        <td class="h1-2" style="text-align:left">The professional team provides you with logistical support</td>
+      </tr>
+      <tr>
+        <td style="text-align:left"><p>Bring the family, about friends </p>
+          <p>Know More about Self-drive Travel<br />  
+              </p>
+          <p></p></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
     </table></td>
-    <td width="10" background="images/shadowright.gif"><img src="images/shadowright.gif" width="10" height="8" /></td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
   </tr>
 </table>
-<table class="commontb" align="center">
+<table class="frametb" align="center">
  <tbody id="fbcontent">
   </tbody>
+    <tr>
+    <td width="100%"  ><ul id="fbpage"></ul> </td>
+  </tr>
+   <tr>
+    <td width="100%"  ><%@include file="/front/footer.jsp" %></td>
+  </tr>
 </table>
-<center><ul id='fbpage'></ul></center>
 <script type="text/javascript" src="${basePath}js/ux/front/selfdrive/main.js"></script>
-<%@include file="/front/footer.jsp" %>
 </body>
 </html>

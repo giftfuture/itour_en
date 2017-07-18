@@ -83,10 +83,9 @@ The protagonist travel belongs to the professional travel service team affiliate
                             <td valign="top"><table width="100%" border="0"
                                     align="left" cellpadding="0" cellspacing="0">
                                     <tr>
-                                        <td width="100%" class="h2-24red" colspan=3 style="text-align: left;">
+                                        <td width="100%" class="h2-24red" colspan=3 style="text-align:left;">
                                             <a width="100%" href="${basePath}${fn:split(entry['key'], '#')[3]}/main"><img
-                                                src="images/icon-0${status.index+1 }.jpg" width="57"
-                                                height="43">${fn:split(entry['key'],'#')[0]}</a></td>
+                                                src="images/icon-0${status.index+1 }.jpg" style="width:57;height:43;" width="57" height="43">${fn:split(entry['key'],'#')[0]}</a></td>
                                     </tr>
                                     <tr>
                                         <td width="100%" class="f14-gao1" colspan=3
@@ -153,8 +152,7 @@ The protagonist travel belongs to the professional travel service team affiliate
                 <tr><td><table width="100%" border="0" align="center" cellpadding="5" cellspacing="0" name="hotspots">
                     <thead>
                         <tr>
-                            <td width="32"><img src="images/earth.png" width="32"
-                                height="32" />Hot spots</td>
+                            <td width="32"><img src="images/earth.png" width="32" height="32"  style="width:32;height:32;"/>Hot spots</td>
                         </tr>
                     </thead>
                     <tbody>

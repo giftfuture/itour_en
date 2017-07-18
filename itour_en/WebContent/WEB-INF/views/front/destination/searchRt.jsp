@@ -41,7 +41,7 @@
 <!-- <div id="fbcontent"></div> -->
 <input type="hidden" name="alias" value="${alias }"	/>
 <input type="hidden" name="pageNo" value="${pageNo }"	/>
-<table width="72.6%" style="width:72.6%"  border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="61.3%" style="width:61.3%"  border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td width="766" valign="top">
     <table border="0" align="center" cellpadding="15" cellspacing="0" name="searchRtstb">

@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -101,7 +102,22 @@ public class LevelAreaController extends BaseController {
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行LevelAreaController的list方法");
 		return forward("server/sys/levelArea"); 
 	}
-	
+	/**
+	 * 
+	 * @param url
+	 * @param classifyId
+	 * @return
+	 * @throws Exception 
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
+	@RequestMapping(value="/list/{rtId}") 
+	public ModelAndView  list(@PathVariable("rtId")String rtId,LevelAreaVO page,HttpServletRequest request) throws Exception{
+		SysUser sessionuser = SessionUtils.getUser(request);
+		Map<String,Object> context = getRootMap();
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行LevelAreaController的list{rtId}方法");
+		context.put("rtId", rtId);
+		return forward("server/sys/levelArea",context); 
+	}
 	
 	/**
 	 * @param url

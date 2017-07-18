@@ -49,7 +49,7 @@
             <table border="0" align="center" cellpadding="0" cellspacing="0" style="width:100%;">
               <tbody><tr bgcolor="#f0f0f0" width="100%">
                 <td colspan=3 width="100%">
-        <span class="STYLE5" style="text-align:left;float:left;"><c:out value="${fn:split(sortitem.key, '_')[1]}"></c:out></span>
+        <span class="STYLE5" style="text-align:left;float:left;font-size:1.25em;"><c:out value="${fn:split(sortitem.key, '_')[1]}"></c:out></span>
                 <span style="text-align:right;float:right;"><div align="right">
                 <c:choose>
                 <c:when test="${tiSizes[sortitem.key]==1}"> <c:out value="${tiSizes[sortitem.key]}"></c:out>destination</c:when>

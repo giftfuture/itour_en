@@ -12,14 +12,14 @@
   <tr>
     <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2"><strong>fast Search</strong></div></td>
     <td width="75%" bgcolor="#CCCCCC" class="f14-gao1" >  
-      <p style="height:15px"><span style="text-align:left"><strong>Travel Mode:</strong>&nbsp;<input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:120,minWidth:50,height:22,valueField:'alias',textField:'type',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles'"/></span></p>
+      <p style="height:15px"><span style="text-align:left"><strong>Travel Mode:</strong>&nbsp;<input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:120,minWidth:50,height:22,valueField:'alias',textField:'type',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles',prompt:'-All-'"/></span></p>
       <p style="height:15px"><span style="text-align:left">
-       <strong>&nbsp;&nbsp; Area Level1:</strong>
-         <input class="easyui-combobox" id="level1Area" name="level1Area" value="${level1Area}" data-options="width:120,minWidth:50,height:22,panelHeight:'auto',editable:false"/></span></p>
-         <p style="height:15px"><span style="text-align:left"><strong>&nbsp;&nbsp; Area Level2:</strong><input id="level2Area" name="level2Area" class="easyui-combobox" data-options="width:120,minWidth:50,height:22,panelHeight:'auto',editable:false"/></span> 
+       <strong>&nbsp;  Area Level1:</strong>
+         <input class="easyui-combobox" id="level1Area" name="level1Area" value="${level1Area}" data-options="width:120,minWidth:50,height:22,panelHeight:'auto',editable:false,prompt:'-All-'"/></span></p>
+         <p style="height:15px"><span style="text-align:left"><strong>&nbsp;  Area Level2:</strong><input id="level2Area" name="level2Area" class="easyui-combobox" data-options="width:120,minWidth:50,height:22,panelHeight:'auto',editable:false,prompt:'-All-'"/></span> 
          </p>
-        <p style="height:15px"><span style="text-align:left"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Holiday:</strong><a href="javascript:void(0)">
-    <input class="easyui-combobox" data-options="width:120,minWidth:50,height:22,editable:false" name="vacation" id="vacation"/>
+        <p style="height:15px"><span style="text-align:left"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Holiday:</strong><a href="javascript:void(0)">
+    <input class="easyui-combobox" data-options="width:120,minWidth:50,height:22,editable:false,prompt:'-All-'" name="vacation" id="vacation"/>
       </a></span></p></td>
       <td width="10%" bgcolor="#CCCCCC"><a name="search" href="javascript:itouren.footer.searchRtResult()"><img name="search" src="${basePath}images/search.png" width="48" height="48" /></a> </td>
   </tr>

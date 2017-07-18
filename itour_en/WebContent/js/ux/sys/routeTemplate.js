@@ -275,6 +275,11 @@ itouren.routeTemplate = function(){
 							}
 						}
 					},
+					{field:'levelarea',title:'路线区域',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							return '<a href="'+basePath+'levelarea/list/'+row.id+'">路线区域</a>';
+						}
+					},
 					{field:'cover',title:'封面',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.cover;
@@ -309,7 +314,7 @@ itouren.routeTemplate = function(){
 							return '<a href="'+basePath+'routeTemplate/rtschedule?id='+row.id+'">详细日程</a>';
 						}
 					},*/
-					{field:'level1Area',title:'一级区域',align:'center',sortable:true,
+				/*	{field:'level1Area',title:'一级区域',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.level1Area;
 						}
@@ -318,7 +323,7 @@ itouren.routeTemplate = function(){
 						formatter:function(value,row,index){
 							return row.level2Area;
 						}
-					},
+					},*/
 					{field:'rcdDays',title:'(建议)游览时间(天)',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							return row.rcdDays;

@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<table width="1140" border="0" align="center" cellpadding="30" cellspacing="0">
+<table width="1350" border="0" align="center" cellpadding="30" cellspacing="0">
 <tr><td> <%@include file="/front/header.jsp"  %></td></tr>
   <tr>
     <td class="STYLE17"><div align="center"><span class="STYLE19"><span class="STYLE13">Why Us </span></span></div></td>

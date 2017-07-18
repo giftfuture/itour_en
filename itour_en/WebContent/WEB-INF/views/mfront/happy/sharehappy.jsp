@@ -17,6 +17,7 @@ function ww4(date){
 </head>
 <body>
 <%@include file="/frontm/header.jsp"  %> 
+<center>
 <table border="0" align="center" width="100%" cellpadding="0" cellspacing="0">
   <tr>
     <td class="STYLE17"><div align="center"><span class="STYLE19"></span></div></td>
@@ -54,11 +55,11 @@ function ww4(date){
                 <td colspan=2><div id="content"></div></td>
            </tr>
            <tr>
-           <td colspan=2 style="text-align:left" class="STYLE18">verify Code： <input type="text" id="verifyCode" name="verifyCode" class=" easyui-textbox" title="verify Code" data-options="height:22,prompt:'please enter verification code!'"/> 
-               <img alt="Click to replace" src="${basePath}RandomCodeServlet" id="validateCode" onclick="changeValidateCode()">
+           <td colspan=2 style="text-align:center;" class="STYLE18">Verification code: <input type="text" id="verifyCode" name="verifyCode" class=" easyui-textbox" title="verify Code" data-options="height:22,prompt:'please enter verification code!'"/> 
+               <img alt="Click to replace" src="${basePath}RandomCodeServlet" id="validateCode" style="width:100;height:18;" onclick="changeValidateCode()">
                &nbsp;&nbsp;<a href="javascript:void(0)" onclick="changeValidateCode()">Can not see, change one</a></td></tr>
-          <tr><td style="text-align:left"><a href="javascript:sharehappy()" class="easyui-linkbutton STYLE18" name="savehappy" iconcls="icon-save">Share Memory</a></td>
-          <td style="text-align:left"><a href="javascript:void(0);" class="easyui-linkbutton STYLE18" onclick="${basePath}showhappy/sharehappy" iconcls="icon-cancel">Cancel Share</a></td></tr>
+          <tr><td style="text-align:center;"><a href="javascript:sharehappy()" class="easyui-linkbutton STYLE18" name="savehappy" iconcls="icon-save">Share Memory</a></td>
+          <td style="text-align:center;"><a href="javascript:void(0);" class="easyui-linkbutton STYLE18" onclick="${basePath}showhappy/sharehappy" iconcls="icon-cancel">Cancel Share</a></td></tr>
         </table><div id="alertMessage"></div>
     </form:form> 
     </td>
@@ -69,6 +70,7 @@ function ww4(date){
     <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="100%" height="7" /></td>
   </tr> 
 </table>
+</center>
 <script type="text/javascript" src="${basePath}jsm/ux/front/happy/sharehappy.js"></script>
 <%@include file="/frontm/footer.jsp"  %>  
 </body>

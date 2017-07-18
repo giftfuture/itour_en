@@ -13,7 +13,7 @@
 <title>Memories of Happiness</title>
 </head>
 <body>
-<table class="commontb" border="0" align="center" cellpadding="10" cellspacing="0">
+<table class="commontb" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td> <%@include file="/front/header.jsp"  %></td>
   </tr>
@@ -24,7 +24,7 @@
     <td><img src="images/frame1-1.gif" width="1140"/></td>
   </tr>
   <tr>
-    <td style="text-align:left;padding-left:170px;margin-left:170px;background-image:url('images/frame1-2.gif');background-position:115px 0px;">
+    <td style="text-align:left;padding-left:170px;margin-left:170px;background-image:url('images/frame1-2.gif');background-position:105px 0px;">
 	    <span>※ travel is the course of the flow<br /></span> 
  <span>※ touched the eternity of the moment<br/></span>
  <span>※ memories of life is a happy landscape</span>

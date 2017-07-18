@@ -27,7 +27,7 @@
 </table> -->
 <table  class="commontb" align="center" style="width:100%">
   <tr> 
-    <td style="text-align:left;float:middle" valign="top" colspan=3>
+    <td style="text-align:left;float:left" valign="top" colspan=3>
       Sichuan, referred to as "Sichuan" or "Shu", the capital of Chengdu, located in the hinterland of the southwest of mainland China, the eastern part of the eastern Sichuan Ling and Chuanzhong hills, the central Sichuan Basin and the Chengdu Plain, western Sichuan Plateau, and Shaanxi, Guizhou, Yunnan , Tibet, Qinghai, Gansu, Chongqing provinces and cities at the junction, is the hometown of National Treasure giant panda.
       Sichuan is "China's western integrated transport hub", "China's western economic development heights", the total economy for many years ranked first in the west [1].
       Sichuan is an important economic, industrial, agricultural, military, tourism and cultural province of China. Provincial capital in 1993 by the State Council identified as China's southwestern region of science and technology, commerce, financial center and transportation, communications hub [2]. Chengdu Shuangliu International Airport is China's fourth largest airport [3].

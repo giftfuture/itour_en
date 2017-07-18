@@ -17,7 +17,7 @@
 <tr><td><%@include file="/frontm/header.jsp"  %></td></tr>
 
   <tr>
-    <td class="STYLE17"><div align="center"><span class="STYLE19">${sh.title }</span></div></td>
+    <td class="STYLE17" style="font-size:1.25em"><div align="center"><span class="STYLE19">${sh.title }</span></div></td>
   </tr>
   <tr>
     <td background="images/frame1-2.gif">
@@ -29,18 +29,17 @@
         <td valign="top"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
           <tr style="padding-top:10px;padding-bottom:10px">
             <td style="text-align:left"><span class="STYLE23">Travel Time: </span><span class="STYLE22"><span class="STYLE148">${sh.tourTime }</span> <span class="STYLE148">　
-            <span class="STYLE23">Travel Route：</span>${sh.routeTitle }　
+            <span class="STYLE23">Travel Route:</span>${sh.routeTitle }　
             　<span class="STYLE23">Memories:</span><span class="STYLE20">${sh.signature } From${sh.areaname }</span></span></span></td>
             </tr>
-             
           <tr style="padding-top:10px;padding-bottom:10px">
-               <td style="text-align:left"><span class="STYLE23"><img src="${basePath}images/facebook.png" width="24" height="24" />
+               <td style="text-align:left"><span class="STYLE23"><img src="${basePath}images/facebook.png" style="width:24;height:24;" width="24" height="24" />
                 <a target="_blank" href="https://www.facebook.com/dialog/feed">share to FB</a></span> 
-                <span class="STYLE23"><img src="${basePath}images/share.png" width="24" height="24" />
+                <span class="STYLE23"><img src="${basePath}images/share.png"style="width:24;height:24;" width="24" height="24" />
                 <a target="_blank" id="copyurl" href="javascript:itour.happydetail.copyUrl()" data-clipboard-target="flashcopier">Copy Url</a><div style="display:none" id="flashcopier"></div></span>
-                <span class="STYLE23"><img src="${basePath}images/favorite01.png" width="24" height="24" />
+                <span class="STYLE23"><img src="${basePath}images/favorite01.png"style="width:24;height:24;" width="24" height="24" />
                 <a target="_blank"  href="javascript:itour.happydetail.addFavorite()" rel="sidebar">add to Favourite</a></span>
-                <span class="STYLE23"><img src="${basePath}images/print.png" width="24" height="24" />
+                <span class="STYLE23"><img src="${basePath}images/print.png"style="width:24;height:24;" width="24" height="24" />
                 <a target="_blank"  href="javascript:itour.happydetail.printff()">Print Page</a></span></td>
           </tr>
           <tr>

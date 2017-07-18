@@ -14,6 +14,8 @@
 <body>
 <table class="" width="72.6%" style="text-align:center" align="center" border="0" cellpadding="0" cellspacing="0">
  <tr><td><%@include file="/front/header.jsp"  %> </td></tr>  
+ </table>
+ <table class="" width="61.3%" style="text-align:center" align="center" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="STYLE17"><div align="center"><span class="STYLE19">${sh.title }</span></div></td>
   </tr>

@@ -20,7 +20,7 @@
       <table width="197" border="0" cellspacing="0" cellpadding="5"float:right;>
           <tr>
             <td height="30" valign="top" style="width:200px;height:auto" bgcolor="#990000"><!-- padding-left:150 -->
-            <div style="align:center;font-size:18px;background-color:#8B0000;text-decoration:none;color:white;">Travel Destination</div>
+            <div style="align:center;font-size:18px;background-color:#8B0000;text-decoration:none;color:white;">Destinations</div>
             <div class="treebox" >
                 <ul class="menu">
                 <c:forEach items="${scopes}" var="scope" varStatus="status">

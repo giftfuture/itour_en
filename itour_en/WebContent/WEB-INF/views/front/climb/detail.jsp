@@ -32,6 +32,15 @@
   <tr>
     <td width="776" style="float:middle" class="h1-black">${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>
+    <tr><td><!-- <h3>直接使用百度分享</h3>   -->
+<div class="bdsharebuttonbox">
+<a href="#" class="bds_more" data-cmd="more"></a> 
+ <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+ <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+ <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a> 
+ <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a></div>  
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},
+        "share":{},"image":{"viewList":["weixin","tsina","qzone","tqq"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["weixin","tsina","qzone","tqq"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script> </td></tr>
   <tr>
     <td width="750"><table width="600" style="float:right;text-align:right;align:right;margin-right:50px;" border="0" cellpadding="0" cellspacing="0">
       <tr>
@@ -74,7 +83,7 @@
       </tr></table></td>
         <td width="600" style="float:left" valign="top" > 
     
-      <table width="442" border="0" cellpadding="4" cellspacing="2" class="STYLE126">
+      <table width="442" border="0" cellpadding="0" cellspacing="2" class="STYLE126">
       <tbody><tr>
         <td style="float:left"><img src="images/frame2-1.gif" width="480" height="7"></td>
       </tr>
@@ -138,19 +147,19 @@
         </tr>
          <tr>
         <td colspan=2 style="text-align:left"><span class="STYLE148">
-        Note: The needs of each group are different, according to your holiday to<br /> re-adjust the design process.</span></td>
+        Note: The needs of each group are different, according to your holiday to re-adjust the design process.</span></td>
         </tr>
       </table>
     <table class="f12-gao1">
       <tr>
         <td><img src="${basePath}images/facebook.png" width="24" height="24" />
-        <a target="_blank" href="https://www.facebook.com/dialog/feed">share to FB</a></td>
+        <a target="_blank" href="https://www.facebook.com/dialog/feed">FB</a></td>
         <td><img src="${basePath}images/share.png" width="24" height="24" />
-        <a target="_blank" id="copyurl" href="javascript:void(0)" data-clipboard-target="flashcopier">Copy Url</a><div style="display:none" id="flashcopier"></div></td>
+        <a target="_blank" id="copyurl" href="javascript:void(0)" data-clipboard-target="flashcopier">CopyUrl</a><div style="display:none" id="flashcopier"></div></td>
         <td><img src="${basePath}images/favorite01.png" width="24" height="24" />
-        <a target="_blank"  href="javascript:itour.hiking.addFavorite()" rel="sidebar">Bookmark this page</a></td>
+        <a target="_blank"  href="javascript:itour.hiking.addFavorite()" rel="sidebar">Bookmark </a></td>
         <td><img src="${basePath}images/print.png" width="24" height="24" />
-        <a target="_blank"  href="javascript:itour.hiking.printff()">Print the page</a></td></tr>
+        <a target="_blank"  href="javascript:itour.hiking.printff()">Print</a></td></tr>
             <%--  <tr><td><a href="${basePath}climb/toQuote2/${rt.alias}" class="easyui-linkbutton" >预定本路线</a></td></tr>     --%>
     </table></td>
   </tr></tbody></table>
@@ -169,10 +178,10 @@
 <table class="frametb" align="center"><tr><td>
 <div class="frametb" id="tab-container" class='tab-container' border="0" cellpadding="3" cellspacing="1">
  <ul style="text-align:left;float:left" class='etabs'>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#review">Overall overview</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#detail-route">Detailed itinerary</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#need-know">Before the line to know</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#feed-back">Client feedback</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#review">Overview</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#detail-route">Route Details</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#need-know">Before Instructions</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#feed-back">Feedback</a></li>
   <!--  <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#consulting">咨询预定</a></li> -->
  </ul>
  <div class='panel-container'>
@@ -225,81 +234,7 @@
     <span class="h2-24" style="float:left"><span class="STYLE148">Detailed schedule</span></span></td>
   </tr>
   <tr><td colspan="2" background="images/frame1-2.gif">${qf.agodaDetail }</td></tr>
-<%--<tr><td colspan=2>
-<table  class="frametb" align="center">
-  <tr>
-    <td style="float:left"><img style="float:left" src="images/frame1-1.gif" width="1140" height="7" /></td>
-  </tr>
-  <tr>
-    <td background="images/frame1-2.gif">
-    <table  class="frametb" align="center">
-        <tr>
-          <td valign="top"><br />
-          <table width="1140" border="0" align="center" cellpadding="4" cellspacing="2">
-                             <tr>
-                <td width="95" bgcolor="#f0f0f0"><p align="right"><strong>Tickets:</strong></p></td>
-                <td width="529" style="text-align:left">${fn:split(qf.showTicket,'|')[1]}
-                </td>
-                <td width="444" style="text-align:left">${fn:split(qf.showTicket,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>Tourist guide:</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showTourguide,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showTourguide,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>Hotel: 
-                </strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showHotel,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showHotel,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>Car: 
-                </strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showRentcar,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showRentcar,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>Dining:
-                </strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showDinner,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showDinner,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>Insurance:</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showInsurance,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showInsurance,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>Comprehensive fee:</strong><strong>:</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showComphcost,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showComphcost,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>entertainment:</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showRecreation,'|')[1]} </td>
-                <td style="text-align:left">${fn:split(qf.showRecreation,'|')[0]}￥/person</td>
-              </tr>
-
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="center"><strong>other fee:</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showElsecost,'|')[1]} </td>
-                <td style="text-align:left">${fn:split(qf.showElsecost,'|')[0]}</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="center"><strong>Quotes</strong></div></td>
-                <td style="text-align:left">Adults:${qf.adultsQuote}￥/person*4 persons<br />
-                Children  :${qf.childquote }￥/person*2 persons(Children do not include tickets) </td>
-                <td>&nbsp;</td>
-              </tr>
-            </table>          
-            <br /></td></tr>
-      </table>
-      </td>
-      </tr>
-      </table>
-      </td></tr> --%>
-        <tr>
+   <tr>
     <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr> 
       <tr> <td colspan="2" style="text-align:left"><span class="STYLE7">Note: The above itinerary is for reference only and can be re-adjusted according to your holiday design.</span></td> </tr>
@@ -309,7 +244,7 @@
   <table  class="frametb" align="center">
   <tr>
     <td width="32" style="text-align:left;float:left;"><img src="images/document2.png" width="32" height="32" /></td>
-    <td width="1028"  style="text-align:left;float:left;"><span class="h2-24"><span class="STYLE148">Before the line to know</span></span></td>
+    <td width="1028"  style="text-align:left;float:left;"><span class="h2-24"><span class="STYLE148">Before Instructions</span></span></td>
   </tr>
   <tr>
     <td colspan=2 style="text-align:left">${rt.beforeInstruction }</td>
@@ -429,6 +364,7 @@
    <tr>
     <td style="text-align:center"><ul id='fbpage'></ul></td>
   </tr>
+  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
 </table>
   </div>
 <!--   <div id="consulting" style="display:none;">
@@ -436,7 +372,6 @@
   </div>
   </div></td></tr></table>
 <script type="text/javascript" src="${basePath}js/ux/front/climb/detail.js"></script>
-<%@include file="/front/footer.jsp" %>
 </center>
 </body>
 </html>

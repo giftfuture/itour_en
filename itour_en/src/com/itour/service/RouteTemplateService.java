@@ -2,9 +2,9 @@ package com.itour.service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,6 @@ import com.itour.dao.RouteTemplateDao;
 import com.itour.dao.TravelItemDao;
 import com.itour.dao.TravelStyleDao;
 import com.itour.entity.RouteTemplate;
-import com.itour.entity.TravelStyle;
 import com.itour.vo.RouteTemplateVO;
 import com.itour.vo.TravelItemVO;
 
@@ -185,8 +184,8 @@ public class RouteTemplateService<T> extends BaseService<T> {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<RouteTemplateVO> queryByItems(String travelItems)throws Exception{
-		List<RouteTemplateVO> list = mapper.queryByItems(travelItems);
+	public List<RouteTemplateVO> queryByItems(Map map)throws Exception{
+		List<RouteTemplateVO> list = mapper.queryByItems(map);
 		List<RouteTemplateVO> vos = Lists.newArrayList();
 		String rtCoverPath = FilePros.httpRouteCoverpath();
 		for(RouteTemplateVO rt:list){

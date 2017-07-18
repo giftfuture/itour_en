@@ -19,7 +19,7 @@
     <td> <%@include file="/frontm/header.jsp"  %></td>
   </tr>
   <tr>
-    <td class="STYLE17"><div align="center">Memories of happiness will be happy freeze</div></td>
+    <td class="STYLE17" style="font-size:1.25em"><div align="center">Memories of happiness will be happy freeze</div></td>
   </tr>
   <tr>
     <td><img src="images/frame1-1.gif" width="100%"/></td>

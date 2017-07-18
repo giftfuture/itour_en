@@ -18,10 +18,11 @@
     <td> <%@include file="/front/header.jsp"  %> </td>
   </tr>
   <tr>
-    <td align="center" style="text-align:center;width:100%" width="100%"><img width="100%" src="images/banner-trekking.jpg"  /></td>
+    <td align="center" style="text-align:center;width:100%" width="100%">
+    <img width="100%" src="images/banner-trekking.jpg"  height="598px"  /></td>
   </tr>
 </table>
-<table class="commontb" align="center">
+<table class="frametb" align="center">
   <tr>
     <td height="106" valign="top" bgcolor="#fafafa">
     <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
@@ -49,36 +50,18 @@
     <td valign="top">&nbsp;</td>
   </tr>
 </table>
-<table class="commontb" align="center">
+<table class="frametb" align="center">
 <tbody id="fbcontent">
-<%-- <c:forEach begin="0" end="${rows}" varStatus="status">
-  <tr>
-    <c:forEach items="${rts.get(status.index)}" var="rt" >
-    <td valign="top">
-    <table width="353" border="0" align="left" cellpadding="0" cellspacing="0">
-      <tr>
-        <td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">
-            <tr>
-              <td width="296" class="h2-24"><a href="${basePath}hiking/hiking/${rt.alias}">${rt.title}</a></td>
-            </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td><a href="${basePath }hiking/hiking/${rt.alias}"><img src="${basePath }${rt.cover}" width="353" height="166" ></a></td>
-      </tr>
-      <tr>
-        <td class="f12-gao1" style="text-align:left">${rt.shortContent}</td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-      </tr>
-    </table></td>
-    </c:forEach>
-  </tr></c:forEach> --%>
   </tbody>
+   <tr>
+    <td width="100%"  ><ul id="fbpage"></ul> </td>
+  </tr>
+   <tr>
+    <td width="100%"  ><%@include file="/front/footer.jsp" %></td>
+  </tr>
 </table>
-  <center><ul id="fbpage"></ul></center>
+ 
 <script type="text/javascript" src="${basePath}js/ux/front/trek/trekkings.js"></script>
-<%@include file="/front/footer.jsp" %>
+
 </body>
 </html>

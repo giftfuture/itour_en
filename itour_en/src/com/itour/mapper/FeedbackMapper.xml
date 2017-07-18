@@ -206,8 +206,8 @@
 		customers.customer_name customerName 
 		from feed_back left join customers on feed_back.customer_id = customers.id 
 		left join route_template rt on rt.route_code=feed_back.route
-		<!-- <include refid="Example_Where_Clause" /> -->
-        where feed_back.valid=1 and feed_back.public_show=1
+		 <include refid="Example_Where_Clause" /> 
+         and feed_back.public_show=1
 		<if test="pager.orderCondition != null and pager.orderCondition != ''">
 			${pager.orderCondition}
 		</if>

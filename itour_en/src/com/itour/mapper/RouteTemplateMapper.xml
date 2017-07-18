@@ -286,9 +286,10 @@ update route_template set quoto_form=#{quotoForm},update_time=now(),update_by = 
     select <include refid="Base_Column_List" />  from route_template where route_template.id = #{id} order by star_level desc
 </select>
 <!-- 根据包含景点模糊查询路线模板 -->
-<select id="queryByItems"  resultMap="BaseResultMapVo" parameterType="java.lang.String">
+<select id="queryByItems"  resultMap="BaseResultMapVo" parameterType="map">
     select <include refid="Base_Column_List" />,ts.type travelStyleType,ts.alias travelStyleAlias from route_template
-    left join travel_style ts on route_template.travel_style=ts.id  where route_template.travel_items like CONCAT('%', #{travelItems}, '%') order by route_template.star_level desc
+    left join travel_style ts on route_template.travel_style=ts.id  where route_template.travel_items like 
+    CONCAT('%', #{travelItems}, '%') order by route_template.star_level desc limit #{start},#{limit}
 </select>
 <select id="pageQueryByItems"  resultMap="BaseResultMapVo" parameterType="com.itour.vo.RouteTemplateVO">
     select <include refid="Base_Column_List" />,ts.type travelStyleType,ts.alias travelStyleAlias from route_template

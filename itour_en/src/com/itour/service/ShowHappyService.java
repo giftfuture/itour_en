@@ -48,8 +48,10 @@ public class ShowHappyService extends BaseService<ShowHappy> {
 		List<ShowHappyVO> list = null;
 		int count=0;
 		if(Constants.showhappypage.size()>=Constants.happyperPage){
-			list = Constants.showhappypage.subList((int)vo.getPager().getPageOffset(), Constants.happyperPage);
 			count = Constants.showhappypage.size();
+			int start = (int)(vo.getPager().getPageId()-1)*Constants.happyperPage;
+			int end = start + Constants.happyperPage > count ? count : start + Constants.happyperPage ;
+			list = Constants.showhappypage.subList(start, end);
 		}else{
 			list = mapper.queryByListVo(vo);
 			count = mapper.countAll();

@@ -18,10 +18,11 @@
     <td> <%@include file="/front/header.jsp"  %> </td>
   </tr>
   <tr>
-    <td align="center" style="text-align:center;width:100%" width="100%"><img width="100%" src="images/img/girl-03.jpeg" /></td>
+    <td align="center" style="text-align:center;width:100%" width="100%">
+    <img width="100%" src="images/img/girl-03.jpeg" height="598px"  /></td>
   </tr>
 </table>
-<table class="commontb" align="center">
+<table class="frametb" align="center">
   <tr>
     <td height="106" valign="top" bgcolor="#fafafa">
     
@@ -50,12 +51,16 @@
     <td valign="top">&nbsp;</td>
   </tr>
 </table>
-<table class="commontb" align="center">
+<table class="frametb" align="center">
  <tbody id="fbcontent">
   </tbody>
+    <tr>
+    <td width="100%"  ><ul id="fbpage"></ul> </td>
+  </tr>
+   <tr>
+    <td width="100%"  ><%@include file="/front/footer.jsp" %></td>
+  </tr>
 </table>
-<center><ul id='fbpage'></ul></center>
 <script type="text/javascript" src="${basePath}js/ux/front/light/main.js"></script>
-<%@include file="/front/footer.jsp" %>
 </body>
 </html>

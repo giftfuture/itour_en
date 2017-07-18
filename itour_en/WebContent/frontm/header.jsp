@@ -3,7 +3,8 @@
 <center>
     <div id="top-menu">
     <table width="100%" align="center" style="border:0;cursor:pointer">
-    <tr><th colspan="4"><a href="${basePath}"><img src="${basePath}images/head2016.gif" /></a></th><th colspan="4"><a><img src="${basePath}images/chinatravel.png" alt="" /></a></th></tr>
+    <tr><th colspan="4"><a href="${basePath}"><img style="width:187;height:71;" src="${basePath}images/head2016.gif" /></a></th>
+    <th colspan="4"><a><img src="${basePath}images/chinatravel.png" alt="" style="width:206;height:61;" /></a></th></tr>
         <tr><th colspan="8">
         <span style="padding-bottom:5px;">Its&nbsp;Custom travel service team&nbsp;info@iTours.com.cn</span></th><!-- href="tel:+8602885580038" -->
         </tr><!-- href="mailto:info@iTours.com.cn" -->

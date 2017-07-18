@@ -236,7 +236,7 @@ public class IndexController extends BaseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/search",method = RequestMethod.POST) 
+	@RequestMapping(value="/search") 
 	public ModelAndView searchRt(String pageNo,@RequestParam("travel_style") String travelStyle,@RequestParam("vacation")String rcdDays,@RequestParam("level1Area")String level1Area,@RequestParam("level2Area")String level2Area,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> map = getRootMap();
 		//Map<String,Object> context = getRootMap();
@@ -273,7 +273,7 @@ public class IndexController extends BaseController {
 	 */
 	@SuppressWarnings("unchecked")
 	@ResponseBody
-	@RequestMapping(value="/searchRtResult",method = RequestMethod.POST) 
+	@RequestMapping(value="/searchRtResult") 
 	public String searchRtResult(String pageNo,@RequestParam("travel_style") String travelStyle,@RequestParam("vacation")String rcdDays,@RequestParam("level1Area")String level1Area,@RequestParam("level2Area")String level2Area,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object>  map = getRootMap();
 		Map<String,Object>  params = getRootMap();

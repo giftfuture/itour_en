@@ -40,7 +40,7 @@ itouren.mhappiness = function(){
 					                  "</tr>"+
 					                  "<tr>"+
 					                   // "<td width='20' valign='top'><div align='center'><img src='"+basePath+"images/quote-1.gif' /></div></td>"+
-					                    "<td width='100%' style='text-align:left'><span class='STYLE18'>"+(e.shortContent?e.shortContent:"")+"<a href='"+basePath+"showhappy/detail/"+(e.shCode?e.shCode:"")+"'>Into her memories</a>》》<img src='images/quote-2.gif' width='18' height='14' /></span></td>"+
+					                    "<td width='100%' style='text-align:left'><span class='STYLE18'>"+(e.shortContent?e.shortContent:"")+"<a href='"+basePath+"showhappy/detail/"+(e.shCode?e.shCode:"")+"'>Into her memories</a>》》<img src='images/quote-2.gif' style='width:18;height:14;' width='18' height='14' /></span></td>"+
 					                  "</tr>"+
 					                  "<tr>"+
 					                   // "<td valign='top'>&nbsp;</td>"+

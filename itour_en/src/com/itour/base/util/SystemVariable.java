@@ -81,7 +81,6 @@ public class SystemVariable{
 	}
 	
 	private static void sendEmail(){
-
 		//String receive_email = PropUtil.getValue("receive_email","zzz@163.com");
 		//System.out.println(receive_email);
 		 //trustAllHttpsCertificates();  
@@ -151,5 +150,13 @@ public class SystemVariable{
 	public static void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		SystemVariable.jdbcTemplate = jdbcTemplate;
 	}
-	
+	/* 启动不同任务类型的线程 */
+	public void initThreadRunner() {
+		String pTaskType = "";
+		try {
+			//pTaskType = PropertiesUtils.getProperties(ContextUtils.taskTypeFileName).getProperty("taskType");
+		} catch (Exception e) {
+			// logger.error("读取属性文件错误！");
+		}
+	}
 }

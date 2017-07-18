@@ -206,7 +206,11 @@ public class DestinationController extends BaseController{
 			 	ticketsBlock.append("</table>");
 			 	itemvo.setTicketsBlock(ticketsBlock.toString());
 	 	}
-		List<RouteTemplateVO> rts = routeTemplateService.queryByItems(itemvo.getId());
+	 	Map params = Maps.newHashMap();
+	 	params.put("travelItems", itemvo.getId());
+	 	params.put("start",0);
+	 	params.put("limit",Constants.relatedDests);
+		List<RouteTemplateVO> rts = routeTemplateService.queryByItems(params);
 		context.put("scopes", scopes); 
 		context.put("itemvo", itemvo);
 		context.put("photos", photoList);
@@ -309,7 +313,7 @@ public class DestinationController extends BaseController{
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping(value="/related/searchRtResults", method = RequestMethod.POST) 
+	@RequestMapping(value="/related/searchRtResults") 
 	public String searchRtResults(String pageNo,String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	 	Map<String,Object> context = getRootMap();
 	 	TravelItemVO ttvo = travelItemService.getByAlias(alias);

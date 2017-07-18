@@ -33,6 +33,15 @@
   <tr>
     <td width="776" style="float:left" class="h1-black">${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>
+    <tr><td><!-- <h3>直接使用百度分享</h3>   -->
+<div class="bdsharebuttonbox">
+<a href="#" class="bds_more" data-cmd="more"></a> 
+ <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+ <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+ <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a> 
+ <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a></div>  
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},
+        "share":{},"image":{"viewList":["weixin","tsina","qzone","tqq"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["weixin","tsina","qzone","tqq"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script> </td></tr>
   <tr>
     <td width="750"><table width="600"  style="float:right;text-align:right;align:right;margin-right:50px;" border="0" cellpadding="0" cellspacing="0">
       <tr>
@@ -138,20 +147,20 @@
           <td class="STYLE126" style="text-align:left">${rt.mountStyle } <a href="javascript:void(0)" title="${rt.mountStyle}">Explain&gt;&gt; </a></td>
         </tr>
          <tr>
-        <td colspan=2 style="text-align:left"><span class="STYLE148">
-        Note: The needs of each group are different, according to your holiday to<br /> re-adjust the design process.</span></td>
+        <td colspan=2 style="text-align:left;float:left;"><span class="STYLE148">
+        Note: The needs of each group are different, according to your holiday to re-adjust the design process.</span></td>
         </tr>
       </table>
     <table class="f12-gao1">
       <tr>
         <td><img src="${basePath}images/facebook.png" width="24" height="24" />
-        <a target="_blank" href="https://www.facebook.com/dialog/feed">share to FB</a></td>
+        <a target="_blank" href="https://www.facebook.com/dialog/feed">FB</a></td>
         <td><img src="${basePath}images/share.png" width="24" height="24" />
-        <a target="_blank" id="copyurl" href="javascript:void(0)" data-clipboard-target="flashcopier">Copy Url</a><div style="display:none" id="flashcopier"></div></td>
+        <a target="_blank" id="copyurl" href="javascript:void(0)" data-clipboard-target="flashcopier">CopyUrl</a><div style="display:none" id="flashcopier"></div></td>
         <td><img src="${basePath}images/favorite01.png" width="24" height="24" />
-        <a target="_blank"  href="javascript:itour.hiking.addFavorite()" rel="sidebar">Bookmark this page</a></td>
+        <a target="_blank"  href="javascript:itour.hiking.addFavorite()" rel="sidebar">Bookmark</a></td>
         <td><img src="${basePath}images/print.png" width="24" height="24" />
-        <a target="_blank"  href="javascript:itour.hiking.printff()">Print the page</a></td></tr>
+        <a target="_blank"  href="javascript:itour.hiking.printff()">Print</a></td></tr>
             <%--  <tr><td><a href="${basePath}climb/toQuote2/${rt.alias}" class="easyui-linkbutton" >预定本路线</a></td></tr>     --%>
     </table></td>
   </tr></tbody></table>
@@ -167,10 +176,10 @@
 <table class="frametb" align="center"><tr><td>
 <div class="frametb" id="tab-container" class='tab-container' border="0" cellpadding="3" cellspacing="1">
  <ul style="text-align:left;float:left" class='etabs'>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#review">Overall overview</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#detail-route">Detailed itinerary</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#need-know">Before the line to know</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#feed-back">Client feedback</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}climb/climb/${alias}#review">Overview</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}climb/climb/${alias}#detail-route">Route Details</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}climb/climb/${alias}#need-know">Before Instructions</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}climb/climb/${alias}#feed-back">Feedback</a></li>
   <!--  <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#consulting">咨询预定</a></li> -->
  </ul>
  <div class='panel-container'>
@@ -224,80 +233,6 @@
   </tr>
   <tr><td colspan="2" background="images/frame1-2.gif">${qf.agodaDetail }</td></tr>
   <tr> <td colspan="2" style="text-align:left"><span class="STYLE7">Note: The above itinerary is for reference only and can be re-adjusted according to your holiday design.</span></td> </tr>
-     <%--  <tr><td colspan=2>
-<table  class="frametb" align="center">
-  <tr>
-    <td style="float:left"><img style="float:left" src="images/frame1-1.gif" width="1140" height="7" /></td>
-  </tr>
-  <tr>
-    <td background="images/frame1-2.gif">
-    <table  class="frametb" align="center">
-        <tr>
-          <td valign="top"><br />
-          <table width="1140" border="0" align="center" cellpadding="4" cellspacing="2">
-                             <tr>
-                <td width="95" bgcolor="#f0f0f0"><p align="right"><strong>Tickets:</strong></p></td>
-                <td width="529" style="text-align:left">${fn:split(qf.showTicket,'|')[1]}
-                </td>
-                <td width="444" style="text-align:left">${fn:split(qf.showTicket,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>Tourist guide:</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showTourguide,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showTourguide,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>Hotel: 
-                </strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showHotel,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showHotel,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>Car: 
-                </strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showRentcar,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showRentcar,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>Dining:
-                </strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showDinner,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showDinner,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>Insurance:</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showInsurance,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showInsurance,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>Comprehensive fee:</strong><strong>:</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showComphcost,'|')[1]}</td>
-                <td style="text-align:left">${fn:split(qf.showComphcost,'|')[0]}￥/person</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="right"><strong>entertainment:</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showRecreation,'|')[1]} </td>
-                <td style="text-align:left">${fn:split(qf.showRecreation,'|')[0]}￥/person</td>
-              </tr>
-
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="center"><strong>other fee:</strong></div></td>
-                <td style="text-align:left">${fn:split(qf.showElsecost,'|')[1]} </td>
-                <td style="text-align:left">${fn:split(qf.showElsecost,'|')[0]}</td>
-              </tr>
-              <tr>
-                <td bgcolor="#f0f0f0"><div align="center"><strong>Quotes</strong></div></td>
-                <td style="text-align:left">Adults:${qf.adultsQuote}￥/person*4 persons<br />
-                Children  :${qf.childquote }￥/person*2 persons(Children do not include tickets) </td>
-                <td>&nbsp;</td>
-              </tr>
-            </table>          
-            <br /></td></tr>
-      </table>
-      </td>
-      </tr>
-      </table>
-      </td></tr>  --%> 
       <tr>
     <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr> 
@@ -307,7 +242,7 @@
   <table  class="frametb" align="center">
   <tr>
     <td width="32" style="text-align:left;float:left;"><img src="images/document2.png" width="32" height="32" /></td>
-    <td width="1028"  style="text-align:left;float:left;"><span class="h2-24"><span class="STYLE148">Before the line to know</span></span></td>
+    <td width="1028"  style="text-align:left;float:left;"><span class="h2-24"><span class="STYLE148">Before Instructions</span></span></td>
   </tr>
   <tr>
     <td colspan=2 style="text-align:left">${rt.beforeInstruction }</td>
@@ -320,7 +255,7 @@
     <td colspan=2 style="text-align:left;align:left;">${rt.serviceAndQuote }</td>
   </tr>
  <tr>
-    <td colspan=2 style="float:left"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
+    <td colspan=2 style="float:left"><img style="float:left" src="${basePath}images/heart02.png" style="width:32;height:32" width="32" height="32" />
     <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">Related Routes:</span></span></span></span></td>
   </tr>
   <tr>
@@ -368,7 +303,7 @@
               <tr>
                 <td width="51" bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*Name</strong>:</div></td>
                 <td width="249" bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="name"  class="easyui-textbox" data-options="height:22,prompt:'Please type your name',validType:'string'"/><!--  -->
-                    <select name="sex" id="sex" class="easyui-combobox" data-options="height:22,width:80,editable:false,panelHeight:80">
+                    <select name="sex" id="sex" class="easyui-combobox" data-options=" height:22,width:60,editable:false,panelHeight:80">
                       <option value="1">Mr</option>
                       <option value="0">Ms</option>
                     </select>
@@ -398,11 +333,11 @@
                 </td>
               </tr>
               <tr>
-                <td bgcolor="#F0F0F0" class="STYLE140">Verification code</td>
+                <td bgcolor="#F0F0F0" class="STYLE140"><strong>Verification code:</strong></td>
                 <td bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><div class="tip">
                 <input type="text" id="verifyCode" class=" easyui-textbox" title="Verification code" name="verifyCode"  data-options="height:22,prompt:'Please type in the correct verification code!'"/><br/>
-                <img alt="Click to replace" src="${basePath}ImageServlet" id="validateCodeImg" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">
-                &nbsp;&nbsp;<a href="javascript:void(0)" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">Can not see, change one</a>
+                <img alt="Click to replace" src="${basePath}ImageServlet" id="validateCodeImg" style="width:65;height:23" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">
+                <br/><a href="javascript:void(0)" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">Can not see, change one</a>
       </div></td>
               </tr>
               <tr>

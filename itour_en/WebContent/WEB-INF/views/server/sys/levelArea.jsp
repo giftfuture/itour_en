@@ -3,12 +3,18 @@
 <!DOCTYPE HTML>
 <html>
   <head>
+  <script type="text/javascript">
+    var rtId = '${rtId}';
+  </script>
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
  	 <div class="ui-search-panel" region="north" style="height: 100px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
+ 	 <form:form method="post" id="back_form" action="${basePath }routeTemplate/list">
+        <a style="padding-left:20px;margin-left:20px;" onsubmit="" onclick="document:back_form.submit();" class="easyui-linkbutton" iconcls="icon-back" >返回</a>
+      </form:form>
  	 <form id="searchForm">
-        <p class="ui-fields">
+        <p class="ui-fields"><input type="hidden" id="routeTemplate" name="routeTemplate" value="${rtId }" />
 			<label class="ui-label">一级区域:</label><input class="easyui-combobox" id="level1Area" name="level1Area" data-options="width:120,valueField:'aliasCode',textField:'level1Area',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}levelarea/queryLevel1',
         onChange:function(n,o){var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?aliasCode='+n ;$('#level2Area').combobox('reload',urlurl);}">&nbsp;&nbsp;
 			<label class="ui-label">二级区域:</label> <input id="level2Area" name="level2Area" class="easyui-combobox" data-options="width:120,valueField:'aliasCode',textField:'level2Area',mode:'remote',panelHeight:'auto',editable:false, method:'get'">&nbsp;&nbsp;     
