@@ -23,6 +23,7 @@ import com.itour.base.util.email.EmailService;
 import com.itour.base.web.BaseController;
 import com.itour.entity.SysUser;
 import com.itour.service.SysUserService;
+import com.itour.util.Constants;
 import com.itour.vo.SysUserVO;
 
 @Controller
@@ -68,14 +69,14 @@ public class PassEmailController extends BaseController {
                     + "<br/>tips:本邮件超过30分钟,链接将会失效，需要重新申请'找回密码'" + key
                     + "\t" + digitalSignature;
                 String subject="找回您的itour账户密码";
-                String receivers = SystemVariable.cache.get("receive_email");
-                String sender = SystemVariable.cache.get("sender_email");
-                String pwd = SystemVariable.cache.get("sender_pwd");
-                String host = SystemVariable.cache.get("sender_host");
-                String port = SystemVariable.cache.get("sender_port");
-                String auth = SystemVariable.cache.get("sender_auth");
-                String ssl = SystemVariable.cache.get("sender_ssl");
-                String protocol = SystemVariable.cache.get("sender_protocol");
+                String receivers = Constants.cache.get("receive_email");
+                String sender = Constants.cache.get("sender_email");
+                String pwd = Constants.cache.get("sender_pwd");
+                String host = Constants.cache.get("sender_host");
+                String port = Constants.cache.get("sender_port");
+                String auth = Constants.cache.get("sender_auth");
+                String ssl = Constants.cache.get("sender_ssl");
+                String protocol = Constants.cache.get("sender_protocol");
                 boolean iSend = EmailService.sendEmail(receivers, subject, emailContent, sender, pwd, host, port, auth, ssl, protocol,"");
                 if(iSend){
                 	req.setAttribute(MSG, "重置密码邮件已经发送，请登陆邮箱进行重置！");

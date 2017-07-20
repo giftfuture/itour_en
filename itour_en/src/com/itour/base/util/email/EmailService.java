@@ -22,8 +22,11 @@ import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeUtility;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.itour.base.util.SystemVariable;
+import com.itour.service.SysVariablesService;
+import com.itour.util.Constants;
 
 //import static com.itour.base.util.email.EmailProperty.pass_MAIL_QUITWAIT;
 //import static com.itour.base.util.email.EmailProperty.pass_MAIL_SMTP_TIMEOUT;
@@ -38,6 +41,8 @@ import static com.itour.base.util.email.EmailProperty.pass_MAIL_TRANSPORT_SSL;
 public class EmailService {
 	//private EmailProperty prop = new EmailProperty();
 	private Properties env = System.getProperties();
+	@Autowired
+	private static SysVariablesService sysVariablesService;
 	public static void main(String[] args) throws Exception {
 		//String receive_email = PropUtil.getValue("receive_email","zzz@163.com");
 		//System.out.println(receive_email);
@@ -50,14 +55,14 @@ public class EmailService {
 		try {
 			 String title="主角旅行itours网站";
 			 String content = "尊敬的客户您好：您的预定信息已收到，预定成功信息将于24小时内发送到您的邮箱，请留意查看";
-			 String receivers = SystemVariable.cache.get("receive_email");
-			 String sender = SystemVariable.cache.get("sender_email");
-			 String pwd = SystemVariable.cache.get("sender_pwd");
-			 String host = SystemVariable.cache.get("sender_host");
-			 String port = SystemVariable.cache.get("sender_port");
-			 String auth = SystemVariable.cache.get("sender_auth");
-			 String ssl = SystemVariable.cache.get("sender_ssl");
-			 String protocol = SystemVariable.cache.get("sender_protocol");
+			 String receivers = Constants.cache.get("receive_email");
+			 String sender = Constants.cache.get("sender_email");
+			 String pwd = Constants.cache.get("sender_pwd");
+			 String host = Constants.cache.get("sender_host");
+			 String port = Constants.cache.get("sender_port");
+			 String auth = Constants.cache.get("sender_auth");
+			 String ssl = Constants.cache.get("sender_ssl");
+			 String protocol = Constants.cache.get("sender_protocol");
 			 String attachement ="";
 			// String [] emails = receivers.split(";");
 			// for(String email:emails){						 
@@ -78,16 +83,16 @@ public class EmailService {
 	 */
 	public static boolean sendEmail(String title,String receive_email, String subject, String content,String attachment)throws Exception {
 		// String receivers = SystemVariable.map.get("receive_email");
-		if(SystemVariable.cache.isEmpty()){
-			SystemVariable.init();
+		if(Constants.cache.isEmpty()){
+			Constants.load(sysVariablesService);
 		}
-		 String sender = SystemVariable.cache.get("sender_email");
-		 String pwd = SystemVariable.cache.get("sender_pwd");
-		 String host = SystemVariable.cache.get("sender_host");
-		 String port = SystemVariable.cache.get("sender_port");
-		 String auth = SystemVariable.cache.get("sender_auth");
-		 String ssl = SystemVariable.cache.get("sender_ssl");
-		 String protocol = SystemVariable.cache.get("sender_protocol");
+		 String sender = Constants.cache.get("sender_email");
+		 String pwd = Constants.cache.get("sender_pwd");
+		 String host = Constants.cache.get("sender_host");
+		 String port = Constants.cache.get("sender_port");
+		 String auth = Constants.cache.get("sender_auth");
+		 String ssl = Constants.cache.get("sender_ssl");
+		 String protocol = Constants.cache.get("sender_protocol");
 		 return EmailService.sendEmail(receive_email, title, content,sender,pwd,host,port,auth,ssl,protocol,attachment);
 	}
 	/**

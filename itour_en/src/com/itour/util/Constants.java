@@ -22,10 +22,16 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.itour.base.page.BasePage;
 import com.itour.base.util.FilePros;
+import com.itour.base.util.SystemVariable;
 import com.itour.entity.AdLink;
 import com.itour.entity.Areas;
 import com.itour.entity.LevelArea;
+import com.itour.service.AdLinkService;
+import com.itour.service.AreasService;
+import com.itour.service.LevelAreaService;
 import com.itour.service.ShowHappyService;
+import com.itour.service.SysVariablesService;
+import com.itour.service.TravelStyleService;
 import com.itour.vo.AdLinkVO;
 import com.itour.vo.FeedbackVO;
 import com.itour.vo.RouteTemplateVO;
@@ -56,6 +62,7 @@ public class Constants {
 	//public static final List<FeedbackVO> lightfbpage = Lists.newArrayList();//轻旅行反馈列表
 	//public static final List<FeedbackVO> feedbackpage = Lists.newArrayList();//轻旅行反馈列表
 	public static final Map<String,String> travelStyles = Maps.newHashMap();
+	public static final Map<String,String> cache = new HashMap<String,String>();
 	public static final int maxMoreDestinations = 5;//每个景点的相关景点多于5个才显示MOre
 	public static final int maxDestinations = 3;//每个地区最多显示的目的地数，若超出，则显示更多目的地选项
 	public static final int perPage = 3;//前端回忆幸福每页数据
@@ -87,6 +94,18 @@ public class Constants {
 	public static final int compressMapWidth = 577;
 	public static final int compressMapHeight = 284;
 	private static final ResourceBundle bundle = ResourceBundle.getBundle(BUNDLE_NAME);
+	@Autowired
+	private static TravelStyleService travelStyleService;
+	@Autowired
+	private static ShowHappyService showHappyService;
+	@Autowired
+	private static LevelAreaService levelAreaService;
+	@Autowired
+	private static AreasService areasService;
+	@Autowired
+	private static AdLinkService adLinkService;
+	@Autowired
+	private static SysVariablesService sysVariablesService;
 	//
 	public static final Set<String> TSTYLES = new HashSet<String>(){{
 		add(CUSTOMIZED);
@@ -121,38 +140,64 @@ public class Constants {
 	public static void init(){
 		basePhoto= bundle == null || StringUtils.isEmpty(bundle.getString("basePhoto")) ? basePhoto : bundle.getString("basePhoto");
 		perRow = bundle == null ||StringUtils.isEmpty(bundle.getString("perRow")) ? perRow :  Integer.valueOf( bundle.getString("perRow"));
-		String sql ="select id,type,alias,valid,remark from travel_style where valid=1";
+		load(travelStyleService);
+        load(levelAreaService);
+       load(adLinkService);
+  	   load(areasService);
+  	  load(showHappyService);
+	}
+	
+	/**
+	 * 
+	 * @param travelStyleService
+	 */
+	public static void load(TravelStyleService travelStyleService){
+		travelStyles.clear();
+		String sql="select alias,type from travel_style where valid=1";
 		List<Map<String, Object>> list = null;
-		System.out.println("WebInitListener.contextInitialized.Constants.sql="+sql);
-		try{
-	   		list =jdbcTemplate.queryForList(sql);  
-		   for(Map<String,Object> map:list){
-			   if(TSTYLES.contains(map.get("alias"))){				   
-				   travelStyles.put((String)map.get("alias"),(String)map.get("alias"));
-			   }
+		System.out.println("Constants.initTravelStyle.sql="+sql);
+   		list =jdbcTemplate.queryForList(sql);  
+	   for(Map<String,Object> map:list){
+		   if(TSTYLES.contains(map.get("alias"))){				   
+			   travelStyles.put((String)map.get("alias"),(String)map.get("alias"));
 		   }
-		   String lv1asql = "select distinct level1_area ,alias_code from level_area group by level1_area";
+	   }
+	   List<Map<String,Object>> newlist = Lists.newArrayList();
+	   newlist.add(new HashMap(){{put("alias","");put("type","--All--");}});
+	   //List<Map<String,Object>> tsmap = jdbcTemplate.queryForList(tssql);
+	   newlist.addAll(list);
+	   allStyles.clear();
+	   allStyles.addAll(newlist);
+	}
+	
+	/**
+	 * 
+	 * @param levelAreaService
+	 */
+	public static void load(LevelAreaService levelAreaService){
+		  String lv1asql = "select distinct level1_area ,alias_code from level_area group by level1_area";
+		  System.out.println("Constants.initLevelAreas.sql="+lv1asql);
 		   List<LevelArea> areas1 = new ArrayList<LevelArea>(){{add(new LevelArea("","-All-"));}};
 		   areas1.addAll(jdbcTemplate.query(lv1asql,  new RowMapper<LevelArea>(){
 		        @Override  
 		        public LevelArea mapRow(ResultSet rs, int rowNum) throws SQLException {  
 	        	  LevelArea sh = new LevelArea();  
-                  sh.setLevel1Area(rs.getString("level1_area"));	
-                  sh.setAliasCode(rs.getString("alias_code"));
-                  return sh;   
+                sh.setLevel1Area(rs.getString("level1_area"));	
+                sh.setAliasCode(rs.getString("alias_code"));
+                return sh;   
 		        }  
 		   }));
 		   level1Areas.clear();
 		   level1Areas.addAll(areas1);
-		   String tssql="select alias,type from travel_style where valid=1";
-		   List<Map<String,Object>> newlist = Lists.newArrayList();
-		   newlist.add(new HashMap(){{put("alias","");put("type","--All--");}});
-		   List<Map<String,Object>> tsmap = jdbcTemplate.queryForList(tssql);
-		   newlist.addAll(tsmap);
-		   allStyles.clear();
-		   allStyles.addAll(newlist);
-		   String adsql="select * from ad_link where valid=1";
+	}
+	/**
+	 * 
+	 * @param adLinkService
+	 */
+	public static void load(AdLinkService adLinkService){
+		  String adsql="select * from ad_link where valid=1";
 		  String adlinpath = FilePros.httpadLinkPath();
+		  System.out.println("Constants.initAdLink.sql="+adsql);
 		  List<AdLink> adlist = jdbcTemplate.query(adsql, new RowMapper<AdLink>(){
 		        @Override  
 		        public AdLink mapRow(ResultSet rs, int rowNum) throws SQLException {  
@@ -166,9 +211,36 @@ public class Constants {
 		   });
 		   alladLinks.clear();
 		   alladLinks.addAll(adlist);
+	}
+	
+	/**
+	 * 
+	 * @param areasService
+	 */
+	public static void load(AreasService areasService){
+		  String asql = "select id,areaname from areas";
+		  System.out.println("Constants.initAreas.sql="+asql);
+		    List<Areas> areas = jdbcTemplate.query(asql, new RowMapper<Areas>(){
+				@Override
+				public Areas mapRow(ResultSet rs, int num) throws SQLException {
+					Areas as = new Areas();
+					as.setId(rs.getString("id"));
+					as.setAreaname(rs.getString("areaname"));
+					return as;
+				}
+		    });
+		    allAreas.clear();
+		    allAreas.addAll(areas);
+	}
+	/**
+	 * 
+	 * @param showHappyService
+	 */
+	public static void load(ShowHappyService showHappyService){
 		   String shareHappyCoverPath = FilePros.httpshCoverPath();
 		   String shsql = "select show_happy.sh_code,show_happy.cover,show_happy.title,show_happy.route,DATE_FORMAT(show_happy.tour_time,'%Y-%m-%d') tour_time,show_happy.short_content,show_happy.signature,areas.areaname from show_happy left join areas on show_happy.area=areas.id where valid=1";
 		  // List<ShowHappyVO> shs =jdbcTemplate.query(shsql,new ColumnMapRowMapper());
+		   System.out.println("Constants.initShowHappy.sql="+shsql);
 		   List<ShowHappyVO> shs = jdbcTemplate.query(shsql, new RowMapper<ShowHappyVO>(){
 		        @Override  
 		        public ShowHappyVO mapRow(ResultSet rs, int rowNum) throws SQLException {  
@@ -185,18 +257,28 @@ public class Constants {
 		   });
 		    showhappypage.clear();
 		    showhappypage.addAll(shs);
-		    String asql = "select id,areaname from areas";
-		    List<Areas> areas = jdbcTemplate.query(asql, new RowMapper<Areas>(){
-				@Override
-				public Areas mapRow(ResultSet rs, int num) throws SQLException {
-					Areas as = new Areas();
-					as.setId(rs.getString("id"));
-					as.setAreaname(rs.getString("areaname"));
-					return as;
-				}
-		    });
-		    allAreas.clear();
-		    allAreas.addAll(areas);
+	}
+	/**
+	 * 
+	 * @param sysVariablesService
+	 */
+	public static void load(SysVariablesService sysVariablesService){
+		cache.clear();
+		String sql = "select var_name,var_value from sys_variables where var_project='itour_en' and var_hostname='"+SystemVariable.hostName+"' and var_hostip='"+SystemVariable.hostIp+"'";  
+		List<Map<String, Object>> list = null;
+		System.out.println("Constants.SysVariables.sql="+sql);
+		//WebApplicationContext apli=WebApplicationContextUtils.getWebApplicationContext(servlet);
+		//SysVariablesService sysParamService=(SysVariablesService) apli.getBean("SysParamService");
+		try{
+			//JdbcTemplate tpl =  this.getJdbcTemplate();
+			//tpl = new JdbcTemplate(dataSource);
+			//list =JdbcTemplatex.queryForList(sql);  
+			//list =JdbcDaoHelper.(sql);  
+			list = jdbcTemplate.queryForList(sql);
+			for (Map<String,Object> map : list){
+				cache.put(map.get("var_name").toString(),map.get("var_value").toString());
+				//System.out.println(map.get("var_name")+"         "+map.get("var_value"));
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}

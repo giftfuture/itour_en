@@ -1,8 +1,10 @@
 package com.itour.service;
 
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
@@ -17,6 +19,8 @@ import com.itour.convert.SysMenuKit;
 import com.itour.convert.TravelStyleKit;
 import com.itour.dao.TravelStyleDao;
 import com.itour.entity.TravelStyle;
+import com.itour.listener.event.TravelStyleEvent;
+import com.itour.listener.listener.TravelStyleListener;
 import com.itour.vo.TravelStyleVO;
 
 /**
@@ -29,6 +33,21 @@ import com.itour.vo.TravelStyleVO;
 @Service 
 public class TravelStyleService<T> extends BaseService<T> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
+	private TravelStyleListener travelStyleListener;
+	private Vector  repository = new Vector ();
+	public void addTravelStyleListener(TravelStyleListener ll){
+		repository.addElement(ll);//这步要注意同步问题  
+	}
+	public void notifyTravelStyleEvent(TravelStyleEvent event) {  
+        Enumeration e = repository.elements();//这步要注意同步问题  
+        while(e.hasMoreElements()){  
+        	travelStyleListener = (TravelStyleListener)e.nextElement();  
+        	travelStyleListener.event(event); 
+        }  
+    }
+	 public void removeTravelStyleListener(TravelStyleListener ll){  
+        repository.remove(ll);//这步要注意同步问题  
+     }
 	/**
 	 * 分页查询
 	 * 
@@ -75,6 +94,9 @@ public class TravelStyleService<T> extends BaseService<T> {
 		return mapper.queryValid();
 	};
 	public void updateCover(TravelStyle ts){
-		mapper.updateCover(ts);
+		int result = mapper.updateCover(ts);
+		if(result > 0 ){
+			notifyTravelStyleEvent(new TravelStyleEvent(this));
+		}
 	};
 }

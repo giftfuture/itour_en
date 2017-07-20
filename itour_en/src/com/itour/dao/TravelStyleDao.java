@@ -36,5 +36,5 @@ public interface TravelStyleDao<T> extends BaseDao<T> {
 	 * 
 	 * @param ts
 	 */
-	void updateCover(TravelStyle ts);
+	int updateCover(TravelStyle ts);
 }
