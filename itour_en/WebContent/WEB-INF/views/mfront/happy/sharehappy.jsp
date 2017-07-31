@@ -59,7 +59,7 @@ function ww4(date){
                <img alt="Click to replace" src="${basePath}RandomCodeServlet" id="validateCode" style="width:100;height:18;" onclick="changeValidateCode()">
                &nbsp;&nbsp;<a href="javascript:void(0)" onclick="changeValidateCode()">Can not see, change one</a></td></tr>
           <tr><td style="text-align:center;"><a href="javascript:sharehappy()" class="easyui-linkbutton STYLE18" name="savehappy" iconcls="icon-save">Share Memory</a></td>
-          <td style="text-align:center;"><a href="javascript:void(0);" class="easyui-linkbutton STYLE18" onclick="${basePath}showhappy/sharehappy" iconcls="icon-cancel">Cancel Share</a></td></tr>
+          <td style="text-align:center;"><a href="javascript:void(0);" class="easyui-linkbutton STYLE18" onclick="${basePath}showhappy-sharehappy" iconcls="icon-cancel">Cancel Share</a></td></tr>
         </table><div id="alertMessage"></div>
     </form:form> 
     </td>

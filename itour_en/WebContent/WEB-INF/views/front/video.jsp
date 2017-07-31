@@ -98,7 +98,7 @@ your browser does not support the video tag
 </video> --%>
 </td></tr>
 </table>
-<table><tr><td width="100%" style="width:100%"><%@include file="/frontm/footer.jsp" %></td></tr>
+<table><tr><td width="100%" style="width:100%"><%@include file="/front/footer.jsp" %></td></tr>
 </center>
 </body>
 </html>

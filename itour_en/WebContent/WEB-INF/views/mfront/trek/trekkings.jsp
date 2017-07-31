@@ -21,7 +21,6 @@
   <tr>
     <td><img src="images/banner-trekking.jpg" width="100%" /></td>
   </tr>
-
   <tr>
     <td height="106" valign="top" bgcolor="#fafafa" width="100%">
     <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">

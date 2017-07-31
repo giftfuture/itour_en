@@ -13,9 +13,10 @@
 <title>Hiking Travel</title>
 </head>
 <body>
+ <%@include file="/front/header.jsp"  %>
 <table class="commontb" align="center">
    <tr>
-    <td> <%@include file="/front/header.jsp"  %> </td>
+    <td> </td>
   </tr>
   <tr>
     <td align="center" style="text-align:center;width:100%" width="100%">

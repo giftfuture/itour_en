@@ -100,7 +100,7 @@
               <tbody><tr>
 
           <td class="STYLE126"><div align="right"><strong>Type</strong></div></td>
-          <td class="STYLE126" style="text-align:left"><strong>${rt.travelStyle} </strong><a href="javascript:void(0)" title="${rt.travelStyle}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="text-align:left"><strong>${rt.travelStyle} </strong><a href="javascript:void(0)" title="${rt.travelStyle}"> </a></td>
         </tr>
         <tr>
           <td width="" class="STYLE126"><div align="right"><strong>Line number</strong></div></td>
@@ -108,7 +108,7 @@
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>Travel days</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.rcdDays}days<strong> </strong><a href="javascript:void(0)" title="${rt.rcdDays}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="text-align:left">${rt.rcdDays}days<strong> </strong><a href="javascript:void(0)" title="${rt.rcdDays}"> </a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>Highest elevation</strong></div></td>
@@ -116,7 +116,7 @@
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>Departure</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.departure }<a href="javascript:void(0)" title="${rt.departure}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="text-align:left">${rt.departure }<a href="javascript:void(0)" title="${rt.departure}"> </a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>Arrive</strong></div></td>
@@ -130,6 +130,7 @@
           <td class="STYLE126"><div align="right"><strong>Transportation Style</strong></div></td>
           <td class="STYLE126" style="text-align:left">${rt.transportation }</td>
         </tr>
+         <c:if test="${not empty rt.difficultyRate}">
         <tr>
           <td class="STYLE126"><div align="right"><strong>Walking difficulty</strong></div></td>
           <td class="STYLE126" style="text-align:left">
@@ -139,16 +140,21 @@
           <c:forEach items="${rt.undiffRate}" var="rd">
              <img src="${basePath}images/shoe-2.gif" style="width:16;height:16;" width="16" height="16" />
           </c:forEach>
-           <a href="javascript:void(0)" title="Dark shoes logo on the difficulty level">Explain&gt;&gt;</a></td>
+           <a href="javascript:void(0)" title="Dark shoes logo on the difficulty level"> </a></td>
         </tr>
+        </c:if>
+         <c:if test="${not empty rt.trekDistance}">
         <tr>
           <td class="STYLE126"><div align="right"><strong>Walking distance </strong></div></td>
           <td class="STYLE126" style="float:left;text-align:left">${rt.trekDistance }km</td>
         </tr>
+        </c:if>
+        <c:if test="${not empty rt.mountStyle}">
         <tr>
           <td class="STYLE126"><div align="right"><strong>Mountain Style</strong></div></td>
-          <td class="STYLE126" style="float:left;text-align:left">${rt.mountStyle } <a href="javascript:void(0)" title="${rt.mountStyle}">Explain&gt;&gt; </a></td>
+          <td class="STYLE126" style="float:left;text-align:left">${rt.mountStyle } <a href="javascript:void(0)" title="${rt.mountStyle}"> </a></td>
         </tr>
+        </c:if>
         <tr>
         <td colspan=2 ><span class="STYLE148" style="text-align:left;float:left;">
         Note: The needs of each group are different, according to your holiday to re-adjust the design process.</span></td>
@@ -176,10 +182,10 @@
   <tr><td style="text-align:center;float:middle;width:100%;" align="center"> 
 <div class="frametb" id="tab-container" class='tab-container' width="100%"  style="width:100%;text-align:center;float:middle" >
  <ul style="text-align:left;float:left" class='etabs'>
-   <li width="15%" bgcolor="#F0F0F0" style="margin:-5" class='tab'><a href="${basePath}hiking/hiking/${alias}#review" target="_self">Overview</a></li>
-   <li width="15%" bgcolor="#F0F0F0" style="margin:-5" class='tab'><a href="${basePath}hiking/hiking/${alias}#detail-route" target="_self">RouteDetails</a></li>
-   <li width="15%" bgcolor="#F0F0F0" style="margin:-5" class='tab'><a href="${basePath}hiking/hiking/${alias}#need-know" target="_self">BeforeInstructions</a></li>
-   <li width="15%" bgcolor="#F0F0F0" style="margin:-5" class='tab'><a href="${basePath}hiking/hiking/${alias}#feed-back" target="_self">Feedback</a></li>
+   <li width="15%" bgcolor="#F0F0F0" style="margin:-5" class='tab'><a href="${basePath}hiking-hiking-${alias}#review" target="_self">Overview</a></li>
+   <li width="15%" bgcolor="#F0F0F0" style="margin:-5" class='tab'><a href="${basePath}hiking-hiking-${alias}#detail-route" target="_self">RouteDetails</a></li>
+   <li width="15%" bgcolor="#F0F0F0" style="margin:-5" class='tab'><a href="${basePath}hiking-hiking-${alias}#need-know" target="_self">BeforeInstructions</a></li>
+   <li width="15%" bgcolor="#F0F0F0" style="margin:-5" class='tab'><a href="${basePath}hiking-hiking-${alias}#feed-back" target="_self">Feedback</a></li>
  </ul>
  <div class='panel-container'>
  <div id="review" name="review">
@@ -258,7 +264,7 @@
   </tr>
   <tr><td colspan=2 style="float:left" background="images/frame1-2.gif" style="valign:top;"> 
      <c:forEach items="${rt.relates}" var="relat"><br>
-     <a href="${basePath}selfdrive/selfdrive/${relat.alias}" >${relat.title }</a>
+     <a href="${basePath}hiking-hiking-${relat.alias}" >${relat.title }</a>
      </c:forEach>
      </td></tr>
    <tr>
@@ -266,7 +272,7 @@
   </tr>
 <tr>
      <td colspan=2 ><span class="STYLE3" style="text-align:left;float:left">Tell us your needs, free planning for your program GO! </span> &nbsp;&nbsp;
-     <span class="STYLE3" style="text-align:left;float:left"><a style="text-align:left;float:left" href="${basePath}hiking/selfbooking/${rt.alias}">
+     <span class="STYLE3" style="text-align:left;float:left"><a style="text-align:left;float:left" href="${basePath}hiking-selfbooking-${rt.alias}">
      <img style="float:middle" src="${basePath }images/tailor-made.gif" width="134" height="32" ></a></span></td>
    </tr>
  </tbody></table>
@@ -331,7 +337,7 @@
                 <input type="text" id="verifyCode" class=" easyui-textbox" title="Verification code" name="verifyCode"  data-options="height:22,prompt:'Please type in the correct verification code!'"/><br/>
                 <img alt="Click to replace" style="width:65;height:23" src="${basePath}ImageServlet" id="validateCodeImg" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">
                 <br/><a href="javascript:void(0)" onclick="document.getElementById('validateCodeImg').src='${basePath}ImageServlet?'+Math.random()">Can not see, change one</a>
-      </div></td>
+            </div></td>
               </tr>
               <tr>
                 <td colspan=2 bgcolor="#F0F0F0" class="STYLE140"><a class="easyui-linkbutton" iconcls="icon-ok" name="SubmitSend" >Ask</a></td>

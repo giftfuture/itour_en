@@ -97,7 +97,7 @@
             <td><table class="STYLE126" width="442" cellspacing="2" cellpadding="4" border="0">
               <tbody><tr>
           <td class="STYLE126"><div align="right"><strong>Type</strong></div></td>
-          <td class="STYLE126" style="text-align:left"><strong>${rt.travelStyle} </strong><a href="javascript:void(0)" title="${rt.travelStyle}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="text-align:left"><strong>${rt.travelStyle} </strong><a href="javascript:void(0)" title="${rt.travelStyle}"> </a></td>
         </tr>
         <tr>
           <td width="70" class="STYLE126"><div align="right"><strong>Line number</strong></div></td>
@@ -105,7 +105,7 @@
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>Travel days</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.rcdDays}days<strong> </strong><a href="javascript:void(0)" title="${rt.rcdDays}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="text-align:left">${rt.rcdDays}days<strong> </strong><a href="javascript:void(0)" title="${rt.rcdDays}"> </a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>Highest elevation</strong></div></td>
@@ -113,7 +113,7 @@
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>Departure</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.departure }<a href="javascript:void(0)" title="${rt.departure}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="text-align:left">${rt.departure }<a href="javascript:void(0)" title="${rt.departure}"> </a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>Arrive</strong></div></td>
@@ -127,6 +127,7 @@
           <td class="STYLE126"><div align="right"><strong>Transportation Style</strong></div></td>
           <td class="STYLE126" style="text-align:left">${rt.transportation }</td>
         </tr>
+         <c:if test="${not empty rt.difficultyRate}">
         <tr>
           <td class="STYLE126"><div align="right"><strong>Walking difficulty</strong></div></td>
           <td class="STYLE126" style="text-align:left">
@@ -136,16 +137,21 @@
           <c:forEach items="${rt.undiffRate}" var="rd">
              <img src="${basePath}images/shoe-2.gif" width="16" height="16" />
           </c:forEach>
-           <a href="javascript:void(0)" title="Dark shoes logo on the difficulty level">Explain&gt;&gt;</a></td>
+           <a href="javascript:void(0)" title="Dark shoes logo on the difficulty level"> </a></td>
         </tr>
+        </c:if>
+         <c:if test="${not empty rt.trekDistance}">
         <tr>
           <td class="STYLE126"><div align="right"><strong>Walking distance </strong></div></td>
           <td class="STYLE126" style="text-align:left">${rt.trekDistance }km</td>
         </tr>
+        </c:if>
+         <c:if test="${not empty rt.mountStyle}">
         <tr>
           <td class="STYLE126"><div align="right"><strong>Mountain Style</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.mountStyle } <a href="javascript:void(0)" title="${rt.mountStyle}">Explain&gt;&gt; </a></td>
+          <td class="STYLE126" style="text-align:left">${rt.mountStyle } <a href="javascript:void(0)" title="${rt.mountStyle}"> </a></td>
         </tr>
+        </c:if>
          <tr>
         <td colspan=2 style="text-align:left;float:left;"><span class="STYLE148">
         Note: The needs of each group are different, according to your holiday to re-adjust the design process.</span></td>

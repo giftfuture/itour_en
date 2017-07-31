@@ -10,6 +10,15 @@ import com.itour.entity.LevelArea;
 import com.itour.vo.LevelAreaVO;
 
 public interface LevelAreaDao extends BaseDao<LevelArea> {
+	
+	 int add(LevelArea t);
+		
+	 int update(LevelArea t);
+	
+	 int delete(@Param(value="id")String id);
+	
+	 int logicdelete(@Param(value="id")String id);
+	 
 	List<LevelArea> queryAll();
 	List<LevelArea> queryLevel1();
 	List<LevelArea> queryLevel2ByLevel1(@Param("level1Area")String level1Area);

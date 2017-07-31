@@ -63,24 +63,24 @@
 	      
      </script>
 	</div>
-	<div data-options="region:'south',split:true,border:false" style="height: 30px;overflow:hidden;">
-		<div class="panel-header" style="border: none;text-align: center;" >CopyRight &copy; 2016 itour 版权所有. &nbsp;&nbsp;官方网址: www.itours.com.cn</div>
+	<div data-options="region:'south',split:true,border:false" style="height:30px;overflow:hidden;">
+		<div class="panel-header" style="border:none;text-align:center;" >CopyRight &copy; 2016 itour 版权所有. &nbsp;&nbsp;官方网址: www.itours.com.cn</div>
 	</div>
 	<!-- 中间内容页面 -->
 	<div data-options="region:'center'">
 		<div class="easyui-tabs" id="tab-box" data-options="fit:true,border:false">
-			<div title="Welcome" style="padding:20px;overflow:hidden;"> 
+			<div title="Welcome" style="padding:20px;overflow:auto;"> 
 				<div style="margin-top:20px;">
-				</div>
-				<pre>欢迎进入主角旅行英文版网站后台管理界面</pre>
-				<div style="margin-top:20px;" id="unDealedOrders">
+				<pre style="font-size:1.5em;font-family: '微软雅黑';">欢迎进入主角旅行英文版网站后台管理界面</pre>
+				<table style="margin-top:20px;width:100%;height:auto;border:1px solid grey;" border="1" id="unDealedOrders">
 				    
+				</table>
 				</div>
 			</div>
 		</div>	
 	</div>
 	<!--  modify password start -->
-	<div id="modify-pwd-win"  class="easyui-dialog" buttons="#editPwdbtn" title="修改用户密码" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:350px;height:200px;">
+	<div id="modify-pwd-win"  class="easyui-dialog" buttons="#editPwdbtn" title="修改用户密码" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:350px;height:200px;display:none;">
 		<form id="pwdForm" action="${basePath}main/modifyPwd" class="ui-form" method="post">
      		 <input class="hidden" name="id">
      		 <input class="hidden" name="email">
@@ -95,7 +95,7 @@
 	           </div> 
 	           <div class="fitem">  
 	               <label>重复密码:</label>  
-	              <input id="rpwd" name="rpwd" type="password" class="easyui-textbox"   data-options="required:true" required="required" validType="equals['#newPwd']" />
+	              <input id="rpwd" name="rpwd" type="password" class="easyui-textbox"  data-options="required:true" required="required" validType="equals['#newPwd']" />
 	           </div> 
 	         </div>
      	 </form>

@@ -45,7 +45,7 @@ import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
 
 @Controller
-@RequestMapping("/selfdrive") 
+//@RequestMapping("/selfdrive") 
 public class SelfdriveController  extends BaseController{
 	
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
@@ -66,7 +66,7 @@ public class SelfdriveController  extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping(value="/main", method = RequestMethod.GET) 
+	@RequestMapping(value="/selfdrive-main", method = RequestMethod.GET) 
 	public ModelAndView main(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
@@ -87,7 +87,7 @@ public class SelfdriveController  extends BaseController{
 	 */
 	@ResponseBody
 	@SuppressWarnings({"unchecked" })
-	@RequestMapping(value="/selfdrivepagination", method = RequestMethod.POST) 
+	@RequestMapping(value="/selfdrive-selfdrivepagination", method = RequestMethod.POST) 
 	public String selfdrivepagination(String pageNo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		//page.setDeleted(DELETED.NO.key);
@@ -118,7 +118,7 @@ public class SelfdriveController  extends BaseController{
 	 */
 	@SuppressWarnings("unchecked")
 	@ResponseBody
-	@RequestMapping(value="/selfdrive/{alias}", method = RequestMethod.GET) 
+	@RequestMapping(value="/selfdrive-selfdrive-{alias}", method = RequestMethod.GET) 
 	public ModelAndView hiking(@PathVariable("alias")String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		RouteTemplateVO rt = routeTemplateService.queryByAlias(alias);
 		TravelStyle style = (TravelStyle)travelStyleService.queryById(rt.getTravelStyle());
@@ -206,7 +206,7 @@ public class SelfdriveController  extends BaseController{
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping(value="/detail/{alias}", method = RequestMethod.GET) 
+	@RequestMapping(value="/selfdrive-detail-{alias}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		RouteTemplateVO rt = routeTemplateService.queryByAlias(alias);
 		String mappath = FilePros.httprouteMapPath();
@@ -250,7 +250,7 @@ public class SelfdriveController  extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/selfbooking/{alias}",method = RequestMethod.GET) 
+	@RequestMapping(value="/selfdrive-selfbooking-{alias}",method = RequestMethod.GET) 
 	@ResponseBody
 	public ModelAndView selfbooking(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> map = getRootMap();

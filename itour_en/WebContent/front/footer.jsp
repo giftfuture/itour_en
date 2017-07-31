@@ -2,19 +2,18 @@
 <%-- <script type="text/javascript" src="${basePath}js/jquery-easyui-1.5.1/jquery.min.js"></script> --%>
 <!-- <div style="left: 0; bottom: 0; right: 0;position:fixed !important;"> -->
 <script type="text/javascript" src="${basePath}js/commons/package.js"></script>
-<script type="text/javascript" src="${basePath}js/ux/front/footer.js"></script>  
-<div>
 <script type="text/javascript">
  var rcdDays='${rcdDays}';
  var level1Area ='${level1Area}';
  var level2Area = '${level2Area}';
 </script>
+<div>
 <form name="searchForm" method="post">
 <table class="frametb" align="center" >
   <tr>
     <td width="10%" bgcolor="#CCCCCC"><div align="left" class="STYLE2"><strong>fast Search</strong></div></td>
     <td width="80%" bgcolor="#CCCCCC" class="f14-gao1" >  
-      <strong>Travel mode:</strong> <input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:120,minWidth:80,height:22,valueField:'alias',textField:'type',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles',prompt:'-All-'">
+      <strong>Travel mode:</strong> <input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:120,minWidth:80,height:22,valueField:'alias',textField:'type',mode:'remote',panelHeight:'150',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles',prompt:'-All-'">
       <label>
       Tourist area: 
          <input class="easyui-combobox" id="level1Area" name="level1Area" value="${level1Area}" data-options="width:120,minWidth:80,height:22,panelHeight:'auto',editable:false,prompt:'-All-'">
@@ -34,6 +33,8 @@
   </tr>
 </table>
 </form>
+<table width="100%" border="0" align="center" cellpadding="5" cellspacing="0" bgcolor="#fafafa" name="keyfooter" style="margin-top:30;background-color:#fafafa;" bgcolor='#fafafa' >
+   </table>
 <!-- <table width="100%" border="0" align="center" cellpadding="15" cellspacing="0">  
   <tr>
     <td height="106" valign="top" bgcolor="#fafafa">
@@ -123,5 +124,5 @@
   </tr></tbody>
 </table>
 </div>
-
+<script type="text/javascript" src="${basePath}js/ux/front/footer.js"></script>  
 

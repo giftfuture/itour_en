@@ -32,7 +32,34 @@
 	<result column="gender" property="gender"/>
 	<result column="route_id" property="routeId"/>
 </resultMap>
-       
+<resultMap id="BaseResultMapVO" type="com.itour.vo.TravelOrderVO" >
+    <result column="id" property="id"/>
+    <result column="create_time" property="createTime"/>
+    <result column="update_time" property="updateTime"/>
+    <result column="order_name" property="orderName"/>
+    <result column="order_no" property="orderNo"/>
+    <result column="order_status" property="orderStatus"/>
+    <result column="receiver" property="receiver"/>
+    <result column="receiver_mobile" property="receiverMobile"/>
+    <result column="remark" property="remark"/>
+    <result column="customer_id" property="customerId"/>
+    <result column="expected_depart" property="expectedDepart"/>
+    <result column="expected_back" property="expectedBack"/>
+    <result column="total_staff" property="totalStaff"/>
+    <result column="payed" property="payed"/>
+    <result column="pay_type" property="payType"/>
+    <result column="pay_platform" property="payPlatform"/>
+    <result column="bank" property="bank"/>
+    <result column="pay_account" property="payAccount"/>
+    <result column="pay_time" property="payTime"/>
+    <result column="pay_terminal" property="payTerminal"/>
+    <result column="budget" property="budget"/>
+    <result column="valid" property="valid"/>
+    <result column="routename" property="routename"/>
+    <result column="receiveremail" property="receiveremail"/>
+    <result column="gender" property="gender"/>
+    <result column="route_id" property="routeId"/>
+</resultMap>            
 <!-- travel_order table all fields -->
 <sql id="Base_Column_List" >
 	 id, create_time, update_time, order_name, order_no, order_status, receiver, receiver_mobile, remark, customer_id, expected_depart, expected_back, total_staff, payed, pay_type, pay_platform, bank, pay_account, pay_time, pay_terminal, budget,valid,routename,receiveremail,gender,route_id
@@ -224,9 +251,13 @@ where valid=1
 	<include refid="Example_Where_Clause"/>
 </select>
 <!-- 查询待处理订单 -->
-<select id="unDealedOrders"  resultMap="BaseResultMap">
-select <include refid="Base_Column_List"/> from travel_order where order_status =1 or order_status is null
-</select>     	
+<select id="unDealedOrders"  resultMap="BaseResultMapVO">
+select  id, DATE_FORMAT(create_time,'%Y-%m-%d %H:%i') create_time, update_time, order_name, order_no, order_status,
+ receiver, receiver_mobile, remark, customer_id,  DATE_FORMAT(expected_depart,'%Y-%m-%d') expected_depart, DATE_FORMAT(expected_back,'%Y-%m-%d') expected_back,
+  total_staff, payed, pay_type, pay_platform, bank, pay_account, pay_time, pay_terminal,
+   budget,valid,routename,receiveremail,gender,route_id
+from travel_order where order_status =1 or order_status is null
+</select>       	
 <!-- 查询客户订单列表 -->
 <select id="queryByList" resultMap="BaseResultMap"  parameterType="com.itour.base.page.BasePage">
 	select 

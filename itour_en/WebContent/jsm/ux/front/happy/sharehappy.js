@@ -174,7 +174,7 @@ function sharehappy() {
 			//console.log("data.success="+data.success);
 			if (result.success) {
 				itour.alert("alert",result.msg||"Show Successfully!",'info');
-				setTimeout(function(){window.location.href=basePath+"showhappy/main";}, 3000);
+				setTimeout(function(){window.location.href=basePath+"showhappy-main";}, 3000);
 				//_this.showSuccess(result.msg);
 			} else {
 				itour.alert("alert",result.msg||"Mistaking Show !",'info');

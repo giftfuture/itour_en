@@ -27,8 +27,27 @@ itouren.footer = function(){
 		    }); 
 		  }
 		},
+		footAds:function(){
+			  $.ajax({  
+			        url : basePath+'adLink/footAds',  
+			        async : false,  
+			        method: 'post',
+			        success : function(rest){ 
+			            var result = eval('('+rest+")");//转换为json对象 
+			            //console.log(result);     
+			            var html = "<tr bgcolor='#fafafa'>"; 
+			            $(result).each(function(i,e){
+			            	if(i!=0 && i%5==0){
+			            		html+="</tr><tr bgcolor='#fafafa'>";
+			            	}
+			            	html+=" <td width='210'><a href='"+basePath+e.adlink+"'>"+e.title+"</a></td>";
+			            });
+			            $("table[name='keyfooter']").append(html+"</tr>");
+			        }  
+			    }); 
+		
+		},
 		init:function(){
-			 
 		    $.ajax({  
 		        url:basePath+'levelarea/queryLevel1',
 		        async : false,  
@@ -47,6 +66,7 @@ itouren.footer = function(){
 		            });   
 		        }  
 		    })
+		     _this.footAds();
 		     _this.loadlevel2Area(level1Area);
 		    //console.log('${rcdDays}');$(this).combobox('select', '${rcdDays}')
 		    $("#vacation").combobox({ 
@@ -77,10 +97,10 @@ itouren.footer = function(){
 }();
 
 
-window.onload=function(){
+/*window.onload=function(){
 	itouren.footer.init();
-}
+}*/
 
-/*$(function(){
+$(function(){
 	itouren.footer.init();
-});	*/	
+});		

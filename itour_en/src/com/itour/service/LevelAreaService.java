@@ -2,6 +2,7 @@ package com.itour.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
@@ -12,9 +13,17 @@ import org.springframework.stereotype.Service;
 import com.google.common.collect.Lists;
 import com.itour.base.page.BasePage;
 import com.itour.base.service.BaseService;
+import com.itour.base.util.ClassReflectUtil;
+import com.itour.base.util.IDGenerator;
 import com.itour.convert.LevelAreaKit;
 import com.itour.dao.LevelAreaDao;
 import com.itour.entity.LevelArea;
+import com.itour.listener.event.AreasEvent;
+import com.itour.listener.event.LevelAreaEvent;
+import com.itour.listener.listener.AdLinkListener;
+import com.itour.listener.listener.BaseListener;
+import com.itour.listener.listener.LevelAreaListener;
+import com.itour.listener.listener.impl.LevelAreaListenerImpl;
 import com.itour.vo.LevelAreaVO;
 @Service 
 public class LevelAreaService extends BaseService<LevelArea>{
@@ -26,7 +35,42 @@ public class LevelAreaService extends BaseService<LevelArea>{
 	public LevelAreaDao getDao(){
 		return mapper;
 	}
-		
+	public LevelAreaListener baseListener = new LevelAreaListenerImpl();	
+	private Vector  repository = new Vector ();
+	public void addBaseListener(LevelAreaListener ll){
+		repository.addElement(ll);//这步要注意同步问题  
+	}
+	public void notifyBaseEvent(LevelAreaEvent event) {  
+     /* Enumeration<BaseListener> e = repository.elements();//这步要注意同步问题  
+        while(e.hasMoreElements()){  
+        	baseListener = e.nextElement();  
+        	baseListener.event(event); 
+        }  */
+		// = new BaseListenerImpl();
+		try {
+			//BaseService bs = ;
+			LevelAreaService obj = event.getSource().getClass().newInstance();
+			if(obj instanceof BaseService){//obj.getClass().isInstance(BaseService.class) && obj.getClass().isAssignableFrom(this.getClass())
+				//event.getSource().getClass().isInstance(obj);
+				//System.out.println("#############"+event.getSource().getClass().newInstance().baseListener());
+				//TravelStyleService ts = new TravelStyleService();
+				//ts.baseListener; 
+				obj.baseListener.event(event);
+				/*BaseListener baseListener = obj.baseListener();   //.baseListener; //obj.baseListener;
+				if(baseListener != null){
+					baseListener.event(event);
+				}*/
+			}
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} 
+    }
+	
+	public void removeBaseListener(LevelAreaListener ll){  
+       repository.remove(ll);//这步要注意同步问题  
+    }
 	/**
 	 * 分页查询
 	 * 
@@ -59,4 +103,44 @@ public class LevelAreaService extends BaseService<LevelArea>{
 	public LevelAreaVO selectById(@Param("id")String id){
 		return mapper.selectById(id);
 	};
+	public String add(LevelArea t)throws Exception{
+		//设置主键.字符类型采用UUID,数字类型采用自增
+		String uuid = IDGenerator.getUUID();// UUID.randomUUID().toString();
+		//System.out.println("uuid="+uuid);
+		ClassReflectUtil.setIdKeyValue(t,"id",uuid);
+		//ClassReflectUtil.setIdKeyValue(t,"id",IDGenerator.getLongId()+"");
+		int result = getDao().add(t);
+		if(result > 0 ){
+			notifyBaseEvent(new LevelAreaEvent(this));
+		}
+		return uuid;
+	}
+	
+	public void update(LevelArea t)  throws Exception{
+		int result = getDao().update(t);
+		if(result > 0 ){
+			notifyBaseEvent(new LevelAreaEvent(this));
+		}
+	}
+	
+	
+	public void delete(String... ids) throws Exception{
+		if(ids == null || ids.length < 1){
+			return;
+		}
+		for(String id : ids ){
+			 getDao().delete(id);
+		}
+		notifyBaseEvent(new LevelAreaEvent(this));
+	}
+	
+	public void logicdelete(String... ids) throws Exception{
+		if(ids == null || ids.length < 1){
+			return;
+		}
+		for(String id : ids ){
+			getDao().logicdelete(id);
+		}
+		notifyBaseEvent(new LevelAreaEvent(this));
+	}
 }

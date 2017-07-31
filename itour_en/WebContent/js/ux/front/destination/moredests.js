@@ -6,7 +6,7 @@ itouren.destinationssc = function(){
 			    //  var route = $("input[name='idrt']").val();
 			  //  console.log(pageno);
 			  //  console.log(travel_style+"  "+vacation+"   "+areas);
-			  	$.post(basePath+"destination/moredestPage",{'pageNo':pageno,'scope':scope},
+			  	$.post(basePath+"destination-moredestPage",{'pageNo':pageno,'scope':scope},
 				function(responseText){
 						var responseText = $.parseJSON(responseText);
 						var searchRts = responseText.result.records;
@@ -14,8 +14,8 @@ itouren.destinationssc = function(){
 						var html="<tr>";
 						$(searchRts).each(function(i,e){
 							html+='<td align="center">'+
-								   	'<p><a href="'+basePath+'destination/detail/'+e.alias+'">'+e.item+'</a></p>'+
-								   	'<p><a href="'+basePath+'destination/detail/'+e.alias+'"><img src="'+basePath+e.cover+'" width="420" height="233" /></a></p>'+
+								   	'<p><a href="'+basePath+'destination-detail-'+e.alias+'">'+e.item+'</a></p>'+
+								   	'<p><a href="'+basePath+'destination-detail-'+e.alias+'"><img src="'+basePath+e.cover+'" width="420" height="233" /></a></p>'+
 								   	'<p style="text-align:left">'+e.shortContent+'</p>'+
 							    '</td>'+(i !=0 &&i%2==0?"</tr><tr>":"");
 						});

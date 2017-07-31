@@ -80,14 +80,18 @@ itouren.main = function(){
 	    			success:function(responseText){
 						var resp = $.parseJSON(responseText);
 						if(resp.success||resp.success=="true"){
-							$("#unDealedOrders").append("<p style='text-align:left;'>待处理订单：</p>");
+							$("#unDealedOrders").append("<tr><td style='text-align:left;' colspan=6><b>待处理订单</b></td></tr>");
+							$("#unDealedOrders").append("<tr><td style='text-align:center;'>序号</td><td style='text-align:center;'>姓名</td><td style='text-align:center;'>旅行日期</td>" +
+									"<td style='text-align:center;'>线路</td><td style='text-align:center;'>下单时间</td><td style='text-align:center;'>详情</td></tr>");
 							$(resp.data).each(function(idx,ex){
 								if(ex.id && ex.routeId && ex.orderName){
-									$("#unDealedOrders").append("<p>("+(idx+1)+").<a target='_blank' href="+basePath+"travelOrder/toQuote1/"+ex.id+'/'+ex.routeId+">"+ex.orderName+"</a></p>");
+									$("#unDealedOrders").append("<tr><td style='text-align:center;'>"+(idx+1)+"</td><td style='text-align:center;'>"+ex.receiver+"</td><td style='text-align:center;'>"+ex.expectedDepart+"</td>" +
+									"<td style='text-align:left;'><a target='_blank' href="+basePath+"travelOrder/toQuote1/"+ex.id+"/"+ex.routeId+">"+ex.orderName+"</a></td><td style='text-align:center;'>"+ex.createTime+"</td><td style='text-align:center;'>详情</td></tr>");
+									/*$("#unDealedOrders").append("<p>("+(idx+1)+").<a target='_blank' href="+basePath+"travelOrder/toQuote1/"+ex.id+"/"+ex.routeId+">"+ex.orderName+"</a></p>");*/
 								}
 							});
 						}else{
-							$("#unDealedOrders").append("<p style='text-align:left;'>无待处理订单：</p>");
+							$("#unDealedOrders").append("<tr><td style='text-align:left;'>无待处理订单!</td></tr>");
 						}
 					
 	    			}

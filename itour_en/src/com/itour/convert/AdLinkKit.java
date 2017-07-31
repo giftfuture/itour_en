@@ -28,6 +28,7 @@ public class AdLinkKit {
 		adlink.setCreateBy(vo.getCreateBy());
 		adlink.setUpdateBy(vo.getUpdateBy());
 		adlink.setVideo(vo.getVideo());
+		adlink.setFoot(vo.getFoot());
 		if(StringUtils.isNotEmpty(vo.getCreateTime())){
 			adlink.setCreateTime(DateUtil.fromStringToDate(DateUtil.y_m_dhms, vo.getCreateTime()));
 		}
@@ -53,6 +54,7 @@ public class AdLinkKit {
 		adlink.setRemark(vo.getRemark());
 		adlink.setCreateBy(vo.getCreateBy());
 		adlink.setUpdateBy(vo.getUpdateBy());
+		adlink.setFoot(vo.getFoot());
 		adlink.setCreateTime(DateUtil.getDateYmdHs(vo.getCreateTime()));
 		adlink.setUpdateTime(DateUtil.getDateYmdHs(vo.getUpdateTime()));
 		return adlink;
@@ -73,6 +75,8 @@ public class AdLinkKit {
 		map.put("remark", vo.getRemark());
 		map.put("createBy", vo.getCreateBy());
 		map.put("updateBy", vo.getUpdateBy());
+		map.put("foot",vo.getFoot()+"");
+		map.put("valid", vo.getValid()+"");
 		return map;
 	}
 }

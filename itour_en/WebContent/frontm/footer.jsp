@@ -5,14 +5,14 @@
  var level1Area ='${level1Area}';
  var level2Area = '${level2Area}';
 </script>
-<script type="text/javascript" src="${basePath}jsm/ux/front/footer.js"></script>  
+
 <div width="100%" style="width:100%"  data-role="content"  data-fullscreen="true">
 <form name="searchForm" method="post">
 <table class="commontb" align="center"  width="100%" height="100%" style="width:100%;height:200px;"  data-role="content"  data-fullscreen="true">
   <tr>
     <td width="15%" bgcolor="#CCCCCC"><div align="left" class="STYLE2"><strong>fast Search</strong></div></td>
     <td width="75%" bgcolor="#CCCCCC" class="f14-gao1" >  
-      <p style="height:15px"><span style="text-align:left"><strong>Travel Mode:</strong>&nbsp;<input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:120,minWidth:50,height:22,valueField:'alias',textField:'type',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles',prompt:'-All-'"/></span></p>
+      <p style="height:15px"><span style="text-align:left"><strong>Travel Mode:</strong>&nbsp;<input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:120,minWidth:50,height:22,valueField:'alias',textField:'type',mode:'remote',panelHeight:'150',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles',prompt:'-All-'"/></span></p>
       <p style="height:15px"><span style="text-align:left">
        <strong>&nbsp;  Area Level1:</strong>
          <input class="easyui-combobox" id="level1Area" name="level1Area" value="${level1Area}" data-options="width:120,minWidth:50,height:22,panelHeight:'auto',editable:false,prompt:'-All-'"/></span></p>
@@ -25,6 +25,8 @@
   </tr>
 </table>
 </form>
+<table width="100%" border="0" align="center" style="margin-top:30;background-color:#fafafa;" cellpadding="5" cellspacing="0" bgcolor="#fafafa" name="keyfooter">
+ </table>
 <table class="commontb" align="center"  width="100%" style="margin-top:30px;width:100%" data-role="content"  data-fullscreen="true">
   <tbody><tr>
     <td   valign="middle" height="135"  bgcolor="#666666"><table width="100%" height="60" cellspacing="0" cellpadding="0" border="0" align="center">
@@ -43,7 +45,7 @@
 </tbody></table>
 <p></p><p></p>
 <p></p><p></p> 
-<table align="center" class="commontb" width="100%" style="width:100%" data-role="content"  data-fullscreen="true">
+<table align="center" class="commontb" width="100%" style="width:100%" data-role="content"  data-fullscreen="true" bgcolor='#fafafa'>
 <tbody>
   <tr>
     <td><div align="center">
@@ -55,4 +57,5 @@
 </table>
  
 </div>
+<script type="text/javascript" src="${basePath}jsm/ux/front/footer.js"></script>  
 

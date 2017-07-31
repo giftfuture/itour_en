@@ -21,7 +21,7 @@ import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
 
 @Controller 
-@RequestMapping("/whyus")
+//@RequestMapping("/whyus")
 public class WhyUsController extends BaseController {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
@@ -39,7 +39,7 @@ public class WhyUsController extends BaseController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value="/why")
+	@RequestMapping(value="/whyus-why")
 	public ModelAndView why(HttpServletRequest request,HttpServletResponse response){
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
         //Browser browser = userAgent.getBrowser();  
@@ -55,7 +55,7 @@ public class WhyUsController extends BaseController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value="/aboutus")
+	@RequestMapping(value="/whyus-aboutus")
 	public ModelAndView aboutus(HttpServletRequest request,HttpServletResponse response){
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
         //Browser browser = userAgent.getBrowser();  

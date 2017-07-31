@@ -50,6 +50,7 @@ public class Constants {
 	public static final List<LevelArea> level1Areas = Lists.newArrayList();//一级区域
 	public static final List<Map<String,Object>> allStyles = Lists.newArrayList();//所有旅行方式
 	public static final List<AdLink> alladLinks = Lists.newArrayList();//所有首页链接
+	public static final List<AdLink> allFootadLinks = Lists.newArrayList();//所有页脚链接
 	public static final List<Areas> allAreas = Lists.newArrayList();//所在地区
 	public static final List<LevelArea> allLevelAreas = Lists.newArrayList();//所有一级，二级区域
 	public static final List<TravelItemVO> homehotSights = Lists.newArrayList();//首页展示的热门景点
@@ -211,6 +212,20 @@ public class Constants {
 		   });
 		   alladLinks.clear();
 		   alladLinks.addAll(adlist);
+		   String footsql = "select * from ad_link where valid=1 and foot=1";
+		   System.out.println("Constants.initLeveinitAdLinklAreas.footsql="+footsql);
+		   List<AdLink> footlinks = jdbcTemplate.query(footsql, new RowMapper<AdLink>(){
+		        @Override  
+		        public AdLink mapRow(ResultSet rs, int rowNum) throws SQLException {  
+		        	AdLink sh = new AdLink();  
+                 //  sh.setAdvertise(adlinpath+"/"+rs.getString("advertise"));
+                   sh.setTitle(rs.getString("title"));
+                   sh.setAdlink(rs.getString("adlink"));
+                   return sh;   
+		        }  
+		   });
+		   allFootadLinks.clear();
+		   allFootadLinks.addAll(footlinks);
 	}
 	
 	/**

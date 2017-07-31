@@ -15,12 +15,17 @@ import org.springframework.stereotype.Service;
 import com.google.common.collect.Lists;
 import com.itour.base.page.BasePage;
 import com.itour.base.service.BaseService;
+import com.itour.base.util.ClassReflectUtil;
+import com.itour.base.util.IDGenerator;
 import com.itour.convert.SysMenuKit;
 import com.itour.convert.TravelStyleKit;
 import com.itour.dao.TravelStyleDao;
 import com.itour.entity.TravelStyle;
 import com.itour.listener.event.TravelStyleEvent;
+import com.itour.listener.listener.BaseListener;
 import com.itour.listener.listener.TravelStyleListener;
+import com.itour.listener.listener.impl.SystemVariablesListenerImpl;
+import com.itour.listener.listener.impl.TravelStyleListenerImpl;
 import com.itour.vo.TravelStyleVO;
 
 /**
@@ -33,17 +38,21 @@ import com.itour.vo.TravelStyleVO;
 @Service 
 public class TravelStyleService<T> extends BaseService<T> {
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
-	private TravelStyleListener travelStyleListener;
+	 
+	public TravelStyleListener baseListener(){
+		return new TravelStyleListenerImpl();
+	};
 	private Vector  repository = new Vector ();
 	public void addTravelStyleListener(TravelStyleListener ll){
 		repository.addElement(ll);//这步要注意同步问题  
 	}
-	public void notifyTravelStyleEvent(TravelStyleEvent event) {  
-        Enumeration e = repository.elements();//这步要注意同步问题  
+	public void notifyBaseEvent(TravelStyleEvent event) {  
+      /*  Enumeration e = repository.elements();//这步要注意同步问题  
         while(e.hasMoreElements()){  
         	travelStyleListener = (TravelStyleListener)e.nextElement();  
         	travelStyleListener.event(event); 
-        }  
+        } */
+		baseListener().event(event);
     }
 	 public void removeTravelStyleListener(TravelStyleListener ll){  
         repository.remove(ll);//这步要注意同步问题  
@@ -96,7 +105,47 @@ public class TravelStyleService<T> extends BaseService<T> {
 	public void updateCover(TravelStyle ts){
 		int result = mapper.updateCover(ts);
 		if(result > 0 ){
-			notifyTravelStyleEvent(new TravelStyleEvent(this));
+			notifyBaseEvent(new TravelStyleEvent(this));
 		}
 	};
+	public String add(T t)throws Exception{
+		//设置主键.字符类型采用UUID,数字类型采用自增
+		String uuid = IDGenerator.getUUID();// UUID.randomUUID().toString();
+		//System.out.println("uuid="+uuid);
+		ClassReflectUtil.setIdKeyValue(t,"id",uuid);
+		//ClassReflectUtil.setIdKeyValue(t,"id",IDGenerator.getLongId()+"");
+		int result = getDao().add(t);
+		if(result > 0 ){
+			notifyBaseEvent(new TravelStyleEvent(this));
+		}
+		return uuid;
+	}
+	
+	public void update(T t)  throws Exception{
+		int result = getDao().update(t);
+		if(result > 0 ){
+			notifyBaseEvent(new TravelStyleEvent(this));
+		}
+	}
+	
+	
+	public void delete(String... ids) throws Exception{
+		if(ids == null || ids.length < 1){
+			return;
+		}
+		for(String id : ids ){
+			 getDao().delete(id);
+		}
+		notifyBaseEvent(new TravelStyleEvent(this));
+	}
+	
+	public void logicdelete(String... ids) throws Exception{
+		if(ids == null || ids.length < 1){
+			return;
+		}
+		for(String id : ids ){
+			getDao().logicdelete(id);
+		}
+		notifyBaseEvent(new TravelStyleEvent(this));
+	}
 }

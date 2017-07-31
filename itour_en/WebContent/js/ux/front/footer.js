@@ -26,8 +26,26 @@ itouren.footer = function(){
 		        }  
 		    }); 
 		  }
+		},
+		footAds:function(){
+			  $.ajax({  
+			        url : basePath+'adLink/footAds',  
+			        async : false,  
+			        method: 'post',
+			        success : function(rest){ 
+			            var result = eval('('+rest+")");//转换为json对象 
+			            var html = "<tr bgcolor='#fafafa'>"; 
+			            $(result).each(function(i,e){
+			            	if(i!=0 && i%5==0){
+			            		html+="</tr><tr bgcolor='#fafafa'>";
+			            	}
+			            	html+=" <td width='210'><a href='"+basePath+e.adlink+"'>"+e.title+"</a></td>";
+			            });
+			            $("table[name='keyfooter']").append(html+"</tr>");
+			        }  
+			    }); 
 		},init:function(){
-			 
+			 _this.footAds();
 			//$("a[name='search']").click(_this.searchRtResult); 
 			//$("a[name='search']").attr("href",_this.searchRtResult); 
 			/*_this.fbpagination(1); href="itouren.footer.searchRtResult"
@@ -63,6 +81,7 @@ itouren.footer = function(){
 		            });   
 		        }  
 		    })
+		    
 		     _this.loadlevel2Area(level1Area);
 		    //console.log('${rcdDays}');$(this).combobox('select', '${rcdDays}')
 		    $("#vacation").combobox({ 
@@ -75,9 +94,9 @@ itouren.footer = function(){
 	return _this;
 }();
 
-window.onload=function(){
+/*window.onload=function(){
 	itouren.footer.init();
-}
-/*$(function(){
+}*/
+$(function(){
 	itouren.footer.init();
-});	*/	
+});		

@@ -4,7 +4,7 @@ itouren.mhappiness = function(){
 		fbpagination:function(pageno){
 	        var element = $('#fbpage');
 	      //  var route = $("input[name='idrt']").val();
-	    	$.post( basePath+"showhappy/pagination",
+	    	$.post( basePath+"showhappy-pagination",
 				{'pageNo':pageno},
 				function(responseText){
 					//if(responseText.success){
@@ -24,7 +24,7 @@ itouren.mhappiness = function(){
 					                  "<tr>"+
 					                    "<td ><table border='0' cellspacing='0' cellpadding='0'>"+
 					                        "<tr>"+
-					                          "<td  style='width:100%;'><a href='"+basePath+"showhappy/detail/"+(e.shCode?e.shCode:"")+"'><img src='"+basePath+(e.cover?e.cover:"") +"' width='100%' /></a></td>"+
+					                          "<td  style='width:100%;'><a href='"+basePath+"showhappy-detail-"+(e.shCode?e.shCode:"")+"'><img src='"+basePath+(e.cover?e.cover:"") +"' width='100%' /></a></td>"+
 					                          "<td width='11' rowspan='2' valign='bottom'><img src='"+basePath+"images/tu-k-02.gif' width='11' height='122' /></td>"+
 					                        "</tr>"+
 					                        "<tr>"+
@@ -40,7 +40,7 @@ itouren.mhappiness = function(){
 					                  "</tr>"+
 					                  "<tr>"+
 					                   // "<td width='20' valign='top'><div align='center'><img src='"+basePath+"images/quote-1.gif' /></div></td>"+
-					                    "<td width='100%' style='text-align:left'><span class='STYLE18'>"+(e.shortContent?e.shortContent:"")+"<a href='"+basePath+"showhappy/detail/"+(e.shCode?e.shCode:"")+"'>Into her memories</a>》》<img src='images/quote-2.gif' style='width:18;height:14;' width='18' height='14' /></span></td>"+
+					                    "<td width='100%' style='text-align:left'><span class='STYLE18'>"+(e.shortContent?e.shortContent:"")+"<a href='"+basePath+"showhappy-detail-"+(e.shCode?e.shCode:"")+"'>Into her memories</a>》》<img src='images/quote-2.gif' style='width:18;height:14;' width='18' height='14' /></span></td>"+
 					                  "</tr>"+
 					                  "<tr>"+
 					                   // "<td valign='top'>&nbsp;</td>"+

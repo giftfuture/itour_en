@@ -33,7 +33,7 @@ public class ImageServlet extends HttpServlet {
 	private int height = 20;
 
 	// 验证码字符个数
-	private int codeCount = 4;
+	private int codeCount = 1;
 	//
 	private int x = 0;
 
@@ -78,9 +78,9 @@ public class ImageServlet extends HttpServlet {
 			if (strHeight != null && strHeight.length() != 0) {
 				height = Integer.parseInt(strHeight);
 			}
-			if (strCodeCount != null && strCodeCount.length() != 0) {
+			/*if (strCodeCount != null && strCodeCount.length() != 0) {
 				codeCount = Integer.parseInt(strCodeCount);
-			}
+			}*/
 		} catch (NumberFormatException e) {
 		}
 		x = width / (codeCount + 1);

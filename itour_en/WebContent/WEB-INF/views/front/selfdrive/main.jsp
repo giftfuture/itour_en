@@ -13,9 +13,9 @@
 <meta name="description" content="Southwest China Adventures Trekking,Southwest China Peak Climbing,Southwest China Off raod,Southwest China Motercycle tours">
 </head>
 <body>
-
+ <%@include file="/front/header.jsp"  %>
  <table class="commontb" align="center">
- <tr><td> <%@include file="/front/header.jsp"  %></td></tr>
+ <tr><td></td></tr>
  <tr><td align="center" style="text-align:center;width:100%" width="100%">
  <img width="100%" src="images/index-ad/banner.jpg"  height="598px"  /></td></tr></table>
  

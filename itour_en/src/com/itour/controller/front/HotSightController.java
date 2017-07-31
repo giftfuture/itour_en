@@ -45,7 +45,7 @@ import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
 
 @Controller
-@RequestMapping("/hotsight") 
+//@RequestMapping("/hotsight") 
 public class HotSightController extends BaseController{
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	@Autowired 
@@ -63,7 +63,7 @@ public class HotSightController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping(value="/main", method = RequestMethod.GET) 
+	@RequestMapping(value="/hotsight-main", method = RequestMethod.GET) 
 	public ModelAndView main(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
@@ -84,7 +84,7 @@ public class HotSightController extends BaseController{
 	 */
 	@ResponseBody
 	@SuppressWarnings({"unchecked" })
-	@RequestMapping(value="/hotsightpagination", method = RequestMethod.POST) 
+	@RequestMapping(value="/hotsight-hotsightpagination", method = RequestMethod.POST) 
 	public String hotsightpagination(String pageNo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		//page.setDeleted(DELETED.NO.key);
@@ -115,7 +115,7 @@ public class HotSightController extends BaseController{
 	 */
 	@SuppressWarnings("unchecked")
 	@ResponseBody
-	@RequestMapping(value="/hotsight/{alias}", method = RequestMethod.GET) 
+	@RequestMapping(value="/hotsight-hotsight-{alias}", method = RequestMethod.GET) 
 	public ModelAndView hiking(@PathVariable("alias")String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		RouteTemplateVO rt = routeTemplateService.queryByAlias(alias);
 		TravelStyle style = (TravelStyle)travelStyleService.queryById(rt.getTravelStyle());
@@ -203,7 +203,7 @@ public class HotSightController extends BaseController{
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping(value="/detail/{alias}", method = RequestMethod.GET) 
+	@RequestMapping(value="/hotsight-detail-{alias}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		RouteTemplateVO rt = routeTemplateService.queryByAlias(alias);
 		String mappath = FilePros.httprouteMapPath();
@@ -247,7 +247,7 @@ public class HotSightController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/selfbooking/{alias}",method = RequestMethod.GET) 
+	@RequestMapping(value="/hotsight-selfbooking-{alias}",method = RequestMethod.GET) 
 	@ResponseBody
 	public ModelAndView selfbooking(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> map = getRootMap();

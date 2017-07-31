@@ -66,23 +66,23 @@ color: #990000;}
 tr td ol{position:relative;width: 80px;height: 20px;top:-30px;left:60px;}
 tr td ol li{float:left;width: 10px;height: 10px;margin: 5px;background: #fff;}
 tr td ol li.seleted{background: #1AA4CA;}
-/*  a:link {
+  a.tsSTYLE3:link {
     font-family: "微软雅黑";
-    color: #FFFFFF;
+   /*  color: #FFFFFF; */
     text-decoration: none;
 }
-a:hover {
-    color: #cccc99;
-    font-family: "微软雅黑";
-    text-decoration: none;
-}
-a:active {
+a.tsSTYLE3:hover {
+    color:#990000;/*  #cccc99; */
     font-family: "微软雅黑";
     text-decoration: none;
 }
-a:visited {
-    color: #FFFFFF;
-}  */
+a.tsSTYLE3:active {
+    font-family: "微软雅黑";
+    text-decoration: none;
+}
+a.tsSTYLE3:visited {
+    /* color: #FFFFFF; */
+} 
 #banner-index{
 /*   width:100%;
   height:100%; */
@@ -98,7 +98,7 @@ a:visited {
 }
 #top-menu tr.trbanner{
     color:#FFFFFF;
-    background-color:#8B0000;
+    background-color:#C7342C;/*#8B0000;*/
     text-decoration:none;
 }
 #top-menu td{

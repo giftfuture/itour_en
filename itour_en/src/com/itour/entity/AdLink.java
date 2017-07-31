@@ -28,8 +28,16 @@ public class AdLink extends BaseEntity {
 	private String updateBy;
 	private Date createTime;
 	private Date updateTime;
-	
+	@Min(value = 0, message = "foot 的最小值为0")
+	@Max(value = 1, message = "foot 的最大值为1")
+	private int foot;//0=首页链接，1=页脚链接
 	 
+	public int getFoot() {
+		return foot;
+	}
+	public void setFoot(int foot) {
+		this.foot = foot;
+	}
 	public int getVideo() {
 		return video;
 	}

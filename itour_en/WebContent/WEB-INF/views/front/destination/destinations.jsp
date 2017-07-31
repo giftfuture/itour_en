@@ -11,10 +11,9 @@
 <title>Destination</title>
 </head>
 <body>
- 
+ <%@include file="/front/header.jsp" %>
 <center>
 <table class="frametb" align="center" style="text-align:center;">
-  <tr><td colspan=2><%@include file="/front/header.jsp" %> </td></tr>  
   <tr>
      <td width="197" valign="top">
       <table width="197" border="0" cellspacing="0" cellpadding="5"float:right;>
@@ -31,7 +30,7 @@
                         <ul class="level2" style="float:middle;width:100%">
                             <c:forEach items="${items}" var="item">
                                 <c:if test="${scope.key==item.scope }">
-                                    <li style="float:middle;width:100%"><a style="float:left" href="${basePath }destination/detail/${item.alias}"><c:out value="${item.item}"></c:out></a></li>       
+                                    <li style="float:middle;width:100%"><a style="float:left" href="${basePath }destination-detail-${item.alias}"><c:out value="${item.item}"></c:out></a></li>       
                                 </c:if>
                             </c:forEach>
                         </ul>
@@ -54,7 +53,7 @@
                 <c:otherwise><c:out value="${tiSizes[sortitem.key]}"></c:out>destinations</c:otherwise>
                 </c:choose>
                 <c:if test="${fn:length(sortitem.value)>= maxd}">
-                 | <a href="${basePath}destination/moredests/${fn:split(sortitem.key, '_')[0]}">Show more</a>
+                 | <a href="${basePath}destination-moredests-${fn:split(sortitem.key, '_')[0]}">Show more</a>
                  </c:if>
                 </div></span></td>
               </tr>
@@ -62,7 +61,7 @@
                   <c:forEach items="${sortitem.value}" var="ti" varStatus="ix">
                     <td style="text-align:left;align:left;width:33%;float:left;" width="33%">
                          <c:if test="${not empty ti.alias  && not empty ti.item  && not empty ti.cover}">
-                              <a href="${basePath }destination/detail/${ti.alias}">${ti.item}<br/>
+                              <a href="${basePath }destination-detail-${ti.alias}">${ti.item}<br/>
                                 <img width="100%" style="float:left;margin:3px;padding:3px;"  alt="" src="${basePath }${ti.cover}"/>
                               </a>
                            </c:if>

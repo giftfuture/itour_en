@@ -45,7 +45,7 @@ import eu.bitwalker.useragentutils.UserAgent;
 
 @Controller
 //@RestController
-@RequestMapping("/hiking") 
+//@RequestMapping("/hiking") 
 public class HikingController extends BaseController{
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	//@Autowired
@@ -66,7 +66,7 @@ public class HikingController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping(value="/main", method = RequestMethod.GET) 
+	@RequestMapping(value="/hiking-main", method = RequestMethod.GET) 
 	public ModelAndView main(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
@@ -88,7 +88,7 @@ public class HikingController extends BaseController{
 	 */
 	@ResponseBody
 	@SuppressWarnings({"unchecked" })
-	@RequestMapping(value="/goHiking", method = RequestMethod.POST) 
+	@RequestMapping(value="/hiking-goHiking", method = RequestMethod.POST) 
 	public String goHiking(String pageNo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		/*//page.setDeleted(DELETED.NO.key);
@@ -154,7 +154,7 @@ public class HikingController extends BaseController{
 	 */
 	@SuppressWarnings("unchecked")
 	@ResponseBody
-	@RequestMapping(value="/hiking/{alias}", method = RequestMethod.GET) 
+	@RequestMapping(value="/hiking-hiking-{alias}", method = RequestMethod.GET) 
 	public ModelAndView hiking(@PathVariable("alias")String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		RouteTemplateVO rt = routeTemplateService.queryByAlias(alias);
 		TravelStyle style = (TravelStyle)travelStyleService.queryById(rt.getTravelStyle());
@@ -244,7 +244,7 @@ public class HikingController extends BaseController{
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping(value="/detail/{alias}", method = RequestMethod.GET) 
+	@RequestMapping(value="/hiking-detail-{alias}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		RouteTemplateVO rt = routeTemplateService.queryByAlias(alias);
 		String mappath = FilePros.httprouteMapPath();
@@ -289,7 +289,7 @@ public class HikingController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/selfbooking/{alias}",method = RequestMethod.GET) 
+	@RequestMapping(value="/hiking-selfbooking-{alias}",method = RequestMethod.GET) 
 	@ResponseBody
 	public ModelAndView selfbooking(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> map = getRootMap();

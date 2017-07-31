@@ -6,7 +6,7 @@ itouren.searchRt = function(){
 			    //  var route = $("input[name='idrt']").val();
 			  //  console.log(pageno);
 			  //  console.log(travel_style+"  "+vacation+"   "+areas);
-			  	$.post(basePath+"destination/related/searchRtResults",{'pageNo':pageno,'alias':alias},
+			  	$.post(basePath+"destination-related-searchRtResults",{'pageNo':pageno,'alias':alias},
 				function(responseText){
 						var responseText = $.parseJSON(responseText);
 						var searchRts = responseText.result.records;
@@ -14,8 +14,8 @@ itouren.searchRt = function(){
 						$(searchRts).each(function(i,e){
 							html+=(i!=0&&i%3==0?"</tr><tr>":"")+
 							'<td><table><tr>'+
-			                '<td ><a href="'+basePath+e.travelStyleAlias+'/'+e.travelStyleAlias+'/'+e.alias+'"><img src="'+basePath+(e.cover?e.cover:"")+'"  width="100%"></a></td></tr>'+
-			                '<tr><td  class="f12-gao1"><a href="'+basePath+e.travelStyleAlias+'/'+e.travelStyleAlias+'/'+e.alias+'">['+(e.travelStyleType?e.travelStyleType:"")+']'+(e.title?e.title:"")+'</a></td>'+
+			                '<td ><a href="'+basePath+e.travelStyleAlias+'-'+e.travelStyleAlias+'-'+e.alias+'"><img src="'+basePath+(e.cover?e.cover:"")+'"  width="100%"></a></td></tr>'+
+			                '<tr><td  class="f12-gao1"><a href="'+basePath+e.travelStyleAlias+'-'+e.travelStyleAlias+'-'+e.alias+'">['+(e.travelStyleType?e.travelStyleType:"")+']'+(e.title?e.title:"")+'</a></td>'+
 			              '</tr></table></td>';
 						});
 						$("#fbcontent").html("");

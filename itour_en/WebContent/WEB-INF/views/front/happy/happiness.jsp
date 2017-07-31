@@ -13,9 +13,10 @@
 <title>Memories of Happiness</title>
 </head>
 <body>
+<%@include file="/front/header.jsp"  %>
 <table class="commontb" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td> <%@include file="/front/header.jsp"  %></td>
+    <td> </td>
   </tr>
   <tr>
     <td class="STYLE17"><div align="center">Memories of happiness will be happy freeze</div></td>
@@ -28,7 +29,7 @@
 	    <span>※ travel is the course of the flow<br /></span> 
  <span>※ touched the eternity of the moment<br/></span>
  <span>※ memories of life is a happy landscape</span>
-      <span style="float:right;padding-right:120px"><a href="${basePath}showhappy/sharehappy">《<strong>Share memories</strong>》</a></span></td>
+      <span style="float:right;padding-right:120px"><a href="${basePath}showhappy-sharehappy">《<strong>Share memories</strong>》</a></span></td>
   </tr>
   <tr><!--  style="vertical-align:top;valign:top;height:7px;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;"  -->
     <td><img src="${basePath }images/frame1-3.gif" width="1140" /></td>

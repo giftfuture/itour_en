@@ -45,7 +45,7 @@ import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
 
 @Controller
-@RequestMapping("/light") 
+//@RequestMapping("/light") 
 public class LightController extends BaseController{
 	
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
@@ -66,7 +66,7 @@ public class LightController extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping(value="/main", method = RequestMethod.GET) 
+	@RequestMapping(value="/light-main", method = RequestMethod.GET) 
 	public ModelAndView main(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
@@ -87,7 +87,7 @@ public class LightController extends BaseController{
 	 */
 	@ResponseBody
 	@SuppressWarnings({"unchecked" })
-	@RequestMapping(value="/lightpagination", method = RequestMethod.POST) 
+	@RequestMapping(value="/light-lightpagination", method = RequestMethod.POST) 
 	public String lightpagination(String pageNo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		//page.setDeleted(DELETED.NO.key);
@@ -118,7 +118,7 @@ public class LightController extends BaseController{
 	 */
 	@SuppressWarnings("unchecked")
 	@ResponseBody
-	@RequestMapping(value="/light/{alias}", method = RequestMethod.GET) 
+	@RequestMapping(value="/light-light-{alias}", method = RequestMethod.GET) 
 	public ModelAndView hiking(@PathVariable("alias")String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		RouteTemplateVO rt = routeTemplateService.queryByAlias(alias);
 		TravelStyle style = (TravelStyle)travelStyleService.queryById(rt.getTravelStyle());
@@ -206,7 +206,7 @@ public class LightController extends BaseController{
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping(value="/detail/{alias}", method = RequestMethod.GET) 
+	@RequestMapping(value="/light-detail-{alias}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		RouteTemplateVO rt = routeTemplateService.queryByAlias(alias);
 		String mappath = FilePros.httprouteMapPath();
@@ -250,7 +250,7 @@ public class LightController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/selfbooking/{alias}",method = RequestMethod.GET) 
+	@RequestMapping(value="/light-selfbooking-{alias}",method = RequestMethod.GET) 
 	@ResponseBody
 	public ModelAndView selfbooking(@PathVariable("alias") String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> map = getRootMap();

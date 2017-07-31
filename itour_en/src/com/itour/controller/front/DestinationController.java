@@ -41,7 +41,7 @@ import com.itour.vo.TravelItemVO;
 import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
 @Controller
-@RequestMapping("/destination") 
+//@RequestMapping("/destination") 
 public class DestinationController extends BaseController{
 	
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
@@ -63,7 +63,7 @@ public class DestinationController extends BaseController{
 	private LogOperationService logOperationService;
 	
 	@SuppressWarnings("unchecked")
-	@RequestMapping("/main") 
+	@RequestMapping("/destination-main") 
 	public ModelAndView main(TravelItemVO vo,HttpServletRequest request) throws Exception{
 		long beginTime = System.currentTimeMillis();
 	 	Map<String,Object> context = getRootMap();
@@ -131,7 +131,7 @@ public class DestinationController extends BaseController{
 	 */
 	@SuppressWarnings("unchecked")
 	@ResponseBody
-	@RequestMapping(value="/detail/{alias}", method = RequestMethod.GET) 
+	@RequestMapping(value="/destination-detail-{alias}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("alias")String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	 	Map<String,Object> context = getRootMap();
 	 	List<Areas> allScopes = areasService.allAreas();
@@ -233,7 +233,7 @@ public class DestinationController extends BaseController{
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping(value="/moredests/{scope}", method = RequestMethod.GET) 
+	@RequestMapping(value="/destination-moredests-{scope}", method = RequestMethod.GET) 
 	public ModelAndView moredests(@PathVariable("scope")String scope,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	 	Map<String,Object> context = getRootMap();
 	 	context.put("scope",scope);
@@ -255,7 +255,7 @@ public class DestinationController extends BaseController{
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping(value="/moredestPage", method = RequestMethod.POST) 
+	@RequestMapping(value="/destination-moredestPage", method = RequestMethod.POST) 
 	public String moredestPage(String pageNo,String scope,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	 	Map<String,Object> context = getRootMap();
 	 	Areas areas = areasService.queryByPinyin(scope);
@@ -290,7 +290,7 @@ public class DestinationController extends BaseController{
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping(value="/related/{alias}", method = RequestMethod.GET) 
+	@RequestMapping(value="/destination-related-{alias}", method = RequestMethod.GET) 
 	public ModelAndView searchRts(@PathVariable("alias")String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		context.put("pageNo", 1);
@@ -313,7 +313,7 @@ public class DestinationController extends BaseController{
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping(value="/related/searchRtResults") 
+	@RequestMapping(value="/destinationrelated-searchRtResults") 
 	public String searchRtResults(String pageNo,String alias,HttpServletRequest request,HttpServletResponse response) throws Exception{
 	 	Map<String,Object> context = getRootMap();
 	 	TravelItemVO ttvo = travelItemService.getByAlias(alias);

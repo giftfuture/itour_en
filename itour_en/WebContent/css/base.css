@@ -25,7 +25,8 @@ a{text-decoration: none;color:#2786D6;}
  #uploadphoto{display:none;}  /* z-Index:10000 !important;padding:.2em;outline:0;position:absolute;*/
 #edit-pwd-win{display:none;}
 .commontb{
-  width:1350px;
+ /*  width:1350px; */
+  width:72.6%;
   text-align:center;
   align:center;
   font-family: "微软雅黑";

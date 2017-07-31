@@ -129,7 +129,7 @@ public class RandomCodeServlet extends HttpServlet {
   
         //生成随机数,并将随机数字转换为字母   
         String sRand="";   
-        for (int i=0;i<5;i++)   
+        for (int i=0;i<1;i++)   
         {   
             int itmp = random.nextInt(26) + 65;   
             char ctmp = (char)itmp;   

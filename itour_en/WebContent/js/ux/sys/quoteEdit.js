@@ -345,10 +345,10 @@ itouren.quoteEdit = function(){
 			});
 			formData["showTrip"]=showTrip+"</table>";
 			formData["beriefTrip"]=beriefTrip;
-			
+			/**<span class='STYLE9'>"+$("input[name='rttitle']").val()+"</span>**/
 			var agodaDetail = "<table border='0' align='center' cellpadding='0' cellspacing='0' width='100%'><tbody>";
 			agodaDetail+="<tr><td><img src='images/frame1-1.gif' width='100%' height='7'></td></tr>" ;
-			agodaDetail+="<tr><td background='images/frame1-2.gif'></td></tr><tr><td><span class='STYLE9'>"+$("input[name='rttitle']").val()+"</span>";
+			agodaDetail+="<tr><td background='images/frame1-2.gif'></td></tr><tr><td>";
 			$("table[name='routetable'] tbody[name='agodaTbody']").each(function(i,e){
 				agodaDetail+="<table width='100%' border='0' align='center' cellpadding='0' cellspacing='0'><tbody>";
 				agodaDetail+="<tr><td width='10%' class='STYLE148'><strong>Day "+(i+1)+" </strong></td>";
@@ -363,7 +363,7 @@ itouren.quoteEdit = function(){
 						//var exphotos = eval('('+ex.photos+')');
 					//	var ex =  eval('('+bean+')');
 						//console.log(jsontraitems[idx].item);
-						agodaDetail+="<span>【"+jsontraitems[idx].item+"】"+jsontraitems[idx].content+"</span>";
+						agodaDetail+="<span>【"+jsontraitems[idx].item+"】"+jsontraitems[idx].shortContent+"</span>";
 						agodaDetail+="<table width='100%' border='0' cellspacing='1' cellpadding='1'><tbody>";
 						agodaDetail+="<tr>";
 						if(jsontraitems[idx].photos.length>0){

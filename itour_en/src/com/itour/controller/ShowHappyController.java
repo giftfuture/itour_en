@@ -66,7 +66,7 @@ import eu.bitwalker.useragentutils.UserAgent;
  * <b>日期：</b> Feb 2, 2016 <br>
  */ 
 @Controller
-@RequestMapping("/showhappy") 
+//@RequestMapping("/showhappy") 
 public class ShowHappyController extends BaseController{
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	
@@ -92,7 +92,7 @@ public class ShowHappyController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/main") 
+	@RequestMapping("/showhappy-main") 
 	public ModelAndView main(@RequestParam(value="pageNo",defaultValue="1")int pageNo,HttpServletRequest request) throws Exception{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的main方法");
@@ -113,7 +113,7 @@ public class ShowHappyController extends BaseController{
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping("/pagination") 
+	@RequestMapping("/showhappy-pagination") 
 	public String pagination(@RequestParam(value="pageNo",defaultValue="1")int pageNo,HttpServletRequest request) throws Exception{
 		Map<String,Object> context = getRootMap();
 		ShowHappyVO vo = new ShowHappyVO();
@@ -145,7 +145,7 @@ public class ShowHappyController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/sharehappy") 
+	@RequestMapping("/showhappy-sharehappy") 
 	public ModelAndView sharehappy(ShowHappyVO vo,HttpServletRequest request) throws Exception{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的shareHappy方法");
@@ -167,7 +167,7 @@ public class ShowHappyController extends BaseController{
 	 * @throws Exception 
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
-	@RequestMapping(value="/list") 
+	@RequestMapping(value="/showhappy/list") 
 	public ModelAndView  list(ShowHappyVO vo,HttpServletRequest request) throws Exception{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的list方法");
@@ -183,7 +183,7 @@ public class ShowHappyController extends BaseController{
 	 */
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
-	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
+	@RequestMapping(value="/showhappy/dataList.json", method = RequestMethod.POST) 
 	public EasyUIGrid datalist(ShowHappyVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		if(vo.getCreateTime() != null){
 			//String createTime = DateUtil.getDateYmdHs(vo.getCreateTime());
@@ -204,7 +204,7 @@ public class ShowHappyController extends BaseController{
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping(value="/detail/{shCode}", method = RequestMethod.GET) 
+	@RequestMapping(value="/showhappy-detail-{shCode}", method = RequestMethod.GET) 
 	public ModelAndView detail(@PathVariable("shCode") String shCode,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		ShowHappyVO sh = showHappyService.queryByCode(shCode);
@@ -245,7 +245,7 @@ public class ShowHappyController extends BaseController{
 	 */
 	@Auth(verifyLogin=false,verifyURL=false)
 	@ResponseBody
-	@RequestMapping(value="/add", method = RequestMethod.POST)//@RequestBody
+	@RequestMapping(value="/showhappy/add", method = RequestMethod.POST)//@RequestBody
 	public String add(@RequestBody ShowHappyVO showhappy,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//Map<String,Object> context = getRootMap();
 		String vcode = SessionUtils.getHappyValidateCode(request);
@@ -285,7 +285,7 @@ public class ShowHappyController extends BaseController{
 	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
-	@RequestMapping(value="/save", method = RequestMethod.POST)
+	@RequestMapping(value="/showhappy/save", method = RequestMethod.POST)
 	public String save(ShowHappyVO showhappy,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String shId = "";
 		ShowHappy sh = null;
@@ -320,7 +320,7 @@ public class ShowHappyController extends BaseController{
 	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
-	@RequestMapping(value="/getId", method = RequestMethod.POST)
+	@RequestMapping(value="/showhappy/getId", method = RequestMethod.POST)
 	public String getId(String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		ShowHappyVO entity  = showHappyService.selectById(id);
@@ -345,7 +345,7 @@ public class ShowHappyController extends BaseController{
 	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
-	@RequestMapping(value="/delete", method = RequestMethod.POST)
+	@RequestMapping(value="/showhappy/delete", method = RequestMethod.POST)
 	public String delete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		showHappyService.delete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);
@@ -363,7 +363,7 @@ public class ShowHappyController extends BaseController{
 	@SuppressWarnings("unchecked")
 	@Auth(verifyLogin=true,verifyURL=true)
 	@ResponseBody
-	@RequestMapping(value="/logicdelete", method = RequestMethod.POST)
+	@RequestMapping(value="/showhappy/logicdelete", method = RequestMethod.POST)
 	public String logicdelete(String[] id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		showHappyService.logicdelete(id);
 		SysUser sessionuser = SessionUtils.getUser(request);

@@ -12,7 +12,7 @@
 <meta name="keywords" content="">
 </head>
 <body>
-<table class="" width="72.6%" style="text-align:center" align="center" border="0" cellpadding="0" cellspacing="0">
+<table class="" style="text-align:center" align="center" border="0" cellpadding="0" cellspacing="0"><!--  width="72.6%"  -->
  <tr><td><%@include file="/front/header.jsp"  %> </td></tr>  
  </table>
  <table class="" width="61.3%" style="text-align:center" align="center" border="0" cellpadding="0" cellspacing="0">

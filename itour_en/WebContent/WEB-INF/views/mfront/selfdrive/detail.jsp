@@ -100,7 +100,7 @@
           <tr>
             <td><table class="STYLE126" width="100%" cellspacing="2" cellpadding="4" border="0">
               <tbody><tr>          <td class="STYLE126"><div align="right"><strong>Type</strong></div></td>
-          <td class="STYLE126" style="text-align:left"><strong>${rt.travelStyle} </strong><a href="javascript:void(0)" title="${rt.travelStyle}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="text-align:left"><strong>${rt.travelStyle} </strong><a href="javascript:void(0)" title="${rt.travelStyle}"> </a></td>
         </tr>
         <tr>
           <td width=" " class="STYLE126"><div align="right"><strong>Line number</strong></div></td>
@@ -108,7 +108,7 @@
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>Travel days</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.rcdDays}days<strong> </strong><a href="javascript:void(0)" title="${rt.rcdDays}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="text-align:left">${rt.rcdDays}days<strong> </strong><a href="javascript:void(0)" title="${rt.rcdDays}"> </a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>Highest elevation</strong></div></td>
@@ -116,7 +116,7 @@
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>Departure</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.departure }<a href="javascript:void(0)" title="${rt.departure}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="text-align:left">${rt.departure }<a href="javascript:void(0)" title="${rt.departure}"> </a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>Arrive</strong></div></td>
@@ -130,6 +130,7 @@
           <td class="STYLE126"><div align="right"><strong>Transportation Style</strong></div></td>
           <td class="STYLE126" style="text-align:left">${rt.transportation }</td>
         </tr>
+        <c:if test="${not empty rt.difficultyRate}">
         <tr>
           <td class="STYLE126"><div align="right"><strong>Walking difficulty</strong></div></td>
           <td class="STYLE126" style="text-align:left">
@@ -139,16 +140,21 @@
           <c:forEach items="${rt.undiffRate}" var="rd">
              <img src="${basePath}images/shoe-2.gif" style="width:16;height:16;" width="16" height="16" />
           </c:forEach>
-           <a href="javascript:void(0)" title="Dark shoes logo on the difficulty level">Explain&gt;&gt;</a></td>
+           <a href="javascript:void(0)" title="Dark shoes logo on the difficulty level"> </a></td>
         </tr>
+        </c:if>
+         <c:if test="${not empty rt.trekDistance}">
         <tr>
           <td class="STYLE126"><div align="right"><strong>Walking distance </strong></div></td>
           <td class="STYLE126" style="text-align:left">${rt.trekDistance }km</td>
         </tr>
+        </c:if>
+        <c:if test="${not empty rt.mountStyle}">
         <tr>
           <td class="STYLE126"><div align="right"><strong>Mountain Style</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.mountStyle } <a href="javascript:void(0)" title="${rt.mountStyle}">Explain&gt;&gt; </a></td>
+          <td class="STYLE126" style="text-align:left">${rt.mountStyle } <a href="javascript:void(0)" title="${rt.mountStyle}"> </a></td>
         </tr>
+        </c:if>
          <tr>
         <td colspan=2><span class="STYLE148" style="text-align:left;float:left;">
         Note: The needs of each group are different, according to your holiday to re-adjust the design process.</span></td>
@@ -179,10 +185,10 @@
 <div class="frametb" id="tab-container" class='tab-container' width="100%"  style="width:100%;text-align:center;float:middle" >
 
  <ul style="text-align:left;float:left" class='etabs'>
-   <li width="15%" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}selfdrive/selfdrive/${alias}#review" target="_self">Overview</a></li>
-   <li width="15%" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}selfdrive/selfdrive/${alias}#detail-route" target="_self">Route Details</a></li>
-   <li width="15%" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}selfdrive/selfdrive/${alias}#need-know" target="_self">Before Instructions</a></li>
-   <li width="15%" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}selfdrive/selfdrive/${alias}#feed-back" target="_self">Feedback</a></li>
+   <li width="15%" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}selfdrive-selfdrive-${alias}#review" target="_self">Overview</a></li>
+   <li width="15%" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}selfdrive-selfdrive-${alias}#detail-route" target="_self">Route Details</a></li>
+   <li width="15%" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}selfdrive-selfdrive-${alias}#need-know" target="_self">Before Instructions</a></li>
+   <li width="15%" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}selfdrive-selfdrive-${alias}#feed-back" target="_self">Feedback</a></li>
   <!--  <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#consulting">咨询预定</a></li> -->
  </ul>
  <div class='panel-container'>
@@ -263,7 +269,7 @@
   </tr>
   <tr><td colspan=2 style="float:left" background="images/frame1-2.gif" style="valign:top;"> 
      <c:forEach items="${rt.relates}" var="relat"><br>
-     <a href="${basePath}selfdrive/selfdrive/${relat.alias}" >${relat.title }</a>
+     <a href="${basePath}selfdrive-selfdrive-${relat.alias}" >${relat.title }</a>
        <%-- <a href="${basePath}climb/toQuote2/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a> --%>
      </c:forEach>
      </td></tr>
@@ -272,7 +278,7 @@
   </tr>
 <tr>
      <td colspan=2><span class="STYLE3" style="text-align:left;float:left">Tell us your needs, free planning for your program GO! </span> &nbsp;&nbsp;
-     <span class="STYLE3"   style="text-align:left;float:left"><a  style="text-align:left;float:left" href="${basePath}selfdrive/selfbooking/${rt.alias}">
+     <span class="STYLE3"   style="text-align:left;float:left"><a  style="text-align:left;float:left" href="${basePath}selfdrive-selfbooking-${rt.alias}">
      <img style="float:middle" src="${basePath }images/tailor-made.gif" width="134" height="32" ></a></span></td>
    </tr>
  </tbody></table>

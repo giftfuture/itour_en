@@ -14,12 +14,12 @@
 </head>
 <body>
 <center>
-
+<%@include file="/front/header.jsp"  %>
 <table class="commontb" valign="middle" style="height:100%">
-<tr><td colspan=3> <%@include file="/front/header.jsp"  %></td></tr>
+<tr><td colspan=3> </td></tr>
   <tr style="align:center">
     <td valign="top" rowspan=2 style="text-align:center" align="center">
-            <div  style="float:middle;display:inline-block;valign:top;text-align:center;align:center;font-size:18px;background-color:#8B0000;text-decoration:none;color:white;width:202px;height:30px;"  >Vacation destination</div>
+            <div  style="float:middle;display:inline-block;valign:top;text-align:center;align:center;font-size:18px;background-color:#8B0000;text-decoration:none;color:white;width:202px;height:30px;"  >Destinations</div>
             <div class="treebox">
                 <ul class="menu">
                 <c:forEach items="${scopes}" var="scope" varStatus="status">
@@ -28,7 +28,7 @@
                         <ul class="level2" style="width:100%">
                             <c:forEach items="${items}" var="item">
                                 <c:if test="${scope.key==item.scope }">
-                                    <li style="width:100%"><a style="float:left" href="${basePath }destination/detail/${item.alias}"><c:out value="${item.item}"></c:out></a></li>
+                                    <li style="width:100%"><a style="float:left" href="${basePath }destination-detail-${item.alias}"><c:out value="${item.item}"></c:out></a></li>
                                 </c:if>
                             </c:forEach>
                         </ul>
@@ -77,13 +77,13 @@
               <tbody>
               <c:forEach items="${rts}" var="item">
               <tr>
-                <td style="text-align:right"><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}"><img src="${basePath }${item.cover}" width="91" height="50"></a></td>
-               <td style="text-align:left"><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}">[${item.travelStyleType}]${item.title}</a></td>
+                <td style="text-align:right"><a href="${basePath }${item.travelStyleAlias }-${item.travelStyleAlias }-${item.alias}"><img src="${basePath }${item.cover}" width="91" height="50"></a></td>
+               <td style="text-align:left"><a href="${basePath }${item.travelStyleAlias }-${item.travelStyleAlias }-${item.alias}">[${item.travelStyleType}]${item.title}</a></td>
               </tr>
             </c:forEach>
             <c:if test="${showMore}">
               <tr>
-                <td><a href="${basePath }destination/related/${itemvo.alias}">More》》</a></td>
+                <td><a href="${basePath }destination-related-${itemvo.alias}">More》》</a></td>
                 <td>&nbsp;</td>
               </tr>
             </c:if>

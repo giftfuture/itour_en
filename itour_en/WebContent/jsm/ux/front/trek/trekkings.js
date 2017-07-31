@@ -3,7 +3,7 @@ itouren.mtrekkings = function(){
 	var _this = {
 			fbpagination:function (pageno){
 			    var element = $('#fbpage');
-			  	$.post(basePath+"hiking/goHiking",{'pageNo':pageno},
+			  	$.post(basePath+"hiking-goHiking",{'pageNo':pageno},
 				function(responseText){
 								responseText = $.parseJSON(responseText);
 								var searchRts = responseText.result.records;
@@ -12,8 +12,8 @@ itouren.mtrekkings = function(){
 								$(searchRts).each(function(i,e){
 									html+=
 									    '<td><table style="width:100%" border="0" cellpadding="0" cellspacing="0">'+
-								            '<tr><td width="100%" class="h2-24"><a href="'+basePath+(e.travelStyleAlias?e.travelStyleAlias:"")+'/'+(e.travelStyleAlias?e.travelStyleAlias:"")+'/'+(e.alias?e.alias:"")+'">'+(e.title?e.title:"")+'</a></td></tr>'+
-									      '<tr><td><a href="'+basePath+(e.travelStyleAlias?e.travelStyleAlias:"")+'/'+(e.travelStyleAlias?e.travelStyleAlias:"")+'/'+(e.alias?e.alias:"")+'"><img src="'+basePath+(e.cover?e.cover:"")+'" width="100%" ></a></td></tr>'+
+								            '<tr><td width="100%" class="h2-24"><a href="'+basePath+(e.travelStyleAlias?e.travelStyleAlias:"")+'-'+(e.travelStyleAlias?e.travelStyleAlias:"")+'-'+(e.alias?e.alias:"")+'">'+(e.title?e.title:"")+'</a></td></tr>'+
+									      '<tr><td><a href="'+basePath+(e.travelStyleAlias?e.travelStyleAlias:"")+'-'+(e.travelStyleAlias?e.travelStyleAlias:"")+'-'+(e.alias?e.alias:"")+'"><img src="'+basePath+(e.cover?e.cover:"")+'" width="100%" ></a></td></tr>'+
 									      '<tr><td class="f12-gao1" style="text-align:left">'+(e.shortContent?e.shortContent:"")+'</td></tr>'+
 									      '<tr><td>&nbsp;</td></tr>'+
 									    '</table></td>'+(i !=0 && i%2==0?"</tr><tr>":""); 

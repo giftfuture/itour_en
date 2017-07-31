@@ -13,6 +13,7 @@ import com.itour.dao.CustomersDao;
 import com.itour.dao.LevelAreaDao;
 import com.itour.listener.event.BaseEvent;
 import com.itour.listener.listener.BaseListener;
+import com.itour.listener.listener.impl.BaseListenerImpl;
 public abstract class BaseService<T>{
 	
 	protected BaseDao<T> mapper;
@@ -21,39 +22,22 @@ public abstract class BaseService<T>{
 	protected BaseDao<T> getDao() {
 		return mapper;
 	}
-	private BaseListener baseListener;
-	private Vector  repository = new Vector ();
-	public void addBaseListener(BaseListener ll){
-		repository.addElement(ll);//这步要注意同步问题  
-	}
-	public void notifyBaseEvent(BaseEvent event) {  
-        Enumeration e = repository.elements();//这步要注意同步问题  
-        while(e.hasMoreElements()){  
-        	baseListener = (BaseListener)e.nextElement();  
-        	baseListener.event(event); 
-        }  
-    }
-	 public void removeBaseListener(BaseListener ll){  
-        repository.remove(ll);//这步要注意同步问题  
-     } 
+	/*protected BaseListener baseListener(){
+		return new BaseListenerImpl();
+	};*/
+ 
 	public String add(T t)  throws Exception{
 		//设置主键.字符类型采用UUID,数字类型采用自增
 		String uuid = IDGenerator.getUUID();// UUID.randomUUID().toString();
 		//System.out.println("uuid="+uuid);
 		ClassReflectUtil.setIdKeyValue(t,"id",uuid);
 		//ClassReflectUtil.setIdKeyValue(t,"id",IDGenerator.getLongId()+"");
-		int result = getDao().add(t);
-		if(result > 0 ){
-			notifyBaseEvent(new BaseEvent(this));
-		}
+		getDao().add(t);
 		return uuid;
 	}
 	
 	public void update(T t)  throws Exception{
-		int result = getDao().update(t);
-		if(result > 0 ){
-			notifyBaseEvent(new BaseEvent(this));
-		}
+		 getDao().update(t);
 	}
 	
 	
@@ -62,10 +46,7 @@ public abstract class BaseService<T>{
 			return;
 		}
 		for(String id : ids ){
-			int result = getDao().delete(id);
-			if(result > 0 ){
-				notifyBaseEvent(new BaseEvent(this));
-			}
+			 getDao().delete(id);
 		}
 	}
 	
@@ -74,10 +55,7 @@ public abstract class BaseService<T>{
 			return;
 		}
 		for(String id : ids ){
-			int result = getDao().logicdelete(id);
-			if(result > 0 ){
-				notifyBaseEvent(new BaseEvent(this));
-			}
+			 getDao().logicdelete(id);
 		}
 	}
 	public int queryByCount(BasePage page)throws Exception{

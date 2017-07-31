@@ -12,11 +12,16 @@
 	<result column="title" property="title"/>
 	<result column="remark" property="remark"/>
 	<result column="video" property="video"/>
+    <result column="foot" property="foot"/>
+    <result column="create_by" property="createBy"/>
+    <result column="update_by" property="updateBy"/>
+    <result column="create_time" property="createTime"/>
+    <result column="update_time" property="updateTime"/>
 </resultMap>
        
 <!-- areas table all fields -->
 <sql id="Base_Column_List" >
-	 id, advertise,adlink,valid,title,remark,video
+	 id, advertise,adlink,valid,title,remark,video,foot,create_by,update_by,create_time,update_time
 </sql>
    
    
@@ -33,9 +38,12 @@ where ad_link.valid=1
 	<if test="title != null and title != ''" >
 	    and ad_link.title like CONCAT('%', #{title}, '%') 
 	</if>
-	<if test="video != null and video != ''" >
+	<if test="video != null" >
 	    and ad_link.video = #{video}
 	</if>
+    <if test="foot != null" >
+        and ad_link.foot = #{foot}
+    </if>
 </trim>
 </sql>
    
@@ -45,13 +53,13 @@ where ad_link.valid=1
 <!-- <selectKey resultType="java.lang.String" order="AFTER" keyProperty="id">
 	SELECT LAST_INSERT_ID()
   </selectKey> -->
-  insert into ad_link(id,advertise,adlink,valid,title,remark,video)
- values(#{id},#{advertise},#{adlink},1,#{title},#{remark},#{video})
+ insert into ad_link(id,advertise,adlink,valid,title,remark,video,foot,create_by,update_by,create_time,update_time)
+ values(#{id},#{advertise},#{adlink},1,#{title},#{remark},#{video},#{foot},#{createBy},#{updateBy},#{createTime},#{updateTime})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
 <update id="update" parameterType="com.itour.entity.AdLink" >
-	update ad_link set valid=1,
+	update ad_link set valid=1,update_time=now(),
 	<trim  suffixOverrides="," >
 	<if test="advertise != null and advertise != ''" >
 	    advertise  = #{advertise},
@@ -68,9 +76,12 @@ where ad_link.valid=1
 	<if test="remark != null and remark != ''" >
 	    remark = #{remark},
 	</if>
-	<if test="video != null and video != ''" >
-	    video = #{video},
-	</if>
+    <if test="video != null and video !='' " >
+        video = #{video,jdbcType=INTEGER},
+    </if>
+    <if test="foot != null and foot != ''" >
+        foot = #{foot,jdbcType=INTEGER},
+    </if>
 	</trim> where id=#{id}
 </update>
 
@@ -108,7 +119,7 @@ where ad_link.valid=1
     </if>
 </select>
 <!-- 查询所有地区 -->
-<select id="queryAll" resultMap="BaseResultMap" >
-	select <include refid="Base_Column_List"/> from ad_link where valid=1
+<select id="queryAll" resultMap="BaseResultMap" parameterType="int">
+	select <include refid="Base_Column_List"/> from ad_link where valid=1 and foot=#{foot}
 </select>
 </mapper>   

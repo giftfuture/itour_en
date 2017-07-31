@@ -131,5 +131,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/springside-core-4.3.0-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/springside-utils-4.3.0-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/UserAgentUtils-1.20.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jclasslib.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

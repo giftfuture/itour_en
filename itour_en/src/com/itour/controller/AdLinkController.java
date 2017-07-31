@@ -85,7 +85,7 @@ public class AdLinkController extends BaseController {
 		List<AdLink> links = Constants.alladLinks;
 		if(links.size()==0||links.get(0).getAdvertise().startsWith("adlink/")){
 			Constants.alladLinks.clear();
-			List<AdLink> templinks =adLinkService.allAdLink();
+			List<AdLink> templinks =adLinkService.allAdLink(0);
 			for(AdLink al:templinks){
 				al.setAdvertise(adlinpath+"/"+al.getAdvertise());
 				//allAreas.add(al);
@@ -97,6 +97,29 @@ public class AdLinkController extends BaseController {
 		//String result = JsonUtils.encode(root);
 		SysUser user = SessionUtils.getUser(request);
 		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行AdLinkController的allAdLink方法");
+		return JsonUtils.encode(links);
+	}
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/allFootAdLink", method = RequestMethod.POST)
+	public String allFootAdLink(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		//Map<String,Object> root = getRootMap();
+		//List<AdLink> allAreas = Lists.newArrayList();
+		List<AdLink> links = Constants.allFootadLinks;
+		if(links.size()==0||links.get(0).getAdvertise().startsWith("adlink/")){
+			Constants.allFootadLinks.clear();
+			List<AdLink> templinks =adLinkService.allAdLink(1);
+			Constants.alladLinks.addAll(templinks);
+			links = Constants.alladLinks;
+		}
+		SysUser user = SessionUtils.getUser(request);
+		logger.info("#####"+(user!= null?("id:"+user.getId()+"email:"+user.getEmail()+",nickName:"+user.getNickName()):"")+"调用执行AdLinkController的allFootAdLink方法");
 		return JsonUtils.encode(links);
 	}
 	/**
@@ -114,7 +137,20 @@ public class AdLinkController extends BaseController {
 		return forward("server/sys/adLink"); 
 	}
 	
-	
+	/**
+	 * 
+	 * @param page
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
+	@RequestMapping(value="/footlist") 
+	public ModelAndView  footlist(AdLinkVO page,HttpServletRequest request) throws Exception{
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行AdLinkController的footlist方法");
+		return forward("server/sys/adFootLink"); 
+	}
 	/**
 	 * @param url
 	 * @param classifyId
@@ -127,12 +163,31 @@ public class AdLinkController extends BaseController {
 	@RequestMapping(value="/dataList.json", method = RequestMethod.POST) 
 	public EasyUIGrid datalist(AdLinkVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		//List<OrderDetail> dataList = orderDetailService.queryByList(page);
+		vo.setFoot(-1);
 		BasePage<Map<String, String>> page = adLinkService.pagedQuery(vo);
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行AdLinkController的dataList方法");
 		return dataGridAdapter.wrap(page);
 	}
-	
+	/**
+	 * 
+	 * @param vo
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@Auth(verifyLogin=true,verifyURL=true)
+	@ResponseBody
+	@RequestMapping(value="/dataFootList.json", method = RequestMethod.POST) 
+	public EasyUIGrid dataFootList(AdLinkVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		//List<OrderDetail> dataList = orderDetailService.queryByList(page);
+		vo.setFoot(1);
+		BasePage<Map<String, String>> page = adLinkService.pagedQuery(vo);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行AdLinkController的dataFootList方法");
+		return dataGridAdapter.wrap(page);
+	}
 	/**
 	 * 添加或修改数据
 	 * @param url
@@ -320,6 +375,26 @@ public class AdLinkController extends BaseController {
 		String result = JsonUtils.encode(context);
 		return result;
 	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/footAds",method = RequestMethod.POST) 
+	public String footAds(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		List<AdLink> links = adLinkService.allAdLink(1);
+		return JsonUtils.encode(links);  
+	}
+	/**
+	 * 
+	 * @param user
+	 * @param uriBuilder
+	 * @return
+	 */
 	@RequestMapping(value="",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody SysUser user, UriComponentsBuilder uriBuilder) {

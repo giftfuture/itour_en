@@ -13,10 +13,11 @@
 <title>More Destinations</title>
 </head>
 <body>
+ <%@include file="/front/header.jsp"  %>
 <table  class="commontb" align="center">
  <tr>
     <td>
-	 <%@include file="/front/header.jsp"  %>
+	
     </td>
   </tr>
 </table>

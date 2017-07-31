@@ -118,6 +118,9 @@ var YDataGrid = function(config){
 								//designConcept.setData(result.data.designConcept);
 								$("#serviceAndQuote").summernote('code',result.data.serviceAndQuote);
 							}
+							if(result.data.content&&result.data.content.length>0){
+								$("#content").summernote('code',result.data.content);
+							}
 						/*	if(result.data.orderId){
 								$("span[name='orderId']").html("<label>订单号:</label>"+result.data.orderId);
 							}*/

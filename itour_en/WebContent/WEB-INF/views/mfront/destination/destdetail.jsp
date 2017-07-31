@@ -27,7 +27,7 @@
                         <ul class="level2" style="width:100%;float:left;margin:0px;padding:0px;">
                             <c:forEach items="${items}" var="item">
                                 <c:if test="${scope.key==item.scope }">
-                                            <li style="float:left;width:100%;margin:0px;padding:0px;"><a  style="float:left;width:100%;margin:0px;padding:0px;" href="${basePath }destination/detail/${item.alias}"><c:out value="${item.item}"></c:out></a></li>
+                                            <li style="float:left;width:100%;margin:0px;padding:0px;"><a  style="float:left;width:100%;margin:0px;padding:0px;" href="${basePath }destination-detail-${item.alias}"><c:out value="${item.item}"></c:out></a></li>
                                 </c:if>
                             </c:forEach>
                         </ul>
@@ -80,13 +80,13 @@
               <tbody>
               <c:forEach items="${rts}" var="item">
               <tr>
-          <td style="text-align:left"><a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}">[${item.travelStyleType}]${item.title}</a><br/>
-                <a href="${basePath }${item.travelStyleAlias }/${item.travelStyleAlias }/${item.alias}"><img src="${basePath }${item.cover}"  width="60%"></a></td>
+          <td style="text-align:left"><a href="${basePath }${item.travelStyleAlias }-${item.travelStyleAlias }-${item.alias}">[${item.travelStyleType}]${item.title}</a><br/>
+                <a href="${basePath }${item.travelStyleAlias }-${item.travelStyleAlias }-${item.alias}"><img src="${basePath }${item.cover}"  width="60%"></a></td>
                              </tr>
             </c:forEach>
             <c:if test="${showMore}">
               <tr>
-                <td><a href="${basePath }destination/related/${itemvo.alias}">More》》</a></td>
+                <td><a href="${basePath }destination-related-${itemvo.alias}">More》》</a></td>
                 <td>&nbsp;</td>
               </tr>
             </c:if>

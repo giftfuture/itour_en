@@ -11,13 +11,19 @@ import org.springframework.stereotype.Service;
 
 import com.itour.base.page.BasePage;
 import com.itour.base.service.BaseService;
+import com.itour.base.util.ClassReflectUtil;
 import com.itour.base.util.FilePros;
+import com.itour.base.util.IDGenerator;
 import com.itour.dao.ShowHappyDao;
+import com.itour.entity.LevelArea;
 import com.itour.entity.ShowHappy;
+import com.itour.listener.event.LevelAreaEvent;
 import com.itour.listener.event.ShowHappyEvent;
 import com.itour.listener.event.TravelStyleEvent;
+import com.itour.listener.listener.BaseListener;
 import com.itour.listener.listener.ShowHappyListener;
 import com.itour.listener.listener.TravelStyleListener;
+import com.itour.listener.listener.impl.ShowHappyListenerImpl;
 import com.itour.util.Constants;
 import com.itour.vo.ShowHappyVO;
 
@@ -38,19 +44,20 @@ public class ShowHappyService extends BaseService<ShowHappy> {
 	public ShowHappyDao getDao(){
 		return mapper;
 	}
-	private ShowHappyListener showHappyListener;
+	public ShowHappyListener baseListener = new ShowHappyListenerImpl();
 	private Vector  repository = new Vector ();
-	public void addShowHappyListener(ShowHappyListener ll){
+	public void addBaseListener(ShowHappyListener ll){
 		repository.addElement(ll);//这步要注意同步问题  
 	}
-	public void notifyShowHappyEvent(ShowHappyEvent event) {  
-        Enumeration e = repository.elements();//这步要注意同步问题  
+	public void notifyBaseEvent(ShowHappyEvent event) {  
+       /* Enumeration e = repository.elements();//这步要注意同步问题  
         while(e.hasMoreElements()){  
         	showHappyListener = (ShowHappyListener)e.nextElement();  
         	showHappyListener.event(event); 
-        }  
+        } */
+		baseListener.event(event);
     }
-	public void removeTravelStyleListener(TravelStyleListener ll){  
+	public void removeBaseListener(ShowHappyListener ll){  
         repository.remove(ll);//这步要注意同步问题  
     }
 	public List<ShowHappyVO> queryAll()throws Exception{
@@ -81,7 +88,7 @@ public class ShowHappyService extends BaseService<ShowHappy> {
 	public void addShowHappy(ShowHappy sh)throws Exception{
 		int result = mapper.add(sh);
 		if(result > 0 ){
-			notifyShowHappyEvent(new ShowHappyEvent(this));
+			notifyBaseEvent(new ShowHappyEvent(this));
 		}
 	}
 	public ShowHappyVO queryByCode(String shCode){
@@ -126,5 +133,44 @@ public class ShowHappyService extends BaseService<ShowHappy> {
 	List<ShowHappyVO> queryByListVo(ShowHappyVO vo){
 		return mapper.queryByListVo(vo);
 	};
+	public String add(ShowHappy t)throws Exception{
+		//设置主键.字符类型采用UUID,数字类型采用自增
+		String uuid = IDGenerator.getUUID();// UUID.randomUUID().toString();
+		//System.out.println("uuid="+uuid);
+		ClassReflectUtil.setIdKeyValue(t,"id",uuid);
+		//ClassReflectUtil.setIdKeyValue(t,"id",IDGenerator.getLongId()+"");
+		int result = getDao().add(t);
+		if(result > 0 ){
+			notifyBaseEvent(new ShowHappyEvent(this));
+		}
+		return uuid;
+	}
 	
+	public void update(ShowHappy t)  throws Exception{
+		int result = getDao().update(t);
+		if(result > 0 ){
+			notifyBaseEvent(new ShowHappyEvent(this));
+		}
+	}
+	
+	
+	public void delete(String... ids) throws Exception{
+		if(ids == null || ids.length < 1){
+			return;
+		}
+		for(String id : ids ){
+			 getDao().delete(id);
+		}
+		notifyBaseEvent(new ShowHappyEvent(this));
+	}
+	
+	public void logicdelete(String... ids) throws Exception{
+		if(ids == null || ids.length < 1){
+			return;
+		}
+		for(String id : ids ){
+			getDao().logicdelete(id);
+		}
+		notifyBaseEvent(new ShowHappyEvent(this));
+	}
 }

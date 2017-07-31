@@ -27,9 +27,10 @@
 </script>
 </head>
 <body>
+<%@include file="/front/header.jsp"  %>
 <center>
-<table width="1350px" class="commontb" align="center">
-  <tr><td colspan=2>> <%@include file="/front/header.jsp"  %></td></tr>  
+<table class="commontb" align="center"><!--  width="1350px" -->
+  <tr><td colspan=2>> </td></tr>  
   <tr>
     <td width="776" style="float:middle" class="h1-black">${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>
@@ -97,7 +98,7 @@
             <td><table class="STYLE126" width="442" cellspacing="2" cellpadding="4" border="0">
               <tbody><tr>
           <td class="STYLE126"><div align="right"><strong>Type</strong></div></td>
-          <td class="STYLE126" style="text-align:left"><strong>${rt.travelStyle} </strong><a href="javascript:void(0)" title="${rt.travelStyle}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="text-align:left"><strong>${rt.travelStyle} </strong><a href="javascript:void(0)" title="${rt.travelStyle}"> </a></td>
         </tr>
         <tr>
           <td width="70" class="STYLE126"><div align="right"><strong>Line number</strong></div></td>
@@ -105,7 +106,7 @@
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>Travel days</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.rcdDays}days<strong> </strong><a href="javascript:void(0)" title="${rt.rcdDays}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="text-align:left">${rt.rcdDays}days<strong> </strong><a href="javascript:void(0)" title="${rt.rcdDays}"> </a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>Highest elevation</strong></div></td>
@@ -113,7 +114,7 @@
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>Departure</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.departure }<a href="javascript:void(0)" title="${rt.departure}">Explain&gt;&gt;</a></td>
+          <td class="STYLE126" style="text-align:left">${rt.departure }<a href="javascript:void(0)" title="${rt.departure}"> </a></td>
         </tr>
         <tr>
           <td class="STYLE126"><div align="right"><strong>Arrive</strong></div></td>
@@ -127,6 +128,7 @@
           <td class="STYLE126"><div align="right"><strong>Transportation Style</strong></div></td>
           <td class="STYLE126" style="text-align:left">${rt.transportation }</td>
         </tr>
+        <c:if test="${not empty rt.difficultyRate}">
         <tr>
           <td class="STYLE126"><div align="right"><strong>Walking difficulty</strong></div></td>
           <td class="STYLE126" style="text-align:left">
@@ -136,16 +138,21 @@
           <c:forEach items="${rt.undiffRate}" var="rd">
              <img src="${basePath}images/shoe-2.gif" width="16" height="16" />
           </c:forEach>
-           <a href="javascript:void(0)" title="Dark shoes logo on the difficulty level">Explain&gt;&gt;</a></td>
+           <a href="javascript:void(0)" title="Dark shoes logo on the difficulty level"> </a></td>
         </tr>
+        </c:if>
+        <c:if test="${not empty rt.trekDistance}">
         <tr>
           <td class="STYLE126"><div align="right"><strong>Walking distance </strong></div></td>
           <td class="STYLE126" style="text-align:left">${rt.trekDistance }km</td>
         </tr>
+        </c:if>
+         <c:if test="${not empty rt.mountStyle}">
         <tr>
           <td class="STYLE126"><div align="right"><strong>Mountain Style</strong></div></td>
-          <td class="STYLE126" style="text-align:left">${rt.mountStyle } <a href="javascript:void(0)" title="${rt.mountStyle}">Explain&gt;&gt; </a></td>
+          <td class="STYLE126" style="text-align:left">${rt.mountStyle } <a href="javascript:void(0)" title="${rt.mountStyle}"> </a></td>
         </tr>
+        </c:if>
          <tr>
         <td colspan=2 style="text-align:left"><span class="STYLE148">
          Note: The needs of each group are different, according to your holiday to  re-adjust the design process.</span></td>
@@ -179,10 +186,10 @@
 <table class="frametb" align="center"><tr><td>
 <div class="frametb" id="tab-container" class='tab-container' border="0" cellpadding="3" cellspacing="1">
  <ul style="text-align:left;float:left" class='etabs'>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#review">Overview</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#detail-route">Route Details</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#need-know">Before Instructions</a></li>
-   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb/climb/${alias}#feed-back">Feedback</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb-climb-${alias}#review">Overview</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb-climb-${alias}#detail-route">Route Details</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb-climb-${alias}#need-know">Before Instructions</a></li>
+   <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}climb-climb-${alias}#feed-back">Feedback</a></li>
   <!--  <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#consulting">咨询预定</a></li> -->
  </ul>
  <div class='panel-container'>
@@ -263,7 +270,7 @@
   </tr>
   <tr><td colspan=2 style="float:left" background="images/frame1-2.gif" style="valign:top;"> 
      <c:forEach items="${rt.relates}" var="relat"><br>
-     <a href="${basePath}light/light/${relat.alias}" >${relat.title }</a>
+     <a href="${basePath}light-light-${relat.alias}" >${relat.title }</a>
        <%-- <a href="${basePath}climb/toQuote2/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a> --%>
      </c:forEach>
      </td></tr>
@@ -274,7 +281,7 @@
   <table  class="frametb" align="center">
    <tbody><tr>
      <td colspan=2 style="text-align:left;float:left" ><span class="STYLE3" style="text-align:left;float:left">Tell us your needs, free planning for your program GO! </span> &nbsp;&nbsp;
-     <span class="STYLE3"  style="text-align:left;float:left"><a href="${basePath}climb/selfbooking/${rt.alias}">
+     <span class="STYLE3"  style="text-align:left;float:left"><a href="${basePath}light-selfbooking-${rt.alias}">
      <img src="${basePath }images/tailor-made.gif" width="134" height="32" ></a></span></td>
    </tr>
  </tbody></table>
