@@ -20,8 +20,14 @@ public interface ShowHappyDao<ShowHappy> extends BaseDao<ShowHappy> {
 		shCode
 	}*/
 	ShowHappyVO queryByCode(@Param(value="shCode")String shCode);
+	
 	ShowHappyVO	selectById(@Param(value="id")String id);
+	
 	List<ShowHappyVO> queryByListVo(ShowHappyVO vo);
+	
 	List<ShowHappyVO> queryAll();
+	
 	int countAll();
+	
+	List<ShowHappyVO> queryByRoute(@Param(value="route")String route);
 }

@@ -215,4 +215,11 @@
 			${pager.mysqlQueryCondition}
 		</if>
 	</select>
+	<select id="queryByRoute" parameterType="String" resultMap="BaseResultMapVo">
+	   select show_happy.valid,show_happy.id,customer,show_happy.create_time,show_happy.content,show_happy.status, show_happy.update_time, show_happy.title,customers.customer_name ,
+        show_happy.sh_code,show_happy.short_content,show_happy.cover,result,signature,area,DATE_FORMAT(show_happy.tour_time,'%Y-%m-%d') tour_time,show_happy.route ,areas.areaname,route_template.title routeTitle   
+        from show_happy left join route_template on show_happy.route = route_template.route_code 
+        left join customers on show_happy.customer=customers.id
+        left join areas on show_happy.area=areas.id  where route=#{route}
+	</select>  
 </mapper>   

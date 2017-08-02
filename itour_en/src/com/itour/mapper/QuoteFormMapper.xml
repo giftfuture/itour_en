@@ -21,6 +21,7 @@
 	<result column="tour_guide" property="tourGuide"/>
 	<result column="tourguide_asadult" property="tourguideAsadult"/>
 	<result column="hotel" property="hotel"/>
+	<result column="hotel_place" property="hotelPlace"/>
 	<result column="hotel_asadult" property="hotelAsadult"/>
 	<result column="rent_car" property="rentCar"/>
 	<result column="rentcar_asadult" property="rentcarAsadult"/>
@@ -90,6 +91,7 @@
 	<result column="tour_guide" property="tourGuide"/>
 	<result column="tourguide_asadult" property="tourguideAsadult"/>
 	<result column="hotel" property="hotel"/>
+	<result column="hotel_place" property="hotelPlace"/>
 	<result column="hotel_asadult" property="hotelAsadult"/>
 	<result column="rent_car" property="rentCar"/>
 	<result column="rentcar_asadult" property="rentcarAsadult"/>
@@ -149,7 +151,7 @@
 	  dinner_asadult,insurance,insurance_asadult,comprehensive_costs,comphcost_asadult,recreation,recreation_asadult,item_guide,itemguide_asadult,bathorse_cost,
 	  bathcost_asadult,ridehorse_cost,ridecost_asadult,climb_register_cost,climbrcost_asadult,climb_nexus_cost,climbncost_asadult,else_cost,elsecost_asadult,
 	  presented,valid,group_code,group_date,show_ticket,show_traveldoc,show_tourguide,show_hotel,show_rentcar,show_bigtraffic,show_dinner,show_insurance,show_comphcost,
-	  show_recreation,show_itemguide,show_bathorse,show_ridehorse,show_climbregister,show_climbnexus,show_elsecost,show_presented,agoda_detail
+	  show_recreation,show_itemguide,show_bathorse,show_ridehorse,show_climbregister,show_climbnexus,show_elsecost,show_presented,agoda_detail,hotel_place
 </sql>
    
    
@@ -174,6 +176,7 @@ where quote_form.valid=1
 		<if test="tourGuide!=null and tourGuide !=''">and quote_form.tour_guide like CONCAT('%', #{tourGuide}, '%')</if>
 		<if test="tourguideAsadult!=null">and quote_form.tourguide_asadult=#{tourguideAsadult}</if>
 		<if test="hotel!=null and hotel!=''">and quote_form.hotel like CONCAT('%', #{hotel}, '%')</if>
+		<if test="hotelPlace != null and hotelPlace !=''">and quote_form.hotel_place like CONCAT('%', #{hotelPlace}, '%')</if>
 		<if test="hotelAsadult!=null">and quote_form.hotel_asadult=#{hotelAsadult}</if>
 		<if test="rentCar!=null and rentCar !=''">and quote_form.rent_car like CONCAT('%', #{rentCar}, '%')</if>
 		<if test="rentcarAsadult!=null">and quote_form.rentcar_asadult=#{rentcarAsadult}</if>
@@ -226,13 +229,13 @@ where quote_form.valid=1
 	  dinner_asadult,insurance,insurance_asadult,comprehensive_costs,comphcost_asadult,recreation,recreation_asadult,item_guide,itemguide_asadult,bathorse_cost,
 	  bathcost_asadult,ridehorse_cost,ridecost_asadult,climb_register_cost,climbrcost_asadult,climb_nexus_cost,climbncost_asadult,else_cost,elsecost_asadult,
 	  presented,valid,group_code,group_date,show_ticket,show_traveldoc,show_tourguide,show_hotel,show_rentcar,show_bigtraffic,show_dinner,show_insurance,show_comphcost,
-	  show_recreation,show_itemguide,show_bathorse,show_ridehorse,show_climbregister,show_climbnexus,show_elsecost,show_presented,agoda_detail)
+	  show_recreation,show_itemguide,show_bathorse,show_ridehorse,show_climbregister,show_climbnexus,show_elsecost,show_presented,agoda_detail,hotel_place)
       values(#{id},#{routeTemplate}, #{beriefTrip},#{showTrip}, #{adults},#{children}, now(), now(), #{remark}, #{createBy}, #{updateBy}, #{asAdult},#{ticketBlock},#{travelDocs},
 	  #{traveldocAsadult},#{tourGuide},#{tourguideAsadult},#{hotel},#{hotelAsadult},#{rentCar},#{rentcarAsadult},#{bigTraffic},#{bigTrafficSum},#{bigtrafficeAsadult},#{dinner},
 	  #{dinnerAsadult},#{insurance},#{insuranceAsadult},#{comprehensiveCosts},#{comphcostAsadult},#{recreation},#{recreationAsadult},#{itemGuide},#{itemguideAsadult},#{bathorseCost},
 	  #{bathcostAsadult},#{ridehorseCost},#{ridecostAsadult},#{climbRegisterCost},#{climbrcostAsadult},#{climbNexusCost},#{climbncostAsadult},#{elseCost},#{elsecostAsadult},
 	  #{presented},true,#{groupCode},#{groupDate},#{showTicket},#{showTraveldoc},#{showTourguide},#{showHotel},#{showRentcar},#{showBigtraffic},#{showDinner},#{showInsurance},#{showComphcost},
-	  #{showRecreation},#{showItemguide},#{showBathorse},#{showRidehorse},#{showClimbregister},#{showClimbnexus},#{showElsecost},#{showPresented},#{agodaDetail})
+	  #{showRecreation},#{showItemguide},#{showBathorse},#{showRidehorse},#{showClimbregister},#{showClimbnexus},#{showElsecost},#{showPresented},#{agodaDetail},#{hotelPlace})
 </insert>
 
  <!-- 修改记录，只修改只不为空的字段 -->
@@ -242,6 +245,7 @@ where quote_form.valid=1
 		<if test="showTicket != null and showTicket != ''">show_ticket=#{showTicket},</if>
 		<if test="showTraveldoc != null and showTraveldoc != ''">show_traveldoc=#{showTraveldoc},</if>
 		<if test="showTourguide != null and showTourguide != ''">show_tourguide=#{showTourguide},</if>
+		<if test="hotelPlace != null and hotelPlace != ''">hotel_place=#{hotelPlace},</if>
 		<if test="showHotel != null and showHotel != ''">show_hotel=#{showHotel},</if>
 		<if test="showRentcar != null and showRentcar != ''">show_rentcar=#{showRentcar},</if>
 		<if test="showBigtraffic != null and showBigtraffic != ''">show_bigtraffic=#{showBigtraffic},</if>
@@ -326,7 +330,7 @@ where quote_form.valid=1
 </select>
 <select id="selectById"  resultMap="BaseResultMapVo" parameterType="java.lang.String">
 	select id, route_template, berief_trip,show_trip, adults,children, create_time, update_time, remark, create_by, update_by, as_adult,ticket_block,travel_docs,
-	  traveldoc_asadult,tour_guide,tourguide_asadult,hotel,hotel_asadult,rent_car,rentcar_asadult,big_traffic,big_traffic_sum,bigtraffice_asadult,dinner,
+	  traveldoc_asadult,tour_guide,tourguide_asadult,hotel,hotel_asadult,rent_car,rentcar_asadult,big_traffic,big_traffic_sum,bigtraffice_asadult,dinner,hotel_place,
 	  dinner_asadult,insurance,insurance_asadult,comprehensive_costs,comphcost_asadult,recreation,recreation_asadult,item_guide,itemguide_asadult,bathorse_cost,
 	  bathcost_asadult,ridehorse_cost,ridecost_asadult,climb_register_cost,climbrcost_asadult,climb_nexus_cost,climbncost_asadult,else_cost,elsecost_asadult,
 	  presented,valid,group_code,DATE_FORMAT(group_date,'%Y-%m-%d') group_date,show_ticket,show_traveldoc,show_tourguide,show_hotel,show_rentcar,show_bigtraffic,show_dinner,show_insurance,show_comphcost,

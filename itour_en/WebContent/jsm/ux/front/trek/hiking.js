@@ -179,7 +179,7 @@ itouren.mhiking = function(){
 				 			//console.log(data);
 							itouren.closeProgress();
 						 	if(jsondata.success||jsondata.success=="true"){
-					       		 itouren.alert('alert','Asked Successfully!','info');
+					       		 itouren.alert('alert',jsondata.message||'Asked Successfully!','info');
 						       	 document.forms["fastask"].reset();
 					        }else{
 					        	itouren.alert('alert', jsondata.msg || "Request an exception, please contact the administrator.",'error'); 

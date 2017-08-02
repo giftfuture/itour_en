@@ -12,14 +12,14 @@
 	        <tr class="trbanner" align="center" > 
 	        <td style="text-align:center;width:10%"></td>
 	        <td style="text-align:center;width:10%">&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="location.href='${basePath}'" style="font-color:#FFFFFF">Home</a></td>
-	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath}hiking/main'">Hiking</a></td>
-	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }climb/main'">Climbing</a></td>
-	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }selfdrive/main'">Self driving</a></td>
-	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }light/main'">Light</a></td>
+	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath}hiking-main'">Hiking</a></td>
+	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }climb-main'">Climbing</a></td>
+	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }selfdrive-main'">Self driving</a></td>
+	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }light-main'">Light</a></td>
 	        <%-- <td><a href="${basePath }customized/main">定制</a></td> --%>
-	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }showhappy/main'">Happiness</a></td>
-	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }destination/main'">Destination</a></td>
-	        <td style="text-align:left;width:10%"><a onclick="location.href='${basePath}whyus/why'">About us</a></td>
+	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }showhappy-main'">Happiness</a></td>
+	        <td style="text-align:center;width:10%"><a onclick="location.href='${basePath }destination-main'">Destination</a></td>
+	        <td style="text-align:left;width:10%"><a onclick="location.href='${basePath}whyus-why'">About us</a></td>
 	        <td style="text-align:center;width:10%"></td>
 	        </tr>
 	    </table>

@@ -85,7 +85,7 @@ public class AdLinkController extends BaseController {
 		List<AdLink> links = Constants.alladLinks;
 		if(links.size()==0||links.get(0).getAdvertise().startsWith("adlink/")){
 			Constants.alladLinks.clear();
-			List<AdLink> templinks =adLinkService.allAdLink(0);
+			List<AdLink> templinks =adLinkService.allAdLink(-1);
 			for(AdLink al:templinks){
 				al.setAdvertise(adlinpath+"/"+al.getAdvertise());
 				//allAreas.add(al);

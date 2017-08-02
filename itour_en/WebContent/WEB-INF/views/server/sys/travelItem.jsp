@@ -172,7 +172,7 @@
 						</select>	
 					</div>
 					<div class="fitem">
-						<label>海&nbsp;&nbsp;拔:</label><input name="elevation" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:',',editable:false" missingMessage="请填写elevation">
+						<label>海&nbsp;&nbsp;拔:</label><input name="elevation" type="text" maxlength="" class="easyui-numberbox" data-options="precision:2,groupSeparator:','" missingMessage="请填写elevation">
 					</div>
 				  	<div class="fitem">
 						<label id="rankLabel">推荐指数:</label>

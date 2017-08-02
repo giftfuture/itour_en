@@ -37,10 +37,10 @@ itouren.footer = function(){
 			            //console.log(result);     
 			            var html = "<tr bgcolor='#fafafa'>"; 
 			            $(result).each(function(i,e){
-			            	if(i!=0 && i%5==0){
+			            	if(i!=0 && i%3==0){
 			            		html+="</tr><tr bgcolor='#fafafa'>";
 			            	}
-			            	html+=" <td width='210'><a href='"+basePath+e.adlink+"'>"+e.title+"</a></td>";
+			            	html+=" <td width='210'><a target='_blank' href='"+e.adlink+"'>"+e.title+"</a></td>";
 			            });
 			            $("table[name='keyfooter']").append(html+"</tr>");
 			        }  

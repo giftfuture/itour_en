@@ -75,6 +75,9 @@
           <td class="STYLE129" valign="middle" bgcolor="#F0F0F0" align="center"><div class="STYLE18" align="center" style="width:300px;">
            	景点
           </div></td>
+           <td class="STYLE129" valign="middle" bgcolor="#F0F0F0" align="center"><div class="STYLE18" align="center">
+                    住宿(城镇)
+          </div></td>
           <td><a name="routeplus"><img alt="" title="添加一行" src="${basePath }images/add.gif"></a></td>
         </tr>
         </thead>

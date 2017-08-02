@@ -42,6 +42,7 @@ public class QuoteFormKit {
 		qfv.setElseCost(qf.getElseCost());
 		qfv.setElsecostAsadult(qf.getElsecostAsadult());
 		qfv.setHotel(qf.getHotel());
+		qfv.setHotelPlace(qf.getHotelPlace());
 		qfv.setHotelAsadult(qf.getHotelAsadult());
 		qfv.setInsurance(qf.getInsurance());
 		qfv.setInsuranceAsadult(qf.getInsuranceAsadult());
@@ -121,6 +122,7 @@ public class QuoteFormKit {
 		qfv.setElseCost(vo.getElseCost());
 		qfv.setElsecostAsadult(vo.getElsecostAsadult());
 		qfv.setHotel(vo.getHotel());
+		qfv.setHotelPlace(vo.getHotelPlace());
 		qfv.setHotelAsadult(vo.getHotelAsadult());
 		qfv.setInsurance(vo.getInsurance());
 		qfv.setInsuranceAsadult(vo.getInsuranceAsadult());

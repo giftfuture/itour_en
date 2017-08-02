@@ -247,7 +247,7 @@ itouren.routeTemplate = function(){
 				remove:'routeTemplate/delete'//删除数据的Action
 			},
   			dataGrid:{
-  				title:'路线模板',
+  				title:'路线管理',
 	   			url:'routeTemplate/dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
@@ -277,7 +277,7 @@ itouren.routeTemplate = function(){
 					},
 					{field:'levelarea',title:'路线区域',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return '<a href="'+basePath+'levelarea/list/'+row.id+'">路线区域</a>';
+							return row.level1Area+'<'+row.level2Area+'&nbsp;<a href="'+basePath+'levelarea/list/'+row.id+'">编辑</a>';
 						}
 					},
 					{field:'cover',title:'封面',align:'center',sortable:true,

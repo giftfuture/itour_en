@@ -53,6 +53,7 @@ import eu.bitwalker.useragentutils.UserAgent;
 
 @Controller
 public class IndexController extends BaseController {
+	
 	protected final Logger logger =  LoggerFactory.getLogger(getClass());
 	// Servrice start
 	@Autowired 
@@ -262,6 +263,13 @@ public class IndexController extends BaseController {
 		//vo.setPage(Long.parseLong(pageNo));
 		//vo.setRows(Constants.happyperPage);
 		//vo.setLimit(Constants.happyperPage);
+		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
+        //Browser browser = userAgent.getBrowser();  
+        OperatingSystem os = userAgent.getOperatingSystem();
+        if(os.isMobileDevice()){
+        	logger.debug("###########当前是移动浏览器#####");
+        	return forward("mfront/search",map);
+        }
 		return forward("front/search",map);
 	}
 	/**

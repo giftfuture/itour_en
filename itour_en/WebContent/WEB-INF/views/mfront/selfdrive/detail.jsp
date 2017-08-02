@@ -185,10 +185,10 @@
 <div class="frametb" id="tab-container" class='tab-container' width="100%"  style="width:100%;text-align:center;float:middle" >
 
  <ul style="text-align:left;float:left" class='etabs'>
-   <li width="15%" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}selfdrive-selfdrive-${alias}#review" target="_self">Overview</a></li>
-   <li width="15%" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}selfdrive-selfdrive-${alias}#detail-route" target="_self">Route Details</a></li>
-   <li width="15%" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}selfdrive-selfdrive-${alias}#need-know" target="_self">Before Instructions</a></li>
-   <li width="15%" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}selfdrive-selfdrive-${alias}#feed-back" target="_self">Feedback</a></li>
+   <li width="15%" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}selfdrive-${alias}#review" target="_self">Overview</a></li>
+   <li width="15%" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}selfdrive-${alias}#detail-route" target="_self">Route Details</a></li>
+   <li width="15%" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}selfdrive-${alias}#need-know" target="_self">Before Instructions</a></li>
+   <li width="15%" bgcolor="#F0F0F0" class='tab' style="margin:-5"><a href="${basePath}selfdrive-${alias}#show-happy" target="_self">Happiness</a></li>
   <!--  <li width="110" bgcolor="#F0F0F0" class='tab'><a href="#consulting">咨询预定</a></li> -->
  </ul>
  <div class='panel-container'>
@@ -291,7 +291,7 @@
     <span class="STYLE2" style="text-align:left;float:left;font-size:1em;" >Would you like to know what? Come and talk to us:</span><a href="#"></a></span></span></span></td>
   </tr>
 </table>
-<table  class="frametb" align="center">
+<table class="frametb" align="center">
   <tr>
     <td style="float:left"><img style="float:left" src="${basePath}images/frame1-1.gif" width="100%" height="7" /></td>
   </tr>
@@ -370,8 +370,61 @@
   </tr>
 </table>
   </div>
-<!--   <div id="consulting" style="display:none;">
-  </div> -->
+<div id="show-happy" name="show-happy">
+    <table style="margin-bottom:30"><tr>
+    <td colspan=2 style="float:left"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
+    <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">Memories of happiness will be happy freeze</span></span></span></span></td>
+  </tr>
+  <tr>
+    <td colspan=2 width="1140" style="float:left"><img style="float:left;vertical-align:text-top;" valign="top" src="${basePath}images/frame1-1.gif" height="7" /></td>
+  </tr>
+  <tr><td colspan=2 style="float:left" background="images/frame1-2.gif" style="valign:top;"> 
+                <table width='100%' border='0' align='center' cellpadding='10' cellspacing='0'> 
+                            <tr> 
+                              <td valign='top'><table width='100%' border='0' cellspacing='0' cellpadding='20'> 
+                                   <tr> 
+                                    <td style='width:26.8%'><table  border='0' align='center' cellpadding='0' cellspacing='0'> 
+                                      <tr>
+                                        <td><table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                              <td style='width:100%;'><a href='${basePath}showhappy-detail-${shvo.shCode}'><img src='${basePath}${shvo.cover}' width='100%' /></a></td>
+                                              <td width='11' rowspan='2' valign='bottom'><img src='${basePath}images/tu-k-02.gif' width='11' height='122' /></td>
+                                            </tr>
+                                            <tr>
+                                              <td><div align='right'><img src='${basePath}images/tu-k-01.gif' width='191' height='9' /></div></td>
+                                            </tr>
+                                        </table></td>
+                                      </tr>
+                                    </table></td>
+                                    <td width='73.2%' valign='bottom'><table width='100%' border='0' cellpadding='2' cellspacing='2' class='STYLE126'>
+                                      <tr>
+                                        
+                                        <td style='text-align:left'><span class='STYLE19'>${shvo.title} </span><span class='STYLE22'>${shvo.tourTime}</span></td>
+                                      </tr>
+                                      <tr>
+                                        <td width='100%' style='text-align:left'><span class='STYLE18'>${shvo.shortContent}<a href='${basePath}showhappy-detail-${shvo.shCode}'>走进她的回憶</a>》》<img src='images/quote-2.gif' width='18' height='14' /></span></td>
+                                      </tr>
+                                      <tr>
+                                        <td style='text-align:right'><div class='STYLE20'>${shvo.signature} From ${shvo.areaname}</div></td>
+                                      </tr>
+                                    </table></td>
+                                  </tr>
+                                </table>
+                                  <div>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+   </td></tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td valign="top"><span class="STYLE126"><a href="${basePath}showhappy-main">More Memories》》</a></span></td>
+    </tr>
+   <tr>
+    <td colspan=2 style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
+  </tr>
+  </table>
+  </div>
   </div>
   </div>
   </td></tr>

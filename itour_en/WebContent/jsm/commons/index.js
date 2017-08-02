@@ -13,7 +13,7 @@ itouren.mindex = function(){
 						//console.log(e.advertise);
 						arr[i]=e.advertise;
 						if(e.video==1){
-							links[i] = basePath+'video/'+ e.adlink;
+							links[i] = basePath+'video-'+ e.adlink;
 						}else{
 							links[i]=e.adlink;
 						}
@@ -72,7 +72,7 @@ itouren.mindex = function(){
 			//console.log(links+"   "+bannerindex);
 		
 			//var intervalid = setInterval("alert(111111111)",timeInterval);
-			var exchange = "<tr><td style='text-align:center;width:100%;float:middle;' colspan='2'><ol style='display:table;text-align:center;width:100%;float:middle'>";
+			var exchange = "<tr><td style='text-align:center;width:100%;float:middle;' colspan='2'><ol style='margin-top:-3%;display:table;text-align:center;width:100%;float:middle'>";
 			for(var i =0;i<arr.length;i++){
 				exchange+="<li style=''></li>";
 			}

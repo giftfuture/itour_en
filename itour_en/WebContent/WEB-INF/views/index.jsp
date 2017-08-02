@@ -27,13 +27,16 @@
 <body>
 <center>
 <%@include file="/front/header.jsp"%>
+<div style="z-index:-1; position:relative;">
     <table class="commontb" align="center" style="width:72.6%" width="72.6%">
         <tr>
             <td style="width:100%;text-align:center" align="center" width="100%" colspan=2>
         <a target="_blank"><img id="banner-index" width="100%" src="${basePath }images/Route001.jpg"  height="598px" /></a></td>
         </tr>
     </table>
-    <table class="frametb" align="center" width="61.3%" style="width:61.3%">
+    </div>
+    <div style=" position:relative;margin-top:-60;z-index:9999;width:61.3%">
+    <table class="frametb" align="center" width="100%" style="width:100%">
         <tr>
             <td height="106" valign="top" bgcolor="#fafafa" colspan="2">
                 <table width="100%" border="0" align="left" cellpadding="0"
@@ -99,7 +102,7 @@ The protagonist travel belongs to the professional travel service team affiliate
                                     <c:forEach items="${entry['value']}" var="et">
                                         <tr>
                                             <td style="text-align: left"><a
-                                                href="${basePath }${et.travelStyleAlias }-${et.travelStyleAlias }-${et.alias}">>><span
+                                                href="${basePath }${et.travelStyleAlias }-${et.alias}">>><span
                                                     class="STYLE7">${et.title }</span></a></td>
                                         </tr>
                                     </c:forEach>
@@ -181,7 +184,7 @@ The protagonist travel belongs to the professional travel service team affiliate
         </tr>
         <tr><td colspan=2><%@include file="/front/footer.jsp"%></td></tr>
     </table>
-        
+    </div>    
     </center>
  <script type="text/javascript" src="js/commons/index.js"></script>
 </body>

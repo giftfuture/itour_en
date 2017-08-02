@@ -39,6 +39,7 @@ public class QuoteFormVO extends BasePage implements Serializable {
     @Max(value = 1, message = "tourguideAsadult 的最大值为1")
 	private int tourguideAsadult;//小孩导游是否按孩子核算
 	private String hotel;//酒店
+	private String hotelPlace;//酒店位置
     @Min(value = 0, message = "hotelAsadult 的最小值为0")
     @Max(value = 1, message = "hotelAsadult 的最大值为1")
 	private int hotelAsadult;//小孩住酒店是否按孩子核算
@@ -126,6 +127,12 @@ public class QuoteFormVO extends BasePage implements Serializable {
 	private String agodaDetail;//详细日程
 	
 	
+	public String getHotelPlace() {
+		return hotelPlace;
+	}
+	public void setHotelPlace(String hotelPlace) {
+		this.hotelPlace = hotelPlace;
+	}
 	public String getAgodaDetail() {
 		return agodaDetail;
 	}

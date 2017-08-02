@@ -173,4 +173,7 @@ public class ShowHappyService extends BaseService<ShowHappy> {
 		}
 		notifyBaseEvent(new ShowHappyEvent(this));
 	}
+	public List<ShowHappyVO> queryByRoute(String route){
+		return getDao().queryByRoute(route);
+	};
 }

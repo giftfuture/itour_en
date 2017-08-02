@@ -40,7 +40,7 @@ public class AdLinkVO extends BasePage implements Serializable {
 	@Min(value = 0, message = "video 的最小值为0")
     @Max(value = 1, message = "video 的最大值为1")
 	private int video;
-	@Min(value = 0, message = "foot 的最小值为0")
+	@Min(value = 0, message = "foot 的最小值为-1")
 	@Max(value = 1, message = "foot 的最大值为1")
 	private int foot;//0=首页链接，1=页脚链接
 	 

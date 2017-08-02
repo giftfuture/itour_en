@@ -13,17 +13,14 @@
  	 <div class="ui-search-panel" region="north" style="height:100px;" title="过滤条件" data-options="striped: true,collapsible:false,iconCls:'icon-search',border:false" >  
  	 <form id="searchForm">
         <p class="ui-fields">
-			<label class="ui-label">客户ID:</label><input name="customerId" class="easyui-textbox" data-options="width:120">&nbsp;&nbsp;
-			<label class="ui-label">创建人:</label><input name="createBy" class="easyui-textbox"  data-options="width:120">&nbsp;&nbsp;
-			<label class="ui-label">创建时间:</label><input name="createTime"  class="easyui-datebox" data-options="width:120,editable:false,region:'north',split:true,border:false">&nbsp;&nbsp;
-			<label class="ui-label">热门度:</label><select name="starLevel" class="easyui-combobox" data-options="width:120,editable:false">
-			<option value="">--请选择--</option>
-			<option value="5">五星</option>
-			<option value="4">四星</option>
-			<option value="3">三星</option>
-			<option value="2">两星</option>
-			<option value="1">一星</option>
-			</select>
+		    <label class="ui-label">旅行方式:</label><input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:120,minWidth:80,height:22,valueField:'alias',textField:'type',mode:'remote',panelHeight:'150',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles',prompt:'-所有-'">&nbsp;&nbsp;
+            <label class="ui-label">一级区域:</label><input class="easyui-combobox" id="formlevel1Area" name="level1Area" data-options="width:130,height:20,valueField:'level1Area',textField:'level1Area',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}levelarea/queryLevel1',
+             onChange:function(n,o){var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?level1Area='+n ;$('#formlevel2Area').combobox('reload',urlurl);}">
+             <label class="ui-label">二级区域:</label><input id="formlevel2Area" name="level2Area" class="easyui-combobox" data-options="width:130,height:20,valueField:'level2Area',textField:'level2Area',mode:'remote',panelHeight:'auto',editable:false, method:'get'">   
+             <label class="ui-label">所属省市:</label><!-- onShowPanel:function(){$(this).combobox('panel').height(1000);} -->
+             <input name="scope" class="easyui-combobox"  data-options="width:120,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'"> 
+             <label class="ui-label">景点:</label><input id='travelItem' name='travelItem' class='easyui-combobox' data-options="cursor:'pointer',valueField:'alias',textField:'item',method:'get',editable:false,region:'north',split:true,border:false,width:151,height:22"/>
+            <label class="ui-label">线路名称:</label><input name="routeCode" class="easyui-textbox"  data-options="width:120">&nbsp;&nbsp;
 	    </p> &nbsp;&nbsp;
 	    <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search" style="margin-top:10">查询</a>
       </form>  
@@ -104,12 +101,12 @@
      	</form>
 	 </div> 
 
-     <div id="edit-win" class="easyui-dialog" title="路线模板" data-options="autoOpen: false,closed:true,iconCls:'icon-save',modal:true,draggable:true,width:'80%',height:'80%'"  >  <!-- style="padding:200px;top:200px;left:200px;" -->
+     <div id="edit-win" class="easyui-dialog" title="路线管理" data-options="autoOpen: false,closed:true,iconCls:'icon-save',modal:true,draggable:true,width:'80%',height:'80%'"  >  <!-- style="padding:200px;top:200px;left:200px;" -->
      	<form id="editForm" class="ui-form" method="post"  ><!-- autocomplete="off" target="coverImgifm" --> <!-- accept="application/json" --> <!-- enctype="multipart/form-data" -->
      		 <input class="hidden" name="id">
      		 <!-- <input class="hidden" name="levelArea"> -->
      		 <div class="ui-edit">
-		     	  <!--  <div class="ftitle">路线模板</div> -->
+		     	  <!--  <div class="ftitle">路线管理</div> -->
 		     	   <table><thead></thead>
 		     	   <tbody>
 		     	   <tr><td style="text-align:left">	<div class="fitem">

@@ -15,12 +15,12 @@ itouren.hotsightmain = function(){
 									      '<tr>'+
 									        '<td><table width="300" border="0" align="left" cellpadding="0" cellspacing="0">'+
 									            '<tr>'+
-									              '<td width="296" class="h2-24"><a href="'+basePath+(e.travelStyleAlias?e.travelStyleAlias:"")+'/'+(e.travelStyleAlias?e.travelStyleAlias:"")+'/'+(e.alias?e.alias:"")+'">'+(e.title?e.title:"")+'</a></td>'+
+									              '<td width="296" class="h2-24"><a href="'+basePath+(e.travelStyleAlias?e.travelStyleAlias:"")+'-'+(e.alias?e.alias:"")+'">'+(e.title?e.title:"")+'</a></td>'+
 									            '</tr>'+
 									        '</table></td>'+
 									      '</tr>'+
 									      '<tr>'+
-									        '<td><a href="'+basePath+(e.travelStyleAlias?e.travelStyleAlias:"")+'/'+(e.travelStyleAlias?e.travelStyleAlias:"")+'/'+(e.alias?e.alias:"")+'"><img src="'+basePath+(e.cover?e.cover:"")+'" width="353" height="166" ></a></td>'+
+									        '<td><a href="'+basePath+(e.travelStyleAlias?e.travelStyleAlias:"")+'-'+(e.alias?e.alias:"")+'"><img src="'+basePath+(e.cover?e.cover:"")+'" width="353" height="166" ></a></td>'+
 									      '</tr>'+
 									      '<tr>'+
 									        '<td class="f12-gao1" style="text-align:left">'+(e.shortContent?e.shortContent:"")+'</td>'+

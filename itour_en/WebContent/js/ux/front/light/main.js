@@ -11,8 +11,8 @@ itouren.lightmain = function(){
 								var html="<tr><td><table><tr>";
 								$(searchRts).each(function(i,e){
 									html+='<td width="34%"><table style="width:93.5%" align="center" border="0" cellpadding="0" cellspacing="0">'+
-						            '<tr><td width="100%" class="h2-24"><a href="'+basePath+(e.travelStyleAlias?e.travelStyleAlias:"")+'-'+(e.travelStyleAlias?e.travelStyleAlias:"")+'-'+(e.alias?e.alias:"")+'">'+(e.title?e.title:"")+'</a></td></tr>'+
-								      '<tr><td class="f12-gao1" style="text-align:center"><a href="'+basePath+(e.travelStyleAlias?e.travelStyleAlias:"")+'-'+(e.travelStyleAlias?e.travelStyleAlias:"")+'-'+(e.alias?e.alias:"")+'"><img src="'+basePath+(e.cover?e.cover:"")+'" width="100%" height="166" ></a></td></tr>'+
+						            '<tr><td width="100%" class="h2-24"><a href="'+basePath+(e.travelStyleAlias?e.travelStyleAlias:"")+'-'+(e.alias?e.alias:"")+'">'+(e.title?e.title:"")+'</a></td></tr>'+
+								      '<tr><td class="f12-gao1" style="text-align:center"><a href="'+basePath+(e.travelStyleAlias?e.travelStyleAlias:"")+'-'+(e.alias?e.alias:"")+'"><img src="'+basePath+(e.cover?e.cover:"")+'" width="100%" height="166" ></a></td></tr>'+
 								      '<tr><td class="f12-gao1" style="text-align:left">'+(e.shortContent?e.shortContent:"")+'</td></tr>'+
 								      '<tr><td>&nbsp;</td></tr>'+
 								    '</table></td>'+((i+1)%3==0?"</tr><tr>":""); 

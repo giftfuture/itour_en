@@ -196,7 +196,7 @@ public class Constants {
 	 * @param adLinkService
 	 */
 	public static void load(AdLinkService adLinkService){
-		  String adsql="select * from ad_link where valid=1";
+		  String adsql="select * from ad_link where valid=1 and foot = -1";
 		  String adlinpath = FilePros.httpadLinkPath();
 		  System.out.println("Constants.initAdLink.sql="+adsql);
 		  List<AdLink> adlist = jdbcTemplate.query(adsql, new RowMapper<AdLink>(){
