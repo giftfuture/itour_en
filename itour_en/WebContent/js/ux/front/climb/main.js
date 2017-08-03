@@ -3,7 +3,7 @@ itouren.climbmain = function(){
 	var _this = {
 			fbpagination:function (pageno){
 			    var element = $('#fbpage');
-			  	$.post(basePath+"climb/climbpagination",{'pageNo':pageno},
+			  	$.post(basePath+"climb-climbpagination",{'pageNo':pageno},
 				function(responseText){
 								responseText = $.parseJSON(responseText);
 								var searchRts = responseText.result.records;

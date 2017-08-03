@@ -68,7 +68,10 @@
             </script>
             </DIV>
 <!--滚动图片 end--><span style="text-align:left;">${itemvo.content }</span> </td>
-            <td style="text-align:center;valign:top;vertical-align:top;align:center;display:inline-block;"><img src="images/ticket.png" width="30" height="30">
+            <td style="text-align:center;valign:top;vertical-align:top;align:center;display:inline-block;padding-top:30;">
+            <span style="font-size:1.5em">${itemvo.item}</span><br/>
+            <span>${itemvo.shortContent}...</span><br/>
+            <img src="images/ticket.png" width="30" height="30">
             <span class="STYLE3">${itemvo.item}Ticket information(CNY)：</span><br/>
            <span style="padding-left:30px;text-align:center;valign:top;vertical-align:top;display:inline-block;" align="center" >${itemvo.ticketsBlock}</span><br/><br/><br/><br/>
            <span class="h2-24"><img src="images/route2.png" width="48" height="48"></span>
