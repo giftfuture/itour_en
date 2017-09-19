@@ -45,7 +45,7 @@
    <td>
       <table style="float:middle;text-align:center;" align="center" valign="top" >
         <tr>
-        <td width="100%" name="magnifying"><img src="${basePath}${rt.cover}" style="border:none;width:100%;float:middle" border="0px" width="100%"/></td>
+        <td width="100%" name="magnifying"><div class="bigImage"><img src="${basePath}${rt.cover}" style="border:none;width:100%;float:middle" border="0px" width="100%"/></div></td>
       </tr>
       <tr>
         <td height="69">
@@ -202,14 +202,16 @@
           <span class="STYLE148"><strong>iTour travel team customization service:</strong><br />
           ${rt.customizedService }</span>
         </td>
-        <td width="60%" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">Travel map</span><br />
-            <div class="easyzoom easyzoom--overlay">
-                <a href="${basePath}images/map-002.jpg">
-                    <img src="${basePath}images/map-002.jpg" alt=""  width="100%" />
-                </a>
-            </div>
-          </div>
-        </td>
+        <c:if test="${not empty rt.routeMap}">
+            <td width="60%" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">Travel map</span><br />
+                <div class="easyzoom easyzoom--overlay">
+                    <a href="${basePath}${rt.routeMap}">
+                        <img src="${basePath}${rt.routeMap}" alt="" width="100%" />        
+                    </a>
+                </div>
+              </div>
+            </td>
+        </c:if>
       </tr>
     </table>
     </td>
@@ -222,7 +224,7 @@
   <div id="detail-route" name="detail-route">
   <table class="frametb" align="center">
   <tr>
-    <td colspan=2><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span> 
+    <td colspan=2 style="padding-top:30;"><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span> 
     <span class="h2-24" style="float:left"><span class="STYLE148">Brief schedule</span></span></td>
   </tr>
     <tr>
@@ -234,7 +236,7 @@
     <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="100%" height="7" /></td>
   </tr>   
   <tr>
-    <td colspan=2><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span>
+    <td colspan=2 style="padding-top:30;"><span class="h2-24" style="float:left"><img src="${basePath}images/detail.png" width="32" height="32" /></span>
     <span class="h2-24" style="float:left"><span class="STYLE148">Detailed schedule</span></span></td>
   </tr>
   <tr><td colspan="2" background="images/frame1-2.gif">${qf.agodaDetail }</td></tr>
@@ -244,29 +246,29 @@
   <div id="need-know" name="need-know">
   <table  class="frametb" align="center">
   <tr>
-    <td width="32" style="text-align:left;float:left;"><img src="images/document2.png" width="32" height="32" /></td>
-    <td style="text-align:left;float:left;"><span class="h2-24" style="float:left"><span class="STYLE148">Before Instructions</span></span></td>
+    <td colspan=2 style="text-align:left;float:left;padding-top:30;"><img src="images/document2.png" width="32" height="32" /> 
+    <span class="h2-24" style="float:left"><span class="STYLE148">Before Instructions</span></span></td>
   </tr>
   <tr>
     <td colspan=2 style="text-align:left;align:left;">${rt.beforeInstruction }</td>
   </tr>
     <tr>
-    <td colspan=2 style="float:left"><img  src="${basePath}images/heart02.png" style="float:left;width:32;height:32;" width="32" height="32" />
+    <td colspan=2 style="float:left;padding-top:30;"><img  src="${basePath}images/heart02.png" style="float:left;width:32;height:32;" width="32" height="32" />
     <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2" style="font-size:1em;">Service and quotation</span></span></span></span></td>
   </tr>
     <tr>
     <td colspan=2 style="text-align:left;align:left;">${rt.serviceAndQuote }</td>
   </tr>
   <tr>
-    <td colspan=2 style="float:left"><img  src="${basePath}images/heart02.png" style="float:left;width:32;height:32" width="32" height="32" />
-    <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2" style="font-size:1em;">Related Routes:</span></span></span></span></td>
+    <td colspan=2 style="float:left;padding-top:30;"><img  src="${basePath}images/heart02.png" style="float:left;width:32;height:32" width="32" height="32" />
+    <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2" style="font-size:1em;">Related Routes</span></span></span></span></td>
   </tr>
   <tr>
     <td  colspan=2 width="100%" style="float:left"><img style="float:left; vertical-align:text-top;" valign="top" src="${basePath}images/frame1-1.gif" height="7" /></td>
   </tr>
   <tr><td colspan=2 style="float:left" background="images/frame1-2.gif" style="valign:top;"> 
      <c:forEach items="${rt.relates}" var="relat"><br>
-     <a href="${basePath}light-light-${relat.alias}" >${relat.title }</a>
+     <a href="${basePath}light-${relat.alias}" >${relat.title }</a>
        <%-- <a href="${basePath}climb/toQuote2/${relat.alias}" class="easyui-linkbutton" >${relat.title }</a> --%>
      </c:forEach>
      </td></tr>
@@ -274,7 +276,7 @@
     <td colspan=2 style="float:left"><img style="float:left" src="images/frame1-3.gif" width="100%" height="7" /></td>
   </tr>
 <tr>
-     <td colspan=2 ><span class="STYLE3" style="text-align:left;float:left">Tell us your needs, free planning for your program GO! </span> &nbsp;&nbsp;
+     <td colspan=2 style="padding-top:30;"><span class="STYLE3" style="text-align:left;float:left">Tell us your needs, free planning for your program GO! </span> &nbsp;&nbsp;
      <span class="STYLE3"  style="text-align:left;float:left"><a style="text-align:left;float:left;" href="${basePath}light-selfbooking-${rt.alias}">
      <img  style="float:middle" src="${basePath }images/tailor-made.gif" width="134" height="32" ></a></span></td>
    </tr>
@@ -399,7 +401,7 @@
                                         <td style='text-align:left'><span class='STYLE19'>${shvo.title} </span><span class='STYLE22'>${shvo.tourTime}</span></td>
                                       </tr>
                                       <tr>
-                                        <td width='100%' style='text-align:left'><span class='STYLE18'>${shvo.shortContent}<a href='${basePath}showhappy-detail-${shvo.shCode}'>走进她的回憶</a>》》<img src='images/quote-2.gif' width='18' height='14' /></span></td>
+                                        <td width='100%' style='text-align:left'><span class='STYLE18'>${shvo.shortContent}<a href='${basePath}showhappy-detail-${shvo.shCode}'>Walk into her memory</a>》》<img src='images/quote-2.gif' width='18' height='14' /></span></td>
                                       </tr>
                                       <tr>
                                         <td style='text-align:right'><div class='STYLE20'>${shvo.signature} From ${shvo.areaname}</div></td>
@@ -411,12 +413,11 @@
                                 </div>
                               </td>
                             </tr>
+						    <tr>
+						      <td valign="top"><span class="STYLE126"><a href="${basePath}showhappy">More Memories》》</a></span></td>
+						    </tr>
                           </table>
    </td></tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td valign="top"><span class="STYLE126"><a href="${basePath}showhappy-main">More Memories》》</a></span></td>
-    </tr>
    <tr>
     <td colspan=2 style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
@@ -425,7 +426,7 @@
   </div>
   </div>
   </td></tr>
-      <tr><td><%@include file="/frontm/footer.jsp" %></td></tr>
+   <tr><td><%@include file="/frontm/footer.jsp" %></td></tr>
 </table>
 
 <script type="text/javascript" src="${basePath}jsm/ux/front/light/detail.js"></script>

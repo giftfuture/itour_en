@@ -84,6 +84,7 @@ itouren.serverquotestep4 = function(){
 					//getValue  setValue 分别是返回当前进度值  和 设置一个进度值
 					//progressBar.progressbar('setValue', progressBar.progressbar('getValue') + 5);
 				},1000);
+			  itouren.main.unDealedOrders();	    
 		 },
 		 msgProgress:function(intervalId){
 			  		var progressBar = $("#divProgressbar");  

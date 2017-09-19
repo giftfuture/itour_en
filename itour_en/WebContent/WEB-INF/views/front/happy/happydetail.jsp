@@ -51,11 +51,11 @@
       <tr>
     <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr> 
-    </table> 
+    </table> </td></tr>
+    <tr><td><%@include file="/front/footer.jsp"  %>  </td></tr>
 </table>
 
 <script type="text/javascript" src="${basePath}js/ux/front/happy/happydetail.js"></script>
-<%@include file="/front/footer.jsp"  %>  
 </body>
 </html>
 

@@ -17,6 +17,7 @@ html {
         font-size: 125%!important;
     }
 }
+.bigImage img{opacity: 1;}
 html,body {font-family:MicrosoftYaHei;padding:0px;font-size:12px;font-size:1.2rem ;margin:0;}
 img { max-width: 100%;}
 img, object { max-width: 100%;}
@@ -64,6 +65,8 @@ a{text-decoration: none;color:#2786D6;}
   font-family: "微软雅黑";
   border:0;
 } 
+.frametb td { word-wrap:break-word;word-break:break-all; }/*overflow: hidden;word-wrap:break-word;white-space: nowrap; text-overflow: ellipsis;*/
+.odinfotb td { word-wrap:break-word;word-break:break-all; }
 .commontb2{
   text-align:center;
   align:center;

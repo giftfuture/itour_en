@@ -124,6 +124,7 @@ public class CustomersController extends BaseController{
 	@ResponseBody
 	public String save(Customers entity,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		entity.setCustomerId(IDGenerator.getUUID());
+		entity.setStatus(1);
 		String customerId = "";
 		Customers cust = null;
 		SysUser user = SessionUtils.getUser(request);

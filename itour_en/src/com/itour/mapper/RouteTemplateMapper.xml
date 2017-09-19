@@ -383,7 +383,7 @@ order by route_template.star_level desc
 <!-- 查询路线模板列表 SELECT GROUP_CONCAT ( url SEPARATOR " @ " ) url-->
 <select id="queryByList" resultMap="BaseResultMapVo"  parameterType="com.itour.base.page.BasePage">
     select route_template.id,route_template.cover,route_template.title,route_template.short_content,route_template.alias,route_code,star_level,
-    level_area,viewphotos,route_template.customer_id, route_template.create_time, route_template.update_time, route_template.service_and_quote,
+    level_area,viewphotos,route_template.customer_id,  DATE_FORMAT(route_template.create_time,'%Y-%m-%d %H:%i:%s') create_time,  DATE_FORMAT(route_template.update_time,'%Y-%m-%d %H:%i:%s') update_time, route_template.service_and_quote,
     concat(cb.nickName,'(',cb.email,')') create_by, concat(ub.nickName,'(',ub.email,')') update_by, elevation,la.level1_area,la.level2_area,
     route_template.remark,route_template.special,route_template.route_map,travel_style.type travel_style,route_template.travel_items,route_template.rcd_days,route_template.mileage,route_template.arrive,route_template.departure,
     route_template.mount_style,route_template.trek_distance,route_template.transportation,route_template.difficulty_rate,route_template.quoto_form,route_template.design_concept,route_template.customized_service,route_template.before_instruction

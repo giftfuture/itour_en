@@ -100,5 +100,6 @@ var basePath = '${basePath}';
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="mobile-agent" content="format=html5; url=<%=basePath%>" />
 <meta http-equiv="mobile-agent" content="format=xhtml; url=<%=basePath%>" />
+<s:htmlEscape defaultHtmlEscape="true"></s:htmlEscape>
 <link rel="SHORTCUT ICON" href="<%=basePath%>images/head2016.gif"> 
 <%-- <p>我们的友谊海枯石不烂！ 您是第 <%=application.getAttribute("count") %> 位访客</p>   --%>

@@ -37,6 +37,10 @@
     </div>
     <div style=" position:relative;margin-top:-60;z-index:9999;width:61.3%">
     <table class="frametb" align="center" width="100%" style="width:100%">
+        <tr style="width:100%;text-align:center" align="center" width="100%" >
+            <td  width="67.2%" style="width:67.2%"></td>
+            <td  width="32.8%" style="width:32.8%"></td>
+        </tr>
         <tr>
             <td height="106" valign="top" bgcolor="#fafafa" colspan="2">
                 <table width="100%" border="0" align="left" cellpadding="0"
@@ -66,10 +70,8 @@ The protagonist travel belongs to the professional travel service team affiliate
                 </table>
             </td>
         </tr>
-       
-  
         <tr style="width:100%;text-align:center" align="center" width="100%" >
-            <td  width="67%" style="width:67%;">
+            <td  width="67.2%" style="width:67.2%">
                 <table border="0" align="center" cellpadding="15" cellspacing="0"
                     name="searchRtstb" width="100%" style="width:100%">
                     <tbody id="fbcontent">
@@ -85,7 +87,7 @@ The protagonist travel belongs to the professional travel service team affiliate
                                     <tr>
                                         <td width="100%" class="h2-24red" colspan=3
                                             style="text-align: left; padding-left: 50px"><a class="STYLE3 tsSTYLE3" style="font-size:1em;font-weight:normal;"
-                                            width="100px" href="${basePath}${fn:split(entry['key'], '#')[3]}-main"><img
+                                            width="100px" href="${basePath}${fn:split(entry['key'], '#')[3]}"><img
                                                 src="images/icon-0${status.index+1 }.jpg" width="57"
                                                 height="43">${fn:split(entry['key'],'#')[0]}</a></td>
                                     </tr>
@@ -95,9 +97,9 @@ The protagonist travel belongs to the professional travel service team affiliate
                                     </tr>
                                     <tr>
                                         <td width="100%" colspan=3 style="text-align: left"><a
-                                            href="${basePath}${fn:split(entry['key'], '#')[3]}-main" class="STYLE3"><img
+                                            href="${basePath}${fn:split(entry['key'], '#')[3]}" class="STYLE3"><img
                                                 src="${basePath }${fn:split(entry['key'],'#')[2]}"
-                                                style="border: none;" border="0px" height="166" width="84%" /></a></td>
+                                                style="border: none;" border="0px" height="166" width="100%" /></a></td>
                                     </tr>
                                     <c:forEach items="${entry['value']}" var="et">
                                         <tr>
@@ -108,7 +110,7 @@ The protagonist travel belongs to the professional travel service team affiliate
                                     </c:forEach>
                                     <tr>
                                         <td style="text-align: left"><a
-                                            href="${basePath }${entry['value'][0].travelStyleAlias }-main">More>></a></td>
+                                            href="${basePath }${entry['value'][0].travelStyleAlias }">More>></a></td>
                                     </tr>
                                 </table></td>
                             </c:forEach>
@@ -117,7 +119,7 @@ The protagonist travel belongs to the professional travel service team affiliate
                     
                 </table>
             </td>
-            <td width="33%" style="width:33%;" valign="top" bgcolor="#f0f0f0">
+            <td width="32.8%" style="width:32.8%" valign="top" bgcolor="#f0f0f0">
                 <table  width="100%" border="0" align="center" cellpadding="0"
                     cellspacing="0" class="f12-gao1">
                     <tr>
@@ -136,15 +138,15 @@ The protagonist travel belongs to the professional travel service team affiliate
                                         <td colspan=2>
                                             <%-- <a href="${basePath }showhappy/detail/${showhappy.shCode}">${showhappy.title }</a>  --%>
                                             <a href="${basePath }showhappy-detail-${showhappy.shCode}"><img
-                                                src="${basePath }${showhappy.cover }"  width="80%" /></a>
+                                                src="${basePath }${showhappy.cover }"  width="100%" height="166" /></a>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan=2 style="text-align: left"><p
-                                                class="f12-gao1">
-                                                <span class="STYLE6" width="80%">${showhappy.shortContent } <a
-                                                    href="${basePath }showhappy-main">More》》</a></span>
-                                            </p></td>
+                                       <td colspan=2 style="text-align: left">
+                                       <p class="f12-gao1">
+                                               <span class="STYLE6" width="100%">${showhappy.shortContent } <a
+                                                   href="${basePath }showhappy">More》》</a></span>
+                                           </p></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -176,7 +178,7 @@ The protagonist travel belongs to the professional travel service team affiliate
                         <tr>
                             <td><p class="f12-gao1">
                                     <span class="STYLE6"> <a
-                                        href="${basePath }destination-main">More》》</a></span>
+                                        href="${basePath }destination">More》》</a></span>
                                 </p></td>
                         </tr>
                     </tbody>

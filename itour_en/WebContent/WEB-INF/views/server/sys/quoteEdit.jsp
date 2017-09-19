@@ -63,9 +63,9 @@
       <div id="routetablediv">
       <table name="routetable" width="100%" cellspacing="1" cellpadding="5" border="0" align="center">
         <thead><tr>
-          <td class="STYLE129" valign="middle" bgcolor="#F0F0F0" height="31"><div class="style18" align="center">
+         <!--  <td class="STYLE129" valign="middle" bgcolor="#F0F0F0" height="31"><div class="style18" align="center">
             <div align="center"><strong><strong>天数</strong></strong></div>
-          </div></td>
+          </div></td> -->
           <td class="STYLE129" valign="middle" align="center" bgcolor="#F0F0F0"><div class="STYLE18" align="center">
           <strong>行程</strong>
           </div></td>
@@ -78,7 +78,7 @@
            <td class="STYLE129" valign="middle" bgcolor="#F0F0F0" align="center"><div class="STYLE18" align="center">
                     住宿(城镇)
           </div></td>
-          <td><a name="routeplus"><img alt="" title="添加一行" src="${basePath }images/add.gif"></a></td>
+          <td class="STYLE129" valign="middle" bgcolor="#F0F0F0" align="center"><a name="routeplus"><img alt="" title="添加一行" src="${basePath }images/add.gif"></a></td>
         </tr>
         </thead>
 <%--    <tr id=beriefTr_0><td class=style126 width=34 valign=middle><div align=center><select class='easyui-combobox' name='tourdays' data-options="width:50"><option 

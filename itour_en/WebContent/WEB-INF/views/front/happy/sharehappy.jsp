@@ -31,28 +31,31 @@ function ww4(date){
         <td valign="top">		
         <form:form name="sharehappy" method="post" enctype="multipart/form-data" autocomplete="off">
 	        <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
-	         <tr><td  style="text-align:left" class="STYLE18">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title<input type="text" class="easyui-textbox" data-options="height:22" name="title" id="title"/></td>
+	         <tr><td  style="text-align:left" class="STYLE18">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title
+	         <input type="text" class="easyui-textbox" data-options="width:180,height:22" name="title" id="title"/></td>
 	         <td rowspan=4 style="vertical-align:top; padding-top:10px;" class="STYLE18">
 	            	cover image<input type="file" name="surface" id="surface" value="" onchange="change('cover','surface')"  accept="image/jpg,image/jpeg,image/gif,image/png" />
 	            	<img id="cover" style="border:none;" border="0px" height="200" width="200" /></td></tr><!-- opacity:0 -->
 	         <tr>
 	            <td style="text-align:left"><span class="STYLE23 STYLE18">Travel routes</span>
-	            	<input id="route" name="route" class="easyui-combobox"  data-options="height:22,width:171,valueField:'routeCode',textField:'title',mode:'remote',panelHeight:'auto',editable:false,method:'POST',url:'${basePath}routeTemplate/loadRoutes'">
+	            	<input id="route" name="route" class="easyui-combobox"  data-options="height:22,width:180,valueField:'routeCode',textField:'title',mode:'remote',panelHeight:'auto',editable:false,method:'POST',url:'${basePath}routeTemplate/loadRoutes'">
 	            </td>
 	            <td></td>
 	       </tr>
 	       <tr><td style="text-align:left"><span class="STYLE23 STYLE18">&nbsp;&nbsp;&nbsp;Travel date</span><span class="STYLE22"><span class="STYLE148">
-	             <input id="tourTime" name="tourTime" class="easyui-datebox" data-options="height:22,width:171,editable:false,region:'north',split:true,border:false,validType:'checkDated'"/></span> 
+	             <input id="tourTime" name="tourTime" class="easyui-datebox" data-options="height:22,width:180,editable:false,region:'north',split:true,border:false,validType:'checkDated'"/></span> 
 	           </span></td><td></td></tr>
-	        <tr> <td style="text-align:left" colspan=2 class="STYLE18">&nbsp;&nbsp;&nbsp;&nbsp;Memories
-            	<span class="STYLE18"><input type="text" class="easyui-textbox" id="signature" name="signature"/>Come From
-            	<input name="area" id="area" class="easyui-combobox STYLE18"  data-options="width:130,height:22,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">
+	       <tr><td style="text-align:left"><span class="STYLE23 STYLE18">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email</span><span class="STYLE148">
+            <input type="text" class="easyui-textbox" data-options="width:180,height:22" id="email" name="email"/></span></td><td></td></tr>
+	        <tr> <td style="text-align:left" colspan=2 class="STYLE18">&nbsp;Rememberer 
+            	<span class="STYLE18"><input type="text" class="easyui-textbox" data-options="width:180" id="signature" name="signature"/>Come From
+            	<input name="area" id="area" class="easyui-combobox STYLE18"  data-options="width:150,height:22,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'">
             	</span></td></tr>
 	        <tr>
 	            <td colspan=2><div id="content"></div></td>
 	       </tr>
 	       <tr>
-	       <td colspan=2 style="text-align:left" class="STYLE18">verify Code： <input type="text" id="verifyCode" name="verifyCode" class=" easyui-textbox" title="verify Code" data-options="height:22,prompt:'please enter verification code!'"/> 
+	       <td colspan=2 style="text-align:left" class="STYLE18">verify Code <input type="text" id="verifyCode" name="verifyCode" class=" easyui-textbox" title="verify Code" data-options="height:22,prompt:'please enter verification code!'"/> 
 	           <img alt="Click to replace" src="${basePath}RandomCodeServlet" id="validateCode" onclick="changeValidateCode()">
 	           &nbsp;&nbsp;<a href="javascript:void(0)" onclick="changeValidateCode()">Can not see, change one</a></td></tr>
 	      <tr><td style="text-align:left"><a href="javascript:sharehappy()" class="easyui-linkbutton STYLE18" name="savehappy" iconcls="icon-save">Share Memory</a></td>
@@ -66,9 +69,9 @@ function ww4(date){
  <tr>
     <td style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr> 
+    <tr><td><%@include file="/front/footer.jsp"  %>  </td></tr>
 </table>
 <script type="text/javascript" src="${basePath}js/ux/front/happy/sharehappy.js"></script>
-<%@include file="/front/footer.jsp"  %>  
 </body>
 </html>
 

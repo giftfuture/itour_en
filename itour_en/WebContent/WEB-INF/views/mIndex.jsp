@@ -85,7 +85,7 @@ The protagonist travel belongs to the professional travel service team affiliate
                                     align="left" cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td width="100%" class="h2-24red" colspan=3 style="text-align:left;">
-                                            <a width="100%" href="${basePath}${fn:split(entry['key'], '#')[3]}-main" class="STYLE3 tsSTYLE3" style="font-size:1em;font-weight:normal;"><img
+                                            <a width="100%" href="${basePath}${fn:split(entry['key'], '#')[3]}" class="STYLE3 tsSTYLE3" style="font-size:1em;font-weight:normal;"><img
                                                 src="images/icon-0${status.index+1 }.jpg" style="width:57;height:43;" width="57" height="43">${fn:split(entry['key'],'#')[0]}</a></td>
                                     </tr>
                                     <tr>
@@ -94,7 +94,7 @@ The protagonist travel belongs to the professional travel service team affiliate
                                     </tr>
                                     <tr>
                                         <td width="100%" colspan=3 style="text-align: left"><a
-                                            href="${basePath}${fn:split(entry['key'], '#')[3]}-main" class="STYLE3"><img
+                                            href="${basePath}${fn:split(entry['key'], '#')[3]}" class="STYLE3"><img
                                                 src="${basePath }${fn:split(entry['key'],'#')[2]}"
                                                 style="border: none;" border="0px" width="100%" /></a></td>
                                     </tr>
@@ -107,7 +107,7 @@ The protagonist travel belongs to the professional travel service team affiliate
                                     </c:forEach>
                                     <tr>
                                         <td style="text-align: left"><a
-                                            href="${basePath }${entry['value'][0].travelStyleAlias }-main">More>></a></td>
+                                            href="${basePath }${entry['value'][0].travelStyleAlias }">More>></a></td>
                                     </tr>
                                 </table></td>
                             </c:forEach>
@@ -142,7 +142,7 @@ The protagonist travel belongs to the professional travel service team affiliate
                                         <td colspan=2 style="text-align: left"><p
                                                 class="f12-gao1">
                                                 <span class="STYLE6">${showhappy.shortContent } <a
-                                                    href="${basePath }showhappy-main">More》》</a></span>
+                                                    href="${basePath }showhappy">More》》</a></span>
                                             </p></td>
                                     </tr>
                                 </tbody>
@@ -173,7 +173,7 @@ The protagonist travel belongs to the professional travel service team affiliate
                         <tr>
                             <td><p class="f12-gao1">
                                     <span class="STYLE6"> <a
-                                        href="${basePath }destination-main">More》》</a></span>
+                                        href="${basePath }destination">More》》</a></span>
                                 </p></td>
                         </tr>
                     </tbody>

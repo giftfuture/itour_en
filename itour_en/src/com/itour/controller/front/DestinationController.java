@@ -63,7 +63,7 @@ public class DestinationController extends BaseController{
 	private LogOperationService logOperationService;
 	
 	@SuppressWarnings("unchecked")
-	@RequestMapping("/destination-main") 
+	@RequestMapping("/destination") 
 	public ModelAndView main(TravelItemVO vo,HttpServletRequest request) throws Exception{
 		long beginTime = System.currentTimeMillis();
 	 	Map<String,Object> context = getRootMap();

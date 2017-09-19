@@ -312,7 +312,7 @@
   </tr>
 </table>
   </form>
+      <center><div style="width:61.3%"><%@include file="/front/footer.jsp" %></div></center>
 <script type="text/javascript" src="${basePath}js/ux/front/selfdrive/selfbooking.js"></script>
-<%@include file="/front/footer.jsp" %>
 </body>
 </html>

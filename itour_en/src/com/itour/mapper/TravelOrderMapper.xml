@@ -59,7 +59,77 @@
     <result column="receiveremail" property="receiveremail"/>
     <result column="gender" property="gender"/>
     <result column="route_id" property="routeId"/>
-</resultMap>            
+</resultMap>       
+<resultMap id="ExtResultMapVO" type="com.itour.vo.TravelOrderVO" >
+    <result column="id" property="id"/>
+    <result column="create_time" property="createTime"/>
+    <result column="update_time" property="updateTime"/>
+    <result column="order_name" property="orderName"/>
+    <result column="order_no" property="orderNo"/>
+    <result column="order_status" property="orderStatus"/>
+    <result column="receiver" property="receiver"/>
+    <result column="receiver_mobile" property="receiverMobile"/>
+    <result column="remark" property="remark"/>
+    <result column="customer_id" property="customerId"/>
+    <result column="expected_depart" property="expectedDepart"/>
+    <result column="expected_back" property="expectedBack"/>
+    <result column="total_staff" property="totalStaff"/>
+    <result column="payed" property="payed"/>
+    <result column="pay_type" property="payType"/>
+    <result column="pay_platform" property="payPlatform"/>
+    <result column="bank" property="bank"/>
+    <result column="pay_account" property="payAccount"/>
+    <result column="pay_time" property="payTime"/>
+    <result column="pay_terminal" property="payTerminal"/>
+    <result column="budget" property="budget"/>
+    <result column="valid" property="valid"/>
+    <result column="routename" property="routename"/>
+    <result column="receiveremail" property="receiveremail"/>
+    <result column="gender" property="gender"/>
+    <result column="route_id" property="routeId"/>
+    
+    <result column="content" property="content"/>
+    <result column="per_price" property="perPrice"/>
+    <result column="count" property="count"/>
+    <result column="order_id" property="orderId"/>
+    <result column="adults" property="adults"/>
+    <result column="children" property="children"/>
+    <result column="group_code" property="groupCode"/>
+    <result column="group_date" property="groupDate"/>
+    <result column="travelfashion" property="travelfashion"/>
+    <result column="singleorcluster" property="singleorcluster"/>
+    <result column="travelrequest" property="travelrequest"/>
+    <result column="hotel" property="hotel"/>
+    <result column="stayrequest" property="stayrequest"/>
+    <result column="traffic" property="traffic"/>
+    <result column="tickets" property="tickets"/>
+    <result column="foodrequest" property="foodrequest"/>
+    <result column="recreation" property="recreation"/>
+    <result column="specialrequest" property="specialrequest"/>
+    <result column="travel_order" property="travelOrder"/>
+    <result column="comefrom" property="comefrom"/>
+    <result column="areaname" property="areaname"/>
+    <result column="guide" property="guide"/>
+    <result column="guide_other" property="guide_other"/>
+    <result column="food_arrange" property="foodArrange"/>
+    <result column="taste" property="taste"/>
+    <result column="hatefood" property="hatefood"/>
+    <result column="train" property="train"/>
+    <result column="cruise" property="cruise"/>
+    <result column="car_new" property="car_new"/>
+    <result column="car_no_smoking" property="car_no_smoking"/>
+    <result column="car" property="car"/>
+    <result column="shipping_space" property="shipping_space"/>
+    <result column="plane" property="plane"/>
+    <result column="hotel_info" property="hotel_info"/>
+    <result column="hotel_quiet" property="hotel_quiet"/>
+    <result column="hotel_no_smoking" property="hotel_no_smoking"/>
+    <result column="suite" property="suite"/>
+    <result column="db_room" property="db_room"/>
+    <result column="bb_room" property="bb_room"/>
+    <result column="position" property="position"/>
+</resultMap>  
+     
 <!-- travel_order table all fields -->
 <sql id="Base_Column_List" >
 	 id, create_time, update_time, order_name, order_no, order_status, receiver, receiver_mobile, remark, customer_id, expected_depart, expected_back, total_staff, payed, pay_type, pay_platform, bank, pay_account, pay_time, pay_terminal, budget,valid,routename,receiveremail,gender,route_id
@@ -271,5 +341,13 @@ from travel_order where order_status =1 or order_status is null
        ${pager.mysqlQueryCondition}
     </if>
 </select>
-  	
+<select id="orderAndDetail" resultMap="ExtResultMapVO" parameterType="java.lang.String">
+select tto.id, DATE_FORMAT(tto.create_time,'%Y-%m-%d %H:%i') create_time, tto.update_time, tto.order_name, tto.order_no, tto.order_status,
+ tto.receiver, tto.receiver_mobile, tto.remark, tto.customer_id,  DATE_FORMAT(tto.expected_depart,'%Y-%m-%d') expected_depart, DATE_FORMAT(tto.expected_back,'%Y-%m-%d') expected_back,
+  tto.total_staff, tto.payed, tto.pay_type, tto.pay_platform, tto.bank, tto.pay_account, tto.pay_time, tto.pay_terminal,tto.budget,tto.valid,tto.routename,tto.receiveremail,tto.gender,tto.route_id,tt.*
+from travel_order tto left join  (select od.content,od.per_price,od.count,od.order_id,od.adults,od.children,od.group_code,od.group_date,
+   od.travelfashion,od.singleorcluster,od.travelrequest,od.hotel,od.stayrequest,od.traffic,od.tickets,od.foodrequest,od.recreation,od.specialrequest,od.travel_order,od.comefrom,
+   areas.areaname,od.guide,od.food_arrange,od.taste,od.hatefood,od.train,od.cruise,od.car_new,od.car_no_smoking,od.car,od.shipping_space,od.plane,od.hotel_info,od.hotel_quiet,
+   od.hotel_no_smoking,od.suite,od.db_room,od.bb_room,od.position from order_detail od left join areas on od.comefrom=areas.id)tt on tto.id=tt.order_id where tto.id=#{id}
+</select>    	
 </mapper>   

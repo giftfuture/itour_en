@@ -8,9 +8,8 @@
 <title>Why Us</title>
 </head>
 <body>
-
-<table  border="0" align="center" cellpadding="30" cellspacing="0">
-<tr><td> <%@include file="/front/header.jsp"  %></td></tr>
+ <%@include file="/front/header.jsp"  %>
+<table  border="0" align="center" cellpadding="10" cellspacing="0">
   <tr>
     <td class="STYLE17"><div align="center"><span class="STYLE19"><span class="STYLE13">Why Us </span></span></div></td>
   </tr>
@@ -67,9 +66,8 @@
   <tr>
     <td style="float:left"><img src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
+  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
 </table>
-<br />
-<%@include file="/front/footer.jsp" %>
 </body>
 </html>
 

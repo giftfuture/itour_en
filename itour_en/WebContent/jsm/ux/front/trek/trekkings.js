@@ -8,15 +8,15 @@ itouren.mtrekkings = function(){
 								responseText = $.parseJSON(responseText);
 								var searchRts = responseText.result.records;
 							//	console.log(searchRts);
-								var html='<tr><td><table><tr>';
+								var html='<tr>';//'<td><table><tr>';
 								$(searchRts).each(function(i,e){
 									html+=
-									    '<td><table style="width:100%" border="0" cellpadding="0" cellspacing="0">'+
+									    '<td width="33.3%"><table style="width:93.5%" border="0" cellpadding="0" cellspacing="0">'+
 								            '<tr><td width="100%" class="h2-24"><a href="'+basePath+(e.travelStyleAlias?e.travelStyleAlias:"")+'-'+(e.alias?e.alias:"")+'">'+(e.title?e.title:"")+'</a></td></tr>'+
 									      '<tr><td><a href="'+basePath+(e.travelStyleAlias?e.travelStyleAlias:"")+'-'+(e.alias?e.alias:"")+'"><img src="'+basePath+(e.cover?e.cover:"")+'" width="100%" ></a></td></tr>'+
 									      '<tr><td class="f12-gao1" style="text-align:left">'+(e.shortContent?e.shortContent:"")+'</td></tr>'+
-									      '<tr><td>&nbsp;</td></tr>'+
-									    '</table></td>'+(i !=0 && i%2==0?"</tr><tr>":""); 
+									      '<tr><td>&nbsp;</td>'//'</tr></table></td>'
+									      +((i+1)%3==0?"</tr><tr>":""); 
 									//console.log(subhtml);		
 									//html+=subhtml;//+'<td valign="top"><table width="353" border="0" align="left" cellpadding="0" cellspacing="0">bbbb</table></td>';
 									//console.log(e.title+"   "+e.alias+"  "+e.cover);

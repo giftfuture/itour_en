@@ -10,7 +10,9 @@ a{text-decoration: none;color:#2786D6;}
 .green{color: #090!important;}
 .orange{color: #F60!important;}
 .datagrid-row-selected a{color: white;}
-
+.bigImage img{
+    opacity: 1;
+}
 .ui-form{margin:0;  padding:10px 15px; }  
 .ftitle{  font-size:14px;  font-weight:bold;  padding:5px 0;  margin-bottom:10px;  border-bottom:1px solid #ccc;  }  
 .fitem{  margin-bottom:5px;  }  
@@ -38,7 +40,10 @@ a{text-decoration: none;color:#2786D6;}
   align:center;
   font-family: "微软雅黑";
   border:0;
+  table-layout: fixed;
 } 
+.frametb td { word-wrap:break-word;word-break:break-all; }/*overflow: hidden;word-wrap:break-word;white-space: nowrap; text-overflow: ellipsis;*/
+.odinfotb td { word-wrap:break-word;word-break:break-all; }
 .commontb2{
   text-align:center;
   align:center;

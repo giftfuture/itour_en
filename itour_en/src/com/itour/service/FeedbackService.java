@@ -44,6 +44,10 @@ public class FeedbackService extends BaseService<Feedback> {
 		return new BasePage<FeedbackVO>(vo.getStart(), vo.getLimit(), list, count);
 	}
 	
+	public List<FeedbackVO> unCheckedMsgs(){
+		return mapper.unCheckedMsgs();
+	}
+	
 	@Autowired
     private FeedbackDao mapper;
 

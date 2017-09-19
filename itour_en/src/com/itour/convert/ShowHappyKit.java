@@ -1,5 +1,6 @@
 package com.itour.convert;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,9 +21,10 @@ public class ShowHappyKit {
 		Map<String, Object> record = new HashMap<String, Object>();
 		record.put("id", vo.getId());
 		record.put("customer", vo.getCustomer());
-		record.put("createTime", DateUtil.getFomartDate(vo.getCreateTime(),DateUtil.ymdcn));
+		record.put("createTime",vo.getCreateTime());
 		record.put("status", vo.getStatus());
-		record.put("updateTime", DateUtil.getFomartDate(vo.getUpdateTime(),DateUtil.ymdcn));
+		record.put("updateTime", vo.getUpdateTime());
+		//record.put("updateTime", DateUtil.getFomartDate(vo.getUpdateTime(),DateUtil.ymdcn));
 		record.put("area", vo.getArea());
 		record.put("content", vo.getContent());
 		record.put("result", vo.getResult());
@@ -50,12 +52,16 @@ public class ShowHappyKit {
 		sh.setContent(vo.getContent());
 		sh.setResult(vo.getResult());
 		sh.setRoute(vo.getRoute());
-		sh.setCreateTime(vo.getCreateTime());
-		sh.setUpdateTime(vo.getUpdateTime());
 		sh.setSignature(vo.getSignature());
 		sh.setTitle(vo.getTitle());
 	//	sh.setTourTime(vo.getTourTime());
 		try {
+			if(StringUtils.isNotEmpty(vo.getCreateTime())){	
+				sh.setCreateTime(DateUtil.fromStringToDate(DateUtil.ymd,vo.getCreateTime()));
+			}
+			if(StringUtils.isNotEmpty(vo.getUpdateTime())){	
+				sh.setUpdateTime(DateUtil.fromStringToDate(DateUtil.ymd,vo.getUpdateTime()));
+			}
 			if(StringUtils.isNotEmpty(vo.getTourTime())){			
 				sh.setTourTime(DateUtil.fromStringToDate(DateUtil.ymd,vo.getTourTime()));
 			}
@@ -78,7 +84,7 @@ public class ShowHappyKit {
 		vo.setId(sh.getId());
 		vo.setArea(sh.getArea());
 		vo.setContent(sh.getContent());
-		vo.setCreateTime(sh.getCreateTime());
+		vo.setCreateTime(DateUtil.getDateLong(sh.getUpdateTime()));
 		vo.setCustomer(sh.getCustomer());
 		vo.setResult(sh.getResult());
 		vo.setRoute(sh.getRoute());
@@ -86,7 +92,7 @@ public class ShowHappyKit {
 		vo.setStatus(sh.getStatus());
 		vo.setTitle(sh.getTitle());
 		vo.setTourTime(DateUtil.getDateLong(sh.getTourTime()));
-		vo.setUpdateTime(sh.getUpdateTime());
+		vo.setUpdateTime(DateUtil.getDateLong(sh.getUpdateTime()));
 		vo.setCover(sh.getCover());
 		vo.setValid(sh.getValid());
 		vo.setShortContent(sh.getShortContent());

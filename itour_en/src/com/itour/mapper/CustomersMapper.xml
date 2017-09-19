@@ -180,6 +180,10 @@ where customers.valid=1
 	select <include refid="Base_Column_List" /> 
 	 from customers where id = #{id}
 </select>
+<!-- 邮箱查询 -->
+<select id="queryByEmail"  resultMap="BaseResultMap" parameterType="java.lang.String">
+    select  <include refid="Base_Column_List" />  from customers where email = #{email}
+</select>
 <select id="selectById"  resultMap="BaseResultMapVo" parameterType="java.lang.String">
 	select customers.*,areas.areaname from customers left join areas on customers.scope=areas.id
 	 where customers.id = #{id}

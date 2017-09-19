@@ -15,8 +15,8 @@ public class ShowHappy extends BaseEntity {
 	private String customer;
 	private java.util.Date createTime;
 	private java.util.Date updateTime;
-    @Min(value = 0, message = "status 的最小值为0")
-    @Max(value = 1, message = "status 的最大值为1")
+    @Min(value = 1, message = "status 的最小值为1")
+    @Max(value = 3, message = "status 的最大值为3")//1=待审核,2=审核通过,3=审核未通过
 	private int status;
 	private String content;
 	private String title;

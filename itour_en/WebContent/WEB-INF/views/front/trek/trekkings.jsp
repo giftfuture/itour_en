@@ -52,13 +52,15 @@
   </tr>
 </table>
 <table class="frametb" align="center">
-<tbody id="fbcontent">
+<tbody id="fbcontent" width="100%" style="width:100%">
   </tbody>
    <tr>
-    <td width="100%"  ><ul id="fbpage"></ul> </td>
+    <td width="100%"  style="width:100%" ><ul id="fbpage"></ul> </td>
   </tr>
-   <tr>
-    <td width="100%"  ><%@include file="/front/footer.jsp" %></td>
+  </table>
+  <table class="frametb" align="center">
+   <tr width="100%" >
+    <td style="width:100%" width="100%"><%@include file="/front/footer.jsp" %></td>
   </tr>
 </table>
  

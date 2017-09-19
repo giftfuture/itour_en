@@ -180,6 +180,16 @@
  <update id="logicdelete" parameterType="java.lang.String">
 	update feed_back set valid=0 where id = #{id}
 </update>
+<!-- 待审核反馈 -->
+<select id="unCheckedMsgs" resultMap="BaseResultMapVo">
+    select
+        feed_back.valid,feed_back.id, DATE_FORMAT(feed_back.create_time,'%Y-%m-%d %h:%i') create_time, feed_back.status, feed_back.update_time, feed_back.title, feed_back.sex,
+        left(feed_back.content,40) content, feed_back.customer_id, feed_back.result,customers.email email,customers.mobile mobile,feed_back.route,public_show,
+        customers.customer_name customerName ,rt.title routeName
+        from feed_back left join customers on feed_back.customer_id = customers.id 
+        left join route_template rt on rt.route_code=feed_back.route
+        where feed_back.status=1 or feed_back.status is null
+</select>
 	<!-- 根据id查询 客户反馈 -->
 	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select

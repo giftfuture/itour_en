@@ -8,14 +8,14 @@ itouren.climbmain = function(){
 								responseText = $.parseJSON(responseText);
 								var searchRts = responseText.result.records;
 							//	console.log(searchRts);
-								var html="<tr><td><table><tr>";
+								var html="<tr>";
 								$(searchRts).each(function(i,e){
-									html+='<td width="33%"><table style="width:93.5%" border="0" cellpadding="0" cellspacing="0">'+
+									html+='<td width="33.3%"><table style="width:93.5%" border="0" cellpadding="0" cellspacing="0">'+
 						            '<tr><td width="100%" class="h2-24"><a href="'+basePath+(e.travelStyleAlias?e.travelStyleAlias:"")+'-'+(e.alias?e.alias:"")+'">'+(e.title?e.title:"")+'</a></td></tr>'+
 								      '<tr><td class="f12-gao1" style="text-align:center"><a href="'+basePath+(e.travelStyleAlias?e.travelStyleAlias:"")+'-'+(e.alias?e.alias:"")+'"><img src="'+basePath+(e.cover?e.cover:"")+'" width="100%" height="166" ></a></td></tr>'+
 								      '<tr><td class="f12-gao1" style="text-align:left">'+(e.shortContent?e.shortContent:"")+'</td></tr>'+
-								      '<tr><td>&nbsp;</td></tr>'+
-								    '</table></td>'+((i+1)%3==0?"</tr><tr>":""); 
+								      '<tr><td>&nbsp;</td></tr></table></td>'
+								      +((i+1)%3==0?"</tr><tr>":""); 
 									//console.log(e.title+"   "+e.alias+"  "+e.cover);
 								});
 								$("#fbpage").parents("tr").before(html+'</tr>');

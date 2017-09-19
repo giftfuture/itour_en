@@ -7,11 +7,11 @@
  var level1Area ='${level1Area}';
  var level2Area = '${level2Area}';
 </script>
-<div>
+<div style="width:100%">
 <form name="searchForm" method="post">
-<table class="frametb" align="center" >
+<table class="frametb" align="center" style="margin-top:30px">
   <tr>
-    <td width="10%" bgcolor="#CCCCCC"><div align="left" class="STYLE2"><strong>fast Search</strong></div></td>
+    <td width="12%" bgcolor="#CCCCCC"><div align="left" class="STYLE2"><strong>Quick Search</strong></div></td>
     <td width="80%" bgcolor="#CCCCCC" class="f14-gao1" >  
       <strong>Travel mode:</strong> <input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:120,minWidth:80,height:22,valueField:'alias',textField:'type',mode:'remote',panelHeight:'150',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles',prompt:'-All-'">
       <label>
@@ -28,12 +28,12 @@
       <option value="16">16days+</option>
     </select>
       </a></label></td>
-      <td width="10%" bgcolor="#CCCCCC"><a name="search" href="javascript:itouren.footer.searchRtResult()"><img name="search" src="${basePath}images/search.png" width="48" height="48" /></a> </td>
+      <td width="8%" bgcolor="#CCCCCC"><a name="search" href="javascript:itouren.footer.searchRtResult()"><img name="search" src="${basePath}images/search.png" width="48" height="48" /></a> </td>
     <!-- <td width="15%" bgcolor="#CCCCCC" class="f14-gao1"><a class="easyui-linkbutton" iconcls="icon-search" id="searchbtn">搜索</a></td> -->
   </tr>
 </table>
 </form>
-<table width="100%" border="0" align="center" cellpadding="5" cellspacing="0" bgcolor="#fafafa" name="keyfooter" style="margin-top:30;background-color:#fafafa;" bgcolor='#fafafa' >
+<table width="100%" border="0" align="center" cellpadding="5" cellspacing="0" bgcolor="#fafafa" name="keyfooter" style="margin-top:30;background-color:#fafafa;" bgcolor="#fafafa">
    </table>
 <!-- <table width="100%" border="0" align="center" cellpadding="15" cellspacing="0">  
   <tr>
@@ -98,10 +98,10 @@
 </center> --%>
 <table class="lefttxt frametb" align="center" style="margin-top:30px">
   <tbody><tr>
-    <td   valign="middle" height="135"  bgcolor="#666666"><table width="1100" height="60" cellspacing="0" cellpadding="0" border="0" align="center">
+    <td   valign="middle" height="135"  bgcolor="#666666"><table width="100%" height="60" cellspacing="0" cellpadding="0" border="0" align="center">
       <tbody>
         <tr>
-          <td width="883" height="30" bgcolor="#EFEFEF"><div class="STYLE6" align="center">iTour Travel www.iTours.com.cn</div></td>
+          <td width="100%" height="30" bgcolor="#EFEFEF"><div class="STYLE6" align="center">iTour Travel www.iTours.com.cn</div></td>
         </tr>
         <tr>
           <td height="30" bgcolor="#EFEFEF"><div class="STYLE6" align="center">Add: Chengdu City, a ring road on the 15th Overseas Chinese Building on the 9th floor<br>

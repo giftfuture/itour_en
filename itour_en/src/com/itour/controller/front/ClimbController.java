@@ -74,7 +74,7 @@ public class ClimbController  extends BaseController{
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping(value="/climb-main", method = RequestMethod.GET) 
+	@RequestMapping(value="/climb", method = RequestMethod.GET) 
 	public ModelAndView main(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		Map<String,Object> context = getRootMap();
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));  
@@ -197,7 +197,7 @@ public class ClimbController  extends BaseController{
 		}
 		routeLine.append("-"+rt.getArrive());
 		rt.setRouteLine(routeLine.toString());
-		float adultquote = Float.parseFloat(qf.getShowTicket().split("\\|")[0])+Float.parseFloat(qf.getShowTourguide().split("\\|")[0])+
+	/*	float adultquote = Float.parseFloat(qf.getShowTicket().split("\\|")[0])+Float.parseFloat(qf.getShowTourguide().split("\\|")[0])+
 				Float.parseFloat(qf.getShowHotel().split("\\|")[0])+Float.parseFloat(qf.getShowRentcar().split("\\|")[0])+Float.parseFloat(qf.getShowDinner().split("\\|")[0])+
 				Float.parseFloat(qf.getShowInsurance().split("\\|")[0])+Float.parseFloat(qf.getShowComphcost().split("\\|")[0])+Float.parseFloat(qf.getShowRecreation().split("\\|")[0]);
 		float childquote = Float.parseFloat(qf.getShowTicket().split("\\|")[0])+Float.parseFloat(qf.getShowTourguide().split("\\|")[0])+
@@ -205,7 +205,7 @@ public class ClimbController  extends BaseController{
 				Float.parseFloat(qf.getShowInsurance().split("\\|")[0])+Float.parseFloat(qf.getShowComphcost().split("\\|")[0])+Float.parseFloat(qf.getShowRecreation().split("\\|")[0]);
 		qf.setAdultsQuote(adultquote);
 		qf.setChildquote(childquote);
-		rt.setPhotoList(photoList);
+		rt.setPhotoList(photoList);*/
 		Map<String,Object> map = getRootMap();
 		map.put("items", items);
 		map.put("rt", rt);

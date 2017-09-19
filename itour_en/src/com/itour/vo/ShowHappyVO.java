@@ -8,6 +8,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.hibernate.validator.constraints.Email;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -20,8 +21,8 @@ public class ShowHappyVO extends BasePage implements Serializable{
 	
 	private String id;
 	private String customer;
-	private java.util.Date createTime;
-	private java.util.Date updateTime;
+	private String createTime;
+	private String updateTime;
     @Min(value = 0, message = "status 的最小值为0")
     @Max(value = 1, message = "status 的最大值为1")
 	private int status;
@@ -44,9 +45,16 @@ public class ShowHappyVO extends BasePage implements Serializable{
 	private String areaname;
 	private String routeTitle;
 	private String customerName;
+	@Email
+	private String email;
 	
 	
-	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getCustomerName() {
 		return customerName;
 	}
@@ -135,16 +143,16 @@ public class ShowHappyVO extends BasePage implements Serializable{
 	public void setCustomer(String customer) {
 		this.customer = customer;
 	}
-	public java.util.Date getCreateTime() {
+	public String getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(java.util.Date createTime) {
+	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
-	public java.util.Date getUpdateTime() {
+	public String getUpdateTime() {
 		return updateTime;
 	}
-	public void setUpdateTime(java.util.Date updateTime) {
+	public void setUpdateTime(String updateTime) {
 		this.updateTime = updateTime;
 	}
 	public int getStatus() {

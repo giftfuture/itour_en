@@ -1,12 +1,6 @@
 package com.itour.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itour.base.annotation.Auth;
@@ -37,17 +29,17 @@ import com.itour.base.page.BasePage;
 import com.itour.base.page.Pager;
 import com.itour.base.util.ClassReflectUtil;
 import com.itour.base.util.CompressImage;
-import com.itour.base.util.DateUtil;
 import com.itour.base.util.FilePros;
 import com.itour.base.util.IDGenerator;
 import com.itour.base.util.SessionUtils;
 import com.itour.base.web.BaseController;
 import com.itour.convert.ShowHappyKit;
+import com.itour.entity.Customers;
 import com.itour.entity.LogOperation;
 import com.itour.entity.LogSetting;
 import com.itour.entity.ShowHappy;
 import com.itour.entity.SysUser;
-import com.itour.entity.TravelItem;
+import com.itour.service.CustomersService;
 import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
 import com.itour.service.LogSettingService;
@@ -85,6 +77,8 @@ public class ShowHappyController extends BaseController{
 	
 	@Autowired
 	private LogOperationService logOperationService;
+	@Autowired  
+	private CustomersService customersService; 
 	/**
 	 * 
 	 * @param vo
@@ -92,7 +86,7 @@ public class ShowHappyController extends BaseController{
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/showhappy-main") 
+	@RequestMapping("/showhappy") 
 	public ModelAndView main(@RequestParam(value="pageNo",defaultValue="1")int pageNo,HttpServletRequest request) throws Exception{
 		SysUser sessionuser = SessionUtils.getUser(request);
 		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行ShowHappyController的main方法");
@@ -238,6 +232,67 @@ public class ShowHappyController extends BaseController{
 	}
 	/**
 	 * 
+	 * @param id
+	 * @param request
+	 * @param response
+	 * @return${alias:.*}  {key:[a-zA-Z0-9\\.]+}   
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/showhappy-shDetail", method = RequestMethod.POST) 
+	public String shDetail(String shId,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object> context = getRootMap();
+		ShowHappyVO shvo = showHappyService.selectById(shId);
+		String content = shvo.getContent();
+		String shareHappyPath = FilePros.httpshareHappyPath();
+		String shCoverPath = FilePros.httpshCoverPath();
+		if(StringUtils.isNotEmpty(content)){
+			List<String> imgs = ImageFilter.getsrcList(content);
+			for(String fileName:imgs){ 
+				String path = shareHappyPath+"/"+(shvo.getShCode()+"_"+shvo.getRoute())+"/"+fileName;
+				content = content.replace(fileName, path);  
+			}
+			shvo.setContent(content);
+		}
+	 	if(StringUtils.isNotEmpty(shvo.getCover())){
+		 	String cover = shCoverPath+"/"+(shvo.getShCode()+"_"+shvo.getRoute())+"/"+shvo.getCover();
+		 	shvo.setCover(cover);
+	 	}
+		context.put("data", shvo);
+		context.put(SUCCESS, true);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####" + (sessionuser != null ? ("id:" + sessionuser.getId() + "email:" + sessionuser.getEmail()+ ",nickName:" + sessionuser.getNickName()) : "") + "调用执行ShowHappyController的shDetail方法");
+		String logId = logSettingService.add(new LogSetting("show_happy", "回忆幸福管理", "showHappy/shDetail", sessionuser.getId(), "", "")); 
+		logOperationService.add(new LogOperation(logId, "查看", JsonUtils.encode(shvo)+"", JsonUtils.encode(shvo), "","showHappy/shDetail", sessionuser.getId())); 
+		return JsonUtils.encode(context);
+	}
+	/**
+	 * 待处理游记
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	@Auth(verifyLogin = true, verifyURL = true)
+	@ResponseBody
+	@RequestMapping(value = "/unDealedDiarys", method = RequestMethod.POST)
+	public String unDealedDiarys(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Map<String, Object> context = getRootMap();
+		List<ShowHappyVO> list = showHappyService.unDealedDiarys();
+		if (list == null) {
+			return sendFailureResult(response, "无待处理游记!");
+		}
+		context.put(SUCCESS, true);
+		context.put("data", list);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####" + (sessionuser != null ? ("id:" + sessionuser.getId() + "email:" + sessionuser.getEmail()+ ",nickName:" + sessionuser.getNickName()) : "") + "调用执行ShowHappyController的unDealedDiarys方法");
+		String logId = logSettingService.add(new LogSetting("show_happy", "回忆幸福管理", "showHappy/unDealedDiarys", sessionuser.getId(), "", "")); 
+		logOperationService.add(new LogOperation(logId, "查看", list.size()+"", JsonUtils.encode(list), "","showHappy/unDealedDiarys", sessionuser.getId())); 
+		return JsonUtils.encode(context);
+	}
+	/**
+	 * 
 	 * @param entity
 	 * @param typeIds
 	 * @param response
@@ -258,6 +313,21 @@ public class ShowHappyController extends BaseController{
 	 		//failureMessage(response, "验证码输入错误.");
 			return sendFailureResult(response, "验证码输入错误~");
 		} 
+	 	Customers customer = customersService.queryByEmail(showhappy.getEmail());
+	 	if(customer == null){
+	 		Customers cs = new Customers();
+	 		 cs.setStatus(1);
+	 		 cs.setCustomerId(IDGenerator.getUUID());
+	 		 cs.setEmail(showhappy.getEmail());
+	 		 cs.setCustomerName(showhappy.getSignature());
+	 		 cs.setScope(showhappy.getArea()); 
+	 		customersService.add(cs);
+	 	}else{
+	 		customer.setStatus(1);
+	 		customer.setCustomerName(showhappy.getSignature());
+	 		customer.setScope(showhappy.getArea()); 
+	 		customersService.update(customer);
+	 	}
 	 	String shareHappyCoverPath = FilePros.shareHappyCoverPath();
 	 	showhappy.setShCode(IDGenerator.code(19)); 
 	 	//String fileName = showhappy.getSurface().getName();

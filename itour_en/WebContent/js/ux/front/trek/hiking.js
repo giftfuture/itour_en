@@ -13,11 +13,9 @@ itouren.hiking = function(){
 							async:false,
 							success:function(responseText){
 								if(responseText.success){
-									//console.log(responseText);
 									var data = responseText.result.records;
 									var html="";
 									$(data).each(function(i,e){
-										//console.log(data[i]);
 										html+='<table width="715" border="0" cellpadding="2" cellspacing="2" class="STYLE126">'+
 								              '<tr>'+
 								                '<td width="150"><div align="center"></div>'+
@@ -32,10 +30,6 @@ itouren.hiking = function(){
 								                '<td>&nbsp;</td>'+
 								                '<td style="text-align:left">Re：'+(e.result?e.result:"")+'</td>'+
 								              '</tr>'+
-								             /* '<tr>'+
-								                '<td>&nbsp;</td>'+
-								                '<td>&nbsp;</td>'+
-								              '</tr>'+*/
 								            '</table>';
 									});
 									$("#fbcontent").append(html);		
@@ -318,12 +312,18 @@ itouren.hiking = function(){
 				}
 			});
 			$("a.imgBorder img").on('click',function(){
-				$(this).parents("tr").prev().find("td img").attr("src",$(this).attr("src"));
-				//$("td[name='magnifying'] img").attr("src",$(this).attr("src"));
+				var src = $(this).attr("src");
+				$(this).parents("tr").prev().find(".bigImage img").stop().animate({opacity:0.5},"slow",null,function(){
+					$(this).attr("src",src);
+					$(this).stop().animate({opacity:1},"slow");
+				});
 			});
 			$("a.imgBorder img").on('mouseover',function(){
-				//$("td[name='magnifying'] img").attr("src",$(this).attr("src"));
-				$(this).parents("tr").prev().find("td img").attr("src",$(this).attr("src"));
+				var src = $(this).attr("src");
+				$(this).parents("tr").prev().find(".bigImage img").stop().animate({opacity:0.5},"slow",null,function(){
+					$(this).attr("src",src);
+					$(this).stop().animate({opacity:1},"slow");
+				});
 			});
 			//扩展easyui表单的验证  
 			$.extend($.fn.validatebox.defaults.rules, { 

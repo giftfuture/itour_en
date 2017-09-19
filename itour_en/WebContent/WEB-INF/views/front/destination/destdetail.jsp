@@ -80,8 +80,8 @@
               <tbody>
               <c:forEach items="${rts}" var="item">
               <tr>
-                <td style="text-align:right"><a href="${basePath }${item.travelStyleAlias }-${item.travelStyleAlias }-${item.alias}"><img src="${basePath }${item.cover}" width="91" height="50"></a></td>
-               <td style="text-align:left"><a href="${basePath }${item.travelStyleAlias }-${item.travelStyleAlias }-${item.alias}">[${item.travelStyleType}]${item.title}</a></td>
+                <td style="text-align:right"><a href="${basePath }${item.travelStyleAlias }-${item.alias}"><img src="${basePath }${item.cover}" width="91" height="50"></a></td>
+               <td style="text-align:left"><a href="${basePath }${item.travelStyleAlias }-${item.alias}">[${item.travelStyleType}]${item.title}</a></td>
               </tr>
             </c:forEach>
             <c:if test="${showMore}">
@@ -97,8 +97,10 @@
         </td> 
          </tr>
 </table>
+<table  class="frametb" align="center" style="text-align:center;width:61.3%" width="61.3%">
+  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
+</table>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/destdetail.js"></script>
-<%@include file="/front/footer.jsp"  %>
 </center>
 </body>
 </html>

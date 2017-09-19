@@ -54,9 +54,11 @@
 <table  class="commontb" align="center">
  <tbody id="fbcontent">
   </tbody>
+    </table>
+  <table class="frametb" align="center">
+  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
 </table>
 <center><ul id='fbpage'></ul></center>
 <script type="text/javascript" src="${basePath}js/ux/front/hotsight/main.js"></script>
-<%@include file="/front/footer.jsp" %>
 </body>
 </html>

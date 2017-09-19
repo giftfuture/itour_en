@@ -12,13 +12,13 @@
         &nbsp;&nbsp;<a href="http://zjj.itours.com.cn/itour/">繁体</a></th></tr>
     	<tr class="trbanner" align="center">
     	<td style="text-align:center;width:12%"><a onclick="location.href='${basePath}'" style="font-color:#FFFFFF">Home</a></td>
-    	<td style="text-align:center;width:12%"><a onclick="location.href='${basePath}hiking-main'">Hiking</a></td>
-    	<td style="text-align:center;width:12%"><a onclick="location.href='${basePath }climb-main'">Climbing</a></td>
-    	<td style="text-align:center;width:16%"><a onclick="location.href='${basePath }selfdrive-main'">Selfdriving</a></td>
-    	<td style="text-align:center;width:12%"><a onclick="location.href='${basePath }light-main'">Light</a></td>
+    	<td style="text-align:center;width:12%"><a onclick="location.href='${basePath}hiking'">Hiking</a></td>
+    	<td style="text-align:center;width:12%"><a onclick="location.href='${basePath }climb'">Climbing</a></td>
+    	<td style="text-align:center;width:16%"><a onclick="location.href='${basePath }selfdrive'">Selfdriving</a></td>
+    	<td style="text-align:center;width:12%"><a onclick="location.href='${basePath }light'">Light</a></td>
     	<%-- <td><a href="${basePath }customized/main">定制</a></td> --%>
-    	<td style="text-align:center;width:12%"><a onclick="location.href='${basePath }showhappy-main'">Happiness</a></td>
-    	<td style="text-align:center;width:12%"><a onclick="location.href='${basePath }destination-main'">Destination</a></td>
+    	<td style="text-align:center;width:12%"><a onclick="location.href='${basePath }showhappy'">Happiness</a></td>
+    	<td style="text-align:center;width:12%"><a onclick="location.href='${basePath }destination'">Destination</a></td>
     	<td style="text-align:center;width:12%"><a onclick="location.href='${basePath}whyus-why'">Aboutus</a></td>
     	</tr>
     </table>

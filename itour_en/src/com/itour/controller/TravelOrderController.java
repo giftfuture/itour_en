@@ -144,7 +144,7 @@ public class TravelOrderController extends BaseController {
 				+ ",nickName:" + sessionuser.getNickName()) : "") + "调用执行TravelOrderController的list方法");
 		return forward("server/sys/travelOrder");
 	}
-
+	
 	/**
 	 * @param url
 	 * @param classifyId
@@ -373,7 +373,28 @@ public class TravelOrderController extends BaseController {
 		logOperationService.add(new LogOperation(logId, "查看", list.size()+"", JsonUtils.encode(list), "","travelOrder/unDealedOrders", sessionuser.getId())); 
 		return JsonUtils.encode(context);
 	}
-	
+	/**
+	 * 订单明细
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	@Auth(verifyLogin = true, verifyURL = true)
+	@ResponseBody
+	@RequestMapping(value = "/orderAndDetail", method = RequestMethod.POST)
+	public String orderAndDetail(String id,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Map<String, Object> context = getRootMap();
+		TravelOrderVO vo = travelOrderService.orderAndDetail(id);
+		context.put(SUCCESS, true);
+		context.put("data", vo);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####" + (sessionuser != null ? ("id:" + sessionuser.getId() + "email:" + sessionuser.getEmail()+ ",nickName:" + sessionuser.getNickName()) : "") + "调用执行TravelOrderController的orderAndDetail方法");
+		String logId = logSettingService.add(new LogSetting("travel_order", "订单管理", "travelOrder/orderAndDetail", sessionuser.getId(), "", "")); 
+		logOperationService.add(new LogOperation(logId, "查看", JsonUtils.encode(vo)+"", JsonUtils.encode(vo), "","travelOrder/orderAndDetail", sessionuser.getId())); 
+		return JsonUtils.encode(context);
+	};
 	/**
 	 * 
 	 * @param id

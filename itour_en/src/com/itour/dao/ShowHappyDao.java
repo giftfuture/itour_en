@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.itour.base.dao.BaseDao;
+import com.itour.entity.TravelOrder;
 import com.itour.vo.ShowHappyVO;
 
 public interface ShowHappyDao<ShowHappy> extends BaseDao<ShowHappy> {
@@ -30,4 +31,5 @@ public interface ShowHappyDao<ShowHappy> extends BaseDao<ShowHappy> {
 	int countAll();
 	
 	List<ShowHappyVO> queryByRoute(@Param(value="route")String route);
+	List<TravelOrder> unDealedDiarys();
 }

@@ -32,6 +32,7 @@ import com.itour.entity.Feedback;
 import com.itour.entity.LogOperation;
 import com.itour.entity.LogSetting;
 import com.itour.entity.SysUser;
+import com.itour.entity.TravelOrder;
 import com.itour.service.FeedbackService;
 import com.itour.service.LogOperationService;
 import com.itour.service.LogSettingDetailService;
@@ -237,7 +238,31 @@ public class FeedbackController extends BaseController{
 		}	
 		return sendSuccessResult(response, "保存成功~");
 	}
-	
+	/**
+	 * 待审核留言
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	@Auth(verifyLogin = true, verifyURL = true)
+	@ResponseBody
+	@RequestMapping(value = "/unCheckedMsgs", method = RequestMethod.POST)
+	public String unCheckedMsgs(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Map<String, Object> context = getRootMap();
+		List<FeedbackVO> list = feedbackService.unCheckedMsgs();
+		if (list == null) {
+			return sendFailureResult(response, "无待审核留言!");
+		}
+		context.put(SUCCESS, true);
+		context.put("data", list);
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####" + (sessionuser != null ? ("id:" + sessionuser.getId() + "email:" + sessionuser.getEmail()+ ",nickName:" + sessionuser.getNickName()) : "") + "调用执行FeedbackController的unCheckedMsgs方法");
+		String logId = logSettingService.add(new LogSetting("feed_back", "反馈管理", "feedback/unCheckedMsgs", sessionuser.getId(), "", "")); 
+		logOperationService.add(new LogOperation(logId, "查看", list.size()+"", JsonUtils.encode(list), "","feedback/unCheckedMsgs", sessionuser.getId())); 
+		return JsonUtils.encode(context);
+	}
 	/**
 	 * 
 	 * @param id

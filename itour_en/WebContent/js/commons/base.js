@@ -373,6 +373,13 @@ var itour={
 					itour.alert('提示',data.msg||"logicdeleteForm请求出现异常,请联系管理员.",'error');  
 				}
 		});
+	},
+	trimSpace:function(str){
+		str = str.replace(/&lt[^>].*?&gt/g,''); //去除HTML tag
+		str = str.replace(/&nbsp;/g,'');  //去除  ；
+		str = str.replace(/&amp;/g,'');  //去除  ；
+		str = str.replace(/\s/g,'');  //去除 空格
+		return str;
 	}
 }
 /* 自定义密码验证*/

@@ -52,6 +52,8 @@
     <tr>
     <td><ul id="fbpage"></ul> </td>
   </tr>
+  </table>
+  <table class="frametb" align="center">
    <tr>
     <td> <%@include file="/frontm/footer.jsp" %> </td>
   </tr>

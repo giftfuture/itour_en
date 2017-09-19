@@ -72,9 +72,10 @@
           </c:forEach>
         </td>
         </tr>
+        <tr><td colspan=2> <%@include file="/front/footer.jsp"  %>  </td></tr>
 </table>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/destinations.js"></script>
- <%@include file="/front/footer.jsp"  %>  
+
  </center>
 </body>
 </html>

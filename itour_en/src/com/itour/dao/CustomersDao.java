@@ -19,4 +19,5 @@ public interface CustomersDao extends BaseDao<Customers> {
 	
 	List<CustomerVO> queryOrdersByCid(@Param(value="id")String id);
 	CustomerVO selectById(@Param(value="id")String id);
+	Customers queryByEmail(@Param(value="email")String email);
 }

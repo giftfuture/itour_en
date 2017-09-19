@@ -22,7 +22,9 @@ public class Feedback extends BaseEntity {
 	 * 
 	 */
 	private static final long serialVersionUID = -467544411280728177L;
-	private java.lang.String id;//   	private Date createTime;//   	private java.lang.Integer status;//   	private Date updateTime;//   	private java.lang.String title;//   	private java.lang.String content;//   	private java.lang.String customerId;//   	private java.lang.String result;//   	private java.lang.String customerName;
+	private java.lang.String id;//   	private Date createTime;//   
+	@Min(value = 1, message = "status 的最小值为1")
+	@Max(value = 3, message = "status 的最大值为3")//1=待审核,2=审核通过,3=审核未通过	private java.lang.Integer status;//   1=待审核,2=审核通过,3=审核未通过	private Date updateTime;//   	private java.lang.String title;//   	private java.lang.String content;//   	private java.lang.String customerId;//   	private java.lang.String result;//   	private java.lang.String customerName;
 	@Email
 	private String email;
 	private String mobile;

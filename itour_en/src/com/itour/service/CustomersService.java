@@ -55,6 +55,9 @@ public class CustomersService extends BaseService<Customers> {
 		}
 		return new BasePage<Map<String, Object>>(vo.getStart(), vo.getLimit(), records, count);
 	}
+	public 	Customers queryByEmail(String email){
+		return mapper.queryByEmail(email);
+	}
 	/**
 	 * 
 	 * @param id

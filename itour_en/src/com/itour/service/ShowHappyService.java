@@ -17,6 +17,7 @@ import com.itour.base.util.IDGenerator;
 import com.itour.dao.ShowHappyDao;
 import com.itour.entity.LevelArea;
 import com.itour.entity.ShowHappy;
+import com.itour.entity.TravelOrder;
 import com.itour.listener.event.LevelAreaEvent;
 import com.itour.listener.event.ShowHappyEvent;
 import com.itour.listener.event.TravelStyleEvent;
@@ -124,7 +125,13 @@ public class ShowHappyService extends BaseService<ShowHappy> {
 	public ShowHappyVO selectById(String id){
 		return mapper.selectById(id);
 	};
-	
+	/**
+	 * 待处理游记
+	 * @return
+	 */
+	public List<ShowHappyVO> unDealedDiarys(){
+		return mapper.unDealedDiarys();
+	}
 	/**
 	 * 
 	 * @param vo

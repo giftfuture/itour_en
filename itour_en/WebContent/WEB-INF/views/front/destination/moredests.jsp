@@ -51,8 +51,10 @@
   </tbody>
 </table>
 <center><ul id='fbpage'></ul></center>
+<table  class="frametb" align="center" style="text-align:center;width:61.3%" width="61.3%">
+  <tr><td><%@include file="/front/footer.jsp" %></td></tr>
+</table>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/moredests.js"></script>
-<%@include file="/front/footer.jsp"  %>
 </body>
 </html>
 
