@@ -115,7 +115,68 @@ itouren.routeTemplate = function(){
 					});
 				});
 			},
-			
+			editPhotoAction:'routeTemplate/saveeditedPhoto',
+			editPhotoForm:function(){
+				return $("#editPhotoForm");
+			},
+			editPhotoWin:function(){ 
+				return $("#edit-photo");
+			},
+			submitPhoto:function(){
+				itour.progress();//缓冲条
+				_this.editPhotoForm().attr('action',_this.editPhotoAction);
+				_this.editPhotoForm().ajaxForm();
+				itour.saveForm(_this.editPhotoForm(),function(data){
+					$.messager.alert('提示', data.msg, 'info',function(){								
+						itour.closeProgress();//关闭缓冲条
+						_box.handler.refresh();
+						_this.editPhotoForm().resetForm();
+						$("#editPhotoSubmit",this.editPhotoWin).html('');
+						_this.editPhotoWin().dialog('close');
+						
+					})
+				});
+			},
+			loadPhotoList:function(id){
+				itour.loadPhotos('routeTemplate/editPhoto',{'id':id},function(data){
+					itour.closeProgress();
+					var images = "<tr>";
+					if(data.success){
+						//console.log(data.uris);
+						var k=0;
+						for(var i in data.map){
+							if(k !=0 && k%5==0){
+								images+='</tr><tr>';
+							}
+						  images+='<td><a href="javascript:" class="upload_delete" title="删除" data-index="'+ i +'">删除</a><img alt="图片浏览" name="'+i+'" src="'+basePath+data.map[i]+'" style="width:100px;height:100px;"><input type="hidden" name="fileNames" value="'+i+'"/></td>';	
+						  k++;
+						}
+					}
+					$("#previewPhotos table").html(images+="</tr>");
+					var zxxeditphoto = $.extend(ZxxeditPhoto,{});
+					zxxeditphoto.init();
+					//删除方法
+					$(".upload_delete",this.editPhotoWin).click(function() {
+						zxxeditphoto.funDeleteFile($(this).attr("data-index"));
+						return false;	
+					});
+					$("#editPhotoSubmit",this.editPhotoWin).show();	
+					_this.editPhotoWin().dialog('open'); 
+				});
+			},
+			initEditForm:function(){
+				_this.editPhotoWin().find("#editPhotoSubmit").click(function(){
+					_this.submitPhoto();
+				});
+				_this.editPhotoWin().find("#editwin-close").click(function(){	
+					$.messager.confirm('提示','您确定关闭当前窗口吗?',function(r){  
+					    if (r){  
+					    	$("#previewPhotos",this.editPhotoWin).html('');
+					     	_this.editPhotoWin().dialog('close');
+					    }  
+					});
+				});
+			},
 			toList:function(parentId){
 				_box.form.search.resetForm();
 				if(parentId){
@@ -282,16 +343,12 @@ itouren.routeTemplate = function(){
 					},
 					{field:'cover',title:'封面',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return row.cover;
+							return '<a href="javascript:void(0)" onmouseenter="javascript:itouren.routeTemplate.previewcover(\''+row.cover+'\',\''+row.title+'\' )" onmouseleave="javascript:itouren.routeTemplate.unpreviewcover()">预览</a>';
 						}
 					},
 					{field:'viewphotos',title:'美图',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							if((row.viewphotos+"").length>60){
-								return (row.viewphotos+"").substring(0,60)+"....";
-							}else{									
-								return row.viewphotos;
-							}
+							return '<a href="javascript:void(0)" onmouseenter="javascript:itouren.routeTemplate.previewphotos(\''+row.viewphotos+'\',\''+row.viewphotoPath+'\',\''+row.routeCode+'\',\''+row.alias+'\',\''+row.title+'\')" onmouseleave="javascript:itouren.routeTemplate.unpreviewphotos()">预览</a>';
 						}
 					},
 					{field:'starLevel',title:'星级',align:'center',sortable:true,
@@ -410,7 +467,7 @@ itouren.routeTemplate = function(){
 					},*/
 					{field:'routeMap',title:'路线地图',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							return row.routeMap;
+							return '<a href="javascript:void(0)" onmouseenter="javascript:itouren.routeTemplate.previewmap(\''+row.routeMap+'\',\''+row.title+'\' )" onmouseleave="javascript:itouren.routeTemplate.unpreviewmap()">预览</a>';
 						}
 					},
 					{field:'travelStyle',title:'线路类别',align:'center',sortable:true,
@@ -508,6 +565,18 @@ itouren.routeTemplate = function(){
 										_this.uploadPhotoForm().resetForm();
 										_this.uploadPhotoForm().find("input[name='id']").val(selected[0].id);
 										_this.uploadPhotoWin().window('open'); 		
+									}
+								}},
+								{id:'btnedit',text:'编辑图片',btnType:'browser',iconCls:'icon-large-picture',handler:function(){
+									var selected = _box.utils.getCheckedRows();
+									if (_box.utils.checkSelectOne(selected)){
+									/*	var zxxfile = $.extend(ZXXFILE,this.params);*/
+										//_this.init.zxxfile;
+										_this.editPhotoForm().resetForm();
+										_this.editPhotoForm().find("input[name='id']").val(selected[0].id);
+										_this.loadPhotoList(selected[0].id);
+										_this.editPhotoWin().window('open');
+										
 									}
 								}}
 							]
@@ -740,6 +809,56 @@ itouren.routeTemplate = function(){
 				$("#uploadInf",this.uploadPhotoWin).append("<p>当前图片全部上传完毕，可继续添加上传。</p>");
 			}
 		},
+		previewcover:function(src,title){
+			$("#preview-cover").attr("title",title);
+			$("#preview-cover").find("#preview").attr("src",src);
+			$("#preview-cover").find("#preview").attr("alt",title);
+			$("#preview-cover").find("#preview").hover(function(){$("#preview-cover").dialog('open');},function(){
+				$("#preview-cover").dialog('close');
+			});
+			$("#preview-cover").dialog('open');
+		},
+		unpreviewcover:function(){
+			$("#preview-cover").dialog('close');
+		},
+		previewmap:function(src,title){
+			$("#preview-map").attr("title",title);
+			$("#preview-map").find("#preview").attr("src",src);
+			$("#preview-map").find("#preview").attr("alt",title);
+			$("#preview-map").find("#preview").hover(function(){$("#preview-map").dialog('open');},function(){
+				$("#preview-map").dialog('close');
+			});
+			$("#preview-map").dialog('open');
+		},
+		unpreviewmap:function(){
+			$("#preview-map").dialog('close');
+		},
+		previewphotos:function(viewphotos,viewphotoPath,routeCode,alias,title){
+			$("#preview-photos").attr("title",title);
+				var images = "<tr>";
+					//console.log(data.uris);
+				var ptoArray =  viewphotos.split('|');
+					for(var i in viewphotos){
+						if(i !=0 && i%5==0){
+							images+='</tr><tr>';
+						}
+					  images+='<td><img  alt="'+title+'" name="'+i+'" src="'+viewphotoPath+'/'+(routeCode+"_"+alias)+'/'+ptoArray[i]+'" style="width:150px;height:150px;"><input type="hidden" name="fileNames" value="'+i+'"/></td>';	
+					  i++;
+					}
+				$("#preview-photos table").html(images+="</tr>");
+				var zxxeditphoto = $.extend(ZxxeditPhoto,{});
+				zxxeditphoto.init();
+			$("#preview-photos").dialog('open'); 
+			//$("#preview-photos").find("#preview").attr("src",src);
+			//$("#preview-photo").find("#preview").attr("alt",title);
+			$("#preview-photos").hover(function(){$("#preview-photos").dialog('open');},function(){
+				$("#preview-photos").dialog('close');
+			});
+			$("#preview-photos").dialog('open');
+		},
+		unpreviewphotos:function(){
+			$("#preview-photos").dialog('close');
+		},
 		init:function(){
 			_box = new YDataGrid(_this.config); 
 			_box.init();
@@ -752,6 +871,7 @@ itouren.routeTemplate = function(){
 			this.inituploadCoverForm();
 			this.initUploadMapForm(); 
 			this.initUploadForm();
+			this.initEditForm();
 			$('#addLine_btn').click(_this.addLine);
 			$('#addDefLine_btn').click(_this.addDefBtns);
 			$('#delAllLine_btn').click(function(){

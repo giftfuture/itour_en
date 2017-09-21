@@ -37,7 +37,7 @@
  	</div>
  	</div>
 	<!-- 树形菜单 -->
-	<div data-options="region:'west',split:true,title:'功能导航'" style="width:120;">
+	<div data-options="region:'west',split:true,title:'功能导航'" style="width:150;">
 		<div id="tree-box" class="easyui-accordion" data-options="fit:true,border:false">
 			<c:forEach var="item" items="${menuList}">
 				<div title="${item.text}">

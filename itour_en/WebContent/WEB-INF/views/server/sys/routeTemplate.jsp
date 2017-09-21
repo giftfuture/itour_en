@@ -7,6 +7,7 @@
   <script type="text/javascript" src="${basePath}js/commons/zxxFile.js"></script> 
   <script type="text/javascript" src="${basePath}js/commons/uploadFile.js"></script> 
   <script type="text/javascript" src="${basePath}js/commons/uploadPhotos.js"></script> 
+   <script type="text/javascript" src="${basePath}js/commons/ZxxeditPhoto.js"></script> 
   </head>
   <body class="easyui-layout">
  	 <!-- Search panel start -->
@@ -14,13 +15,13 @@
  	 <form id="searchForm">
         <p class="ui-fields">
 		    <label class="ui-label">旅行方式:</label><input name="travel_style" id="travel_style" class="easyui-combobox" value="${travelStyle}" data-options="width:120,minWidth:80,height:22,valueField:'alias',textField:'type',mode:'remote',panelHeight:'150',editable:false,method:'get',url:'${basePath}travelStyle/loadStyles',prompt:'-所有-'">&nbsp;&nbsp;
-            <label class="ui-label">一级区域:</label><input class="easyui-combobox" id="formlevel1Area" name="level1Area" data-options="width:130,height:20,valueField:'level1Area',textField:'level1Area',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}levelarea/queryLevel1',
+            &nbsp;&nbsp;<label class="ui-label">一级区域:</label><input class="easyui-combobox" id="formlevel1Area" name="level1Area" data-options="width:130,height:20,valueField:'level1Area',textField:'level1Area',mode:'remote',method:'get',panelHeight:'auto',editable:false, url:'${basePath}levelarea/queryLevel1',
              onChange:function(n,o){var urlurl = '${basePath}levelarea/queryLevel2ByLevel1?level1Area='+n ;$('#formlevel2Area').combobox('reload',urlurl);}">
-             <label class="ui-label">二级区域:</label><input id="formlevel2Area" name="level2Area" class="easyui-combobox" data-options="width:130,height:20,valueField:'level2Area',textField:'level2Area',mode:'remote',panelHeight:'auto',editable:false, method:'get'">   
-             <label class="ui-label">所属省市:</label><!-- onShowPanel:function(){$(this).combobox('panel').height(1000);} -->
+             &nbsp;&nbsp;<label class="ui-label">二级区域:</label><input id="formlevel2Area" name="level2Area" class="easyui-combobox" data-options="width:130,height:20,valueField:'level2Area',textField:'level2Area',mode:'remote',panelHeight:'auto',editable:false, method:'get'">   
+             &nbsp;&nbsp;<label class="ui-label">所属省市:</label><!-- onShowPanel:function(){$(this).combobox('panel').height(1000);} -->
              <input name="scope" class="easyui-combobox"  data-options="width:120,valueField:'id',textField:'areaname',mode:'remote',panelHeight:'300',editable:false,method:'get',url:'${basePath}areas/allAreas'"> 
-             <label class="ui-label">景点:</label><input id='travelItem' name='travelItem' class='easyui-combobox' data-options="cursor:'pointer',valueField:'alias',textField:'item',method:'get',editable:false,region:'north',split:true,border:false,width:151,height:22"/>
-            <label class="ui-label">线路名称:</label><input name="routeCode" class="easyui-textbox"  data-options="width:120">&nbsp;&nbsp;
+             &nbsp;&nbsp;<label class="ui-label">景点:</label><input id='travelItem' name='travelItem' class='easyui-combobox' data-options="cursor:'pointer',valueField:'alias',textField:'item',method:'get',editable:false,region:'north',split:true,border:false,width:151,height:22"/>
+            &nbsp;&nbsp;<label class="ui-label">线路名称:</label><input name="routeCode" class="easyui-textbox"  data-options="width:120">&nbsp;&nbsp;
 	    </p> &nbsp;&nbsp;
 	    <a href="javascript:void(0)" id="btn-search" class="easyui-linkbutton" iconCls="icon-search" style="margin-top:10">查询</a>
       </form>  
@@ -54,6 +55,28 @@
 				</div>
      	</form>
 	 </div> 
+	 <div id="edit-photo" title="图片编辑" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true,width:950,height:620,display:'none'" style="display:none">   
+        <form action="" class="ui-form" id="editPhotoForm" name="editPhotoForm" method="post" > 
+                 <input class="hidden" name="id">
+                 <div class="ui-edit">
+                   <div class="fitem upload"> 
+                    <div class="upload_box">
+                        <div class="upload_main">
+                            <div id="previewPhotos" class="upload_preview" style="width:850px;height:450px">
+                                 <table></table>
+                            </div>
+                        </div>
+                        <div class="upload_submit">
+                            <button type="submit" id="editPhotoSubmit" class="upload_submit_btn">确定</button>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="upload_cancel_btn" id="editwin-close">取消</button>
+                        </div>
+                        <div id="edituploadInf" class="upload_inf"></div>
+                    </div>
+                </div>
+                </div>
+        </form>
+     </div>
    	 <div id="uploadCover-photo" title="封面上传" class="easyui-dialog" data-options="autoOpen: false,closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;display:none;">	 
      	<form  class="ui-form" id="uploadCoverForm" name="uploadCoverForm" method="post" enctype="multipart/form-data" autocomplete="off">
    				 <input class="hidden" name="id">
@@ -248,6 +271,15 @@
      	</form>
      	<!-- <iframe id='coverImgifm' name='coverImgifm' style="display:none"/> -->
   	 </div>
+  	 <div id="preview-cover" title="preview" class="easyui-dialog" data-options="autoOpen: false,closed:true,iconCls:'icon-blank',modal:false,draggable:false,width:400,height:260,display:'none'">     
+          <img alt="" src="" id="preview"/>
+     </div> 
+     <div id="preview-map" title="preview" class="easyui-dialog" data-options="autoOpen: false,closed:true,iconCls:'icon-blank',modal:false,draggable:false,width:400,height:230,display:'none'">     
+          <img alt="" src="" id="preview"/>
+     </div> 
+     <div id="preview-photos" title="preview" class="easyui-dialog" data-options="autoOpen: false,closed:true,iconCls:'icon-blank',modal:false,draggable:false,width:770,height:620,display:'none'">     
+         <table></table>
+     </div> 
      <script type="text/javascript" src="<%=basePath%>js/ux/sys/routeTemplate.js"></script>
   </body>
 </html>

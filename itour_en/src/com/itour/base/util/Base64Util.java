@@ -1,4 +1,6 @@
 package com.itour.base.util;
+import java.io.FileInputStream;
+
 import org.apache.commons.codec.binary.Base64;
 /**
  * This class acts as a wrapper for commons-codec <code>Base64</code> to
@@ -81,5 +83,23 @@ public final class Base64Util {
             throw new IllegalArgumentException();
         }        
         return Base64.isArrayByteBase64(base64String.getBytes());
+    }
+    /**
+     * 
+     * @param picPath
+     * @return
+     */
+    public static String getPicBASE64(String picPath) {   
+        String content = null;   
+        try {   
+            FileInputStream fis = new FileInputStream(picPath);   
+            byte[] bytes = new byte[fis.available()];   
+            fis.read(bytes);   
+            content = new sun.misc.BASE64Encoder().encode(bytes); // 具体的编码方法   
+            fis.close();     
+        } catch (Exception e) {   
+            e.printStackTrace();   
+        }   
+        return content;   
     }
 }

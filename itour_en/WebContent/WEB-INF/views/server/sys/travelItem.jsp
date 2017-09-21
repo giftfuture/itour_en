@@ -122,14 +122,14 @@
      	</form>
 	 </div> 
 
- 	 <div id="edit-photo" title="图片编辑" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true" style="width:400px;height:420px;display:none;">	 
+ 	 <div id="edit-photo" title="图片编辑" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save',modal:true,width:950,height:620,display:'none'" style="display:none">	 
      	<form action="" class="ui-form" id="editPhotoForm" name="editPhotoForm" method="post" ><!-- enctype="multipart/form-data" -->
    				 <input class="hidden" name="id">
    				 <div class="ui-edit">
     		       <div class="fitem upload"><!-- <label>美&nbsp;&nbsp;图:</label> -->
 					<div class="upload_box">
                         <div class="upload_main">
-                            <div id="previewPhotos" class="upload_preview">
+                            <div id="previewPhotos" class="upload_preview" style="width:850px;height:450px">
 								 <table></table>
                             </div>
                         </div>
@@ -257,6 +257,12 @@
   			</div>
      	</form>
   	 </div>
+  	 <div id="preview-photo" title="preview" class="easyui-dialog" data-options="autoOpen: false,closed:true,iconCls:'icon-blank',modal:false,draggable:false,width:400,height:260,display:'none'">     
+          <img alt="" src="" id="preview"/>
+     </div> 
+ 	 <div id="preview-photos" title="preview" class="easyui-dialog" data-options="autoOpen: false,closed:true,iconCls:'icon-blank',modal:false,draggable:false,width:770,height:360,display:'none'">     
+         <table></table>
+     </div>  
 <script type="text/javascript" src="${basePath}/js/ux/sys/travelItem.js"></script>		  
   </body>
 </html>

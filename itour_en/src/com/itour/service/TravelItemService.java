@@ -49,10 +49,12 @@ public class TravelItemService<T> extends BaseService<T> {
 		//System.out.println("#################"+vo.getPager().getOrderCondition());
 		List<TravelItemVO> list = (List<TravelItemVO>) mapper.queryByListVo(vo);
 		int count = mapper.queryByCount(vo);
-		/*List<TravelItemVO> records = Lists.newArrayList();
-		for(TravelItem fb:list) {
-			records.add(TravelItemKit.toRecord(fb));
-		}*/
+		/*List<TravelItemVO> records = Lists.newArrayList();*/
+		String coverpath = FilePros.httpitemCoverpath();
+		for(TravelItemVO fb:list) {
+			fb.setPhotoPath(FilePros.httptravelitemPhotoPath());
+			fb.setCover(coverpath+"/"+StringUtils.trim(fb.getItemCode())+"_"+fb.getAlias()+"/"+fb.getCover());
+		}
 		return new BasePage<TravelItemVO>(vo.getStart(), vo.getLimit(), list, count);
 	}
 	/**

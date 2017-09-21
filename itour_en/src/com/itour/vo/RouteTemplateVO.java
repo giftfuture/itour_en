@@ -19,11 +19,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
+import com.itour.base.util.FilePros;
 @JsonIgnoreProperties(ignoreUnknown = true)//忽略未知属性  
 @JsonInclude(Include.NON_NULL)
 public class RouteTemplateVO extends BasePage implements Serializable{
-	
-		/**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 401324215962210890L;
@@ -82,8 +82,15 @@ public class RouteTemplateVO extends BasePage implements Serializable{
 	private String viewphotos;
 	//private String travelStyleAlias;
 	private String serviceAndQuote;
+	private String viewphotoPath;
 	
 	
+	public String getViewphotoPath() {
+		return viewphotoPath;
+	}
+	public void setViewphotoPath(String viewphotoPath) {
+		this.viewphotoPath = FilePros.httpRoutePhotos();
+	}
 	public String getServiceAndQuote() {
 		return serviceAndQuote;
 	}

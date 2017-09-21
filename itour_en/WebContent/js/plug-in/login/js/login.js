@@ -153,7 +153,7 @@ function submit(){
 }
 //刷新验证码
 function changeImg(){
-    document.getElementById("validateCodeImg").src=basePath+"ImageServlet?"+Math.random();
+    document.getElementById("validateCodeImg").src=basePath+"LoginServlet?"+Math.random();
 }
 //登录处理函数
 function login() {

@@ -180,7 +180,7 @@ itouren.adLink = function(){
 						},
 						{field:'advertise',title:'链接图片',align:'center',sortable:true,width:'300',
 							formatter:function(value,row,index){
-								return row.advertise;
+								return '<a href="javascript:void(0)" onmouseenter="javascript:itouren.adLink.previewphoto(\''+row.advertise+'\',\''+row.title+'\')" onmouseleave="javascript:itouren.adLink.unpreviewphoto()">预览</a>';
 							}
 						},
 					{field:'remark',title:'备注',align:'left',sortable:true,width:'300',
@@ -208,6 +208,18 @@ itouren.adLink = function(){
 						}}
 			     	]
 			}
+		},
+		previewphoto:function(src,title){
+			$("#preview-photo").attr("title",title);
+			$("#preview-photo").find("#preview").attr("src",src);
+			$("#preview-photo").find("#preview").attr("alt",title);
+			$("#preview-photo").find("#preview").hover(function(){$("#preview-photo").dialog('open');},function(){
+				$("#preview-photo").dialog('close');
+			});
+			$("#preview-photo").dialog('open');
+		},
+		unpreviewphoto:function(){
+			$("#preview-photo").window('close');
 		},
 		params:{
 			fileInput: $("#fileImage").get(0),

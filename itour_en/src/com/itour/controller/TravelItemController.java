@@ -478,7 +478,7 @@ public class TravelItemController extends BaseController{
 		TravelItem tt = new TravelItem();
 		tt.setId(id);
 		//StringUtils.join(names,"\\|");
-		ti.setPhotos(StringUtils.join(names,"|"));
+		tt.setPhotos(StringUtils.join(names,"|"));
 		travelItemService.update(tt);
 		context.put(SUCCESS, true);
 		context.put("msg", "图片编辑保存成功！");

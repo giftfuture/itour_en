@@ -199,7 +199,7 @@
 	</select>
 	<!-- 查询幸福分享列表 -->
 	<select id="queryByList" resultMap="BaseResultMap" parameterType="com.itour.vo.ShowHappyVO">
-		select show_happy.valid,show_happy.id,customer,show_happy.create_time, show_happy.status, show_happy.update_time, show_happy.title,
+		select show_happy.valid,show_happy.id,customer,DATE_FORMAT(show_happy.create_time,'%Y-%m-%d %h:%i') create_time, show_happy.status, show_happy.update_time, show_happy.title,
 		 show_happy.sh_code,show_happy.short_content,show_happy.cover,result,signature,area,tour_time,show_happy.route 
 		from show_happy
 		<include refid="Example_Where_Clause" />
@@ -212,7 +212,7 @@
 		</if>
 	</select>
 	<select id="queryByListVo" resultMap="BaseResultMapVo" parameterType="com.itour.vo.ShowHappyVO">
-		select show_happy.valid,show_happy.id,customer,show_happy.create_time,show_happy.content,show_happy.status, show_happy.update_time, show_happy.title,customers.customer_name ,
+		select show_happy.valid,show_happy.id,customer,DATE_FORMAT(show_happy.create_time,'%Y-%m-%d %h:%i') create_time,show_happy.content,show_happy.status, show_happy.update_time, show_happy.title,customers.customer_name ,
 		show_happy.sh_code,show_happy.short_content,show_happy.cover,result,signature,area,DATE_FORMAT(show_happy.tour_time,'%Y-%m-%d') tour_time,show_happy.route ,areas.areaname,route_template.title routeTitle   
 		from show_happy left join route_template on show_happy.route = route_template.route_code 
 		left join customers on show_happy.customer=customers.id

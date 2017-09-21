@@ -88,7 +88,7 @@ label.iPhoneCheckLabelOn span {
       </div>
       <div class="tip">
       <input type="text" id="verifyCode" class=" easyui-validatebox" title="验证码" name="verifyCode"  data-options="required:true,prompt:'请输入验证码!'"/><br/>
-           <img alt="点击更换" src="${basePath}ImageServlet" id="validateCodeImg" onclick="changeImg()">
+           <img alt="点击更换" src="${basePath}LoginServlet" id="validateCodeImg" onclick="changeImg()">
            &nbsp;&nbsp;<a href="javascript:void(0)" onclick="changeImg()">看不清，换一张</a>
       </div>
       <div class="loginButton">

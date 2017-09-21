@@ -1,5 +1,6 @@
 package com.itour.service;
 
+import java.io.File;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +17,9 @@ import com.google.common.collect.Lists;
 import com.itour.base.page.BasePage;
 import com.itour.base.service.BaseService;
 import com.itour.base.util.ClassReflectUtil;
+import com.itour.base.util.FilePros;
 import com.itour.base.util.IDGenerator;
+import com.itour.base.util.PinYinUtil;
 import com.itour.convert.SysMenuKit;
 import com.itour.convert.TravelStyleKit;
 import com.itour.dao.TravelStyleDao;
@@ -68,7 +71,11 @@ public class TravelStyleService<T> extends BaseService<T> {
 		List<TravelStyle> list = (List<TravelStyle>) mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
 		List<TravelStyleVO> records = Lists.newArrayList();
-		for(TravelStyle ts:list) {
+		String coverPath = FilePros.httptsCoverPath();
+		for(TravelStyle ts:list) 
+		{
+			String  tsCoverPath = coverPath+"/"+ts.getType()+"_"+ts.getAlias()+"/"+ts.getCover();
+			ts.setCover(tsCoverPath);
 			records.add(TravelStyleKit.toRecord(ts));
 		}
 		return new BasePage<TravelStyleVO>(vo.getStart(), vo.getLimit(), records, count);

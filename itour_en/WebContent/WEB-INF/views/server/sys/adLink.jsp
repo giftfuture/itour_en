@@ -73,6 +73,9 @@
   			</div>
      	</form>
   	 </div>
+     <div id="preview-photo" title="预览" class="easyui-dialog" data-options="autoOpen:false,closed:true,iconCls:'icon-blank',modal:false,draggable:false,width:400,height:210,display:'none'">     
+          <img alt="" src="" id="preview"/>
+     </div>
 <script type="text/javascript" src="${basePath}/js/ux/sys/adLink.js"></script>		  
   </body>
 </html>

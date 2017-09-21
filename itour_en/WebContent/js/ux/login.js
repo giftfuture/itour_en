@@ -23,7 +23,7 @@ itouren.login = function(){
 			return false;
 		},
 		loadVrifyCode:function(){//刷新验证码
-			var _url = "ImageServlet?time="+new Date().getTime();
+			var _url = "LoginServlet?time="+new Date().getTime();
 			$(".vc-pic").attr('src',_url);
 		},
 		init:function(){

@@ -161,12 +161,12 @@ itouren.showhappy = function(){
 							}
 						}
 					},
-				{field:'content',title:'内容',align:'center',sortable:true,
+				{field:'shortContent',title:'内容',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							if(row.content && row.content.length>30){
-								return row.content.substring(0,30)+"...";
+							if(row.shortContent && row.shortContent.length>30){
+								return row.shortContent.substring(0,30)+"...";
 							} 									
-							return row.content;
+							return row.shortContent;
 						}
 					},
 					{field:'tourTime',title:'旅行日期',align:'center',sortable:true,

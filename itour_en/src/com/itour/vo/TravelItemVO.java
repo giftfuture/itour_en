@@ -11,6 +11,7 @@ import javax.validation.constraints.Min;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.itour.base.page.BasePage;
+import com.itour.base.util.FilePros;
 /**
  * 
  * <br>
@@ -68,7 +69,15 @@ public class TravelItemVO extends BasePage implements Serializable{
 	private String busybeginDate;
 	private String busyendMonth;
 	private String busyendDate;
+	private String photoPath;
 	
+	
+	public String getPhotoPath() {
+		return photoPath;
+	}
+	public void setPhotoPath(String photoPath) {
+		this.photoPath = FilePros.httptravelitemPhotoPath();
+	}
 	public String getFreebeginMonth() {
 		return freebeginMonth;
 	}

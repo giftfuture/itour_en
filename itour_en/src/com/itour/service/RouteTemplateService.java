@@ -49,12 +49,17 @@ public class RouteTemplateService<T> extends BaseService<T> {
 		int count = mapper.queryByCount(vo);
 		List<RouteTemplateVO> records = Lists.newArrayList();
 		//tring rtCoverPath = FilePros.httpRouteCoverpath();
+		String rtCoverPath = FilePros.httpRouteCoverpath();
+		String rtMapPath = FilePros.httprouteMapPath();
 		for(RouteTemplateVO fb:list) {
 			if(StringUtils.isNotEmpty(fb.getTravelItems())){
 				 String[] params = fb.getTravelItems().split(",");
 				String travelItems = tiDao.travelItems(Arrays.asList(params));
 				fb.setTravelItems(travelItems);
 			}
+			fb.setViewphotoPath(FilePros.httpRoutePhotos());
+			fb.setRouteMap(rtMapPath+"/"+StringUtils.trim(fb.getRouteCode()+"_"+fb.getAlias())+"/"+fb.getRouteMap());
+			fb.setCover(rtCoverPath+"/"+StringUtils.trim(fb.getRouteCode()+"_"+fb.getAlias())+"/"+fb.getCover());
 		/*	if(StringUtils.isNotEmpty(fb.getSimilars())){
 				String[] similars = fb.getSimilars().split(",");
 				List<RouteTemplate> simlist = mapper.queryByRelated(Arrays.asList(similars));

@@ -27,21 +27,18 @@
 </script>
 </head>
 <body>
-<center>
-<table  class="commontb" align="center">
-  <tr><td colspan=2> <%@include file="/front/header.jsp"  %></td></tr>  
-  <tr>
-    <td width="776" style="float:middle" class="h1-black">${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
-  </tr>
-    <tr><td><!-- <h3>直接使用百度分享</h3>   -->
+<%@include file="/front/header.jsp"  %> 
 <div class="bdsharebuttonbox">
 <a href="#" class="bds_more" data-cmd="more"></a> 
  <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
  <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
  <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a> 
  <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a></div>  
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},
-        "share":{},"image":{"viewList":["weixin","tsina","qzone","tqq"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["weixin","tsina","qzone","tqq"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script> </td></tr>
+<center>
+<table  class="commontb" align="center">
+  <tr>
+    <td width="776" style="float:middle" class="h1-black">${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
+  </tr>
   <tr>
     <td width="750"><table style="float:right;text-align:right;align:right;margin-right:50px;" valign="top"  width="600" border="0" cellpadding="0" cellspacing="0">
       <tr>

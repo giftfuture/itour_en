@@ -28,8 +28,6 @@ itouren.travelItem = function(){
 				});
 			},
 			initUploadCoverForm:function(){
-				/*var uploadCoverFile = $.extend(uploadFile,this.uploadCoverParams);
-				uploadCoverFile.init(); */
 				_this.uploadCoverWin().find("#coverSubmit").click(function(){
 					_this.saveuploadCover();
 				});
@@ -67,9 +65,19 @@ itouren.travelItem = function(){
 					//}
 				});
 			},
+			previewphoto:function(src,title){
+				$("#preview-photo").attr("title",title);
+				$("#preview-photo").find("#preview").attr("src",src);
+				$("#preview-photo").find("#preview").attr("alt",title);
+				$("#preview-photo").find("#preview").hover(function(){$("#preview-photo").dialog('open');},function(){
+					$("#preview-photo").dialog('close');
+				});
+				$("#preview-photo").dialog('open');
+			},
+			unpreviewphoto:function(){
+				$("#preview-photo").dialog('close');
+			},
 			initUploadForm:function(){
-				/*var zxxfile = $.extend(ZXXFILE,this.uploadparams);
-				zxxfile.init();*/
 				//console.log(zxxfile.url);
 				_this.uploadPhotoWin().find("#fileSubmit").click(function(){
 					_this.savePhoto();
@@ -118,7 +126,7 @@ itouren.travelItem = function(){
 						//console.log(data.uris);
 						var k=0;
 						for(var i in data.map){
-							if(k !=0 && k%3==0){
+							if(k !=0 && k%5==0){
 								images+='</tr><tr>';
 							}
 						  images+='<td><a href="javascript:" class="upload_delete" title="删除" data-index="'+ i +'">删除</a><img alt="图片浏览" name="'+i+'" src="'+basePath+data.map[i]+'" style="width:100px;height:100px;"><input type="hidden" name="fileNames" value="'+i+'"/></td>';	
@@ -137,9 +145,6 @@ itouren.travelItem = function(){
 					_this.editPhotoWin().dialog('open'); 
 					//_this.editPhotoWin().window('open'); 
 					//回调函数
-					/*if(jQuery.isFunction(callback)){
-						callback(result);
-					}*/                        																									
 				});
 			},
 			initEditForm:function(){
@@ -334,20 +339,12 @@ itouren.travelItem = function(){
 					},
 					{field:'cover',title:'封面',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								if((row.cover+"").length>30){
-									return (row.cover+"").substring(0,30)+"....";
-								}else{									
-									return row.cover;
-								}
+								return '<a href="javascript:void(0)" onmouseenter="javascript:itouren.travelItem.previewphoto(\''+row.cover+'\',\''+row.item+'\' )" onmouseleave="javascript:itouren.travelItem.unpreviewphoto()">预览</a>';
 							}
 					},
 					{field:'photos',title:'美图',align:'center',sortable:true,
 							formatter:function(value,row,index){
-								if((row.photos+"").length>30){
-									return (row.photos+"").substring(0,30)+"....";
-								}else{									
-									return row.photos;
-								}
+								return '<a href="javascript:void(0)" onmouseenter="javascript:itouren.travelItem.previewphotos(\''+row.itemCode+'\',\''+row.alias+'\',\''+row.photoPath+'\',\''+row.photos+'\',\''+row.item+'\')" onmouseleave="javascript:itouren.travelItem.unpreviewphotos()">预览</a>';
 							}
 					},
 					{field:'mileage',title:'里程(公里)',align:'center',sortable:true,
@@ -552,17 +549,40 @@ itouren.travelItem = function(){
 						{id:'btnedit',text:'编辑图片',btnType:'browser',iconCls:'icon-large-picture',handler:function(){
 							var selected = _box.utils.getCheckedRows();
 							if (_box.utils.checkSelectOne(selected)){
-							/*	var zxxfile = $.extend(ZXXFILE,this.params);*/
-								//_this.init.zxxfile;
 								_this.editPhotoForm().resetForm();
 								_this.editPhotoForm().find("input[name='id']").val(selected[0].id);
 								_this.loadPhotoList(selected[0].id);
 								_this.editPhotoWin().window('open');
-								
 							}
 						}}
 			     	]
 			}
+		},
+		previewphotos:function(itemCode,alias,photoPath,photos,title){
+			$("#preview-photos").attr("title",title);
+				var images = "<tr>";
+					//console.log(data.uris);
+				var ptoArray =  photos.split('|');
+					for(var i in ptoArray){
+						if(i !=0 && i%5==0){
+							images+='</tr><tr>';
+						}
+					  images+='<td><img alt="'+title+'" name="'+i+'" src="'+photoPath+'/'+(itemCode+"_"+alias)+'/'+ptoArray[i]+'" style="width:150px;height:150px;"><input type="hidden" name="fileNames" value="'+i+'"/></td>';	
+					  i++;
+					}
+				$("#preview-photos table").html(images+="</tr>");
+				var zxxeditphoto = $.extend(ZxxeditPhoto,{});
+				zxxeditphoto.init();
+			$("#preview-photos").dialog('open'); 
+			//$("#preview-photos").find("#preview").attr("src",src);
+			//$("#preview-photo").find("#preview").attr("alt",title);
+			$("#preview-photos").hover(function(){$("#preview-photos").dialog('open');},function(){
+				$("#preview-photos").dialog('close');
+			});
+			$("#preview-photos").dialog('open');
+		},
+		unpreviewphotos:function(){
+			$("#preview-photos").dialog('close');
 		},
 		init:function(){
 			this.difficultyRate();
@@ -765,7 +785,6 @@ itouren.travelItem = function(){
 					$("#coverpreview",this.uploadCoverWin).html('<div class="upload_loading"></div>');
 					var funAppendImage = function() {
 						file = files[i];
-						//alert("ffffff"+file.name);
 						if (file) {
 							var reader = new FileReader();
 							reader.onload = function(e) {

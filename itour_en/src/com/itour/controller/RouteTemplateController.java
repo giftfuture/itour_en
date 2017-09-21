@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -43,6 +45,7 @@ import com.itour.base.util.FilePros;
 import com.itour.base.util.HtmlUtil;
 import com.itour.base.util.IDGenerator;
 import com.itour.base.util.SessionUtils;
+import com.itour.base.util.StringUtil;
 import com.itour.base.web.BaseController;
 import com.itour.convert.RouteTemplateKit;
 import com.itour.convert.ShowHappyKit;
@@ -227,13 +230,9 @@ public class RouteTemplateController extends BaseController{
 			if (t != null){
 				photos.append(t.getViewphotos() == null ? "":t.getViewphotos());
 			}
-			// MultipartFile imgFile = null;
-			 //OutputStream out = null;
-			// Iterator<String> it = multipartRequest.getFileNames();
 			List<MultipartFile> multifiles = multipartRequest.getFiles("fileselect");
 			 String picName = "";
 			 File directory = null;
-			// File uploadpic = null;
 			 String parpath = "";
 			for(MultipartFile f:multifiles){
 		    	picName = StringUtils.isNotEmpty(f.getOriginalFilename())?f.getOriginalFilename() : Calendar.getInstance(Locale.CHINA).getTimeInMillis()+".jpg";   
@@ -242,28 +241,16 @@ public class RouteTemplateController extends BaseController{
 	            if(!directory.exists()||!directory.isDirectory()){
 	            	directory.mkdirs();
 	            }
-	            //uploadpic = new File(parpath+"\\"+picName);
 	            Thumbnails.of(f.getInputStream()).size(Constants.compressWidth,Constants.compressHeight).watermark(Positions.BOTTOM_RIGHT,ImageIO.read(FilePros.watermark()),0.5f).outputQuality(0.8f).keepAspectRatio(false).toFile(parpath+"\\"+picName );
 	            photos.append(StringUtils.isNotEmpty(photos.toString())?"|"+picName :picName);
 	            System.out.println("路线ID="+(t!= null?t.getId():"")+"上传图片文件名是：" + picName);  
-	          //  out = new FileOutputStream(uploadpic);  
-	          //  out.write(f.getBytes());  
-	          //  out.close();  
 			}
 			picName = null;
 			directory = null;
-			//uploadpic = null;
 			parpath = null;
 			rt.setId(id);
 			rt.setViewphotos(photos.toString());
 			routeTemplateService.update(rt);
-		/*	if(out != null){
-				try {
-					out.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}*/
 			context.put(SUCCESS, true);
 			context.put("msg", "路线图片上传成功！");
 			}else{
@@ -451,6 +438,105 @@ public class RouteTemplateController extends BaseController{
 		}
 		String result = JsonUtils.encode(context);
 		return result;
+	}
+	/**
+	 * 获取待编辑,预览,删除的图片
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	@Auth(verifyLogin=true,verifyURL=true)
+	@ResponseBody
+	@RequestMapping(value="/editPhoto",method = RequestMethod.POST)
+	public Map<String,Object> getPhotos(@RequestParam(value="id")String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Map<String,Object>  context = getRootMap();
+		RouteTemplate ti = routeTemplateService.queryById(id);
+		try {
+			String photos =  ti.getViewphotos();
+			String [] filenames = photos.split("\\|");
+			String httprtPhotoPath = FilePros.httpRoutePhotos();//网络访问路径
+			String rtPhotoPath = FilePros.routePhotos();//磁盘路径
+			String directory = StringUtils.trim(ti.getRouteCode()+"_"+ti.getAlias());
+			String diskrtpath = rtPhotoPath+"\\"+directory;
+			String httpPath =httprtPhotoPath +"/"+directory;
+			List<String> uris = new ArrayList<String>();
+			Map<String,String> map = Maps.newHashMap();
+			File newfile = null;
+			for(String name:filenames){
+				if(StringUtils.isNotEmpty(name)&& !name.equals(",")){	
+					newfile = new File(diskrtpath+"\\"+name);
+					if(newfile.exists() && newfile.getName().equals(name)){
+						uris.add(httpPath+"/"+newfile.getName()); 
+						map.put(newfile.getName(), httpPath+"/"+newfile.getName());
+					}
+				}
+			}
+			newfile = null;
+			context.put(SUCCESS, true);
+			context.put("uris", uris);
+			context.put("map", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的editPhoto方法");
+		try {
+			String logid = logSettingService.add(new LogSetting("route_template","路线管理","routeTemplate/editPhoto",sessionuser.getId(),"",""));
+			logOperationService.add(new LogOperation(logid,"编辑图片",ti!= null?ti.getId():"","",JsonUtils.encode(ti),"routeTemplate/editPhoto",sessionuser.getId()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return context;
+	}
+	
+	/**
+	 * 保存编辑,删除后的图片
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	@Auth(verifyLogin=true,verifyURL=true)
+	@ResponseBody
+	@RequestMapping(value="/saveeditedPhoto",method = RequestMethod.POST)
+	public Map<String,Object> saveeditedPhoto(@RequestParam(value="id")String id,@RequestParam(value="fileNames")String fileNames,HttpServletRequest request,HttpServletResponse response)throws Exception{
+		Map<String,Object> context = getRootMap();
+		String realPath = FilePros.routePhotos();
+		RouteTemplate ti = routeTemplateService.queryById(id);
+		List<String> photos = StringUtils.isNotEmpty(ti.getViewphotos()) ? Arrays.asList(ti.getViewphotos().split("\\|")):null;
+		List<String> names = Arrays.asList(fileNames.split(","));
+		//CopyOnWriteArrayList<String> list =	new CopyOnWriteArrayList(photos);//Arrays.asList(photos);
+		//List<String> list = Collections.synchronizedList(Arrays.asList(photos));
+		Iterator<String> it =photos.iterator();
+		List<String> sublist = Lists.newArrayList();
+		while(it.hasNext()){
+			String photo=it.next();
+			if(!names.contains(photo)){
+				sublist.add(photo);
+			}
+		}
+		for(String name:sublist){
+			String parpath = ti != null?StringUtils.trim(ti.getRouteCode()+"_"+ti.getAlias()) :"";
+			if(StringUtils.isNotEmpty(name) && StringUtils.isNotEmpty(parpath)){
+				String filePath = realPath+"\\"+parpath+"\\"+name;
+				File file = new File(filePath);
+				if (file.exists() && file.getName().equals(name)&& !fileNames.contains(name)) { 
+					file.delete();
+				}
+			}
+		}
+		RouteTemplate tt = new RouteTemplate();
+		tt.setId(id);
+		tt.setViewphotos(StringUtils.join(names,"|"));
+		routeTemplateService.update(tt);
+		context.put(SUCCESS, true);
+		context.put("msg", "图片编辑保存成功！");
+		SysUser sessionuser = SessionUtils.getUser(request);
+		logger.info("#####"+(sessionuser != null?("id:"+sessionuser .getId()+"email:"+sessionuser.getEmail()+",nickName:"+sessionuser.getNickName()):"")+"调用执行RouteTemplateController的saveeditedPhoto方法");
+		String logid = logSettingService.add(new LogSetting("route_template","路线管理","routeTemplate/saveeditedPhoto",sessionuser.getId(),"",""));
+		logOperationService.add(new LogOperation(logid,"保存编辑图片",ti!= null?ti.getId():"","",JsonUtils.encode(ti),"routeTemplate/saveeditedPhoto",sessionuser.getId()));
+		return context;
 	}
 	/**
 	 * 添加或修改数据

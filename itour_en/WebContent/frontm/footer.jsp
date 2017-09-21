@@ -49,8 +49,6 @@
 <tbody>
   <tr>
     <td><div align="center">
-<!-- <script src="https://s11.cnzz.com/z_stat.php?id=1261858669&amp;web_id=1261858669" language="JavaScript"></script>
-<script src="https://c.cnzz.com/core.php?web_id=1261858669&amp;t=z" charset="utf-8" type="text/javascript"></script> -->
 <a href="http://www.cnzz.com/stat/website.php?web_id=1261858669" target="_blank" title="Webmaster Statistics">Webmaster Statistics</a>  
     </div></td>
   </tr></tbody>

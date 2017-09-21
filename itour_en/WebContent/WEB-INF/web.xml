@@ -82,9 +82,29 @@
     </init-param>
     <init-param>
       <param-name>codeCount</param-name>
+      <param-value>1</param-value>
+    </init-param>
+  </servlet>
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.itour.servlet.LoginServlet</servlet-class>
+    <init-param>
+      <param-name>width</param-name>
+      <param-value>65</param-value>
+    </init-param>
+    <init-param>
+      <param-name>height</param-name>
+      <param-value>23</param-value>
+    </init-param>
+    <init-param>
+      <param-name>codeCount</param-name>
       <param-value>4</param-value>
     </init-param>
   </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ImageServlet</servlet-name>
     <url-pattern>/ImageServlet</url-pattern>
@@ -102,7 +122,7 @@
     </init-param>
     <init-param>
       <param-name>codeCount</param-name>
-      <param-value>6</param-value>
+      <param-value>1</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>

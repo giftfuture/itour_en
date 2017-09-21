@@ -13,6 +13,7 @@ import com.google.common.collect.Lists;
 import com.itour.base.page.BasePage;
 import com.itour.base.service.BaseService;
 import com.itour.base.util.ClassReflectUtil;
+import com.itour.base.util.FilePros;
 import com.itour.base.util.IDGenerator;
 import com.itour.convert.AdLinkKit;
 import com.itour.dao.AdLinkDao;
@@ -86,8 +87,10 @@ public class AdLinkService extends BaseService<AdLink>{
 		List<AdLink> list = mapper.queryByList(vo);
 		int count = mapper.queryByCount(vo);
 		List<Map<String, String>> records = Lists.newArrayList();
+		String adPath = FilePros.httpadLinkPath();
 		for(int i = 0; i < list.size(); i++) {
 			AdLink areas = list.get(i);
+			areas.setAdvertise(adPath+"/"+areas.getAdvertise());
 			records.add(AdLinkKit.toRecord(areas));
 		}
 		return new BasePage<Map<String, String>>(vo.getStart(), vo.getLimit(), records, count);

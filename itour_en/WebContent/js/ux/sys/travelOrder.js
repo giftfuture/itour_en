@@ -157,7 +157,11 @@ itouren.travelOrder = function(){
 					{field:'routeId',title:'订单处理',align:'center',sortable:true,
 						formatter:function(value,row,index){
 							//return '<a href="'+basePath+'travelOrder/toQuote2/'+row.id+'/'+row.routeId+'">订单处理</a>';
-							return '<a href="'+basePath+'travelOrder/toQuote1/'+row.id+'/'+row.routeId+'">订单处理</a>';
+							if(row.orderStatus==2){
+								return '已处理';
+							}else{
+								return '<a href="'+basePath+'travelOrder/toQuote1/'+row.id+'/'+row.routeId+'">订单处理</a>';
+							}
 						}
 					},
 					{field:'orderNo',title:'订单号',align:'center',sortable:true,

@@ -185,7 +185,7 @@ itouren.travelStyle = function(){
 					},
 					{field:'cover',title:'封面',align:'center',sortable:true,width:300,
 						formatter:function(value,row,index){
-							return row.cover;
+							return '<a href="javascript:void(0)" onmouseenter="javascript:itour.travelStyle.previewphoto(\''+row.cover+'\',\''+row.type+'\' )" onmouseleave="javascript:itour.travelStyle.unpreviewphoto()">预览</a>';
 						}
 					},
 					{field:'descrip',title:'简要描述',align:'center',sortable:true,width:300,
@@ -218,6 +218,18 @@ itouren.travelStyle = function(){
 								}}
 							]
 			}
+		},
+		previewphoto:function(src,title){
+			$("#preview-photo").attr("title",title);
+			$("#preview-photo").find("#preview").attr("src",src);
+			$("#preview-photo").find("#preview").attr("alt",title);
+			$("#preview-photo").find("#preview").hover(function(){$("#preview-photo").dialog('open');},function(){
+				$("#preview-photo").dialog('close');
+			});
+			$("#preview-photo").dialog('open');
+		},
+		unpreviewphoto:function(){
+			$("#preview-photo").window('close');
 		},
 		params:{
 			fileInput: $("#fileImage").get(0),
