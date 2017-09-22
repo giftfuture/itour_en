@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Light Travel</title>
 <link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
 <link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />  
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
- <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content=""> 
-<title>Light Travel</title>
+<meta http-equiv="keywords" content="Light travel">  
+<meta http-equiv="description" content="Do not have to wait luggage, no money a light, want to go away, want to stay to stay, more try fresh opportunities, it is an environmentally friendly concept, more open, more free, more economical"> 
 </head>
 <body>
  <%@include file="/front/header.jsp"  %>

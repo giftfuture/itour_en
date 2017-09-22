@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>seld driving Travel</title>
+<title>self driving</title>
 <link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
 <link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />  
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
-<meta name="keywords" content="Southwest China Adventures:Trekking & Hiking , Peak Climbing , Off raod¡¡overland, Motercycle tours ">
-<meta name="description" content="Southwest China Adventures Trekking,Southwest China Peak Climbing,Southwest China Off raod,Southwest China Motercycle tours">
+<meta name="keywords" content="Self-driving, traveling by car, traveling by car, car owners, riding Sichuan, easy to solve their own traffic">
+<meta name="description" content="iTour is dedicated to the majority of ALICE to provide Zijia You, Zijia You route, Zijia You route inquiries, Zijia You Raiders and other one-stop full-service website. China 's western most professional and most comprehensive travel travel service providers">
 </head>
 <body>
  <%@include file="/front/header.jsp"  %>

@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title></title>
+<title>Climbing travel-${rt.title }</title>
+<meta http-equiv="keywords" content="Climbing the peak, mountain climbing, mountain ridge of danger, mountaineering adventure, mountaineering equipment, the Himalayas, mount Everest, mount Everest">  
+<meta http-equiv="description" content="${rt.shortContent }">
 <%-- Mountain trip in detail <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
 <link rel="stylesheet" href="${basePath}css/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}css/easyzoom/easyzoom.css" />  

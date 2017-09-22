@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>SelfDrive trip in detail</title>
+<title>SelfDrive-${rt.title }</title>
+<meta name="keywords" content="Self-driving, traveling by car, traveling by car, car owners, riding Sichuan, easy to solve their own traffic">
+<meta name="description" content="${rt.shortContent }">
 <%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
 <link rel="stylesheet" href="${basePath}cssm/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}cssm/easyzoom/easyzoom.css" />  

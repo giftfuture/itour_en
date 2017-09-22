@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Climbing Mountain</title>
 <link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
 <link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />  
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
@@ -10,7 +11,6 @@
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
  <meta http-equiv="keywords" content="Climbing the peak, mountain climbing, mountain ridge of danger, mountaineering adventure, mountaineering equipment, the Himalayas, mount Everest, mount Everest">  
  <meta http-equiv="description" content="Climbing the peak, mountain climbing, mountain ridge of danger, mountaineering adventure, mountaineering equipment, the Himalayas, mount Everest, mount Everest"> 
-<title>Climbing travel</title>
 </head>
 <body>
 <table  class="commontb" align="center" style="width:100%">

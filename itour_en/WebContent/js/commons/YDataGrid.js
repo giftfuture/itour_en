@@ -38,15 +38,16 @@ var YDataGrid = function(config){
 				if(Win.edit.find("#larouteTemplates")){
 					Win.edit.find("#larouteTemplates").show();
 					Win.edit.find("#larttitle").hide();
-					Win.edit.find("#devideTicketdiv").show();
-					Win.edit.find("#fullyearTicketdiv").hide();
-					Win.edit.find("input[name='ticketprices']").each(function(){
-						this.value="";
-					});
-					Win.edit.find("input[name='tickets']").each(function(){
-						this.value="";
-					});
 				}
+				Win.edit.find("input:radio[name='fullyearTicket'][value=1]").attr("checked","checked");
+				Win.edit.find("#devideTicketdiv").show();
+				Win.edit.find("#fullyearTicketdiv").hide();
+				Win.edit.find("input[name='ticketprices']").each(function(){
+					this.value="";
+				});
+				Win.edit.find("input[name='tickets']").each(function(){
+					this.value="";
+				});
 				Win.edit.show();
 				Win.edit.dialog('open');
 				Form.edit.resetForm();
@@ -73,8 +74,6 @@ var YDataGrid = function(config){
 				if(Win.edit.find("#larttitle")){
 					Win.edit.find("#larouteTemplates").hide();
 					Win.edit.find("#larttitle").show();
-					Win.edit.find("#devideTicketdiv").show();
-					Win.edit.find("#fullyearTicketdiv").hide();
 				}
 				Win.edit.show();
 			//	Win.edit.dialog('open'); 
@@ -87,6 +86,43 @@ var YDataGrid = function(config){
 					itour.getById(Action.getId,data,function(result){
 						itour.closeProgress();
 						Form.edit.form('load',result.data);
+						Win.edit.find("input[name='ticketprices']").each(function(){
+							this.value="";
+						});
+						Win.edit.find("input[name='tickets']").each(function(){
+							this.value="";
+						});
+						if(result.data.fullyearTicket){
+							if(result.data.ticketsBlock){
+								var freeblock = result.data.ticketsBlock.substring(result.data.ticketsBlock.indexOf('slackseason:')+12,result.data.ticketsBlock.indexOf('busyseason:')-1);
+								var busyblock = result.data.ticketsBlock.substring(result.data.ticketsBlock.indexOf('busyseason:')+11);
+								$(freeblock.split('、')).each(function(i,e){
+									if(e){
+										$("#devideTicketdiv").find("table").eq(0).find("#tickets"+(i+5)).textbox("setValue",e.split(':')[0]);
+										$("#devideTicketdiv").find("table").eq(0).find("#ticketprices"+(i+5)).textbox("setValue",e.split(':')[1]);
+									}
+								});
+								$(busyblock.split('、')).each(function(i,e){
+									if(e){
+										$("#devideTicketdiv").find("table").eq(1).find("#tickets"+(i+9)).textbox("setValue",e.split(':')[0]);
+										$("#devideTicketdiv").find("table").eq(1).find("#ticketprices"+(i+9)).textbox("setValue",e.split(':')[1]);
+									}
+								});
+							}
+							Win.edit.find("#devideTicketdiv").show();
+							Win.edit.find("#fullyearTicketdiv").hide();
+						}else{
+							if(result.data.ticketsBlock){
+								$(result.data.ticketsBlock.split('、')).each(function(i,e){
+									if(e){
+										$("#fullyearTicketdiv").find("table").eq(0).find("#tickets"+(i+1)).textbox("setValue",e.split(':')[0]);
+										$("#fullyearTicketdiv").find("table").eq(0).find("#ticketprices"+(i+1)).textbox("setValue",e.split(':')[1]);
+									}
+								});
+							}
+							Win.edit.find("#devideTicketdiv").hide();
+							Win.edit.find("#fullyearTicketdiv").show();
+						};
 					//	try{
 						//	CKEDITOR.replace('txtContent', { toolbar: 'Basic' });
 							if(result.data.beforeInstruction&&result.data.beforeInstruction.length>0){
@@ -249,13 +285,13 @@ var YDataGrid = function(config){
 				var tickets= $("input[name='tickets']");
 				var ticketprices = $("input[name='ticketprices']");
 					if(tickets.length>0 && ticketprices.length>0){
-						var fullyearTicket = !$("input:radio[name='isfullyearTicket']:checked").val()||$("input:radio[name='isfullyearTicket']:checked").val()=="1";
+						var fullyearTicket = !$("input:radio[name='fullyearTicket']:checked").val()||$("input:radio[name='fullyearTicket']:checked").val()=="1";
 						var ticketsBlock = "";
 						if(fullyearTicket){
-							ticketsBlock += "slack season:"
+							ticketsBlock += "slackseason:"
 							$(ticketprices).each(function(i,e){
 								if(i>=4){
-									if(i==8){ ticketsBlock += "busy season:"};
+									if(i==8){ ticketsBlock += "busyseason:"};
 									if(tickets[i].value && ticketprices[i].value){
 										ticketsBlock+=tickets[i].value+":"+ticketprices[i].value+"、";
 									}

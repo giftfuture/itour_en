@@ -118,6 +118,34 @@ public class Constants {
 		add(DESTINATION);
 		add(HIKING);
 	}};
+	public static final Map<String,String> MONTHS = new HashMap<String,String>(){{
+		put("1","Jan ");
+		put("2","Feb ");
+		put("3","Mar ");
+		put("4","Apr ");
+		put("5","May ");
+		put("6","June ");
+		put("7","July ");
+		put("8","Aug ");
+		put("9","Sep ");
+		put("10","Oct ");
+		put("11","Nov ");
+		put("12","Dec ");
+	}};
+	public static final Map<String,String> REMONTHS = new HashMap<String,String>(){{
+		put("Jan","1");
+		put("Feb","2");
+		put("Mar","3");
+		put("Apr","4");
+		put("May","5");
+		put("June","6");
+		put("July","7");
+		put("Aug","8");
+		put("Sep","9");
+		put("Oct","10");
+		put("Nov","11");
+		put("Dec","12");
+	}};
 	public static final List<String> HOTTYLESKEYS= new ArrayList<String>(){{
 		add(HIKING);
 		add(CLIMB);

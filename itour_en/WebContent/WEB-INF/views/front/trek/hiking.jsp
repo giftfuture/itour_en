@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Hiking trip in detail</title>
+<title>Hiking-${rt.title }</title>
+<meta http-equiv="keywords" content="On foot, exercise, outdoors, hiking, poor travel, trekking in China, hiking starting from here">  
+<meta http-equiv="description" content="${rt.shortContent }">
 <%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
 <link rel="stylesheet" href="${basePath}css/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}css/easyzoom/easyzoom.css" />  

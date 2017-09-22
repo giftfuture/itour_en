@@ -152,7 +152,6 @@ public class TravelItemController extends BaseController{
 						 String picName = "";
 						// String newpicName = "";
 						 File directory = null;
-						 File uploadpic = null;
 						 MultipartFile f = multifiles.get(0);
 					     if(f.getOriginalFilename().length() > 0) {    
 					    	picName = f.getOriginalFilename();   
@@ -171,7 +170,6 @@ public class TravelItemController extends BaseController{
 						ti.setCover(picName);
 						picName = null;
 						directory = null;
-						uploadpic = null;
 						ti.setUpdateBy(sessionuser.getId());;
 						travelItemService.uploadCover(ti);
 					/*	if(out != null){
@@ -243,8 +241,8 @@ public class TravelItemController extends BaseController{
 		String id = "";
 		TravelItem ti = null;
 		SysUser sessionuser = SessionUtils.getUser(request);
-	    String busyseason = entity.getBusybeginMonth()+"月"+entity.getBusybeginDate()+"日~"+entity.getBusyendMonth()+"月"+entity.getBusyendDate()+"日";
-	    String freeseason = entity.getFreebeginMonth()+"月"+entity.getFreebeginDate()+"日~"+entity.getFreeendMonth()+"月"+entity.getFreeendDate()+"日";
+	    String busyseason = Constants.MONTHS.get(entity.getBusybeginMonth())+entity.getBusybeginDate()+"th~"+Constants.MONTHS.get(entity.getBusyendMonth())+entity.getBusyendDate()+"th";
+	    String freeseason = Constants.MONTHS.get(entity.getFreebeginMonth())+entity.getFreebeginDate()+"th~"+Constants.MONTHS.get(entity.getFreeendMonth())+entity.getFreeendDate()+"th";
 	    entity.setBusyseason(busyseason);
 	    entity.setFreeseason(freeseason);
 		if(entity.getId()==null||StringUtils.isEmpty(entity.getId())){
@@ -506,17 +504,17 @@ public class TravelItemController extends BaseController{
 		}
 		if(StringUtils.isNotEmpty(entity.getFreeseason())){
 			String[] temp = entity.getFreeseason().split("~");
-			entity.setFreebeginMonth(temp[0].substring(0, temp[0].indexOf("月")));
-			entity.setFreebeginDate(temp[0].substring(temp[0].indexOf("月")+1,temp[0].indexOf("日")));
-			entity.setFreeendMonth(temp[1].substring(0, temp[1].indexOf("月")));
-			entity.setFreeendDate(temp[1].substring(temp[1].indexOf("月")+1,temp[1].indexOf("日")));
+			entity.setFreebeginMonth(Constants.REMONTHS.get(temp[0].substring(0,3)));
+			entity.setFreebeginDate(temp[0].substring(3,temp[0].indexOf("th")));
+			entity.setFreeendMonth(Constants.REMONTHS.get(temp[1].substring(0, 3)));
+			entity.setFreeendDate(temp[1].substring(3,temp[1].indexOf("th")));
 		}
 		if(StringUtils.isNotEmpty(entity.getBusyseason())){
 			String[] temp = entity.getBusyseason().split("~");
-			entity.setBusybeginMonth(temp[0].substring(0, temp[0].indexOf("月")));
-			entity.setBusybeginDate(temp[0].substring(temp[0].indexOf("月")+1,temp[0].indexOf("日")));
-			entity.setBusyendMonth(temp[1].substring(0, temp[1].indexOf("月")));
-			entity.setBusyendDate(temp[1].substring(temp[1].indexOf("月")+1,temp[1].indexOf("日")));
+			entity.setBusybeginMonth(Constants.REMONTHS.get(temp[0].substring(0, 3)));
+			entity.setBusybeginDate(temp[0].substring(3,temp[0].indexOf("th")));
+			entity.setBusyendMonth(Constants.REMONTHS.get(temp[1].substring(0, 3)));
+			entity.setBusyendDate(temp[1].substring(3,temp[1].indexOf("th")));
 		}
 		context.put(SUCCESS, true);
 		context.put("data", entity);

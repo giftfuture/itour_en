@@ -273,7 +273,7 @@ itouren.travelItem = function(){
 				uploadCover:'travelItem/uploadCover'
 			},
   			dataGrid:{
-  				title:'旅行项目',
+  				title:'旅游景点',
 	   			url:'travelItem/dataList.json',
 	   			columns:[[
 					{field:'id',checkbox:true},
@@ -361,19 +361,18 @@ itouren.travelItem = function(){
 								return row.areaname;
 							}
 					},
-					{field:'ticketsBlock',title:'门票信息',align:'center',sortable:true,
+					{field:'shortContent',title:'简短介绍',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							//var ticketsBlock = $(row.ticketsBlock).text();
-							if((row.ticketsBlock+"").length>30){
-								return (row.ticketsBlock+"").substring(0,30)+"....";
+							if((row.shortContent+"").length>30){
+								return (row.shortContent+"").substring(0,30)+"....";
 							}else{									
-								return row.ticketsBlock;
+								return row.shortContent;
 							}
 						}
-					},
-					{field:'fullyearTicket',title:'全年门票不变',align:'center',sortable:true,
+				},
+					{field:'fullyearTicket',title:'是否区分淡旺季',align:'center',sortable:true,
 						formatter:function(value,row,index){
-							if(row.fullyearTicket){
+							if(row.fullyearTicket==1){
 								return "是"	;
 							}else{
 								return "否";
@@ -390,14 +389,14 @@ itouren.travelItem = function(){
 							return row.busyseason;
 						}
 					},
-					{field:'shortContent',title:'简短介绍',align:'center',sortable:true,
-							formatter:function(value,row,index){
-								if((row.shortContent+"").length>30){
-									return (row.shortContent+"").substring(0,30)+"....";
-								}else{									
-									return row.shortContent;
-								}
+					{field:'ticketsBlock',title:'门票信息',align:'center',sortable:true,
+						formatter:function(value,row,index){
+							if((row.ticketsBlock+"").length>30){
+								return (row.ticketsBlock+"").substring(0,30)+"....";
+							}else{									
+								return row.ticketsBlock;
 							}
+						}
 					},
 					{field:'rank',title:'推荐指数',align:'center',sortable:true,
 							formatter:function(value,row,index){
@@ -605,17 +604,17 @@ itouren.travelItem = function(){
 					_this.delAllLine(false);
 				});
 			});
-			$("input:radio[name='isfullyearTicket']").get(1).checked=true;  
+			$("input:radio[name='fullyearTicket']").get(1).checked=true;  
 		/*	$("input:radio[name='fullyearTicket']").each(function(i,e) {   
 				//console.log(this.value+(this.value == '区分淡旺季'));
                 if (this.value == '区分淡旺季'){   
                   this.checked=true; 
                 }       
              });  */ 
-			$("input:radio[name='isfullyearTicket']").change(function(){//[type='radio']
+			$("input:radio[name='fullyearTicket']").change(function(){//[type='radio']
 				//console.log(111111111111);
 			//$("#fullradiodiv :radio").change(function(){
-				var $selectedvalue = $("input:radio[name='isfullyearTicket']:checked").val();
+				var $selectedvalue = $("input:radio[name='fullyearTicket']:checked").val();
 				if ($selectedvalue == '0') {
 					$("#devideTicketdiv").find("input[name='ticketprices']").each(function(){
 						this.value="";

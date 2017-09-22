@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Lighttripindetail</title>
+<title>Lighttrip-${rt.title }</title>
+<meta http-equiv="keywords" content="Light travel">  
+<meta http-equiv="description" content="${rt.shortContent }">
 <%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
 <link rel="stylesheet" href="${basePath}css/easyzoom/pygments.css" />
 <link rel="stylesheet" href="${basePath}css/easyzoom/easyzoom.css" />  

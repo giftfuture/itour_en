@@ -58,7 +58,7 @@ public class TravelItemVO extends BasePage implements Serializable{
 	private String ticketsBlock;//门票块
     @Min(value = 0, message = "fullyearTicket 的最小值为0")
     @Max(value = 1, message = "fullyearTicket 的最大值为1")
-	private int fullyearTicket;//是否分淡旺季
+	private int fullyearTicket;//是否分淡旺季1=是,0=否
 	private String busyseason;//旺季
 	private String freeseason;//淡季
 	private String freebeginMonth;

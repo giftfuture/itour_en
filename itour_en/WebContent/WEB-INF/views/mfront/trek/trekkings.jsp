@@ -8,8 +8,8 @@
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrap-paginator.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/qunit-1.11.0.js"></script>
- <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content=""> 
+<meta http-equiv="keywords" content="On foot, exercise, outdoors, hiking, poor travel, trekking in China, hiking starting from here">  
+<meta http-equiv="description" content="Outdoor sports, deep travel, photography, travel with the group, wild camping, hiking knowledge, skills, lines, Raiders, travel, we respect the freedom of travel, with the feet of the world"> 
 <title>Hiking Travel</title>
 </head>
 <body>
