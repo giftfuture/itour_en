@@ -306,6 +306,18 @@ itouren.lightdetail = function(){
 		        window.open(_shareUrl,'width='+_width+',height='+_height+',top='+(screen.height-_height)/2+',left='+(screen.width-_width)/2+',toolbar=no,menubar=no,scrollbars=no,resizable=1,location=no,status=0');   
 		 },
 		init:function(){
+			var docwidth = document.documentElement.clientWidth;
+			var paddingwidth = (docwidth-1140)/2;
+			$("#main-content").css("width",1140);
+			//$("#main-content").css("padding-left",paddingwidth);
+			//$("#tab-container").css("padding-left",paddingwidth);
+			//$("#need-know").css("padding-left",paddingwidth);
+			//$("#feed-back").css("padding-left",paddingwidth);
+			
+			//$("#main-content").css("padding-right",paddingwidth);
+			//$("#tab-container").css("padding-right",paddingwidth);
+			//$("#need-know").css("padding-right",paddingwidth);
+			//$("#feed-back").css("padding-right",paddingwidth);
 			$("input[name='route_checkall']").click(function(){
 				if($(this).attr("checked")){
 					_this.checkedAll("breakfast");

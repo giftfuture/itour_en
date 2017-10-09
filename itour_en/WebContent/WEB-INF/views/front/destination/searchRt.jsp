@@ -27,7 +27,7 @@
 <body>
 <center>
 
-<table width="72.6%" style="width:72.6%" border="0" cellspacing="0" cellpadding="0">
+<table border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td><%@include file="/front/header.jsp" %></td>
   </tr>
@@ -51,8 +51,9 @@
   <tr><td><ul id='fbpage'></ul></td></tr>
 </table>
 <table  style="width:61.3%" width="61.3%" border="0" cellspacing="0" cellpadding="0">
-<tr><td><%@include file="/front/footer.jsp" %></td></tr>
+<tr><td></td></tr>
 </table>
+<%@include file="/front/footer.jsp" %>
 </center>
 <script type="text/javascript" src="${basePath}js/ux/front/destination/searchRt.js"></script>
 </body>

@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
- <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content="This is my page"> 
+ <meta http-equiv="keywords" content="${itemvo.item}${itemvo.alias}${itemvo.shortContent}">  
+ <meta http-equiv="description" content="${itemvo.shortContent}${itemvo.remark}"> 
 <title>Destination details</title>
 <link rel="stylesheet" type="text/css" href="${basePath}cssm/easing.css">
 <script type="text/javascript" src="${basePath}js/plug-in/easing.js"></script>

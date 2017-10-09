@@ -1,18 +1,21 @@
 /**{font-size:14px;}*/
 body {font-family:MicrosoftYaHei;padding:0px;font-size:14px;margin:0;}
+img {-ms-interpolation-mode: bicubic;}
+.bigImage img{
+    opacity: 1;
+}
 form,h1{margin: 0; padding: 0;}
 h2 {font-size:18px;color:#333;font-weight:bold;margin:0;margin-bottom:15px;}
 .warp{padding: 10px;}
-a{text-decoration: none;color:#2786D6;}
+a{text-decoration: none;color:#2786D6;cursor:default;}
+.combobox-item{cursor:default;}
+ol{list-style:none;}
 .hidden { display: none;}
 .show { display: block;}
 .red{color: #FF1E00!important;}
 .green{color: #090!important;}
 .orange{color: #F60!important;}
 .datagrid-row-selected a{color: white;}
-.bigImage img{
-    opacity: 1;
-}
 .ui-form{margin:0;  padding:10px 15px; }  
 .ftitle{  font-size:14px;  font-weight:bold;  padding:5px 0;  margin-bottom:10px;  border-bottom:1px solid #ccc;  }  
 .fitem{  margin-bottom:5px;  }  
@@ -28,7 +31,7 @@ a{text-decoration: none;color:#2786D6;}
 #edit-pwd-win{display:none;}
 .commontb{
  /*  width:1350px; */
-  width:72.6%;
+  /* width:72.6%; */
   text-align:center;
   align:center;
   font-family: "微软雅黑";
@@ -40,7 +43,7 @@ a{text-decoration: none;color:#2786D6;}
   align:center;
   font-family: "微软雅黑";
   border:0;
-  table-layout: fixed;
+  /* table-layout: fixed; */
 } 
 .frametb td { word-wrap:break-word;word-break:break-all; }/*overflow: hidden;word-wrap:break-word;white-space: nowrap; text-overflow: ellipsis;*/
 .odinfotb td { word-wrap:break-word;word-break:break-all; }
@@ -134,4 +137,6 @@ td { text-align: center;}
       border-radius: 5px 5px 5px 5px;
       display:block;
     }
-.bdsharebuttonbox{height:300px;width:40px;float:left;padding-top:30px;margin-left:10px;position:fixed;overflow-y:auto;}
+.bdsharebuttonbox{height:360px;width:40px;float:left;padding-top:30px;margin-left:10px;position:fixed;overflow-y:auto;}
+.bdimgshare-bg{display:none};
+label.bdimgshare-lbl{display:none;}

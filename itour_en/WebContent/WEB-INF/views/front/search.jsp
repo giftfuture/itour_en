@@ -28,7 +28,7 @@
 </head>
 <body>
 <center>
-<table width="72.6%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table  border="0" align="center" cellpadding="0" cellspacing="0">
 <tr><td><%@include file="/front/header.jsp" %></td></tr>
 </table>
 <%-- <input type="hidden" name="travelStyle" value="${travelStyle }"/>
@@ -41,7 +41,7 @@
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td width="766" valign="top">
-    <table border="0" align="center" cellpadding="15" cellspacing="0" name="searchRtstb">
+    <table border="0" align="center" cellpadding="15" cellspacing="0" name="searchRtstb" style="width:61.3%">
    	<tbody id="fbcontent"></tbody>
     </table></td>
   </tr>

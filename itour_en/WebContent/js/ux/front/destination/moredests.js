@@ -13,11 +13,11 @@ itouren.destinationssc = function(){
 						$("td[name='dests']").text(responseText.result.total+$("td[name='dests']").text());
 						var html="<tr>";
 						$(searchRts).each(function(i,e){
-							html+='<td align="center">'+
-								   	'<p><a href="'+basePath+'destination-detail-'+e.alias+'">'+e.item+'</a></p>'+
-								   	'<p><a href="'+basePath+'destination-detail-'+e.alias+'"><img src="'+basePath+e.cover+'" width="420" height="233" /></a></p>'+
-								   	'<p style="text-align:left">'+e.shortContent+'</p>'+
-							    '</td>'+(i !=0 &&i%2==0?"</tr><tr>":"");
+							html+='<td align="center"><table><tr>'+
+						   	'<td align="center"><a href="'+basePath+'destination-detail-'+e.alias+'">'+e.item+'</a></td></tr>'+
+						   	'<tr><td align="center"><a href="'+basePath+'destination-detail-'+e.alias+'"><img src="'+basePath+e.cover+'" style="float:left;margin:3px;padding:3px;" width="356" height="203" /></a></td></tr>'+
+						   	'<tr><td align="center">'+e.shortContent+'</td>'+
+						   	'</tr></table></td>'+(i !=0 &&i%2==0?"</tr><tr>":"");
 						});
 						$("#fbcontent").empty();
 			   			$("#fbcontent").append(html+"</tr>");

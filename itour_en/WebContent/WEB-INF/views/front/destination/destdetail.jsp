@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
- <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
- <meta http-equiv="description" content="This is my page"> 
+ <meta http-equiv="keywords" content="${itemvo.item}${itemvo.alias}${itemvo.shortContent}">  
+ <meta http-equiv="description" content="${itemvo.shortContent}${itemvo.remark}"> 
 <title>Destination details</title>
 <link rel="stylesheet" type="text/css" href="${basePath}css/easing.css">
 <script type="text/javascript" src="${basePath}js/plug-in/easing.js"></script>
@@ -15,7 +15,7 @@
 <body>
 <center>
 <%@include file="/front/header.jsp"  %>
-<table class="commontb" valign="middle" style="height:100%">
+<table class="commontb" valign="middle" style="margin-top:30px;height:100%">
 <tr><td colspan=3> </td></tr>
   <tr style="align:center">
     <td valign="top" rowspan=2 style="text-align:center" align="center">

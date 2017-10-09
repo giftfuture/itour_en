@@ -11,9 +11,9 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
 </head>
+ <%@include file="/front/header.jsp"  %> 
 <body>
-<table class="" style="text-align:center" align="center" border="0" cellpadding="0" cellspacing="0"><!--  width="72.6%"  -->
- <tr><td><%@include file="/front/header.jsp"  %> </td></tr>  
+<table class="" style="margin-top:30px;text-align:center" align="center" border="0" cellpadding="0" cellspacing="0"><!--  width="72.6%"  -->
  </table>
  <table class="" width="61.3%" style="text-align:center" align="center" border="0" cellpadding="0" cellspacing="0">
   <tr>

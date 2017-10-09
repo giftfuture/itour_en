@@ -5,7 +5,7 @@
  var level1Area ='${level1Area}';
  var level2Area = '${level2Area}';
 </script>
-<div style="width:100%">
+<div style="width:100%;text-align:center;">
 <form name="searchForm" method="post">
 <table class="frametb" align="center" style="margin-top:30px">
   <tr>
@@ -17,7 +17,7 @@
          <input class="easyui-combobox" id="level1Area" name="level1Area" value="${level1Area}" data-options="width:120,minWidth:80,height:22,panelHeight:'auto',editable:false,prompt:'-All-'">
          <input id="level2Area" name="level2Area" class="easyui-combobox" data-options="width:120,minWidth:80,height:22,panelHeight:'auto',editable:false,prompt:'-All-'"/> 
         Holiday days:<a href="javascript:void(0)">
-    <select class="easyui-combobox" data-options="width:120,minWidth:80,height:22,editable:false,prompt:'-All-'" name="vacation" id="vacation">
+    <select class="easyui-combobox" data-options="width:120,minWidth:80,height:22,panelHeight:'auto',editable:false,prompt:'-All-'" name="vacation" id="vacation">
       <option value="">-All-</option>
       <option value="1_5">1-5days</option>
       <option value="6_9">6-9days</option>
@@ -33,7 +33,7 @@
    </table>
 <table class="lefttxt frametb" align="center" style="margin-top:30px">
   <tbody><tr>
-    <td   valign="middle" height="135"  bgcolor="#666666"><table width="100%" height="60" cellspacing="0" cellpadding="0" border="0" align="center">
+    <td   valign="middle" height="135"  bgcolor="#666666"><table width="97%" height="60" cellspacing="0" cellpadding="0" border="0" align="center">
       <tbody>
         <tr>
           <td width="100%" height="30" bgcolor="#EFEFEF"><div class="STYLE6" align="center">iTour Travel www.iTours.com.cn</div></td>

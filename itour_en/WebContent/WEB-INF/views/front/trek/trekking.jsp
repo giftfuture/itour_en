@@ -13,6 +13,7 @@
 </head>
 <body>
  <%@include file="/front/header.jsp"  %>
+ <center>
   <img src="images/climb.jpg" />
 <table  class="commontb" align="center">
   <!--DWLayoutTable-->
@@ -147,7 +148,8 @@ Seasons：</span>${item.season}<br />
     <img src="${basePath}images/shadowright.gif" width="10" height="8" /></td>
   </tr>
 </table>
-<script type="text/javascript" src="${basePath}js/ux/front/trek/trekking.js"></script>
 <%@include file="/front/footer.jsp" %>
+</center>
+<script type="text/javascript" src="${basePath}js/ux/front/trek/trekking.js"></script>
 </body>
 </html>

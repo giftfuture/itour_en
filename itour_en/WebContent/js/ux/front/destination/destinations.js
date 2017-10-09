@@ -2,6 +2,9 @@ $package('itouren.destinations');
 itouren.destinations = function(){
 	var _this = {
 		init:function(){
+			var docwidth = document.documentElement.clientWidth;
+			var paddingwidth = (docwidth-1140)/2;
+			//$("ul.menu").css("padding-left",paddingwidth);
 			_this.menuClick();
 		},
 		accordion:function(){

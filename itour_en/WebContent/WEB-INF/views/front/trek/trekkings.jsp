@@ -19,8 +19,8 @@
     <td> </td>
   </tr>
   <tr>
-    <td align="center" style="text-align:center;width:100%" width="100%">
-    <img width="100%" src="images/banner-trekking.jpg"  height="598px"  /></td>
+    <td align="center" style="text-align:center;width:100%" width="100%" class="banner">
+    <img width="100%" src="images/banner-trekking.jpg" /></td>
   </tr>
 </table>
 <table class="frametb" align="center">
@@ -55,7 +55,7 @@
 <tbody id="fbcontent" width="100%" style="width:100%">
   </tbody>
    <tr>
-    <td width="100%"  style="width:100%" ><ul id="fbpage"></ul> </td>
+    <td width="100%"  style="width:100%" colspan=3><ul id="fbpage"></ul> </td>
   </tr>
   </table>
   <table class="frametb" align="center">

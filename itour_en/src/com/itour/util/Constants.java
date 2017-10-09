@@ -192,7 +192,7 @@ public class Constants {
 		   }
 	   }
 	   List<Map<String,Object>> newlist = Lists.newArrayList();
-	   newlist.add(new HashMap(){{put("alias","");put("type","--All--");}});
+	   newlist.add(new HashMap(){{put("alias","-All-");put("type","-All-");}});
 	   //List<Map<String,Object>> tsmap = jdbcTemplate.queryForList(tssql);
 	   newlist.addAll(list);
 	   allStyles.clear();

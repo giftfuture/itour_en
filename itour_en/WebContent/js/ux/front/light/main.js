@@ -51,6 +51,9 @@ itouren.lightmain = function(){
 					);
 				},
 		init:function(){
+			var docwidth = document.documentElement.clientWidth;
+			$("td.banner img").css("width",parseInt(docwidth)*0.726);
+			$("td.banner img").css("height",parseInt(docwidth)*0.323);
 			_this.fbpagination(1);
 		}
 	}

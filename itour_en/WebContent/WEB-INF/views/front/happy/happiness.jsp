@@ -14,7 +14,7 @@
 </head>
 <body>
 <%@include file="/front/header.jsp"  %>
-<table class="commontb" border="0" align="center" cellpadding="0" cellspacing="0">
+<table class="commontb" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:30px;">
   <tr>
     <td> </td>
   </tr>

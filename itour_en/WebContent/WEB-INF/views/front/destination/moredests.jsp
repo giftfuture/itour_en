@@ -14,7 +14,7 @@
 </head>
 <body>
  <%@include file="/front/header.jsp"  %>
-<table  class="commontb" align="center">
+<table  class="commontb" align="center" style="margin-top:30px;">
  <tr>
     <td>
 	
@@ -34,20 +34,9 @@
   </tr>
   <tr><td><input type="hidden" name="scope" value="${scope }"/></td></tr>
     <tr>
-   <%--  <td><span class="STYLE5">${dests}</span></td> --%>
     <td colspan=3 style="text-align:left;" name="dests">destinations </td>
   </tr>
   <tbody id="fbcontent">
- <%--   <tr>
-  <c:forEach items="${list}" var="dest" varStatus="stat">
-   <td align="center">
-	   	<p><a href="${basePath }destination/detail/${dest.alias}">${dest.item }</a></p>
-	   	<p><a href="${basePath }destination/detail/${dest.alias}"><img src="${basePath}${dest.cover}" width="450" height="309" /></a></p>
-	   	<p style="text-align:left">${dest.shortContent }</p>
-    </td>
-     <c:if test="${stat.index != 0 && stat.index%2==0 }"></tr><tr></c:if>
-  </c:forEach>
-  </tr> --%>
   </tbody>
 </table>
 <center><ul id='fbpage'></ul></center>

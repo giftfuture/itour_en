@@ -14,16 +14,20 @@
 </head>
 <body>
 <%@include file="/front/header.jsp"  %>
+<center>
+<div style="z-index:-1; position:relative;">
 <table  class="commontb" align="center">
-   <tr>
-    <td>  </td>
-  </tr>
   <tr>
-    <td align="center" style="text-align:center;width:100%" width="100%">
-    <img width="100%" src="images/img/gonga-04.jpg" height="598px" /></td>
+    <td class="banner" align="center" style="text-align:center;width:100%" width="100%">
+    <img width="100%" src="images/img/gonga-04.jpg" /></td>
   </tr>
 </table>
-<table  class="frametb" align="center">
+</div>
+<div style="position:relative;margin-top:-60;z-index:9999;width:1140px;float:middle;text-align:center;">
+<table  class="frametb" align="center" width="100%" style="width:100%">
+  <tr style="width:100%;text-align:center" align="center" width="100%" >
+            <td width="100%" style="width:100%"></td>
+        </tr>
   <tr>
     <td height="106" valign="top" bgcolor="#fafafa">
     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -51,11 +55,12 @@
     <td valign="top">&nbsp;</td>
   </tr>
 </table>
+</div>
 <table class="frametb" align="center">
  <tbody id="fbcontent">
   </tbody>
     <tr>
-    <td width="100%"  ><ul id="fbpage"></ul> </td>
+    <td width="100%" colspan=3><ul id="fbpage"></ul> </td>
   </tr>
     </table>
   <table class="frametb" align="center">
@@ -63,6 +68,7 @@
     <td width="100%"  ><%@include file="/front/footer.jsp" %></td>
   </tr>
 </table>
+</center>
 <script type="text/javascript" src="${basePath}js/ux/front/climb/main.js"></script>
 </body>
 </html>

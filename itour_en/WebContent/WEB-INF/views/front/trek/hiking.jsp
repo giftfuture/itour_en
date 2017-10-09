@@ -6,15 +6,12 @@
 <title>Hiking-${rt.title }</title>
 <meta http-equiv="keywords" content="On foot, exercise, outdoors, hiking, poor travel, trekking in China, hiking starting from here">  
 <meta http-equiv="description" content="${rt.shortContent }">
-<%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
-<link rel="stylesheet" href="${basePath}css/easyzoom/pygments.css" />
-<link rel="stylesheet" href="${basePath}css/easyzoom/easyzoom.css" />  
+<link rel="stylesheet" href="css/magiczoom.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="${basePath}css/bootstrap/bootstrapv3.css" />
 <link rel="stylesheet" href="${basePath}css/bootstrap/qunit-1.11.0.css" />  
 <link rel="stylesheet" type="text/css" href="${basePath}css/ScrollPic.css">
 <script type="text/javascript" src="${basePath}js/commons/ScrollPic.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/easing.js"></script>
-<script type="text/javascript" src="${basePath}js/plug-in/easyzoom.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/easytab/jquery.easytabs.min.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/easytab/jquery.hashchange.min.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/bootstrap/bootstrapv3.js"></script>
@@ -24,6 +21,7 @@
 <script type="text/javascript" src="${basePath}js/plug-in/zeroclip/ZeroClipboard.swf"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/pdf/html2canvas.min.js"></script>
 <script type="text/javascript" src="${basePath}js/plug-in/pdf/jspdf.min.js"></script>
+<script type="text/javascript" src="${basePath}js/plug-in/magiczoom.js"></script>
 <script type="text/javascript">
 
 </script>
@@ -32,19 +30,23 @@
 <%@include file="/front/header.jsp"  %> 
 <div class="bdsharebuttonbox">
 <a href="#" class="bds_more" data-cmd="more"></a> 
- <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
- <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
- <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a> 
- <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a></div>  
+ <a href="#" class="bds_weixin" data-cmd="weixin" title="Share to Wechat"></a>
+ <a href="#" class="bds_tsina" data-cmd="tsina" title="Share to Weibo"></a>
+ <a href="#" class="bds_qzone" data-cmd="qzone" title="Share to Qzone"></a> 
+ <a href="#" class="bds_tqq" data-cmd="tqq" title="Share to Tencent weibo"></a>
+ <a href="#"  class="bds_fbook" data-cmd="fbook" title="Share to Facebook"></a>
+<a href="#"  class="bds_twi" data-cmd="twi" title="Share to twitter"></a></div>  
 <center>
 <table  class="commontb" align="center">
   <tr>
-    <td width="776" style="float:middle" class="h1-black">${rt.title}</td><td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
+    <td><input type="hidden" name="idrt" value="${rt.routeCode}"></td>
   </tr>
   <tr>
-    <td width="750"><table style="float:right;text-align:right;align:right;margin-right:50px;" valign="top"  width="600" border="0" cellpadding="0" cellspacing="0">
+    <td width="56.7%" ><table style="float:right;text-align:right;align:right;margin-right:50px;" valign="top"  border="0" cellpadding="0" cellspacing="0">
+      <tr><td style="float:middle" class="h1-black">${rt.title}</td></tr>  
       <tr>
-        <td width="600" name="magnifying"><div class="bigImage"><img src="${basePath}${rt.cover}" style="border:none;" border="0px" height="338" width="600"/></div></td>
+        <td name="magnifying"><%-- <span style="float:middle" class="h1-black">${rt.title}</span> --%>
+        <div class="bigImage"><img src="${basePath}${rt.cover}" style="border:none;" border="0px" /></div></td>
       </tr>
       <tr>
         <td height="69"><table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -82,12 +84,11 @@
       </tr></table></td>
       </tr></table></td>
     <td width="600" style="float:left" valign="top" > 
-    
       <table width="442" border="0" cellpadding="0" cellspacing="2" class="STYLE126">
       <tbody><tr>
-        <td style="float:left"><img src="images/frame2-1.gif" width="480" height="7"></td>
+        <td style="float:left;padding-top:30;"><img src="images/frame2-1.gif" width="480" height="7"></td>
       </tr>
-<tr>
+        <tr>
         <td background="images/frame2-2.gif"><table cellspacing="0" cellpadding="5" border="0" align="center">
           <tbody><tr>
             <td><div align="center"><span class="STYLE2">Is this Line for me？</span></div></td>    
@@ -159,14 +160,15 @@
       </table>
     <table class="f12-gao1">
       <tr>
-        <td><img src="${basePath}images/facebook.png" width="24" height="24" />
+        <%-- td><img src="${basePath}images/facebook.png" width="24" height="24" />
         <a target="_blank" href="https://www.facebook.com/dialog/feed">FB</a></td>
         <td><img src="${basePath}images/share.png" width="24" height="24" />
-        <a target="_blank" id="copyurl" href="javascript:void(0)" data-clipboard-target="flashcopier">CopyUrl</a><div style="display:none" id="flashcopier"></div></td>
-        <td><img src="${basePath}images/favorite01.png" width="24" height="24" />
-        <a target="_blank"  href="javascript:itour.hiking.addFavorite()" rel="sidebar">Bookmark </a></td>
-        <td><img src="${basePath}images/print.png" width="24" height="24" />
-        <a target="_blank"  href="javascript:itour.hiking.printff()">Print </a></td></tr>
+        <a target="_blank" id="copyurl" href="javascript:void(0)" data-clipboard-target="flashcopier">CopyUrl</a><div style="display:none" id="flashcopier"></div></td> --%>
+        <td style="text-align:left;"><img src="${basePath}images/favorite01.png" width="24" height="24" />
+        <a target="_blank"  href="javascript:itouren.hiking.addFavorite()" rel="sidebar">Bookmark </a></td>
+        <%-- <td><img src="${basePath}images/print.png" width="24" height="24" />
+        <a target="_blank"  href="javascript:itour.hiking.printff()">Print </a></td> --%>
+        </tr>
             <%--  <tr><td><a href="${basePath}hiking/toQuote2/${rt.alias}" class="easyui-linkbutton" >预定本路线</a></td></tr>    --%>
     </table></td></tr></tbody></table>
     </td>
@@ -178,11 +180,8 @@
 </table>
 </td></tr>
 </table>
-<br />
-<br />
-<br />
-<table class="frametb" align="center"><tr><td>
-<div class="frametb" id="tab-container" class='tab-container' border="0" cellpadding="3" cellspacing="1">
+<table class="frametb" align="center" style="padding-top:30;"><tr><td>
+<div class="frametb" id="tab-container" class='tab-container' border="0" cellpadding="0" cellspacing="0">
  <ul style="text-align:left;float:left" class='etabs'>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}hiking-${alias}#review">Overview</a></li>
    <li width="110" bgcolor="#F0F0F0" class='tab'><a href="${basePath}hiking-${alias}#detail-route">Route Details</a></li>
@@ -206,9 +205,9 @@
         </td>
         <c:if test="${not empty rt.routeMap}">
 	        <td width="299" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">Travel map</span><br />
-	            <div class="easyzoom easyzoom--overlay">
-	                <a href="${basePath}${rt.routeMap}">
-	                    <img src="${basePath}${rt.routeMap}" alt="" width="640" height="360" />
+	            <div>
+	                <a href="${basePath}${rt.routeMap}" class="MagicZoom" rel="zoom-position:top">
+	                    <img src="${basePath}${rt.routeMap}" alt="" width="260" height="127"/>
 	                </a>
 	            </div>
 	          </div>
@@ -252,16 +251,17 @@
     <span class="h2-24" style="text-align:left"><span class="STYLE148">Before Instructions</span></span></td>
   </tr>
   <tr><td colspan=2 style="text-align:left">
-     ${fn:trim(rt.beforeInstruction)} 
+      ${rt.beforeInstruction}  
   </td></tr>
   </table>
+   </div>
    <table class="frametb" align="center">
   <tr>
     <td colspan=2 style="text-align:left;float:left;padding-top:30;"><img style="float:left" src="${basePath}images/heart02.png" width="32" height="32" />
     <span class="h2-24" style="text-align:left;float:left;"><span class="STYLE148">Service and quotation</span></span></td><!-- <span class="STYLE14"><span class="STYLE2"> -->
   </tr>
     <tr>
-    <td colspan=2 style="text-align:left;align:left;">${rt.serviceAndQuote }</td>
+    <td colspan=2>${rt.serviceAndQuote }</td>
   </tr>
   </table>
    <table class="frametb" align="center">
@@ -289,12 +289,12 @@
      <img src="${basePath }images/tailor-made.gif" width="134" height="32" ></a></span></td>
    </tr>
  </tbody></table>
-  </div>
+ 
   <div id="feed-back">
   <table  class="frametb" align="center">
   <tr>
-    <td width="5%"><img src="${basePath}images/ask03.png" width="32" height="32" /></td>
-    <td width="95%" style="text-align:left;float:left" ><span class="h2-24 STYLE148 STYLE14 STYLE2"  style="text-align:left;float:left">Would you like to know what? Come and talk to us:</span></td>
+    <td colspan=2 style="text-align:left;float:left;"><img src="${basePath}images/ask03.png" width="32" height="32" /> 
+   <span class="h2-24 STYLE148 STYLE14 STYLE2"  style="text-align:left;float:left">Would you like to know what? Come and talk to us:</span></td>
   </tr>
 </table>
 <table class="frametb" align="center">
@@ -313,7 +313,7 @@
               </tr>
               <tr>
                 <td width="51" bgcolor="#F0F0F0" class="STYLE140"><div align="right" class="STYLE126"><strong>*Name</strong>:</div></td>
-                <td width="249" bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="name"  class="easyui-textbox" data-options="height:22,prompt:'Please type your name',validType:'string'"/><!--  -->
+                <td width="249" bgcolor="#F0F0F0" class="STYLE126" style="padding-left:20px;text-align:left"><input type="text" name="name"  class="easyui-textbox" data-options="height:22,prompt:'Please type your name',validType:'string'"/>
                     <select name="sex" id="sex" class="easyui-combobox" data-options="height:22,width:80,editable:false,panelHeight:80">
                       <option value="1">Mr</option>
                       <option value="0">Ms</option>
@@ -379,9 +379,9 @@
     <span class="h2-24" style="float:left"><span class="STYLE148"><span class="STYLE14"><span class="STYLE2">Memories of happiness will be happy freeze</span></span></span></span></td>
   </tr>
   <tr>
-    <td colspan=2 width="1140" style="float:left"><img style="float:left;vertical-align:text-top;" valign="top" src="${basePath}images/frame1-1.gif" height="7" /></td>
+    <td colspan=2 width="1140"><img style="float:left;vertical-align:text-top;" valign="top" src="${basePath}images/frame1-1.gif" height="7" /></td>
   </tr>
-  <tr><td colspan=2 style="float:left" background="images/frame1-2.gif" style="valign:top;"> 
+  <tr><td colspan=2 background="images/frame1-2.gif"> 
                 <table width='100%' border='0' align='center' cellpadding='10' cellspacing='0'> 
                             <tr> 
                               <td valign='top'><table width='100%' border='0' cellspacing='0' cellpadding='20'> 
@@ -423,7 +423,7 @@
      </table>
    </td></tr>
    <tr>
-    <td colspan=2 style="float:left"><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
+    <td colspan=2><img style="float:left" src="images/frame1-3.gif" width="1140" height="7" /></td>
   </tr>
   </table>
   </div></td></tr>

@@ -13,10 +13,10 @@
 <body>
  <%@include file="/front/header.jsp" %>
 <center>
-<table class="frametb" align="center" style="text-align:center;">
+<table class="frametb" align="center"  style="text-align:center;margin-top:30px;width:72.6%" width="72.6%" >
   <tr>
-     <td width="197" valign="top">
-      <table width="197" border="0" cellspacing="0" cellpadding="5"float:right;>
+     <td  class="menutd" width="15.5%"  valign="top" style="float:left;">
+      <table border="0" cellspacing="0" cellpadding="0" style="float:left;">
           <tr>
             <td height="30" valign="top" style="width:200px;height:auto" bgcolor="#990000"><!-- padding-left:150 -->
             <div style="align:center;font-size:18px;background-color:#8B0000;text-decoration:none;color:white;">Destinations</div>

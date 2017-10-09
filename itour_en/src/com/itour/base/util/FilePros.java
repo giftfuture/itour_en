@@ -200,13 +200,29 @@ public class FilePros   {
 	 * 首页广告视频
 	 * @return
 	 */
-	public static String bannervideoPath(){
+	public static String bannervideo(){
 		String bannervideo = rb.getString("bannervideo");
 		return bannervideo;
 	}
 	public static String httpbannervideoPath(){
 		String bannervideo = rb.getString("http_bannervideo");
 		return bannervideo;
+	}
+	public static String itemvideo(){
+		String bannervideo = rb.getString("itemvideo");
+		return bannervideo;
+	}
+	public static String httpItemvideoPath(){
+		String httpitemvideo = rb.getString("http_itemvideo");
+		return httpitemvideo;
+	}
+	public static String routevideo(){
+		String routevideo = rb.getString("routevideo");
+		return routevideo;
+	}
+	public static String httpRoutevideoPath(){
+		String routevideo = rb.getString("http_routevideo");
+		return routevideo;
 	}
 	/**
 	 * 上传图片的本项目相关的存储路径

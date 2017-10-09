@@ -59,6 +59,8 @@ itouren.index = function(){
 		    }
 		},
 		init:function(){
+			$(".commontb").css("width",1350);
+			$(".frametb").css("width",1140);
 			// browserRedirect();
 			//fbpagination(1);<!--padding-left:800px;float:left;-->
 			var curIndex=0;

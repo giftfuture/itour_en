@@ -6,15 +6,12 @@
 <title>SelfDrive-${rt.title }</title>
 <meta name="keywords" content="Self-driving, traveling by car, traveling by car, car owners, riding Sichuan, easy to solve their own traffic">
 <meta name="description" content="${rt.shortContent }">
-<%-- <link rel="stylesheet" href="${basePath}css/easyzoom/example.css" /> --%>
-<link rel="stylesheet" href="${basePath}cssm/easyzoom/pygments.css" />
-<link rel="stylesheet" href="${basePath}cssm/easyzoom/easyzoom.css" />  
+<link rel="stylesheet" href="cssm/magiczoom.css" type="text/css" media="screen" /> 
 <link rel="stylesheet" href="${basePath}cssm/bootstrap/bootstrapv3.css" />
 <link rel="stylesheet" href="${basePath}cssm/bootstrap/qunit-1.11.0.css" />  
 <link rel="stylesheet" type="text/css" href="${basePath}cssm/ScrollPic.css">
 <script type="text/javascript" src="${basePath}jsm/commons/ScrollPic.js"></script>
 <script type="text/javascript" src="${basePath}jsm/plug-in/easing.js"></script>
-<script type="text/javascript" src="${basePath}jsm/plug-in/easyzoom.js"></script>
 <script type="text/javascript" src="${basePath}jsm/plug-in/easytab/jquery.easytabs.min.js"></script>
 <script type="text/javascript" src="${basePath}jsm/plug-in/easytab/jquery.hashchange.min.js"></script>
 <script type="text/javascript" src="${basePath}jsm/plug-in/bootstrap/bootstrapv3.js"></script>
@@ -24,7 +21,7 @@
 <script type="text/javascript" src="${basePath}jsm/plug-in/zeroclip/ZeroClipboard.swf"></script>
 <script type="text/javascript" src="${basePath}jsm/plug-in/pdf/html2canvas.min.js"></script>
 <script type="text/javascript" src="${basePath}jsm/plug-in/pdf/jspdf.min.js"></script>
-
+<script type="text/javascript" src="${basePath}jsm/plug-in/magiczoom.js"></script>
 <script type="text/javascript">
 
 </script>
@@ -33,10 +30,12 @@
  <%@include file="/frontm/header.jsp"  %> 
  <div class="bdsharebuttonbox">
 <a href="#" class="bds_more" data-cmd="more"></a> 
- <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
- <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
- <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a> 
- <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a></div>  
+ <a href="#" class="bds_weixin" data-cmd="weixin" title="Share to Wechat"></a>
+ <a href="#" class="bds_tsina" data-cmd="tsina" title="Share to Weibo"></a>
+ <a href="#" class="bds_qzone" data-cmd="qzone" title="Share to Qzone"></a> 
+ <a href="#" class="bds_tqq" data-cmd="tqq" title="Share to Tencent weibo"></a>
+ <a href="#"  class="bds_fbook" data-cmd="fbook" title="Share to Facebook"></a>
+<a href="#"  class="bds_twi" data-cmd="twi" title="Share to twitter"></a></div>  
 <center>
 <table class="commontb" align="center" width="100%" style="width:100%;text-align:center;float:middle" >
   <tr>
@@ -160,14 +159,15 @@
       </table>
     <table class="f12-gao1">
       <tr>
-        <td><img src="${basePath}images/facebook.png" style="width:24;height:24;" />
+        <%-- <td><img src="${basePath}images/facebook.png" style="width:24;height:24;" />
         <a target="_blank" href="https://www.facebook.com/dialog/feed">FB</a></td>
         <td><img src="${basePath}images/share.png"  style="width:24;height:24;"/>
-        <a target="_blank" id="copyurl" href="javascript:void(0)" data-clipboard-target="flashcopier">CopyUrl</a><div style="display:none" id="flashcopier"></div></td>
-        <td><img src="${basePath}images/favorite01.png"  style="width:24;height:24;"/>
-        <a target="_blank"  href="javascript:itour.hiking.addFavorite()" rel="sidebar">Bookmark </a></td>
-        <td><img src="${basePath}images/print.png"  style="width:24;height:24;"/>
-        <a target="_blank"  href="javascript:itour.hiking.printff()">Print</a></td></tr>
+        <a target="_blank" id="copyurl" href="javascript:void(0)" data-clipboard-target="flashcopier">CopyUrl</a><div style="display:none" id="flashcopier"></div></td> --%>
+        <td style="text-align:left;"><img src="${basePath}images/favorite01.png"  style="width:24;height:24;"/>
+        <a target="_blank"  href="javascript:itouren.hiking.addFavorite()" rel="sidebar">Bookmark </a></td>
+        <%-- <td><img src="${basePath}images/print.png"  style="width:24;height:24;"/>
+        <a target="_blank"  href="javascript:itour.hiking.printff()">Print</a></td> --%>
+        </tr>
             <%--  <tr><td><a href="${basePath}climb/toQuote2/${rt.alias}" class="easyui-linkbutton" >预定本路线</a></td></tr>     --%>
     </table></td>
   </tr></tbody></table>
@@ -205,9 +205,9 @@
         </td>
        <c:if test="${not empty rt.routeMap}">
             <td width="60%" valign="top" class="STYLE126"><div align="center"><span class="STYLE3">Travel map</span><br />
-                <div class="easyzoom easyzoom--overlay">
-                    <a href="${basePath}${rt.routeMap}">
-                        <img src="${basePath}${rt.routeMap}" alt="" width="100%" />        
+                <div>
+                    <a href="${basePath}${rt.routeMap}" class="MagicZoom" rel="zoom-position:top">
+                        <img src="${basePath}${rt.routeMap}" alt="" width="100%"  height="127"/>        
                     </a>
                 </div>
               </div>

@@ -32,10 +32,6 @@ itouren.mselfdrivedetail = function(){
 								                '<td>&nbsp;</td>'+
 								                '<td style="text-align:left">Re：'+(e.result?e.result:"")+'</td>'+
 								              '</tr>'+
-								             /* '<tr>'+
-								                '<td>&nbsp;</td>'+
-								                '<td>&nbsp;</td>'+
-								              '</tr>'+*/
 								            '</table>';
 									});
 									$("#fbcontent").append(html);		

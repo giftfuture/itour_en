@@ -70,7 +70,7 @@ itouren.footer = function(){
 		     _this.loadlevel2Area(level1Area);
 		    //console.log('${rcdDays}');$(this).combobox('select', '${rcdDays}')
 		    $("#vacation").combobox({ 
-		        data:[{'value':'','text':'-All-'},{'value':'1_5','text':'1-5days'},{'value':'6_9','text':'6-9days'},{'value':'10_15','text':'10-15days'},{'value':'16','text':'16days+'}],
+		        data:[{'value':'-All-','text':'-All-'},{'value':'1_5','text':'1-5days'},{'value':'6_9','text':'6-9days'},{'value':'10_15','text':'10-15days'},{'value':'16','text':'16days+'}],
 		        mode:'local',
 		        onLoadSuccess:function(){$(this).combobox('setValue', rcdDays);}
 		    }) 
